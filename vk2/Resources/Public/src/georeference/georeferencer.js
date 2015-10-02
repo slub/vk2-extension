@@ -56,43 +56,43 @@ vk2.georeference.Georeferencer = function(options){
 	// 
 	// generate and add gcp and clip toolbox
 	//
-//	var gcpHandler = (goog.isDef(gcp) && vk2.georeference.utils.isNewTKGCP(gcp)) ?
-//		new vk2.georeference.handler.GCPTK25Handler({
-//			sources: gcpSources,
-//			gcps: gcp,
-//			type: type,
-//			overwriteId: overwriteId,
-//			projections: projections,
-//			srcViewer: srcViewer
-//		}) : new vk2.georeference.handler.GCPDefaultHandler({
-//			sources: gcpSources,
-//			gcps: gcp,
-//			type: type,
-//			overwriteId: overwriteId,
-//			projections: projections
-//		}),
-//		gcpToolbox = new vk2.georeference.toolbox.GCPToolbox(parentEl),
-//		gcpToolboxHandler = new vk2.georeference.handler.GCPToolboxHandler({
-//			toolbox: gcpToolbox,
-//			handler: gcpHandler,
-//			maps: [srcViewer.getMap(), targetViewer.getMap()],
-//			sources: gcpSources			
-//		});
-		//clipToolbox = new vk2.georeference.toolbox.ClipToolbox(parentEl),
-		//clipToolboxHandler = new vk2.georeference.handler.ClipToolboxHandler(clipToolbox, srcViewer.getMap(), clipPolygon);
-	//this.addToolboxBehavior_(gcpToolboxHandler, clipToolboxHandler);
+	var gcpHandler = (goog.isDef(gcp) && vk2.georeference.utils.isNewTKGCP(gcp)) ?
+		new vk2.georeference.handler.GCPTK25Handler({
+			sources: gcpSources,
+			gcps: gcp,
+			type: type,
+			overwriteId: overwriteId,
+			projections: projections,
+			srcViewer: srcViewer
+		}) : new vk2.georeference.handler.GCPDefaultHandler({
+			sources: gcpSources,
+			gcps: gcp,
+			type: type,
+			overwriteId: overwriteId,
+			projections: projections
+		}),
+		gcpToolbox = new vk2.georeference.toolbox.GCPToolbox(parentEl),
+		gcpToolboxHandler = new vk2.georeference.handler.GCPToolboxHandler({
+			toolbox: gcpToolbox,
+			handler: gcpHandler,
+			maps: [srcViewer.getMap(), targetViewer.getMap()],
+			sources: gcpSources			
+		}),
+		clipToolbox = new vk2.georeference.toolbox.ClipToolbox(parentEl),
+		clipToolboxHandler = new vk2.georeference.handler.ClipToolboxHandler(clipToolbox, srcViewer.getMap(), clipPolygon);
+	this.addToolboxBehavior_(gcpToolboxHandler, clipToolboxHandler);
 	
 	//
 	// append warp and confirm controls for communication with backend
 	//
-//	var warpImageControl = new vk2.georeference.control.WarpImageControl(menuElId, mapId, 
-//			gcpToolboxHandler.getHandler(), clipToolboxHandler.getFeatureSource()),
-//		confirmControl = new vk2.georeference.control.ConfirmationControl(menuElId, mapId, 
-//			gcpToolboxHandler.getHandler(), clipToolboxHandler.getFeatureSource());
-//	this.addControlBehavior_(warpImageControl, confirmControl, targetViewer);
+	var warpImageControl = new vk2.georeference.control.WarpImageControl(menuElId, mapId, 
+			gcpToolboxHandler.getHandler(), clipToolboxHandler.getFeatureSource()),
+		confirmControl = new vk2.georeference.control.ConfirmationControl(menuElId, mapId, 
+			gcpToolboxHandler.getHandler(), clipToolboxHandler.getFeatureSource());
+	this.addControlBehavior_(warpImageControl, confirmControl, targetViewer);
 	
 	// open gcp toolbox on start up
-//	gcpToolbox.activate();
+	gcpToolbox.activate();
 	this.testing(targetViewer);
 };
 

@@ -51,7 +51,6 @@ vk2.app.GeoreferenceApp.prototype.fetchProcessDataFromServer_ = function(query_s
 			alert('Something went wrong, while trying to get the process information from the server. Please try again or contact the administrator.');
 		};	
 		callback(event.target.getResponseJson());
-		
 	});
 };
 

@@ -133,6 +133,7 @@ vk2.georeference.handler.GCPDefaultHandler.prototype.initializeGCPDefaultBehavio
 	 * @param {string} processId
 	 */
 	var closeAddingProcess = function(processId){
+		
 		if (goog.DEBUG){
 			console.log('Close adding process');
 		};
@@ -150,7 +151,7 @@ vk2.georeference.handler.GCPDefaultHandler.prototype.initializeGCPDefaultBehavio
 			
 			// set style 
 			var style = vk2.utils.Styles.getGeoreferencePointStyle();
-			style.getText().setText(processId);
+			style.getText().setText('' + processId);
 			
 			featureUnref.setStyle(style);
 			featureGeoref.setStyle(style);
@@ -182,6 +183,24 @@ vk2.georeference.handler.GCPDefaultHandler.prototype.initializeGCPDefaultBehavio
 			this.removeFeature(event['feature']);
 		}
 	});
+	
+	sources[0].on('removefeature', function(event) {
+		var processId = event.feature.getId(),
+			featureUnref = sources[0].getFeatureById(processId),
+			featureGeoref = sources[1].getFeatureById(processId);
+		
+		if (featureGeoref === null & featureUnref === null && addGcpHnd.getSrcBlocked()) 
+			addGcpHnd.setSrcBlocked(false);
+	})
+	
+	sources[1].on('removefeature', function(event) {
+		var processId = event.feature.getId(),
+			featureUnref = sources[0].getFeatureById(processId),
+			featureGeoref = sources[1].getFeatureById(processId);
+		
+		if (featureGeoref === null & featureUnref === null && addGcpHnd.getTargetBlocked()) 
+			addGcpHnd.setTargetBlocked(false);
+	})
 		
 	sources[1].on('addfeature', function(event){
 		if (addGcpHnd.getTargetBlocked() === false){
