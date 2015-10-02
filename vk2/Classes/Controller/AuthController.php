@@ -1,0 +1,194 @@
+<?php
+namespace SLUB\Vk2\Controller;
+
+use \TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+
+/***************************************************************
+ *
+*  Copyright notice
+*
+*  (c) 2015 Jacob Mendt <Jacob.Mendt@slub-dresden.de>, SLUB
+*
+*  All rights reserved
+*
+*  This script is part of the TYPO3 project. The TYPO3 project is
+*  free software; you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation; either version 3 of the License, or
+*  (at your option) any later version.
+*
+*  The GNU General Public License can be found at
+*  http://www.gnu.org/copyleft/gpl.html.
+*
+*  This script is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+*
+*  This copyright notice MUST APPEAR in all copies of the script!
+***************************************************************/
+
+/**
+ * AuthController
+ */
+class AuthController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+	
+	/**
+	 * userRepository
+	 *
+	 * @var \SLUB\Vk2\Domain\Repository\UserRepository
+	 * @inject
+	 */
+	protected $userRepository;
+	
+	/**
+	 * userGroupRepository
+	 *
+	 * @var \SLUB\Vk2\Domain\Repository\UserGroupRepository
+	 * @inject
+	 */
+	protected $userGroupRepository;
+	
+	/**
+	 * persistenceManager
+	 *
+	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
+	 * @inject
+	 */
+	protected $persistenceManager;
+	
+	/**
+	 * @var \TYPO3\CMS\Core\Database\DatabaseConnection
+	 */
+	protected $databaseConnection = NULL;
+	
+	/**
+	 * controllerContext
+	 *
+	 * @var \TYPO3\CMS\Extbase\Mvc\Controller\ControllerContext
+	 */
+	public $controllerContext;
+	
+	/**
+	 * TypoScript
+	 *
+	 * @var array
+	 */
+	public $config;
+	
+	/**
+	 * Complete Configuration
+	 *
+	 * @var array
+	 */
+	public $vk2Config;
+	
+	/**
+	 * (non-PHPdoc)
+	 * @see \TYPO3\CMS\Extbase\Mvc\Controller\ActionController::initializeAction()
+	 */
+	public function initializeAction() {
+		$this->databaseConnection = $GLOBALS['TYPO3_DB'];
+		$this->controllerContext = $this->buildControllerContext();
+		$this->vk2Config = $this->configurationManager->getConfiguration(
+				ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK
+		);
+		$this->config = $this->configurationManager->getConfiguration(
+				ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
+		);
+		
+		// called for debugging
+		//DebuggerUtility::var_dump($this->vk2Config);
+		//DebuggerUtility::var_dump($this->vk2Config['persistence']['storagePid']);
+		//DebuggerUtility::var_dump($this->vk2config['settings']['passwordSave']);
+		//DebuggerUtility::var_dump($GLOBALS['TSFE']->loginUser);
+	}
+	
+	/**
+	 * Does only returns the login page. User login is done via core extension 
+	 * fe_login
+	 * 
+	 * @param \SLUB\Vk2\Domain\Model\User $user
+	 */
+	public function loginAction(
+			\SLUB\Vk2\Domain\Model\User $user = NULL){
+		$this->view->assign('user', $user);
+	}
+	
+	public function logoutAction(){
+		if ($GLOBALS['TSFE']->loginUser) {
+			$GLOBALS['TSFE']->fe_user->logoff();
+			$this->redirect('show', 'Main', NULL); 
+		}
+	} 
+	
+// 	/**
+// 	 * For debugging is called before signUpAction
+// 	 */
+// 	public function initializeSignupAction() {
+// 		DebuggerUtility::var_dump($this->request->getArguments());
+// 	}
+	
+	/**
+	 * sign up a user
+	 * 
+	 * @param \SLUB\Vk2\Domain\Model\User $user
+	 */
+	public function signupAction(
+			\SLUB\Vk2\Domain\Model\User $user) {		
+		// attached usergroup to user
+		$usergroup = $this->userGroupRepository->findByUid(2);
+		$user->addUsergroup($usergroup);
+		
+		// hash passpord
+		$user->hashPassword($this->vk2config['settings']['passwordSave']);
+		
+		// add user to database
+		$this->userRepository->add($user);
+		$this->persistenceManager->persistAll();
+		$this->afterSignupDo($user);		
+	}
+	
+	/** 
+	 * Actions to be done after a sign up process
+	 * 
+	 * @param \SLUB\Vk2\Domain\Model\User $user
+	 * @param bool $login Login after creation
+	 * @return void
+	 */
+	public function afterSignupDo(\SLUB\Vk2\Domain\Model\User $user, $login = TRUE) {
+		// persist user (otherwise login is not possible if user is still disabled)
+		$this->userRepository->update($user);
+		$this->persistenceManager->persistAll();
+		
+		// login user
+		if ($login) {
+			$this->loginAfterCreate($user);
+		}
+		
+		// redirect
+		$this->redirect('show', 'Main', NULL);
+	}
+	
+	/**
+	 * Login FE-User after creation
+	 *
+	 * @param \SLUB\Vk2\Domain\Model\User $user
+	 * @return void
+	 */
+	protected function loginAfterCreate(\SLUB\Vk2\Domain\Model\User $user) {	
+		$GLOBALS['TSFE']->fe_user->checkPid = FALSE;
+		$info = $GLOBALS['TSFE']->fe_user->getAuthInfoArray();
+		$pids = $this->vk2Config['persistence']['storagePid'];
+		$extraWhere = ' AND pid IN (' . $this->databaseConnection->cleanIntList($pids) . ')';
+		$user = $GLOBALS['TSFE']->fe_user->fetchUserRecord($info['db_user'], $user->getUsername(), $extraWhere);
+	
+		//DebuggerUtility::var_dump($user);
+		$GLOBALS['TSFE']->fe_user->createUserSession($user);
+		$GLOBALS['TSFE']->fe_user->user = $GLOBALS['TSFE']->fe_user->fetchUserSession();
+		// enforce session so we get a FE cookie, otherwise autologin does not work (TYPO3 6.2.5+)
+		$GLOBALS['TSFE']->fe_user->setAndSaveSessionData('dummy', TRUE);
+	}
+	
+}

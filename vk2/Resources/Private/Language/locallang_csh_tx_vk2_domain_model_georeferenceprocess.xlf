@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-07-01T11:17:24Z" product-name="test">
+		<header/>
+		<body>
+			<trans-unit id="id.description">
+				<source>id</source>
+			</trans-unit>
+			<trans-unit id="mapid.description">
+				<source>mapid</source>
+			</trans-unit>
+			<trans-unit id="timestamp.description">
+				<source>timestamp</source>
+			</trans-unit>
+			<trans-unit id="userid.description">
+				<source>userid</source>
+			</trans-unit>
+			<trans-unit id="georefparams.description">
+				<source>georefparams</source>
+			</trans-unit>
+			<trans-unit id="processed.description">
+				<source>processed</source>
+			</trans-unit>
+			<trans-unit id="isactive.description">
+				<source>isactive</source>
+			</trans-unit>
+			<trans-unit id="overwrites.description">
+				<source>overwrites</source>
+			</trans-unit>
+			<trans-unit id="adminvalidation.description">
+				<source>adminvalidation</source>
+			</trans-unit>
+			<trans-unit id="type.description">
+				<source>type</source>
+			</trans-unit>
+			<trans-unit id="clipparams.description">
+				<source>clipparams</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

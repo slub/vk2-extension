@@ -1,0 +1,40 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+
+	<div class="contact-formular page-container panel panel-default">
+		<div class="panel-heading">
+			<f:translate id="contact.title" />
+		</div>
+		<div class="panel-body">
+			<p class="contant-message" id="contant-message">
+				<f:translate id="contact.msg" />
+			</p>
+			<br>
+			<div id="contact-form-validation-message"
+				class="alert validation-error" style="display: none;"></div>
+			<form id="contact-form" role="form"
+				onsubmit="return vk2.validation.validateContactForm()"
+				href="#">
+				<div class="form-group">
+					<label for="contactMessage">Email:</label> <input type="text"
+						class="form-control" name="email" placeholder="Email"
+						autocomplete="on" id="input-email" autofocus></input>
+				</div>
+				<div class="form-group">
+					<label for="contactMessage"><f:translate
+							id="contact.input.textarea" />:</label>
+					<textarea class="form-control" rows="5" name="message"
+						placeholder="{f:translate(id:'contact.input.textarea')}"
+						id="input-message"></textarea>
+					<span class="help-block"><f:translate
+							id="contact.input.textarea.help" /></span>
+				</div>
+				<div class="form-group right">
+					<button class="btn btn-primary" id="submit-button">Submit</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</f:section>

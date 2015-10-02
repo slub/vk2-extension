@@ -1,0 +1,18 @@
+{
+  "name": "vk2-extension",
+  "description": "Javascript dependencies for Virtual Map Forum Extension",
+  "version": "0.0.1",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "jquery": "1.10.2",
+    "jquery-ui": "1.10.3",
+    "bootstrap": "~3.1.1",
+    "proj4": "~2.3.6"
+  },
+  "devDependencies": {
+    "closure-library": "https://github.com/google/closure-library.git",
+    "openlayers": "https://github.com/openlayers/ol3.git#v3.5.0",
+    "plovr": "https://github.com/bolinfest/plovr.git#v3.1.0"
+  }
+}

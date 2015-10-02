@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-06-01T16:53:13Z" product-name="vk2">
+		<header/>
+		<body>
+			<trans-unit id="tx_vk2_domain_model_main">
+				<source>Main</source>
+			</trans-unit>
+			<trans-unit id="tx_vk2_domain_model_footer">
+				<source>Footer</source>
+			</trans-unit>
+			
+			<!-- General -->
+			<trans-unit id="language.tag">
+				<source>en</source>
+			</trans-unit>
+			
+			<!-- Main page -->
+			<trans-unit id="main.contact">
+				<source>Contact</source>
+			</trans-unit>
+			<trans-unit id="main.impressum">
+				<source>Impressum</source>
+			</trans-unit>
+			<trans-unit id="main.language.de">
+				<source>German</source>
+			</trans-unit>
+			<trans-unit id="main.language.en">
+				<source>English</source>
+			</trans-unit>
+			<trans-unit id="main.header.service">
+				<source>Informations</source>
+			</trans-unit>
+			<trans-unit id="main.login.title">
+				<source>Login</source>
+			</trans-unit>
+			<trans-unit id="main.auth.logout">
+				<source>Logout</source>
+			</trans-unit>
+			<trans-unit id="main.footer.projectname">
+				<source>Virtual Map Forum 2.0</source>
+			</trans-unit>
+			<trans-unit id="main.footer.projectdescription">
+				<source>a project from the SLUB Dresden and the University of Rostock</source>
+			</trans-unit>
+			
+			<!-- login page -->
+			<trans-unit id="login.title">
+				<source>Welcome to the Virtual Map Forum 2.0</source>
+			</trans-unit>
+			<trans-unit id="login.username">
+				<source>Username</source>
+			</trans-unit>
+			<trans-unit id="login.password">
+				<source>Password</source>
+			</trans-unit>
+			<trans-unit id="login.signin">
+				<source>Login</source>
+			</trans-unit>
+			<trans-unit id="login.reset">
+				<source>Reset password?</source>
+			</trans-unit>
+			<trans-unit id="login.newto">
+				<source>New to the Virtual Map Forum 2.0?</source>
+			</trans-unit>
+			<trans-unit id="login.signupnow">
+				<source>Register now</source>
+			</trans-unit>
+			<trans-unit id="login.backtosignin">
+				<source>back to the</source>
+			</trans-unit>
+			<trans-unit id="login.registration">
+				<source>Registration</source>
+			</trans-unit>
+			<trans-unit id="login.signup">
+				<source>Login</source>
+			</trans-unit>
+			<trans-unit id="login.email">
+				<source>Email</source>
+			</trans-unit>
+			<trans-unit id="login.firstname">
+				<source>First name</source>
+			</trans-unit>
+			<trans-unit id="login.lastname">
+				<source>Last name</source>
+			</trans-unit>		
+				
+			<!-- logout page -->
+			<trans-unit id="logout.title">
+				<source>Are you sure you want to logout</source>
+			</trans-unit>
+			
+			<!-- contact page -->
+			<trans-unit id="contact.title">
+				<source>Contact Us</source>
+			</trans-unit>
+			<trans-unit id="contact.msg">
+				<source>Please inform us about your ideas, problems or suggestions.</source>
+			</trans-unit>
+			<trans-unit id="contact.input.textarea">
+				<source>Contact message</source>
+			</trans-unit>
+			<trans-unit id="contact.input.textarea.help">
+				<source>Please insert your contact message in this text field.</source>
+			</trans-unit>
+			
+			<!-- impressum page -->
+			<trans-unit id="impressum.title">
+				<source>Impressum</source>
+			</trans-unit>
+			<trans-unit id="impressum.provider">
+				<source>Provider</source>
+			</trans-unit>
+			<trans-unit id="impressum.slubname">
+				<source>Saxon State and %1$sUniversity Library Dresden (SLUB)</source>
+			</trans-unit>
+			<trans-unit id="impressum.postadress">
+				<source>Post adress</source>
+			</trans-unit>
+			<trans-unit id="impressum.visitoradress">
+				<source>Visitor adress</source>
+			</trans-unit>	
+			<trans-unit id="impressum.representedby">
+				<source>Represented through</source>
+			</trans-unit>
+			<trans-unit id="impressum.agency">
+				<source>Office</source>
+			</trans-unit>			
+			<trans-unit id="impressum.representative">
+				<source>Representatives</source>
+			</trans-unit>						
+			<trans-unit id="impressum.representative.1">
+				<source>Die SLUB ist eine Anstalt öffentlichen Rechts.</source>
+			</trans-unit>		
+			<trans-unit id="impressum.representative.2">
+				<source>Die SLUB ist die Staatsbibliothek des Freistaates Sachsen und zugleich die Universitätsbibliothek 
+					der Technischen Universität Dresden. Sie wird durch den Generaldirektor, Herrn Prof. Dr. Thomas Bürger, 
+					gesetzlich vertreten.</source>
+			</trans-unit>			
+			<trans-unit id="impressum.representative.3">
+				<source>Der Staatsminister für Wissenschaft und Kunst übt die Dienst- und Fachaufsicht über die Anstalt aus.</source>
+			</trans-unit>
+			<trans-unit id="impressum.editorial.team">
+				<source>Editorial team</source>
+			</trans-unit>
+			<trans-unit id="impressum.editorial.technical">
+				<source>Technical realisation</source>
+			</trans-unit>
+			<trans-unit id="impressum.information.law">
+				<source>Rechtliche Hinweise zur Haftung</source>
+			</trans-unit>			
+			<trans-unit id="impressum.information.law.text">
+				<source>Trotz unserer sorgfältigen Bemühungen können wir keine Gewähr für die Richtigkeit, 
+					Vollständigkeit und Aktualität unserer Webseiten geben. Weiter übernehmen wir keine 
+					Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind 
+					ausschließlich deren Betreiber verantwortlich. Die SLUB behält es sich vor, Teile des 
+					Internetangebotes oder das gesamte Angebot ohne gesonderte Ankündigung zu ändern, zu 
+					ergänzen, zu löschen oder die Veröffentlichung zeitweise oder endgültig einzustellen.</source>
+			</trans-unit>			
+			<trans-unit id="impressum.information.copyright">
+				<source>Information about the copyright</source>
+			</trans-unit>
+			<trans-unit id="impressum.information.copyright.text">
+				<source>Das Layout der Homepage, die verwendeten Grafiken sowie die sonstigen Inhalte sind urheberrechtlich geschützt.</source>
+			</trans-unit>						
+			<trans-unit id="impressum.information.privacy">
+				<source>Privay policy</source>
+			</trans-unit>
+			
+			<!-- faq page -->
+			<trans-unit id="faq.title">
+				<source>Frequently Asked Questions (FAQ)</source>
+			</trans-unit>
+			<trans-unit id="faq.general.title">
+				<source>General navigation</source>
+			</trans-unit>
+			<trans-unit id="faq.general.content.1">
+				<source><![CDATA[The Virtual Map Forum 2.0 offers a lot of tools and content. General 
+					topics as the <b>FAQ</b>, the <b>Contact</b> details, the <b>Project</b> 
+					or the <b>Masthead / Impressum</b> can be accessed through the buttons in
+					 the footer or the button above the map search on the left side.]]></source>
+			</trans-unit>
+			<trans-unit id="faq.general.content.2">
+				<source><![CDATA[If you click either on the German or the English flag you can change the 
+					language of the Virtual Map Forum 2.0. You can log in or register by 
+					clicking on the <b>login button</b>. With the button in the right upper 
+					corner you can toggle in the full-screen-mode.]]></source>
+			</trans-unit>
+			<trans-unit id="faq.map.detection.title">
+				<source>Map detection</source>
+			</trans-unit>
+			<trans-unit id="faq.map.detection.content.1">
+				<source>Right now you can find and displayed more than 4.700 georeferenced maps 
+					in the portal of the  Virtual Map Forum 2.0.</source>
+			</trans-unit>
+			<trans-unit id="faq.map.detection.content.2">
+				<source>Using the navigation directly on the map or through the input of a place 
+					name respectively a map sheet number in the search field of the 
+					spatiotemporal search module (left part / main page) you can choose the 
+					relevant spatial area. The spatiotemporal search module also displays the
+					 relevant search results for your spatiotemporally selected criteria. 
+					Through using the time slider you can also adjust the relevant time 
+					period for your search results.</source>
+			</trans-unit>
+			<trans-unit id="faq.map.placename.title">
+				<source>Search for place</source>
+			</trans-unit>
+			<trans-unit id="faq.map.placename.content">
+				<source><![CDATA[If you type in the input box a <b>place name</b> the application offers 
+					you a select list of possible place names. By choosing a place name from 
+					this list with your mouse or the keyboard the map jumps right to this 
+					place. You can alternatively type in the <b>map sheet number</b> (like 
+					<code>49_48</code>) and this will guide you to the right place as well.]]></source>
+			</trans-unit>
+			<trans-unit id="faq.map.timebar.title">
+				<source>Adjust the time</source>
+			</trans-unit>
+			<trans-unit id="faq.map.timebar.content">
+				<source>With the help of the time bar you can adjust the period of your search 
+					time. Right now the portal offers you maps between the years 1868 and 
+					1945. Therefore these years represent the maximum range of time. The 
+					adjusting of the search period affects the listed results in the search 
+					list.</source>
+			</trans-unit>
+			<trans-unit id="faq.map.searchlist.title">
+				<source>The search list</source>
+			</trans-unit>
+			<trans-unit id="faq.map.searchlist.content.1">
+				<source><![CDATA[The search list displays all available maps for the appropriate spatial 
+					segment and search time. The header of the search list shows the number 
+					of search hits. Beneath, you can sort the results by pressing the buttons
+					 <b>Title</b> or <b>Time</b>. If you click on a search result, the 
+					appropriate historical map will be displayed on the main map and 
+					automatically be transferred to the "My Maps" map container.]]></source>
+			</trans-unit>
+			<trans-unit id="faq.map.searchlist.content.2">
+				<source>Every single search result will be displayed with its lemma, time stamp 
+					(dating) and its scale. Furthermore there will be given a Thumbnail image
+					 of the relevant map. If you move your mouse over a search result, the 
+					spatial expansion of the map will be represented in a polygon on the main
+					 map.</source>
+			</trans-unit>
+			<trans-unit id="faq.map.navigation.title">
+				<source>Map navigation</source>
+			</trans-unit>
+			<trans-unit id="faq.map.navigation.content.1">
+				<source>The picture left hand side shows the different navigation tools which can
+					 be used on the maps.</source>
+			</trans-unit>
+			<trans-unit id="faq.map.navigation.content.2">
+				<source><![CDATA[By pressing the <b>+</b> or the <b>-</b> you can zoom into or out of the 
+					map (you can also use the mouse wheel)]]></source>
+			</trans-unit>
+			<trans-unit id="faq.map.navigation.content.3">
+				<source><![CDATA[The <b>Magnifier button</b> activates a map magnifier. If you move it 
+					over a historical map it will show the recent <a 
+					href="http://www.openstreetmap.org/#map=5/51.500/-0.100">OpenStreetMap</a>
+					 for this part. Press <b>y</b> and the area for the magnifier gets 
+					bigger. Press <b>x</b> and the area gets smaller.]]></source>
+			</trans-unit>
+			<trans-unit id="faq.map.navigation.content.4">
+				<source><![CDATA[Press and hold the Shift key and press and move the mouse at the same 
+					time you rotate the map. Press the <b>Needle button</b> the map will be 
+					"northed" again.]]></source>
+			</trans-unit>
+			<trans-unit id="faq.map.navigation.content.5">
+				<source>The last button allows you to create a link of the current map view and 
+					to share it with other users.</source>
+			</trans-unit>
+			<trans-unit id="faq.map.management.title">
+				<source>Manage chosen maps</source>
+			</trans-unit>
+			<trans-unit id="faq.map.management.content">
+				<source>If you choose a map in the spatiotemporal search module it will be added 
+					automatically to the main map and to the map management container. In 
+					this map management container you can change the transparency of maps, 
+					activate and deactivate maps, you can add related maps, delete any map 
+					from your own selection and it is possible to change the order of the 
+					presentation of the maps on the main map.</source>
+			</trans-unit>
+			<trans-unit id="faq.map.transparency.title">
+				<source>Change transparency</source>
+			</trans-unit>
+			<trans-unit id="faq.map.transparency.content">
+				<source>If you click with your mouse on the bar and slide it up- or downwards you
+					 can change the transparency of the chosen map. This will help you to see
+					 the changing in the landscapes and to check the georeferencing of your 
+					map.</source>
+			</trans-unit>
+			<trans-unit id="faq.map.activate.title">
+				<source>Activate / deactivate maps</source>
+			</trans-unit>
+			<trans-unit id="faq.map.activate.content.1">
+				<source>activated</source>
+			</trans-unit>
+			<trans-unit id="faq.map.activate.content.2">
+				<source>deactivated</source>
+			</trans-unit>	
+			<trans-unit id="faq.map.activate.content.3">
+				<source>By clicking with your mouse on the green square you can either activate 
+					or deactivate the corresponding map sheet.</source>
+			</trans-unit>
+			<trans-unit id="faq.adddel.title">
+				<source>Add / delete maps</source>
+			</trans-unit>	
+			<trans-unit id="faq.adddel.content.1">
+				<source>To add a map sheet choose the one you would like to work on from the 
+					listed map sheets beneath the spatiotemporal search module by just 
+					clicking on it with your mouse or by using the keyboard. The map sheet 
+					will automatically be transferred to the "My Maps" map 
+					container.</source>
+			</trans-unit>
+			<trans-unit id="faq.adddel.content.2">
+				<source><![CDATA[To delete a map sheet just press the "<b>x</b>" <b>button</b> 
+					beneath the activate / deactivate tool.]]></source>
+			</trans-unit>	
+			<trans-unit id="faq.map.reorder.title">
+				<source>Reorder maps</source>
+			</trans-unit>
+			<trans-unit id="faq.map.reorder.content.1">
+				<source>To reorder maps use your mouse cursor. Click on the thumbnail version of 
+					one map sheets in your "My Maps" map container and press and 
+					hold it. Then you can easily move it up- or downwards in the container to
+					 change the order of the map sheets.</source>
+			</trans-unit>	
+			<trans-unit id="faq.map.reorder.content.2">
+				<source>If you want to have a map at the very top you can either use the drag-
+					and-drop method or you can just click on the symbol above the activate / 
+					deactivate switch. So the map you just clicked on will automatically be 
+					moved to the top of the list.</source>
+			</trans-unit>
+			<trans-unit id="faq.map.original.title">
+				<source>Original maps and meta data</source>
+			</trans-unit>	
+			<trans-unit id="faq.map.original.content.1">
+				<source>If you selected one map from the plane survey sheet search list by 
+					clicking on it and then click on the corresponding square in the main map
+					 you will get further information about the map sheet. You will also be 
+					given a picture of the original map sheet.</source>
+			</trans-unit>
+			<trans-unit id="faq.map.original.content.2">
+				<source>And you can receive even more information by clicking on one of the two 
+					boxes shown left. "Gehe zu Fotothek" leads you to the 
+					photographic library which provides the map sheet and "Zeige 
+					Metadatensatz" gives you more meta data.</source>
+			</trans-unit>
+			<trans-unit id="faq.sidebar.map.general">
+				<source>General navigation</source>
+			</trans-unit>	
+			<trans-unit id="faq.sidebar.map.detection">
+				<source>Map detection</source>
+			</trans-unit>	
+			<trans-unit id="faq.sidebar.map.placename">
+				<source>Search for a place</source>
+			</trans-unit>
+			<trans-unit id="faq.sidebar.map.timebar">
+				<source>Adjust the time</source>
+			</trans-unit>	
+			<trans-unit id="faq.sidebar.map.searchlist">
+				<source>The search list</source>
+			</trans-unit>
+			<trans-unit id="faq.sidebar.map.navigation">
+				<source>Map navigation</source>
+			</trans-unit>	
+			<trans-unit id="faq.sidebar.map.management">
+				<source>Manage chosen maps</source>
+			</trans-unit>
+			<trans-unit id="faq.sidebar.map.transparency">
+				<source>Change transparency</source>
+			</trans-unit>	
+			<trans-unit id="faq.sidebar.map.activate">
+				<source>Activate / deactivate maps</source>
+			</trans-unit>
+			<trans-unit id="faq.sidebar.map.adddel">
+				<source>Add / delete maps</source>
+			</trans-unit>	
+			<trans-unit id="faq.sidebar.map.reorder">
+				<source>Reorder maps</source>
+			</trans-unit>
+			<trans-unit id="faq.sidebar.map.original">
+				<source>Original maps and meta data</source>
+			</trans-unit>		
+		</body>
+	</file>
+</xliff>

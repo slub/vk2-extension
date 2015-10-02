@@ -1,0 +1,12 @@
+# eclipse project folder
+.project
+.buildpath
+.settings
+.idea/
+
+# javascript 
+node_modules/
+Resources/Public/vk2-min.js
+Resources/Public/vk2-min-debug.js
+Resources/Public/lib/*
+

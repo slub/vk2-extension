@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-06-01T16:53:13Z" product-name="vk2">
+		<header/>
+		<body>
+			<trans-unit id="tx_vk2_domain_model_main">
+				<source>Main</source>
+			</trans-unit>
+			<trans-unit id="tx_vk2_domain_model_footer">
+				<source>Footer</source>
+			</trans-unit>
+			
+			<!-- General -->
+			<trans-unit id="language.tag">
+				<source>en</source>
+				<target state="translated">de</target>
+			</trans-unit>
+			
+			<!-- main page -->
+			<trans-unit id="main.contact">
+				<source>Contact</source>
+				<target state="translated">Kontakt</target>
+			</trans-unit>
+			<trans-unit id="main.impressum">
+				<source>Impressum</source>
+			</trans-unit>
+			<trans-unit id="main.language.de">
+				<source>German</source>
+				<target state="translated">Deutsch</target>
+			</trans-unit>
+			<trans-unit id="main.language.en">
+				<source>English</source>
+				<target state="translated">Englisch</target>
+			</trans-unit>
+			<trans-unit id="main.header.service">
+				<source>Informations</source>
+				<target state="translated">Informationen</target>
+			</trans-unit>
+			<trans-unit id="main.login.title">
+				<source>Login</source>
+				<target state="translated">Anmelden</target>
+			</trans-unit>
+			<trans-unit id="main.auth.logout">
+				<source>Logout</source>
+				<target state="translated">Abmelden</target>
+			</trans-unit>
+			<trans-unit id="main.footer.projectname">
+				<source>Virtual Map Forum 2.0</source>
+				<target state="translated">Virtuelles Kartenforum 2.0</target>
+			</trans-unit>
+			<trans-unit id="main.footer.projectdescription">
+				<source>a project from the SLUB Dresden and the University of Rostock</source>
+				<target state="translated">ein Projekt der SLUB und der Universität Rostock</target>
+			</trans-unit>
+			
+			<!-- logout page -->
+			<trans-unit id="logout.title">
+				<source>Are you sure you want to logout</source>
+				<target state="translated">Wollen Sie sich wirklich abmelden?</target>
+			</trans-unit>
+			
+			
+			<!-- contact page -->
+			<trans-unit id="contact.title">
+				<source>Contact Us</source>
+				<target state="translated">Kontaktieren Sie uns</target>
+			</trans-unit>
+			<trans-unit id="contact.msg">
+				<source>Please inform us about your ideas, problems or suggestions.</source>
+				<target state="translated">Bitte Informieren Sie uns über Ihre Ideen, Probleme und Anregungen.</target>
+			</trans-unit>
+			<trans-unit id="contact.input.textarea">
+				<source>Contact message</source>
+				<target state="translated">Kontaktnachricht</target>
+			</trans-unit>
+			<trans-unit id="contact.input.textarea.help">
+				<source>Please insert your contact message in this text field.</source>
+				<target state="translated">Bitte tragen Sie in diesem Text-Feld ihre Kontaktnachricht ein.</target>
+			</trans-unit>
+			
+			<!-- impressum page -->
+			<trans-unit id="impressum.title">
+				<source>Impressum</source>
+				<target state="translated">Impressum</target>
+			</trans-unit>
+			<trans-unit id="impressum.provider">
+				<source>Provider</source>
+				<target state="translated">Anbieter</target>
+			</trans-unit>
+			<trans-unit id="impressum.slubname">
+				<source>Saxon State and %1$sUniversity Library Dresden (SLUB)</source>
+				<target state="translated">Sächsische Landesbibliothek - %1$sStaats- und Universitätsbibliothek Dresden</target>
+			</trans-unit>
+			<trans-unit id="impressum.postadress">
+				<source>Post adress</source>
+				<target state="translated">Postanschrift</target>
+			</trans-unit>
+			<trans-unit id="impressum.visitoradress">
+				<source>Visitor adress</source>
+				<target state="translated">Besucheranschrift</target>
+			</trans-unit>	
+			<trans-unit id="impressum.representedby">
+				<source>Represented through</source>
+				<target state="translated">Vertreten durch</target>
+			</trans-unit>
+			<trans-unit id="impressum.agency">
+				<source>Office</source>
+				<target state="translated">Geschäftsstelle</target>
+			</trans-unit>			
+			<trans-unit id="impressum.representative">
+				<source>Representatives</source>
+				<target state="translated">Vertreter</target>
+			</trans-unit>						
+			<trans-unit id="impressum.representative.1">
+				<source>Die SLUB ist eine Anstalt öffentlichen Rechts.</source>
+			</trans-unit>		
+			<trans-unit id="impressum.representative.2">
+				<source>Die SLUB ist die Staatsbibliothek des Freistaates Sachsen und zugleich die Universitätsbibliothek 
+					der Technischen Universität Dresden. Sie wird durch den Generaldirektor, Herrn Prof. Dr. Thomas Bürger, 
+					gesetzlich vertreten.</source>
+			</trans-unit>			
+			<trans-unit id="impressum.representative.3">
+				<source>Der Staatsminister für Wissenschaft und Kunst übt die Dienst- und Fachaufsicht über die Anstalt aus.</source>
+			</trans-unit>
+			<trans-unit id="impressum.editorial.team">
+				<source>Editorial team</source>
+				<target state="translated">Redaktionsverantwortliche</target>
+			</trans-unit>
+			<trans-unit id="impressum.editorial.technical">
+				<source>Technical realisation</source>
+				<target state="translated">Technische Realisierung</target>
+			</trans-unit>
+			<trans-unit id="impressum.information.law">
+				<source>Rechtliche Hinweise zur Haftung</source>
+			</trans-unit>			
+			<trans-unit id="impressum.information.law.text">
+				<source>Trotz unserer sorgfältigen Bemühungen können wir keine Gewähr für die Richtigkeit, 
+					Vollständigkeit und Aktualität unserer Webseiten geben. Weiter übernehmen wir keine 
+					Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind 
+					ausschließlich deren Betreiber verantwortlich. Die SLUB behält es sich vor, Teile des 
+					Internetangebotes oder das gesamte Angebot ohne gesonderte Ankündigung zu ändern, zu 
+					ergänzen, zu löschen oder die Veröffentlichung zeitweise oder endgültig einzustellen.</source>
+			</trans-unit>			
+			<trans-unit id="impressum.information.copyright">
+				<source>Information about the copyright</source>
+				<target state="translated">Rechtliche Hinweise zum Urheberrecht</target>
+			</trans-unit>
+			<trans-unit id="impressum.information.copyright.text">
+				<source>Das Layout der Homepage, die verwendeten Grafiken sowie die sonstigen Inhalte sind urheberrechtlich geschützt.</source>
+			</trans-unit>						
+			<trans-unit id="impressum.information.privacy">
+				<source>Privay policy</source>
+				<target state="translated">Datenschutzerklärung</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

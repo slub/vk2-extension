@@ -1,0 +1,5 @@
+# Local project files (IDE/Configuration/...)
+.idea
+
+# debug files
+/vk2/Resources/Public/lib/

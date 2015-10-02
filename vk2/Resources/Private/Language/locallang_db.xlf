@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-06-16T15:40:25Z" product-name="vk2">
+		<header/>
+		<body>
+			<trans-unit id="tx_vk2_domain_model_main">
+				<source>Main</source>
+			</trans-unit>
+			<trans-unit id="tx_vk2_domain_model_footer">
+				<source>Footer</source>
+			</trans-unit>
+			<trans-unit id="tx_vk2_domain_model_user">
+				<source>User</source>
+			</trans-unit>
+			<trans-unit id="tx_vk2_domain_model_user.name">
+				<source>Name</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

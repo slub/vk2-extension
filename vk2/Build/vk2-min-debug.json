@@ -1,0 +1,57 @@
+{
+
+  "id": "vk2-min-debug",
+
+  "externs": [
+    "./externs/proj4.js",
+    "./externs/ol-externs.js",
+    "./externs/jquery.js",
+    "./externs/general.js",
+    "./externs/vk2x.js"
+  ],
+
+  //"output-wrapper": "/*! \n//@ sourceMappingURL=vkviewer-min.map.js\n */\n%output%",
+
+  "level": "DEFAULT",
+
+  "mode": "ADVANCED",
+
+  "checks": {
+    "accessControls": "ERROR",
+    "checkRegExp": "ERROR",
+    "checkTypes": "WARNING",
+    "checkVars": "ERROR",
+    "deprecated": "ERROR",
+    "duplicate": "ERROR",
+    "fileoverviewTags": "ERROR",
+    "invalidCasts": "ERROR",
+    "missingProperties": "ERROR",
+    "nonStandardJsDocs": "ERROR",
+    "undefinedVars": "ERROR"
+  },
+
+  "inputs": [
+    "./exports.js"
+  ],
+
+  "paths": [
+    "../Resources/Public/src"
+  ],
+
+  "define": {
+    "goog.DEBUG": false
+  },
+
+  "pretty-print": true,
+
+  "experimental-compiler-options": {
+    "languageIn": "ECMASCRIPT5"
+  },
+
+  //"property-map-output-file": "../vkviewer-min.property.js",
+
+  //"variable-map-output-file": "../vkviewer-min.variable.js",
+
+  "output-file": "../Resources/Public/vk2-min-debug.js"
+
+}
