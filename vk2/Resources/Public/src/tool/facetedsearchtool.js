@@ -50,13 +50,15 @@ vk2.tool.FacetedSearch = function(parentEl, georeferenceMode){
 			'" value="' + vk2.tool.FacetedSearchTypes[key] + '">' + key + '</label>';
 	};
 	
-	goog.dom.appendChild(this.parentEl_, goog.dom.createDom('div', {
+	var facetEl_ = goog.dom.createDom('div', {
 		'class':'search-facet',
 		'innerHTML': innerHTML
-	}));
+	});
+	
+	goog.dom.appendChild(this.parentEl_, facetEl_);
 	
 	// append behavior
-	goog.events.listen(this.parentEl_, 'click', function(event) {
+	goog.events.listen(facetEl_, 'click', function(event) {
 		// get all checked values
 		var elements = goog.dom.getElementsByClass('facet-search-el', event.currentTarget),
 			checkedEl = [],
