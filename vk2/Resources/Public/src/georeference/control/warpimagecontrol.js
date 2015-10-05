@@ -54,7 +54,7 @@ vk2.georeference.control.WarpImageControl.prototype.warpImage_ = function(object
 	
 	// get relevant parameters
 	var projection = vk2.georeference.utils.extractProjection('projection-chooser'),
-		algorithm = vk2.georeference.utils.extractTransformationAlgorithm('transform-chooser'),
+		algorithm = vk2.georeference.utils.extractTransformationAlgorithm('transformation-chooser'),
 		newGeorefParams = gcpHandler.getGcpParams(algorithm, projection),
 		clipPolygon = vk2.georeference.utils.extractClipPolygon(clipPolygonSource);
 	

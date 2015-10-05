@@ -28,6 +28,17 @@ vk2.utils.routing.getGeorefGetProcessRoute = function(query_string) {
 };
 
 /**
+ * @param {string} query_string
+ * @return {string}
+ */
+vk2.utils.routing.getGeorefValidationRoute = function(query_string) {
+	var uri = new goog.Uri(window.location.href);
+	if (!vk2.settings.WITH_SPEAKING_URLS)
+		return uri.getPath() + '?' + vk2.settings.GEOREFERENCE_VALIDATION + '&' + query_string;
+	return vk2.settings.GEOREFERENCE_VALIDATION + '&' + query_string;
+};
+
+/**
  * @param {string} key
  * @return {string}
  */

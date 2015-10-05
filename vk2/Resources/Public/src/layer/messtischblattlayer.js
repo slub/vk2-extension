@@ -12,17 +12,11 @@ goog.require('vk2.utils');
  */
 vk2.layer.Messtischblatt = function(settings, map){
 		
-	/**
-	 * @type {ol.geom.Polygon}
-	 * @private
-	 */
-	var clipPolygon_ = goog.isDef(settings.clipPolygon) ? settings.clipPolygon : undefined;
-	
-	var projection = goog.isDef(settings['projection']) ? settings['projection'] : 'EPSG:900913';
-	
-	var wms_url = goog.isDef(settings.wms_url)? settings.wms_url : undefined;
-	
-	var layerid = goog.isDef(settings.layerid)? settings.layerid : undefined;
+	var clipPolygon_ = goog.isDef(settings.clipPolygon) ? settings.clipPolygon : undefined,
+		projection = goog.isDef(settings['projection']) ? settings['projection'] : 'EPSG:900913',
+		wms_url = goog.isDef(settings.wms_url)? settings.wms_url : undefined,
+		layerid = goog.isDef(settings.layerid)? settings.layerid : undefined,
+		extent = clipPolygon_ === undefined ? undefined : clipPolygon_.getExtent();
 
 	settings['source'] = new ol.source.TileWMS({
 		'url': wms_url,
@@ -31,7 +25,7 @@ vk2.layer.Messtischblatt = function(settings, map){
 			'VERSION': '1.1.1'
 		},
 		'projection': projection,
-		'extent': clipPolygon_.getExtent()
+		'extent': extent
 	});
 	
 	// define preload behavior
@@ -70,7 +64,8 @@ vk2.layer.Messtischblatt = function(settings, map){
 	};
 	
 	// borderPolygon definded than add clip behavior
-	if (!goog.isDef(clipPolygon_)){
+	if (goog.isDef(clipPolygon_)){
+		
 		messtischblattLayer.on('precompose', function(event){
 			if (goog.DEBUG)
 				console.log('Precompose event triggered. ');
@@ -96,8 +91,6 @@ vk2.layer.Messtischblatt = function(settings, map){
 		messtischblattLayer.on('postcompose', function(event){
 			var canvas = event.context;
 			canvas.restore();
-			
-			console.log(this.getMap())
 		});
 	};
 		

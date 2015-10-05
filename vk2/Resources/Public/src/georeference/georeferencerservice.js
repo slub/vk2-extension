@@ -2,6 +2,7 @@ goog.provide('vk2.georeference.GeoreferencerService');
 
 goog.require('goog.net.XhrIo');
 goog.require('vk2.settings');
+goog.require('vk2.utils.routing');
 
 /**
  * @static
@@ -28,7 +29,7 @@ vk2.georeference.GeoreferencerService.requestValidationResult = function(data, s
 		return;
 	};
 	
-	goog.net.XhrIo.send(vk2.settings.GEOREFERENCE_VALIDATION, 
+	goog.net.XhrIo.send(vk2.utils.routing.getGeorefValidationRoute(), 
 			callback, 'POST', 'req=' + JSON.stringify(data));	
 	return undefined;
 };

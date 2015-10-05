@@ -93,7 +93,7 @@ vk2.settings.GEOREFERENCE_GETPROCESS = 'id=19&tx_vk2_search[controller]=Georefer
 /**
  * @type {string}
  */
-vk2.settings.GEOREFERENCE_VALIDATION = '/vkviewer/georef/validation?type=999';
+vk2.settings.GEOREFERENCE_VALIDATION = 'id=19&tx_vk2_search[controller]=Georeference&tx_vk2_search[action]=validateGeorefProcess&type=999' //'/vkviewer/georef/validation?type=999';
 
 /**
  * @type {string}

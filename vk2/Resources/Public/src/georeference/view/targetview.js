@@ -142,19 +142,22 @@ vk2.georeference.view.TargetView.prototype.deactivateLoadingBar = function(){
  * @param {Object} clip
  */
 vk2.georeference.view.TargetView.prototype.displayValidationMap = function(wms_url, layer_id, clip){
-		
 
 	if (goog.isDef(this.valLayer_)){
 		// remove old layer
 		this.map_.removeLayer(this.valLayer_);
 	};
 
-	var clipPolygon = new ol.geom.Polygon([clip['polygon']]),
-		clipPolygonViewerSrs = clipPolygon.transform(clip['source'], this.proj_);
+	var clipPolygon = clip.hasOwnProperty('polygon') && clip['polygon'].length > 0 ? 
+			new ol.geom.Polygon([clip['polygon']]) : undefined,
+		clipPolygonViewerSrs = clipPolygon !== undefined ? clipPolygon.transform(clip['source'], this.proj_)
+				: undefined;
 	
 	// reset control zoomToExtent
+	var zoomExtent = clipPolygonViewerSrs === undefined ? this.map_.getView().calculateExtent(this.map_.getSize())  
+			: clipPolygonViewerSrs.getExtent();
 	this.map_.removeControl(this.zoomToExtentControl_);
-	this.zoomToExtentControl_ = new ol.control.ZoomToExtent({ extent: clipPolygonViewerSrs.getExtent()});
+	this.zoomToExtentControl_ = new ol.control.ZoomToExtent({ extent: zoomExtent});
 	this.map_.addControl(this.zoomToExtentControl_);
 	
 	// create new validation layer and add layer to correct position
@@ -166,7 +169,8 @@ vk2.georeference.view.TargetView.prototype.displayValidationMap = function(wms_u
 	this.map_.getLayers().insertAt(1, this.valLayer_); 
 	
 	// zoom to extent by parsing getcapabilites request from wms
-	this.map_.getView().fitExtent(clipPolygonViewerSrs.getExtent(), this.map_.getSize());
+	if (clipPolygonViewerSrs !== undefined)
+		this.map_.getView().fit(clipPolygonViewerSrs.getExtent(), this.map_.getSize());
 	this.resetOpacitySlider_(this.valLayer_);
 
 };
