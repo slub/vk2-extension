@@ -15,7 +15,6 @@ goog.require('goog.events.EventTarget');
 goog.require('goog.events.Event');
 goog.require('goog.net.XhrIo');
 goog.require('vk2.utils');
-goog.require('vk2.validation');
 
 /**
  * Create a front end for a gazetteer service
@@ -60,12 +59,6 @@ vk2.tool.GazetteerSearch = function(parentEl){
 					alert('The choosen placename is unknown.');
 				};
 			}, this));
-		}, this),
-		/**
-		 * @param {string} blattnumber
-		 */
-		'blattnumber': goog.bind(function(blattnumber){
-			this._requestBlattnumber(blattnumber);
 		}, this)
 	};
 	
@@ -119,11 +112,8 @@ vk2.tool.GazetteerSearch.prototype._loadHtmlContent = function(parentEl){
 vk2.tool.GazetteerSearch.prototype._appendAutoCompleteBehavior = function(){
 	$(this._inputText).autocomplete({
     	'source': goog.bind(function( request, response ){
-    		if (!vk2.validation.isBlattnumber(request['term'])){
-    			this._requestPlacenameData(request['term'], response);
-    			return undefined;
-    		}
-    		response([])
+    		this._requestPlacenameData(request['term'], response);
+    		return undefined;
     	}, this),
     	'delay': 300,
         'minLength': 3,
@@ -149,11 +139,6 @@ vk2.tool.GazetteerSearch.prototype._appendSubmitBehavior = function(){
 	 * @param {string} name
 	 */
 	var submitF = goog.bind(function(name){
-		if (vk2.validation.isBlattnumber(name)) {
-			this._submitHandler['blattnumber'](name);
-			return undefined;
-		};
-		
 		// if there are commas remove them together with the subsequently content
 		var placename = name.indexOf(',') > -1 ? name.split(',')[0] : name;
 		this._submitHandler['placename'](placename);
@@ -186,34 +171,32 @@ vk2.tool.GazetteerSearch.prototype._appendSubmitBehavior = function(){
 vk2.tool.GazetteerSearch.prototype._requestPlacenameData = function(placename, callback){
 		
 	// request data
-	var data = {
-		featureClass: "P",
-		style: "full",
-		maxRows: 8,
-	    format: 'json',
-	    q: placename,
-	    viewbox: '4.35,58.48,27.78,45.97',
-	    bounded: 1
-	};
+	var focusLon = 13,
+		focusLat = 51,
+		key = "search-53q8sJs",
+		text = placename;
 	
 	// add loading
 	goog.dom.classes.add(this._inputText, 'loading');
 	
-	var request_url = 'http://open.mapquestapi.com/nominatim/v1/search.php?featureClass='+data.featureClass+'&style='+data.style+
-		'&maxRows='+data.maxRows+'&format='+data.format+'&q='+data.q+'&viewbox='+data.viewbox+'&bounded='+data.bounded;
+	var request_url = 'https://search.mapzen.com/v1/autocomplete?api_key='+key+'&text='+text+
+		'&focus.point.lat='+focusLat+'&focus.point.lon='+focusLon;
 	goog.net.XhrIo.send(request_url, goog.bind(function(e){
 				var xhr = /** @type {goog.net.XhrIo} */ (e.target);
 		    	var data = xhr.getResponseJson() ? xhr.getResponseJson() : xhr.getResponseText();
 		    	xhr.dispose();
-
+		    	
 		    	// parse data
-				var parsed_data = $.map( data, function( item ){
+				var parsed_data = $.map( data['features'], function( item ){					
 					return {
-						'label': item['display_name'],
-						'value': item['display_name'],
-						'lonlat': {'x':item['lon'],'y':item['lat']},
-						'type': item['type']
-						}
+						'label': item['properties']['label'],
+						'value': item['properties']['name'],
+						'lonlat': {
+							'x':item['geometry']['coordinates'][0],
+							'y':item['geometry']['coordinates'][1]
+						},
+						'type': item['properties']['layer']
+					};
 				});
 				// set this for other submit events
 				this._actualAutoCompleteData[placename] = parsed_data;
@@ -223,41 +206,6 @@ vk2.tool.GazetteerSearch.prototype._requestPlacenameData = function(placename, c
 				if (goog.dom.classes.has(this._inputText,'loading'))
 		    		goog.dom.classes.remove(this._inputText,'loading');
 	}, this), "GET");
-};
-
-/**
- * @param {string} blattnumber
- * @private
- */
-vk2.tool.GazetteerSearch.prototype._requestBlattnumber = function(blattnumber){
-	// create request objects
-	var request_url = vk2.settings.PROXY_URL + 'http://eiger.auf.uni-rostock.de/fgs/vkll/fragblattnr.php?blattnr='+blattnumber;
-
-	// add loading
-	goog.dom.classes.add(this._inputText, 'loading');
-		
-	goog.net.XhrIo.send(request_url, goog.bind(function(e){
-		// get response data
-		var xhr = /** @type {goog.net.XhrIo} */ (e.target);
-    	var point = xhr.getResponseJson() ? xhr.getResponseJson() : xhr.getResponseText();
-    	xhr.dispose();
-    	
-		// parse data and fire event
-		if (goog.isDef(point) && goog.isObject(point)){
-    		var event_object = {
-        		'location_type':'blattnr',
-        		'lonlat':[point['coordinates'][0],point['coordinates'][1]],
-        		'srs':'EPSG:4326'
-        	};
-        	this._dispatchJumpToEvent(event_object);
-		} else {
-			alert(vk2.utils.getMsg('noResultsBlattnr'));
-		};
-		
-		// remove loading class
-		if (goog.dom.classes.has(this._inputText,'loading'))
-    		goog.dom.classes.remove(this._inputText,'loading');
-	}, this));
 };
 
 /**
