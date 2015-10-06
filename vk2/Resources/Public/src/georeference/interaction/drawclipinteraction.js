@@ -15,7 +15,9 @@ goog.require('vk2.georeference.interaction.GeoreferenceInteraction')
  * @extends {vk2.georeference.interaction.GeoreferenceInteraction}
  */
 vk2.georeference.interaction.DrawClipInteraction = function(map, featureOverlay, featureSource){
-
+	
+	var source = featureOverlay.getSource();
+	
 	/**
 	 * @type {ol.Map}
 	 * @private
@@ -28,7 +30,7 @@ vk2.georeference.interaction.DrawClipInteraction = function(map, featureOverlay,
 	 */
 	this.interactions_ = [
 		new ol.interaction.Draw({
-			'features': featureOverlay.getSource().getFeaturesCollection(),
+			'features': source.getFeaturesCollection(),
 			'type': 'Polygon',
 			'style': vk2.utils.Styles.GEOREFERENCE_CLIP_POLYGON
 		}),
@@ -49,17 +51,17 @@ vk2.georeference.interaction.DrawClipInteraction = function(map, featureOverlay,
 		if (goog.DEBUG){
 			console.log('Start drawing ...');
 		};
-		
+
 		// checks if there exists already a polygon
-		if (featureOverlay.getSource().getFeatures().getLength() >= 1)
+		if (source.getFeatures().length >= 1)
 			this.finishDrawing();
 	}, this.interactions_[0]);
 	
-	featureOverlay.getSource().getFeaturesCollection().on('add', function(event){
-		if (this.getSource().getFeatures().getLength() > 1){
+	source.getFeaturesCollection().on('add', function(event){
+		if (source.getFeatures().length > 1){
 			if (goog.DEBUG)
 				console.log('There is already a clip polygon ...');
-			this.getSource().getFeatures().removeAt(1);
+			source.getFeatures().splice(1,1);
 		};		
 	}, featureOverlay);
 	
