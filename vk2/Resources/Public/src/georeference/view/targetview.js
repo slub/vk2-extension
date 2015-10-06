@@ -18,7 +18,6 @@ goog.require('vk2.layer.Messtischblatt');
 goog.require('vk2.control.LayerSpy');
 goog.require('vk2.tool.OpacitySlider');
 goog.require('vk2.tool.GazetteerSearch');
-goog.require('vk2.utils.SlideContainer');
 
 /**
  * @param {string} map_container
@@ -90,8 +89,7 @@ vk2.georeference.view.TargetView = function(mapElId, opt_extent){
 	this.map_.addControl(this.zoomToExtentControl_);
 	
 	// add gazetteer to view
-	var gazetteerSlideContainer = new vk2.utils.SlideContainer(this.parentEl_, 'gazetteersearch-slide-container'),
-		gazetteer = new vk2.tool.GazetteerSearch(gazetteerSlideContainer.getContainerEl());
+	var gazetteer = new vk2.tool.GazetteerSearch(this.parentEl_);
 	
 	// jumps to extent
 	goog.events.listen(gazetteer, 'jumpto', function(event){
@@ -101,6 +99,9 @@ vk2.georeference.view.TargetView = function(mapElId, opt_extent){
 				event.target['srs'], this.proj_));
 		view.setZoom(10);
 	}, undefined, this);
+	
+	// remove first attribution list entry
+	goog.dom.getElementByClass('ol-attribution').children[0].children[0].remove();
 };
 
 /**

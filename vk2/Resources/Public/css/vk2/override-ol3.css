@@ -1,17 +1,10 @@
 /* always background color white for the map viewport */
-.ol-viewport{
-	background-color: white;
-}
-
+.ol-viewport{ background-color: white; }
 /* preventing ol3 to display +/- in zoom control twice */
-.ol-zoom-in:before {
-	content: "";
-}
-		
-.ol-zoom-out:before {
-	content: "";
-}
-
+.ol-zoom-in:before { content: ""; }
+.ol-zoom-out:before { content: ""; }
+button.ol-full-screen-false:after { content: ""; }
+.ol-attribution > ul { display: block !important; }
 /* styles for own ol3 control elements */
 .ol-layerspy{
 	position: absolute;
@@ -90,9 +83,9 @@
 .olMap .ol-attribution img { display: none; }
 
 /** Append fullscreen button icon */
-button.ol-full-screen-false:after {
+/* button.ol-full-screen-false:after {
 content: "\002194";
-}
+} */
 
 .map-control-container{
 	display: block;
