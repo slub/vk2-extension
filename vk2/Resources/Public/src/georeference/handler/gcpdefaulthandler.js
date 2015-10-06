@@ -169,8 +169,8 @@ vk2.georeference.handler.GCPDefaultHandler.prototype.initializeGCPDefaultBehavio
 				console.log(event);
 			};			
 			
-			var processid = addGcpHnd.getRunningProcessId();
-			var feature = event['feature'];
+			var processid = addGcpHnd.getRunningProcessId(),
+				feature = event['feature'];
 			addGcpHnd.setSrcBlocked(true);
 			feature.setId(processid);
 			feature.setStyle(vk2.utils.Styles.GEOREFERENCE_POINT_PENDING);
@@ -232,8 +232,8 @@ vk2.georeference.handler.GCPDefaultHandler.prototype.initializeGCPDefaultBehavio
  * @return {ol.Feature=}
  */
 vk2.georeference.handler.GCPDefaultHandler.prototype.getGcpEquivalent = function(feature){
-	var unrefFeature = this.gcpSources_[0].getFeatureById(feature.getId());
-	var georefFeature = this.gcpSources_[1].getFeatureById(feature.getId()); 
+	var unrefFeature = this.sources_[0].getFeatureById(feature.getId()),
+		georefFeature = this.sources_[1].getFeatureById(feature.getId()); 
 	
 	if (feature === unrefFeature)
 		return georefFeature;

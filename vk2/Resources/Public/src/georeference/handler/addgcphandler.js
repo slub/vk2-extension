@@ -47,7 +47,7 @@ vk2.georeference.handler.AddGCPHandler.prototype.isRunningAddingProcess = functi
 vk2.georeference.handler.AddGCPHandler.prototype.getRunningProcessId = function(){
 	if (!this.isRunningAddingProcess())
 		this.processId_ += 1;
-	return this.processId_;			
+	return '' + this.processId_;			
 };
 
 /**

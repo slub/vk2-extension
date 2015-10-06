@@ -192,8 +192,8 @@ vk2.georeference.interaction.DragGcpInteraction.prototype.loadEventBehavior_ = f
 		if (goog.isDefAndNotNull(event['element'].getId()))
 			this.dispatchEvent(new goog.events.Event(vk2.georeference.interaction.DragGcpInteractionEventType.SELECTED, {
 				'feature': event['element'],
-				'srcStyle': vk2.utils.Styles.getGeoreferencePointStyle(event['element'].getId().replace(':','')),
-				'targetStyle': vk2.utils.Styles.getGeoreferencePointHover(event['element'].getId().replace(':',''))
+				'srcStyle': vk2.utils.Styles.getGeoreferencePointStyle(event['element'].getId()),
+				'targetStyle': vk2.utils.Styles.getGeoreferencePointHover(event['element'].getId())
 			}));
 	}, this);
 	
@@ -204,8 +204,8 @@ vk2.georeference.interaction.DragGcpInteraction.prototype.loadEventBehavior_ = f
 		if (goog.isDefAndNotNull(event['element'].getId()))
 			this.dispatchEvent(new goog.events.Event(vk2.georeference.interaction.DragGcpInteractionEventType.DESELECTED, {
 				'feature': event['element'],
-				'srcStyle': vk2.utils.Styles.getGeoreferencePointHover(event['element'].getId().replace(':','')),
-				'targetStyle': vk2.utils.Styles.getGeoreferencePointStyle(event['element'].getId().replace(':',''))
+				'srcStyle': vk2.utils.Styles.getGeoreferencePointHover(event['element'].getId()),
+				'targetStyle': vk2.utils.Styles.getGeoreferencePointStyle(event['element'].getId())
 			}));
 	}, this);
 	
