@@ -88,12 +88,17 @@ vk2.settings.GEOREFERENCE_PAGE = 'id=19&tx_vk2_search[controller]=Static&tx_vk2_
 /**
  * @type {string}
  */
-vk2.settings.GEOREFERENCE_GETPROCESS = 'id=19&tx_vk2_search[controller]=Georeference&tx_vk2_search[action]=getProcess&type=999'//'/vkviewer/georef/getprocess?type=999';
+vk2.settings.GEOREFERENCE_GETPROCESS = 'id=19&tx_vk2_search[controller]=Georeference&tx_vk2_search[action]=getProcess&type=999';
 
 /**
  * @type {string}
  */
-vk2.settings.GEOREFERENCE_VALIDATION = 'id=19&tx_vk2_search[controller]=Georeference&tx_vk2_search[action]=validateGeorefProcess&type=999' //'/vkviewer/georef/validation?type=999';
+vk2.settings.GEOREFERENCE_VALIDATION = 'id=19&tx_vk2_search[controller]=Georeference&tx_vk2_search[action]=validateGeorefProcess&type=999';
+
+/**
+ * @type {string}
+ */
+vk2.settings.GEOREFERENCE_HISTORY = 'id=19&tx_vk2_search[controller]=Georeference&tx_vk2_search[action]=georeferenceUserHistory&type=999';
 
 /**
  * @type {string}
@@ -143,12 +148,27 @@ vk2.settings.MAP_PROFILE_PAGE = 'id=19&tx_vk2_search[controller]=Static&tx_vk2_s
 /**
  * @type {string}
  */
-vk2.settings.EVALUATION_GETPROCESS = '/vkviewer/admin/getprocess';
+vk2.settings.EVALUATION_GETPROCESS = 'id=19&tx_vk2_search[controller]=Evaluation&tx_vk2_search[action]=getProcess&type=999'; //'/vkviewer/admin/getprocess';
+
+/**
+ * @type {string}
+ */
+vk2.settings.EVALUATION_SETISVALIDE = 'id=19&tx_vk2_search[controller]=Evaluation&tx_vk2_search[action]=setIsValide&type=999'; //'/vkviewer/admin/getprocess';
+
+/**
+ * @type {string}
+ */
+vk2.settings.EVALUATION_SETISINVALIDE = 'id=19&tx_vk2_search[controller]=Evaluation&tx_vk2_search[action]=setIsInValide&type=999'; //'/vkviewer/admin/getprocess';
 
 /**
  * @type {string}
  */
 vk2.settings.EVALUATION_API = '/vkviewer/admin';
+
+/**
+ * @type {string}
+ */
+vk2.settings.THUMBNAILS_DEFAULT = '#';
 
 /**
  * @type {Array.<string>}
@@ -164,6 +184,7 @@ vk2.settings.TMS_URL = [
  */
 vk2.settings.WITH_SPEAKING_URLS = false;
 
-//vk2.settings.TMS_URL = [
-//       'http://localhost/tms/'
-//]
+/**
+ * @type {string}
+ */
+vk2.settings.WMS_DYNAMIC_TEMPLATE = 'http://kartenforum.slub-dresden.de/cgi-bin/dynamic-ows';

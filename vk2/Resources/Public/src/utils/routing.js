@@ -17,6 +17,49 @@ vk2.utils.routing.clearPath = function(string) {
 };
 
 /**
+ * @param {string} key
+ * @return {string}
+ */
+vk2.utils.routing.getGeoreferenceAdminProcessRoute = function(query_string) {
+	var uri = new goog.Uri(window.location.href);
+	if (!vk2.settings.WITH_SPEAKING_URLS)
+		return uri.getPath() + '?' + vk2.settings.EVALUATION_GETPROCESS + '&' + query_string;
+	return vk2.settings.EVALUATION_GETPROCESS + '&' + query_string;
+};
+
+/**
+ * @param {string} key
+ * @return {string}
+ */
+vk2.utils.routing.getGeoreferenceAdminSetIsValideRoute = function(query_string) {
+	var uri = new goog.Uri(window.location.href);
+	if (!vk2.settings.WITH_SPEAKING_URLS)
+		return uri.getPath() + '?' + vk2.settings.EVALUATION_SETISVALIDE + '&' + query_string;
+	return vk2.settings.EVALUATION_SETISVALIDE + '&' + query_string;
+};
+
+/**
+ * @param {string} key
+ * @return {string}
+ */
+vk2.utils.routing.getGeoreferenceAdminSetIsInValideRoute = function(query_string) {
+	var uri = new goog.Uri(window.location.href);
+	if (!vk2.settings.WITH_SPEAKING_URLS)
+		return uri.getPath() + '?' + vk2.settings.EVALUATION_SETISINVALIDE + '&' + query_string;
+	return vk2.settings.EVALUATION_SETISINVALIDE + '&' + query_string;
+};
+
+/**
+ * @return {string}
+ */
+vk2.utils.routing.getGeoreferenceUserHistory = function() {
+	var uri = new goog.Uri(window.location.href);
+	if (!vk2.settings.WITH_SPEAKING_URLS)
+		return uri.getPath() + '?' + vk2.settings.GEOREFERENCE_HISTORY;
+	return vk2.settings.GEOREFERENCE_HISTORY;
+};
+
+/**
  * @param {string} query_string
  * @return {string}
  */
@@ -39,14 +82,17 @@ vk2.utils.routing.getGeorefValidationRoute = function(query_string) {
 };
 
 /**
- * @param {string} key
+ * @param {string|undefined} opt_objectid
+ * @param {string|undefined} opt_params
  * @return {string}
  */
-vk2.utils.routing.getGeorefPageRoute = function(key) {
+vk2.utils.routing.getGeorefPageRoute = function(opt_objectid, opt_params) {
+	var params = opt_objectid !== undefined ? '&objectid=' + key : 
+			opt_params !== undefined ? '&' + opt_params :  '';
 	var uri = new goog.Uri(window.location.href);
 	if (!vk2.settings.WITH_SPEAKING_URLS)
-		return uri.getPath() + '?' + vk2.settings.GEOREFERENCE_PAGE + '&objectid=' + key;
-	return vk2.utils.routing.clearPath(uri.getPath() + '/' + vk2.settings.GEOREFERENCE_PAGE) + '?objectid=' + key;
+		return uri.getPath() + '?' + vk2.settings.GEOREFERENCE_PAGE + params;
+	return vk2.utils.routing.clearPath(uri.getPath() + '/' + vk2.settings.GEOREFERENCE_PAGE) + '?' + params;
 };
 
 /**

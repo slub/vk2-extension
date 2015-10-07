@@ -45,5 +45,4 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @return void
 	 */
 	public function showAction() {}
-
 }

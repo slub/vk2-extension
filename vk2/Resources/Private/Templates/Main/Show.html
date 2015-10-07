@@ -38,6 +38,20 @@
 											data-src="${request.route_url('pw-change', action='page')}"
 											data-classes="pw-change" class="vk2-modal-anchor"
 											data-title="${_('pw-change_header')}">${_('change_pw_header')}</a></li>
+										
+										<!-- admin menu -->
+										<vk:isAdmin>
+											<f:then>
+												<li>
+													<f:link.action action="evaluationPage" controller="Static" 
+														absolute="True" target="_blank">
+														<f:translate id="main.link.goToEvaluationPage" />
+													</f:link.action>
+												</li>
+											</f:then>
+										</vk:isAdmin>
+										<!--  /admin menu -->
+										
 										<li class="divider"></li>
 										<li>
 											<f:link.action action="logout" controller="Auth" 

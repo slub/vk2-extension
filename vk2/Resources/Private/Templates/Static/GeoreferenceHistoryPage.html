@@ -1,0 +1,56 @@
+{namespace vk=SLUB\Vk2\ViewHelpers}
+<f:layout name="Default" />
+
+<f:section name="main">
+
+	<vk:head>
+		<style>
+			html {overflow: hidden;}
+			.georef-history h1 { padding: 0; color: #f33; font-size: 30px; font-weight: 300;
+				margin: 15px 0 5px 0;}
+			.georef-history h2 { color: #666; font-weight: 600; font-size: 16px; text-transform: uppercase; margin-bottom: 0; padding-bottom: 10px; border-bottom: 1px dotted #ccc; }
+			.georef-history header hgroup > a { display: none; }		
+			.georef-history article { font-size: 12px; background: #eee; padding: 10px; margin-bottom: 20px; }
+			.georef-history article a.pull-right { float: left !important; margin: 0 10px 0 0; }
+			.georef-history article img { height: 200px; }
+		</style>
+	</vk:head>
+	
+	<!-- load language javascript file -->
+	<vk:language urlPattern="{f:uri.resource(path:'src/locale/%s.js')}"
+		languageTag="{f:translate(id:'language.tag')}" />
+
+	<div class="georef-history container">
+		<div>
+			<header>
+				<hgroup>
+
+					<vk:isUser>
+						<f:then>						
+							<h1><f:translate id="georeferencehistory.page.userHistory" /> #<vk:username /></h1>
+							<h2><f:translate id="georeferencehistory.page.userPoints" />: 
+								<span id="georeference-user-points"></span></h2>
+							<br>
+							<f:link.action action="show" controller="Main" target="_top">
+								<f:translate id="evaluation.page.backToMain" />
+							</f:link.action> 
+						</f:then>
+					</vk:isUser>	
+								
+				</hgroup>
+			</header>
+
+			<div id="content-container" class="content-container">                             
+	                             
+				
+			</div>
+	
+	<script>
+		var app = new vk2.app.UserHistoryApp({
+			target: 'content-container',
+			targetPoints: 'georeference-user-points'
+		})
+
+    </script> 
+
+</f:section>

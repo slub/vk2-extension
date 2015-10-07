@@ -49,7 +49,7 @@ vk2.georeference.utils.extractTransformationAlgorithm = function(elementId){
  */
 vk2.georeference.utils.extractProjection = function(elementId){
 	var el = goog.dom.getElement(elementId);
-	return el.value;
+	return el !== null && el !== undefined ? el.value : 'EPSG:4314';
 };
 
 /**

@@ -8,16 +8,20 @@ if (!defined('TYPO3_MODE')) {
 	'Search',
 	array(
 		'Main' => 'show',
-		'Static' => 'contact, faq, impressum, project, profileMap, login, logout, georefPage',
+		'Evaluation' => 'getProcess, setIsValide, setIsInValide',
+		'Static' => 'contact, faq, impressum, project, profileMap, login, logout, 
+			georefPage, evaluationPage, georeferenceHistoryPage',
 		'Auth' => 'login, signup, logout',
-		'Georeference' => 'getProcess, validateGeorefProcess, confirmGeorefProcess',
+		'Georeference' => 'getProcess, validateGeorefProcess, confirmGeorefProcess, georeferenceUserHistory',
 	),
 	// non-cacheable actions
 	array(
 		'Main' => 'show',
-		'Static' => 'contact, faq, impressum, project, profileMap, login, logout, georefPage',
+		'Evaluation' => 'getProcess, setIsValide, setIsInValide',
+		'Static' => 'contact, faq, impressum, project, profileMap, login, logout, 
+			georefPage, evaluationPage, georeferenceHistoryPage',
 		'Auth' => 'login, signup, logout',
-		'Georeference' => 'getProcess, validateGeorefProcess, confirmGeorefProcess',
+		'Georeference' => 'getProcess, validateGeorefProcess, confirmGeorefProcess, georeferenceUserHistory',
 	)
 );
 

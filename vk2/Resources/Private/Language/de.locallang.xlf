@@ -52,6 +52,10 @@
 				<source>a project from the SLUB Dresden and the University of Rostock</source>
 				<target state="translated">ein Projekt der SLUB und der Universität Rostock</target>
 			</trans-unit>
+			<trans-unit id="main.link.goToEvaluationPage">
+				<source>Map Evaluation</source>
+				<target>Kartenevaluierung</target>
+			</trans-unit>
 			
 			<!-- logout page -->
 			<trans-unit id="logout.title">
@@ -152,6 +156,43 @@
 				<source>Privay policy</source>
 				<target state="translated">Datenschutzerklärung</target>
 			</trans-unit>
+			
+			<!-- evaluation page -->
+			<trans-unit id="evaluation.page.adminValidation">
+				<source>Welcome to the evaluation page</source>
+				<target state="translated">Willkommen auf der Evaluierungsseite</target>
+			</trans-unit>
+			<trans-unit id="evaluation.page.backToMain">
+				<source>Back to map sheet overview</source>
+				<target state="translated">Zurück zur Hauptseite</target>
+			</trans-unit> 
+			<trans-unit id="evaluation.page.enterMapId">
+				<source>Enter map id</source>
+				<target state="translated">Enter Map Identifier</target>
+			</trans-unit> 
+			<trans-unit id="evaluation.page.getAllProcess">
+				<source>Get processes</source>
+				<target state="translated">Zeige Prozesse</target>
+			</trans-unit> 
+			
+			<trans-unit id="evaluation.page.enterUserId">
+				<source>Enter User Id</source>
+				<target state="translated">Enter Nutzerid</target>
+			</trans-unit> 
+			<trans-unit id="evaluation.page.getAllUnvalideProcesses">
+				<source>Get all pending processes</source>
+				<target state="translated">Zeige alle ausstehenden Prozesse</target>
+			</trans-unit>
+			
+			<!-- georeference history -->
+			<trans-unit id="georeferencehistory.page.userHistory">
+				<source>History of user</source>
+				<target state="translated">Nutzerhistorie</target>
+			</trans-unit> 
+			<trans-unit id="georeferencehistory.page.userPoints">
+				<source>Previous Georeferencing - Points</source>
+				<target state="translated">Bisherige Georeferenzierungen - Punkte</target>
+			</trans-unit> 	
 		</body>
 	</file>
 </xliff>

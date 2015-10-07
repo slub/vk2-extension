@@ -43,6 +43,9 @@
 			<trans-unit id="main.footer.projectdescription">
 				<source>a project from the SLUB Dresden and the University of Rostock</source>
 			</trans-unit>
+			<trans-unit id="main.link.goToEvaluationPage">
+				<source>Map Evaluation</source>
+			</trans-unit>
 			
 			<!-- login page -->
 			<trans-unit id="login.title">
@@ -379,7 +382,47 @@
 			</trans-unit>
 			<trans-unit id="faq.sidebar.map.original">
 				<source>Original maps and meta data</source>
-			</trans-unit>		
+			</trans-unit>	
+			
+			<!-- evaluation page -->
+			<trans-unit id="evaluation.page.adminValidation">
+				<source>Welcome to the evaluation page</source>
+			</trans-unit>
+			<trans-unit id="evaluation.page.backToMain">
+				<source>Back to map sheet overview</source>
+			</trans-unit> 	
+			<trans-unit id="evaluation.page.enterMapId">
+				<source>Enter map id</source>
+			</trans-unit>
+			<trans-unit id="evaluation.page.getAllProcess">
+				<source>Get processes</source>
+			</trans-unit>
+			<trans-unit id="evaluation.page.enterUserId">
+				<source>Enter User Id</source>
+			</trans-unit> 	
+			<trans-unit id="evaluation.page.getAllUnvalideProcess">
+				<source>Get all pending processes</source>
+			</trans-unit>
+			
+			<!-- georeference history -->
+			<trans-unit id="georeferencehistory.page.userHistory">
+				<source>History of user</source>
+			</trans-unit>
+			<trans-unit id="georeferencehistory.page.userPoints">
+				<source>Previous Georeferencing - Points</source>
+			</trans-unit> 	
+			<trans-unit id="evaluation.page.enterMapId">
+				<source>Enter map id</source>
+			</trans-unit>
+			<trans-unit id="evaluation.page.getAllProcess">
+				<source>Get processes</source>
+			</trans-unit>
+			<trans-unit id="evaluation.page.enterUserId">
+				<source>Enter User Id</source>
+			</trans-unit> 	
+			<trans-unit id="evaluation.page.getAllUnvalideProcess">
+				<source>Get all pending processes</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

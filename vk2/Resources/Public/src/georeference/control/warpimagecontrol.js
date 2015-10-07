@@ -43,15 +43,26 @@ vk2.georeference.control.WarpImageControl = function(topMenuContainerEl, objecti
 goog.inherits(vk2.georeference.control.WarpImageControl, goog.events.EventTarget);
 
 /**
+ * Methode validates the request params.
+ * @param {Object} params
+ * @return {boolean}
+ * @private
+ */
+vk2.georeference.control.WarpImageControl.prototype.validateParams_ = function(params) {
+	// Not enough ground control points set
+	if (params['georeference']['gcps'].length < 4)
+		return false;
+	return true;
+};
+
+/**
  * @param {string} objectid
  * @param {vk2.georeference.GcpHandler} gcpHandler
  * @param {ol.source.Vector} clipPolygonSource
  * @private
  */
 vk2.georeference.control.WarpImageControl.prototype.warpImage_ = function(objectid, gcpHandler, clipPolygonSource){
-	// start warping process
-	this.dispatchEvent(new goog.events.Event(vk2.georeference.control.WarpImageControlEventType.START_WARPING, {}));
-	
+
 	// get relevant parameters
 	var projection = vk2.georeference.utils.extractProjection('projection-chooser'),
 		algorithm = vk2.georeference.utils.extractTransformationAlgorithm('transformation-chooser'),
@@ -73,6 +84,14 @@ vk2.georeference.control.WarpImageControl.prototype.warpImage_ = function(object
 		console.log(requestParams);
 		console.log('---------------------------');
 	};
+	
+	// validate parametes
+	// behavior in case of wrong params could be added
+	if (!this.validateParams_(requestParams))
+		return;
+	
+	// start warping process
+	this.dispatchEvent(new goog.events.Event(vk2.georeference.control.WarpImageControlEventType.START_WARPING, {}));
 	
 	var success_callback = goog.bind(function(event) {
 		if (goog.DEBUG) {

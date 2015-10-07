@@ -1,0 +1,176 @@
+{namespace vk=SLUB\Vk2\ViewHelpers}
+<f:layout name="Default" />
+
+<f:section name="main">
+
+	<vk:head>
+		<style>
+			html,body{overflow:auto}
+			.georef-history{height:100%}
+			.content-container{position:absolute;top:100px;bottom:10px;left:50px;right:50px}
+			.content-container .list-container{position:absolute;top:50px;bottom:0px;width:50%;overflow-y:scroll}
+			.content-container .map-container{position:absolute;top:50px;bottom:0px;right:0px;width:50%}
+			.content-container .media .thumbnail{padding:10px;width:256px;height:256px}
+			.content-container .media .media-body{padding-right:50px}
+			.content-container .media .media-body > p{margin-bottom:5px;word-wrap:break-word}
+			.georeferenced-map .opacity-container{left:10px}
+			html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,
+			pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,
+			strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,
+			legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,
+			canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,
+			section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baselinebaseline}
+			article,aside,details,figcaption,figure,footer,header,hgroup,
+			menu,nav,section{display:block}blockquote,q{quotes:none}
+			blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}
+			ins{background-color:#ff9;color:#000;text-decoration:none}
+			mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold}
+			del{text-decoration:line-through}
+			abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help}
+			table{border-collapse:collapse;border-spacing:0}
+			hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}
+			input,select{vertical-align:middle}body{font:13px/1.231 sans-serif;*font-size:small}
+			select,input,textarea,button{font:99% sans-serif}
+			pre,code,kbd,samp{font-family:monospace, sans-serif}
+			body,select,input,textarea{color:#444}
+			h1,h2,h3,h4,h5,h6{font-weight:bold}
+			ul,ol{margin-left:2em}
+			ol{list-style-type:decimal}
+			nav ul,nav li{margin:0;list-style:none;list-style-image:none}
+			small{font-size:85%}
+			strong,th{font-weight:bold}
+			td{vertical-align:top}
+			sub,sup{font-size:75%;line-height:0;position:relative}
+			sup{top:-0.5em}
+			sub{bottombottom:-0.25em}
+			pre{whitewhite-space:pre;whitewhite-space:pre-wrap;whitewhite-space:pre-line;word-wrap:break-word;padding:15px}
+			textarea{overflow:auto}
+			.ie6 legend,.ie7 legend{margin-left:-7px}
+			input[type="radio"]{vertical-align:text-bottom}
+			input[type="checkbox"]{vertical-align:bottombottom}
+			.ie7 input[type="checkbox"]{vertical-align:baselinebaseline}
+			.ie6 input{vertical-align:text-bottom}
+			label,input[type="button"],input[type="submit"],input[type="image"],button{cursor:pointer}
+			button,input,select,textarea{margin:0}
+			input:invalid,textarea:invalid{border-radius:1px;-moz-box-shadow:0px 0px 5px red;-webkit-box-shadow:0px 0px 5px red;box-shadow:0px 0px 5px red}
+			.no-boxshadow input:invalid,.no-boxshadow textarea:invalid{background-color:#f0dddd}
+			button{width:auto;overflow:visible}
+			.ie7 img{-ms-interpolation-mode:bicubic}
+			body{margin:35px auto;width:100%}
+			header{text-align:center;margin:0 0 20px}
+			header h1{display:inline;font-size:32px}
+			header h1 a:link,header h1 a:visited{color:#444;text-decoration:none}
+			header h2{font-size:16px;font-style:italic;color:#999}
+			#main{margin:0 0 20px}
+			#add{margin:0 0 20px}
+			#add textarea{height:30px;width:510px;padding:10px;border:1px solid #ddd}
+			#add input{height:50px;width:100px;margin:-50px 0 0;border:1px solid #ddd;background:white}
+			#edit textarea{height:30px;width:480px;padding:10px;border:1px solid #ddd}
+			#edit input[type=submit]{height:50px;width:100px;margin:-50px 0 0;border:1px solid #ddd;background:white}
+			#edit input[type=checkbox]{height:50px;width:20px}
+			article{border:1px solid #eee;border-top:none;padding:15px 10px}
+			article:first-of-type{border:1px solid #eee}
+			article:nth-child(even){background:#fafafa}
+			article.complete{background:#fedae3}
+			article span{font-size:0.8em}
+			p{margin:0 0 5px}
+			moo{font-weight:bold}
+			.meta{font-size:0.8em;font-style:italic;color:#888}
+			.links{font-size:1.8em;line-height:0.8em;float:rightright;margin:-10px 0 0}
+			.links a{display:block;text-decoration:none}
+			.notice{color:green}
+			.error{color:red}
+		</style>
+	</vk:head>
+	
+	<!-- load language javascript file -->
+	<vk:language urlPattern="{f:uri.resource(path:'src/locale/%s.js')}"
+		languageTag="{f:translate(id:'language.tag')}" />
+
+	<div class="georef-history container">
+		<div>
+			<header>
+				<hgroup>
+
+					<vk:isUser>
+						<f:then>
+							<h1><f:translate id="evaluation.page.adminValidation" /> #<vk:username /></h1>
+							<br>
+							<f:link.action action="show" controller="Main" target="_top">
+								<f:translate id="evaluation.page.backToMain" />
+							</f:link.action> 
+						</f:then>
+					</vk:isUser>	
+								
+				</hgroup>
+			</header>
+
+			<div id="content-container" class="content-container">
+				<section class="header-container">
+					<nav class="navbar navbar-default" role="navigation">
+						<div class="container-fluid">
+							<div class="collapse navbar-collapse">
+								<form class="navbar-form navbar-left" role="search" onsubmit="return false;">
+									<div class="form-group">
+										<label class="sr-only" for="mapid">Map Id</label> <input
+											type="name" class="form-control" id="input-mapid"
+											placeholder="{f:translate(id:'evaluation.page.enterMapId')}">
+									</div>
+									<button class="btn btn-default" id="getsingleprocesss-mapid"
+										data-src="input-mapid"><f:translate id="evaluation.page.getAllProcess" />
+									</button>
+								</form>
+								<form class="navbar-form navbar-left" role="search" onsubmit="return false;">
+									<div class="form-group">
+										<label class="sr-only" for="mapid">User Id</label> <input
+											type="name" class="form-control" id="input-userid"
+											placeholder="{f:translate(id:'evaluation.page.enterUserId')}">
+									</div>
+									<button class="btn btn-default" id="getsingleprocesss-userid"
+										data-src="input-userid"><f:translate id="evaluation.page.getAllProcess" /></button>
+								</form>
+								<ul class="nav navbar-nav navbar-right">
+									<li><a href="#" id="getallprocesses"><f:translate id="evaluation.page.getAllUnvalideProcess" /></a></li>
+									<li class="dropdown"><a href="#" class="dropdown-toggle"
+										data-toggle="dropdown" role="button" aria-expanded="false">Get
+											Process<span class="caret"></span>
+									</a>
+										<ul class="dropdown-menu" role="menu">
+											<li><a href="#" id="getallinvalideprocesses">Get all
+													"invalide" processes</a></li>
+										</ul></li>
+								</ul>
+							</div>
+							<!-- /.navbar-collapse -->
+						</div>
+						<!-- /.container-fluid -->
+					</nav>
+
+				</section>
+				<section class="list-container" id="list-container"></section>
+
+
+				<section class="map-container">
+					<div class="georeferenced-map olMap" id="evaluation-map">
+						<div id="opacity-slider-container"
+							class="opacity-slider-container"></div>
+					</div>
+				</section>
+
+
+			</div>
+		</div>
+	</div>
+	
+	<script>
+		var app = new vk2.app.AdminEvaluationApp({
+			'process_list':'list-container',
+			'btn_getallprocess':'getallprocesses',
+			'btn_getallinvalideprocess':'getallinvalideprocesses',
+			'map_container':'evaluation-map',
+			'btn_getsingleprocess_mapid':'getsingleprocesss-mapid',
+			'btn_getsingleprocess_userid':'getsingleprocesss-userid'
+		});
+    </script> 
+
+</f:section>

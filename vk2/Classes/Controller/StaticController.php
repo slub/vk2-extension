@@ -1,6 +1,8 @@
 <?php
 namespace SLUB\Vk2\Controller;
 
+use SLUB\Vk2\Utils\Tools;
+
 
 /***************************************************************
  *
@@ -32,6 +34,17 @@ namespace SLUB\Vk2\Controller;
  */
 class StaticController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 	
+	/**
+	 * feUserRepository
+	 *
+	 * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
+	 * @inject
+	 */
+	protected $feUserRepository;
+	
+	/*
+	 * simple static page behavior
+	 */ 
 	public function contactAction(){}
 	public function faqAction(){}
 	public function impressumAction(){}
@@ -39,5 +52,47 @@ class StaticController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	public function profileMapAction(){}
 	public function loginAction(){}
 	public function logoutAction(){}
-	public function georefPageAction(){}
+	
+	/*
+	 * allow only registered user to access this pages
+	 */
+	public function georefPageAction(){
+		$user = Tools::getActualUser($this->feUserRepository);
+		if ($user){
+			// user is authenticated
+			// do nothing
+			return;
+		} else {
+			// user is not authenticated
+			// redirect to main page
+			$this->redirect('show', 'Main', NULL); 
+		}
+	}
+	
+	public function georeferenceHistoryPageAction(){
+		$user = Tools::getActualUser($this->feUserRepository);
+		if ($user){
+			// user is authenticated
+			// do nothing
+			return;
+		} else {
+			// user is not authenticated
+			// redirect to main page
+			$this->redirect('show', 'Main', NULL);
+		}
+	}
+	
+	public function evaluationPageAction(){
+		$user = Tools::getActualUser($this->feUserRepository);
+		$usergroup = Tools::getUsergroupsForUser($user);
+		if (in_array('vk2-admin', $usergroup)){
+			// user is authenticated
+			// do nothing
+			return;
+		} else {
+			// user is not authenticated
+			// redirect to main page
+			$this->redirect('show', 'Main', NULL);
+		}
+	}
 }
