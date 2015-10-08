@@ -46,6 +46,9 @@
 			<trans-unit id="main.link.goToEvaluationPage">
 				<source>Map Evaluation</source>
 			</trans-unit>
+			<trans-unit id="main.link.goToGeoreferenceHistory">
+				<source>Georeference History</source>
+			</trans-unit>
 			
 			<!-- login page -->
 			<trans-unit id="login.title">
@@ -410,19 +413,28 @@
 			</trans-unit>
 			<trans-unit id="georeferencehistory.page.userPoints">
 				<source>Previous Georeferencing - Points</source>
+			</trans-unit> 
+			<trans-unit id="georeferencehistory.page.processId">
+				<source>ProcessId</source>
+			</trans-unit>
+			<trans-unit id="georeferencehistory.page.isValidated">
+				<source>Result validated</source>
 			</trans-unit> 	
-			<trans-unit id="evaluation.page.enterMapId">
-				<source>Enter map id</source>
+			<trans-unit id="georeferencehistory.page.mapId">
+				<source>Map-ID</source>
 			</trans-unit>
-			<trans-unit id="evaluation.page.getAllProcess">
-				<source>Get processes</source>
-			</trans-unit>
-			<trans-unit id="evaluation.page.enterUserId">
-				<source>Enter User Id</source>
+			<trans-unit id="georeferencehistory.page.mapSheetInfo">
+				<source>Map sheet information</source>
 			</trans-unit> 	
-			<trans-unit id="evaluation.page.getAllUnvalideProcess">
-				<source>Get all pending processes</source>
+			<trans-unit id="georeferencehistory.page.georefParams">
+				<source>Georeference parameter</source>
 			</trans-unit>
+			<trans-unit id="georeferencehistory.page.persistentAccess">
+				<source>Persistent access to georeference map</source>
+			</trans-unit>
+			<trans-unit id="georeferencehistory.page.beingGenerated">
+				<source>Being generated (duration approx. 15min)</source>
+			</trans-unit> 
 		</body>
 	</file>
 </xliff>

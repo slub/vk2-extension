@@ -28,11 +28,14 @@
 										class="glyphicon glyphicon-user"></span> <vk:username />
 											<b class="caret"></b></a>
 									<ul class="dropdown-menu">
-										<li><a
-											href="${request.route_url('profile-georeference')}"
-											data-src="${request.route_url('profile-georeference')}"
-											data-classes="georef-history" class="vk2-modal-anchor"
-											data-title="">${_('georef_history')}</a></li>
+										<li>
+											<f:link.action action="georeferenceHistoryPage" controller="Static" 
+												additionalAttributes="{data-classes:'georef-history'}" absolute="True"
+												title="{f:translate(id:'main.link.goToGeoreferenceHistory')}" 
+												class="vk2-modal-anchor">
+												<f:translate id="main.link.goToGeoreferenceHistory" />
+											</f:link.action>
+										</li>
 										<li><a
 											href="${request.route_url('pw-change', action='page')}"
 											data-src="${request.route_url('pw-change', action='page')}"

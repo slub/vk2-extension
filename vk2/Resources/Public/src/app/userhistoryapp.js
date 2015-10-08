@@ -5,6 +5,7 @@ goog.require('goog.events');
 goog.require('goog.net.EventType');
 goog.require('goog.net.XhrIo');
 goog.require('vk2.settings');
+goog.require('vk2.utils');
 goog.require('vk2.utils.routing');
 
 /**
@@ -86,11 +87,22 @@ vk2.app.UserHistoryApp.prototype.fetchData_ = function(targetEl, targetPointsEl)
 vk2.app.UserHistoryApp.prototype.renderRecord_ = function(record) {
 	var wmsUrl = record['transformed'] !== undefined && record['transformed'] === true ? 
 			vk2.settings.WMS_DYNAMIC_TEMPLATE + '?SERVICE=WMS&VERSION=1.0.0&REQUEST=GetCapabilities&map=' + record['mapid'] : '#',
-		imageUrl = record['thumbnail'] !== undefined ? record['thumbnail'] : vk2.settings.THUMBNAILS_DEFAULT;
+		imageUrl = record['thumbnail'] !== undefined ? record['thumbnail'] : vk2.settings.THUMBNAILS_DEFAULT,
+		innerHTMLPermalink = record['transformed'] !== undefined && record['transformed'] === true ? 
+				'<a href="#" target="_blank">Klick</a>' : vk2.utils.getMsg('georef-history-beingGenerated'),
+		isValide = record['isvalide'] !== "" ? record['isvalide'] : 'unknown'; 
+		
 	var articleEl = goog.dom.createDom('article', {
-		id: record['georef_id'],
+		id: record['georefid'],
 		innerHTML: '<div class="media"><a class="pull-right" href="' + wmsUrl + '">' +
 				'<img alt="" src="' + imageUrl + '"></a><div class="media-body">' + 
+				'<p><strong>' + vk2.utils.getMsg('georef-history-processId') + ':</strong><br>' + record['georefid']+ '</p>' +
+				'<p><strong>' + vk2.utils.getMsg('georef-history-isValidated') + ':</strong><br>' + isValide + '</p>' +
+				'<p><strong>' + vk2.utils.getMsg('georef-history-mapId') + ':</strong><br>' + record['mapid'] + '</p>' +
+				'<p><strong>' + vk2.utils.getMsg('georef-history-mapSheetInfo') + ':</strong><br>' + record['title'] + '</p>' +
+				'<p><strong>' + vk2.utils.getMsg('georef-history-georefParams') + ':</strong><br>' + JSON.stringify(record['georefparams']) + '</p>' +
+				'<p><strong>' + vk2.utils.getMsg('georef-history-persistentAccess') + ':</strong><br>' + innerHTMLPermalink + '</p>' +
+				'<p class="meta">Created: ' + record['georeftime'] + '</p>' +
 				'</div></div>'	
 	});
 	return articleEl;
