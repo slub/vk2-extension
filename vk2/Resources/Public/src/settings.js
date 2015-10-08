@@ -103,12 +103,7 @@ vk2.settings.GEOREFERENCE_HISTORY = 'id=19&tx_vk2_search[controller]=Georeferenc
 /**
  * @type {string}
  */
-vk2.settings.GEOREFERENCE_CONFIRM = '/vkviewer/georef/confirm?type=999';
-
-/**
- * @type {string}
- */
-vk2.settings.GEOREFERENCE_UPDATE = '/vkviewer/georeference/update';
+vk2.settings.GEOREFERENCE_CONFIRM = 'id=19&tx_vk2_search[controller]=Georeference&tx_vk2_search[action]=confirmGeorefProcess&type=999';
 
 /**
  * @type {string}

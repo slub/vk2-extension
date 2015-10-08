@@ -132,6 +132,7 @@ vk2.georeference.Georeferencer.prototype.testing = function(targetViewer) {
  * @param {vk2.georeference.ResultViewer} targetViewer
  */
 vk2.georeference.Georeferencer.prototype.addControlBehavior_ = function(warpImageControl, confirmControl, targetViewer){
+	// append behavior for warp image control
 	goog.events.listen(warpImageControl, vk2.georeference.control.WarpImageControlEventType.START_WARPING, function(e){
 		if (goog.DEBUG){
 			console.log('Start warping ...')
@@ -155,6 +156,12 @@ vk2.georeference.Georeferencer.prototype.addControlBehavior_ = function(warpImag
 		alert('Something went wrong, while trying to request a validation result.')
 		targetViewer.deactivateLoadingBar();
 	});
+	
+	// append behavior for confirm params control
+	goog.events.listen(confirmControl, vk2.georeference.control.ConfirmationControlEventType.END_CONFIRM, function(e){
+		window.location.href = vk2.utils.routing.getMainPageRoute();
+	});
+	
 };
 
 /**

@@ -56,7 +56,7 @@ vk2.georeference.control.ConfirmationControl.prototype.confirmImage_ = function(
 		
 	// get relevant parameters
 	var projection = vk2.georeference.utils.extractProjection('projection-chooser'),
-		algorithm = vk2.georeference.utils.extractTransformationAlgorithm('transform-chooser'),
+		algorithm = vk2.georeference.utils.extractTransformationAlgorithm('transformation-chooser'),
 		newGeorefParams = gcpHandler.getGcpsForRequest(algorithm, projection),
 		clipPolygon = vk2.georeference.utils.extractClipPolygon(clipPolygonSource),
 		type = gcpHandler.getType();

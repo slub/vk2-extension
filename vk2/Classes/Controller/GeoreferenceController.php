@@ -132,7 +132,7 @@ class GeoreferenceController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 		if (!is_null($confirmRequest)) {
 			# generate request
 			$body = json_decode(stripslashes($confirmRequest), TRUE);
-			$body['username'] = $user['username'];
+			$body['userid'] = $user['username'];
 			$this->routeRequest($this->confirmationEndpoint, $body);
 		}
 		return;
