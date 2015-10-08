@@ -5,9 +5,10 @@ goog.require('goog.style');
 goog.require('goog.dom.classes');
 goog.require('goog.net.cookies');
 //goog.require('ol.layer.Vector');
+goog.require('vk2.utils.routing');
 goog.require('vk2.settings');
-goog.require('vk2.utils');
 goog.require('vk2.tool.OpacitySlider');
+goog.require('vk2.utils');
 
 /**
  * @param {ol.layer.Base} layer
@@ -126,13 +127,13 @@ vk2.factory.LayerManagementFactory.getLayerManagementRecord = function(layer, in
 	goog.dom.appendChild(timestampContainer, time);
 	
 	// add update georeference anchor if login  
-	if (goog.net.cookies.get('auth_tkt')){
+	if (goog.net.cookies.get('vk2-auth')){
 		
 		var anchorGeoreferenceUpdate = goog.dom.createDom('a', {
 			'class':'georeference-update',
 			'innerHTML': vk2.utils.getMsg('updateGeoref') + ' ...',
 			'target':'_blank',
-			'href': vk2.settings.GEOREFERENCE_PAGE + '?id=' + layer.getId()
+			'href': vk2.utils.routing.getGeorefPageRoute(layer.getId())
 		});
 		goog.dom.appendChild(controlContainer, anchorGeoreferenceUpdate);
 	};

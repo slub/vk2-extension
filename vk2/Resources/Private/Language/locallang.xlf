@@ -435,6 +435,23 @@
 			<trans-unit id="georeferencehistory.page.beingGenerated">
 				<source>Being generated (duration approx. 15min)</source>
 			</trans-unit> 
+			
+			<!-- georeference choose -->
+			<trans-unit id="georeferencechoose.page.georeferenceChoose">
+				<source>Choose a Map for georeferencing</source>
+			</trans-unit>
+			<trans-unit id="georeferencechoose.page.outstandingMaps">
+				<source>Count of outstanding maps</source>
+			</trans-unit>
+			<trans-unit id="georeferencechoose.page.time">
+				<source>Time</source>
+			</trans-unit>
+			<trans-unit id="georeferencechoose.page.maptype">
+				<source>Map type</source>
+			</trans-unit>
+			<trans-unit id="georeferencechoose.page.goToGeoreference">
+				<source>Georeference</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

@@ -225,6 +225,28 @@
 				<source>Being generated (duration approx. 15min)</source>
 				<target state="translated">Georeferenzierung wird aktuell noch bearbeitet (Wartezeit ca. 15min)</target>
 			</trans-unit> 
+			
+			<!-- georeference choose -->
+			<trans-unit id="georeferencechoose.page.georeferenceChoose">
+				<source>Choose a Map for georeferencing</source>
+				<target state="translated">Wählen Karte für Georeferenzierung</target>
+			</trans-unit>
+			<trans-unit id="georeferencechoose.page.outstandingMaps">
+				<source>Count of outstanding maps</source>
+				<target state="translated">Number unrefenzierter Karten</target>
+			</trans-unit>
+			<trans-unit id="georeferencechoose.page.time">
+				<source>Time</source>
+				<target state="translated">Zeitstempel</target>
+			</trans-unit>
+			<trans-unit id="georeferencechoose.page.maptype">
+				<source>Map type</source>
+				<target state="translated">Kartentypen</target>
+			</trans-unit>
+			<trans-unit id="georeferencechoose.page.goToGeoreference">
+				<source>Georeference</source>
+				<target state="translated">Georeferenzierung</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

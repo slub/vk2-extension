@@ -69,6 +69,19 @@ class StaticController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 		}
 	}
 	
+	public function georeferenceChoosePageAction(){
+		$user = Tools::getActualUser($this->feUserRepository);
+		if ($user){
+			// user is authenticated
+			// do nothing
+			return;
+		} else {
+			// user is not authenticated
+			// redirect to main page
+			$this->redirect('show', 'Main', NULL);
+		}
+	}
+	
 	public function georeferenceHistoryPageAction(){
 		$user = Tools::getActualUser($this->feUserRepository);
 		if ($user){

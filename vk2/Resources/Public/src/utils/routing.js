@@ -87,7 +87,7 @@ vk2.utils.routing.getGeorefValidationRoute = function(query_string) {
  * @return {string}
  */
 vk2.utils.routing.getGeorefPageRoute = function(opt_objectid, opt_params) {
-	var params = opt_objectid !== undefined ? '&objectid=' + key : 
+	var params = opt_objectid !== undefined ? '&objectid=' + opt_objectid : 
 			opt_params !== undefined ? '&' + opt_params :  '';
 	var uri = new goog.Uri(window.location.href);
 	if (!vk2.settings.WITH_SPEAKING_URLS)

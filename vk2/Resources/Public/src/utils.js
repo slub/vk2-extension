@@ -9,6 +9,23 @@ goog.require('goog.net.cookies');
 goog.require('goog.net.XhrIo');
 
 /**
+ * Functions adds a lazy loading behavior to a given array of elements
+ * 
+ * @param {Array.<Element>} elements
+ */
+vk2.utils.addLazyLoadingBehavior = function(elements) {
+	
+	var $window = $(window),
+		isElementInViewport = function(el) {
+			var a = $window.scrollTop(),
+	        	b = $window.height(),
+	        	c = $(el).offset().top,
+	        	d = $(el).height();
+        
+			return c + d >= a && c <= a + b;
+		}
+};
+/**
  * @static
  * @param {ol.Map} map
  * @return {Array.<number>}

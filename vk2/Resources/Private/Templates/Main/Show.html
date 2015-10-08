@@ -36,11 +36,6 @@
 												<f:translate id="main.link.goToGeoreferenceHistory" />
 											</f:link.action>
 										</li>
-										<li><a
-											href="${request.route_url('pw-change', action='page')}"
-											data-src="${request.route_url('pw-change', action='page')}"
-											data-classes="pw-change" class="vk2-modal-anchor"
-											data-title="${_('pw-change_header')}">${_('change_pw_header')}</a></li>
 										
 										<!-- admin menu -->
 										<vk:isAdmin>
@@ -146,12 +141,27 @@
 				href="${request.route_url('welcome')}" id="vk2WelcomePage"
 				data-src="${request.route_url('welcome')}" data-classes="welcomeBox"
 				class="vk2-modal-anchor" data-title=""></a> % endif -->
+				
+			<vk:isUser>
+				<f:then>
+					<script>
+						// set the cookie for proper working of the javascript client code
+						vk2.utils.setCookie('vk2-auth', true);				
+					</script>
+				</f:then>
+				<f:else>
+						<script>
+						// set the cookie for proper working of the javascript client code
+						vk2.utils.setCookie('vk2-auth', '');				
+					</script>
+				</f:else>
+			</vk:isUser>
 
 			<script>
-var app = new vk2.app.PresentationApp({
-	'modalAnchorClassName':'vk2-modal-anchor',
-	'mapContainerId':'mapdiv',
-	'spatialsearchContainerId':'spatialsearch-container'
-});
-</script>
+				var app = new vk2.app.PresentationApp({
+					'modalAnchorClassName':'vk2-modal-anchor',
+					'mapContainerId':'mapdiv',
+					'spatialsearchContainerId':'spatialsearch-container'
+				});
+			</script>
 </f:section>
