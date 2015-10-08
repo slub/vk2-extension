@@ -100,7 +100,7 @@ vk2.app.GeoreferenceChooseApp.prototype.fetchData_ = function(targetEl, targetCo
  */
 vk2.app.GeoreferenceChooseApp.prototype.renderRecord_ = function(record) {
 	var data = record['_source'],
-		id = data['id'],
+		id = record['_id'],
 		maptype = data['maptype'],
 		imageUrl = data['thumb'] !== undefined ? data['thumb'] : vk2.settings.THUMBNAILS_DEFAULT,
 		georefUrl = id !== undefined ? vk2.utils.routing.getGeorefPageRoute(id) : '#';
