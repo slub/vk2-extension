@@ -49,6 +49,9 @@
 			<trans-unit id="main.link.goToGeoreferenceHistory">
 				<source>Georeference History</source>
 			</trans-unit>
+			<trans-unit id="main.link.goToGeoreferenceChooser">
+				<source>Show unreferenced maps</source>
+			</trans-unit>
 			
 			<!-- login page -->
 			<trans-unit id="login.title">
@@ -451,6 +454,9 @@
 			</trans-unit>
 			<trans-unit id="georeferencechoose.page.goToGeoreference">
 				<source>Georeference</source>
+			</trans-unit>
+			<trans-unit id="georeferencechoose.page.nothingToGeoreference">
+				<source>Actually there are no georeference maps</source>
 			</trans-unit>
 		</body>
 	</file>

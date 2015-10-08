@@ -60,6 +60,10 @@
 				<source>Georeference History</source>
 				<target state="translated">Georeferenzierungs-Historie</target>
 			</trans-unit>
+			<trans-unit id="main.link.goToGeoreferenceChooser">
+				<source>Show unreferenced maps</source>
+				<target state="translate">Zeige unreferenzierte Karten</target>
+			</trans-unit>
 			
 			<!-- logout page -->
 			<trans-unit id="logout.title">
@@ -246,6 +250,10 @@
 			<trans-unit id="georeferencechoose.page.goToGeoreference">
 				<source>Georeference</source>
 				<target state="translated">Georeferenzierung</target>
+			</trans-unit>
+			<trans-unit id="georeferencechoose.page.nothingToGeoreference">
+				<source>Actually there are no georeference maps</source>
+				<target state="translated">Aktuell sind alle Karten georefernziert</target>
 			</trans-unit>
 		</body>
 	</file>

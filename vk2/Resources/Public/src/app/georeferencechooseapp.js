@@ -39,12 +39,15 @@ vk2.app.GeoreferenceChooseApp.prototype.displayData_ = function(data, targetEl, 
 	if (data['hits'] !== undefined && data['hits']['total'] !== undefined) {
 		targetCountEl.innerHTML = data['hits']['total'];
 	};
-	
-	// render map records 
-	var listContainerEl = goog.dom.createDom('ul');
-	goog.dom.appendChild(targetEl, listContainerEl);
-	
-	if (data['hits'] !== undefined && data['hits']['hits'] !== undefined ) {
+		
+	if (data['hits'] !== undefined && data['hits']['hits'] !== undefined && data['hits']['hits'].length > 0) {
+		// clear target element and append listContainerEl
+		targetEl.innerHTML = '';
+		
+		var listContainerEl = goog.dom.createDom('ul');
+		goog.dom.appendChild(targetEl, listContainerEl);
+		
+		// render map records 
 		for (var i = 0, ii = data['hits']['hits'].length; i < ii; i++) {
 			goog.dom.appendChild(listContainerEl, 
 				this.renderRecord_(data['hits']['hits'][i]));
@@ -56,7 +59,6 @@ vk2.app.GeoreferenceChooseApp.prototype.displayData_ = function(data, targetEl, 
 		$('.lazy-image').lazyload();
 	});
 	$('.lazy-image').lazyload();
-	//$('img').loadScroll(50); // in ms
 };
 
 /** 
