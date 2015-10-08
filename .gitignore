@@ -1,5 +1,13 @@
 # Local project files (IDE/Configuration/...)
 .idea
+.project
+.buildpath
+.settings
 
 # debug files
 /vk2/Resources/Public/lib/
+/vk2/node_modules/
+
+# build files
+/vk2/Resources/Public/vk2-min-debug.js
+
