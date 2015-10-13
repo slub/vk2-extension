@@ -1,6 +1,6 @@
 goog.provide('vk2.georeference.interaction.AddGcpInteraction');
 
-goog.require('ol.interaction.Draw');
+//goog.require('ol.interaction.Draw');
 
 goog.require('vk2.utils.Styles');
 goog.require('vk2.georeference.interaction.GeoreferenceInteraction')

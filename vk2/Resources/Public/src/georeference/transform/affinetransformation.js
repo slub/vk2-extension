@@ -1,7 +1,6 @@
 /**
  * Created by mendt on 03.09.15.
  */
-goog.provide('vk2.georeference.transform.Affine');
 
 /**
  * The affine transform consists of six coefficients which mal pixel/line coordinates into georeferenced space using
@@ -19,7 +18,7 @@ goog.provide('vk2.georeference.transform.Affine');
  *
  * @typedef {Array.<number>}
  */
-vk2.georeference.transform.Affine;
+goog.provide('vk2.georeference.transform.Affine');
 
 /**
  * Partly port of the GDALGCPsToGeoTransform function from the gdal-library.
@@ -65,7 +64,7 @@ vk2.georeference.transform.Affine.geoTransfromFromGCPs = function(gcps){
         sum_laty = 0,
         divisor;
 
-    for (i = 0; i < gcps.length; i++) {
+    for (var i = 0; i < gcps.length; i++) {
         sum_x += gcps[i].pixelX;
         sum_y += gcps[i].pixelY;
         sum_xy += gcps[i].pixelX * gcps[i].pixelY;

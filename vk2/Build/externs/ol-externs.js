@@ -11,6 +11,12 @@ var GeoJSONObject = function() {};
 
 
 /**
+ * @type {!Array.<number>|undefined}
+ */
+GeoJSONObject.prototype.bbox;
+
+
+/**
  * @type {string}
  */
 GeoJSONObject.prototype.type;
@@ -24,9 +30,14 @@ GeoJSONObject.prototype.crs;
 
 /**
  * @constructor
- * @extends {GeoJSONObject}
  */
 var GeoJSONCRS = function() {};
+
+
+/**
+ * @type {string}
+ */
+GeoJSONCRS.prototype.type;
 
 
 /**
@@ -93,7 +104,7 @@ var GeoJSONFeature = function() {};
 
 
 /**
- * @type {GeoJSONGeometry}
+ * @type {GeoJSONGeometry|GeoJSONGeometryCollection}
  */
 GeoJSONFeature.prototype.geometry;
 
@@ -124,14 +135,7 @@ GeoJSONFeatureCollection.prototype.features;
 
 
 /**
- * @type {!Array.<number>|undefined}
- */
-GeoJSONFeatureCollection.prototype.bbox;
-
-
-/**
  * @constructor
- * @extends {GeoJSONObject}
  */
 var GeoJSONLink = function() {};
 
@@ -145,13 +149,13 @@ GeoJSONLink.prototype.href;
 /**
  * @type {string}
  */
-GeoJSONCRS.prototype.type;
+GeoJSONLink.prototype.type;
 
 
 /**
- * @type {GeoJSONCRS|undefined}
+ * @type {!Array.<number>|undefined}
  */
-GeoJSONCRS.prototype.crs;
+GeoJSONGeometry.prototype.bbox;
 
 
 /**
@@ -167,6 +171,12 @@ GeoJSONGeometry.prototype.crs;
 
 
 /**
+ * @type {!Array.<number>|undefined}
+ */
+GeoJSONGeometryCollection.prototype.bbox;
+
+
+/**
  * @type {string}
  */
 GeoJSONGeometryCollection.prototype.type;
@@ -176,6 +186,12 @@ GeoJSONGeometryCollection.prototype.type;
  * @type {GeoJSONCRS|undefined}
  */
 GeoJSONGeometryCollection.prototype.crs;
+
+
+/**
+ * @type {!Array.<number>|undefined}
+ */
+GeoJSONFeature.prototype.bbox;
 
 
 /**
@@ -191,6 +207,12 @@ GeoJSONFeature.prototype.crs;
 
 
 /**
+ * @type {!Array.<number>|undefined}
+ */
+GeoJSONFeatureCollection.prototype.bbox;
+
+
+/**
  * @type {string}
  */
 GeoJSONFeatureCollection.prototype.type;
@@ -203,18 +225,6 @@ GeoJSONFeatureCollection.prototype.crs;
 
 
 /**
- * @type {string}
- */
-GeoJSONLink.prototype.type;
-
-
-/**
- * @type {GeoJSONCRS|undefined}
- */
-GeoJSONLink.prototype.crs;
-
-
-/**
  * @type {Object}
  */
 var ol;
@@ -223,13 +233,13 @@ var ol;
 /**
  * @type {Object}
  */
-ol.binary;
+ol.structs;
 
 
 /**
  * @constructor
  */
-ol.binary.IReader = function() {};
+ol.structs.IHasChecksum = function() {};
 
 
 /**
@@ -242,12 +252,6 @@ ol.render;
  * @constructor
  */
 ol.render.IReplayGroup = function() {};
-
-
-/**
- * @constructor
- */
-ol.render.IVectorContext = function() {};
 
 
 /**
@@ -739,13 +743,13 @@ ol.Feature.prototype.getGeometryName = function() {};
 
 
 /**
- * @return {ol.style.Style|Array.<ol.style.Style>|ol.feature.FeatureStyleFunction}
+ * @return {ol.style.Style|Array.<ol.style.Style>|ol.FeatureStyleFunction}
  */
 ol.Feature.prototype.getStyle = function() {};
 
 
 /**
- * @return {ol.feature.FeatureStyleFunction|undefined}
+ * @return {ol.FeatureStyleFunction|undefined}
  */
 ol.Feature.prototype.getStyleFunction = function() {};
 
@@ -757,7 +761,7 @@ ol.Feature.prototype.setGeometry = function(geometry) {};
 
 
 /**
- * @param {ol.style.Style|Array.<ol.style.Style>|ol.feature.FeatureStyleFunction} style
+ * @param {ol.style.Style|Array.<ol.style.Style>|ol.FeatureStyleFunction} style
  */
 ol.Feature.prototype.setStyle = function(style) {};
 
@@ -775,58 +779,17 @@ ol.Feature.prototype.setGeometryName = function(name) {};
 
 
 /**
- * @constructor
- * @param {olx.FeatureOverlayOptions|?} opt_options
+ * @type {Object}
  */
-ol.FeatureOverlay = function(opt_options) {};
+ol.featureloader;
 
 
 /**
- * @param {ol.Feature} feature
+ * @param {string|ol.FeatureUrlFunction} url
+ * @param {ol.format.Feature} format
+ * @return {ol.FeatureLoader}
  */
-ol.FeatureOverlay.prototype.addFeature = function(feature) {};
-
-
-/**
- * @return {ol.Collection.<ol.Feature>}
- */
-ol.FeatureOverlay.prototype.getFeatures = function() {};
-
-
-/**
- * @param {ol.Feature} feature
- */
-ol.FeatureOverlay.prototype.removeFeature = function(feature) {};
-
-
-/**
- * @param {ol.Collection.<ol.Feature>} features
- */
-ol.FeatureOverlay.prototype.setFeatures = function(features) {};
-
-
-/**
- * @param {ol.Map} map
- */
-ol.FeatureOverlay.prototype.setMap = function(map) {};
-
-
-/**
- * @param {ol.style.Style|Array.<ol.style.Style>|ol.style.StyleFunction} style
- */
-ol.FeatureOverlay.prototype.setStyle = function(style) {};
-
-
-/**
- * @return {ol.style.Style|Array.<ol.style.Style>|ol.style.StyleFunction}
- */
-ol.FeatureOverlay.prototype.getStyle = function() {};
-
-
-/**
- * @return {ol.style.StyleFunction|undefined}
- */
-ol.FeatureOverlay.prototype.getStyleFunction = function() {};
+ol.featureloader.xhr = function(url, format) {};
 
 
 /**
@@ -1047,7 +1010,7 @@ ol.loadingstrategy.bbox = function(extent, resolution) {};
  * @param {ol.tilegrid.TileGrid} tileGrid
  * @return {Function}
  */
-ol.loadingstrategy.createTile = function(tileGrid) {};
+ol.loadingstrategy.tile = function(tileGrid) {};
 
 
 /**
@@ -1101,6 +1064,28 @@ ol.Map.prototype.forEachFeatureAtPixel = function(pixel, callback, opt_this, opt
 
 
 /**
+ * @param {ol.Pixel} pixel
+ * @param {Function} callback
+ * @param {S=} opt_this
+ * @param {Function=} opt_layerFilter
+ * @param {U=} opt_this2
+ * @return {T|undefined}
+ * @template S,T,U
+ */
+ol.Map.prototype.forEachLayerAtPixel = function(pixel, callback, opt_this, opt_layerFilter, opt_this2) {};
+
+
+/**
+ * @param {ol.Pixel} pixel
+ * @param {Function=} opt_layerFilter
+ * @param {U=} opt_this
+ * @return {boolean}
+ * @template U
+ */
+ol.Map.prototype.hasFeatureAtPixel = function(pixel, opt_layerFilter, opt_this) {};
+
+
+/**
  * @param {Event} event
  * @return {ol.Coordinate}
  */
@@ -1118,6 +1103,12 @@ ol.Map.prototype.getEventPixel = function(event) {};
  * @return {Element|string|undefined}
  */
 ol.Map.prototype.getTarget = function() {};
+
+
+/**
+ * @return {Element}
+ */
+ol.Map.prototype.getTargetElement = function() {};
 
 
 /**
@@ -1274,6 +1265,12 @@ ol.MapBrowserEvent.prototype.coordinate;
 
 
 /**
+ * @type {boolean}
+ */
+ol.MapBrowserEvent.prototype.dragging;
+
+
+/**
  */
 ol.MapBrowserEvent.prototype.preventDefault = function() {};
 
@@ -1321,32 +1318,10 @@ ol.ObjectEvent.prototype.oldValue;
 
 /**
  * @constructor
- */
-ol.ObjectAccessor = function() {};
-
-
-/**
- * @param {Function} from
- * @param {Function} to
- */
-ol.ObjectAccessor.prototype.transform = function(from, to) {};
-
-
-/**
- * @constructor
  * @extends {ol.Observable}
  * @param {Object.<string, *>=} opt_values
  */
 ol.Object = function(opt_values) {};
-
-
-/**
- * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.Object.prototype.bindTo = function(key, target, opt_targetKey) {};
 
 
 /**
@@ -1384,12 +1359,7 @@ ol.Object.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.Object.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.Object.prototype.unbindAll = function() {};
+ol.Object.prototype.unset = function(key) {};
 
 
 /**
@@ -1523,6 +1493,20 @@ ol.Overlay.prototype.setPositioning = function(positioning) {};
 
 
 /**
+ * @type {Object}
+ */
+ol.size;
+
+
+/**
+ * @param {number|ol.Size} size
+ * @param {ol.Size=} opt_size
+ * @return {ol.Size}
+ */
+ol.size.toSize = function(size, opt_size) {};
+
+
+/**
  * @constructor
  */
 ol.Tile = function() {};
@@ -1537,7 +1521,7 @@ ol.Tile.prototype.getTileCoord = function() {};
 /**
  * @constructor
  * @extends {ol.Object}
- * @param {olx.ViewOptions|?} opt_options
+ * @param {olx.ViewOptions=} opt_options
  */
 ol.View = function(opt_options) {};
 
@@ -1592,15 +1576,7 @@ ol.View.prototype.getResolution = function() {};
 
 
 /**
- * @param {ol.Extent} extent
- * @param {ol.Size} size
  * @return {number}
- */
-ol.View.prototype.getResolutionForExtent = function(extent, size) {};
-
-
-/**
- * @return {number|undefined}
  */
 ol.View.prototype.getRotation = function() {};
 
@@ -1612,18 +1588,11 @@ ol.View.prototype.getZoom = function() {};
 
 
 /**
- * @param {ol.Extent} extent
+ * @param {ol.geom.SimpleGeometry|ol.Extent} geometry
  * @param {ol.Size} size
+ * @param {olx.view.FitOptions=} opt_options
  */
-ol.View.prototype.fitExtent = function(extent, size) {};
-
-
-/**
- * @param {ol.geom.SimpleGeometry} geometry
- * @param {ol.Size} size
- * @param {olx.view.FitGeometryOptions=} opt_options
- */
-ol.View.prototype.fitGeometry = function(geometry, size, opt_options) {};
+ol.View.prototype.fit = function(geometry, size, opt_options) {};
 
 
 /**
@@ -1654,7 +1623,7 @@ ol.View.prototype.setResolution = function(resolution) {};
 
 
 /**
- * @param {number|undefined} rotation
+ * @param {number} rotation
  */
 ol.View.prototype.setRotation = function(rotation) {};
 
@@ -1694,10 +1663,8 @@ ol.webgl;
 
 /**
  * @constructor
- * @param {HTMLCanvasElement} canvas
- * @param {WebGLRenderingContext} gl
  */
-ol.webgl.Context = function(canvas, gl) {};
+ol.webgl.Context = function() {};
 
 
 /**
@@ -1759,10 +1726,35 @@ ol.tilegrid.TileGrid.prototype.getResolutions = function() {};
 
 
 /**
+ * @param {ol.Coordinate} coordinate
+ * @param {number} resolution
+ * @param {ol.TileCoord=} opt_tileCoord
+ * @return {ol.TileCoord}
+ */
+ol.tilegrid.TileGrid.prototype.getTileCoordForCoordAndResolution = function(coordinate, resolution, opt_tileCoord) {};
+
+
+/**
+ * @param {ol.Coordinate} coordinate
  * @param {number} z
- * @return {number}
+ * @param {ol.TileCoord=} opt_tileCoord
+ * @return {ol.TileCoord}
+ */
+ol.tilegrid.TileGrid.prototype.getTileCoordForCoordAndZ = function(coordinate, z, opt_tileCoord) {};
+
+
+/**
+ * @param {number} z
+ * @return {number|ol.Size}
  */
 ol.tilegrid.TileGrid.prototype.getTileSize = function(z) {};
+
+
+/**
+ * @param {olx.tilegrid.XYZOptions=} opt_options
+ * @return {ol.tilegrid.TileGrid}
+ */
+ol.tilegrid.createXYZ = function(opt_options) {};
 
 
 /**
@@ -1780,19 +1772,11 @@ ol.tilegrid.WMTS.prototype.getMatrixIds = function() {};
 
 
 /**
- * @constructor
- * @extends {ol.tilegrid.TileGrid}
- * @param {olx.tilegrid.XYZOptions} options
+ * @param {Object} matrixSet
+ * @param {ol.Extent=} opt_extent
+ * @return {ol.tilegrid.WMTS}
  */
-ol.tilegrid.XYZ = function(options) {};
-
-
-/**
- * @constructor
- * @extends {ol.tilegrid.TileGrid}
- * @param {olx.tilegrid.ZoomifyOptions=} opt_options
- */
-ol.tilegrid.Zoomify = function(opt_options) {};
+ol.tilegrid.WMTS.createFromCapabilitiesMatrixSet = function(matrixSet, opt_extent) {};
 
 
 /**
@@ -1803,15 +1787,17 @@ ol.style;
 
 /**
  * @constructor
+ * @param {olx.style.AtlasManagerOptions=} opt_options
+ */
+ol.style.AtlasManager = function(opt_options) {};
+
+
+/**
+ * @constructor
  * @extends {ol.style.Image}
  * @param {olx.style.CircleOptions=} opt_options
  */
 ol.style.Circle = function(opt_options) {};
-
-
-/**
- */
-ol.style.Circle.prototype.getAnchor = function() {};
 
 
 /**
@@ -1828,19 +1814,9 @@ ol.style.Circle.prototype.getImage = function(pixelRatio) {};
 
 
 /**
- */
-ol.style.Circle.prototype.getOrigin = function() {};
-
-
-/**
  * @return {number}
  */
 ol.style.Circle.prototype.getRadius = function() {};
-
-
-/**
- */
-ol.style.Circle.prototype.getSize = function() {};
 
 
 /**
@@ -1905,10 +1881,27 @@ ol.style.Icon.prototype.getSize = function() {};
 
 
 /**
+ */
+ol.style.Icon.prototype.load = function() {};
+
+
+/**
  * @constructor
  * @param {ol.style.ImageOptions} options
  */
 ol.style.Image = function(options) {};
+
+
+/**
+ * @return {number}
+ */
+ol.style.Image.prototype.getOpacity = function() {};
+
+
+/**
+ * @return {boolean}
+ */
+ol.style.Image.prototype.getRotateWithView = function() {};
 
 
 /**
@@ -1924,10 +1917,15 @@ ol.style.Image.prototype.getScale = function() {};
 
 
 /**
- * @param {number} pixelRatio
- * @return {HTMLCanvasElement|HTMLVideoElement|Image}
+ * @return {boolean}
  */
-ol.style.Image.prototype.getImage = function(pixelRatio) {};
+ol.style.Image.prototype.getSnapToPixel = function() {};
+
+
+/**
+ * @param {number} opacity
+ */
+ol.style.Image.prototype.setOpacity = function(opacity) {};
 
 
 /**
@@ -1945,14 +1943,20 @@ ol.style.Image.prototype.setScale = function(scale) {};
 /**
  * @constructor
  * @extends {ol.style.Image}
- * @param {olx.style.RegularShapeOptions=} opt_options
+ * @param {olx.style.RegularShapeOptions} options
  */
-ol.style.RegularShape = function(opt_options) {};
+ol.style.RegularShape = function(options) {};
 
 
 /**
  */
 ol.style.RegularShape.prototype.getAnchor = function() {};
+
+
+/**
+ * @return {number}
+ */
+ol.style.RegularShape.prototype.getAngle = function() {};
 
 
 /**
@@ -1974,7 +1978,19 @@ ol.style.RegularShape.prototype.getOrigin = function() {};
 /**
  * @return {number}
  */
+ol.style.RegularShape.prototype.getPoints = function() {};
+
+
+/**
+ * @return {number}
+ */
 ol.style.RegularShape.prototype.getRadius = function() {};
+
+
+/**
+ * @return {number}
+ */
+ol.style.RegularShape.prototype.getRadius2 = function() {};
 
 
 /**
@@ -2069,9 +2085,21 @@ ol.style.Stroke.prototype.setWidth = function(width) {};
 
 /**
  * @constructor
- * @param {olx.style.StyleOptions|?} opt_options
+ * @param {olx.style.StyleOptions=} opt_options
  */
 ol.style.Style = function(opt_options) {};
+
+
+/**
+ * @return {string|ol.geom.Geometry|ol.style.GeometryFunction}
+ */
+ol.style.Style.prototype.getGeometry = function() {};
+
+
+/**
+ * @return {ol.style.GeometryFunction}
+ */
+ol.style.Style.prototype.getGeometryFunction = function() {};
 
 
 /**
@@ -2102,6 +2130,12 @@ ol.style.Style.prototype.getText = function() {};
  * @return {number|undefined}
  */
 ol.style.Style.prototype.getZIndex = function() {};
+
+
+/**
+ * @param {string|ol.geom.Geometry|ol.style.GeometryFunction} geometry
+ */
+ol.style.Style.prototype.setGeometry = function(geometry) {};
 
 
 /**
@@ -2233,6 +2267,21 @@ ol.Sphere = function(radius) {};
 
 
 /**
+ * @param {Array.<ol.Coordinate>} coordinates
+ * @return {number}
+ */
+ol.Sphere.prototype.geodesicArea = function(coordinates) {};
+
+
+/**
+ * @param {ol.Coordinate} c1
+ * @param {ol.Coordinate} c2
+ * @return {number}
+ */
+ol.Sphere.prototype.haversineDistance = function(c1, c2) {};
+
+
+/**
  * @type {Object}
  */
 ol.source;
@@ -2261,40 +2310,9 @@ ol.source.Cluster = function(options) {};
 
 
 /**
- * @constructor
+ * @return {ol.source.Vector}
  */
-ol.source.FormatVector = function() {};
-
-
-/**
- * @param {ArrayBuffer|Document|Node|Object|string} source
- * @return {Array.<ol.Feature>}
- */
-ol.source.FormatVector.prototype.readFeatures = function(source) {};
-
-
-/**
- * @constructor
- * @extends {ol.source.StaticVector}
- * @param {olx.source.GeoJSONOptions=} opt_options
- */
-ol.source.GeoJSON = function(opt_options) {};
-
-
-/**
- * @constructor
- * @extends {ol.source.StaticVector}
- * @param {olx.source.GPXOptions=} opt_options
- */
-ol.source.GPX = function(opt_options) {};
-
-
-/**
- * @constructor
- * @extends {ol.source.StaticVector}
- * @param {olx.source.IGCOptions=} opt_options
- */
-ol.source.IGC = function(opt_options) {};
+ol.source.Cluster.prototype.getSource = function() {};
 
 
 /**
@@ -2320,9 +2338,21 @@ ol.source.ImageMapGuide.prototype.getParams = function() {};
 
 
 /**
+ * @return {ol.ImageLoadFunctionType}
+ */
+ol.source.ImageMapGuide.prototype.getImageLoadFunction = function() {};
+
+
+/**
  * @param {Object} params
  */
 ol.source.ImageMapGuide.prototype.updateParams = function(params) {};
+
+
+/**
+ * @param {ol.ImageLoadFunctionType} imageLoadFunction
+ */
+ol.source.ImageMapGuide.prototype.setImageLoadFunction = function(imageLoadFunction) {};
 
 
 /**
@@ -2331,6 +2361,18 @@ ol.source.ImageMapGuide.prototype.updateParams = function(params) {};
  * @param {ol.source.ImageOptions} options
  */
 ol.source.Image = function(options) {};
+
+
+/**
+ * @constructor
+ */
+ol.source.ImageEvent = function() {};
+
+
+/**
+ * @type {ol.Image}
+ */
+ol.source.ImageEvent.prototype.image;
 
 
 /**
@@ -2398,9 +2440,21 @@ ol.source.ImageWMS.prototype.getParams = function() {};
 
 
 /**
+ * @return {ol.ImageLoadFunctionType}
+ */
+ol.source.ImageWMS.prototype.getImageLoadFunction = function() {};
+
+
+/**
  * @return {string|undefined}
  */
 ol.source.ImageWMS.prototype.getUrl = function() {};
+
+
+/**
+ * @param {ol.ImageLoadFunctionType} imageLoadFunction
+ */
+ol.source.ImageWMS.prototype.setImageLoadFunction = function(imageLoadFunction) {};
 
 
 /**
@@ -2417,18 +2471,16 @@ ol.source.ImageWMS.prototype.updateParams = function(params) {};
 
 /**
  * @constructor
- * @extends {ol.source.StaticVector}
- * @param {olx.source.KMLOptions=} opt_options
- */
-ol.source.KML = function(opt_options) {};
-
-
-/**
- * @constructor
  * @extends {ol.source.XYZ}
  * @param {olx.source.MapQuestOptions=} opt_options
  */
 ol.source.MapQuest = function(opt_options) {};
+
+
+/**
+ * @return {string}
+ */
+ol.source.MapQuest.prototype.getLayer = function() {};
 
 
 /**
@@ -2447,30 +2499,46 @@ ol.source.OSM.ATTRIBUTION;
 
 /**
  * @constructor
- * @extends {ol.source.StaticVector}
- * @param {olx.source.OSMXMLOptions=} opt_options
+ * @extends {ol.source.Image}
+ * @param {olx.source.RasterOptions} options
  */
-ol.source.OSMXML = function(opt_options) {};
+ol.source.Raster = function(options) {};
+
+
+/**
+ * @param {ol.raster.Operation} operation
+ * @param {Object=} opt_lib
+ */
+ol.source.Raster.prototype.setOperation = function(operation, opt_lib) {};
 
 
 /**
  * @constructor
- * @extends {ol.source.Vector}
- * @param {olx.source.ServerVectorOptions} options
  */
-ol.source.ServerVector = function(options) {};
+ol.source.RasterEvent = function() {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
- * @return {Array.<ol.Feature>}
+ * @type {ol.Extent}
  */
-ol.source.ServerVector.prototype.readFeatures = function(source) {};
+ol.source.RasterEvent.prototype.extent;
+
+
+/**
+ * @type {number}
+ */
+ol.source.RasterEvent.prototype.resolution;
+
+
+/**
+ * @type {Object}
+ */
+ol.source.RasterEvent.prototype.data;
 
 
 /**
  * @constructor
- * @extends {ol.Observable}
+ * @extends {ol.Object}
  * @param {ol.source.SourceOptions} options
  */
 ol.source.Source = function(options) {};
@@ -2501,6 +2569,12 @@ ol.source.Source.prototype.getState = function() {};
 
 
 /**
+ * @param {Array.<ol.Attribution>} attributions
+ */
+ol.source.Source.prototype.setAttributions = function(attributions) {};
+
+
+/**
  * @constructor
  * @extends {ol.source.XYZ}
  * @param {olx.source.StamenOptions} options
@@ -2510,10 +2584,40 @@ ol.source.Stamen = function(options) {};
 
 /**
  * @constructor
- * @extends {ol.source.Vector}
- * @param {olx.source.StaticVectorOptions} options
+ * @extends {ol.source.TileImage}
+ * @param {olx.source.TileArcGISRestOptions=} opt_options
  */
-ol.source.StaticVector = function(options) {};
+ol.source.TileArcGISRest = function(opt_options) {};
+
+
+/**
+ * @return {Object}
+ */
+ol.source.TileArcGISRest.prototype.getParams = function() {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.TileArcGISRest.prototype.getUrls = function() {};
+
+
+/**
+ * @param {string|undefined} url
+ */
+ol.source.TileArcGISRest.prototype.setUrl = function(url) {};
+
+
+/**
+ * @param {Array.<string>|undefined} urls
+ */
+ol.source.TileArcGISRest.prototype.setUrls = function(urls) {};
+
+
+/**
+ * @param {Object} params
+ */
+ol.source.TileArcGISRest.prototype.updateParams = function(params) {};
 
 
 /**
@@ -2580,10 +2684,55 @@ ol.source.Tile.prototype.getTileGrid = function() {};
 
 /**
  * @constructor
+ */
+ol.source.TileEvent = function() {};
+
+
+/**
+ * @type {ol.Tile}
+ */
+ol.source.TileEvent.prototype.tile;
+
+
+/**
+ * @constructor
+ * @extends {ol.source.Tile}
+ * @param {olx.source.TileUTFGridOptions} options
+ */
+ol.source.TileUTFGrid = function(options) {};
+
+
+/**
+ * @return {string|undefined}
+ */
+ol.source.TileUTFGrid.prototype.getTemplate = function() {};
+
+
+/**
+ * @param {ol.Coordinate} coordinate
+ * @param {number} resolution
+ * @param {Function} callback
+ * @param {T=} opt_this
+ * @param {boolean=} opt_request
+ * @template T
+ */
+ol.source.TileUTFGrid.prototype.forDataAtCoordinateAndResolution = function(coordinate, resolution, callback, opt_this, opt_request) {};
+
+
+/**
+ * @constructor
  * @extends {ol.source.Vector}
  * @param {olx.source.TileVectorOptions} options
  */
 ol.source.TileVector = function(options) {};
+
+
+/**
+ * @param {ol.Coordinate} coordinate
+ * @param {number} resolution
+ * @return {Array.<ol.Feature>}
+ */
+ol.source.TileVector.prototype.getFeaturesAtCoordinateAndResolution = function(coordinate, resolution) {};
 
 
 /**
@@ -2636,14 +2785,6 @@ ol.source.TileWMS.prototype.updateParams = function(params) {};
 
 /**
  * @constructor
- * @extends {ol.source.StaticVector}
- * @param {olx.source.TopoJSONOptions=} opt_options
- */
-ol.source.TopoJSON = function(opt_options) {};
-
-
-/**
- * @constructor
  * @extends {ol.source.Source}
  * @param {olx.source.VectorOptions=} opt_options
  */
@@ -2663,8 +2804,9 @@ ol.source.Vector.prototype.addFeatures = function(features) {};
 
 
 /**
+ * @param {boolean=} opt_fast
  */
-ol.source.Vector.prototype.clear = function() {};
+ol.source.Vector.prototype.clear = function(opt_fast) {};
 
 
 /**
@@ -2697,6 +2839,12 @@ ol.source.Vector.prototype.forEachFeatureIntersectingExtent = function(extent, c
 
 
 /**
+ * @return {ol.Collection.<ol.Feature>}
+ */
+ol.source.Vector.prototype.getFeaturesCollection = function() {};
+
+
+/**
  * @return {Array.<ol.Feature>}
  */
 ol.source.Vector.prototype.getFeatures = function() {};
@@ -2707,6 +2855,13 @@ ol.source.Vector.prototype.getFeatures = function() {};
  * @return {Array.<ol.Feature>}
  */
 ol.source.Vector.prototype.getFeaturesAtCoordinate = function(coordinate) {};
+
+
+/**
+ * @param {ol.Extent} extent
+ * @return {Array.<ol.Feature>}
+ */
+ol.source.Vector.prototype.getFeaturesInExtent = function(extent) {};
 
 
 /**
@@ -2762,22 +2917,73 @@ ol.source.WMTS.prototype.getDimensions = function() {};
 
 
 /**
+ * @return {string}
+ */
+ol.source.WMTS.prototype.getFormat = function() {};
+
+
+/**
+ * @return {string}
+ */
+ol.source.WMTS.prototype.getLayer = function() {};
+
+
+/**
+ * @return {string}
+ */
+ol.source.WMTS.prototype.getMatrixSet = function() {};
+
+
+/**
+ * @return {ol.source.WMTSRequestEncoding}
+ */
+ol.source.WMTS.prototype.getRequestEncoding = function() {};
+
+
+/**
+ * @return {string}
+ */
+ol.source.WMTS.prototype.getStyle = function() {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.WMTS.prototype.getUrls = function() {};
+
+
+/**
+ * @return {string}
+ */
+ol.source.WMTS.prototype.getVersion = function() {};
+
+
+/**
  * @param {Object} dimensions
  */
 ol.source.WMTS.prototype.updateDimensions = function(dimensions) {};
 
 
 /**
+ * @param {Object} wmtsCap
+ * @param {Object} config
+ * @return {olx.source.WMTSOptions}
+ */
+ol.source.WMTS.optionsFromCapabilities = function(wmtsCap, config) {};
+
+
+/**
  * @constructor
  * @extends {ol.source.TileImage}
- * @param {olx.source.XYZOptions|?} options
+ * @param {olx.source.XYZOptions} options
  */
 ol.source.XYZ = function(options) {};
 
 
 /**
+ * @return {!Array.<string>|null}
  */
-ol.source.XYZ.prototype.setTileUrlFunction = function() {};
+ol.source.XYZ.prototype.getUrls = function() {};
 
 
 /**
@@ -2789,7 +2995,7 @@ ol.source.XYZ.prototype.setUrl = function(url) {};
 /**
  * @constructor
  * @extends {ol.source.TileImage}
- * @param {olx.source.ZoomifyOptions|?} opt_options
+ * @param {olx.source.ZoomifyOptions=} opt_options
  */
 ol.source.Zoomify = function(opt_options) {};
 
@@ -2801,7 +3007,7 @@ ol.render.Event = function() {};
 
 
 /**
- * @type {ol.render.IVectorContext|undefined}
+ * @type {ol.render.VectorContext|undefined}
  */
 ol.render.Event.prototype.vectorContext;
 
@@ -2825,6 +3031,96 @@ ol.render.Event.prototype.glContext;
 
 
 /**
+ * @constructor
+ */
+ol.render.VectorContext = function() {};
+
+
+/**
+ * @type {Object}
+ */
+ol.render.webgl;
+
+
+/**
+ * @constructor
+ */
+ol.render.webgl.Immediate = function() {};
+
+
+/**
+ * @param {number} zIndex
+ * @param {Function} callback
+ */
+ol.render.webgl.Immediate.prototype.drawAsync = function(zIndex, callback) {};
+
+
+/**
+ */
+ol.render.webgl.Immediate.prototype.drawCircleGeometry = function() {};
+
+
+/**
+ */
+ol.render.webgl.Immediate.prototype.drawFeature = function() {};
+
+
+/**
+ */
+ol.render.webgl.Immediate.prototype.drawGeometryCollectionGeometry = function() {};
+
+
+/**
+ */
+ol.render.webgl.Immediate.prototype.drawPointGeometry = function() {};
+
+
+/**
+ */
+ol.render.webgl.Immediate.prototype.drawLineStringGeometry = function() {};
+
+
+/**
+ */
+ol.render.webgl.Immediate.prototype.drawMultiLineStringGeometry = function() {};
+
+
+/**
+ */
+ol.render.webgl.Immediate.prototype.drawMultiPointGeometry = function() {};
+
+
+/**
+ */
+ol.render.webgl.Immediate.prototype.drawMultiPolygonGeometry = function() {};
+
+
+/**
+ */
+ol.render.webgl.Immediate.prototype.drawPolygonGeometry = function() {};
+
+
+/**
+ */
+ol.render.webgl.Immediate.prototype.drawText = function() {};
+
+
+/**
+ */
+ol.render.webgl.Immediate.prototype.setFillStrokeStyle = function() {};
+
+
+/**
+ */
+ol.render.webgl.Immediate.prototype.setImageStyle = function() {};
+
+
+/**
+ */
+ol.render.webgl.Immediate.prototype.setTextStyle = function() {};
+
+
+/**
  * @type {Object}
  */
 ol.render.canvas;
@@ -2845,9 +3141,9 @@ ol.render.canvas.Immediate.prototype.drawAsync = function(zIndex, callback) {};
 
 /**
  * @param {ol.geom.Circle} circleGeometry
- * @param {Object} data
+ * @param {ol.Feature} feature
  */
-ol.render.canvas.Immediate.prototype.drawCircleGeometry = function(circleGeometry, data) {};
+ol.render.canvas.Immediate.prototype.drawCircleGeometry = function(circleGeometry, feature) {};
 
 
 /**
@@ -2859,44 +3155,44 @@ ol.render.canvas.Immediate.prototype.drawFeature = function(feature, style) {};
 
 /**
  * @param {ol.geom.Point} pointGeometry
- * @param {Object} data
+ * @param {ol.Feature} feature
  */
-ol.render.canvas.Immediate.prototype.drawPointGeometry = function(pointGeometry, data) {};
+ol.render.canvas.Immediate.prototype.drawPointGeometry = function(pointGeometry, feature) {};
 
 
 /**
  * @param {ol.geom.MultiPoint} multiPointGeometry
- * @param {Object} data
+ * @param {ol.Feature} feature
  */
-ol.render.canvas.Immediate.prototype.drawMultiPointGeometry = function(multiPointGeometry, data) {};
+ol.render.canvas.Immediate.prototype.drawMultiPointGeometry = function(multiPointGeometry, feature) {};
 
 
 /**
  * @param {ol.geom.LineString} lineStringGeometry
- * @param {Object} data
+ * @param {ol.Feature} feature
  */
-ol.render.canvas.Immediate.prototype.drawLineStringGeometry = function(lineStringGeometry, data) {};
+ol.render.canvas.Immediate.prototype.drawLineStringGeometry = function(lineStringGeometry, feature) {};
 
 
 /**
  * @param {ol.geom.MultiLineString} multiLineStringGeometry
- * @param {Object} data
+ * @param {ol.Feature} feature
  */
-ol.render.canvas.Immediate.prototype.drawMultiLineStringGeometry = function(multiLineStringGeometry, data) {};
+ol.render.canvas.Immediate.prototype.drawMultiLineStringGeometry = function(multiLineStringGeometry, feature) {};
 
 
 /**
  * @param {ol.geom.Polygon} polygonGeometry
- * @param {Object} data
+ * @param {ol.Feature} feature
  */
-ol.render.canvas.Immediate.prototype.drawPolygonGeometry = function(polygonGeometry, data) {};
+ol.render.canvas.Immediate.prototype.drawPolygonGeometry = function(polygonGeometry, feature) {};
 
 
 /**
  * @param {ol.geom.MultiPolygon} multiPolygonGeometry
- * @param {Object} data
+ * @param {ol.Feature} feature
  */
-ol.render.canvas.Immediate.prototype.drawMultiPolygonGeometry = function(multiPolygonGeometry, data) {};
+ol.render.canvas.Immediate.prototype.drawMultiPolygonGeometry = function(multiPolygonGeometry, feature) {};
 
 
 /**
@@ -2985,6 +3281,12 @@ ol.proj.Projection.prototype.isGlobal = function() {};
 
 
 /**
+ * @param {boolean} global
+ */
+ol.proj.Projection.prototype.setGlobal = function(global) {};
+
+
+/**
  * @param {ol.Extent} extent
  */
 ol.proj.Projection.prototype.setExtent = function(extent) {};
@@ -2994,6 +3296,20 @@ ol.proj.Projection.prototype.setExtent = function(extent) {};
  * @param {ol.Extent} worldExtent
  */
 ol.proj.Projection.prototype.setWorldExtent = function(worldExtent) {};
+
+
+/**
+ * @param {Function} func
+ */
+ol.proj.Projection.prototype.setGetPointResolution = function(func) {};
+
+
+/**
+ * @param {number} resolution
+ * @param {ol.Coordinate} point
+ * @return {number}
+ */
+ol.proj.Projection.prototype.getPointResolution = function(resolution, point) {};
 
 
 /**
@@ -3015,6 +3331,22 @@ ol.proj.addProjection = function(projection) {};
  * @param {Function} inverse
  */
 ol.proj.addCoordinateTransforms = function(source, destination, forward, inverse) {};
+
+
+/**
+ * @param {ol.Coordinate} coordinate
+ * @param {ol.proj.ProjectionLike=} opt_projection
+ * @return {ol.Coordinate}
+ */
+ol.proj.fromLonLat = function(coordinate, opt_projection) {};
+
+
+/**
+ * @param {ol.Coordinate} coordinate
+ * @param {ol.proj.ProjectionLike=} opt_projection
+ * @return {ol.Coordinate}
+ */
+ol.proj.toLonLat = function(coordinate, opt_projection) {};
 
 
 /**
@@ -3065,15 +3397,39 @@ ol.layer.Heatmap = function(opt_options) {};
 
 
 /**
+ * @return {number}
+ */
+ol.layer.Heatmap.prototype.getBlur = function() {};
+
+
+/**
  * @return {Array.<string>}
  */
 ol.layer.Heatmap.prototype.getGradient = function() {};
 
 
 /**
+ * @return {number}
+ */
+ol.layer.Heatmap.prototype.getRadius = function() {};
+
+
+/**
+ * @param {number} blur
+ */
+ol.layer.Heatmap.prototype.setBlur = function(blur) {};
+
+
+/**
  * @param {Array.<string>} colors
  */
 ol.layer.Heatmap.prototype.setGradient = function(colors) {};
+
+
+/**
+ * @param {number} radius
+ */
+ol.layer.Heatmap.prototype.setRadius = function(radius) {};
 
 
 /**
@@ -3105,6 +3461,12 @@ ol.layer.Layer.prototype.getSource = function() {};
 
 
 /**
+ * @param {ol.Map} map
+ */
+ol.layer.Layer.prototype.setMap = function(map) {};
+
+
+/**
  * @param {ol.source.Source} source
  */
 ol.layer.Layer.prototype.setSource = function(source) {};
@@ -3119,75 +3481,39 @@ ol.layer.Base = function(options) {};
 
 
 /**
- * @return {number|undefined}
- */
-ol.layer.Base.prototype.getBrightness = function() {};
-
-
-/**
- * @return {number|undefined}
- */
-ol.layer.Base.prototype.getContrast = function() {};
-
-
-/**
- * @return {number|undefined}
- */
-ol.layer.Base.prototype.getHue = function() {};
-
-
-/**
  * @return {ol.Extent|undefined}
  */
 ol.layer.Base.prototype.getExtent = function() {};
 
 
 /**
- * @return {number|undefined}
+ * @return {number}
  */
 ol.layer.Base.prototype.getMaxResolution = function() {};
 
 
 /**
- * @return {number|undefined}
+ * @return {number}
  */
 ol.layer.Base.prototype.getMinResolution = function() {};
 
 
 /**
- * @return {number|undefined}
+ * @return {number}
  */
 ol.layer.Base.prototype.getOpacity = function() {};
 
 
 /**
- * @return {number|undefined}
- */
-ol.layer.Base.prototype.getSaturation = function() {};
-
-
-/**
- * @return {boolean|undefined}
+ * @return {boolean}
  */
 ol.layer.Base.prototype.getVisible = function() {};
 
 
 /**
- * @param {number|undefined} brightness
+ * @return {number}
  */
-ol.layer.Base.prototype.setBrightness = function(brightness) {};
-
-
-/**
- * @param {number|undefined} contrast
- */
-ol.layer.Base.prototype.setContrast = function(contrast) {};
-
-
-/**
- * @param {number|undefined} hue
- */
-ol.layer.Base.prototype.setHue = function(hue) {};
+ol.layer.Base.prototype.getZIndex = function() {};
 
 
 /**
@@ -3197,39 +3523,39 @@ ol.layer.Base.prototype.setExtent = function(extent) {};
 
 
 /**
- * @param {number|undefined} maxResolution
+ * @param {number} maxResolution
  */
 ol.layer.Base.prototype.setMaxResolution = function(maxResolution) {};
 
 
 /**
- * @param {number|undefined} minResolution
+ * @param {number} minResolution
  */
 ol.layer.Base.prototype.setMinResolution = function(minResolution) {};
 
 
 /**
- * @param {number|undefined} opacity
+ * @param {number} opacity
  */
 ol.layer.Base.prototype.setOpacity = function(opacity) {};
 
 
 /**
- * @param {number|undefined} saturation
- */
-ol.layer.Base.prototype.setSaturation = function(saturation) {};
-
-
-/**
- * @param {boolean|undefined} visible
+ * @param {boolean} visible
  */
 ol.layer.Base.prototype.setVisible = function(visible) {};
 
 
 /**
+ * @param {number} zindex
+ */
+ol.layer.Base.prototype.setZIndex = function(zindex) {};
+
+
+/**
  * @constructor
  * @extends {ol.layer.Base}
- * @param {olx.layer.GroupOptions|?} opt_options
+ * @param {olx.layer.GroupOptions=} opt_options
  */
 ol.layer.Group = function(opt_options) {};
 
@@ -3249,13 +3575,13 @@ ol.layer.Group.prototype.setLayers = function(layers) {};
 /**
  * @constructor
  * @extends {ol.layer.Layer}
- * @param {olx.layer.TileOptions|?} opt_options
+ * @param {olx.layer.TileOptions=} opt_options
  */
 ol.layer.Tile = function(opt_options) {};
 
 
 /**
- * @return {number|undefined}
+ * @return {number}
  */
 ol.layer.Tile.prototype.getPreload = function() {};
 
@@ -3273,13 +3599,13 @@ ol.layer.Tile.prototype.setPreload = function(preload) {};
 
 
 /**
- * @return {boolean|undefined}
+ * @return {boolean}
  */
 ol.layer.Tile.prototype.getUseInterimTilesOnError = function() {};
 
 
 /**
- * @param {boolean|undefined} useInterimTilesOnError
+ * @param {boolean} useInterimTilesOnError
  */
 ol.layer.Tile.prototype.setUseInterimTilesOnError = function(useInterimTilesOnError) {};
 
@@ -3287,7 +3613,7 @@ ol.layer.Tile.prototype.setUseInterimTilesOnError = function(useInterimTilesOnEr
 /**
  * @constructor
  * @extends {ol.layer.Layer}
- * @param {olx.layer.VectorOptions|?} opt_options
+ * @param {olx.layer.VectorOptions=} opt_options
  */
 ol.layer.Vector = function(opt_options) {};
 
@@ -3311,7 +3637,7 @@ ol.layer.Vector.prototype.getStyleFunction = function() {};
 
 
 /**
- * @param {ol.style.Style|Array.<ol.style.Style>|ol.style.StyleFunction|undefined} style
+ * @param {ol.style.Style|Array.<ol.style.Style>|ol.style.StyleFunction|null|undefined} style
  */
 ol.layer.Vector.prototype.setStyle = function(style) {};
 
@@ -3331,11 +3657,25 @@ ol.interaction.DoubleClickZoom = function(opt_options) {};
 
 
 /**
+ * @param {ol.MapBrowserEvent} mapBrowserEvent
+ * @return {boolean}
+ */
+ol.interaction.DoubleClickZoom.handleEvent = function(mapBrowserEvent) {};
+
+
+/**
  * @constructor
  * @extends {ol.interaction.Interaction}
  * @param {olx.interaction.DragAndDropOptions=} opt_options
  */
 ol.interaction.DragAndDrop = function(opt_options) {};
+
+
+/**
+ * @param {ol.MapBrowserEvent} mapBrowserEvent
+ * @return {boolean}
+ */
+ol.interaction.DragAndDrop.handleEvent;
 
 
 /**
@@ -3376,7 +3716,7 @@ ol.DragBoxEvent.prototype.coordinate;
 
 /**
  * @constructor
- * @extends {ol.interaction.Interaction}
+ * @extends {ol.interaction.Pointer}
  * @param {olx.interaction.DragBoxOptions=} opt_options
  */
 ol.interaction.DragBox = function(opt_options) {};
@@ -3390,7 +3730,7 @@ ol.interaction.DragBox.prototype.getGeometry = function() {};
 
 /**
  * @constructor
- * @extends {ol.interaction.Interaction}
+ * @extends {ol.interaction.Pointer}
  * @param {olx.interaction.DragPanOptions=} opt_options
  */
 ol.interaction.DragPan = function(opt_options) {};
@@ -3398,7 +3738,7 @@ ol.interaction.DragPan = function(opt_options) {};
 
 /**
  * @constructor
- * @extends {ol.interaction.Interaction}
+ * @extends {ol.interaction.Pointer}
  * @param {olx.interaction.DragRotateAndZoomOptions=} opt_options
  */
 ol.interaction.DragRotateAndZoom = function(opt_options) {};
@@ -3406,7 +3746,7 @@ ol.interaction.DragRotateAndZoom = function(opt_options) {};
 
 /**
  * @constructor
- * @extends {ol.interaction.Interaction}
+ * @extends {ol.interaction.Pointer}
  * @param {olx.interaction.DragRotateOptions=} opt_options
  */
 ol.interaction.DragRotate = function(opt_options) {};
@@ -3423,28 +3763,60 @@ ol.interaction.DragZoom = function(opt_options) {};
 /**
  * @constructor
  */
-ol.DrawEvent = function() {};
+ol.interaction.DrawEvent = function() {};
 
 
 /**
  * @type {ol.Feature}
  */
-ol.DrawEvent.prototype.feature;
+ol.interaction.DrawEvent.prototype.feature;
 
 
 /**
  * @constructor
- * @extends {ol.interaction.Interaction}
+ * @extends {ol.interaction.Pointer}
  * @param {olx.interaction.DrawOptions} options
  */
 ol.interaction.Draw = function(options) {};
 
 
 /**
+ * @param {ol.MapBrowserEvent} mapBrowserEvent
+ * @return {boolean}
+ */
+ol.interaction.Draw.handleEvent = function(mapBrowserEvent) {};
+
+
+/**
+ */
+ol.interaction.Draw.prototype.removeLastPoint = function() {};
+
+
+/**
+ */
+ol.interaction.Draw.prototype.finishDrawing = function() {};
+
+
+/**
+ * @param {ol.Feature} feature
+ */
+ol.interaction.Draw.prototype.extend = function(feature) {};
+
+
+/**
+ * @param {number=} opt_sides
+ * @param {number=} opt_angle
+ * @return {ol.interaction.DrawGeometryFunctionType}
+ */
+ol.interaction.Draw.createRegularPolygon = function(opt_sides, opt_angle) {};
+
+
+/**
  * @constructor
  * @extends {ol.Object}
+ * @param {olx.interaction.InteractionOptions} options
  */
-ol.interaction.Interaction = function() {};
+ol.interaction.Interaction = function(options) {};
 
 
 /**
@@ -3475,6 +3847,13 @@ ol.interaction.KeyboardPan = function(opt_options) {};
 
 
 /**
+ * @param {ol.MapBrowserEvent} mapBrowserEvent
+ * @return {boolean}
+ */
+ol.interaction.KeyboardPan.handleEvent = function(mapBrowserEvent) {};
+
+
+/**
  * @constructor
  * @extends {ol.interaction.Interaction}
  * @param {olx.interaction.KeyboardZoomOptions=} opt_options
@@ -3483,11 +3862,43 @@ ol.interaction.KeyboardZoom = function(opt_options) {};
 
 
 /**
+ * @param {ol.MapBrowserEvent} mapBrowserEvent
+ * @return {boolean}
+ */
+ol.interaction.KeyboardZoom.handleEvent = function(mapBrowserEvent) {};
+
+
+/**
  * @constructor
- * @extends {ol.interaction.Interaction}
+ */
+ol.interaction.ModifyEvent = function() {};
+
+
+/**
+ * @type {ol.Collection.<ol.Feature>}
+ */
+ol.interaction.ModifyEvent.prototype.features;
+
+
+/**
+ * @type {ol.MapBrowserPointerEvent}
+ */
+ol.interaction.ModifyEvent.prototype.mapBrowserPointerEvent;
+
+
+/**
+ * @constructor
+ * @extends {ol.interaction.Pointer}
  * @param {olx.interaction.ModifyOptions} options
  */
 ol.interaction.Modify = function(options) {};
+
+
+/**
+ * @param {ol.MapBrowserEvent} mapBrowserEvent
+ * @return {boolean}
+ */
+ol.interaction.Modify.handleEvent = function(mapBrowserEvent) {};
 
 
 /**
@@ -3499,8 +3910,21 @@ ol.interaction.MouseWheelZoom = function(opt_options) {};
 
 
 /**
+ * @param {ol.MapBrowserEvent} mapBrowserEvent
+ * @return {boolean}
+ */
+ol.interaction.MouseWheelZoom.handleEvent = function(mapBrowserEvent) {};
+
+
+/**
+ * @param {boolean} useAnchor
+ */
+ol.interaction.MouseWheelZoom.prototype.setMouseAnchor = function(useAnchor) {};
+
+
+/**
  * @constructor
- * @extends {ol.interaction.Interaction}
+ * @extends {ol.interaction.Pointer}
  * @param {olx.interaction.PinchRotateOptions=} opt_options
  */
 ol.interaction.PinchRotate = function(opt_options) {};
@@ -3508,7 +3932,7 @@ ol.interaction.PinchRotate = function(opt_options) {};
 
 /**
  * @constructor
- * @extends {ol.interaction.Interaction}
+ * @extends {ol.interaction.Pointer}
  * @param {olx.interaction.PinchZoomOptions=} opt_options
  */
 ol.interaction.PinchZoom = function(opt_options) {};
@@ -3517,7 +3941,46 @@ ol.interaction.PinchZoom = function(opt_options) {};
 /**
  * @constructor
  * @extends {ol.interaction.Interaction}
- * @param {olx.interaction.SelectOptions|?} opt_options
+ * @param {olx.interaction.PointerOptions=} opt_options
+ */
+ol.interaction.Pointer = function(opt_options) {};
+
+
+/**
+ * @param {ol.MapBrowserEvent} mapBrowserEvent
+ * @return {boolean}
+ */
+ol.interaction.Pointer.handleEvent = function(mapBrowserEvent) {};
+
+
+/**
+ * @constructor
+ */
+ol.interaction.SelectEvent = function() {};
+
+
+/**
+ * @type {Array.<ol.Feature>}
+ */
+ol.interaction.SelectEvent.prototype.selected;
+
+
+/**
+ * @type {Array.<ol.Feature>}
+ */
+ol.interaction.SelectEvent.prototype.deselected;
+
+
+/**
+ * @type {ol.MapBrowserEvent}
+ */
+ol.interaction.SelectEvent.prototype.mapBrowserEvent;
+
+
+/**
+ * @constructor
+ * @extends {ol.interaction.Interaction}
+ * @param {olx.interaction.SelectOptions=} opt_options
  */
 ol.interaction.Select = function(opt_options) {};
 
@@ -3529,9 +3992,71 @@ ol.interaction.Select.prototype.getFeatures = function() {};
 
 
 /**
+ * @param {ol.Feature} feature
+ * @return {ol.layer.Vector}
+ */
+ol.interaction.Select.prototype.getLayer = function(feature) {};
+
+
+/**
+ * @param {ol.MapBrowserEvent} mapBrowserEvent
+ * @return {boolean}
+ */
+ol.interaction.Select.handleEvent = function(mapBrowserEvent) {};
+
+
+/**
  * @param {ol.Map} map
  */
 ol.interaction.Select.prototype.setMap = function(map) {};
+
+
+/**
+ * @constructor
+ * @extends {ol.interaction.Pointer}
+ * @param {olx.interaction.SnapOptions=} opt_options
+ */
+ol.interaction.Snap = function(opt_options) {};
+
+
+/**
+ * @param {ol.Feature} feature
+ * @param {boolean=} opt_listen
+ */
+ol.interaction.Snap.prototype.addFeature = function(feature, opt_listen) {};
+
+
+/**
+ * @param {ol.Feature} feature
+ * @param {boolean=} opt_unlisten
+ */
+ol.interaction.Snap.prototype.removeFeature = function(feature, opt_unlisten) {};
+
+
+/**
+ * @constructor
+ */
+ol.interaction.TranslateEvent = function() {};
+
+
+/**
+ * @type {ol.Collection.<ol.Feature>}
+ */
+ol.interaction.TranslateEvent.prototype.features;
+
+
+/**
+ * @type {ol.Coordinate}
+ */
+ol.interaction.TranslateEvent.prototype.coordinate;
+
+
+/**
+ * @constructor
+ * @extends {ol.interaction.Pointer}
+ * @param {olx.interaction.TranslateOptions} options
+ */
+ol.interaction.Translate = function(options) {};
 
 
 /**
@@ -3563,11 +4088,6 @@ ol.geom.Circle.prototype.getCenter = function() {};
 
 
 /**
- */
-ol.geom.Circle.prototype.getExtent = function() {};
-
-
-/**
  * @return {number}
  */
 ol.geom.Circle.prototype.getRadius = function() {};
@@ -3576,6 +4096,11 @@ ol.geom.Circle.prototype.getRadius = function() {};
 /**
  */
 ol.geom.Circle.prototype.getType = function() {};
+
+
+/**
+ */
+ol.geom.Circle.prototype.intersectsExtent = function() {};
 
 
 /**
@@ -3608,15 +4133,9 @@ ol.geom.Circle.prototype.transform = function(source, destination) {};
 
 /**
  * @constructor
- * @extends {ol.Observable}
+ * @extends {ol.Object}
  */
 ol.geom.Geometry = function() {};
-
-
-/**
- * @return {ol.geom.Geometry}
- */
-ol.geom.Geometry.prototype.clone = function() {};
 
 
 /**
@@ -3635,22 +4154,10 @@ ol.geom.Geometry.prototype.getExtent = function(opt_extent) {};
 
 
 /**
- * @return {ol.geom.GeometryType}
+ * @param {number} tolerance
+ * @return {ol.geom.Geometry}
  */
-ol.geom.Geometry.prototype.getType = function() {};
-
-
-/**
- * @param {ol.TransformFunction} transformFn
- */
-ol.geom.Geometry.prototype.applyTransform = function(transformFn) {};
-
-
-/**
- * @param {ol.Extent} extent
- * @return {boolean}
- */
-ol.geom.Geometry.prototype.intersectsExtent = function(extent) {};
+ol.geom.Geometry.prototype.simplify = function(tolerance) {};
 
 
 /**
@@ -3676,11 +4183,6 @@ ol.geom.GeometryCollection.prototype.clone = function() {};
 
 
 /**
- */
-ol.geom.GeometryCollection.prototype.getExtent = function() {};
-
-
-/**
  * @return {Array.<ol.geom.Geometry>}
  */
 ol.geom.GeometryCollection.prototype.getGeometries = function() {};
@@ -3700,6 +4202,18 @@ ol.geom.GeometryCollection.prototype.intersectsExtent = function() {};
  * @param {Array.<ol.geom.Geometry>} geometries
  */
 ol.geom.GeometryCollection.prototype.setGeometries = function(geometries) {};
+
+
+/**
+ */
+ol.geom.GeometryCollection.prototype.applyTransform = function() {};
+
+
+/**
+ * @param {number} deltaX
+ * @param {number} deltaY
+ */
+ol.geom.GeometryCollection.prototype.translate = function(deltaX, deltaY) {};
 
 
 /**
@@ -3760,6 +4274,15 @@ ol.geom.LineString.prototype.appendCoordinate = function(coordinate) {};
  * @return {ol.geom.LineString}
  */
 ol.geom.LineString.prototype.clone = function() {};
+
+
+/**
+ * @param {Function} callback
+ * @param {S=} opt_this
+ * @return {T|boolean}
+ * @template T,S
+ */
+ol.geom.LineString.prototype.forEachSegment = function(callback, opt_this) {};
 
 
 /**
@@ -3950,9 +4473,10 @@ ol.geom.MultiPolygon.prototype.getArea = function() {};
 
 
 /**
+ * @param {boolean=} opt_right
  * @return {Array.<Array.<Array.<ol.Coordinate>>>}
  */
-ol.geom.MultiPolygon.prototype.getCoordinates = function() {};
+ol.geom.MultiPolygon.prototype.getCoordinates = function(opt_right) {};
 
 
 /**
@@ -4057,9 +4581,10 @@ ol.geom.Polygon.prototype.getArea = function() {};
 
 
 /**
+ * @param {boolean=} opt_right
  * @return {Array.<Array.<ol.Coordinate>>}
  */
-ol.geom.Polygon.prototype.getCoordinates = function() {};
+ol.geom.Polygon.prototype.getCoordinates = function(opt_right) {};
 
 
 /**
@@ -4122,15 +4647,19 @@ ol.geom.Polygon.fromExtent = function(extent) {};
 
 
 /**
+ * @param {ol.geom.Circle} circle
+ * @param {number=} opt_sides
+ * @param {number=} opt_angle
+ * @return {ol.geom.Polygon}
+ */
+ol.geom.Polygon.fromCircle = function(circle, opt_sides, opt_angle) {};
+
+
+/**
  * @constructor
  * @extends {ol.geom.Geometry}
  */
 ol.geom.SimpleGeometry = function() {};
-
-
-/**
- */
-ol.geom.SimpleGeometry.prototype.getExtent = function() {};
 
 
 /**
@@ -4152,6 +4681,103 @@ ol.geom.SimpleGeometry.prototype.getLayout = function() {};
 
 
 /**
+ */
+ol.geom.SimpleGeometry.prototype.applyTransform = function() {};
+
+
+/**
+ */
+ol.geom.SimpleGeometry.prototype.translate = function() {};
+
+
+/**
+ * @constructor
+ * @extends {ol.format.Feature}
+ * @param {olx.format.EsriJSONOptions=} opt_options
+ */
+ol.format.EsriJSON = function(opt_options) {};
+
+
+/**
+ * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {olx.format.ReadOptions=} opt_options
+ * @return {ol.Feature}
+ */
+ol.format.EsriJSON.prototype.readFeature = function(source, opt_options) {};
+
+
+/**
+ * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {olx.format.ReadOptions=} opt_options
+ * @return {Array.<ol.Feature>}
+ */
+ol.format.EsriJSON.prototype.readFeatures = function(source, opt_options) {};
+
+
+/**
+ * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {olx.format.ReadOptions=} opt_options
+ * @return {ol.geom.Geometry}
+ */
+ol.format.EsriJSON.prototype.readGeometry = function(source, opt_options) {};
+
+
+/**
+ * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @return {ol.proj.Projection}
+ */
+ol.format.EsriJSON.prototype.readProjection = function(source) {};
+
+
+/**
+ * @param {ol.geom.Geometry} geometry
+ * @param {olx.format.WriteOptions=} opt_options
+ * @return {string}
+ */
+ol.format.EsriJSON.prototype.writeGeometry = function(geometry, opt_options) {};
+
+
+/**
+ * @param {ol.geom.Geometry} geometry
+ * @param {olx.format.WriteOptions=} opt_options
+ * @return {EsriJSONGeometry}
+ */
+ol.format.EsriJSON.prototype.writeGeometryObject = function(geometry, opt_options) {};
+
+
+/**
+ * @param {ol.Feature} feature
+ * @param {olx.format.WriteOptions=} opt_options
+ * @return {string}
+ */
+ol.format.EsriJSON.prototype.writeFeature = function(feature, opt_options) {};
+
+
+/**
+ * @param {ol.Feature} feature
+ * @param {olx.format.WriteOptions=} opt_options
+ * @return {Object}
+ */
+ol.format.EsriJSON.prototype.writeFeatureObject = function(feature, opt_options) {};
+
+
+/**
+ * @param {Array.<ol.Feature>} features
+ * @param {olx.format.WriteOptions=} opt_options
+ * @return {string}
+ */
+ol.format.EsriJSON.prototype.writeFeatures = function(features, opt_options) {};
+
+
+/**
+ * @param {Array.<ol.Feature>} features
+ * @param {olx.format.WriteOptions=} opt_options
+ * @return {Object}
+ */
+ol.format.EsriJSON.prototype.writeFeaturesObject = function(features, opt_options) {};
+
+
+/**
  * @constructor
  */
 ol.format.Feature = function() {};
@@ -4166,7 +4792,7 @@ ol.format.GeoJSON = function(opt_options) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @param {olx.format.ReadOptions=} opt_options
  * @return {ol.Feature}
  */
@@ -4174,7 +4800,7 @@ ol.format.GeoJSON.prototype.readFeature = function(source, opt_options) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @param {olx.format.ReadOptions=} opt_options
  * @return {Array.<ol.Feature>}
  */
@@ -4182,7 +4808,7 @@ ol.format.GeoJSON.prototype.readFeatures = function(source, opt_options) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @param {olx.format.ReadOptions=} opt_options
  * @return {ol.geom.Geometry}
  */
@@ -4190,7 +4816,7 @@ ol.format.GeoJSON.prototype.readGeometry = function(source, opt_options) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @return {ol.proj.Projection}
  */
 ol.format.GeoJSON.prototype.readProjection = function(source) {};
@@ -4198,26 +4824,50 @@ ol.format.GeoJSON.prototype.readProjection = function(source) {};
 
 /**
  * @param {ol.Feature} feature
- * @param {olx.format.WriteOptions} options
- * @return {GeoJSONFeature}
+ * @param {olx.format.WriteOptions=} opt_options
+ * @return {string}
  */
-ol.format.GeoJSON.prototype.writeFeature = function(feature, options) {};
+ol.format.GeoJSON.prototype.writeFeature = function(feature, opt_options) {};
+
+
+/**
+ * @param {ol.Feature} feature
+ * @param {olx.format.WriteOptions=} opt_options
+ * @return {Object}
+ */
+ol.format.GeoJSON.prototype.writeFeatureObject = function(feature, opt_options) {};
 
 
 /**
  * @param {Array.<ol.Feature>} features
- * @param {olx.format.WriteOptions} options
- * @return {GeoJSONObject}
+ * @param {olx.format.WriteOptions=} opt_options
+ * @return {string}
  */
-ol.format.GeoJSON.prototype.writeFeatures = function(features, options) {};
+ol.format.GeoJSON.prototype.writeFeatures = function(features, opt_options) {};
+
+
+/**
+ * @param {Array.<ol.Feature>} features
+ * @param {olx.format.WriteOptions=} opt_options
+ * @return {Object}
+ */
+ol.format.GeoJSON.prototype.writeFeaturesObject = function(features, opt_options) {};
 
 
 /**
  * @param {ol.geom.Geometry} geometry
- * @param {olx.format.WriteOptions} options
+ * @param {olx.format.WriteOptions=} opt_options
+ * @return {string}
+ */
+ol.format.GeoJSON.prototype.writeGeometry = function(geometry, opt_options) {};
+
+
+/**
+ * @param {ol.geom.Geometry} geometry
+ * @param {olx.format.WriteOptions=} opt_options
  * @return {GeoJSONGeometry|GeoJSONGeometryCollection}
  */
-ol.format.GeoJSON.prototype.writeGeometry = function(geometry, options) {};
+ol.format.GeoJSON.prototype.writeGeometryObject = function(geometry, opt_options) {};
 
 
 /**
@@ -4229,7 +4879,7 @@ ol.format.GPX = function(opt_options) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @param {olx.format.ReadOptions=} opt_options
  * @return {ol.Feature}
  */
@@ -4237,7 +4887,7 @@ ol.format.GPX.prototype.readFeature = function(source, opt_options) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @param {olx.format.ReadOptions=} opt_options
  * @return {Array.<ol.Feature>}
  */
@@ -4245,7 +4895,7 @@ ol.format.GPX.prototype.readFeatures = function(source, opt_options) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @return {ol.proj.Projection}
  */
 ol.format.GPX.prototype.readProjection = function(source) {};
@@ -4254,9 +4904,17 @@ ol.format.GPX.prototype.readProjection = function(source) {};
 /**
  * @param {Array.<ol.Feature>} features
  * @param {olx.format.WriteOptions=} opt_options
- * @return {Node}
+ * @return {string}
  */
 ol.format.GPX.prototype.writeFeatures = function(features, opt_options) {};
+
+
+/**
+ * @param {Array.<ol.Feature>} features
+ * @param {olx.format.WriteOptions=} opt_options
+ * @return {Node}
+ */
+ol.format.GPX.prototype.writeFeaturesNode = function(features, opt_options) {};
 
 
 /**
@@ -4268,7 +4926,7 @@ ol.format.IGC = function(opt_options) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @param {olx.format.ReadOptions=} opt_options
  * @return {ol.Feature}
  */
@@ -4276,7 +4934,7 @@ ol.format.IGC.prototype.readFeature = function(source, opt_options) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @param {olx.format.ReadOptions=} opt_options
  * @return {Array.<ol.Feature>}
  */
@@ -4284,7 +4942,7 @@ ol.format.IGC.prototype.readFeatures = function(source, opt_options) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @return {ol.proj.Projection}
  */
 ol.format.IGC.prototype.readProjection = function(source) {};
@@ -4299,7 +4957,7 @@ ol.format.KML = function(opt_options) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @param {olx.format.ReadOptions=} opt_options
  * @return {ol.Feature}
  */
@@ -4307,7 +4965,7 @@ ol.format.KML.prototype.readFeature = function(source, opt_options) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @param {olx.format.ReadOptions=} opt_options
  * @return {Array.<ol.Feature>}
  */
@@ -4322,7 +4980,14 @@ ol.format.KML.prototype.readName = function(source) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|string} source
+ * @return {Array.<Object>}
+ */
+ol.format.KML.prototype.readNetworkLinks = function(source) {};
+
+
+/**
+ * @param {Document|Node|Object|string} source
  * @return {ol.proj.Projection}
  */
 ol.format.KML.prototype.readProjection = function(source) {};
@@ -4331,9 +4996,17 @@ ol.format.KML.prototype.readProjection = function(source) {};
 /**
  * @param {Array.<ol.Feature>} features
  * @param {olx.format.WriteOptions=} opt_options
- * @return {Node}
+ * @return {string}
  */
 ol.format.KML.prototype.writeFeatures = function(features, opt_options) {};
+
+
+/**
+ * @param {Array.<ol.Feature>} features
+ * @param {olx.format.WriteOptions=} opt_options
+ * @return {Node}
+ */
+ol.format.KML.prototype.writeFeaturesNode = function(features, opt_options) {};
 
 
 /**
@@ -4344,7 +5017,7 @@ ol.format.OSMXML = function() {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @param {olx.format.ReadOptions=} opt_options
  * @return {Array.<ol.Feature>}
  */
@@ -4352,7 +5025,7 @@ ol.format.OSMXML.prototype.readFeatures = function(source, opt_options) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @return {ol.proj.Projection}
  */
 ol.format.OSMXML.prototype.readProjection = function(source) {};
@@ -4401,7 +5074,7 @@ ol.format.Polyline.decodeFloats = function(encoded, opt_factor) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @param {olx.format.ReadOptions=} opt_options
  * @return {ol.Feature}
  */
@@ -4409,7 +5082,7 @@ ol.format.Polyline.prototype.readFeature = function(source, opt_options) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @param {olx.format.ReadOptions=} opt_options
  * @return {Array.<ol.Feature>}
  */
@@ -4417,7 +5090,7 @@ ol.format.Polyline.prototype.readFeatures = function(source, opt_options) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @param {olx.format.ReadOptions=} opt_options
  * @return {ol.geom.Geometry}
  */
@@ -4425,7 +5098,7 @@ ol.format.Polyline.prototype.readGeometry = function(source, opt_options) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @return {ol.proj.Projection}
  */
 ol.format.Polyline.prototype.readProjection = function(source) {};
@@ -4448,14 +5121,14 @@ ol.format.TopoJSON = function(opt_options) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @return {Array.<ol.Feature>}
  */
 ol.format.TopoJSON.prototype.readFeatures = function(source) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} object
+ * @param {Document|Node|Object|string} object
  * @return {ol.proj.Projection}
  */
 ol.format.TopoJSON.prototype.readProjection = function(object) {};
@@ -4470,7 +5143,7 @@ ol.format.WFS = function(opt_options) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @param {olx.format.ReadOptions=} opt_options
  * @return {Array.<ol.Feature>}
  */
@@ -4478,14 +5151,14 @@ ol.format.WFS.prototype.readFeatures = function(source, opt_options) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @return {ol.format.WFS.TransactionResponse|undefined}
  */
 ol.format.WFS.prototype.readTransactionResponse = function(source) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @return {ol.format.WFS.FeatureCollectionMetadata|undefined}
  */
 ol.format.WFS.prototype.readFeatureCollectionMetadata = function(source) {};
@@ -4509,7 +5182,7 @@ ol.format.WFS.prototype.writeTransaction = function(inserts, updates, deletes, o
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @return {!ol.proj.Projection}
  */
 ol.format.WFS.prototype.readProjection = function(source) {};
@@ -4524,7 +5197,7 @@ ol.format.WKT = function(opt_options) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @param {olx.format.ReadOptions=} opt_options
  * @return {ol.Feature}
  */
@@ -4532,7 +5205,7 @@ ol.format.WKT.prototype.readFeature = function(source, opt_options) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @param {olx.format.ReadOptions=} opt_options
  * @return {Array.<ol.Feature>}
  */
@@ -4540,7 +5213,7 @@ ol.format.WKT.prototype.readFeatures = function(source, opt_options) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @param {olx.format.ReadOptions=} opt_options
  * @return {ol.geom.Geometry}
  */
@@ -4586,7 +5259,36 @@ ol.format.WMSCapabilities.prototype.read = function(source) {};
 
 /**
  * @constructor
- * @extends {ol.format.GMLBase}
+ * @extends {ol.format.Feature}
+ */
+ol.format.WMSGetFeatureInfo = function() {};
+
+
+/**
+ * @param {Document|Node|Object|string} source
+ * @param {olx.format.ReadOptions=} opt_options
+ * @return {Array.<ol.Feature>}
+ */
+ol.format.WMSGetFeatureInfo.prototype.readFeatures = function(source, opt_options) {};
+
+
+/**
+ * @constructor
+ * @extends {ol.format.XML}
+ */
+ol.format.WMTSCapabilities = function() {};
+
+
+/**
+ * @param {Document|Node|string} source
+ * @return {Object}
+ */
+ol.format.WMTSCapabilities.prototype.read = function(source) {};
+
+
+/**
+ * @constructor
+ * @extends {ol.format.Feature}
  * @param {olx.format.GMLOptions=} opt_options
  */
 ol.format.GML2 = function(opt_options) {};
@@ -4594,10 +5296,26 @@ ol.format.GML2 = function(opt_options) {};
 
 /**
  * @constructor
- * @extends {ol.format.GMLBase}
+ * @extends {ol.format.Feature}
  * @param {olx.format.GMLOptions=} opt_options
  */
 ol.format.GML3 = function(opt_options) {};
+
+
+/**
+ * @param {ol.geom.Geometry} geometry
+ * @param {olx.format.WriteOptions=} opt_options
+ * @return {Node}
+ */
+ol.format.GML3.prototype.writeGeometryNode = function(geometry, opt_options) {};
+
+
+/**
+ * @param {Array.<ol.Feature>} features
+ * @param {olx.format.WriteOptions=} opt_options
+ * @return {string}
+ */
+ol.format.GML3.prototype.writeFeatures = function(features, opt_options) {};
 
 
 /**
@@ -4605,12 +5323,12 @@ ol.format.GML3 = function(opt_options) {};
  * @param {olx.format.WriteOptions=} opt_options
  * @return {Node}
  */
-ol.format.GML3.prototype.writeFeatures = function(features, opt_options) {};
+ol.format.GML3.prototype.writeFeaturesNode = function(features, opt_options) {};
 
 
 /**
  * @constructor
- * @extends {ol.format.GMLBase}
+ * @extends {ol.format.Feature}
  * @param {olx.format.GMLOptions=} opt_options
  */
 ol.format.GML = function(opt_options) {};
@@ -4619,21 +5337,27 @@ ol.format.GML = function(opt_options) {};
 /**
  * @param {Array.<ol.Feature>} features
  * @param {olx.format.WriteOptions=} opt_options
- * @return {Node}
+ * @return {string}
  */
 ol.format.GML.prototype.writeFeatures = function(features, opt_options) {};
 
 
 /**
- * @constructor
- * @extends {ol.format.Feature}
- * @param {olx.format.GMLOptions=} opt_options
+ * @param {Array.<ol.Feature>} features
+ * @param {olx.format.WriteOptions=} opt_options
+ * @return {Node}
  */
-ol.format.GMLBase = function(opt_options) {};
+ol.format.GML.prototype.writeFeaturesNode = function(features, opt_options) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @constructor
+ */
+ol.format.GMLBase = function() {};
+
+
+/**
+ * @param {Document|Node|Object|string} source
  * @param {olx.format.ReadOptions=} opt_options
  * @return {Array.<ol.Feature>}
  */
@@ -4684,13 +5408,6 @@ ol.events.condition.click = function(mapBrowserEvent) {};
  * @param {ol.MapBrowserEvent} mapBrowserEvent
  * @return {boolean}
  */
-ol.events.condition.mouseMove = function(mapBrowserEvent) {};
-
-
-/**
- * @param {ol.MapBrowserEvent} mapBrowserEvent
- * @return {boolean}
- */
 ol.events.condition.never = function(mapBrowserEvent) {};
 
 
@@ -4698,7 +5415,21 @@ ol.events.condition.never = function(mapBrowserEvent) {};
  * @param {ol.MapBrowserEvent} mapBrowserEvent
  * @return {boolean}
  */
+ol.events.condition.pointerMove = function(mapBrowserEvent) {};
+
+
+/**
+ * @param {ol.MapBrowserEvent} mapBrowserEvent
+ * @return {boolean}
+ */
 ol.events.condition.singleClick = function(mapBrowserEvent) {};
+
+
+/**
+ * @param {ol.MapBrowserEvent} mapBrowserEvent
+ * @return {boolean}
+ */
+ol.events.condition.doubleClick = function(mapBrowserEvent) {};
 
 
 /**
@@ -4739,44 +5470,6 @@ ol.events.condition.mouseOnly = function(mapBrowserEvent) {};
 /**
  * @type {Object}
  */
-ol.dom;
-
-
-/**
- * @constructor
- * @extends {ol.Object}
- * @param {Element} target
- */
-ol.dom.Input = function(target) {};
-
-
-/**
- * @return {boolean|undefined}
- */
-ol.dom.Input.prototype.getChecked = function() {};
-
-
-/**
- * @return {string|undefined}
- */
-ol.dom.Input.prototype.getValue = function() {};
-
-
-/**
- * @param {string} value
- */
-ol.dom.Input.prototype.setValue = function(value) {};
-
-
-/**
- * @param {boolean} checked
- */
-ol.dom.Input.prototype.setChecked = function(checked) {};
-
-
-/**
- * @type {Object}
- */
 ol.control;
 
 
@@ -4786,6 +5479,12 @@ ol.control;
  * @param {olx.control.AttributionOptions=} opt_options
  */
 ol.control.Attribution = function(opt_options) {};
+
+
+/**
+ * @param {ol.MapEvent} mapEvent
+ */
+ol.control.Attribution.render = function(mapEvent) {};
 
 
 /**
@@ -4833,6 +5532,12 @@ ol.control.Control.prototype.setMap = function(map) {};
 
 
 /**
+ * @param {Element|string} target
+ */
+ol.control.Control.prototype.setTarget = function(target) {};
+
+
+/**
  * @param {olx.control.DefaultsOptions=} opt_options
  * @return {ol.Collection.<ol.control.Control>}
  */
@@ -4856,6 +5561,12 @@ ol.control.MousePosition = function(opt_options) {};
 
 
 /**
+ * @param {ol.MapEvent} mapEvent
+ */
+ol.control.MousePosition.render = function(mapEvent) {};
+
+
+/**
  * @return {ol.CoordinateFormatType|undefined}
  */
 ol.control.MousePosition.prototype.getCoordinateFormat = function() {};
@@ -4865,11 +5576,6 @@ ol.control.MousePosition.prototype.getCoordinateFormat = function() {};
  * @return {ol.proj.Projection|undefined}
  */
 ol.control.MousePosition.prototype.getProjection = function() {};
-
-
-/**
- */
-ol.control.MousePosition.prototype.setMap = function() {};
 
 
 /**
@@ -4893,8 +5599,9 @@ ol.control.OverviewMap = function(opt_options) {};
 
 
 /**
+ * @param {ol.MapEvent} mapEvent
  */
-ol.control.OverviewMap.prototype.setMap = function() {};
+ol.control.OverviewMap.render = function(mapEvent) {};
 
 
 /**
@@ -4922,11 +5629,23 @@ ol.control.OverviewMap.prototype.getCollapsed = function() {};
 
 
 /**
+ * @return {ol.Map}
+ */
+ol.control.OverviewMap.prototype.getOverviewMap = function() {};
+
+
+/**
  * @constructor
  * @extends {ol.control.Control}
  * @param {olx.control.RotateOptions=} opt_options
  */
 ol.control.Rotate = function(opt_options) {};
+
+
+/**
+ * @param {ol.MapEvent} mapEvent
+ */
+ol.control.Rotate.render = function(mapEvent) {};
 
 
 /**
@@ -4941,6 +5660,12 @@ ol.control.ScaleLine = function(opt_options) {};
  * @return {ol.control.ScaleLineUnits|undefined}
  */
 ol.control.ScaleLine.prototype.getUnits = function() {};
+
+
+/**
+ * @param {ol.MapEvent} mapEvent
+ */
+ol.control.ScaleLine.render = function(mapEvent) {};
 
 
 /**
@@ -4966,9 +5691,15 @@ ol.control.ZoomSlider = function(opt_options) {};
 
 
 /**
+ * @param {ol.MapEvent} mapEvent
+ */
+ol.control.ZoomSlider.render = function(mapEvent) {};
+
+
+/**
  * @constructor
  * @extends {ol.control.Control}
- * @param {olx.control.ZoomToExtentOptions|?} opt_options
+ * @param {olx.control.ZoomToExtentOptions=} opt_options
  */
 ol.control.ZoomToExtent = function(opt_options) {};
 
@@ -5038,15 +5769,6 @@ ol.Object.prototype.unByKey = function(key) {};
 
 /**
  * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.Collection.prototype.bindTo = function(key, target, opt_targetKey) {};
-
-
-/**
- * @param {string} key
  * @return {*}
  */
 ol.Collection.prototype.get = function(key) {};
@@ -5080,12 +5802,7 @@ ol.Collection.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.Collection.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.Collection.prototype.unbindAll = function() {};
+ol.Collection.prototype.unset = function(key) {};
 
 
 /**
@@ -5133,15 +5850,6 @@ ol.Collection.prototype.unByKey = function(key) {};
 
 /**
  * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.DeviceOrientation.prototype.bindTo = function(key, target, opt_targetKey) {};
-
-
-/**
- * @param {string} key
  * @return {*}
  */
 ol.DeviceOrientation.prototype.get = function(key) {};
@@ -5175,12 +5883,7 @@ ol.DeviceOrientation.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.DeviceOrientation.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.DeviceOrientation.prototype.unbindAll = function() {};
+ol.DeviceOrientation.prototype.unset = function(key) {};
 
 
 /**
@@ -5228,15 +5931,6 @@ ol.DeviceOrientation.prototype.unByKey = function(key) {};
 
 /**
  * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.Feature.prototype.bindTo = function(key, target, opt_targetKey) {};
-
-
-/**
- * @param {string} key
  * @return {*}
  */
 ol.Feature.prototype.get = function(key) {};
@@ -5270,12 +5964,7 @@ ol.Feature.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.Feature.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.Feature.prototype.unbindAll = function() {};
+ol.Feature.prototype.unset = function(key) {};
 
 
 /**
@@ -5323,15 +6012,6 @@ ol.Feature.prototype.unByKey = function(key) {};
 
 /**
  * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.Geolocation.prototype.bindTo = function(key, target, opt_targetKey) {};
-
-
-/**
- * @param {string} key
  * @return {*}
  */
 ol.Geolocation.prototype.get = function(key) {};
@@ -5365,12 +6045,7 @@ ol.Geolocation.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.Geolocation.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.Geolocation.prototype.unbindAll = function() {};
+ol.Geolocation.prototype.unset = function(key) {};
 
 
 /**
@@ -5424,15 +6099,6 @@ ol.ImageTile.prototype.getTileCoord = function() {};
 
 /**
  * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.Map.prototype.bindTo = function(key, target, opt_targetKey) {};
-
-
-/**
- * @param {string} key
  * @return {*}
  */
 ol.Map.prototype.get = function(key) {};
@@ -5466,12 +6132,7 @@ ol.Map.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.Map.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.Map.prototype.unbindAll = function() {};
+ol.Map.prototype.unset = function(key) {};
 
 
 /**
@@ -5554,6 +6215,12 @@ ol.MapBrowserPointerEvent.prototype.coordinate;
 
 
 /**
+ * @type {boolean}
+ */
+ol.MapBrowserPointerEvent.prototype.dragging;
+
+
+/**
  */
 ol.MapBrowserPointerEvent.prototype.preventDefault = function() {};
 
@@ -5573,15 +6240,6 @@ ol.MapBrowserPointerEvent.prototype.map;
  * @type {olx.FrameState}
  */
 ol.MapBrowserPointerEvent.prototype.frameState;
-
-
-/**
- * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.Overlay.prototype.bindTo = function(key, target, opt_targetKey) {};
 
 
 /**
@@ -5619,12 +6277,7 @@ ol.Overlay.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.Overlay.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.Overlay.prototype.unbindAll = function() {};
+ol.Overlay.prototype.unset = function(key) {};
 
 
 /**
@@ -5672,15 +6325,6 @@ ol.Overlay.prototype.unByKey = function(key) {};
 
 /**
  * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.View.prototype.bindTo = function(key, target, opt_targetKey) {};
-
-
-/**
- * @param {string} key
  * @return {*}
  */
 ol.View.prototype.get = function(key) {};
@@ -5714,12 +6358,7 @@ ol.View.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.View.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.View.prototype.unbindAll = function() {};
+ol.View.prototype.unset = function(key) {};
 
 
 /**
@@ -5798,8 +6437,26 @@ ol.tilegrid.WMTS.prototype.getResolutions = function() {};
 
 
 /**
+ * @param {ol.Coordinate} coordinate
+ * @param {number} resolution
+ * @param {ol.TileCoord=} opt_tileCoord
+ * @return {ol.TileCoord}
+ */
+ol.tilegrid.WMTS.prototype.getTileCoordForCoordAndResolution = function(coordinate, resolution, opt_tileCoord) {};
+
+
+/**
+ * @param {ol.Coordinate} coordinate
  * @param {number} z
- * @return {number}
+ * @param {ol.TileCoord=} opt_tileCoord
+ * @return {ol.TileCoord}
+ */
+ol.tilegrid.WMTS.prototype.getTileCoordForCoordAndZ = function(coordinate, z, opt_tileCoord) {};
+
+
+/**
+ * @param {number} z
+ * @return {number|ol.Size}
  */
 ol.tilegrid.WMTS.prototype.getTileSize = function(z) {};
 
@@ -5807,79 +6464,13 @@ ol.tilegrid.WMTS.prototype.getTileSize = function(z) {};
 /**
  * @return {number}
  */
-ol.tilegrid.XYZ.prototype.getMaxZoom = function() {};
+ol.style.Circle.prototype.getOpacity = function() {};
 
 
 /**
- * @return {number}
+ * @return {boolean}
  */
-ol.tilegrid.XYZ.prototype.getMinZoom = function() {};
-
-
-/**
- * @param {number} z
- * @return {ol.Coordinate}
- */
-ol.tilegrid.XYZ.prototype.getOrigin = function(z) {};
-
-
-/**
- * @param {number} z
- * @return {number}
- */
-ol.tilegrid.XYZ.prototype.getResolution = function(z) {};
-
-
-/**
- * @return {Array.<number>}
- */
-ol.tilegrid.XYZ.prototype.getResolutions = function() {};
-
-
-/**
- * @param {number} z
- * @return {number}
- */
-ol.tilegrid.XYZ.prototype.getTileSize = function(z) {};
-
-
-/**
- * @return {number}
- */
-ol.tilegrid.Zoomify.prototype.getMaxZoom = function() {};
-
-
-/**
- * @return {number}
- */
-ol.tilegrid.Zoomify.prototype.getMinZoom = function() {};
-
-
-/**
- * @param {number} z
- * @return {ol.Coordinate}
- */
-ol.tilegrid.Zoomify.prototype.getOrigin = function(z) {};
-
-
-/**
- * @param {number} z
- * @return {number}
- */
-ol.tilegrid.Zoomify.prototype.getResolution = function(z) {};
-
-
-/**
- * @return {Array.<number>}
- */
-ol.tilegrid.Zoomify.prototype.getResolutions = function() {};
-
-
-/**
- * @param {number} z
- * @return {number}
- */
-ol.tilegrid.Zoomify.prototype.getTileSize = function(z) {};
+ol.style.Circle.prototype.getRotateWithView = function() {};
 
 
 /**
@@ -5892,6 +6483,18 @@ ol.style.Circle.prototype.getRotation = function() {};
  * @return {number}
  */
 ol.style.Circle.prototype.getScale = function() {};
+
+
+/**
+ * @return {boolean}
+ */
+ol.style.Circle.prototype.getSnapToPixel = function() {};
+
+
+/**
+ * @param {number} opacity
+ */
+ol.style.Circle.prototype.setOpacity = function(opacity) {};
 
 
 /**
@@ -5909,6 +6512,18 @@ ol.style.Circle.prototype.setScale = function(scale) {};
 /**
  * @return {number}
  */
+ol.style.Icon.prototype.getOpacity = function() {};
+
+
+/**
+ * @return {boolean}
+ */
+ol.style.Icon.prototype.getRotateWithView = function() {};
+
+
+/**
+ * @return {number}
+ */
 ol.style.Icon.prototype.getRotation = function() {};
 
 
@@ -5916,6 +6531,18 @@ ol.style.Icon.prototype.getRotation = function() {};
  * @return {number}
  */
 ol.style.Icon.prototype.getScale = function() {};
+
+
+/**
+ * @return {boolean}
+ */
+ol.style.Icon.prototype.getSnapToPixel = function() {};
+
+
+/**
+ * @param {number} opacity
+ */
+ol.style.Icon.prototype.setOpacity = function(opacity) {};
 
 
 /**
@@ -5933,6 +6560,18 @@ ol.style.Icon.prototype.setScale = function(scale) {};
 /**
  * @return {number}
  */
+ol.style.RegularShape.prototype.getOpacity = function() {};
+
+
+/**
+ * @return {boolean}
+ */
+ol.style.RegularShape.prototype.getRotateWithView = function() {};
+
+
+/**
+ * @return {number}
+ */
 ol.style.RegularShape.prototype.getRotation = function() {};
 
 
@@ -5940,6 +6579,18 @@ ol.style.RegularShape.prototype.getRotation = function() {};
  * @return {number}
  */
 ol.style.RegularShape.prototype.getScale = function() {};
+
+
+/**
+ * @return {boolean}
+ */
+ol.style.RegularShape.prototype.getSnapToPixel = function() {};
+
+
+/**
+ * @param {number} opacity
+ */
+ol.style.RegularShape.prototype.setOpacity = function(opacity) {};
 
 
 /**
@@ -5952,6 +6603,44 @@ ol.style.RegularShape.prototype.setRotation = function(rotation) {};
  * @param {number} scale
  */
 ol.style.RegularShape.prototype.setScale = function(scale) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.source.Source.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.Source.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.source.Source.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.source.Source.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.source.Source.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.source.Source.prototype.unset = function(key) {};
 
 
 /**
@@ -6019,6 +6708,50 @@ ol.source.Tile.prototype.getProjection = function() {};
  * @return {ol.source.State}
  */
 ol.source.Tile.prototype.getState = function() {};
+
+
+/**
+ * @param {Array.<ol.Attribution>} attributions
+ */
+ol.source.Tile.prototype.setAttributions = function(attributions) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.source.Tile.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.Tile.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.source.Tile.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.source.Tile.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.source.Tile.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.source.Tile.prototype.unset = function(key) {};
 
 
 /**
@@ -6092,6 +6825,50 @@ ol.source.TileImage.prototype.getProjection = function() {};
  * @return {ol.source.State}
  */
 ol.source.TileImage.prototype.getState = function() {};
+
+
+/**
+ * @param {Array.<ol.Attribution>} attributions
+ */
+ol.source.TileImage.prototype.setAttributions = function(attributions) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.source.TileImage.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.TileImage.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.source.TileImage.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.source.TileImage.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.source.TileImage.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.source.TileImage.prototype.unset = function(key) {};
 
 
 /**
@@ -6192,6 +6969,50 @@ ol.source.BingMaps.prototype.getState = function() {};
 
 
 /**
+ * @param {Array.<ol.Attribution>} attributions
+ */
+ol.source.BingMaps.prototype.setAttributions = function(attributions) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.source.BingMaps.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.BingMaps.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.source.BingMaps.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.source.BingMaps.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.source.BingMaps.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.source.BingMaps.prototype.unset = function(key) {};
+
+
+/**
  */
 ol.source.BingMaps.prototype.changed = function() {};
 
@@ -6259,6 +7080,50 @@ ol.source.Vector.prototype.getState = function() {};
 
 
 /**
+ * @param {Array.<ol.Attribution>} attributions
+ */
+ol.source.Vector.prototype.setAttributions = function(attributions) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.source.Vector.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.Vector.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.source.Vector.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.source.Vector.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.source.Vector.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.source.Vector.prototype.unset = function(key) {};
+
+
+/**
  */
 ol.source.Vector.prototype.changed = function() {};
 
@@ -6314,8 +7179,9 @@ ol.source.Cluster.prototype.addFeatures = function(features) {};
 
 
 /**
+ * @param {boolean=} opt_fast
  */
-ol.source.Cluster.prototype.clear = function() {};
+ol.source.Cluster.prototype.clear = function(opt_fast) {};
 
 
 /**
@@ -6348,6 +7214,12 @@ ol.source.Cluster.prototype.forEachFeatureIntersectingExtent = function(extent, 
 
 
 /**
+ * @return {ol.Collection.<ol.Feature>}
+ */
+ol.source.Cluster.prototype.getFeaturesCollection = function() {};
+
+
+/**
  * @return {Array.<ol.Feature>}
  */
 ol.source.Cluster.prototype.getFeatures = function() {};
@@ -6358,6 +7230,13 @@ ol.source.Cluster.prototype.getFeatures = function() {};
  * @return {Array.<ol.Feature>}
  */
 ol.source.Cluster.prototype.getFeaturesAtCoordinate = function(coordinate) {};
+
+
+/**
+ * @param {ol.Extent} extent
+ * @return {Array.<ol.Feature>}
+ */
+ol.source.Cluster.prototype.getFeaturesInExtent = function(extent) {};
 
 
 /**
@@ -6411,6 +7290,50 @@ ol.source.Cluster.prototype.getState = function() {};
 
 
 /**
+ * @param {Array.<ol.Attribution>} attributions
+ */
+ol.source.Cluster.prototype.setAttributions = function(attributions) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.source.Cluster.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.Cluster.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.source.Cluster.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.source.Cluster.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.source.Cluster.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.source.Cluster.prototype.unset = function(key) {};
+
+
+/**
  */
 ol.source.Cluster.prototype.changed = function() {};
 
@@ -6454,794 +7377,6 @@ ol.source.Cluster.prototype.unByKey = function(key) {};
 
 
 /**
- * @param {ol.Feature} feature
- */
-ol.source.FormatVector.prototype.addFeature = function(feature) {};
-
-
-/**
- * @param {Array.<ol.Feature>} features
- */
-ol.source.FormatVector.prototype.addFeatures = function(features) {};
-
-
-/**
- */
-ol.source.FormatVector.prototype.clear = function() {};
-
-
-/**
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.FormatVector.prototype.forEachFeature = function(callback, opt_this) {};
-
-
-/**
- * @param {ol.Extent} extent
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.FormatVector.prototype.forEachFeatureInExtent = function(extent, callback, opt_this) {};
-
-
-/**
- * @param {ol.Extent} extent
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.FormatVector.prototype.forEachFeatureIntersectingExtent = function(extent, callback, opt_this) {};
-
-
-/**
- * @return {Array.<ol.Feature>}
- */
-ol.source.FormatVector.prototype.getFeatures = function() {};
-
-
-/**
- * @param {ol.Coordinate} coordinate
- * @return {Array.<ol.Feature>}
- */
-ol.source.FormatVector.prototype.getFeaturesAtCoordinate = function(coordinate) {};
-
-
-/**
- * @param {ol.Coordinate} coordinate
- * @return {ol.Feature}
- */
-ol.source.FormatVector.prototype.getClosestFeatureToCoordinate = function(coordinate) {};
-
-
-/**
- * @return {ol.Extent}
- */
-ol.source.FormatVector.prototype.getExtent = function() {};
-
-
-/**
- * @param {string|number} id
- * @return {ol.Feature}
- */
-ol.source.FormatVector.prototype.getFeatureById = function(id) {};
-
-
-/**
- * @param {ol.Feature} feature
- */
-ol.source.FormatVector.prototype.removeFeature = function(feature) {};
-
-
-/**
- * @return {Array.<ol.Attribution>}
- */
-ol.source.FormatVector.prototype.getAttributions = function() {};
-
-
-/**
- * @return {string|olx.LogoOptions|undefined}
- */
-ol.source.FormatVector.prototype.getLogo = function() {};
-
-
-/**
- * @return {ol.proj.Projection}
- */
-ol.source.FormatVector.prototype.getProjection = function() {};
-
-
-/**
- * @return {ol.source.State}
- */
-ol.source.FormatVector.prototype.getState = function() {};
-
-
-/**
- */
-ol.source.FormatVector.prototype.changed = function() {};
-
-
-/**
- * @return {number}
- */
-ol.source.FormatVector.prototype.getRevision = function() {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- * @return {goog.events.Key}
- */
-ol.source.FormatVector.prototype.on = function(type, listener, opt_this) {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- * @return {goog.events.Key}
- */
-ol.source.FormatVector.prototype.once = function(type, listener, opt_this) {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- */
-ol.source.FormatVector.prototype.un = function(type, listener, opt_this) {};
-
-
-/**
- * @param {goog.events.Key} key
- */
-ol.source.FormatVector.prototype.unByKey = function(key) {};
-
-
-/**
- * @param {ArrayBuffer|Document|Node|Object|string} source
- * @return {Array.<ol.Feature>}
- */
-ol.source.StaticVector.prototype.readFeatures = function(source) {};
-
-
-/**
- * @param {ol.Feature} feature
- */
-ol.source.StaticVector.prototype.addFeature = function(feature) {};
-
-
-/**
- * @param {Array.<ol.Feature>} features
- */
-ol.source.StaticVector.prototype.addFeatures = function(features) {};
-
-
-/**
- */
-ol.source.StaticVector.prototype.clear = function() {};
-
-
-/**
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.StaticVector.prototype.forEachFeature = function(callback, opt_this) {};
-
-
-/**
- * @param {ol.Extent} extent
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.StaticVector.prototype.forEachFeatureInExtent = function(extent, callback, opt_this) {};
-
-
-/**
- * @param {ol.Extent} extent
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.StaticVector.prototype.forEachFeatureIntersectingExtent = function(extent, callback, opt_this) {};
-
-
-/**
- * @return {Array.<ol.Feature>}
- */
-ol.source.StaticVector.prototype.getFeatures = function() {};
-
-
-/**
- * @param {ol.Coordinate} coordinate
- * @return {Array.<ol.Feature>}
- */
-ol.source.StaticVector.prototype.getFeaturesAtCoordinate = function(coordinate) {};
-
-
-/**
- * @param {ol.Coordinate} coordinate
- * @return {ol.Feature}
- */
-ol.source.StaticVector.prototype.getClosestFeatureToCoordinate = function(coordinate) {};
-
-
-/**
- * @return {ol.Extent}
- */
-ol.source.StaticVector.prototype.getExtent = function() {};
-
-
-/**
- * @param {string|number} id
- * @return {ol.Feature}
- */
-ol.source.StaticVector.prototype.getFeatureById = function(id) {};
-
-
-/**
- * @param {ol.Feature} feature
- */
-ol.source.StaticVector.prototype.removeFeature = function(feature) {};
-
-
-/**
- * @return {Array.<ol.Attribution>}
- */
-ol.source.StaticVector.prototype.getAttributions = function() {};
-
-
-/**
- * @return {string|olx.LogoOptions|undefined}
- */
-ol.source.StaticVector.prototype.getLogo = function() {};
-
-
-/**
- * @return {ol.proj.Projection}
- */
-ol.source.StaticVector.prototype.getProjection = function() {};
-
-
-/**
- * @return {ol.source.State}
- */
-ol.source.StaticVector.prototype.getState = function() {};
-
-
-/**
- */
-ol.source.StaticVector.prototype.changed = function() {};
-
-
-/**
- * @return {number}
- */
-ol.source.StaticVector.prototype.getRevision = function() {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- * @return {goog.events.Key}
- */
-ol.source.StaticVector.prototype.on = function(type, listener, opt_this) {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- * @return {goog.events.Key}
- */
-ol.source.StaticVector.prototype.once = function(type, listener, opt_this) {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- */
-ol.source.StaticVector.prototype.un = function(type, listener, opt_this) {};
-
-
-/**
- * @param {goog.events.Key} key
- */
-ol.source.StaticVector.prototype.unByKey = function(key) {};
-
-
-/**
- * @param {ArrayBuffer|Document|Node|Object|string} source
- * @return {Array.<ol.Feature>}
- */
-ol.source.GeoJSON.prototype.readFeatures = function(source) {};
-
-
-/**
- * @param {ol.Feature} feature
- */
-ol.source.GeoJSON.prototype.addFeature = function(feature) {};
-
-
-/**
- * @param {Array.<ol.Feature>} features
- */
-ol.source.GeoJSON.prototype.addFeatures = function(features) {};
-
-
-/**
- */
-ol.source.GeoJSON.prototype.clear = function() {};
-
-
-/**
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.GeoJSON.prototype.forEachFeature = function(callback, opt_this) {};
-
-
-/**
- * @param {ol.Extent} extent
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.GeoJSON.prototype.forEachFeatureInExtent = function(extent, callback, opt_this) {};
-
-
-/**
- * @param {ol.Extent} extent
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.GeoJSON.prototype.forEachFeatureIntersectingExtent = function(extent, callback, opt_this) {};
-
-
-/**
- * @return {Array.<ol.Feature>}
- */
-ol.source.GeoJSON.prototype.getFeatures = function() {};
-
-
-/**
- * @param {ol.Coordinate} coordinate
- * @return {Array.<ol.Feature>}
- */
-ol.source.GeoJSON.prototype.getFeaturesAtCoordinate = function(coordinate) {};
-
-
-/**
- * @param {ol.Coordinate} coordinate
- * @return {ol.Feature}
- */
-ol.source.GeoJSON.prototype.getClosestFeatureToCoordinate = function(coordinate) {};
-
-
-/**
- * @return {ol.Extent}
- */
-ol.source.GeoJSON.prototype.getExtent = function() {};
-
-
-/**
- * @param {string|number} id
- * @return {ol.Feature}
- */
-ol.source.GeoJSON.prototype.getFeatureById = function(id) {};
-
-
-/**
- * @param {ol.Feature} feature
- */
-ol.source.GeoJSON.prototype.removeFeature = function(feature) {};
-
-
-/**
- * @return {Array.<ol.Attribution>}
- */
-ol.source.GeoJSON.prototype.getAttributions = function() {};
-
-
-/**
- * @return {string|olx.LogoOptions|undefined}
- */
-ol.source.GeoJSON.prototype.getLogo = function() {};
-
-
-/**
- * @return {ol.proj.Projection}
- */
-ol.source.GeoJSON.prototype.getProjection = function() {};
-
-
-/**
- * @return {ol.source.State}
- */
-ol.source.GeoJSON.prototype.getState = function() {};
-
-
-/**
- */
-ol.source.GeoJSON.prototype.changed = function() {};
-
-
-/**
- * @return {number}
- */
-ol.source.GeoJSON.prototype.getRevision = function() {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- * @return {goog.events.Key}
- */
-ol.source.GeoJSON.prototype.on = function(type, listener, opt_this) {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- * @return {goog.events.Key}
- */
-ol.source.GeoJSON.prototype.once = function(type, listener, opt_this) {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- */
-ol.source.GeoJSON.prototype.un = function(type, listener, opt_this) {};
-
-
-/**
- * @param {goog.events.Key} key
- */
-ol.source.GeoJSON.prototype.unByKey = function(key) {};
-
-
-/**
- * @param {ArrayBuffer|Document|Node|Object|string} source
- * @return {Array.<ol.Feature>}
- */
-ol.source.GPX.prototype.readFeatures = function(source) {};
-
-
-/**
- * @param {ol.Feature} feature
- */
-ol.source.GPX.prototype.addFeature = function(feature) {};
-
-
-/**
- * @param {Array.<ol.Feature>} features
- */
-ol.source.GPX.prototype.addFeatures = function(features) {};
-
-
-/**
- */
-ol.source.GPX.prototype.clear = function() {};
-
-
-/**
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.GPX.prototype.forEachFeature = function(callback, opt_this) {};
-
-
-/**
- * @param {ol.Extent} extent
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.GPX.prototype.forEachFeatureInExtent = function(extent, callback, opt_this) {};
-
-
-/**
- * @param {ol.Extent} extent
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.GPX.prototype.forEachFeatureIntersectingExtent = function(extent, callback, opt_this) {};
-
-
-/**
- * @return {Array.<ol.Feature>}
- */
-ol.source.GPX.prototype.getFeatures = function() {};
-
-
-/**
- * @param {ol.Coordinate} coordinate
- * @return {Array.<ol.Feature>}
- */
-ol.source.GPX.prototype.getFeaturesAtCoordinate = function(coordinate) {};
-
-
-/**
- * @param {ol.Coordinate} coordinate
- * @return {ol.Feature}
- */
-ol.source.GPX.prototype.getClosestFeatureToCoordinate = function(coordinate) {};
-
-
-/**
- * @return {ol.Extent}
- */
-ol.source.GPX.prototype.getExtent = function() {};
-
-
-/**
- * @param {string|number} id
- * @return {ol.Feature}
- */
-ol.source.GPX.prototype.getFeatureById = function(id) {};
-
-
-/**
- * @param {ol.Feature} feature
- */
-ol.source.GPX.prototype.removeFeature = function(feature) {};
-
-
-/**
- * @return {Array.<ol.Attribution>}
- */
-ol.source.GPX.prototype.getAttributions = function() {};
-
-
-/**
- * @return {string|olx.LogoOptions|undefined}
- */
-ol.source.GPX.prototype.getLogo = function() {};
-
-
-/**
- * @return {ol.proj.Projection}
- */
-ol.source.GPX.prototype.getProjection = function() {};
-
-
-/**
- * @return {ol.source.State}
- */
-ol.source.GPX.prototype.getState = function() {};
-
-
-/**
- */
-ol.source.GPX.prototype.changed = function() {};
-
-
-/**
- * @return {number}
- */
-ol.source.GPX.prototype.getRevision = function() {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- * @return {goog.events.Key}
- */
-ol.source.GPX.prototype.on = function(type, listener, opt_this) {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- * @return {goog.events.Key}
- */
-ol.source.GPX.prototype.once = function(type, listener, opt_this) {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- */
-ol.source.GPX.prototype.un = function(type, listener, opt_this) {};
-
-
-/**
- * @param {goog.events.Key} key
- */
-ol.source.GPX.prototype.unByKey = function(key) {};
-
-
-/**
- * @param {ArrayBuffer|Document|Node|Object|string} source
- * @return {Array.<ol.Feature>}
- */
-ol.source.IGC.prototype.readFeatures = function(source) {};
-
-
-/**
- * @param {ol.Feature} feature
- */
-ol.source.IGC.prototype.addFeature = function(feature) {};
-
-
-/**
- * @param {Array.<ol.Feature>} features
- */
-ol.source.IGC.prototype.addFeatures = function(features) {};
-
-
-/**
- */
-ol.source.IGC.prototype.clear = function() {};
-
-
-/**
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.IGC.prototype.forEachFeature = function(callback, opt_this) {};
-
-
-/**
- * @param {ol.Extent} extent
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.IGC.prototype.forEachFeatureInExtent = function(extent, callback, opt_this) {};
-
-
-/**
- * @param {ol.Extent} extent
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.IGC.prototype.forEachFeatureIntersectingExtent = function(extent, callback, opt_this) {};
-
-
-/**
- * @return {Array.<ol.Feature>}
- */
-ol.source.IGC.prototype.getFeatures = function() {};
-
-
-/**
- * @param {ol.Coordinate} coordinate
- * @return {Array.<ol.Feature>}
- */
-ol.source.IGC.prototype.getFeaturesAtCoordinate = function(coordinate) {};
-
-
-/**
- * @param {ol.Coordinate} coordinate
- * @return {ol.Feature}
- */
-ol.source.IGC.prototype.getClosestFeatureToCoordinate = function(coordinate) {};
-
-
-/**
- * @return {ol.Extent}
- */
-ol.source.IGC.prototype.getExtent = function() {};
-
-
-/**
- * @param {string|number} id
- * @return {ol.Feature}
- */
-ol.source.IGC.prototype.getFeatureById = function(id) {};
-
-
-/**
- * @param {ol.Feature} feature
- */
-ol.source.IGC.prototype.removeFeature = function(feature) {};
-
-
-/**
- * @return {Array.<ol.Attribution>}
- */
-ol.source.IGC.prototype.getAttributions = function() {};
-
-
-/**
- * @return {string|olx.LogoOptions|undefined}
- */
-ol.source.IGC.prototype.getLogo = function() {};
-
-
-/**
- * @return {ol.proj.Projection}
- */
-ol.source.IGC.prototype.getProjection = function() {};
-
-
-/**
- * @return {ol.source.State}
- */
-ol.source.IGC.prototype.getState = function() {};
-
-
-/**
- */
-ol.source.IGC.prototype.changed = function() {};
-
-
-/**
- * @return {number}
- */
-ol.source.IGC.prototype.getRevision = function() {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- * @return {goog.events.Key}
- */
-ol.source.IGC.prototype.on = function(type, listener, opt_this) {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- * @return {goog.events.Key}
- */
-ol.source.IGC.prototype.once = function(type, listener, opt_this) {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- */
-ol.source.IGC.prototype.un = function(type, listener, opt_this) {};
-
-
-/**
- * @param {goog.events.Key} key
- */
-ol.source.IGC.prototype.unByKey = function(key) {};
-
-
-/**
  * @return {Array.<ol.Attribution>}
  */
 ol.source.Image.prototype.getAttributions = function() {};
@@ -7263,6 +7398,50 @@ ol.source.Image.prototype.getProjection = function() {};
  * @return {ol.source.State}
  */
 ol.source.Image.prototype.getState = function() {};
+
+
+/**
+ * @param {Array.<ol.Attribution>} attributions
+ */
+ol.source.Image.prototype.setAttributions = function(attributions) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.source.Image.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.Image.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.source.Image.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.source.Image.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.source.Image.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.source.Image.prototype.unset = function(key) {};
 
 
 /**
@@ -7333,6 +7512,50 @@ ol.source.ImageCanvas.prototype.getState = function() {};
 
 
 /**
+ * @param {Array.<ol.Attribution>} attributions
+ */
+ol.source.ImageCanvas.prototype.setAttributions = function(attributions) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.source.ImageCanvas.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.ImageCanvas.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.source.ImageCanvas.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.source.ImageCanvas.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.source.ImageCanvas.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.source.ImageCanvas.prototype.unset = function(key) {};
+
+
+/**
  */
 ol.source.ImageCanvas.prototype.changed = function() {};
 
@@ -7397,6 +7620,50 @@ ol.source.ImageMapGuide.prototype.getProjection = function() {};
  * @return {ol.source.State}
  */
 ol.source.ImageMapGuide.prototype.getState = function() {};
+
+
+/**
+ * @param {Array.<ol.Attribution>} attributions
+ */
+ol.source.ImageMapGuide.prototype.setAttributions = function(attributions) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.source.ImageMapGuide.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.ImageMapGuide.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.source.ImageMapGuide.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.source.ImageMapGuide.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.source.ImageMapGuide.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.source.ImageMapGuide.prototype.unset = function(key) {};
 
 
 /**
@@ -7467,6 +7734,50 @@ ol.source.ImageStatic.prototype.getState = function() {};
 
 
 /**
+ * @param {Array.<ol.Attribution>} attributions
+ */
+ol.source.ImageStatic.prototype.setAttributions = function(attributions) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.source.ImageStatic.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.ImageStatic.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.source.ImageStatic.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.source.ImageStatic.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.source.ImageStatic.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.source.ImageStatic.prototype.unset = function(key) {};
+
+
+/**
  */
 ol.source.ImageStatic.prototype.changed = function() {};
 
@@ -7531,6 +7842,50 @@ ol.source.ImageVector.prototype.getProjection = function() {};
  * @return {ol.source.State}
  */
 ol.source.ImageVector.prototype.getState = function() {};
+
+
+/**
+ * @param {Array.<ol.Attribution>} attributions
+ */
+ol.source.ImageVector.prototype.setAttributions = function(attributions) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.source.ImageVector.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.ImageVector.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.source.ImageVector.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.source.ImageVector.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.source.ImageVector.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.source.ImageVector.prototype.unset = function(key) {};
 
 
 /**
@@ -7601,6 +7956,50 @@ ol.source.ImageWMS.prototype.getState = function() {};
 
 
 /**
+ * @param {Array.<ol.Attribution>} attributions
+ */
+ol.source.ImageWMS.prototype.setAttributions = function(attributions) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.source.ImageWMS.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.ImageWMS.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.source.ImageWMS.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.source.ImageWMS.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.source.ImageWMS.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.source.ImageWMS.prototype.unset = function(key) {};
+
+
+/**
  */
 ol.source.ImageWMS.prototype.changed = function() {};
 
@@ -7644,165 +8043,6 @@ ol.source.ImageWMS.prototype.unByKey = function(key) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
- * @return {Array.<ol.Feature>}
- */
-ol.source.KML.prototype.readFeatures = function(source) {};
-
-
-/**
- * @param {ol.Feature} feature
- */
-ol.source.KML.prototype.addFeature = function(feature) {};
-
-
-/**
- * @param {Array.<ol.Feature>} features
- */
-ol.source.KML.prototype.addFeatures = function(features) {};
-
-
-/**
- */
-ol.source.KML.prototype.clear = function() {};
-
-
-/**
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.KML.prototype.forEachFeature = function(callback, opt_this) {};
-
-
-/**
- * @param {ol.Extent} extent
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.KML.prototype.forEachFeatureInExtent = function(extent, callback, opt_this) {};
-
-
-/**
- * @param {ol.Extent} extent
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.KML.prototype.forEachFeatureIntersectingExtent = function(extent, callback, opt_this) {};
-
-
-/**
- * @return {Array.<ol.Feature>}
- */
-ol.source.KML.prototype.getFeatures = function() {};
-
-
-/**
- * @param {ol.Coordinate} coordinate
- * @return {Array.<ol.Feature>}
- */
-ol.source.KML.prototype.getFeaturesAtCoordinate = function(coordinate) {};
-
-
-/**
- * @param {ol.Coordinate} coordinate
- * @return {ol.Feature}
- */
-ol.source.KML.prototype.getClosestFeatureToCoordinate = function(coordinate) {};
-
-
-/**
- * @return {ol.Extent}
- */
-ol.source.KML.prototype.getExtent = function() {};
-
-
-/**
- * @param {string|number} id
- * @return {ol.Feature}
- */
-ol.source.KML.prototype.getFeatureById = function(id) {};
-
-
-/**
- * @param {ol.Feature} feature
- */
-ol.source.KML.prototype.removeFeature = function(feature) {};
-
-
-/**
- * @return {Array.<ol.Attribution>}
- */
-ol.source.KML.prototype.getAttributions = function() {};
-
-
-/**
- * @return {string|olx.LogoOptions|undefined}
- */
-ol.source.KML.prototype.getLogo = function() {};
-
-
-/**
- * @return {ol.proj.Projection}
- */
-ol.source.KML.prototype.getProjection = function() {};
-
-
-/**
- * @return {ol.source.State}
- */
-ol.source.KML.prototype.getState = function() {};
-
-
-/**
- */
-ol.source.KML.prototype.changed = function() {};
-
-
-/**
- * @return {number}
- */
-ol.source.KML.prototype.getRevision = function() {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- * @return {goog.events.Key}
- */
-ol.source.KML.prototype.on = function(type, listener, opt_this) {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- * @return {goog.events.Key}
- */
-ol.source.KML.prototype.once = function(type, listener, opt_this) {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- */
-ol.source.KML.prototype.un = function(type, listener, opt_this) {};
-
-
-/**
- * @param {goog.events.Key} key
- */
-ol.source.KML.prototype.unByKey = function(key) {};
-
-
-/**
  * @return {ol.TileLoadFunctionType}
  */
 ol.source.XYZ.prototype.getTileLoadFunction = function() {};
@@ -7818,6 +8058,12 @@ ol.source.XYZ.prototype.getTileUrlFunction = function() {};
  * @param {ol.TileLoadFunctionType} tileLoadFunction
  */
 ol.source.XYZ.prototype.setTileLoadFunction = function(tileLoadFunction) {};
+
+
+/**
+ * @param {ol.TileUrlFunctionType} tileUrlFunction
+ */
+ol.source.XYZ.prototype.setTileUrlFunction = function(tileUrlFunction) {};
 
 
 /**
@@ -7848,6 +8094,50 @@ ol.source.XYZ.prototype.getProjection = function() {};
  * @return {ol.source.State}
  */
 ol.source.XYZ.prototype.getState = function() {};
+
+
+/**
+ * @param {Array.<ol.Attribution>} attributions
+ */
+ol.source.XYZ.prototype.setAttributions = function(attributions) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.source.XYZ.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.XYZ.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.source.XYZ.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.source.XYZ.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.source.XYZ.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.source.XYZ.prototype.unset = function(key) {};
 
 
 /**
@@ -7894,8 +8184,9 @@ ol.source.XYZ.prototype.unByKey = function(key) {};
 
 
 /**
+ * @return {!Array.<string>|null}
  */
-ol.source.MapQuest.prototype.setTileUrlFunction = function() {};
+ol.source.MapQuest.prototype.getUrls = function() {};
 
 
 /**
@@ -7920,6 +8211,12 @@ ol.source.MapQuest.prototype.getTileUrlFunction = function() {};
  * @param {ol.TileLoadFunctionType} tileLoadFunction
  */
 ol.source.MapQuest.prototype.setTileLoadFunction = function(tileLoadFunction) {};
+
+
+/**
+ * @param {ol.TileUrlFunctionType} tileUrlFunction
+ */
+ol.source.MapQuest.prototype.setTileUrlFunction = function(tileUrlFunction) {};
 
 
 /**
@@ -7950,6 +8247,50 @@ ol.source.MapQuest.prototype.getProjection = function() {};
  * @return {ol.source.State}
  */
 ol.source.MapQuest.prototype.getState = function() {};
+
+
+/**
+ * @param {Array.<ol.Attribution>} attributions
+ */
+ol.source.MapQuest.prototype.setAttributions = function(attributions) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.source.MapQuest.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.MapQuest.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.source.MapQuest.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.source.MapQuest.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.source.MapQuest.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.source.MapQuest.prototype.unset = function(key) {};
 
 
 /**
@@ -7996,8 +8337,9 @@ ol.source.MapQuest.prototype.unByKey = function(key) {};
 
 
 /**
+ * @return {!Array.<string>|null}
  */
-ol.source.OSM.prototype.setTileUrlFunction = function() {};
+ol.source.OSM.prototype.getUrls = function() {};
 
 
 /**
@@ -8022,6 +8364,12 @@ ol.source.OSM.prototype.getTileUrlFunction = function() {};
  * @param {ol.TileLoadFunctionType} tileLoadFunction
  */
 ol.source.OSM.prototype.setTileLoadFunction = function(tileLoadFunction) {};
+
+
+/**
+ * @param {ol.TileUrlFunctionType} tileUrlFunction
+ */
+ol.source.OSM.prototype.setTileUrlFunction = function(tileUrlFunction) {};
 
 
 /**
@@ -8052,6 +8400,50 @@ ol.source.OSM.prototype.getProjection = function() {};
  * @return {ol.source.State}
  */
 ol.source.OSM.prototype.getState = function() {};
+
+
+/**
+ * @param {Array.<ol.Attribution>} attributions
+ */
+ol.source.OSM.prototype.setAttributions = function(attributions) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.source.OSM.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.OSM.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.source.OSM.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.source.OSM.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.source.OSM.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.source.OSM.prototype.unset = function(key) {};
 
 
 /**
@@ -8098,277 +8490,82 @@ ol.source.OSM.prototype.unByKey = function(key) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
- * @return {Array.<ol.Feature>}
- */
-ol.source.OSMXML.prototype.readFeatures = function(source) {};
-
-
-/**
- * @param {ol.Feature} feature
- */
-ol.source.OSMXML.prototype.addFeature = function(feature) {};
-
-
-/**
- * @param {Array.<ol.Feature>} features
- */
-ol.source.OSMXML.prototype.addFeatures = function(features) {};
-
-
-/**
- */
-ol.source.OSMXML.prototype.clear = function() {};
-
-
-/**
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.OSMXML.prototype.forEachFeature = function(callback, opt_this) {};
-
-
-/**
- * @param {ol.Extent} extent
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.OSMXML.prototype.forEachFeatureInExtent = function(extent, callback, opt_this) {};
-
-
-/**
- * @param {ol.Extent} extent
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.OSMXML.prototype.forEachFeatureIntersectingExtent = function(extent, callback, opt_this) {};
-
-
-/**
- * @return {Array.<ol.Feature>}
- */
-ol.source.OSMXML.prototype.getFeatures = function() {};
-
-
-/**
- * @param {ol.Coordinate} coordinate
- * @return {Array.<ol.Feature>}
- */
-ol.source.OSMXML.prototype.getFeaturesAtCoordinate = function(coordinate) {};
-
-
-/**
- * @param {ol.Coordinate} coordinate
- * @return {ol.Feature}
- */
-ol.source.OSMXML.prototype.getClosestFeatureToCoordinate = function(coordinate) {};
-
-
-/**
- * @return {ol.Extent}
- */
-ol.source.OSMXML.prototype.getExtent = function() {};
-
-
-/**
- * @param {string|number} id
- * @return {ol.Feature}
- */
-ol.source.OSMXML.prototype.getFeatureById = function(id) {};
-
-
-/**
- * @param {ol.Feature} feature
- */
-ol.source.OSMXML.prototype.removeFeature = function(feature) {};
-
-
-/**
  * @return {Array.<ol.Attribution>}
  */
-ol.source.OSMXML.prototype.getAttributions = function() {};
+ol.source.Raster.prototype.getAttributions = function() {};
 
 
 /**
  * @return {string|olx.LogoOptions|undefined}
  */
-ol.source.OSMXML.prototype.getLogo = function() {};
+ol.source.Raster.prototype.getLogo = function() {};
 
 
 /**
  * @return {ol.proj.Projection}
  */
-ol.source.OSMXML.prototype.getProjection = function() {};
+ol.source.Raster.prototype.getProjection = function() {};
 
 
 /**
  * @return {ol.source.State}
  */
-ol.source.OSMXML.prototype.getState = function() {};
+ol.source.Raster.prototype.getState = function() {};
+
+
+/**
+ * @param {Array.<ol.Attribution>} attributions
+ */
+ol.source.Raster.prototype.setAttributions = function(attributions) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.source.Raster.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.Raster.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.source.Raster.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.source.Raster.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.source.Raster.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.source.Raster.prototype.unset = function(key) {};
 
 
 /**
  */
-ol.source.OSMXML.prototype.changed = function() {};
-
-
-/**
- * @return {number}
- */
-ol.source.OSMXML.prototype.getRevision = function() {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- * @return {goog.events.Key}
- */
-ol.source.OSMXML.prototype.on = function(type, listener, opt_this) {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- * @return {goog.events.Key}
- */
-ol.source.OSMXML.prototype.once = function(type, listener, opt_this) {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- */
-ol.source.OSMXML.prototype.un = function(type, listener, opt_this) {};
-
-
-/**
- * @param {goog.events.Key} key
- */
-ol.source.OSMXML.prototype.unByKey = function(key) {};
-
-
-/**
- * @param {ol.Feature} feature
- */
-ol.source.ServerVector.prototype.addFeature = function(feature) {};
-
-
-/**
- * @param {Array.<ol.Feature>} features
- */
-ol.source.ServerVector.prototype.addFeatures = function(features) {};
-
-
-/**
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.ServerVector.prototype.forEachFeature = function(callback, opt_this) {};
-
-
-/**
- * @param {ol.Extent} extent
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.ServerVector.prototype.forEachFeatureInExtent = function(extent, callback, opt_this) {};
-
-
-/**
- * @param {ol.Extent} extent
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.ServerVector.prototype.forEachFeatureIntersectingExtent = function(extent, callback, opt_this) {};
-
-
-/**
- * @return {Array.<ol.Feature>}
- */
-ol.source.ServerVector.prototype.getFeatures = function() {};
-
-
-/**
- * @param {ol.Coordinate} coordinate
- * @return {Array.<ol.Feature>}
- */
-ol.source.ServerVector.prototype.getFeaturesAtCoordinate = function(coordinate) {};
-
-
-/**
- * @param {ol.Coordinate} coordinate
- * @return {ol.Feature}
- */
-ol.source.ServerVector.prototype.getClosestFeatureToCoordinate = function(coordinate) {};
-
-
-/**
- * @return {ol.Extent}
- */
-ol.source.ServerVector.prototype.getExtent = function() {};
-
-
-/**
- * @param {string|number} id
- * @return {ol.Feature}
- */
-ol.source.ServerVector.prototype.getFeatureById = function(id) {};
-
-
-/**
- * @param {ol.Feature} feature
- */
-ol.source.ServerVector.prototype.removeFeature = function(feature) {};
-
-
-/**
- * @return {Array.<ol.Attribution>}
- */
-ol.source.ServerVector.prototype.getAttributions = function() {};
-
-
-/**
- * @return {string|olx.LogoOptions|undefined}
- */
-ol.source.ServerVector.prototype.getLogo = function() {};
-
-
-/**
- * @return {ol.proj.Projection}
- */
-ol.source.ServerVector.prototype.getProjection = function() {};
-
-
-/**
- * @return {ol.source.State}
- */
-ol.source.ServerVector.prototype.getState = function() {};
-
-
-/**
- */
-ol.source.ServerVector.prototype.changed = function() {};
+ol.source.Raster.prototype.changed = function() {};
 
 
 /**
  * @return {number}
  */
-ol.source.ServerVector.prototype.getRevision = function() {};
+ol.source.Raster.prototype.getRevision = function() {};
 
 
 /**
@@ -8377,7 +8574,7 @@ ol.source.ServerVector.prototype.getRevision = function() {};
  * @param {Object=} opt_this
  * @return {goog.events.Key}
  */
-ol.source.ServerVector.prototype.on = function(type, listener, opt_this) {};
+ol.source.Raster.prototype.on = function(type, listener, opt_this) {};
 
 
 /**
@@ -8386,7 +8583,7 @@ ol.source.ServerVector.prototype.on = function(type, listener, opt_this) {};
  * @param {Object=} opt_this
  * @return {goog.events.Key}
  */
-ol.source.ServerVector.prototype.once = function(type, listener, opt_this) {};
+ol.source.Raster.prototype.once = function(type, listener, opt_this) {};
 
 
 /**
@@ -8394,18 +8591,19 @@ ol.source.ServerVector.prototype.once = function(type, listener, opt_this) {};
  * @param {Function} listener
  * @param {Object=} opt_this
  */
-ol.source.ServerVector.prototype.un = function(type, listener, opt_this) {};
+ol.source.Raster.prototype.un = function(type, listener, opt_this) {};
 
 
 /**
  * @param {goog.events.Key} key
  */
-ol.source.ServerVector.prototype.unByKey = function(key) {};
+ol.source.Raster.prototype.unByKey = function(key) {};
 
 
 /**
+ * @return {!Array.<string>|null}
  */
-ol.source.Stamen.prototype.setTileUrlFunction = function() {};
+ol.source.Stamen.prototype.getUrls = function() {};
 
 
 /**
@@ -8430,6 +8628,12 @@ ol.source.Stamen.prototype.getTileUrlFunction = function() {};
  * @param {ol.TileLoadFunctionType} tileLoadFunction
  */
 ol.source.Stamen.prototype.setTileLoadFunction = function(tileLoadFunction) {};
+
+
+/**
+ * @param {ol.TileUrlFunctionType} tileUrlFunction
+ */
+ol.source.Stamen.prototype.setTileUrlFunction = function(tileUrlFunction) {};
 
 
 /**
@@ -8460,6 +8664,50 @@ ol.source.Stamen.prototype.getProjection = function() {};
  * @return {ol.source.State}
  */
 ol.source.Stamen.prototype.getState = function() {};
+
+
+/**
+ * @param {Array.<ol.Attribution>} attributions
+ */
+ol.source.Stamen.prototype.setAttributions = function(attributions) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.source.Stamen.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.Stamen.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.source.Stamen.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.source.Stamen.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.source.Stamen.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.source.Stamen.prototype.unset = function(key) {};
 
 
 /**
@@ -8506,6 +8754,147 @@ ol.source.Stamen.prototype.unByKey = function(key) {};
 
 
 /**
+ * @return {ol.TileLoadFunctionType}
+ */
+ol.source.TileArcGISRest.prototype.getTileLoadFunction = function() {};
+
+
+/**
+ * @return {ol.TileUrlFunctionType}
+ */
+ol.source.TileArcGISRest.prototype.getTileUrlFunction = function() {};
+
+
+/**
+ * @param {ol.TileLoadFunctionType} tileLoadFunction
+ */
+ol.source.TileArcGISRest.prototype.setTileLoadFunction = function(tileLoadFunction) {};
+
+
+/**
+ * @param {ol.TileUrlFunctionType} tileUrlFunction
+ */
+ol.source.TileArcGISRest.prototype.setTileUrlFunction = function(tileUrlFunction) {};
+
+
+/**
+ * @return {ol.tilegrid.TileGrid}
+ */
+ol.source.TileArcGISRest.prototype.getTileGrid = function() {};
+
+
+/**
+ * @return {Array.<ol.Attribution>}
+ */
+ol.source.TileArcGISRest.prototype.getAttributions = function() {};
+
+
+/**
+ * @return {string|olx.LogoOptions|undefined}
+ */
+ol.source.TileArcGISRest.prototype.getLogo = function() {};
+
+
+/**
+ * @return {ol.proj.Projection}
+ */
+ol.source.TileArcGISRest.prototype.getProjection = function() {};
+
+
+/**
+ * @return {ol.source.State}
+ */
+ol.source.TileArcGISRest.prototype.getState = function() {};
+
+
+/**
+ * @param {Array.<ol.Attribution>} attributions
+ */
+ol.source.TileArcGISRest.prototype.setAttributions = function(attributions) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.source.TileArcGISRest.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.TileArcGISRest.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.source.TileArcGISRest.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.source.TileArcGISRest.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.source.TileArcGISRest.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.source.TileArcGISRest.prototype.unset = function(key) {};
+
+
+/**
+ */
+ol.source.TileArcGISRest.prototype.changed = function() {};
+
+
+/**
+ * @return {number}
+ */
+ol.source.TileArcGISRest.prototype.getRevision = function() {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.source.TileArcGISRest.prototype.on = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.source.TileArcGISRest.prototype.once = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ */
+ol.source.TileArcGISRest.prototype.un = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {goog.events.Key} key
+ */
+ol.source.TileArcGISRest.prototype.unByKey = function(key) {};
+
+
+/**
  * @return {ol.tilegrid.TileGrid}
  */
 ol.source.TileDebug.prototype.getTileGrid = function() {};
@@ -8533,6 +8922,50 @@ ol.source.TileDebug.prototype.getProjection = function() {};
  * @return {ol.source.State}
  */
 ol.source.TileDebug.prototype.getState = function() {};
+
+
+/**
+ * @param {Array.<ol.Attribution>} attributions
+ */
+ol.source.TileDebug.prototype.setAttributions = function(attributions) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.source.TileDebug.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.TileDebug.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.source.TileDebug.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.source.TileDebug.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.source.TileDebug.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.source.TileDebug.prototype.unset = function(key) {};
 
 
 /**
@@ -8633,6 +9066,50 @@ ol.source.TileJSON.prototype.getState = function() {};
 
 
 /**
+ * @param {Array.<ol.Attribution>} attributions
+ */
+ol.source.TileJSON.prototype.setAttributions = function(attributions) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.source.TileJSON.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.TileJSON.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.source.TileJSON.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.source.TileJSON.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.source.TileJSON.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.source.TileJSON.prototype.unset = function(key) {};
+
+
+/**
  */
 ol.source.TileJSON.prototype.changed = function() {};
 
@@ -8676,10 +9153,157 @@ ol.source.TileJSON.prototype.unByKey = function(key) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
- * @return {Array.<ol.Feature>}
+ * @return {ol.tilegrid.TileGrid}
  */
-ol.source.TileVector.prototype.readFeatures = function(source) {};
+ol.source.TileUTFGrid.prototype.getTileGrid = function() {};
+
+
+/**
+ * @return {Array.<ol.Attribution>}
+ */
+ol.source.TileUTFGrid.prototype.getAttributions = function() {};
+
+
+/**
+ * @return {string|olx.LogoOptions|undefined}
+ */
+ol.source.TileUTFGrid.prototype.getLogo = function() {};
+
+
+/**
+ * @return {ol.proj.Projection}
+ */
+ol.source.TileUTFGrid.prototype.getProjection = function() {};
+
+
+/**
+ * @return {ol.source.State}
+ */
+ol.source.TileUTFGrid.prototype.getState = function() {};
+
+
+/**
+ * @param {Array.<ol.Attribution>} attributions
+ */
+ol.source.TileUTFGrid.prototype.setAttributions = function(attributions) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.source.TileUTFGrid.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.TileUTFGrid.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.source.TileUTFGrid.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.source.TileUTFGrid.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.source.TileUTFGrid.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.source.TileUTFGrid.prototype.unset = function(key) {};
+
+
+/**
+ */
+ol.source.TileUTFGrid.prototype.changed = function() {};
+
+
+/**
+ * @return {number}
+ */
+ol.source.TileUTFGrid.prototype.getRevision = function() {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.source.TileUTFGrid.prototype.on = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.source.TileUTFGrid.prototype.once = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ */
+ol.source.TileUTFGrid.prototype.un = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {goog.events.Key} key
+ */
+ol.source.TileUTFGrid.prototype.unByKey = function(key) {};
+
+
+/**
+ * @param {ol.Feature} feature
+ */
+ol.source.TileVector.prototype.addFeature = function(feature) {};
+
+
+/**
+ * @param {Array.<ol.Feature>} features
+ */
+ol.source.TileVector.prototype.addFeatures = function(features) {};
+
+
+/**
+ * @param {boolean=} opt_fast
+ */
+ol.source.TileVector.prototype.clear = function(opt_fast) {};
+
+
+/**
+ * @param {Function} callback
+ * @param {T=} opt_this
+ * @return {S|undefined}
+ * @template T,S
+ */
+ol.source.TileVector.prototype.forEachFeature = function(callback, opt_this) {};
+
+
+/**
+ * @param {ol.Extent} extent
+ * @param {Function} callback
+ * @param {T=} opt_this
+ * @return {S|undefined}
+ * @template T,S
+ */
+ol.source.TileVector.prototype.forEachFeatureInExtent = function(extent, callback, opt_this) {};
 
 
 /**
@@ -8693,6 +9317,18 @@ ol.source.TileVector.prototype.forEachFeatureIntersectingExtent = function(exten
 
 
 /**
+ * @return {ol.Collection.<ol.Feature>}
+ */
+ol.source.TileVector.prototype.getFeaturesCollection = function() {};
+
+
+/**
+ * @return {Array.<ol.Feature>}
+ */
+ol.source.TileVector.prototype.getFeatures = function() {};
+
+
+/**
  * @param {ol.Coordinate} coordinate
  * @return {Array.<ol.Feature>}
  */
@@ -8700,10 +9336,36 @@ ol.source.TileVector.prototype.getFeaturesAtCoordinate = function(coordinate) {}
 
 
 /**
+ * @param {ol.Extent} extent
+ * @return {Array.<ol.Feature>}
+ */
+ol.source.TileVector.prototype.getFeaturesInExtent = function(extent) {};
+
+
+/**
+ * @param {ol.Coordinate} coordinate
+ * @return {ol.Feature}
+ */
+ol.source.TileVector.prototype.getClosestFeatureToCoordinate = function(coordinate) {};
+
+
+/**
+ * @return {ol.Extent}
+ */
+ol.source.TileVector.prototype.getExtent = function() {};
+
+
+/**
  * @param {string|number} id
  * @return {ol.Feature}
  */
 ol.source.TileVector.prototype.getFeatureById = function(id) {};
+
+
+/**
+ * @param {ol.Feature} feature
+ */
+ol.source.TileVector.prototype.removeFeature = function(feature) {};
 
 
 /**
@@ -8728,6 +9390,50 @@ ol.source.TileVector.prototype.getProjection = function() {};
  * @return {ol.source.State}
  */
 ol.source.TileVector.prototype.getState = function() {};
+
+
+/**
+ * @param {Array.<ol.Attribution>} attributions
+ */
+ol.source.TileVector.prototype.setAttributions = function(attributions) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.source.TileVector.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.TileVector.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.source.TileVector.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.source.TileVector.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.source.TileVector.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.source.TileVector.prototype.unset = function(key) {};
 
 
 /**
@@ -8828,6 +9534,50 @@ ol.source.TileWMS.prototype.getState = function() {};
 
 
 /**
+ * @param {Array.<ol.Attribution>} attributions
+ */
+ol.source.TileWMS.prototype.setAttributions = function(attributions) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.source.TileWMS.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.TileWMS.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.source.TileWMS.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.source.TileWMS.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.source.TileWMS.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.source.TileWMS.prototype.unset = function(key) {};
+
+
+/**
  */
 ol.source.TileWMS.prototype.changed = function() {};
 
@@ -8868,165 +9618,6 @@ ol.source.TileWMS.prototype.un = function(type, listener, opt_this) {};
  * @param {goog.events.Key} key
  */
 ol.source.TileWMS.prototype.unByKey = function(key) {};
-
-
-/**
- * @param {ArrayBuffer|Document|Node|Object|string} source
- * @return {Array.<ol.Feature>}
- */
-ol.source.TopoJSON.prototype.readFeatures = function(source) {};
-
-
-/**
- * @param {ol.Feature} feature
- */
-ol.source.TopoJSON.prototype.addFeature = function(feature) {};
-
-
-/**
- * @param {Array.<ol.Feature>} features
- */
-ol.source.TopoJSON.prototype.addFeatures = function(features) {};
-
-
-/**
- */
-ol.source.TopoJSON.prototype.clear = function() {};
-
-
-/**
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.TopoJSON.prototype.forEachFeature = function(callback, opt_this) {};
-
-
-/**
- * @param {ol.Extent} extent
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.TopoJSON.prototype.forEachFeatureInExtent = function(extent, callback, opt_this) {};
-
-
-/**
- * @param {ol.Extent} extent
- * @param {Function} callback
- * @param {T=} opt_this
- * @return {S|undefined}
- * @template T,S
- */
-ol.source.TopoJSON.prototype.forEachFeatureIntersectingExtent = function(extent, callback, opt_this) {};
-
-
-/**
- * @return {Array.<ol.Feature>}
- */
-ol.source.TopoJSON.prototype.getFeatures = function() {};
-
-
-/**
- * @param {ol.Coordinate} coordinate
- * @return {Array.<ol.Feature>}
- */
-ol.source.TopoJSON.prototype.getFeaturesAtCoordinate = function(coordinate) {};
-
-
-/**
- * @param {ol.Coordinate} coordinate
- * @return {ol.Feature}
- */
-ol.source.TopoJSON.prototype.getClosestFeatureToCoordinate = function(coordinate) {};
-
-
-/**
- * @return {ol.Extent}
- */
-ol.source.TopoJSON.prototype.getExtent = function() {};
-
-
-/**
- * @param {string|number} id
- * @return {ol.Feature}
- */
-ol.source.TopoJSON.prototype.getFeatureById = function(id) {};
-
-
-/**
- * @param {ol.Feature} feature
- */
-ol.source.TopoJSON.prototype.removeFeature = function(feature) {};
-
-
-/**
- * @return {Array.<ol.Attribution>}
- */
-ol.source.TopoJSON.prototype.getAttributions = function() {};
-
-
-/**
- * @return {string|olx.LogoOptions|undefined}
- */
-ol.source.TopoJSON.prototype.getLogo = function() {};
-
-
-/**
- * @return {ol.proj.Projection}
- */
-ol.source.TopoJSON.prototype.getProjection = function() {};
-
-
-/**
- * @return {ol.source.State}
- */
-ol.source.TopoJSON.prototype.getState = function() {};
-
-
-/**
- */
-ol.source.TopoJSON.prototype.changed = function() {};
-
-
-/**
- * @return {number}
- */
-ol.source.TopoJSON.prototype.getRevision = function() {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- * @return {goog.events.Key}
- */
-ol.source.TopoJSON.prototype.on = function(type, listener, opt_this) {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- * @return {goog.events.Key}
- */
-ol.source.TopoJSON.prototype.once = function(type, listener, opt_this) {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- */
-ol.source.TopoJSON.prototype.un = function(type, listener, opt_this) {};
-
-
-/**
- * @param {goog.events.Key} key
- */
-ol.source.TopoJSON.prototype.unByKey = function(key) {};
 
 
 /**
@@ -9081,6 +9672,50 @@ ol.source.WMTS.prototype.getProjection = function() {};
  * @return {ol.source.State}
  */
 ol.source.WMTS.prototype.getState = function() {};
+
+
+/**
+ * @param {Array.<ol.Attribution>} attributions
+ */
+ol.source.WMTS.prototype.setAttributions = function(attributions) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.source.WMTS.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.WMTS.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.source.WMTS.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.source.WMTS.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.source.WMTS.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.source.WMTS.prototype.unset = function(key) {};
 
 
 /**
@@ -9181,6 +9816,50 @@ ol.source.Zoomify.prototype.getState = function() {};
 
 
 /**
+ * @param {Array.<ol.Attribution>} attributions
+ */
+ol.source.Zoomify.prototype.setAttributions = function(attributions) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.source.Zoomify.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.source.Zoomify.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.source.Zoomify.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.source.Zoomify.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.source.Zoomify.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.source.Zoomify.prototype.unset = function(key) {};
+
+
+/**
  */
 ol.source.Zoomify.prototype.changed = function() {};
 
@@ -9224,12 +9903,664 @@ ol.source.Zoomify.prototype.unByKey = function(key) {};
 
 
 /**
- * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
+ * @type {Object}
  */
-ol.layer.Base.prototype.bindTo = function(key, target, opt_targetKey) {};
+ol.renderer;
+
+
+/**
+ * @constructor
+ */
+ol.renderer.Layer = function() {};
+
+
+/**
+ */
+ol.renderer.Layer.prototype.changed = function() {};
+
+
+/**
+ * @return {number}
+ */
+ol.renderer.Layer.prototype.getRevision = function() {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.renderer.Layer.prototype.on = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.renderer.Layer.prototype.once = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ */
+ol.renderer.Layer.prototype.un = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {goog.events.Key} key
+ */
+ol.renderer.Layer.prototype.unByKey = function(key) {};
+
+
+/**
+ * @type {Object}
+ */
+ol.renderer.webgl;
+
+
+/**
+ * @constructor
+ */
+ol.renderer.webgl.Layer = function() {};
+
+
+/**
+ */
+ol.renderer.webgl.Layer.prototype.changed = function() {};
+
+
+/**
+ * @return {number}
+ */
+ol.renderer.webgl.Layer.prototype.getRevision = function() {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.renderer.webgl.Layer.prototype.on = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.renderer.webgl.Layer.prototype.once = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ */
+ol.renderer.webgl.Layer.prototype.un = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {goog.events.Key} key
+ */
+ol.renderer.webgl.Layer.prototype.unByKey = function(key) {};
+
+
+/**
+ * @constructor
+ */
+ol.renderer.webgl.ImageLayer = function() {};
+
+
+/**
+ */
+ol.renderer.webgl.ImageLayer.prototype.changed = function() {};
+
+
+/**
+ * @return {number}
+ */
+ol.renderer.webgl.ImageLayer.prototype.getRevision = function() {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.renderer.webgl.ImageLayer.prototype.on = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.renderer.webgl.ImageLayer.prototype.once = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ */
+ol.renderer.webgl.ImageLayer.prototype.un = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {goog.events.Key} key
+ */
+ol.renderer.webgl.ImageLayer.prototype.unByKey = function(key) {};
+
+
+/**
+ * @constructor
+ */
+ol.renderer.webgl.TileLayer = function() {};
+
+
+/**
+ */
+ol.renderer.webgl.TileLayer.prototype.changed = function() {};
+
+
+/**
+ * @return {number}
+ */
+ol.renderer.webgl.TileLayer.prototype.getRevision = function() {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.renderer.webgl.TileLayer.prototype.on = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.renderer.webgl.TileLayer.prototype.once = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ */
+ol.renderer.webgl.TileLayer.prototype.un = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {goog.events.Key} key
+ */
+ol.renderer.webgl.TileLayer.prototype.unByKey = function(key) {};
+
+
+/**
+ * @constructor
+ */
+ol.renderer.webgl.VectorLayer = function() {};
+
+
+/**
+ */
+ol.renderer.webgl.VectorLayer.prototype.changed = function() {};
+
+
+/**
+ * @return {number}
+ */
+ol.renderer.webgl.VectorLayer.prototype.getRevision = function() {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.renderer.webgl.VectorLayer.prototype.on = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.renderer.webgl.VectorLayer.prototype.once = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ */
+ol.renderer.webgl.VectorLayer.prototype.un = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {goog.events.Key} key
+ */
+ol.renderer.webgl.VectorLayer.prototype.unByKey = function(key) {};
+
+
+/**
+ * @type {Object}
+ */
+ol.renderer.dom;
+
+
+/**
+ * @constructor
+ */
+ol.renderer.dom.Layer = function() {};
+
+
+/**
+ */
+ol.renderer.dom.Layer.prototype.changed = function() {};
+
+
+/**
+ * @return {number}
+ */
+ol.renderer.dom.Layer.prototype.getRevision = function() {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.renderer.dom.Layer.prototype.on = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.renderer.dom.Layer.prototype.once = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ */
+ol.renderer.dom.Layer.prototype.un = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {goog.events.Key} key
+ */
+ol.renderer.dom.Layer.prototype.unByKey = function(key) {};
+
+
+/**
+ * @constructor
+ */
+ol.renderer.dom.ImageLayer = function() {};
+
+
+/**
+ */
+ol.renderer.dom.ImageLayer.prototype.changed = function() {};
+
+
+/**
+ * @return {number}
+ */
+ol.renderer.dom.ImageLayer.prototype.getRevision = function() {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.renderer.dom.ImageLayer.prototype.on = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.renderer.dom.ImageLayer.prototype.once = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ */
+ol.renderer.dom.ImageLayer.prototype.un = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {goog.events.Key} key
+ */
+ol.renderer.dom.ImageLayer.prototype.unByKey = function(key) {};
+
+
+/**
+ * @constructor
+ */
+ol.renderer.dom.TileLayer = function() {};
+
+
+/**
+ */
+ol.renderer.dom.TileLayer.prototype.changed = function() {};
+
+
+/**
+ * @return {number}
+ */
+ol.renderer.dom.TileLayer.prototype.getRevision = function() {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.renderer.dom.TileLayer.prototype.on = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.renderer.dom.TileLayer.prototype.once = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ */
+ol.renderer.dom.TileLayer.prototype.un = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {goog.events.Key} key
+ */
+ol.renderer.dom.TileLayer.prototype.unByKey = function(key) {};
+
+
+/**
+ * @constructor
+ */
+ol.renderer.dom.VectorLayer = function() {};
+
+
+/**
+ */
+ol.renderer.dom.VectorLayer.prototype.changed = function() {};
+
+
+/**
+ * @return {number}
+ */
+ol.renderer.dom.VectorLayer.prototype.getRevision = function() {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.renderer.dom.VectorLayer.prototype.on = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.renderer.dom.VectorLayer.prototype.once = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ */
+ol.renderer.dom.VectorLayer.prototype.un = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {goog.events.Key} key
+ */
+ol.renderer.dom.VectorLayer.prototype.unByKey = function(key) {};
+
+
+/**
+ * @type {Object}
+ */
+ol.renderer.canvas;
+
+
+/**
+ * @constructor
+ */
+ol.renderer.canvas.Layer = function() {};
+
+
+/**
+ */
+ol.renderer.canvas.Layer.prototype.changed = function() {};
+
+
+/**
+ * @return {number}
+ */
+ol.renderer.canvas.Layer.prototype.getRevision = function() {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.renderer.canvas.Layer.prototype.on = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.renderer.canvas.Layer.prototype.once = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ */
+ol.renderer.canvas.Layer.prototype.un = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {goog.events.Key} key
+ */
+ol.renderer.canvas.Layer.prototype.unByKey = function(key) {};
+
+
+/**
+ * @constructor
+ */
+ol.renderer.canvas.ImageLayer = function() {};
+
+
+/**
+ */
+ol.renderer.canvas.ImageLayer.prototype.changed = function() {};
+
+
+/**
+ * @return {number}
+ */
+ol.renderer.canvas.ImageLayer.prototype.getRevision = function() {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.renderer.canvas.ImageLayer.prototype.on = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.renderer.canvas.ImageLayer.prototype.once = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ */
+ol.renderer.canvas.ImageLayer.prototype.un = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {goog.events.Key} key
+ */
+ol.renderer.canvas.ImageLayer.prototype.unByKey = function(key) {};
+
+
+/**
+ * @constructor
+ */
+ol.renderer.canvas.TileLayer = function() {};
+
+
+/**
+ */
+ol.renderer.canvas.TileLayer.prototype.changed = function() {};
+
+
+/**
+ * @return {number}
+ */
+ol.renderer.canvas.TileLayer.prototype.getRevision = function() {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.renderer.canvas.TileLayer.prototype.on = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.renderer.canvas.TileLayer.prototype.once = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ */
+ol.renderer.canvas.TileLayer.prototype.un = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {goog.events.Key} key
+ */
+ol.renderer.canvas.TileLayer.prototype.unByKey = function(key) {};
+
+
+/**
+ * @constructor
+ */
+ol.renderer.canvas.VectorLayer = function() {};
+
+
+/**
+ */
+ol.renderer.canvas.VectorLayer.prototype.changed = function() {};
+
+
+/**
+ * @return {number}
+ */
+ol.renderer.canvas.VectorLayer.prototype.getRevision = function() {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.renderer.canvas.VectorLayer.prototype.on = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.renderer.canvas.VectorLayer.prototype.once = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ */
+ol.renderer.canvas.VectorLayer.prototype.un = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {goog.events.Key} key
+ */
+ol.renderer.canvas.VectorLayer.prototype.unByKey = function(key) {};
 
 
 /**
@@ -9267,12 +10598,7 @@ ol.layer.Base.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.layer.Base.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.layer.Base.prototype.unbindAll = function() {};
+ol.layer.Base.prototype.unset = function(key) {};
 
 
 /**
@@ -9319,75 +10645,39 @@ ol.layer.Base.prototype.unByKey = function(key) {};
 
 
 /**
- * @return {number|undefined}
- */
-ol.layer.Layer.prototype.getBrightness = function() {};
-
-
-/**
- * @return {number|undefined}
- */
-ol.layer.Layer.prototype.getContrast = function() {};
-
-
-/**
- * @return {number|undefined}
- */
-ol.layer.Layer.prototype.getHue = function() {};
-
-
-/**
  * @return {ol.Extent|undefined}
  */
 ol.layer.Layer.prototype.getExtent = function() {};
 
 
 /**
- * @return {number|undefined}
+ * @return {number}
  */
 ol.layer.Layer.prototype.getMaxResolution = function() {};
 
 
 /**
- * @return {number|undefined}
+ * @return {number}
  */
 ol.layer.Layer.prototype.getMinResolution = function() {};
 
 
 /**
- * @return {number|undefined}
+ * @return {number}
  */
 ol.layer.Layer.prototype.getOpacity = function() {};
 
 
 /**
- * @return {number|undefined}
- */
-ol.layer.Layer.prototype.getSaturation = function() {};
-
-
-/**
- * @return {boolean|undefined}
+ * @return {boolean}
  */
 ol.layer.Layer.prototype.getVisible = function() {};
 
 
 /**
- * @param {number|undefined} brightness
+ * @return {number}
  */
-ol.layer.Layer.prototype.setBrightness = function(brightness) {};
-
-
-/**
- * @param {number|undefined} contrast
- */
-ol.layer.Layer.prototype.setContrast = function(contrast) {};
-
-
-/**
- * @param {number|undefined} hue
- */
-ol.layer.Layer.prototype.setHue = function(hue) {};
+ol.layer.Layer.prototype.getZIndex = function() {};
 
 
 /**
@@ -9397,42 +10687,33 @@ ol.layer.Layer.prototype.setExtent = function(extent) {};
 
 
 /**
- * @param {number|undefined} maxResolution
+ * @param {number} maxResolution
  */
 ol.layer.Layer.prototype.setMaxResolution = function(maxResolution) {};
 
 
 /**
- * @param {number|undefined} minResolution
+ * @param {number} minResolution
  */
 ol.layer.Layer.prototype.setMinResolution = function(minResolution) {};
 
 
 /**
- * @param {number|undefined} opacity
+ * @param {number} opacity
  */
 ol.layer.Layer.prototype.setOpacity = function(opacity) {};
 
 
 /**
- * @param {number|undefined} saturation
- */
-ol.layer.Layer.prototype.setSaturation = function(saturation) {};
-
-
-/**
- * @param {boolean|undefined} visible
+ * @param {boolean} visible
  */
 ol.layer.Layer.prototype.setVisible = function(visible) {};
 
 
 /**
- * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
+ * @param {number} zindex
  */
-ol.layer.Layer.prototype.bindTo = function(key, target, opt_targetKey) {};
+ol.layer.Layer.prototype.setZIndex = function(zindex) {};
 
 
 /**
@@ -9470,12 +10751,7 @@ ol.layer.Layer.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.layer.Layer.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.layer.Layer.prototype.unbindAll = function() {};
+ol.layer.Layer.prototype.unset = function(key) {};
 
 
 /**
@@ -9522,27 +10798,15 @@ ol.layer.Layer.prototype.unByKey = function(key) {};
 
 
 /**
+ * @param {ol.Map} map
+ */
+ol.layer.Vector.prototype.setMap = function(map) {};
+
+
+/**
  * @param {ol.source.Source} source
  */
 ol.layer.Vector.prototype.setSource = function(source) {};
-
-
-/**
- * @return {number|undefined}
- */
-ol.layer.Vector.prototype.getBrightness = function() {};
-
-
-/**
- * @return {number|undefined}
- */
-ol.layer.Vector.prototype.getContrast = function() {};
-
-
-/**
- * @return {number|undefined}
- */
-ol.layer.Vector.prototype.getHue = function() {};
 
 
 /**
@@ -9552,51 +10816,33 @@ ol.layer.Vector.prototype.getExtent = function() {};
 
 
 /**
- * @return {number|undefined}
+ * @return {number}
  */
 ol.layer.Vector.prototype.getMaxResolution = function() {};
 
 
 /**
- * @return {number|undefined}
+ * @return {number}
  */
 ol.layer.Vector.prototype.getMinResolution = function() {};
 
 
 /**
- * @return {number|undefined}
+ * @return {number}
  */
 ol.layer.Vector.prototype.getOpacity = function() {};
 
 
 /**
- * @return {number|undefined}
- */
-ol.layer.Vector.prototype.getSaturation = function() {};
-
-
-/**
- * @return {boolean|undefined}
+ * @return {boolean}
  */
 ol.layer.Vector.prototype.getVisible = function() {};
 
 
 /**
- * @param {number|undefined} brightness
+ * @return {number}
  */
-ol.layer.Vector.prototype.setBrightness = function(brightness) {};
-
-
-/**
- * @param {number|undefined} contrast
- */
-ol.layer.Vector.prototype.setContrast = function(contrast) {};
-
-
-/**
- * @param {number|undefined} hue
- */
-ol.layer.Vector.prototype.setHue = function(hue) {};
+ol.layer.Vector.prototype.getZIndex = function() {};
 
 
 /**
@@ -9606,42 +10852,33 @@ ol.layer.Vector.prototype.setExtent = function(extent) {};
 
 
 /**
- * @param {number|undefined} maxResolution
+ * @param {number} maxResolution
  */
 ol.layer.Vector.prototype.setMaxResolution = function(maxResolution) {};
 
 
 /**
- * @param {number|undefined} minResolution
+ * @param {number} minResolution
  */
 ol.layer.Vector.prototype.setMinResolution = function(minResolution) {};
 
 
 /**
- * @param {number|undefined} opacity
+ * @param {number} opacity
  */
 ol.layer.Vector.prototype.setOpacity = function(opacity) {};
 
 
 /**
- * @param {number|undefined} saturation
- */
-ol.layer.Vector.prototype.setSaturation = function(saturation) {};
-
-
-/**
- * @param {boolean|undefined} visible
+ * @param {boolean} visible
  */
 ol.layer.Vector.prototype.setVisible = function(visible) {};
 
 
 /**
- * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
+ * @param {number} zindex
  */
-ol.layer.Vector.prototype.bindTo = function(key, target, opt_targetKey) {};
+ol.layer.Vector.prototype.setZIndex = function(zindex) {};
 
 
 /**
@@ -9679,12 +10916,7 @@ ol.layer.Vector.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.layer.Vector.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.layer.Vector.prototype.unbindAll = function() {};
+ol.layer.Vector.prototype.unset = function(key) {};
 
 
 /**
@@ -9749,9 +10981,15 @@ ol.layer.Heatmap.prototype.getStyleFunction = function() {};
 
 
 /**
- * @param {ol.style.Style|Array.<ol.style.Style>|ol.style.StyleFunction|undefined} style
+ * @param {ol.style.Style|Array.<ol.style.Style>|ol.style.StyleFunction|null|undefined} style
  */
 ol.layer.Heatmap.prototype.setStyle = function(style) {};
+
+
+/**
+ * @param {ol.Map} map
+ */
+ol.layer.Heatmap.prototype.setMap = function(map) {};
 
 
 /**
@@ -9761,75 +10999,39 @@ ol.layer.Heatmap.prototype.setSource = function(source) {};
 
 
 /**
- * @return {number|undefined}
- */
-ol.layer.Heatmap.prototype.getBrightness = function() {};
-
-
-/**
- * @return {number|undefined}
- */
-ol.layer.Heatmap.prototype.getContrast = function() {};
-
-
-/**
- * @return {number|undefined}
- */
-ol.layer.Heatmap.prototype.getHue = function() {};
-
-
-/**
  * @return {ol.Extent|undefined}
  */
 ol.layer.Heatmap.prototype.getExtent = function() {};
 
 
 /**
- * @return {number|undefined}
+ * @return {number}
  */
 ol.layer.Heatmap.prototype.getMaxResolution = function() {};
 
 
 /**
- * @return {number|undefined}
+ * @return {number}
  */
 ol.layer.Heatmap.prototype.getMinResolution = function() {};
 
 
 /**
- * @return {number|undefined}
+ * @return {number}
  */
 ol.layer.Heatmap.prototype.getOpacity = function() {};
 
 
 /**
- * @return {number|undefined}
- */
-ol.layer.Heatmap.prototype.getSaturation = function() {};
-
-
-/**
- * @return {boolean|undefined}
+ * @return {boolean}
  */
 ol.layer.Heatmap.prototype.getVisible = function() {};
 
 
 /**
- * @param {number|undefined} brightness
+ * @return {number}
  */
-ol.layer.Heatmap.prototype.setBrightness = function(brightness) {};
-
-
-/**
- * @param {number|undefined} contrast
- */
-ol.layer.Heatmap.prototype.setContrast = function(contrast) {};
-
-
-/**
- * @param {number|undefined} hue
- */
-ol.layer.Heatmap.prototype.setHue = function(hue) {};
+ol.layer.Heatmap.prototype.getZIndex = function() {};
 
 
 /**
@@ -9839,42 +11041,33 @@ ol.layer.Heatmap.prototype.setExtent = function(extent) {};
 
 
 /**
- * @param {number|undefined} maxResolution
+ * @param {number} maxResolution
  */
 ol.layer.Heatmap.prototype.setMaxResolution = function(maxResolution) {};
 
 
 /**
- * @param {number|undefined} minResolution
+ * @param {number} minResolution
  */
 ol.layer.Heatmap.prototype.setMinResolution = function(minResolution) {};
 
 
 /**
- * @param {number|undefined} opacity
+ * @param {number} opacity
  */
 ol.layer.Heatmap.prototype.setOpacity = function(opacity) {};
 
 
 /**
- * @param {number|undefined} saturation
- */
-ol.layer.Heatmap.prototype.setSaturation = function(saturation) {};
-
-
-/**
- * @param {boolean|undefined} visible
+ * @param {boolean} visible
  */
 ol.layer.Heatmap.prototype.setVisible = function(visible) {};
 
 
 /**
- * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
+ * @param {number} zindex
  */
-ol.layer.Heatmap.prototype.bindTo = function(key, target, opt_targetKey) {};
+ol.layer.Heatmap.prototype.setZIndex = function(zindex) {};
 
 
 /**
@@ -9912,12 +11105,7 @@ ol.layer.Heatmap.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.layer.Heatmap.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.layer.Heatmap.prototype.unbindAll = function() {};
+ol.layer.Heatmap.prototype.unset = function(key) {};
 
 
 /**
@@ -9964,27 +11152,15 @@ ol.layer.Heatmap.prototype.unByKey = function(key) {};
 
 
 /**
+ * @param {ol.Map} map
+ */
+ol.layer.Image.prototype.setMap = function(map) {};
+
+
+/**
  * @param {ol.source.Source} source
  */
 ol.layer.Image.prototype.setSource = function(source) {};
-
-
-/**
- * @return {number|undefined}
- */
-ol.layer.Image.prototype.getBrightness = function() {};
-
-
-/**
- * @return {number|undefined}
- */
-ol.layer.Image.prototype.getContrast = function() {};
-
-
-/**
- * @return {number|undefined}
- */
-ol.layer.Image.prototype.getHue = function() {};
 
 
 /**
@@ -9994,51 +11170,33 @@ ol.layer.Image.prototype.getExtent = function() {};
 
 
 /**
- * @return {number|undefined}
+ * @return {number}
  */
 ol.layer.Image.prototype.getMaxResolution = function() {};
 
 
 /**
- * @return {number|undefined}
+ * @return {number}
  */
 ol.layer.Image.prototype.getMinResolution = function() {};
 
 
 /**
- * @return {number|undefined}
+ * @return {number}
  */
 ol.layer.Image.prototype.getOpacity = function() {};
 
 
 /**
- * @return {number|undefined}
- */
-ol.layer.Image.prototype.getSaturation = function() {};
-
-
-/**
- * @return {boolean|undefined}
+ * @return {boolean}
  */
 ol.layer.Image.prototype.getVisible = function() {};
 
 
 /**
- * @param {number|undefined} brightness
+ * @return {number}
  */
-ol.layer.Image.prototype.setBrightness = function(brightness) {};
-
-
-/**
- * @param {number|undefined} contrast
- */
-ol.layer.Image.prototype.setContrast = function(contrast) {};
-
-
-/**
- * @param {number|undefined} hue
- */
-ol.layer.Image.prototype.setHue = function(hue) {};
+ol.layer.Image.prototype.getZIndex = function() {};
 
 
 /**
@@ -10048,42 +11206,33 @@ ol.layer.Image.prototype.setExtent = function(extent) {};
 
 
 /**
- * @param {number|undefined} maxResolution
+ * @param {number} maxResolution
  */
 ol.layer.Image.prototype.setMaxResolution = function(maxResolution) {};
 
 
 /**
- * @param {number|undefined} minResolution
+ * @param {number} minResolution
  */
 ol.layer.Image.prototype.setMinResolution = function(minResolution) {};
 
 
 /**
- * @param {number|undefined} opacity
+ * @param {number} opacity
  */
 ol.layer.Image.prototype.setOpacity = function(opacity) {};
 
 
 /**
- * @param {number|undefined} saturation
- */
-ol.layer.Image.prototype.setSaturation = function(saturation) {};
-
-
-/**
- * @param {boolean|undefined} visible
+ * @param {boolean} visible
  */
 ol.layer.Image.prototype.setVisible = function(visible) {};
 
 
 /**
- * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
+ * @param {number} zindex
  */
-ol.layer.Image.prototype.bindTo = function(key, target, opt_targetKey) {};
+ol.layer.Image.prototype.setZIndex = function(zindex) {};
 
 
 /**
@@ -10121,12 +11270,7 @@ ol.layer.Image.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.layer.Image.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.layer.Image.prototype.unbindAll = function() {};
+ol.layer.Image.prototype.unset = function(key) {};
 
 
 /**
@@ -10173,75 +11317,39 @@ ol.layer.Image.prototype.unByKey = function(key) {};
 
 
 /**
- * @return {number|undefined}
- */
-ol.layer.Group.prototype.getBrightness = function() {};
-
-
-/**
- * @return {number|undefined}
- */
-ol.layer.Group.prototype.getContrast = function() {};
-
-
-/**
- * @return {number|undefined}
- */
-ol.layer.Group.prototype.getHue = function() {};
-
-
-/**
  * @return {ol.Extent|undefined}
  */
 ol.layer.Group.prototype.getExtent = function() {};
 
 
 /**
- * @return {number|undefined}
+ * @return {number}
  */
 ol.layer.Group.prototype.getMaxResolution = function() {};
 
 
 /**
- * @return {number|undefined}
+ * @return {number}
  */
 ol.layer.Group.prototype.getMinResolution = function() {};
 
 
 /**
- * @return {number|undefined}
+ * @return {number}
  */
 ol.layer.Group.prototype.getOpacity = function() {};
 
 
 /**
- * @return {number|undefined}
- */
-ol.layer.Group.prototype.getSaturation = function() {};
-
-
-/**
- * @return {boolean|undefined}
+ * @return {boolean}
  */
 ol.layer.Group.prototype.getVisible = function() {};
 
 
 /**
- * @param {number|undefined} brightness
+ * @return {number}
  */
-ol.layer.Group.prototype.setBrightness = function(brightness) {};
-
-
-/**
- * @param {number|undefined} contrast
- */
-ol.layer.Group.prototype.setContrast = function(contrast) {};
-
-
-/**
- * @param {number|undefined} hue
- */
-ol.layer.Group.prototype.setHue = function(hue) {};
+ol.layer.Group.prototype.getZIndex = function() {};
 
 
 /**
@@ -10251,42 +11359,33 @@ ol.layer.Group.prototype.setExtent = function(extent) {};
 
 
 /**
- * @param {number|undefined} maxResolution
+ * @param {number} maxResolution
  */
 ol.layer.Group.prototype.setMaxResolution = function(maxResolution) {};
 
 
 /**
- * @param {number|undefined} minResolution
+ * @param {number} minResolution
  */
 ol.layer.Group.prototype.setMinResolution = function(minResolution) {};
 
 
 /**
- * @param {number|undefined} opacity
+ * @param {number} opacity
  */
 ol.layer.Group.prototype.setOpacity = function(opacity) {};
 
 
 /**
- * @param {number|undefined} saturation
- */
-ol.layer.Group.prototype.setSaturation = function(saturation) {};
-
-
-/**
- * @param {boolean|undefined} visible
+ * @param {boolean} visible
  */
 ol.layer.Group.prototype.setVisible = function(visible) {};
 
 
 /**
- * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
+ * @param {number} zindex
  */
-ol.layer.Group.prototype.bindTo = function(key, target, opt_targetKey) {};
+ol.layer.Group.prototype.setZIndex = function(zindex) {};
 
 
 /**
@@ -10324,12 +11423,7 @@ ol.layer.Group.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.layer.Group.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.layer.Group.prototype.unbindAll = function() {};
+ol.layer.Group.prototype.unset = function(key) {};
 
 
 /**
@@ -10376,27 +11470,15 @@ ol.layer.Group.prototype.unByKey = function(key) {};
 
 
 /**
+ * @param {ol.Map} map
+ */
+ol.layer.Tile.prototype.setMap = function(map) {};
+
+
+/**
  * @param {ol.source.Source} source
  */
 ol.layer.Tile.prototype.setSource = function(source) {};
-
-
-/**
- * @return {number|undefined}
- */
-ol.layer.Tile.prototype.getBrightness = function() {};
-
-
-/**
- * @return {number|undefined}
- */
-ol.layer.Tile.prototype.getContrast = function() {};
-
-
-/**
- * @return {number|undefined}
- */
-ol.layer.Tile.prototype.getHue = function() {};
 
 
 /**
@@ -10406,51 +11488,33 @@ ol.layer.Tile.prototype.getExtent = function() {};
 
 
 /**
- * @return {number|undefined}
+ * @return {number}
  */
 ol.layer.Tile.prototype.getMaxResolution = function() {};
 
 
 /**
- * @return {number|undefined}
+ * @return {number}
  */
 ol.layer.Tile.prototype.getMinResolution = function() {};
 
 
 /**
- * @return {number|undefined}
+ * @return {number}
  */
 ol.layer.Tile.prototype.getOpacity = function() {};
 
 
 /**
- * @return {number|undefined}
- */
-ol.layer.Tile.prototype.getSaturation = function() {};
-
-
-/**
- * @return {boolean|undefined}
+ * @return {boolean}
  */
 ol.layer.Tile.prototype.getVisible = function() {};
 
 
 /**
- * @param {number|undefined} brightness
+ * @return {number}
  */
-ol.layer.Tile.prototype.setBrightness = function(brightness) {};
-
-
-/**
- * @param {number|undefined} contrast
- */
-ol.layer.Tile.prototype.setContrast = function(contrast) {};
-
-
-/**
- * @param {number|undefined} hue
- */
-ol.layer.Tile.prototype.setHue = function(hue) {};
+ol.layer.Tile.prototype.getZIndex = function() {};
 
 
 /**
@@ -10460,42 +11524,33 @@ ol.layer.Tile.prototype.setExtent = function(extent) {};
 
 
 /**
- * @param {number|undefined} maxResolution
+ * @param {number} maxResolution
  */
 ol.layer.Tile.prototype.setMaxResolution = function(maxResolution) {};
 
 
 /**
- * @param {number|undefined} minResolution
+ * @param {number} minResolution
  */
 ol.layer.Tile.prototype.setMinResolution = function(minResolution) {};
 
 
 /**
- * @param {number|undefined} opacity
+ * @param {number} opacity
  */
 ol.layer.Tile.prototype.setOpacity = function(opacity) {};
 
 
 /**
- * @param {number|undefined} saturation
- */
-ol.layer.Tile.prototype.setSaturation = function(saturation) {};
-
-
-/**
- * @param {boolean|undefined} visible
+ * @param {boolean} visible
  */
 ol.layer.Tile.prototype.setVisible = function(visible) {};
 
 
 /**
- * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
+ * @param {number} zindex
  */
-ol.layer.Tile.prototype.bindTo = function(key, target, opt_targetKey) {};
+ol.layer.Tile.prototype.setZIndex = function(zindex) {};
 
 
 /**
@@ -10533,12 +11588,7 @@ ol.layer.Tile.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.layer.Tile.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.layer.Tile.prototype.unbindAll = function() {};
+ol.layer.Tile.prototype.unset = function(key) {};
 
 
 /**
@@ -10586,15 +11636,6 @@ ol.layer.Tile.prototype.unByKey = function(key) {};
 
 /**
  * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.interaction.Interaction.prototype.bindTo = function(key, target, opt_targetKey) {};
-
-
-/**
- * @param {string} key
  * @return {*}
  */
 ol.interaction.Interaction.prototype.get = function(key) {};
@@ -10628,12 +11669,7 @@ ol.interaction.Interaction.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.interaction.Interaction.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.interaction.Interaction.prototype.unbindAll = function() {};
+ol.interaction.Interaction.prototype.unset = function(key) {};
 
 
 /**
@@ -10693,15 +11729,6 @@ ol.interaction.DoubleClickZoom.prototype.setActive = function(active) {};
 
 /**
  * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.interaction.DoubleClickZoom.prototype.bindTo = function(key, target, opt_targetKey) {};
-
-
-/**
- * @param {string} key
  * @return {*}
  */
 ol.interaction.DoubleClickZoom.prototype.get = function(key) {};
@@ -10735,12 +11762,7 @@ ol.interaction.DoubleClickZoom.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.interaction.DoubleClickZoom.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.interaction.DoubleClickZoom.prototype.unbindAll = function() {};
+ol.interaction.DoubleClickZoom.prototype.unset = function(key) {};
 
 
 /**
@@ -10800,15 +11822,6 @@ ol.interaction.DragAndDrop.prototype.setActive = function(active) {};
 
 /**
  * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.interaction.DragAndDrop.prototype.bindTo = function(key, target, opt_targetKey) {};
-
-
-/**
- * @param {string} key
  * @return {*}
  */
 ol.interaction.DragAndDrop.prototype.get = function(key) {};
@@ -10842,12 +11855,7 @@ ol.interaction.DragAndDrop.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.interaction.DragAndDrop.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.interaction.DragAndDrop.prototype.unbindAll = function() {};
+ol.interaction.DragAndDrop.prototype.unset = function(key) {};
 
 
 /**
@@ -10894,12 +11902,6 @@ ol.interaction.DragAndDrop.prototype.unByKey = function(key) {};
 
 
 /**
- * @constructor
- */
-ol.interaction.Pointer = function() {};
-
-
-/**
  * @return {boolean}
  */
 ol.interaction.Pointer.prototype.getActive = function() {};
@@ -10909,15 +11911,6 @@ ol.interaction.Pointer.prototype.getActive = function() {};
  * @param {boolean} active
  */
 ol.interaction.Pointer.prototype.setActive = function(active) {};
-
-
-/**
- * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.interaction.Pointer.prototype.bindTo = function(key, target, opt_targetKey) {};
 
 
 /**
@@ -10955,12 +11948,7 @@ ol.interaction.Pointer.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.interaction.Pointer.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.interaction.Pointer.prototype.unbindAll = function() {};
+ol.interaction.Pointer.prototype.unset = function(key) {};
 
 
 /**
@@ -11020,15 +12008,6 @@ ol.interaction.DragBox.prototype.setActive = function(active) {};
 
 /**
  * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.interaction.DragBox.prototype.bindTo = function(key, target, opt_targetKey) {};
-
-
-/**
- * @param {string} key
  * @return {*}
  */
 ol.interaction.DragBox.prototype.get = function(key) {};
@@ -11062,12 +12041,7 @@ ol.interaction.DragBox.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.interaction.DragBox.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.interaction.DragBox.prototype.unbindAll = function() {};
+ol.interaction.DragBox.prototype.unset = function(key) {};
 
 
 /**
@@ -11127,15 +12101,6 @@ ol.interaction.DragPan.prototype.setActive = function(active) {};
 
 /**
  * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.interaction.DragPan.prototype.bindTo = function(key, target, opt_targetKey) {};
-
-
-/**
- * @param {string} key
  * @return {*}
  */
 ol.interaction.DragPan.prototype.get = function(key) {};
@@ -11169,12 +12134,7 @@ ol.interaction.DragPan.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.interaction.DragPan.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.interaction.DragPan.prototype.unbindAll = function() {};
+ol.interaction.DragPan.prototype.unset = function(key) {};
 
 
 /**
@@ -11234,15 +12194,6 @@ ol.interaction.DragRotateAndZoom.prototype.setActive = function(active) {};
 
 /**
  * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.interaction.DragRotateAndZoom.prototype.bindTo = function(key, target, opt_targetKey) {};
-
-
-/**
- * @param {string} key
  * @return {*}
  */
 ol.interaction.DragRotateAndZoom.prototype.get = function(key) {};
@@ -11276,12 +12227,7 @@ ol.interaction.DragRotateAndZoom.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.interaction.DragRotateAndZoom.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.interaction.DragRotateAndZoom.prototype.unbindAll = function() {};
+ol.interaction.DragRotateAndZoom.prototype.unset = function(key) {};
 
 
 /**
@@ -11341,15 +12287,6 @@ ol.interaction.DragRotate.prototype.setActive = function(active) {};
 
 /**
  * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.interaction.DragRotate.prototype.bindTo = function(key, target, opt_targetKey) {};
-
-
-/**
- * @param {string} key
  * @return {*}
  */
 ol.interaction.DragRotate.prototype.get = function(key) {};
@@ -11383,12 +12320,7 @@ ol.interaction.DragRotate.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.interaction.DragRotate.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.interaction.DragRotate.prototype.unbindAll = function() {};
+ol.interaction.DragRotate.prototype.unset = function(key) {};
 
 
 /**
@@ -11454,15 +12386,6 @@ ol.interaction.DragZoom.prototype.setActive = function(active) {};
 
 /**
  * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.interaction.DragZoom.prototype.bindTo = function(key, target, opt_targetKey) {};
-
-
-/**
- * @param {string} key
  * @return {*}
  */
 ol.interaction.DragZoom.prototype.get = function(key) {};
@@ -11496,12 +12419,7 @@ ol.interaction.DragZoom.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.interaction.DragZoom.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.interaction.DragZoom.prototype.unbindAll = function() {};
+ol.interaction.DragZoom.prototype.unset = function(key) {};
 
 
 /**
@@ -11561,15 +12479,6 @@ ol.interaction.Draw.prototype.setActive = function(active) {};
 
 /**
  * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.interaction.Draw.prototype.bindTo = function(key, target, opt_targetKey) {};
-
-
-/**
- * @param {string} key
  * @return {*}
  */
 ol.interaction.Draw.prototype.get = function(key) {};
@@ -11603,12 +12512,7 @@ ol.interaction.Draw.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.interaction.Draw.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.interaction.Draw.prototype.unbindAll = function() {};
+ol.interaction.Draw.prototype.unset = function(key) {};
 
 
 /**
@@ -11668,15 +12572,6 @@ ol.interaction.KeyboardPan.prototype.setActive = function(active) {};
 
 /**
  * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.interaction.KeyboardPan.prototype.bindTo = function(key, target, opt_targetKey) {};
-
-
-/**
- * @param {string} key
  * @return {*}
  */
 ol.interaction.KeyboardPan.prototype.get = function(key) {};
@@ -11710,12 +12605,7 @@ ol.interaction.KeyboardPan.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.interaction.KeyboardPan.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.interaction.KeyboardPan.prototype.unbindAll = function() {};
+ol.interaction.KeyboardPan.prototype.unset = function(key) {};
 
 
 /**
@@ -11775,15 +12665,6 @@ ol.interaction.KeyboardZoom.prototype.setActive = function(active) {};
 
 /**
  * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.interaction.KeyboardZoom.prototype.bindTo = function(key, target, opt_targetKey) {};
-
-
-/**
- * @param {string} key
  * @return {*}
  */
 ol.interaction.KeyboardZoom.prototype.get = function(key) {};
@@ -11817,12 +12698,7 @@ ol.interaction.KeyboardZoom.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.interaction.KeyboardZoom.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.interaction.KeyboardZoom.prototype.unbindAll = function() {};
+ol.interaction.KeyboardZoom.prototype.unset = function(key) {};
 
 
 /**
@@ -11882,15 +12758,6 @@ ol.interaction.Modify.prototype.setActive = function(active) {};
 
 /**
  * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.interaction.Modify.prototype.bindTo = function(key, target, opt_targetKey) {};
-
-
-/**
- * @param {string} key
  * @return {*}
  */
 ol.interaction.Modify.prototype.get = function(key) {};
@@ -11924,12 +12791,7 @@ ol.interaction.Modify.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.interaction.Modify.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.interaction.Modify.prototype.unbindAll = function() {};
+ol.interaction.Modify.prototype.unset = function(key) {};
 
 
 /**
@@ -11989,15 +12851,6 @@ ol.interaction.MouseWheelZoom.prototype.setActive = function(active) {};
 
 /**
  * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.interaction.MouseWheelZoom.prototype.bindTo = function(key, target, opt_targetKey) {};
-
-
-/**
- * @param {string} key
  * @return {*}
  */
 ol.interaction.MouseWheelZoom.prototype.get = function(key) {};
@@ -12031,12 +12884,7 @@ ol.interaction.MouseWheelZoom.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.interaction.MouseWheelZoom.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.interaction.MouseWheelZoom.prototype.unbindAll = function() {};
+ol.interaction.MouseWheelZoom.prototype.unset = function(key) {};
 
 
 /**
@@ -12096,15 +12944,6 @@ ol.interaction.PinchRotate.prototype.setActive = function(active) {};
 
 /**
  * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.interaction.PinchRotate.prototype.bindTo = function(key, target, opt_targetKey) {};
-
-
-/**
- * @param {string} key
  * @return {*}
  */
 ol.interaction.PinchRotate.prototype.get = function(key) {};
@@ -12138,12 +12977,7 @@ ol.interaction.PinchRotate.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.interaction.PinchRotate.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.interaction.PinchRotate.prototype.unbindAll = function() {};
+ol.interaction.PinchRotate.prototype.unset = function(key) {};
 
 
 /**
@@ -12203,15 +13037,6 @@ ol.interaction.PinchZoom.prototype.setActive = function(active) {};
 
 /**
  * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.interaction.PinchZoom.prototype.bindTo = function(key, target, opt_targetKey) {};
-
-
-/**
- * @param {string} key
  * @return {*}
  */
 ol.interaction.PinchZoom.prototype.get = function(key) {};
@@ -12245,12 +13070,7 @@ ol.interaction.PinchZoom.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.interaction.PinchZoom.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.interaction.PinchZoom.prototype.unbindAll = function() {};
+ol.interaction.PinchZoom.prototype.unset = function(key) {};
 
 
 /**
@@ -12310,15 +13130,6 @@ ol.interaction.Select.prototype.setActive = function(active) {};
 
 /**
  * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.interaction.Select.prototype.bindTo = function(key, target, opt_targetKey) {};
-
-
-/**
- * @param {string} key
  * @return {*}
  */
 ol.interaction.Select.prototype.get = function(key) {};
@@ -12352,12 +13163,7 @@ ol.interaction.Select.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.interaction.Select.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.interaction.Select.prototype.unbindAll = function() {};
+ol.interaction.Select.prototype.unset = function(key) {};
 
 
 /**
@@ -12404,6 +13210,230 @@ ol.interaction.Select.prototype.unByKey = function(key) {};
 
 
 /**
+ * @return {boolean}
+ */
+ol.interaction.Snap.prototype.getActive = function() {};
+
+
+/**
+ * @param {boolean} active
+ */
+ol.interaction.Snap.prototype.setActive = function(active) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.interaction.Snap.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.interaction.Snap.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.interaction.Snap.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.interaction.Snap.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.interaction.Snap.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.interaction.Snap.prototype.unset = function(key) {};
+
+
+/**
+ */
+ol.interaction.Snap.prototype.changed = function() {};
+
+
+/**
+ * @return {number}
+ */
+ol.interaction.Snap.prototype.getRevision = function() {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.interaction.Snap.prototype.on = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.interaction.Snap.prototype.once = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ */
+ol.interaction.Snap.prototype.un = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {goog.events.Key} key
+ */
+ol.interaction.Snap.prototype.unByKey = function(key) {};
+
+
+/**
+ * @return {boolean}
+ */
+ol.interaction.Translate.prototype.getActive = function() {};
+
+
+/**
+ * @param {boolean} active
+ */
+ol.interaction.Translate.prototype.setActive = function(active) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.interaction.Translate.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.interaction.Translate.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.interaction.Translate.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.interaction.Translate.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.interaction.Translate.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.interaction.Translate.prototype.unset = function(key) {};
+
+
+/**
+ */
+ol.interaction.Translate.prototype.changed = function() {};
+
+
+/**
+ * @return {number}
+ */
+ol.interaction.Translate.prototype.getRevision = function() {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.interaction.Translate.prototype.on = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ * @return {goog.events.Key}
+ */
+ol.interaction.Translate.prototype.once = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {string|Array.<string>} type
+ * @param {Function} listener
+ * @param {Object=} opt_this
+ */
+ol.interaction.Translate.prototype.un = function(type, listener, opt_this) {};
+
+
+/**
+ * @param {goog.events.Key} key
+ */
+ol.interaction.Translate.prototype.unByKey = function(key) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.geom.Geometry.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.geom.Geometry.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.geom.Geometry.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.geom.Geometry.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.geom.Geometry.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.geom.Geometry.prototype.unset = function(key) {};
+
+
+/**
  */
 ol.geom.Geometry.prototype.changed = function() {};
 
@@ -12447,12 +13477,6 @@ ol.geom.Geometry.prototype.unByKey = function(key) {};
 
 
 /**
- * @return {ol.geom.Geometry}
- */
-ol.geom.SimpleGeometry.prototype.clone = function() {};
-
-
-/**
  * @param {ol.Coordinate} point
  * @param {ol.Coordinate=} opt_closestPoint
  * @return {ol.Coordinate}
@@ -12461,16 +13485,17 @@ ol.geom.SimpleGeometry.prototype.getClosestPoint = function(point, opt_closestPo
 
 
 /**
- * @return {ol.geom.GeometryType}
+ * @param {ol.Extent=} opt_extent
+ * @return {ol.Extent}
  */
-ol.geom.SimpleGeometry.prototype.getType = function() {};
+ol.geom.SimpleGeometry.prototype.getExtent = function(opt_extent) {};
 
 
 /**
- * @param {ol.Extent} extent
- * @return {boolean}
+ * @param {number} tolerance
+ * @return {ol.geom.Geometry}
  */
-ol.geom.SimpleGeometry.prototype.intersectsExtent = function(extent) {};
+ol.geom.SimpleGeometry.prototype.simplify = function(tolerance) {};
 
 
 /**
@@ -12479,6 +13504,44 @@ ol.geom.SimpleGeometry.prototype.intersectsExtent = function(extent) {};
  * @return {ol.geom.Geometry}
  */
 ol.geom.SimpleGeometry.prototype.transform = function(source, destination) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.geom.SimpleGeometry.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.geom.SimpleGeometry.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.geom.SimpleGeometry.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.geom.SimpleGeometry.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.geom.SimpleGeometry.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.geom.SimpleGeometry.prototype.unset = function(key) {};
 
 
 /**
@@ -12551,10 +13614,55 @@ ol.geom.Circle.prototype.getClosestPoint = function(point, opt_closestPoint) {};
 
 
 /**
- * @param {ol.Extent} extent
- * @return {boolean}
+ * @param {ol.Extent=} opt_extent
+ * @return {ol.Extent}
  */
-ol.geom.Circle.prototype.intersectsExtent = function(extent) {};
+ol.geom.Circle.prototype.getExtent = function(opt_extent) {};
+
+
+/**
+ * @param {number} tolerance
+ * @return {ol.geom.Geometry}
+ */
+ol.geom.Circle.prototype.simplify = function(tolerance) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.geom.Circle.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.geom.Circle.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.geom.Circle.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.geom.Circle.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.geom.Circle.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.geom.Circle.prototype.unset = function(key) {};
 
 
 /**
@@ -12609,11 +13717,63 @@ ol.geom.GeometryCollection.prototype.getClosestPoint = function(point, opt_close
 
 
 /**
+ * @param {ol.Extent=} opt_extent
+ * @return {ol.Extent}
+ */
+ol.geom.GeometryCollection.prototype.getExtent = function(opt_extent) {};
+
+
+/**
+ * @param {number} tolerance
+ * @return {ol.geom.Geometry}
+ */
+ol.geom.GeometryCollection.prototype.simplify = function(tolerance) {};
+
+
+/**
  * @param {ol.proj.ProjectionLike} source
  * @param {ol.proj.ProjectionLike} destination
  * @return {ol.geom.Geometry}
  */
 ol.geom.GeometryCollection.prototype.transform = function(source, destination) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.geom.GeometryCollection.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.geom.GeometryCollection.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.geom.GeometryCollection.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.geom.GeometryCollection.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.geom.GeometryCollection.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.geom.GeometryCollection.prototype.unset = function(key) {};
 
 
 /**
@@ -12660,11 +13820,6 @@ ol.geom.GeometryCollection.prototype.unByKey = function(key) {};
 
 
 /**
- */
-ol.geom.LinearRing.prototype.getExtent = function() {};
-
-
-/**
  * @return {ol.Coordinate}
  */
 ol.geom.LinearRing.prototype.getFirstCoordinate = function() {};
@@ -12691,10 +13846,17 @@ ol.geom.LinearRing.prototype.getClosestPoint = function(point, opt_closestPoint)
 
 
 /**
- * @param {ol.Extent} extent
- * @return {boolean}
+ * @param {ol.Extent=} opt_extent
+ * @return {ol.Extent}
  */
-ol.geom.LinearRing.prototype.intersectsExtent = function(extent) {};
+ol.geom.LinearRing.prototype.getExtent = function(opt_extent) {};
+
+
+/**
+ * @param {number} tolerance
+ * @return {ol.geom.Geometry}
+ */
+ol.geom.LinearRing.prototype.simplify = function(tolerance) {};
 
 
 /**
@@ -12703,6 +13865,44 @@ ol.geom.LinearRing.prototype.intersectsExtent = function(extent) {};
  * @return {ol.geom.Geometry}
  */
 ol.geom.LinearRing.prototype.transform = function(source, destination) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.geom.LinearRing.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.geom.LinearRing.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.geom.LinearRing.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.geom.LinearRing.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.geom.LinearRing.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.geom.LinearRing.prototype.unset = function(key) {};
 
 
 /**
@@ -12749,11 +13949,6 @@ ol.geom.LinearRing.prototype.unByKey = function(key) {};
 
 
 /**
- */
-ol.geom.LineString.prototype.getExtent = function() {};
-
-
-/**
  * @return {ol.Coordinate}
  */
 ol.geom.LineString.prototype.getFirstCoordinate = function() {};
@@ -12780,11 +13975,63 @@ ol.geom.LineString.prototype.getClosestPoint = function(point, opt_closestPoint)
 
 
 /**
+ * @param {ol.Extent=} opt_extent
+ * @return {ol.Extent}
+ */
+ol.geom.LineString.prototype.getExtent = function(opt_extent) {};
+
+
+/**
+ * @param {number} tolerance
+ * @return {ol.geom.Geometry}
+ */
+ol.geom.LineString.prototype.simplify = function(tolerance) {};
+
+
+/**
  * @param {ol.proj.ProjectionLike} source
  * @param {ol.proj.ProjectionLike} destination
  * @return {ol.geom.Geometry}
  */
 ol.geom.LineString.prototype.transform = function(source, destination) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.geom.LineString.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.geom.LineString.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.geom.LineString.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.geom.LineString.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.geom.LineString.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.geom.LineString.prototype.unset = function(key) {};
 
 
 /**
@@ -12831,11 +14078,6 @@ ol.geom.LineString.prototype.unByKey = function(key) {};
 
 
 /**
- */
-ol.geom.MultiLineString.prototype.getExtent = function() {};
-
-
-/**
  * @return {ol.Coordinate}
  */
 ol.geom.MultiLineString.prototype.getFirstCoordinate = function() {};
@@ -12862,11 +14104,63 @@ ol.geom.MultiLineString.prototype.getClosestPoint = function(point, opt_closestP
 
 
 /**
+ * @param {ol.Extent=} opt_extent
+ * @return {ol.Extent}
+ */
+ol.geom.MultiLineString.prototype.getExtent = function(opt_extent) {};
+
+
+/**
+ * @param {number} tolerance
+ * @return {ol.geom.Geometry}
+ */
+ol.geom.MultiLineString.prototype.simplify = function(tolerance) {};
+
+
+/**
  * @param {ol.proj.ProjectionLike} source
  * @param {ol.proj.ProjectionLike} destination
  * @return {ol.geom.Geometry}
  */
 ol.geom.MultiLineString.prototype.transform = function(source, destination) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.geom.MultiLineString.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.geom.MultiLineString.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.geom.MultiLineString.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.geom.MultiLineString.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.geom.MultiLineString.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.geom.MultiLineString.prototype.unset = function(key) {};
 
 
 /**
@@ -12913,11 +14207,6 @@ ol.geom.MultiLineString.prototype.unByKey = function(key) {};
 
 
 /**
- */
-ol.geom.MultiPoint.prototype.getExtent = function() {};
-
-
-/**
  * @return {ol.Coordinate}
  */
 ol.geom.MultiPoint.prototype.getFirstCoordinate = function() {};
@@ -12944,11 +14233,63 @@ ol.geom.MultiPoint.prototype.getClosestPoint = function(point, opt_closestPoint)
 
 
 /**
+ * @param {ol.Extent=} opt_extent
+ * @return {ol.Extent}
+ */
+ol.geom.MultiPoint.prototype.getExtent = function(opt_extent) {};
+
+
+/**
+ * @param {number} tolerance
+ * @return {ol.geom.Geometry}
+ */
+ol.geom.MultiPoint.prototype.simplify = function(tolerance) {};
+
+
+/**
  * @param {ol.proj.ProjectionLike} source
  * @param {ol.proj.ProjectionLike} destination
  * @return {ol.geom.Geometry}
  */
 ol.geom.MultiPoint.prototype.transform = function(source, destination) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.geom.MultiPoint.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.geom.MultiPoint.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.geom.MultiPoint.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.geom.MultiPoint.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.geom.MultiPoint.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.geom.MultiPoint.prototype.unset = function(key) {};
 
 
 /**
@@ -12995,11 +14336,6 @@ ol.geom.MultiPoint.prototype.unByKey = function(key) {};
 
 
 /**
- */
-ol.geom.MultiPolygon.prototype.getExtent = function() {};
-
-
-/**
  * @return {ol.Coordinate}
  */
 ol.geom.MultiPolygon.prototype.getFirstCoordinate = function() {};
@@ -13026,11 +14362,63 @@ ol.geom.MultiPolygon.prototype.getClosestPoint = function(point, opt_closestPoin
 
 
 /**
+ * @param {ol.Extent=} opt_extent
+ * @return {ol.Extent}
+ */
+ol.geom.MultiPolygon.prototype.getExtent = function(opt_extent) {};
+
+
+/**
+ * @param {number} tolerance
+ * @return {ol.geom.Geometry}
+ */
+ol.geom.MultiPolygon.prototype.simplify = function(tolerance) {};
+
+
+/**
  * @param {ol.proj.ProjectionLike} source
  * @param {ol.proj.ProjectionLike} destination
  * @return {ol.geom.Geometry}
  */
 ol.geom.MultiPolygon.prototype.transform = function(source, destination) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.geom.MultiPolygon.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.geom.MultiPolygon.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.geom.MultiPolygon.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.geom.MultiPolygon.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.geom.MultiPolygon.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.geom.MultiPolygon.prototype.unset = function(key) {};
 
 
 /**
@@ -13103,11 +14491,63 @@ ol.geom.Point.prototype.getClosestPoint = function(point, opt_closestPoint) {};
 
 
 /**
+ * @param {ol.Extent=} opt_extent
+ * @return {ol.Extent}
+ */
+ol.geom.Point.prototype.getExtent = function(opt_extent) {};
+
+
+/**
+ * @param {number} tolerance
+ * @return {ol.geom.Geometry}
+ */
+ol.geom.Point.prototype.simplify = function(tolerance) {};
+
+
+/**
  * @param {ol.proj.ProjectionLike} source
  * @param {ol.proj.ProjectionLike} destination
  * @return {ol.geom.Geometry}
  */
 ol.geom.Point.prototype.transform = function(source, destination) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.geom.Point.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.geom.Point.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.geom.Point.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.geom.Point.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.geom.Point.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.geom.Point.prototype.unset = function(key) {};
 
 
 /**
@@ -13154,11 +14594,6 @@ ol.geom.Point.prototype.unByKey = function(key) {};
 
 
 /**
- */
-ol.geom.Polygon.prototype.getExtent = function() {};
-
-
-/**
  * @return {ol.Coordinate}
  */
 ol.geom.Polygon.prototype.getFirstCoordinate = function() {};
@@ -13185,11 +14620,63 @@ ol.geom.Polygon.prototype.getClosestPoint = function(point, opt_closestPoint) {}
 
 
 /**
+ * @param {ol.Extent=} opt_extent
+ * @return {ol.Extent}
+ */
+ol.geom.Polygon.prototype.getExtent = function(opt_extent) {};
+
+
+/**
+ * @param {number} tolerance
+ * @return {ol.geom.Geometry}
+ */
+ol.geom.Polygon.prototype.simplify = function(tolerance) {};
+
+
+/**
  * @param {ol.proj.ProjectionLike} source
  * @param {ol.proj.ProjectionLike} destination
  * @return {ol.geom.Geometry}
  */
 ol.geom.Polygon.prototype.transform = function(source, destination) {};
+
+
+/**
+ * @param {string} key
+ * @return {*}
+ */
+ol.geom.Polygon.prototype.get = function(key) {};
+
+
+/**
+ * @return {Array.<string>}
+ */
+ol.geom.Polygon.prototype.getKeys = function() {};
+
+
+/**
+ * @return {Object.<string, *>}
+ */
+ol.geom.Polygon.prototype.getProperties = function() {};
+
+
+/**
+ * @param {string} key
+ * @param {*} value
+ */
+ol.geom.Polygon.prototype.set = function(key, value) {};
+
+
+/**
+ * @param {Object.<string, *>} values
+ */
+ol.geom.Polygon.prototype.setProperties = function(values) {};
+
+
+/**
+ * @param {string} key
+ */
+ol.geom.Polygon.prototype.unset = function(key) {};
 
 
 /**
@@ -13236,7 +14723,7 @@ ol.geom.Polygon.prototype.unByKey = function(key) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @param {olx.format.ReadOptions=} opt_options
  * @return {Array.<ol.Feature>}
  */
@@ -13244,7 +14731,7 @@ ol.format.GML2.prototype.readFeatures = function(source, opt_options) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @param {olx.format.ReadOptions=} opt_options
  * @return {Array.<ol.Feature>}
  */
@@ -13252,115 +14739,11 @@ ol.format.GML3.prototype.readFeatures = function(source, opt_options) {};
 
 
 /**
- * @param {ArrayBuffer|Document|Node|Object|string} source
+ * @param {Document|Node|Object|string} source
  * @param {olx.format.ReadOptions=} opt_options
  * @return {Array.<ol.Feature>}
  */
 ol.format.GML.prototype.readFeatures = function(source, opt_options) {};
-
-
-/**
- * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.dom.Input.prototype.bindTo = function(key, target, opt_targetKey) {};
-
-
-/**
- * @param {string} key
- * @return {*}
- */
-ol.dom.Input.prototype.get = function(key) {};
-
-
-/**
- * @return {Array.<string>}
- */
-ol.dom.Input.prototype.getKeys = function() {};
-
-
-/**
- * @return {Object.<string, *>}
- */
-ol.dom.Input.prototype.getProperties = function() {};
-
-
-/**
- * @param {string} key
- * @param {*} value
- */
-ol.dom.Input.prototype.set = function(key, value) {};
-
-
-/**
- * @param {Object.<string, *>} values
- */
-ol.dom.Input.prototype.setProperties = function(values) {};
-
-
-/**
- * @param {string} key
- */
-ol.dom.Input.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.dom.Input.prototype.unbindAll = function() {};
-
-
-/**
- */
-ol.dom.Input.prototype.changed = function() {};
-
-
-/**
- * @return {number}
- */
-ol.dom.Input.prototype.getRevision = function() {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- * @return {goog.events.Key}
- */
-ol.dom.Input.prototype.on = function(type, listener, opt_this) {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- * @return {goog.events.Key}
- */
-ol.dom.Input.prototype.once = function(type, listener, opt_this) {};
-
-
-/**
- * @param {string|Array.<string>} type
- * @param {Function} listener
- * @param {Object=} opt_this
- */
-ol.dom.Input.prototype.un = function(type, listener, opt_this) {};
-
-
-/**
- * @param {goog.events.Key} key
- */
-ol.dom.Input.prototype.unByKey = function(key) {};
-
-
-/**
- * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
- */
-ol.control.Control.prototype.bindTo = function(key, target, opt_targetKey) {};
 
 
 /**
@@ -13398,12 +14781,7 @@ ol.control.Control.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.control.Control.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.control.Control.prototype.unbindAll = function() {};
+ol.control.Control.prototype.unset = function(key) {};
 
 
 /**
@@ -13462,12 +14840,9 @@ ol.control.Attribution.prototype.setMap = function(map) {};
 
 
 /**
- * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
+ * @param {Element|string} target
  */
-ol.control.Attribution.prototype.bindTo = function(key, target, opt_targetKey) {};
+ol.control.Attribution.prototype.setTarget = function(target) {};
 
 
 /**
@@ -13505,12 +14880,7 @@ ol.control.Attribution.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.control.Attribution.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.control.Attribution.prototype.unbindAll = function() {};
+ol.control.Attribution.prototype.unset = function(key) {};
 
 
 /**
@@ -13569,12 +14939,9 @@ ol.control.FullScreen.prototype.setMap = function(map) {};
 
 
 /**
- * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
+ * @param {Element|string} target
  */
-ol.control.FullScreen.prototype.bindTo = function(key, target, opt_targetKey) {};
+ol.control.FullScreen.prototype.setTarget = function(target) {};
 
 
 /**
@@ -13612,12 +14979,7 @@ ol.control.FullScreen.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.control.FullScreen.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.control.FullScreen.prototype.unbindAll = function() {};
+ol.control.FullScreen.prototype.unset = function(key) {};
 
 
 /**
@@ -13670,12 +15032,15 @@ ol.control.MousePosition.prototype.getMap = function() {};
 
 
 /**
- * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
+ * @param {ol.Map} map
  */
-ol.control.MousePosition.prototype.bindTo = function(key, target, opt_targetKey) {};
+ol.control.MousePosition.prototype.setMap = function(map) {};
+
+
+/**
+ * @param {Element|string} target
+ */
+ol.control.MousePosition.prototype.setTarget = function(target) {};
 
 
 /**
@@ -13713,12 +15078,7 @@ ol.control.MousePosition.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.control.MousePosition.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.control.MousePosition.prototype.unbindAll = function() {};
+ol.control.MousePosition.prototype.unset = function(key) {};
 
 
 /**
@@ -13771,12 +15131,15 @@ ol.control.OverviewMap.prototype.getMap = function() {};
 
 
 /**
- * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
+ * @param {ol.Map} map
  */
-ol.control.OverviewMap.prototype.bindTo = function(key, target, opt_targetKey) {};
+ol.control.OverviewMap.prototype.setMap = function(map) {};
+
+
+/**
+ * @param {Element|string} target
+ */
+ol.control.OverviewMap.prototype.setTarget = function(target) {};
 
 
 /**
@@ -13814,12 +15177,7 @@ ol.control.OverviewMap.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.control.OverviewMap.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.control.OverviewMap.prototype.unbindAll = function() {};
+ol.control.OverviewMap.prototype.unset = function(key) {};
 
 
 /**
@@ -13878,12 +15236,9 @@ ol.control.Rotate.prototype.setMap = function(map) {};
 
 
 /**
- * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
+ * @param {Element|string} target
  */
-ol.control.Rotate.prototype.bindTo = function(key, target, opt_targetKey) {};
+ol.control.Rotate.prototype.setTarget = function(target) {};
 
 
 /**
@@ -13921,12 +15276,7 @@ ol.control.Rotate.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.control.Rotate.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.control.Rotate.prototype.unbindAll = function() {};
+ol.control.Rotate.prototype.unset = function(key) {};
 
 
 /**
@@ -13985,12 +15335,9 @@ ol.control.ScaleLine.prototype.setMap = function(map) {};
 
 
 /**
- * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
+ * @param {Element|string} target
  */
-ol.control.ScaleLine.prototype.bindTo = function(key, target, opt_targetKey) {};
+ol.control.ScaleLine.prototype.setTarget = function(target) {};
 
 
 /**
@@ -14028,12 +15375,7 @@ ol.control.ScaleLine.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.control.ScaleLine.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.control.ScaleLine.prototype.unbindAll = function() {};
+ol.control.ScaleLine.prototype.unset = function(key) {};
 
 
 /**
@@ -14092,12 +15434,9 @@ ol.control.Zoom.prototype.setMap = function(map) {};
 
 
 /**
- * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
+ * @param {Element|string} target
  */
-ol.control.Zoom.prototype.bindTo = function(key, target, opt_targetKey) {};
+ol.control.Zoom.prototype.setTarget = function(target) {};
 
 
 /**
@@ -14135,12 +15474,7 @@ ol.control.Zoom.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.control.Zoom.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.control.Zoom.prototype.unbindAll = function() {};
+ol.control.Zoom.prototype.unset = function(key) {};
 
 
 /**
@@ -14193,12 +15527,15 @@ ol.control.ZoomSlider.prototype.getMap = function() {};
 
 
 /**
- * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
+ * @param {ol.Map} map
  */
-ol.control.ZoomSlider.prototype.bindTo = function(key, target, opt_targetKey) {};
+ol.control.ZoomSlider.prototype.setMap = function(map) {};
+
+
+/**
+ * @param {Element|string} target
+ */
+ol.control.ZoomSlider.prototype.setTarget = function(target) {};
 
 
 /**
@@ -14236,12 +15573,7 @@ ol.control.ZoomSlider.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.control.ZoomSlider.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.control.ZoomSlider.prototype.unbindAll = function() {};
+ol.control.ZoomSlider.prototype.unset = function(key) {};
 
 
 /**
@@ -14300,12 +15632,9 @@ ol.control.ZoomToExtent.prototype.setMap = function(map) {};
 
 
 /**
- * @param {string} key
- * @param {ol.Object} target
- * @param {string=} opt_targetKey
- * @return {ol.ObjectAccessor}
+ * @param {Element|string} target
  */
-ol.control.ZoomToExtent.prototype.bindTo = function(key, target, opt_targetKey) {};
+ol.control.ZoomToExtent.prototype.setTarget = function(target) {};
 
 
 /**
@@ -14343,12 +15672,7 @@ ol.control.ZoomToExtent.prototype.setProperties = function(values) {};
 /**
  * @param {string} key
  */
-ol.control.ZoomToExtent.prototype.unbind = function(key) {};
-
-
-/**
- */
-ol.control.ZoomToExtent.prototype.unbindAll = function() {};
+ol.control.ZoomToExtent.prototype.unset = function(key) {};
 
 
 /**
@@ -14401,12 +15725,6 @@ olx.AttributionOptions;
 
 
 /**
- * @typedef {{loadTilesWhileAnimating: (boolean|undefined), loadTilesWhileInteracting: (boolean|undefined)}}
- */
-olx.DeviceOptions;
-
-
-/**
  * @typedef {{tracking: (boolean|undefined)}}
  */
 olx.DeviceOrientationOptions;
@@ -14431,19 +15749,31 @@ olx.GraticuleOptions;
 
 
 /**
- * @typedef {{controls: (ol.Collection.<ol.control.Control>|Array.<ol.control.Control>|undefined), deviceOptions: (olx.DeviceOptions|undefined), pixelRatio: (number|undefined), interactions: (ol.Collection.<ol.interaction.Interaction>|Array.<ol.interaction.Interaction>|undefined), keyboardEventTarget: (Element|Document|string|undefined), layers: (Array.<ol.layer.Base>|ol.Collection.<ol.layer.Base>|undefined), logo: (boolean|string|olx.LogoOptions|undefined), overlays: (ol.Collection.<ol.Overlay>|Array.<ol.Overlay>|undefined), renderer: (ol.RendererType|Array.<(ol.RendererType|string)>|string|undefined), target: (Element|string|undefined), view: (ol.View|undefined)}}
+ * @type {Object}
+ */
+olx.interaction;
+
+
+/**
+ * @typedef {{handleEvent: (Function)}}
+ */
+olx.interaction.InteractionOptions;
+
+
+/**
+ * @typedef {{controls: (ol.Collection.<ol.control.Control>|Array.<ol.control.Control>|undefined), pixelRatio: (number|undefined), interactions: (ol.Collection.<ol.interaction.Interaction>|Array.<ol.interaction.Interaction>|undefined), keyboardEventTarget: (Element|Document|string|undefined), layers: (Array.<ol.layer.Base>|ol.Collection.<ol.layer.Base>|undefined), loadTilesWhileAnimating: (boolean|undefined), loadTilesWhileInteracting: (boolean|undefined), logo: (boolean|string|olx.LogoOptions|undefined), overlays: (ol.Collection.<ol.Overlay>|Array.<ol.Overlay>|undefined), renderer: (ol.RendererType|Array.<(ol.RendererType|string)>|string|undefined), target: (Element|string|undefined), view: (ol.View|undefined)}}
  */
 olx.MapOptions;
 
 
 /**
- * @typedef {{element: (Element|undefined), offset: (Array.<number>|undefined), position: (ol.Coordinate|undefined), positioning: (ol.OverlayPositioning|string|undefined), stopEvent: (boolean|undefined), insertFirst: (boolean|undefined)}}
+ * @typedef {{element: (Element|undefined), offset: (Array.<number>|undefined), position: (ol.Coordinate|undefined), positioning: (ol.OverlayPositioning|string|undefined), stopEvent: (boolean|undefined), insertFirst: (boolean|undefined), autoPan: (boolean|undefined), autoPanAnimation: (olx.animation.PanOptions|undefined), autoPanMargin: (number|undefined)}}
  */
 olx.OverlayOptions;
 
 
 /**
- * @typedef {{code: (string), units: (ol.proj.Units|string), extent: (ol.Extent|undefined), axisOrientation: (string|undefined), global: (boolean|undefined), worldExtent: (ol.Extent|undefined)}}
+ * @typedef {{code: (string), units: (ol.proj.Units|string|undefined), extent: (ol.Extent|undefined), axisOrientation: (string|undefined), global: (boolean|undefined), worldExtent: (ol.Extent|undefined), getPointResolution: (Function|undefined)}}
  */
 olx.ProjectionOptions;
 
@@ -14491,13 +15821,13 @@ olx.control;
 
 
 /**
- * @typedef {{className: (string|undefined), target: (Element|undefined), collapsible: (boolean|undefined), collapsed: (boolean|undefined), tipLabel: (string|undefined), label: (string|undefined), collapseLabel: (string|undefined)}}
+ * @typedef {{className: (string|undefined), target: (Element|undefined), collapsible: (boolean|undefined), collapsed: (boolean|undefined), tipLabel: (string|undefined), label: (string|Node|undefined), collapseLabel: (string|Node|undefined), render: (Function|undefined)}}
  */
 olx.control.AttributionOptions;
 
 
 /**
- * @typedef {{element: (Element|undefined), target: (Element|string|undefined)}}
+ * @typedef {{element: (Element|undefined), render: (Function|undefined), target: (Element|string|undefined)}}
  */
 olx.control.ControlOptions;
 
@@ -14509,49 +15839,49 @@ olx.control.DefaultsOptions;
 
 
 /**
- * @typedef {{className: (string|undefined), tipLabel: (string|undefined), keys: (boolean|undefined), target: (Element|undefined)}}
+ * @typedef {{className: (string|undefined), label: (string|Node|undefined), labelActive: (string|Node|undefined), tipLabel: (string|undefined), keys: (boolean|undefined), target: (Element|undefined)}}
  */
 olx.control.FullScreenOptions;
 
 
 /**
- * @typedef {{className: (string|undefined), coordinateFormat: (ol.CoordinateFormatType|undefined), projection: (ol.proj.ProjectionLike), target: (Element|undefined), undefinedHTML: (string|undefined)}}
+ * @typedef {{className: (string|undefined), coordinateFormat: (ol.CoordinateFormatType|undefined), projection: (ol.proj.ProjectionLike), render: (Function|undefined), target: (Element|undefined), undefinedHTML: (string|undefined)}}
  */
 olx.control.MousePositionOptions;
 
 
 /**
- * @typedef {{collapsed: (boolean|undefined), collapseLabel: (string|undefined), collapsible: (boolean|undefined), label: (string|undefined), layers: (!Array.<ol.layer.Layer>|ol.Collection|undefined), target: (Element|undefined), tipLabel: (string|undefined)}}
+ * @typedef {{collapsed: (boolean|undefined), collapseLabel: (string|Node|undefined), collapsible: (boolean|undefined), label: (string|Node|undefined), layers: (!Array.<ol.layer.Layer>|ol.Collection|undefined), render: (Function|undefined), target: (Element|undefined), tipLabel: (string|undefined), view: (ol.View|undefined)}}
  */
 olx.control.OverviewMapOptions;
 
 
 /**
- * @typedef {{className: (string|undefined), minWidth: (number|undefined), target: (Element|undefined), units: (ol.control.ScaleLineUnits|string|undefined)}}
+ * @typedef {{className: (string|undefined), minWidth: (number|undefined), render: (Function|undefined), target: (Element|undefined), units: (ol.control.ScaleLineUnits|string|undefined)}}
  */
 olx.control.ScaleLineOptions;
 
 
 /**
- * @typedef {{className: (string|undefined), label: (string|undefined), tipLabel: (string|undefined), duration: (number|undefined), autoHide: (boolean|undefined), target: (Element|undefined)}}
+ * @typedef {{className: (string|undefined), label: (string|Node|undefined), tipLabel: (string|undefined), duration: (number|undefined), autoHide: (boolean|undefined), render: (Function|undefined), target: (Element|undefined)}}
  */
 olx.control.RotateOptions;
 
 
 /**
- * @typedef {{duration: (number|undefined), className: (string|undefined), zoomInLabel: (string|undefined), zoomOutLabel: (string|undefined), zoomInTipLabel: (string|undefined), zoomOutTipLabel: (string|undefined), delta: (number|undefined), target: (Element|undefined)}}
+ * @typedef {{duration: (number|undefined), className: (string|undefined), zoomInLabel: (string|Node|undefined), zoomOutLabel: (string|Node|undefined), zoomInTipLabel: (string|undefined), zoomOutTipLabel: (string|undefined), delta: (number|undefined), target: (Element|undefined)}}
  */
 olx.control.ZoomOptions;
 
 
 /**
- * @typedef {{className: (string|undefined), maxResolution: (number|undefined), minResolution: (number|undefined)}}
+ * @typedef {{className: (string|undefined), duration: (number|undefined), maxResolution: (number|undefined), minResolution: (number|undefined), render: (Function|undefined)}}
  */
 olx.control.ZoomSliderOptions;
 
 
 /**
- * @typedef {{className: (string|undefined), target: (Element|undefined), tipLabel: (string|undefined), extent: (ol.Extent|undefined), undefined: (Object)}}
+ * @typedef {{className: (string|undefined), target: (Element|undefined), label: (string|Node|undefined), tipLabel: (string|undefined), extent: (ol.Extent|undefined), undefined: (Object)}}
  */
 olx.control.ZoomToExtentOptions;
 
@@ -14563,13 +15893,13 @@ olx.format;
 
 
 /**
- * @typedef {{dataProjection: (ol.proj.ProjectionLike|undefined), featureProjection: (ol.proj.ProjectionLike|undefined)}}
+ * @typedef {{dataProjection: (ol.proj.ProjectionLike), featureProjection: (ol.proj.ProjectionLike)}}
  */
 olx.format.ReadOptions;
 
 
 /**
- * @typedef {{dataProjection: (ol.proj.ProjectionLike|undefined), featureProjection: (ol.proj.ProjectionLike)}}
+ * @typedef {{dataProjection: (ol.proj.ProjectionLike), featureProjection: (ol.proj.ProjectionLike), rightHanded: (boolean|undefined)}}
  */
 olx.format.WriteOptions;
 
@@ -14581,7 +15911,13 @@ olx.format.GeoJSONOptions;
 
 
 /**
- * @typedef {{factor: (number)}}
+ * @typedef {{geometryName: (string|undefined)}}
+ */
+olx.format.EsriJSONOptions;
+
+
+/**
+ * @typedef {{factor: (number), geometryLayout: (ol.geom.GeometryLayout|undefined)}}
  */
 olx.format.PolylineOptions;
 
@@ -14605,7 +15941,7 @@ olx.format.KMLOptions;
 
 
 /**
- * @typedef {{featureNS: (string), featureType: (string), srsName: (string), surface: (boolean|undefined), curve: (boolean|undefined), multiCurve: (boolean|undefined), multiSurface: (boolean|undefined), schemaLocation: (string|undefined)}}
+ * @typedef {{featureNS: (Object.<string, string>|string|undefined), featureType: (Array.<string>|string|undefined), srsName: (string), surface: (boolean|undefined), curve: (boolean|undefined), multiCurve: (boolean|undefined), multiSurface: (boolean|undefined), schemaLocation: (string|undefined)}}
  */
 olx.format.GMLOptions;
 
@@ -14617,13 +15953,13 @@ olx.format.GPXOptions;
 
 
 /**
- * @typedef {{featureNS: (string), featureType: (string), schemaLocation: (string|undefined)}}
+ * @typedef {{featureNS: (Object.<string, string>|string|undefined), featureType: (Array.<string>|string|undefined), gmlFormat: (ol.format.GMLBase|undefined), schemaLocation: (string|undefined)}}
  */
 olx.format.WFSOptions;
 
 
 /**
- * @typedef {{featureNS: (string), featurePrefix: (string), featureTypes: (Array.<string>), srsName: (string|undefined), handle: (string|undefined), outputFormat: (string|undefined), maxFeatures: (number|undefined), geometryName: (string|undefined), gmlFormat: (ol.format.GMLBase|undefined), bbox: (ol.Extent|undefined)}}
+ * @typedef {{featureNS: (string), featurePrefix: (string), featureTypes: (Array.<string>), srsName: (string|undefined), handle: (string|undefined), outputFormat: (string|undefined), maxFeatures: (number|undefined), geometryName: (string|undefined), propertyNames: (Array.<string>|undefined), startIndex: (number|undefined), count: (number|undefined), bbox: (ol.Extent|undefined)}}
  */
 olx.format.WFSWriteGetFeatureOptions;
 
@@ -14638,12 +15974,6 @@ olx.format.WFSWriteTransactionOptions;
  * @typedef {{splitCollection: (boolean|undefined), undefined: (Object)}}
  */
 olx.format.WKTOptions;
-
-
-/**
- * @type {Object}
- */
-olx.interaction;
 
 
 /**
@@ -14677,31 +16007,37 @@ olx.interaction.DragPanOptions;
 
 
 /**
- * @typedef {{condition: (ol.events.ConditionType|undefined)}}
+ * @typedef {{condition: (ol.events.ConditionType|undefined), duration: (number|undefined)}}
  */
 olx.interaction.DragRotateAndZoomOptions;
 
 
 /**
- * @typedef {{condition: (ol.events.ConditionType|undefined)}}
+ * @typedef {{condition: (ol.events.ConditionType|undefined), duration: (number|undefined)}}
  */
 olx.interaction.DragRotateOptions;
 
 
 /**
- * @typedef {{condition: (ol.events.ConditionType|undefined), style: (ol.style.Style)}}
+ * @typedef {{condition: (ol.events.ConditionType|undefined), duration: (number|undefined), style: (ol.style.Style)}}
  */
 olx.interaction.DragZoomOptions;
 
 
 /**
- * @typedef {{features: (ol.Collection.<ol.Feature>|undefined), source: (ol.source.Vector|undefined), snapTolerance: (number|undefined), type: (ol.geom.GeometryType), minPointsPerRing: (number|undefined), style: (ol.style.Style|Array.<ol.style.Style>|ol.style.StyleFunction|undefined), geometryName: (string|undefined), condition: (ol.events.ConditionType|undefined)}}
+ * @typedef {{clickTolerance: (number|undefined), features: (ol.Collection.<ol.Feature>|undefined), source: (ol.source.Vector|undefined), snapTolerance: (number|undefined), type: (ol.geom.GeometryType), maxPoints: (number|undefined), minPoints: (number|undefined), style: (ol.style.Style|Array.<ol.style.Style>|ol.style.StyleFunction|undefined), geometryFunction: (ol.interaction.DrawGeometryFunctionType|undefined), geometryName: (string|undefined), condition: (ol.events.ConditionType|undefined), freehandCondition: (ol.events.ConditionType|undefined), wrapX: (boolean|undefined)}}
  */
 olx.interaction.DrawOptions;
 
 
 /**
- * @typedef {{condition: (ol.events.ConditionType|undefined), pixelDelta: (number|undefined)}}
+ * @typedef {{features: (ol.Collection.<ol.Feature>|undefined)}}
+ */
+olx.interaction.TranslateOptions;
+
+
+/**
+ * @typedef {{condition: (ol.events.ConditionType|undefined), duration: (number|undefined), pixelDelta: (number|undefined)}}
  */
 olx.interaction.KeyboardPanOptions;
 
@@ -14713,19 +16049,19 @@ olx.interaction.KeyboardZoomOptions;
 
 
 /**
- * @typedef {{deleteCondition: (ol.events.ConditionType|undefined), pixelTolerance: (number|undefined), style: (ol.style.Style|Array.<ol.style.Style>|ol.style.StyleFunction|undefined), features: (ol.Collection.<ol.Feature>)}}
+ * @typedef {{deleteCondition: (ol.events.ConditionType|undefined), pixelTolerance: (number|undefined), style: (ol.style.Style|Array.<ol.style.Style>|ol.style.StyleFunction|undefined), features: (ol.Collection.<ol.Feature>), wrapX: (boolean|undefined)}}
  */
 olx.interaction.ModifyOptions;
 
 
 /**
- * @typedef {{duration: (number|undefined)}}
+ * @typedef {{duration: (number|undefined), useAnchor: (boolean|undefined)}}
  */
 olx.interaction.MouseWheelZoomOptions;
 
 
 /**
- * @typedef {{threshold: (number|undefined)}}
+ * @typedef {{duration: (number|undefined), threshold: (number|undefined)}}
  */
 olx.interaction.PinchRotateOptions;
 
@@ -14737,9 +16073,21 @@ olx.interaction.PinchZoomOptions;
 
 
 /**
- * @typedef {{addCondition: (ol.events.ConditionType|undefined), condition: (ol.events.ConditionType|undefined), layers: (Array.<ol.layer.Layer>|Function), style: (ol.style.Style|Array.<ol.style.Style>|ol.style.StyleFunction|undefined), removeCondition: (ol.events.ConditionType|undefined), toggleCondition: (ol.events.ConditionType|undefined), undefined: (Object)}}
+ * @typedef {{handleDownEvent: (Function|undefined), handleDragEvent: (Function|undefined), handleEvent: (Function|undefined), handleMoveEvent: (Function|undefined), handleUpEvent: (Function|undefined)}}
+ */
+olx.interaction.PointerOptions;
+
+
+/**
+ * @typedef {{addCondition: (ol.events.ConditionType|undefined), condition: (ol.events.ConditionType|undefined), layers: (Array.<ol.layer.Layer>|Function), style: (ol.style.Style|Array.<ol.style.Style>|ol.style.StyleFunction|undefined), removeCondition: (ol.events.ConditionType|undefined), toggleCondition: (ol.events.ConditionType|undefined), multi: (boolean|undefined), features: (ol.Collection.<ol.Feature>), filter: (ol.interaction.SelectFilterFunction|undefined), wrapX: (boolean|undefined)}}
  */
 olx.interaction.SelectOptions;
+
+
+/**
+ * @typedef {{features: (ol.Collection.<ol.Feature>|undefined), pixelTolerance: (number|undefined), source: (ol.source.Vector|undefined), undefined: (Object)}}
+ */
+olx.interaction.SnapOptions;
 
 
 /**
@@ -14749,51 +16097,45 @@ olx.layer;
 
 
 /**
- * @typedef {{brightness: (number|undefined), contrast: (number|undefined), hue: (number|undefined), opacity: (number|undefined), saturation: (number|undefined), visible: (boolean|undefined), extent: (ol.Extent|undefined), minResolution: (number|undefined), maxResolution: (number|undefined)}}
+ * @typedef {{opacity: (number|undefined), visible: (boolean|undefined), extent: (ol.Extent|undefined), zIndex: (number|undefined), minResolution: (number|undefined), maxResolution: (number|undefined)}}
  */
 olx.layer.BaseOptions;
 
 
 /**
- * @typedef {{brightness: (number|undefined), contrast: (number|undefined), hue: (number|undefined), opacity: (number|undefined), saturation: (number|undefined), source: (ol.source.Source|undefined), visible: (boolean|undefined), extent: (ol.Extent|undefined), minResolution: (number|undefined), maxResolution: (number|undefined)}}
+ * @typedef {{opacity: (number|undefined), source: (ol.source.Source|undefined), visible: (boolean|undefined), extent: (ol.Extent|undefined), zIndex: (number|undefined), minResolution: (number|undefined), maxResolution: (number|undefined)}}
  */
 olx.layer.LayerOptions;
 
 
 /**
- * @typedef {{brightness: (number|undefined), contrast: (number|undefined), hue: (number|undefined), opacity: (number|undefined), saturation: (number|undefined), visible: (boolean|undefined), extent: (ol.Extent|undefined), minResolution: (number|undefined), maxResolution: (number|undefined), layers: (Array.<ol.layer.Base>|ol.Collection.<ol.layer.Base>|undefined)}}
+ * @typedef {{opacity: (number|undefined), visible: (boolean|undefined), extent: (ol.Extent|undefined), zIndex: (number|undefined), minResolution: (number|undefined), maxResolution: (number|undefined), layers: (Array.<ol.layer.Base>|ol.Collection.<ol.layer.Base>|undefined)}}
  */
 olx.layer.GroupOptions;
 
 
 /**
- * @typedef {{brightness: (number|undefined), contrast: (number|undefined), hue: (number|undefined), gradient: (Array.<string>|undefined), radius: (number|undefined), blur: (number|undefined), shadow: (number|undefined), weight: (string|Function), extent: (ol.Extent|undefined), minResolution: (number|undefined), maxResolution: (number|undefined), opacity: (number|undefined), saturation: (number|undefined), source: (ol.source.Vector), visible: (boolean|undefined)}}
+ * @typedef {{gradient: (Array.<string>|undefined), radius: (number|undefined), blur: (number|undefined), shadow: (number|undefined), weight: (string|Function), extent: (ol.Extent|undefined), minResolution: (number|undefined), maxResolution: (number|undefined), opacity: (number|undefined), source: (ol.source.Vector), visible: (boolean|undefined)}}
  */
 olx.layer.HeatmapOptions;
 
 
 /**
- * @typedef {{brightness: (number|undefined), contrast: (number|undefined), hue: (number|undefined), opacity: (number|undefined), saturation: (number|undefined), source: (ol.source.Image), visible: (boolean|undefined), extent: (ol.Extent|undefined), minResolution: (number|undefined), maxResolution: (number|undefined)}}
+ * @typedef {{opacity: (number|undefined), source: (ol.source.Image), map: (ol.Map|undefined), visible: (boolean|undefined), extent: (ol.Extent|undefined), minResolution: (number|undefined), maxResolution: (number|undefined)}}
  */
 olx.layer.ImageOptions;
 
 
 /**
- * @typedef {{brightness: (number|undefined), contrast: (number|undefined), hue: (number|undefined), opacity: (number|undefined), preload: (number|undefined), saturation: (number|undefined), source: (ol.source.Tile), visible: (boolean|undefined), extent: (ol.Extent|undefined), minResolution: (number|undefined), maxResolution: (number|undefined), useInterimTilesOnError: (boolean|undefined)}}
+ * @typedef {{opacity: (number|undefined), preload: (number|undefined), source: (ol.source.Tile), map: (ol.Map|undefined), visible: (boolean|undefined), extent: (ol.Extent|undefined), minResolution: (number|undefined), maxResolution: (number|undefined), useInterimTilesOnError: (boolean|undefined)}}
  */
 olx.layer.TileOptions;
 
 
 /**
- * @typedef {{brightness: (number|undefined), contrast: (number|undefined), renderOrder: (Function), hue: (number|undefined), extent: (ol.Extent|undefined), minResolution: (number|undefined), maxResolution: (number|undefined), opacity: (number|undefined), saturation: (number|undefined), source: (ol.source.Vector), style: (ol.style.Style|Array.<ol.style.Style>|ol.style.StyleFunction|undefined), visible: (boolean|undefined)}}
+ * @typedef {{renderOrder: (Function), map: (ol.Map|undefined), extent: (ol.Extent|undefined), minResolution: (number|undefined), maxResolution: (number|undefined), opacity: (number|undefined), renderBuffer: (number|undefined), source: (ol.source.Vector), style: (ol.style.Style|Array.<ol.style.Style>|ol.style.StyleFunction|undefined), updateWhileAnimating: (boolean|undefined), updateWhileInteracting: (boolean|undefined), visible: (boolean|undefined), undefined: (Object)}}
  */
 olx.layer.VectorOptions;
-
-
-/**
- * @typedef {{features: (Array.<ol.Feature>|ol.Collection.<ol.Feature>|undefined), map: (ol.Map|undefined), style: (ol.style.Style|Array.<ol.style.Style>|ol.style.StyleFunction|undefined), undefined: (Object)}}
- */
-olx.FeatureOverlayOptions;
 
 
 /**
@@ -14803,7 +16145,7 @@ olx.source;
 
 
 /**
- * @typedef {{culture: (string|undefined), key: (string), imagerySet: (string), maxZoom: (number|undefined), tileLoadFunction: (ol.TileLoadFunctionType|undefined)}}
+ * @typedef {{culture: (string|undefined), key: (string), imagerySet: (string), maxZoom: (number|undefined), tileLoadFunction: (ol.TileLoadFunctionType|undefined), wrapX: (boolean|undefined)}}
  */
 olx.source.BingMapsOptions;
 
@@ -14815,45 +16157,21 @@ olx.source.ClusterOptions;
 
 
 /**
- * @typedef {{attributions: (Array.<ol.Attribution>|undefined), format: (ol.format.Feature), logo: (string|olx.LogoOptions|undefined), projection: (ol.proj.ProjectionLike)}}
+ * @typedef {{preemptive: (boolean|undefined), url: (string)}}
  */
-olx.source.FormatVectorOptions;
+olx.source.TileUTFGridOptions;
 
 
 /**
- * @typedef {{attributions: (Array.<ol.Attribution>|undefined), defaultProjection: (ol.proj.ProjectionLike), logo: (string|olx.LogoOptions|undefined), object: (GeoJSONObject|undefined), projection: (ol.proj.ProjectionLike), text: (string|undefined), url: (string|undefined), urls: (Array.<string>|undefined)}}
- */
-olx.source.GeoJSONOptions;
-
-
-/**
- * @typedef {{attributions: (Array.<ol.Attribution>|undefined), doc: (Document|undefined), logo: (string|olx.LogoOptions|undefined), node: (Node|undefined), projection: (ol.proj.ProjectionLike), text: (string|undefined), url: (string|undefined), urls: (Array.<string>|undefined)}}
- */
-olx.source.GPXOptions;
-
-
-/**
- * @typedef {{attributions: (Array.<ol.Attribution>|undefined), crossOrigin: (null|string|undefined), logo: (string|olx.LogoOptions|undefined), opaque: (boolean|undefined), projection: (ol.proj.ProjectionLike), state: (ol.source.State|string|undefined), tileClass: (Function|undefined), tileGrid: (ol.tilegrid.TileGrid|undefined), tileLoadFunction: (ol.TileLoadFunctionType|undefined), tilePixelRatio: (number|undefined), tileUrlFunction: (ol.TileUrlFunctionType|undefined)}}
+ * @typedef {{attributions: (Array.<ol.Attribution>|undefined), crossOrigin: (null|string|undefined), logo: (string|olx.LogoOptions|undefined), opaque: (boolean|undefined), projection: (ol.proj.ProjectionLike), state: (ol.source.State|string|undefined), tileClass: (Function|undefined), tileGrid: (ol.tilegrid.TileGrid|undefined), tileLoadFunction: (ol.TileLoadFunctionType|undefined), tilePixelRatio: (number|undefined), tileUrlFunction: (ol.TileUrlFunctionType|undefined), wrapX: (boolean|undefined)}}
  */
 olx.source.TileImageOptions;
 
 
 /**
- * @typedef {{attributions: (Array.<ol.Attribution>|undefined), format: (ol.format.Feature), logo: (string|olx.LogoOptions|undefined), projection: (ol.proj.ProjectionLike), tileGrid: (ol.tilegrid.TileGrid), tileUrlFunction: (ol.TileUrlFunctionType|undefined), url: (string|undefined), urls: (Array.<string>|undefined)}}
+ * @typedef {{attributions: (Array.<ol.Attribution>|undefined), format: (ol.format.Feature|undefined), logo: (string|olx.LogoOptions|undefined), tileGrid: (ol.tilegrid.TileGrid), tileUrlFunction: (ol.TileUrlFunctionType|undefined), tileLoadFunction: (ol.TileVectorLoadFunctionType|undefined), url: (string|undefined), urls: (Array.<string>|undefined), wrapX: (boolean|undefined)}}
  */
 olx.source.TileVectorOptions;
-
-
-/**
- * @typedef {{attributions: (Array.<ol.Attribution>|undefined), defaultProjection: (ol.proj.ProjectionLike), logo: (string|olx.LogoOptions|undefined), object: (GeoJSONObject|undefined), projection: (ol.proj.ProjectionLike), text: (string|undefined), url: (string|undefined)}}
- */
-olx.source.TopoJSONOptions;
-
-
-/**
- * @typedef {{altitudeMode: (ol.format.IGCZ|undefined), projection: (ol.proj.ProjectionLike), text: (string|undefined), url: (string|undefined), urls: (Array.<string>|undefined)}}
- */
-olx.source.IGCOptions;
 
 
 /**
@@ -14863,33 +16181,21 @@ olx.source.ImageMapGuideOptions;
 
 
 /**
- * @typedef {{attributions: (Array.<ol.Attribution>|undefined), defaultStyle: (Array.<ol.style.Style>|undefined), doc: (Document|undefined), extractStyles: (boolean|undefined), logo: (string|olx.LogoOptions|undefined), node: (Node|undefined), projection: (ol.proj.ProjectionLike), text: (string|undefined), url: (string|undefined), urls: (Array.<string>|undefined)}}
- */
-olx.source.KMLOptions;
-
-
-/**
- * @typedef {{layer: (string), tileLoadFunction: (ol.TileLoadFunctionType|undefined)}}
+ * @typedef {{layer: (string), tileLoadFunction: (ol.TileLoadFunctionType|undefined), url: (string|undefined)}}
  */
 olx.source.MapQuestOptions;
 
 
 /**
- * @typedef {{projection: (ol.proj.ProjectionLike), tileGrid: (ol.tilegrid.TileGrid|undefined)}}
+ * @typedef {{projection: (ol.proj.ProjectionLike), tileGrid: (ol.tilegrid.TileGrid|undefined), wrapX: (boolean|undefined)}}
  */
 olx.source.TileDebugOptions;
 
 
 /**
- * @typedef {{attributions: (Array.<ol.Attribution>|undefined), crossOrigin: (null|string|undefined), maxZoom: (number|undefined), tileLoadFunction: (ol.TileLoadFunctionType|undefined), url: (string|undefined)}}
+ * @typedef {{attributions: (Array.<ol.Attribution>|undefined), crossOrigin: (null|string|undefined), maxZoom: (number|undefined), tileLoadFunction: (ol.TileLoadFunctionType|undefined), url: (string|undefined), wrapX: (boolean|undefined)}}
  */
 olx.source.OSMOptions;
-
-
-/**
- * @typedef {{attributions: (Array.<ol.Attribution>|undefined), doc: (Document|undefined), logo: (string|olx.LogoOptions|undefined), node: (Node|undefined), projection: (ol.proj.ProjectionLike), text: (string|undefined), url: (string|undefined), urls: (Array.<string>|undefined)}}
- */
-olx.source.OSMXMLOptions;
 
 
 /**
@@ -14902,6 +16208,12 @@ olx.source.ImageCanvasOptions;
  * @typedef {{attributions: (Array.<ol.Attribution>|undefined), logo: (string|olx.LogoOptions|undefined), projection: (ol.proj.ProjectionLike), ratio: (number|undefined), resolutions: (Array.<number>|undefined), source: (ol.source.Vector), style: (ol.style.Style|Array.<ol.style.Style>|ol.style.StyleFunction|undefined)}}
  */
 olx.source.ImageVectorOptions;
+
+
+/**
+ * @typedef {{sources: (Array.<ol.source.Source>), operation: (ol.raster.Operation|undefined), lib: (Object|undefined), threads: (number|undefined), operationType: (ol.raster.OperationType|undefined)}}
+ */
+olx.source.RasterOptions;
 
 
 /**
@@ -14923,43 +16235,37 @@ olx.source.ImageStaticOptions;
 
 
 /**
- * @typedef {{attributions: (Array.<ol.Attribution>|undefined), format: (ol.format.Feature), loader: (Function), strategy: (Function), logo: (string|olx.LogoOptions|undefined), projection: (ol.proj.ProjectionLike)}}
+ * @typedef {{attributions: (Array.<ol.Attribution>|undefined), crossOrigin: (null|string|undefined), params: (Object.<string, *>|undefined), logo: (string|olx.LogoOptions|undefined), tileGrid: (ol.tilegrid.TileGrid|undefined), projection: (ol.proj.ProjectionLike), tileLoadFunction: (ol.TileLoadFunctionType|undefined), url: (string|undefined), wrapX: (boolean|undefined), urls: (Array.<string>|undefined)}}
  */
-olx.source.ServerVectorOptions;
+olx.source.TileArcGISRestOptions;
 
 
 /**
- * @typedef {{crossOrigin: (null|string|undefined), tileLoadFunction: (ol.TileLoadFunctionType|undefined), url: (string), wrapX: (boolean|undefined)}}
+ * @typedef {{attributions: (Array.<ol.Attribution>|undefined), crossOrigin: (null|string|undefined), tileLoadFunction: (ol.TileLoadFunctionType|undefined), url: (string), wrapX: (boolean|undefined)}}
  */
 olx.source.TileJSONOptions;
 
 
 /**
- * @typedef {{attributions: (Array.<ol.Attribution>|undefined), params: (Object.<string, *>), crossOrigin: (null|string|undefined), gutter: (number|undefined), hidpi: (boolean|undefined), logo: (string|olx.LogoOptions|undefined), tileGrid: (ol.tilegrid.TileGrid|undefined), maxZoom: (number|undefined), projection: (ol.proj.ProjectionLike), serverType: (ol.source.wms.ServerType|string|undefined), tileLoadFunction: (ol.TileLoadFunctionType|undefined), url: (string|undefined), urls: (Array.<string>|undefined)}}
+ * @typedef {{attributions: (Array.<ol.Attribution>|undefined), params: (Object.<string, *>), crossOrigin: (null|string|undefined), gutter: (number|undefined), hidpi: (boolean|undefined), logo: (string|olx.LogoOptions|undefined), tileGrid: (ol.tilegrid.TileGrid|undefined), maxZoom: (number|undefined), projection: (ol.proj.ProjectionLike), serverType: (ol.source.wms.ServerType|string|undefined), tileLoadFunction: (ol.TileLoadFunctionType|undefined), url: (string|undefined), urls: (Array.<string>|undefined), wrapX: (boolean|undefined)}}
  */
 olx.source.TileWMSOptions;
 
 
 /**
- * @typedef {{attributions: (Array.<ol.Attribution>|undefined), features: (Array.<ol.Feature>|undefined), logo: (string|olx.LogoOptions|undefined), projection: (ol.proj.ProjectionLike), state: (ol.source.State|string|undefined)}}
+ * @typedef {{attributions: (Array.<ol.Attribution>|undefined), features: (Array.<ol.Feature>|ol.Collection.<ol.Feature>|undefined), format: (ol.format.Feature|undefined), loader: (ol.FeatureLoader|undefined), logo: (string|olx.LogoOptions|undefined), strategy: (ol.LoadingStrategy|undefined), url: (string|ol.FeatureUrlFunction|undefined), useSpatialIndex: (boolean|undefined), wrapX: (boolean|undefined)}}
  */
 olx.source.VectorOptions;
 
 
 /**
- * @typedef {{arrayBuffer: (ArrayBuffer|undefined), attributions: (Array.<ol.Attribution>|undefined), doc: (Document|undefined), format: (ol.format.Feature), logo: (string|olx.LogoOptions|undefined), node: (Node|undefined), object: (Object|undefined), projection: (ol.proj.ProjectionLike), text: (string|undefined), url: (string|undefined), urls: (Array.<string>|undefined)}}
- */
-olx.source.StaticVectorOptions;
-
-
-/**
- * @typedef {{attributions: (Array.<ol.Attribution>|undefined), crossOrigin: (string|null|undefined), logo: (string|olx.LogoOptions|undefined), tileGrid: (ol.tilegrid.WMTS), projection: (ol.proj.ProjectionLike), requestEncoding: (ol.source.WMTSRequestEncoding|string|undefined), layer: (string), style: (string), tileClass: (Function|undefined), tilePixelRatio: (number|undefined), version: (string|undefined), format: (string|undefined), matrixSet: (string), dimensions: (Object|undefined), url: (string|undefined), maxZoom: (number|undefined), tileLoadFunction: (ol.TileLoadFunctionType|undefined), urls: (Array.<string>|undefined)}}
+ * @typedef {{attributions: (Array.<ol.Attribution>|undefined), crossOrigin: (string|null|undefined), logo: (string|olx.LogoOptions|undefined), tileGrid: (ol.tilegrid.WMTS), projection: (ol.proj.ProjectionLike), requestEncoding: (ol.source.WMTSRequestEncoding|string|undefined), layer: (string), style: (string), tileClass: (Function|undefined), tilePixelRatio: (number|undefined), version: (string|undefined), format: (string|undefined), matrixSet: (string), dimensions: (Object|undefined), url: (string|undefined), maxZoom: (number|undefined), tileLoadFunction: (ol.TileLoadFunctionType|undefined), urls: (Array.<string>|undefined), wrapX: (boolean|undefined)}}
  */
 olx.source.WMTSOptions;
 
 
 /**
- * @typedef {{attributions: (Array.<ol.Attribution>|undefined), crossOrigin: (null|string|undefined), logo: (string|olx.LogoOptions|undefined), projection: (ol.proj.ProjectionLike), maxZoom: (number|undefined), minZoom: (number|undefined), tileLoadFunction: (ol.TileLoadFunctionType|undefined), tilePixelRatio: (number|undefined), tileSize: (number|undefined), tileUrlFunction: (ol.TileUrlFunctionType|undefined), url: (string|undefined), urls: (Array.<string>|undefined), wrapX: (boolean|undefined)}}
+ * @typedef {{attributions: (Array.<ol.Attribution>|undefined), crossOrigin: (null|string|undefined), logo: (string|olx.LogoOptions|undefined), projection: (ol.proj.ProjectionLike), maxZoom: (number|undefined), minZoom: (number|undefined), tileGrid: (ol.tilegrid.TileGrid), tileLoadFunction: (ol.TileLoadFunctionType|undefined), tilePixelRatio: (number|undefined), tileSize: (number|ol.Size|undefined), tileUrlFunction: (ol.TileUrlFunctionType|undefined), url: (string|undefined), urls: (Array.<string>|undefined), wrapX: (boolean|undefined)}}
  */
 olx.source.XYZOptions;
 
@@ -14977,7 +16283,7 @@ olx.style;
 
 
 /**
- * @typedef {{fill: (ol.style.Fill|undefined), radius: (number), snapToPixel: (boolean|undefined), stroke: (ol.style.Stroke|undefined)}}
+ * @typedef {{fill: (ol.style.Fill|undefined), radius: (number), snapToPixel: (boolean|undefined), stroke: (ol.style.Stroke|undefined), atlasManager: (ol.style.AtlasManager|undefined)}}
  */
 olx.style.CircleOptions;
 
@@ -14989,13 +16295,13 @@ olx.style.FillOptions;
 
 
 /**
- * @typedef {{anchor: (Array.<number>|undefined), anchorOrigin: (ol.style.IconOrigin|undefined), anchorXUnits: (ol.style.IconAnchorUnits|undefined), anchorYUnits: (ol.style.IconAnchorUnits|undefined), crossOrigin: (null|string|undefined), img: (Image|undefined), offset: (Array.<number>|undefined), offsetOrigin: (ol.style.IconOrigin|undefined), scale: (number|undefined), snapToPixel: (boolean|undefined), rotateWithView: (boolean|undefined), rotation: (number|undefined), size: (ol.Size|undefined), src: (string)}}
+ * @typedef {{anchor: (Array.<number>|undefined), anchorOrigin: (ol.style.IconOrigin|undefined), anchorXUnits: (ol.style.IconAnchorUnits|undefined), anchorYUnits: (ol.style.IconAnchorUnits|undefined), crossOrigin: (null|string|undefined), img: (Image|undefined), offset: (Array.<number>|undefined), offsetOrigin: (ol.style.IconOrigin|undefined), opacity: (number|undefined), scale: (number|undefined), snapToPixel: (boolean|undefined), rotateWithView: (boolean|undefined), rotation: (number|undefined), size: (ol.Size|undefined), imgSize: (ol.Size|undefined), src: (string)}}
  */
 olx.style.IconOptions;
 
 
 /**
- * @typedef {{fill: (ol.style.Fill|undefined), points: (number), radius: (number), radius2: (number), angle: (number), snapToPixel: (boolean|undefined), stroke: (ol.style.Stroke|undefined)}}
+ * @typedef {{fill: (ol.style.Fill|undefined), points: (number), radius: (number|undefined), radius1: (number|undefined), radius2: (number|undefined), angle: (number|undefined), snapToPixel: (boolean|undefined), stroke: (ol.style.Stroke|undefined), rotation: (number|undefined), atlasManager: (ol.style.AtlasManager|undefined)}}
  */
 olx.style.RegularShapeOptions;
 
@@ -15013,7 +16319,7 @@ olx.style.TextOptions;
 
 
 /**
- * @typedef {{fill: (ol.style.Fill|undefined), image: (ol.style.Image|undefined), stroke: (ol.style.Stroke|undefined), text: (ol.style.Text|undefined), zIndex: (number|undefined), undefined: (Object)}}
+ * @typedef {{geometry: (undefined|string|ol.geom.Geometry|ol.style.GeometryFunction), fill: (ol.style.Fill|undefined), image: (ol.style.Image|undefined), stroke: (ol.style.Stroke|undefined), text: (ol.style.Text|undefined), zIndex: (number|undefined), undefined: (Object)}}
  */
 olx.style.StyleOptions;
 
@@ -15025,27 +16331,21 @@ olx.tilegrid;
 
 
 /**
- * @typedef {{minZoom: (number|undefined), origin: (ol.Coordinate|undefined), origins: (Array.<ol.Coordinate>|undefined), resolutions: (Array.<number>), tileSize: (number|undefined), tileSizes: (Array.<number>|undefined)}}
+ * @typedef {{extent: (ol.Extent|undefined), minZoom: (number|undefined), origin: (ol.Coordinate|undefined), origins: (Array.<ol.Coordinate>|undefined), resolutions: (Array.<number>), tileSize: (number|ol.Size|undefined), tileSizes: (Array.<(number|ol.Size)>|undefined)}}
  */
 olx.tilegrid.TileGridOptions;
 
 
 /**
- * @typedef {{origin: (ol.Coordinate|undefined), origins: (Array.<ol.Coordinate>|undefined), resolutions: (Array.<number>), matrixIds: (Array.<string>), tileSize: (number|undefined), tileSizes: (Array.<number>|undefined)}}
+ * @typedef {{extent: (ol.Extent|undefined), origin: (ol.Coordinate|undefined), origins: (Array.<ol.Coordinate>|undefined), resolutions: (Array.<number>), matrixIds: (Array.<string>), sizes: (Array.<ol.Size>|undefined), tileSize: (number|ol.Size|undefined), tileSizes: (Array.<(number|ol.Size)>|undefined), widths: (Array.<number>|undefined)}}
  */
 olx.tilegrid.WMTSOptions;
 
 
 /**
- * @typedef {{extent: (ol.Extent|undefined), maxZoom: (number|undefined), minZoom: (number|undefined), tileSize: (number|undefined)}}
+ * @typedef {{extent: (ol.Extent|undefined), maxZoom: (number|undefined), minZoom: (number|undefined), tileSize: (number|ol.Size|undefined), undefined: (Object)}}
  */
 olx.tilegrid.XYZOptions;
-
-
-/**
- * @typedef {{resolutions: (Array.<number>), undefined: (Object)}}
- */
-olx.tilegrid.ZoomifyOptions;
 
 
 /**
@@ -15057,7 +16357,7 @@ olx.view;
 /**
  * @typedef {{padding: (Array.<number>), constrainResolution: (boolean|undefined), nearest: (boolean|undefined), minResolution: (number|undefined), maxZoom: (number|undefined)}}
  */
-olx.view.FitGeometryOptions;
+olx.view.FitOptions;
 
 
 /**
@@ -15067,9 +16367,15 @@ olx.FrameState;
 
 
 /**
- * @typedef {{center: (ol.Coordinate), resolution: (number), rotation: (number)}}
+ * @typedef {{center: (ol.Coordinate), projection: (ol.proj.Projection), resolution: (number), rotation: (number)}}
  */
 olx.ViewState;
+
+
+/**
+ * @typedef {{initialSize: (number|undefined), maxSize: (number|undefined), space: (number|undefined)}}
+ */
+olx.style.AtlasManagerOptions;
 
 
 /**
@@ -15097,15 +16403,21 @@ ol.Extent;
 
 
 /**
- * @type {Object}
+ * @typedef {Function}
  */
-ol.feature;
+ol.FeatureStyleFunction;
 
 
 /**
  * @typedef {Function}
  */
-ol.feature.FeatureStyleFunction;
+ol.FeatureLoader;
+
+
+/**
+ * @typedef {Function}
+ */
+ol.FeatureUrlFunction;
 
 
 /**
@@ -15118,6 +16430,12 @@ ol.PreRenderFunction;
  * @typedef {Function}
  */
 ol.ImageLoadFunctionType;
+
+
+/**
+ * @typedef {Function}
+ */
+ol.LoadingStrategy;
 
 
 /**
@@ -15153,6 +16471,12 @@ ol.TileLoadFunctionType;
 /**
  * @typedef {Function}
  */
+ol.TileVectorLoadFunctionType;
+
+
+/**
+ * @typedef {Function}
+ */
 ol.TileUrlFunctionType;
 
 
@@ -15178,6 +16502,12 @@ ol.style.IconOrigin;
  * @typedef {Function}
  */
 ol.style.StyleFunction;
+
+
+/**
+ * @typedef {Function}
+ */
+ol.style.GeometryFunction;
 
 
 /**
@@ -15211,6 +16541,30 @@ ol.RendererType;
 
 
 /**
+ * @type {Object}
+ */
+ol.raster;
+
+
+/**
+ * @typedef {string}
+ */
+ol.raster.OperationType;
+
+
+/**
+ * @typedef {Function}
+ */
+ol.raster.Operation;
+
+
+/**
+ * @typedef {Array.<number>}
+ */
+ol.raster.Pixel;
+
+
+/**
  * @typedef {ol.proj.Projection|string|undefined}
  */
 ol.proj.ProjectionLike;
@@ -15220,6 +16574,18 @@ ol.proj.ProjectionLike;
  * @typedef {string}
  */
 ol.proj.Units;
+
+
+/**
+ * @typedef {Function}
+ */
+ol.interaction.DrawGeometryFunctionType;
+
+
+/**
+ * @typedef {Function}
+ */
+ol.interaction.SelectFilterFunction;
 
 
 /**

@@ -1,3 +1,5 @@
+goog.provide('vk2.require');
+
 goog.require('vk2.app.AdminEvaluationApp');
 goog.require('vk2.app.GeoreferenceApp');
 goog.require('vk2.app.GeoreferenceChooseApp');

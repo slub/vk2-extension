@@ -63,8 +63,8 @@ vk2.layer.HistoricMap = function(settings, map){
 	feature.setId(this.id_);
 	
 	var urls = [];
-	for (var i = 0; i < vk2.settings.TMS_URL.length; i++){
-		urls.push(vk2.settings.TMS_URL[i] + settings.dataid + '/{z}/{x}/{-y}.png');
+	for (var i = 0; i < vk2.settings.TMS_URL_SUBDOMAINS.length; i++){
+		urls.push(settings.tms.replace('{s}', vk2.settings.TMS_URL_SUBDOMAINS[i]) + '/{z}/{x}/{-y}.png');
 	};
 	
 	var rasterLayer = new ol.layer.Tile({

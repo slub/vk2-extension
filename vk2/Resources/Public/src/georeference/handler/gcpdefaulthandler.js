@@ -6,8 +6,8 @@ goog.require('goog.object');
 goog.require('goog.events.Event');
 goog.require('goog.events.EventTarget');
 
-goog.require('ol.Feature');
-goog.require('ol.geom.Point');
+//goog.require('ol.Feature');
+//goog.require('ol.geom.Point');
 
 goog.require('vk2.utils');
 goog.require('vk2.georeference.handler.AddGCPHandler');
@@ -336,10 +336,10 @@ vk2.georeference.handler.GCPDefaultHandler.prototype.getGcpsForRequest = functio
 	 */
 	var checkIfGcpIsInGcpArray = function(gcp, gcps) {
 		for (var i = 0; i < gcps.length; i++) {
-			pxXSame = gcps[i]['source'][0] === gcp['source'][0];
-			pxYSame = gcps[i]['source'][1] === gcp['source'][1];
-			latSame = Math.round(gcps[i]['target'][0]*10000)/10000 === Math.round(gcp['target'][0]*10000)/10000;
-			lonSame = Math.round(gcps[i]['target'][1]*10000)/10000 === Math.round(gcp['target'][1]*10000)/10000;
+			var pxXSame = gcps[i]['source'][0] === gcp['source'][0],
+				pxYSame = gcps[i]['source'][1] === gcp['source'][1],
+				latSame = Math.round(gcps[i]['target'][0]*10000)/10000 === Math.round(gcp['target'][0]*10000)/10000,
+				lonSame = Math.round(gcps[i]['target'][1]*10000)/10000 === Math.round(gcp['target'][1]*10000)/10000;
 			if (pxXSame && pxYSame && latSame && lonSame)
 				return true;
 		};

@@ -159,6 +159,7 @@ vk2.control.ImageManipulation.prototype.initializeSliderContainer_ = function(pa
 	// add brightness slider
 	var brightnessSlider = this.createSlider_('slider-brightness', 'horizontal', goog.bind(function(value){
 		// doing linar mapping (normalisierung)
+		debugger;
 		var linarMapping = 2 * value / 100 -1;
 		this.getBaseLayer_()['setBrightness'](linarMapping);
 	}, this), 50, vk2.utils.getMsg('brightness'));

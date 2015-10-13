@@ -2,8 +2,8 @@ goog.provide('vk2.georeference.Georeferencer');
 
 goog.require('goog.events');
 
-goog.require('ol.geom.Polygon');
-goog.require('ol.Feature');
+//goog.require('ol.geom.Polygon');
+//goog.require('ol.Feature');
 
 goog.require('vk2.utils');
 goog.require('vk2.utils.Styles');
@@ -20,7 +20,7 @@ goog.require('vk2.georeference.control.WarpImageControl');
 goog.require('vk2.georeference.control.WarpImageControlEventType');
 goog.require('vk2.georeference.control.ConfirmationControl');
 goog.require('vk2.georeference.control.ConfirmationControlEventType');
-goog.require('vk2.georeference.transform.AffineSource');
+//goog.require('vk2.georeference.transform.AffineSource');
 goog.require('vk2.georeference.utils');
 
 /**
@@ -93,38 +93,39 @@ vk2.georeference.Georeferencer = function(options){
 	
 	// open gcp toolbox on start up
 	gcpToolbox.activate();
-	this.testing(targetViewer);
+	
+	//this.testing(targetViewer);
 };
 
-vk2.georeference.Georeferencer.prototype.testing = function(targetViewer) {
-	var map = targetViewer.getMap(),
-		height = 8966,
-		width = 8329,
-		proj = new ol.proj.Projection({
-			'code': 'ZOOMIFY',
-			'units': 'pixels',
-			'extent': [0, 0, width, height]
-		}),
-		view = new ol.View({
-		    'projection': proj,
-		    'center': [width / 2, - height / 2],
-			'zoom': 1,
-			'maxZoom': 9
-	    }),
-		layer = new ol.layer.Tile({
-			source: new vk2.georeference.transform.AffineSource({
-				  'url': 'http://fotothek.slub-dresden.de/zooms/df/dk/0010000/df_dk_0010001_7114_1825/',
-				  'size': [width, height],
-				  'crossOrigin': '*'
-			}),
-			projection:'EPSG:3857'
-		});
-	map.addLayer(layer);
-	
-	if (goog.DEBUG) {
-		window['map'] = map;
-	}
-};
+//vk2.georeference.Georeferencer.prototype.testing = function(targetViewer) {
+//	var map = targetViewer.getMap(),
+//		height = 8966,
+//		width = 8329,
+//		proj = new ol.proj.Projection({
+//			'code': 'ZOOMIFY',
+//			'units': 'pixels',
+//			'extent': [0, 0, width, height]
+//		}),
+//		view = new ol.View({
+//		    'projection': proj,
+//		    'center': [width / 2, - height / 2],
+//			'zoom': 1,
+//			'maxZoom': 9
+//	    }),
+//		layer = new ol.layer.Tile({
+//			source: new vk2.georeference.transform.AffineSource({
+//				  'url': 'http://fotothek.slub-dresden.de/zooms/df/dk/0010000/df_dk_0010001_7114_1825/',
+//				  'size': [width, height],
+//				  'crossOrigin': '*'
+//			}),
+//			projection:'EPSG:3857'
+//		});
+//	map.addLayer(layer);
+//	
+//	if (goog.DEBUG) {
+//		window['map'] = map;
+//	}
+//};
 
 /**
  * @param {vk2.georeference.control.WarpImageControl} warpImageControl

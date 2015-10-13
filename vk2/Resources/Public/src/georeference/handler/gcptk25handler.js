@@ -7,13 +7,13 @@ goog.require('vk2.georeference.handler.GCPDefaultHandler');
  * @enum
  */
 vk2.georeference.handler.GCPTK25HandlerEventType = {
-	ADD_GCP_CLIPPOLYGON: 'add-gcp-clippolygon',
+	ADD_GCP_CLIPPOLYGON: 'add-gcp-clippolygon'
 };
 
 /**
  * @param {vk2.GCPTK25HandlerOptions} options
  * @constructor
- * @extends {vk2.georeference.interaction.GeoreferenceInteraction}
+ * @extends {vk2.georeference.handler.GCPDefaultHandler}
  */
 vk2.georeference.handler.GCPTK25Handler = function(options){
 	
@@ -136,10 +136,10 @@ vk2.georeference.handler.GCPDefaultHandler.prototype.initializeGCPTK25Behavior_ 
 	var addSourceGcp = goog.bind(function(event){
 		var srcFeature = event['feature'],
 			coordinate = vk2.utils.transformGeoCoordsToPixel(srcFeature.getGeometry().getCoordinates()),
-			cornerType = getMtbCornerType_(coordinate, srcViewer_.getHeight(), srcViewer_.getWidth());
+			cornerType = getMtbCornerType_(coordinate, srcViewer_.getHeight(), srcViewer_.getWidth()),
 			targetCoordinate = getMtbTargetCoordinate(gcps_['gcps'], cornerType),
 			targetCoordinateTransformed = ol.proj.transform(targetCoordinate, gcps_['target'],targetProjection_),
-			targetFeature = new ol.Feature(new ol.geom.Point(targetCoordinateTransformed)),		
+			targetFeature = new ol.Feature(new ol.geom.Point(targetCoordinateTransformed)),	
 			processid = this.addGCPHandler_.getRunningProcessId();
 			
 		// set process id

@@ -1,8 +1,8 @@
 goog.provide('vk2.georeference.interaction.DrawClipInteraction');
 
-goog.require('ol.interaction.Draw');
-goog.require('ol.layer.Vector');
-goog.require('ol.source.Vector');
+//goog.require('ol.interaction.Draw');
+//goog.require('ol.layer.Vector');
+//goog.require('ol.source.Vector');
 
 goog.require('vk2.utils.Styles');
 goog.require('vk2.georeference.interaction.GeoreferenceInteraction')

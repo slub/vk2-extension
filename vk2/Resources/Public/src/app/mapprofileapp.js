@@ -58,16 +58,15 @@ vk2.app.MapProfileApp.prototype.initApp_ = function(feature, settings) {
 	
 	if (!ol.has.WEBGL){
 		// load the hole application with a canvas renderer
-		var zoomifyViewer = new vk2.viewer.ZoomifyViewer(settings['zoomifyContainer'], mapProperties['zoomify']);
-		var metadatbinding = new vk2.tool.MetadataBinding(settings['metadataContainer'], feature.getId(), mapProperties);
+		var zoomifyViewer = new vk2.viewer.ZoomifyViewer(settings['zoomifyContainer'], mapProperties['zoomify']),
+			metadatbinding = new vk2.tool.MetadataBinding(settings['metadataContainer'], feature.getId(), mapProperties);
 		return;
 	};	
 	
 	// first the access-origin-allow header has to be reset for the zoomify tiles
 	// load the hole application with a webgl renderer
-	var zoomifyViewer = new vk2.viewer.ZoomifyViewer(settings['zoomifyContainer'], mapProperties['zoomify'], true);
-	//var zoomifyViewer = new vk2.viewer.ZoomifyViewer(settings['zoomifyContainer'], settings['zoomify']);
-	var metadatbinding = new vk2.tool.MetadataBinding(settings['metadataContainer'], feature.getId(), mapProperties);
+	var zoomifyViewer = new vk2.viewer.ZoomifyViewer(settings['zoomifyContainer'], mapProperties['zoomify'], true),
+		metadatbinding = new vk2.tool.MetadataBinding(settings['metadataContainer'], feature.getId(), mapProperties);
 	
 	// append image manipulation tool
 	goog.events.listen(zoomifyViewer, vk2.viewer.ZoomifyViewerEventType.LOADEND, function(event){

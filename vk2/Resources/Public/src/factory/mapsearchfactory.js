@@ -88,7 +88,7 @@ vk2.factory.MapSearchFactory.getMapSearchRecord = function(feature){
 /**
  * @param {Element} element
  * @param {ol.Feature} feature
- * @param {ol.FeatureOverlay} featureOverlay
+ * @param {ol.layer.Vector} featureOverlay
  * @static
  */
 vk2.factory.MapSearchFactory.addHoverToMapSearchRecord = function(element, feature, featureOverlay){

@@ -4,9 +4,9 @@ goog.provide('vk2.georeference.interaction.DragGcpInteractionEventType');
 goog.require('goog.events.Event');
 goog.require('goog.ui.IdGenerator');
 
-goog.require('ol.interaction.Interaction');
-goog.require('ol.interaction.Modify');
-goog.require('ol.interaction.Select');
+//goog.require('ol.interaction.Interaction');
+//goog.require('ol.interaction.Modify');
+//goog.require('ol.interaction.Select');
 
 goog.require('vk2.utils.Styles');
 goog.require('vk2.georeference.interaction.GeoreferenceInteraction')

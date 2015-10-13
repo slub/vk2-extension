@@ -21,7 +21,7 @@ vk2.georeference.toolbox.GCPToolboxEventType = {
 	DEACTIVATE_ADDGCP: 'deactivate-addgcp',
 	DEACTIVATE_DELGCP: 'deactivate-delgcp',
 	DEACTIVATE_DRAGGCP: 'deactivate-draggcp',
-	DEACTIVATE_NONE: 'deactivate-none',
+	DEACTIVATE_NONE: 'deactivate-none'
 };
 
 

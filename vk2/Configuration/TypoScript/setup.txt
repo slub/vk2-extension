@@ -114,8 +114,9 @@ page {
 		proj4 = EXT:vk2/Resources/Public/lib/proj4/dist/proj4.js
 		jquery-ui = EXT:vk2/Resources/Public/lib/jquery-ui/ui/minified/jquery-ui.min.js
 		jquery-lazy-loading = EXT:vk2/Resources/Public/lib/jquery-lazy-loading.js
-		ol3 = EXT:vk2/Resources/Public/lib/openlayers/ol-debug.js
-		# vk2 = EXT:vk2/Resources/Public/vk2-min-debug.js
+		#ol3 = EXT:vk2/Resources/Public/lib/openlayers/ol.js
+		ol3 = EXT:vk2/Resources/Public/ol-vk2.js
+		# vk2 = EXT:vk2/Resources/Public/vk2-simple.js
 		goog-base = EXT:vk2/Resources/Public/lib/closure-library/closure/goog/base.js
 		goog-deps = EXT:vk2/Resources/Public/lib/closure-library/closure/goog/deps.js
 		vk2-deps = EXT:vk2/Resources/Public/src/vk2-deps.js

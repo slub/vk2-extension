@@ -44,7 +44,7 @@ vk2.georeference.view.TargetView = function(mapElId, opt_extent){
 	 */
 	this.parentEl_ = goog.dom.getElement(mapElId);
 	
-	var extent_ = goog.isDef(opt_extent) ? opt_extent : [640161.933,5958026.134,3585834.8011505,7847377.4901306]
+	var extent_ = goog.isDef(opt_extent) ? opt_extent : [640161.933,5958026.134,3585834.8011505,7847377.4901306],
 		baseLayer_ = new ol.layer.Tile({ 'source': new ol.source.OSM()});
 			
 	/**
@@ -97,7 +97,7 @@ vk2.georeference.view.TargetView = function(mapElId, opt_extent){
 		var lonlat = event.target['lonlat'];
 		view.setCenter(ol.proj.transform([parseFloat(lonlat[0]),parseFloat(lonlat[1])], 
 				event.target['srs'], this.proj_));
-		view.setZoom(10);
+		view.setZoom(12);
 	}, undefined, this);
 	
 	// remove first attribution list entry

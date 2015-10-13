@@ -105,7 +105,7 @@ vk2.georeference.transform.AffineSource = function(opt_options){
 	    }
 	  }
 	  
-		gcps = [
+		var gcps = [
 	            new vk2.georeference.transform.GCP(7701,7146,8.1666669845581,48.79999923706),
 	            new vk2.georeference.transform.GCP(7695,742,8.1666669845581,48.900001525879),
 	            new vk2.georeference.transform.GCP(696,722,7.9999995231628,48.900001525879),

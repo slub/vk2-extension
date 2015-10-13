@@ -280,7 +280,7 @@ vk2.app.AdminEvaluationApp.prototype.initializeEvaluationMap_ = function(idMapCo
 	 * @type {vk2.georeference.view.TargetView}
 	 * @private
 	 */
-	this.targetView_ = targetView = new vk2.georeference.view.TargetView(idMapContainer);
+	this.targetView_ = new vk2.georeference.view.TargetView(idMapContainer);
 };
 
 /**
@@ -333,7 +333,7 @@ vk2.app.AdminEvaluationApp.prototype.registerShowMapEventListener_ = function(el
 		var georefParamsNewOrUpdate = JSON.parse(event.currentTarget.getAttribute('data-params-georef')),
 			georefParams = georefParamsNewOrUpdate.hasOwnProperty('new') ? georefParamsNewOrUpdate['new'] 
 				: georefParamsNewOrUpdate,
-			clipParams = JSON.parse(event.currentTarget.getAttribute('data-params-clip'))
+			clipParams = JSON.parse(event.currentTarget.getAttribute('data-params-clip')),
 			objectId = parseInt(event.currentTarget.getAttribute('data-params-id'), 0);
 		
 		var requestParams = {

@@ -65,6 +65,13 @@ vk2.request.ElasticSearch.createGeorefFalseQuery_ = function(){
 };
 
 /**
+ * @return {Object}
+ */
+vk2.request.ElasticSearch.createGeorefTrueQuery_ = function(){
+	return {"term": { "georeference" : true } };
+};
+
+/**
  * @param {string} fieldName
  * @param {Array.<string>} fieldValues
  * @return {Object}
@@ -77,6 +84,7 @@ vk2.request.ElasticSearch.createRangeQuery_ = function(fieldName, fieldValues){
 	};
 	return time_;
 };
+
 
 /**
  * The function creates a elasticsearch query, which query an index with 
@@ -104,6 +112,7 @@ vk2.request.ElasticSearch.getSpatialQuery = function(timeFieldName, timeValues,
 	filter_.push(vk2.request.ElasticSearch.createRangeQuery_(timeFieldName, timeValues));
 	filter_.push(vk2.request.ElasticSearch.createBBoxQuery_(bboxFieldName, bboxPolygon));
 	filter_.push(vk2.request.ElasticSearch.createFacetQuery_(facets));
+	filter_.push(vk2.request.ElasticSearch.createGeorefTrueQuery_());
 	
 	// now append the sorting expression
 	query_["query"]["filtered"]["filter"]["bool"]["must"] = filter_;

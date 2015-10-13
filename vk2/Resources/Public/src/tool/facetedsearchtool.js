@@ -5,6 +5,7 @@ goog.provide('vk2.tool.FacetedSearchEventType');
 goog.require('goog.dom');
 goog.require('goog.events');
 goog.require('goog.events.Event');
+goog.require('goog.events.EventTarget');
 
 /**
  * @enum

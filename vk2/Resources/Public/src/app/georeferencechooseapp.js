@@ -103,7 +103,7 @@ vk2.app.GeoreferenceChooseApp.prototype.renderRecord_ = function(record) {
 		id = record['_id'],
 		maptype = data['maptype'],
 		imageUrl = data['thumb'] !== undefined ? data['thumb'] : vk2.settings.THUMBNAILS_DEFAULT,
-		georefUrl = id !== undefined ? vk2.utils.routing.getGeorefPageRoute(id) : '#';
+		georefUrl = id !== undefined ? vk2.utils.routing.getGeorefPageRoute(id) : '#',
 		title = data['title'],
 		time = data['time'];
 	

@@ -126,7 +126,7 @@ vk2.tool.GazetteerSearch.prototype._appendAutoCompleteBehavior = function(){
     	},
     	'close': function(){
     		$( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-    	},
+    	}
     });
 };
 

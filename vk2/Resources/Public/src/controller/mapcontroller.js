@@ -195,7 +195,8 @@ vk2.controller.MapController.prototype._createHistoricMapForFeature = function(f
 		'title': feature.get('title'),
 		'objectid': feature.get('id'),
 		'id': feature.getId(),
-		'dataid':feature.get('dataid')
+		'dataid':feature.get('dataid'),
+		'tms': feature.get('tms')
 	}, this.map_);
 };
 

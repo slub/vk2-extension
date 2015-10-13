@@ -23,7 +23,7 @@ goog.require('vk2.settings');
  */
 vk2.viewer.ZoomifyViewerEventType = {
 	// Is triggered after zoomify layer loaded
-	LOADEND: 'loadend',
+	LOADEND: 'loadend'
 };
 
 /**

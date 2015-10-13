@@ -2,8 +2,8 @@ goog.provide('vk2.georeference.handler.GCPToolboxHandler');
 
 goog.require('goog.events');
 
-goog.require('ol.layer.Vector');
-goog.require('ol.source.Vector');
+//goog.require('ol.layer.Vector');
+//goog.require('ol.source.Vector');
 
 goog.require('vk2.utils.Styles');
 goog.require('vk2.georeference.toolbox.GCPToolboxEventType');
