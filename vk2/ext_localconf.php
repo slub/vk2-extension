@@ -10,18 +10,22 @@ if (!defined('TYPO3_MODE')) {
 		'Main' => 'show',
 		'Evaluation' => 'getProcess, setIsValide, setIsInValide',
 		'Static' => 'contact, faq, impressum, project, profileMap, login, logout, 
-			georefPage, evaluationPage, georeferenceChoosePage, georeferenceHistoryPage',
+			georefPage, evaluationPage, georeferenceChoosePage, georeferenceHistoryPage,
+			welcomePage',
 		'Auth' => 'login, signup, logout',
-		'Georeference' => 'getProcess, validateGeorefProcess, confirmGeorefProcess, georeferenceUserHistory',
+		'Georeference' => 'getProcess, validateGeorefProcess, confirmGeorefProcess, georeferenceUserHistory,
+			georeferenceUserInformation',
 	),
 	// non-cacheable actions
 	array(
 		'Main' => 'show',
 		'Evaluation' => 'getProcess, setIsValide, setIsInValide',
 		'Static' => 'contact, faq, impressum, project, profileMap, login, logout, 
-			georefPage, evaluationPage, georeferenceChoosePage, georeferenceHistoryPage',
+			georefPage, evaluationPage, georeferenceChoosePage, georeferenceHistoryPage,
+			welcomePage',
 		'Auth' => 'login, signup, logout',
-		'Georeference' => 'getProcess, validateGeorefProcess, confirmGeorefProcess, georeferenceUserHistory',
+		'Georeference' => 'getProcess, validateGeorefProcess, confirmGeorefProcess, georeferenceUserHistory,
+			georeferenceUserInformation',
 	)
 );
 

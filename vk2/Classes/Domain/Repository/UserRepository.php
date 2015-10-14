@@ -26,4 +26,17 @@ namespace SLUB\Vk2\Domain\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-class UserRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {}
+class UserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository {
+	
+	/**
+	 * @param string $username
+	 * @return \SLUB\Vk2\Domain\Model\User $user
+	 */
+	public function findByUsername($username) {
+		
+		$query = $this->createQuery();
+		$query->matching($query->equals('username', $username));
+		return $query->execute();
+		
+	}
+}

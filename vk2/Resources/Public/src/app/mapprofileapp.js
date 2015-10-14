@@ -13,6 +13,7 @@ goog.require('vk2.viewer.ZoomifyViewer');
 goog.require('vk2.viewer.ZoomifyViewerEventType');
 
 /**
+ * @export
  * @constructor
  * @param {Object} settings
  * 		{string} metadataContainer

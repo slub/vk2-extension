@@ -12,6 +12,7 @@ goog.require('vk2.module.SpatialTemporalSearchModule');
 goog.require('vk2.module.LayerManagementModule');
 
 /**
+ * @export
  * @constructor
  * @param {Object} settings
  * 		{boolean} authenticate
@@ -53,7 +54,6 @@ vk2.app.PresentationApp = function(settings){
 	
 	// permalink 
 	var permalink = new vk2.tool.Permalink(mapController.getMap());
-	permalink.parsePermalink();
 	mapController.registerPermalinkTool(permalink);
 		
 	if(goog.DEBUG){
@@ -71,7 +71,8 @@ vk2.app.PresentationApp = function(settings){
  */
 vk2.app.PresentationApp.prototype.loadWelcomePage_ = function(){
 	// welcome page
-	if (goog.dom.getElement("vk2WelcomePage")){
-		goog.dom.getElement("vk2WelcomePage").click();
+	var welcomePageOn = vk2.utils.getQueryParam('welcomepage');
+	if (goog.dom.getElement("welcome-page-link") && vk2.utils.getCookie('vk2-welcomepage') !== 'off' && welcomePageOn !== 'off'){
+		goog.dom.getElement("welcome-page-link").click();
 	};
 };

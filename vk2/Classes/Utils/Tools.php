@@ -19,6 +19,17 @@ class Tools {
 	}
 	
 	/**
+	 * Gets the user by his userid
+	 * @param \SLUB\Vk2\Domain\Repository\UserRepository $repo
+	 * @param string $username
+	 * @return \SLUB\Vk2\Domain\Model\User $user
+	 */
+	public static function getUserByUsername($repo, $username) {	
+		$feUserObj = $repo->findByUsername( $username );
+		return $feUserObj;
+	}
+	
+	/**
 	 * Extract user groups for a given user.
 	 * @param \SLUB\Vk2\Domain\Model\User $user
 	 * @return array

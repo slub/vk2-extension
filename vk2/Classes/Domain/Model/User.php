@@ -205,7 +205,7 @@ class User extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser {
 	 * @return string $firstname
 	 */
 	public function getFirstname() {
-		return $this->firstname;
+		return $this->firstName;
 	}
 	
 	/**
@@ -214,7 +214,7 @@ class User extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser {
 	 * @return string $lastname
 	 */
 	public function getLastname() {
-		return $this->lastname;
+		return $this->lastName;
 	}
 	
 	/**

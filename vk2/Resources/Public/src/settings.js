@@ -108,6 +108,11 @@ vk2.settings.GEOREFERENCE_CONFIRM = 'id=19&tx_vk2_search[controller]=Georeferenc
 /**
  * @type {string}
  */
+vk2.settings.GEOREFERENCE_INFORMATION = 'id=19&tx_vk2_search[controller]=Georeference&tx_vk2_search[action]=georeferenceUserInformation&type=999'
+	
+/**
+ * @type {string}
+ */
 vk2.settings.GEOREFERNCE_DEFAULT_EXTENT_SRS = 'EPSG:4326';
 
 /**

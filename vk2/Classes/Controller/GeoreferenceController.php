@@ -60,7 +60,7 @@ class GeoreferenceController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 	/**
 	 * feUserRepository
 	 *
-	 * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
+	 * @var \SLUB\Vk2\Domain\Repository\UserRepository
 	 * @inject
 	 */
 	protected $feUserRepository;
@@ -161,6 +161,42 @@ class GeoreferenceController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 	}
 	
 	/**
+	 * Proxies the get georeference information request (user view) to the backend service
+	 * @return string json
+	 */
+	public function georeferenceUserInformationAction(){
+		# generate request url
+		$url = $this->userEndpoint . '/information';
+	
+				// generate request
+				$request = GeneralUtility::makeInstance('t3lib_http_Request', $url);
+				$request->setMethod('GET');
+				$response = $request->send()->getBody();
+					
+				// extract the long user names for userids
+				$parsedResponse = json_decode($response, TRUE);
+				$extendedPointOverview = array();
+				foreach ($parsedResponse['pointoverview'] as $record) {
+					$user = Tools::getUserByUsername($this->feUserRepository, $record['userid']);
+
+					// append standard values to array
+					$newRecord = array(
+						'points' => $record['points'],
+						'userid' => $record['userid']
+					);
+					
+					// if a record for this user is found append further information 
+					if (!empty($user[0])) {
+						$newRecord['username'] = $user[0]->getFirstname() . ' ' . $user[0]->getLastname();
+					}
+					array_push($extendedPointOverview, $newRecord);
+				}
+				$parsedResponse['pointoverview'] = $extendedPointOverview;
+				
+				$this->view->assign('value', $parsedResponse);
+	}
+	
+	/**
 	 * This functions routes the request to the given url
 	 * 
 	 * @param string $url
@@ -192,6 +228,5 @@ class GeoreferenceController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 			// redirect to main page
 			$this->redirect('show', 'Main', NULL);
 		}
-	}
-	
+	}	
 }

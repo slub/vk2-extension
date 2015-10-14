@@ -60,6 +60,16 @@ vk2.utils.routing.getGeoreferenceUserHistory = function() {
 };
 
 /**
+ * @return {string}
+ */
+vk2.utils.routing.getGeoreferenceInformation = function() {
+	var uri = new goog.Uri(window.location.href);
+	if (!vk2.settings.WITH_SPEAKING_URLS)
+		return uri.getPath() + '?' + vk2.settings.GEOREFERENCE_INFORMATION;
+	return vk2.settings.GEOREFERENCE_INFORMATION;
+};
+
+/**
  * @param {string} query_string
  * @return {string}
  */

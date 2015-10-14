@@ -169,7 +169,7 @@ vk2.request.ElasticSearch.getFeatureForId = function(type, featureId){
  * 
  * @param {string} type
  * @param {Array.<string>} featureIds
- * @param {Function} callback
+ * @return {Object}
  */
 vk2.request.ElasticSearch.getFeatureForIds = function(type, featureIds, callback){
 	var url =  vk2.settings.ELASTICSEARCH + '/' + type + '/_mget',

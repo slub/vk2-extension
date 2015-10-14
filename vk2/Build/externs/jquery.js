@@ -21,3 +21,4 @@ $.on = {};
 $.select = {};
 $.slideToggle = {};
 $.toggleClass = {};
+$.trigger = {};

@@ -10,6 +10,7 @@ goog.require('vk2.utils');
 goog.require('vk2.utils.routing');
 
 /**
+ * @export
  * @param {Object} settings
  * 		target {string} Id of the record container
  * 		targetCount {string} Id of the point container

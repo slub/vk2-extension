@@ -145,10 +145,8 @@
 				<f:render partial="Main/Footer" />
 			</div>
 
-			<!-- 			% if context.get('welcomepage') is not 'off': <a
-				href="${request.route_url('welcome')}" id="vk2WelcomePage"
-				data-src="${request.route_url('welcome')}" data-classes="welcomeBox"
-				class="vk2-modal-anchor" data-title=""></a> % endif -->
+			<f:link.action id="welcome-page-link" action="welcomePage" controller="Static" class="vk2-modal-anchor" absolute="True"
+				additionalAttributes="{data-classes:'welcomeBox'}"></f:link.action>
 				
 			<vk:isUser>
 				<f:then>

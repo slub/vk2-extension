@@ -52,6 +52,7 @@ class StaticController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	public function profileMapAction(){}
 	public function loginAction(){}
 	public function logoutAction(){}
+	public function welcomePageAction(){}
 	
 	/*
 	 * allow only registered user to access this pages

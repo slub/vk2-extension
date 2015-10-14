@@ -17,6 +17,7 @@ goog.require('vk2.georeference.view.SourceView');
 goog.require('vk2.georeference.view.TargetView');
 /**
  * @constructor
+ * @export
  * @param {string} originalMapContainerId
  * @param {string} geoMapContainerId
  */

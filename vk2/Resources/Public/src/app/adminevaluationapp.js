@@ -13,6 +13,7 @@ goog.require('vk2.georeference.GeoreferencerService');
 
 /**
  * @constructor
+ * @export
  * @param {Object} settings
  * 		{string} btn_getallprocess
  * 		{string} process_list

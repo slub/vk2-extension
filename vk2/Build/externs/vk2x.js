@@ -18,6 +18,7 @@ vk2x.layer;
  * objectid: (string)
  * id: (string)
  * dataid: (string)
+ * tms: (string)
  */
 vk2x.layer.HistoricMapOptions;
 
@@ -60,6 +61,11 @@ vk2x.layer.HistoricMapOptions.prototype.title;
  * @type {string}
  */
 vk2x.layer.HistoricMapOptions.prototype.thumbnail;
+
+/**
+ * @type {string}
+ */
+vk2x.layer.HistoricMapOptions.prototype.tms;
 
 /**
  * Namespace

@@ -136,6 +136,13 @@ vk2.utils.getQueryParam = function(name, opt_href){
 };
 
 /**
+ * @param {string} name
+ */
+vk2.utils.getCookie = function(name){
+	return goog.net.cookies.get(name);
+}
+
+/**
  * @param {string=} title
  * @param {string=} message
  * @param {Function=} submitCallback
@@ -266,6 +273,7 @@ vk2.utils.sendReport = function(url_string, success_callback, error_callback){
 
 
 /**
+ * @export
  * @param {string} name
  * @param {string} value
  */
