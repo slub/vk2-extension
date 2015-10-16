@@ -125,6 +125,7 @@ vk2.utils.getPolygonFromExtent = function(extent){
  * @param {string} name
  * @param {string=} opt_href
  * @return {*}
+ * @expose
  * @static
  */
 vk2.utils.getQueryParam = function(name, opt_href){

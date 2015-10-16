@@ -30,7 +30,59 @@ namespace SLUB\Vk2\Domain\Model;
 /**
  * Main
  */
-class Main extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+class Contact extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
+	/**
+	 * email
+	 *
+	 * @var string
+	 * @validate NotEmpty
+	 */
+	protected $email = '';
 	
+	/**
+	 * message
+	 *
+	 * @var string
+	 * @validate NotEmpty
+	 */
+	protected $message = '';
+	
+	/**
+	 * Returns the email
+	 *
+	 * @return string $email
+	 */
+	public function getEmail() {
+		return $this->email;
+	}
+	
+	/**
+	 * Sets the email
+	 *
+	 * @param string $email
+	 * @return void
+	 */
+	public function setEmail($email) {
+		$this->email = $email;
+	}
+	
+	/**
+	 * Returns the message
+	 *
+	 * @return string $message
+	 */
+	public function getMessage() {
+		return $this->message;
+	}
+	
+	/**
+	 * Sets the message
+	 *
+	 * @param string $message
+	 * @return void
+	 */
+	public function setMessage($message) {
+		$this->message = $message;
+	}
 }

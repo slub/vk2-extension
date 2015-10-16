@@ -55,7 +55,7 @@ vk2.tool.TimeSlider.prototype._loadHtmlContent = function(parentEl){
  * @private
  */
 vk2.tool.TimeSlider.prototype._appendSliderBehavior = function(sliderEl){
-	var baseMin = 1868, baseMax = 1945;
+	var baseMin = 1868, baseMax = 1965;
 	var minValueEl, maxValueEl;
 	/**
 	 * 	@param {number} value
@@ -69,9 +69,9 @@ vk2.tool.TimeSlider.prototype._appendSliderBehavior = function(sliderEl){
 	
 	$(sliderEl).slider({
         'range': true,
-        'min': 1868,
-        'max': 1945,
-        'values': [1868, 1945],
+        'min': baseMin,
+        'max': baseMax,
+        'values': [baseMin, baseMax],
         'animate': 'slow',
         'orientation': 'horizontal',
         'step': 1,
@@ -91,13 +91,13 @@ vk2.tool.TimeSlider.prototype._appendSliderBehavior = function(sliderEl){
 	// append tooltips
 	minValueEl = goog.dom.createDom('div',{
 		'class':'tooltip min-value',
-		'innerHTML':1868
+		'innerHTML':baseMin
 	});
 	goog.dom.appendChild(sliderEl, minValueEl);
 	
 	maxValueEl = goog.dom.createDom('div',{
 		'class':'tooltip max-value',
-		'innerHTML':1945
+		'innerHTML':baseMax
 	});
 	goog.dom.appendChild(sliderEl, maxValueEl);
 };

@@ -117,11 +117,7 @@ class GeoreferenceController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 // 		DebuggerUtility::var_dump($GLOBALS);
 // 	}
 	
-	/**
-	 * @param \SLUB\Vk2\Domain\Model\GeoreferenceProcess $process
-	 */
-	public function confirmGeorefProcessAction(
-			\SLUB\Vk2\Domain\Model\GeoreferenceProcess $process = NULL) {
+	public function confirmGeorefProcessAction() {
 		$user = Tools::getActualUser($this->feUserRepository);
 		
 		# check if it is allowed

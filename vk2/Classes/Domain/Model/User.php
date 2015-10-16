@@ -67,15 +67,13 @@ class User extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser {
 	 * firstname
 	 *
 	 * @var string
-	 * @validate NotEmpty
 	 */
 	protected $firstname = '';
 	
 	/**
 	 * lastname
 	 *
-	 * @var string
-	 * @validate NotEmpty
+	 * @var string	 
 	 */
 	protected $lastname = '';
 	

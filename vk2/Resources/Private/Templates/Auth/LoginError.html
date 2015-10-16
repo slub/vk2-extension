@@ -1,0 +1,21 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+	
+	<vk:head>
+		<style>
+			a { color: #a94442; }
+		</style>
+	</vk:head>
+	
+	<div class="alert alert-danger" role="alert">
+		Ups! Something went wrong: "<span id="errorMsg"></span>" - 
+		<f:link.action action="login" controller="Auth" absolute="True"><b>Try again</b></f:link.action> or
+		<f:link.action action="show" controller="Main" absolute="True" target="_top"><b>go back to main page</b></f:link.action>.  
+	</div>
+
+	<script>
+		var msg = vk2.utils.getQueryParam('tx_vk2_search[msg]');
+		$('#errorMsg').html(msg);
+	</script>
+</f:section>

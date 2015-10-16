@@ -91,6 +91,9 @@ vk2.app.GeoreferenceChooseApp.prototype.fetchData_ = function(targetEl, targetCo
 	// send request
 	var url = vk2.settings.ELASTICSEARCH + '/_search?size=2000',
 		payload = vk2.request.ElasticSearch.getFeaturesForIdsFilterQuery('georeference', [false]);
+	// append sorting
+	payload['sort'] = {'title': {'order':'asc'}};
+	
 	xhr.send(url, 'POST', JSON.stringify(payload));	
 };
 

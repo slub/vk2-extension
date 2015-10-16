@@ -87,14 +87,18 @@
 
 					<!-- language switcher -->
 					<ul class="langswitch">
-						<li><a href="de/vkviewer/"><span
-								class="language_switcher switch_de"
-								title="{f:translate(id:'main.language.de')}"></span>
-							<f:translate id="main.language.de" /> </a></li>
-						<li><a href="vkviewer/"><span
-								class="language_switcher switch_en"
-								title="{f:translate(id:'main.language.en')}"></span>
-							<f:translate id="main.language.en" /> </a></li>
+						<li>
+							<f:link.action action="show" controller="Main" additionalParams="{L:1}">
+								<span class="language_switcher switch_de" title="{f:translate(id:'main.language.de')}"></span>
+								<f:translate id="main.language.de" />
+							</f:link.action>
+						</li>
+						<li>
+							<f:link.action action="show" controller="Main" additionalParams="{L:0}">
+								<span class="language_switcher switch_en" title="{f:translate(id:'main.language.en')}"></span>
+								<f:translate id="main.language.en" />
+							</f:link.action>
+						</li>
 					</ul>
 				</div>
 				<!-- user header end -->

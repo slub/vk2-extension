@@ -61,6 +61,11 @@ vk2.georeference.control.ConfirmationControl.prototype.confirmImage_ = function(
 		clipPolygon = vk2.georeference.utils.extractClipPolygon(clipPolygonSource),
 		type = gcpHandler.getType();
 	
+	if (newGeorefParams['gcps'].length < 4) {
+		alert("You have to place at least 4 ground control points");
+		return;
+	}
+	
 	var requestParams = {
 		'georeference': newGeorefParams,
 		'id': objectid,
@@ -80,7 +85,7 @@ vk2.georeference.control.ConfirmationControl.prototype.confirmImage_ = function(
 		console.log(requestParams);
 		console.log('---------------------------');
 	};
-	
+		
 	var success_callback = goog.bind(function(event) {
 		if (goog.DEBUG) {
 			console.log('Confirmation request was send successfully ...');

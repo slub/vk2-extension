@@ -325,6 +325,7 @@ vk2.georeference.handler.GCPDefaultHandler.prototype.getOldGcpParams = function(
  * @param {string|undefined} opt_algorithm
  * @param {string|undefined} opt_projection
  * @return {Object}
+ * @deprecated
  * @public
  */
 vk2.georeference.handler.GCPDefaultHandler.prototype.getGcpsForRequest = function(opt_algorithm, opt_projection){
@@ -354,21 +355,6 @@ vk2.georeference.handler.GCPDefaultHandler.prototype.getGcpsForRequest = functio
 		newGeorefParams = this.getGcpParams(algorithm, targetProj),
 		newGeorefParamsInOldSrs = this.getGcpParams(algorithm, currentGeorefParams['target']);
 	
-	// their were already old gcps registered
-	if (this.isUpdateState_) {
-		// get remove params
-		var removeParams = goog.object.clone(oldGeorefParams);
-		removeParams['gcps'] = [];
-		for (var i = 0; i < oldGeorefParams['gcps'].length; i++){
-			if (!checkIfGcpIsInGcpArray(oldGeorefParams['gcps'][i], newGeorefParamsInOldSrs['gcps']))
-				removeParams['gcps'].push(oldGeorefParams['gcps'][i]);
-		};
-		var responseObject = {
-			'new': newGeorefParams,
-			'remove': removeParams
-		};
-		return responseObject;
-	};
 	return newGeorefParams;	
 };
 

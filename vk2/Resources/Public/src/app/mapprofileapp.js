@@ -72,7 +72,28 @@ vk2.app.MapProfileApp.prototype.initApp_ = function(feature, settings) {
 	// append image manipulation tool
 	goog.events.listen(zoomifyViewer, vk2.viewer.ZoomifyViewerEventType.LOADEND, function(event){
 		zoomifyViewer.getMap().addControl(new vk2.control.ImageManipulation());
-	});
+		
+		var layer = zoomifyViewer.getLayer();
+		layer.on('precompose', function(evt) {
+			console.log('Precompose event triggered');
+			
+			var webglContext = evt['glContext'],
+				canvasContext = evt['context'];
+			if (webglContext !== undefined && webglContext !== null) {
+				var webglRenderingContext = webglContext.getGL();
+			}
+		});
+		
+		layer.on('postcompose', function(evt) {
+			console.log('Postcompose event triggered');
+			
+			var webglContext = evt['glContext'],
+				canvasContext = evt['context'];
+			if (webglContext !== undefined && webglContext !== null) {
+				var webglRenderingContext = webglContext.getGL();
+			}
+		});
+	}); 
 	
 	return;
 };

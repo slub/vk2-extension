@@ -4,6 +4,9 @@ namespace SLUB\Vk2\Controller;
 use \TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
+use SLUB\Vk2\Utils\Tools;
+
+
 /***************************************************************
  *
 *  Copyright notice
@@ -116,6 +119,11 @@ class AuthController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$this->view->assign('user', $user);
 	}
 	
+	/**
+	 * Returns an error page
+	 */
+	public function loginErrorAction(){}
+	
 	public function logoutAction(){
 		if ($GLOBALS['TSFE']->loginUser) {
 			$GLOBALS['TSFE']->fe_user->logoff();
@@ -136,7 +144,16 @@ class AuthController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @param \SLUB\Vk2\Domain\Model\User $user
 	 */
 	public function signupAction(
-			\SLUB\Vk2\Domain\Model\User $user) {		
+			\SLUB\Vk2\Domain\Model\User $user) {
+
+		// check if user exist
+		$userExist = Tools::getUserByUsername($this->userRepository, $user->getUsername());
+		if (!empty($userExist[0])) {
+			// redirect
+			$errorMessage = array( 'msg' => 'Username is already in use.');
+			$this->redirect('loginError', 'Auth', NULL, $errorMessage);
+		}
+		
 		// attached usergroup to user
 		$usergroup = $this->userGroupRepository->findByUid(2);
 		$user->addUsergroup($usergroup);

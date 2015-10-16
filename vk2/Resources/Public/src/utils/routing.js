@@ -17,13 +17,25 @@ vk2.utils.routing.clearPath = function(string) {
 };
 
 /**
+ * @return {string}
+ */
+vk2.utils.routing.getBaseUrl = function() {
+	var uri = new goog.Uri(window.location.href)
+		languageParam = vk2.utils.getQueryParam("L"),
+		language = languageParam !== undefined && languageParam !== "" ? languageParam : 0;
+	if (!vk2.settings.WITH_SPEAKING_URLS)
+		return uri.getPath() + '?' + vk2.settings.MAIN_PAGE + '&L=' + language;
+	return vk2.settings.MAIN_PAGE;
+};
+
+/**
  * @param {string} key
  * @return {string}
  */
 vk2.utils.routing.getGeoreferenceAdminProcessRoute = function(query_string) {
 	var uri = new goog.Uri(window.location.href);
 	if (!vk2.settings.WITH_SPEAKING_URLS)
-		return uri.getPath() + '?' + vk2.settings.EVALUATION_GETPROCESS + '&' + query_string;
+		return vk2.utils.routing.getBaseUrl() + '&' + vk2.settings.EVALUATION_GETPROCESS + '&' + query_string;
 	return vk2.settings.EVALUATION_GETPROCESS + '&' + query_string;
 };
 
@@ -34,7 +46,7 @@ vk2.utils.routing.getGeoreferenceAdminProcessRoute = function(query_string) {
 vk2.utils.routing.getGeoreferenceAdminSetIsValideRoute = function(query_string) {
 	var uri = new goog.Uri(window.location.href);
 	if (!vk2.settings.WITH_SPEAKING_URLS)
-		return uri.getPath() + '?' + vk2.settings.EVALUATION_SETISVALIDE + '&' + query_string;
+		return vk2.utils.routing.getBaseUrl() + '&' + vk2.settings.EVALUATION_SETISVALIDE + '&' + query_string;
 	return vk2.settings.EVALUATION_SETISVALIDE + '&' + query_string;
 };
 
@@ -45,7 +57,7 @@ vk2.utils.routing.getGeoreferenceAdminSetIsValideRoute = function(query_string) 
 vk2.utils.routing.getGeoreferenceAdminSetIsInValideRoute = function(query_string) {
 	var uri = new goog.Uri(window.location.href);
 	if (!vk2.settings.WITH_SPEAKING_URLS)
-		return uri.getPath() + '?' + vk2.settings.EVALUATION_SETISINVALIDE + '&' + query_string;
+		return vk2.utils.routing.getBaseUrl() + '&' + vk2.settings.EVALUATION_SETISINVALIDE + '&' + query_string;
 	return vk2.settings.EVALUATION_SETISINVALIDE + '&' + query_string;
 };
 
@@ -55,7 +67,7 @@ vk2.utils.routing.getGeoreferenceAdminSetIsInValideRoute = function(query_string
 vk2.utils.routing.getGeoreferenceUserHistory = function() {
 	var uri = new goog.Uri(window.location.href);
 	if (!vk2.settings.WITH_SPEAKING_URLS)
-		return uri.getPath() + '?' + vk2.settings.GEOREFERENCE_HISTORY;
+		return vk2.utils.routing.getBaseUrl() + '&' + vk2.settings.GEOREFERENCE_HISTORY;
 	return vk2.settings.GEOREFERENCE_HISTORY;
 };
 
@@ -65,7 +77,7 @@ vk2.utils.routing.getGeoreferenceUserHistory = function() {
 vk2.utils.routing.getGeoreferenceInformation = function() {
 	var uri = new goog.Uri(window.location.href);
 	if (!vk2.settings.WITH_SPEAKING_URLS)
-		return uri.getPath() + '?' + vk2.settings.GEOREFERENCE_INFORMATION;
+		return vk2.utils.routing.getBaseUrl() + '&' + vk2.settings.GEOREFERENCE_INFORMATION;
 	return vk2.settings.GEOREFERENCE_INFORMATION;
 };
 
@@ -76,7 +88,7 @@ vk2.utils.routing.getGeoreferenceInformation = function() {
 vk2.utils.routing.getGeorefGetProcessRoute = function(query_string) {
 	var uri = new goog.Uri(window.location.href);
 	if (!vk2.settings.WITH_SPEAKING_URLS)
-		return uri.getPath() + '?' + vk2.settings.GEOREFERENCE_GETPROCESS + '&' + query_string;
+		return vk2.utils.routing.getBaseUrl() + '&' + vk2.settings.GEOREFERENCE_GETPROCESS + '&' + query_string;
 	return vk2.settings.GEOREFERENCE_GETPROCESS + '&' + query_string;
 };
 
@@ -87,7 +99,7 @@ vk2.utils.routing.getGeorefGetProcessRoute = function(query_string) {
 vk2.utils.routing.getGeorefValidationRoute = function(query_string) {
 	var uri = new goog.Uri(window.location.href);
 	if (!vk2.settings.WITH_SPEAKING_URLS)
-		return uri.getPath() + '?' + vk2.settings.GEOREFERENCE_VALIDATION + '&' + query_string;
+		return vk2.utils.routing.getBaseUrl() + '&' + vk2.settings.GEOREFERENCE_VALIDATION + '&' + query_string;
 	return vk2.settings.GEOREFERENCE_VALIDATION + '&' + query_string;
 };
 
@@ -98,7 +110,7 @@ vk2.utils.routing.getGeorefValidationRoute = function(query_string) {
 vk2.utils.routing.getGeorefConfirmationRoute = function(query_string) {
 	var uri = new goog.Uri(window.location.href);
 	if (!vk2.settings.WITH_SPEAKING_URLS)
-		return uri.getPath() + '?' + vk2.settings.GEOREFERENCE_CONFIRM + '&' + query_string;
+		return vk2.utils.routing.getBaseUrl() + '&' + vk2.settings.GEOREFERENCE_CONFIRM + '&' + query_string;
 	return vk2.settings.GEOREFERENCE_CONFIRM + '&' + query_string;
 };
 
@@ -112,7 +124,7 @@ vk2.utils.routing.getGeorefPageRoute = function(opt_objectid, opt_params) {
 			opt_params !== undefined ? '&' + opt_params :  '';
 	var uri = new goog.Uri(window.location.href);
 	if (!vk2.settings.WITH_SPEAKING_URLS)
-		return uri.getPath() + '?' + vk2.settings.GEOREFERENCE_PAGE + params;
+		return vk2.utils.routing.getBaseUrl() + '&' + vk2.settings.GEOREFERENCE_PAGE + params;
 	return vk2.utils.routing.clearPath(uri.getPath() + '/' + vk2.settings.GEOREFERENCE_PAGE) + '?' + params;
 };
 
@@ -123,7 +135,7 @@ vk2.utils.routing.getGeorefPageRoute = function(opt_objectid, opt_params) {
 vk2.utils.routing.getMapProfileRoute = function(key) {
 	var uri = new goog.Uri(window.location.href);
 	if (!vk2.settings.WITH_SPEAKING_URLS)
-		return uri.getPath() + '?' + vk2.settings.MAP_PROFILE_PAGE + '&objectid=' + key;
+		return vk2.utils.routing.getBaseUrl() + '&' + vk2.settings.MAP_PROFILE_PAGE + '&objectid=' + key;
 	return vk2.utils.routing.clearPath(uri.getPath() + '/' + vk2.settings.MAP_PROFILE_PAGE) + '?objectid=' + key;
 };
 
@@ -134,8 +146,8 @@ vk2.utils.routing.getMapProfileRoute = function(key) {
 vk2.utils.routing.getMainPageRoute = function(key) {
 	var uri = new goog.Uri(window.location.href);
 	if (!vk2.settings.WITH_SPEAKING_URLS)
-		return uri.getPath() + '?' + vk2.settings.MAIN_PAGE;
-	return vk2.utils.routing.clearPath(uri.getPath() + '/' + vk2.settings.MAIN_PAGE);
+		return vk2.utils.routing.getBaseUrl();
+	return vk2.utils.routing.clearPath(uri.getPath()) + '/' + vk2.settings.MAIN_PAGE;
 };
 
 

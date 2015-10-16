@@ -45,7 +45,6 @@ class StaticController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	/*
 	 * simple static page behavior
 	 */ 
-	public function contactAction(){}
 	public function faqAction(){}
 	public function impressumAction(){}
 	public function projectAction(){}
@@ -53,6 +52,37 @@ class StaticController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	public function loginAction(){}
 	public function logoutAction(){}
 	public function welcomePageAction(){}
+	
+	/* 
+	 * contact form
+	 */	
+	/**
+	 * @param \SLUB\Vk2\Domain\Model\Contact $contact
+	 */
+	public function contactAction(
+			\SLUB\Vk2\Domain\Model\Contact $contact = NULL){
+		$this->view->assign('contact', $contact);
+	}
+	
+	/**
+	 * receive contact message
+	 *
+	 * @param \SLUB\Vk2\Domain\Model\Contact $contact
+	 */
+	public function getContactMessageAction(
+			\SLUB\Vk2\Domain\Model\Contact $contact) {
+		
+		\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($contact);
+		
+		$mail = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Mail\\MailMessage');
+		$mail->setFrom(array("Admin@kartenforum.slub-dresden.de" => "Admin"));
+		$mail->setTo(array("Jacob.Mendt@slub-dresden.de" => "Jacob Mendt"));
+		$mail->setSubject("contact message virtuelles map forum");
+		$mail->setBody("Contact Message:\n\nEmail: " . $contact->getEmail() . "\nMessage: " . $contact->getMessage() . "\n------");
+		$mail->send();
+		
+		$this->redirect('show', 'Main', NULL);
+	}
 	
 	/*
 	 * allow only registered user to access this pages

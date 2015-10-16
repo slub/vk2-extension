@@ -111,7 +111,11 @@ vk2.viewer.ZoomifyViewer.prototype.initialize_ = function(url, height, width, co
 		'maxZoom': 9
     });
 	
-	var zoomifyLayer_ = new ol.layer.Tile({
+	/**
+	 * @type {ol.layer.Layer}
+	 * @private
+	 */
+	this.zoomifyLayer_ = new ol.layer.Tile({
     	'source': this._zoomifySource
     });
 	
@@ -120,7 +124,7 @@ vk2.viewer.ZoomifyViewer.prototype.initialize_ = function(url, height, width, co
 	if (withOverview){
 		controls_.push( new ol.control.OverviewMap({
 			'collapsed': false,
-			'layers': [zoomifyLayer_]
+			'layers': [this.zoomifyLayer_]
 		}));
 	};
 	
@@ -129,7 +133,7 @@ vk2.viewer.ZoomifyViewer.prototype.initialize_ = function(url, height, width, co
 	 * @private
 	 */
 	this._map = new ol.Map({
-		'layers': [ zoomifyLayer_ ],
+		'layers': [ this.zoomifyLayer_ ],
 		'interactions': ol.interaction.defaults().extend([
             new ol.interaction.DragZoom()
         ]),
@@ -153,6 +157,13 @@ vk2.viewer.ZoomifyViewer.prototype.initialize_ = function(url, height, width, co
  */
 vk2.viewer.ZoomifyViewer.prototype.getMap = function(){
 	return this._map;
+};
+
+/**
+ * @returns {ol.layer.Layer}
+ */
+vk2.viewer.ZoomifyViewer.prototype.getLayer = function() {
+	return this.zoomifyLayer_;
 };
 
 /**

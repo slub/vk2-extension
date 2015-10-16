@@ -9,6 +9,7 @@ goog.require('goog.events.EventTarget');
 goog.require('goog.events.EventType');
 goog.require('vk2.parser.ElasticSearch');
 goog.require('vk2.request.ElasticSearch');
+goog.require('vk2.utils.routing');
 
 /**
  * @enum {string}
@@ -60,6 +61,10 @@ vk2.tool.Permalink.prototype.parsePermalink_ = function(map){
 		this.zoomToMapView_(center, zoom);
 		return;
 	};
+	
+	// now oid so return
+	if (!queryData.containsKey('oid') || queryData.get('oid') === "")
+		return;
 	
 	// else parse the information regarding the oid
 	var objectids = queryData.get('oid').split(',');
@@ -144,7 +149,7 @@ vk2.tool.Permalink.prototype.createPermalink = function(){
 		var zoom = this._map.getView().getZoom();
 		
 		// create permalink
-		var permalink = new goog.Uri(window.location.origin + '/vkviewer/?welcomepage=off');
+		var permalink = new goog.Uri(window.location.origin + vk2.utils.routing.getBaseUrl() + 'welcomepage=off');
 		var qData = permalink.getQueryData();
 		
 		// append zoom, center and objectids to queryData
