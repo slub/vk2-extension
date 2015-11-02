@@ -141,14 +141,49 @@ vk2.control.ImageManipulation.prototype.getBaseLayer_ = function(){
  * @private
  */
 vk2.control.ImageManipulation.prototype.initializeSliderContainer_ = function(parentEl){
-	
+
 	// create the container
 	var sliderContainer = goog.dom.createDom('div', {'class':'slider-container', 'style':'display:none;'});
 	goog.dom.appendChild(parentEl, sliderContainer);
 	
 	// add contrast slider
+	var notInitContrast = true,
+		contrast = 1;
+		postcomposeHandler = function(event) {
+			console.log('Trigger postcompose contrast - value: ' + contrast);
+
+			var context = event['glContext'];
+			if (context !== undefined && context !== null) {
+				var webglContext = context.getGL();
+
+				debugger;
+			}
+		},
+		precomposeHandler = function(event) {
+			console.log('Trigger precompose contrast - value: ' + contrast);
+
+			var webglContext = event['glContext'],
+				canvasContext = event['context'];
+			if (webglContext !== undefined && webglContext !== null) {
+				var webglRenderingContext = webglContext.getGL();
+			}
+		};
+
 	var contrastSlider = this.createSlider_('slider-contrast', 'horizontal', goog.bind(function(value){
-		this.getBaseLayer_()['setContrast'](value/100);
+		var layer = this.getBaseLayer_();
+
+		// if the event handler are not initialize yet, attach them to the layer
+		if (notInitContrast) {
+			layer.on('postcompose', postcomposeHandler);
+			layer.on('precompose', precomposeHandler);
+			notInitContrast = false;
+		};
+
+		// update contrast value
+		contrast = value/100;
+
+		// trigger changed event
+		layer.changed();
 	}, this), undefined, vk2.utils.getMsg('contrast'));
 	goog.dom.appendChild(sliderContainer, contrastSlider);
 	
