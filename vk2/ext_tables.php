@@ -3,11 +3,22 @@ if (!defined('TYPO3_MODE')) {
 	die('Access denied.');
 }
 
+$extensionName = strtolower(\TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($_EXTKEY));
+$pluginSearch = 'Search';
+
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
 	$_EXTKEY,
-	'Search',
-	'vk2 - search'
+	$pluginSearch,
+	'Search module'
 );
+
+#
+# Defines a flexform for the plugin search
+#
+$pluginSignatureSearch  = $extensionName . '_' . strtolower($pluginSearch);
+$TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignatureSearch] = 'layout,select_key,pages,recursive';
+$TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignatureSearch] = 'pi_flexform';
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignatureSearch, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_search.xml');
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Virtual Map Forum Extension');
 
@@ -98,3 +109,5 @@ $GLOBALS['TCA']['tx_vk2_domain_model_georeferenceprocess'] = array(
 				'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_vk2_domain_model_georeferenceprocess.gif'
 		),
 );
+
+

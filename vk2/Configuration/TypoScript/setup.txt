@@ -1,23 +1,6 @@
-config.tx_extbase {
-	persistence {
-		classes {
-			SLUB\Vk2\Domain\Model\UserGroup {
-				mapping {
-					tableName = fe_groups
-					recordType =
-				}
-			}
-			SLUB\Vk2\Domain\Model\User {
-				mapping {
-					tableName = fe_groups
-					recordType = 
-				}
-			}
-		}
-	}
-}
-
-ajax = PAGE 
+# Creates an ajax request type used for the routing of
+# georeferencing requests to the backend service.
+ajax = PAGE
 ajax {
   typeNum = 999
   config {
@@ -30,15 +13,24 @@ ajax {
   10 < tt_content.list.20.vk2_search
 }
 
+# Basic configuration
 plugin.tx_vk2 {
+
 	view {
 		templateRootPath = {$plugin.tx_vk2.view.templateRootPath}
 		partialRootPath = {$plugin.tx_vk2.view.partialRootPath}
 		layoutRootPath = {$plugin.tx_vk2.view.layoutRootPath}
 	}
+
 	persistence {
 		storagePid = 10
 		classes {
+			SLUB\Vk2\Domain\Model\UserGroup {
+        		mapping {
+        			tableName = fe_groups
+        			recordType =
+        		}
+        	}
 			SLUB\Vk2\Domain\Model\User {
 				mapping {
 					tableName = fe_users
@@ -49,45 +41,46 @@ plugin.tx_vk2 {
 			}
 		}
 	}
+
 	features {
 		# uncomment the following line to enable the new Property Mapper.
 		# rewrittenPropertyMapper = 1
 	}
+
+	_CSS_DEFAULT_STYLE {
+    	textarea.f3-form-error {
+    		background-color:#FF9F9F;
+    		border: 1px #FF0000 solid;
+    	}
+
+    	input.f3-form-error {
+    		background-color:#FF9F9F;
+    		border: 1px #FF0000 solid;
+    	}
+
+    	.tx-vk2 table {
+    		border-collapse:separate;
+    		border-spacing:10px;
+    	}
+
+    	.tx-vk2 table th {
+    		font-weight:bold;
+    	}
+
+    	.tx-vk2 table td {
+    		vertical-align:top;
+    	}
+
+    	.typo3-messages .message-error {
+    		color:red;
+    	}
+
+    	.typo3-messages .message-ok {
+    		color:green;
+    	}
+    }
 }
 
-plugin.tx_vk2._CSS_DEFAULT_STYLE (
-	textarea.f3-form-error {
-		background-color:#FF9F9F;
-		border: 1px #FF0000 solid;
-	}
-
-	input.f3-form-error {
-		background-color:#FF9F9F;
-		border: 1px #FF0000 solid;
-	}
-
-	.tx-vk2 table {
-		border-collapse:separate;
-		border-spacing:10px;
-	}
-
-	.tx-vk2 table th {
-		font-weight:bold;
-	}
-
-	.tx-vk2 table td {
-		vertical-align:top;
-	}
-
-	.typo3-messages .message-error {
-		color:red;
-	}
-
-	.typo3-messages .message-ok {
-		color:green;
-	}
-
-)
 
 # Configuration of languages
 config.linkVars = L

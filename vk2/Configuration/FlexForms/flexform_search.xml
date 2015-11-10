@@ -1,0 +1,28 @@
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>Configuration of plugin - search.</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+
+                    <!-- Defines the elasticsearch url which is used by the client for querying search data -->
+                    <settings.search.elasticsearch>
+                        <TCEforms>
+                            <label>URL Elastic Search</label>
+                            <config>
+                                <type>input</type>
+                                <size>80</size>
+                                <eval>string</eval>
+                                <default>http://localhost/spatialdocuments</default>
+                            </config>
+                        </TCEforms>
+                    </settings.search.elasticsearch>
+
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>
