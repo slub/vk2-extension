@@ -9,7 +9,7 @@ $pluginSearch = 'Search';
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
 	$_EXTKEY,
 	$pluginSearch,
-	'Search module'
+	'Virtual Map Forum 2.0'
 );
 
 #

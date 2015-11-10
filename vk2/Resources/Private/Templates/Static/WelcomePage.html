@@ -5,7 +5,16 @@
 	<!-- load language javascript file -->
 	<vk:language urlPattern="{f:uri.resource(path:'src/locale/%s.js')}" languageTag="{f:translate(id:'language.tag')}" />
 
-	
+	<vk:isGeorefOn>
+		<f:else>
+			<vk:head>
+				<style>
+					.vk2WelcomePageFooter { bottom: 0 !important; position: absolute !important; width: 100% !important; }
+				</style>
+			</vk:head>
+		</f:else>
+	</vk:isGeorefOn>
+
 	<div class="welcome-page">
 		<div class="vk2WelcomePage">
 			<div class="vk2WelcomePageBody">
@@ -28,37 +37,48 @@
 				</div>
 				
 				<div class="footerContainer">
-				
-					<div class="vk2GeoreferenceProgressText">
-						<div class="contentContainer georeference-map-rel" style="margin-left: 72%;">
-							<div class="content georeference-map-rel" style="margin-left: -35%;">Bereits <b><span class="georeference-map-count"></span></b> von 
-									<b><span class="overall-georeference-map-count"></span></b> Messtischblättern georeferenziert.</div>
-						</div>
-						
-					</div>
-					<div class="vk2GeoreferenceProgressBar">
-						<div class="done georeference-map-rel" style="width: 100%;"></div>
-						<div class="todo georeference-map-rel" style="margin-left: 100%;"></div>
-					</div>
+
+					<vk:isGeorefOn>
+						<f:then>
+							<div class="vk2GeoreferenceProgressText">
+								<div class="contentContainer georeference-map-rel" style="margin-left: 72%;">
+									<div class="content georeference-map-rel" style="margin-left: -35%;">Bereits <b><span class="georeference-map-count"></span></b> von
+										<b><span class="overall-georeference-map-count"></span></b> Messtischblättern georeferenziert.</div>
+								</div>
+							</div>
+
+							<div class="vk2GeoreferenceProgressBar">
+								<div class="done georeference-map-rel" style="width: 100%;"></div>
+								<div class="todo georeference-map-rel" style="margin-left: 100%;"></div>
+							</div>
+						</f:then>
+					</vk:isGeorefOn>
+
 				</div>
 			</div>
 			
 			<div class="vk2WelcomePageFooter">
-				<div class="RankingContainer">
-					<div class="vk2GeoreferenceRanking">
-						<p>Die Top-Georeferenzierer:</p>
-						
-						<ol id="georeference-user-ranking">
 
-							<span class="furtherItems">[...]</span> 
-						</ol>
-					</div>
-					<div class="closeContainer">
-						<span id="vk2WelcomePageStart" class="vk2WelcomePageStart">Jetzt mithelfen und selbst Punkte sammeln.</span>
-						<f:link.action action="faq"	controller="Static" class="vk2FooterLinks"
-							additionalAttributes="{data-classes:'faq'}" absolute="True"	title="{f:translate(id:'faq.title')}">So einfach geht's</f:link.action>
-					</div>
-				</div>
+				<vk:isGeorefOn>
+					<f:then>
+						<div class="RankingContainer">
+							<div class="vk2GeoreferenceRanking">
+								<p>Die Top-Georeferenzierer:</p>
+
+								<ol id="georeference-user-ranking">
+
+									<span class="furtherItems">[...]</span>
+								</ol>
+							</div>
+							<div class="closeContainer">
+								<span id="vk2WelcomePageStart" class="vk2WelcomePageStart">Jetzt mithelfen und selbst Punkte sammeln.</span>
+								<f:link.action action="faq"	controller="Static" class="vk2FooterLinks"
+											   additionalAttributes="{data-classes:'faq'}" absolute="True"	title="{f:translate(id:'faq.title')}">So einfach geht's</f:link.action>
+							</div>
+						</div>
+					</f:then>
+				</vk:isGeorefOn>
+
 				<div class="SkipPageContainer">
 					<div class="inner">
 						<input type="checkbox" id="deactivateWelcomePage" name="deactivateWelcomePage"> 
@@ -68,13 +88,26 @@
 			</div>
 		</div>  
 	</div>
-	<script>
-		var app = new vk2.app.WelcomePageApp({
-			georefenceElClass: 'georeference-map-count',
-			overallGeorefenceElClass: 'overall-georeference-map-count',
-			relGeoreferenceElClass: 'georeference-map-rel',
-			georeferenceUserRankingElId: 'georeference-user-ranking',
-			deactivateWelcomePageId: 'deactivateWelcomePage'
-		});
-	</script>
+
+	<vk:isGeorefOn>
+		<f:then>
+			<script>
+				var app = new vk2.app.WelcomePageApp({
+					georefenceElClass: 'georeference-map-count',
+					overallGeorefenceElClass: 'overall-georeference-map-count',
+					relGeoreferenceElClass: 'georeference-map-rel',
+					georeferenceUserRankingElId: 'georeference-user-ranking',
+					deactivateWelcomePageId: 'deactivateWelcomePage'
+				});
+			</script>
+		</f:then>
+		<f:else>
+			<script>
+				var app = new vk2.app.WelcomePageApp({
+					deactivateWelcomePageId: 'deactivateWelcomePage'
+				});
+			</script>
+		</f:else>
+	</vk:isGeorefOn>
+
 </f:section>

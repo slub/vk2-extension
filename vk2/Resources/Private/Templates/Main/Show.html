@@ -19,71 +19,78 @@
 
 				<!-- user header -->
 				<div class="user-header">
-					<!-- user menu -->
-					<ul class="nav nav-pills vk2-navbar-user" id="vk2-navbar-user">
-						<li class="dropdown user-dropdown">
-							<vk:isUser>
-								<f:then>
-									<a class="dropdown-toggle" data-toggle="dropdown"> <span
-										class="glyphicon glyphicon-user"></span> <vk:username />
-											<b class="caret"></b></a>
-									<ul class="dropdown-menu">
-										<li>
-											<f:link.action action="georeferenceHistoryPage" controller="Static" 
-												additionalAttributes="{data-classes:'georef-history'}" absolute="True"
-												title="{f:translate(id:'main.link.goToGeoreferenceHistory')}" 
-												class="vk2-modal-anchor">
-												<f:translate id="main.link.goToGeoreferenceHistory" />
-											</f:link.action>
-										</li>
-										<li>
-											<f:link.action action="georeferenceChoosePage" controller="Static" 
-												additionalAttributes="{data-classes:'georef-chooser'}" absolute="True"
-												title="{f:translate(id:'main.link.goToGeoreferenceChooser')}" 
-												class="vk2-modal-anchor">
-												<f:translate id="main.link.goToGeoreferenceChooser" />
-											</f:link.action>
-										</li>
-										
-										<!-- admin menu -->
-										<vk:isAdmin>
-											<f:then>
+
+					<vk:isGeorefOn>
+						<f:then>
+
+							<!-- user menu -->
+							<ul class="nav nav-pills vk2-navbar-user" id="vk2-navbar-user">
+								<li class="dropdown user-dropdown">
+									<vk:isUser>
+										<f:then>
+											<a class="dropdown-toggle" data-toggle="dropdown"> <span
+													class="glyphicon glyphicon-user"></span> <vk:username />
+												<b class="caret"></b></a>
+											<ul class="dropdown-menu">
 												<li>
-													<f:link.action action="evaluationPage" controller="Static" 
-														absolute="True" target="_blank">
-														<f:translate id="main.link.goToEvaluationPage" />
+													<f:link.action action="georeferenceHistoryPage" controller="Static"
+																   additionalAttributes="{data-classes:'georef-history'}" absolute="True"
+																   title="{f:translate(id:'main.link.goToGeoreferenceHistory')}"
+																   class="vk2-modal-anchor">
+														<f:translate id="main.link.goToGeoreferenceHistory" />
 													</f:link.action>
 												</li>
-											</f:then>
-										</vk:isAdmin>
-										<!--  /admin menu -->
-										
-										<li class="divider"></li>
-										<li>
-											<f:link.action action="logout" controller="Auth" 
-												additionalAttributes="{data-classes:'login', target: '_top'}"
-												title="{f:translate(id:'main.auth.logout')}">
-												<span class="glyphicon glyphicon-off"></span>
-												<f:translate id="main.auth.logout" />
-											</f:link.action>
-										</li> 
-										
-									</ul>
-								</f:then>
-								<f:else>
-									<li class="listelement">
-										<f:link.action action="login"
-												controller="Auth" class="vk2-modal-anchor"
-												additionalAttributes="{data-classes:'login'}"
-												title="{f:translate(id:'main.login.title')}">
-												<f:translate id="main.login.title" />
-											<b class="caret"></b>
-										</f:link.action> 
-									</li> 
-								</f:else>
-							</vk:isUser>
-						</li>
-					</ul>
+												<li>
+													<f:link.action action="georeferenceChoosePage" controller="Static"
+																   additionalAttributes="{data-classes:'georef-chooser'}" absolute="True"
+																   title="{f:translate(id:'main.link.goToGeoreferenceChooser')}"
+																   class="vk2-modal-anchor">
+														<f:translate id="main.link.goToGeoreferenceChooser" />
+													</f:link.action>
+												</li>
+
+												<!-- admin menu -->
+												<vk:isAdmin>
+													<f:then>
+														<li>
+															<f:link.action action="evaluationPage" controller="Static"
+																		   absolute="True" target="_blank">
+																<f:translate id="main.link.goToEvaluationPage" />
+															</f:link.action>
+														</li>
+													</f:then>
+												</vk:isAdmin>
+												<!--  /admin menu -->
+
+												<li class="divider"></li>
+												<li>
+													<f:link.action action="logout" controller="Auth"
+																   additionalAttributes="{data-classes:'login', target: '_top'}"
+																   title="{f:translate(id:'main.auth.logout')}">
+														<span class="glyphicon glyphicon-off"></span>
+														<f:translate id="main.auth.logout" />
+													</f:link.action>
+												</li>
+
+											</ul>
+										</f:then>
+										<f:else>
+											<li class="listelement">
+												<f:link.action action="login"
+															   controller="Auth" class="vk2-modal-anchor"
+															   additionalAttributes="{data-classes:'login'}"
+															   title="{f:translate(id:'main.login.title')}">
+													<f:translate id="main.login.title" />
+													<b class="caret"></b>
+												</f:link.action>
+											</li>
+										</f:else>
+									</vk:isUser>
+								</li>
+							</ul>
+
+						</f:then>
+					</vk:isGeorefOn>
 
 					<!-- language switcher -->
 					<ul class="langswitch">

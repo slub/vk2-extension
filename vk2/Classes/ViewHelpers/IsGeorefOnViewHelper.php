@@ -1,6 +1,5 @@
 <?php
-namespace SLUB\Vk2\Controller;
-
+namespace  SLUB\Vk2\ViewHelpers;
 
 /***************************************************************
  *
@@ -28,25 +27,25 @@ namespace SLUB\Vk2\Controller;
  ***************************************************************/
 
 /**
- * MainController
+ * This ViewHelper checks if the georeference module is activated or not.
+ *
+ * Class IsGeorefOnViewHelper
+ * @package SLUB\Vk2\ViewHelpers
  */
-class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class IsGeorefOnViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper {
 
 	/**
-	 * mainRepository
-	 *
-	 * @var \SLUB\Vk2\Domain\Repository\MainRepository
-	 * @inject
+	 * @param string $key the key for additionalHeaderData; useful for overriding
+     * @return string
 	 */
-	protected $mainRepository = NULL;
+	public function render($key = NULL){
+		$settings = $this->templateVariableContainer->get('settings');
 
-	/**
-	 * action show
-	 * @return void
-	 */
-	public function showAction() {
-		if ($this->settings['georef']['active'] == '1') {
-
+		if ($settings['georef']['active'] == '1') {
+			return $this->renderThenChild();
+		} else {
+			return $this->renderElseChild();
 		}
 	}
+
 }

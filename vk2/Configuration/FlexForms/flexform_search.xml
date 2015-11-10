@@ -21,6 +21,43 @@
                         </TCEforms>
                     </settings.search.elasticsearch>
 
+                    <!-- Defines if the georeference plugin is on or not -->
+                    <settings.georef.active>
+                        <TCEforms>
+                            <label>Georeferencing active</label>
+                            <config>
+                                <type>check</type>
+                                <default>0</default>
+                            </config>
+                        </TCEforms>
+                    </settings.georef.active>
+
+                    <!-- Defines two plugin modes (with georeferencing and without) -->
+                    <switchableControllerActions>
+                        <TCEforms>
+                            <label>Type</label>
+                            <config>
+                                <type>select</type>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">Search and Visualization</numIndex>
+                                        <numIndex index="1">Main->show;Static->contact;Static->faq;Static->impressum;
+                                            Static->project;Static->profileMap;Static->welcomePage</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">Search, Visualization and Georeferencing</numIndex>
+                                        <numIndex index="1">Main->show;Static->contact;Static->faq;Static->impressum;
+                                            Static->project;Static->profileMap;Static->welcomePage;Static->login;
+                                            Static->logout;Static->georefPage;Static->evaluationPage;Static->georeferenceChoosePage;
+                                            Static->georeferenceHistoryPage;Static->getContactMessage;Auth->login;
+                                            Auth->signup;Auth->logout;Auth->loginError;Georeference->getProcess;
+                                            Georeference->validateGeorefProcess;Georeference->confirmGeorefProcess;
+                                            Georeference->georeferenceUserHistory;Georeference->georeferenceUserInformation</numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </switchableControllerActions>
                 </el>
             </ROOT>
         </sDEF>

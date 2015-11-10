@@ -25,18 +25,21 @@ vk2.app.WelcomePageApp = function(settings) {
 		console.log(settings)
 	};
 	
-	var georeferenceEls = goog.dom.getElementsByClass(settings['georefenceElClass']),
-		overallGeoreferenceEls = goog.dom.getElementsByClass(settings['overallGeorefenceElClass']),
-		relGeoreferenceEls = goog.dom.getElementsByClass(settings['relGeoreferenceElClass']),
-		georeferenceUserRankingEl = goog.dom.getElement(settings['georeferenceUserRankingElId']);
+	var georeferenceEls = settings['georefenceElClass'] !== undefined ? goog.dom.getElementsByClass(settings['georefenceElClass']) : undefined,
+		overallGeoreferenceEls = settings['overallGeorefenceElClass'] !== undefined ? goog.dom.getElementsByClass(settings['overallGeorefenceElClass']) : undefined,
+		relGeoreferenceEls = settings['relGeoreferenceElClass'] !== undefined ? goog.dom.getElementsByClass(settings['relGeoreferenceElClass']) : undefined,
+		georeferenceUserRankingEl = settings['georeferenceUserRankingElId'] !== undefined ? goog.dom.getElement(settings['georeferenceUserRankingElId']) : undefined;
 
 	// append deactivation behavior for welcome page
 	$('#' + settings['deactivateWelcomePageId']).change(function(){				
 		var welcomePageStatus = $(this).prop('checked') ? 'off' : 'on';
 		vk2.utils.setCookie('vk2-welcomepage', welcomePageStatus);
 	});
-		
-	this.fetchData_(georeferenceEls, overallGeoreferenceEls, relGeoreferenceEls, georeferenceUserRankingEl);
+
+	if (georeferenceEls !== undefined && overallGeoreferenceEls !== undefined && relGeoreferenceEls !== undefined
+		&& georeferenceUserRankingEl !== undefined) {
+		this.fetchData_(georeferenceEls, overallGeoreferenceEls, relGeoreferenceEls, georeferenceUserRankingEl);
+	}
 };
 
 /**
