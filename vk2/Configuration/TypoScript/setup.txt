@@ -146,7 +146,7 @@ page {
 		jquery-ui = EXT:vk2/Resources/Public/lib/jquery-ui/ui/minified/jquery-ui.min.js
 		jquery-lazy-loading = EXT:vk2/Resources/Public/lib/jquery-lazy-loading.js
 		ol3 = EXT:vk2/Resources/Public/lib/openlayers/ol-debug.js
-		filter = EXT:vk2/Resources/Public/lib/webgl-image-filter.js
+		filter = EXT:vk2/Resources/Public/lib/glif/dist/glif.min.js
 		#ol3 = EXT:vk2/Resources/Public/ol-vk2.js
 		goog-base = EXT:vk2/Resources/Public/lib/closure-library/closure/goog/base.js
 		goog-deps = EXT:vk2/Resources/Public/lib/closure-library/closure/goog/deps.js

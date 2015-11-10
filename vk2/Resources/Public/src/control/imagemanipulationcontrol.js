@@ -4,6 +4,7 @@ goog.require('vk2.utils');
 goog.require('goog.events');
 goog.require('goog.dom');
 goog.require('goog.dom.classes');
+goog.require('goog.object');
 
 /**
  * @constructor
@@ -65,70 +66,6 @@ vk2.control.ImageManipulation.prototype.close_ = function(parentEl){
 };
 
 /**
- * @param {string} className
- * @param {string} orientation
- * @param {Function} updateFn
- * @param {number=} opt_baseValue
- * @param {string=} opt_title
- * @return {Element}
- * @private
- */
-vk2.control.ImageManipulation.prototype.createSlider_ = function(className, orientation, updateFn, opt_baseValue, opt_title){
-	var title = goog.isDef('opt_title') ? opt_title : '';
-	var sliderEl = goog.dom.createDom('div', {'class': 'slider ' + className, 'title':title});
-	
-	var baseMin = 0, baseMax = 100;
-	var minValueEl, maxValueEl;
-	var startValue = goog.isDef(opt_baseValue) ? opt_baseValue : 100;
-
-	/**
-	 * 	@param {number} value
-	 *	@param {Element} element 
-	 */
-	var updatePosition = function(value, element){
-		if (orientation == 'vertical'){
-			var style_top = 100 - ((value - baseMin) / (baseMax - baseMin) * 100);
-			element.style.top = style_top + '%';
-			element.innerHTML = value + '%';
-			return;
-		};
-		
-		var style_left = (value - baseMin) / (baseMax - baseMin) * 100;
-		element.style.left = style_left + '%';
-		element.innerHTML = value + '%';
-	};
-	
-	$(sliderEl).slider({
-        'min': 0,
-        'max': 100,
-        'value': startValue,
-        'animate': 'slow',
-        'orientation': orientation,
-        'step': 1,
-        'slide': function( event, ui ) {
-        	var value = ui['value'];
-        	updatePosition(value, valueEl);
-        	updateFn(value);       	
-        },
-        'change': goog.bind(function( event, ui ){
-        	var value = ui['value'];
-        	updatePosition(value, valueEl);
-        	updateFn(value);
-        }, this)
-    });
-	
-	// append tooltips
-	var innerHtml = goog.isDef(opt_baseValue) ? opt_baseValue + '%' : '100%'; 
-	var valueEl = goog.dom.createDom('div',{
-		'class':'tooltip value '+className,
-		'innerHTML': innerHtml
-	});
-	goog.dom.appendChild(sliderEl, valueEl);
-	
-	return sliderEl;
-};
-
-/**
  * @private
  * @return {ol.layer.Base}
  */
@@ -142,104 +79,182 @@ vk2.control.ImageManipulation.prototype.getBaseLayer_ = function(){
  */
 vk2.control.ImageManipulation.prototype.initializeSliderContainer_ = function(parentEl){
 
+	/**
+	 * Values of the different image filters.
+	 * @type {{brightness: number, contrast: number, hue: number, saturation: number}}
+	 */
+	var filters = {
+			'brightness': 1,
+			'contrast' : 1,
+			'hue': 0,
+			'saturation': 0
+		},
+		defaultFilters = goog.object.clone(filters)
+
+	/**
+	 * Has the value of an image filter has been changed
+	 * @type {boolean}
+	 */
+	var filterUpdate = false;
+
+	/**
+	 * @param {string} className
+	 * @param {string} orientation
+	 * @param {string} key
+	 * @param {ol.layer.Layer} layer
+	 * @param {number=} opt_baseValues
+	 * @param {string=} opt_title
+	 * @return {Element}
+	 * @private
+	 */
+	var createSlider_ = function(className, orientation, key, layer, opt_baseValues, opt_title){
+		var title = goog.isDef('opt_title') ? opt_title : '',
+			sliderEl = goog.dom.createDom('div', {'class': 'slider ' + className, 'title':title, 'data-type': key}),
+			baseMin = goog.isDef(opt_baseValues) ? opt_baseValues[1] : 0,
+			baseMax = goog.isDef(opt_baseValues) ? opt_baseValues[2] : 100,
+			steps = goog.isDef(opt_baseValues) ? opt_baseValues[3] : 1,
+			minValueEl,
+			maxValueEl,
+			startValue = goog.isDef(opt_baseValues) ? opt_baseValues[0] : 100;
+
+		/**
+		 * Updates the filters and the position attached to a slider
+		 * @param {Object} event
+		 * @param {Object} ui
+		 */
+		var update = function(event, ui) {
+			var value = ui['value'];
+
+			// check if postcompose listener ist registered and if not add the listener
+			if (!postcomposeRegistered) {
+				// registered the postcompose event listener
+				layer.on('postcompose', postcomposeHandler);
+				postcomposeRegistered = true;
+			};
+
+			// update position of the tooltip
+			if (orientation == 'vertical'){
+				var style_top = 100 - ((value - baseMin) / (baseMax - baseMin) * 100);
+				valueEl.style.top = style_top + '%';
+				valueEl.innerHTML = value + '%';
+				return;
+			};
+
+			var style_left = (value - baseMin) / (baseMax - baseMin) * 100;
+			valueEl.style.left = style_left + '%';
+			valueEl.innerHTML = value;
+
+			// update filters.
+			filters[key] = value;
+			filterUpdate = true;
+			layer.changed();
+
+		};
+
+		$(sliderEl).slider({
+			'min': baseMin,
+			'max': baseMax,
+			'value': startValue,
+			'animate': 'slow',
+			'orientation': orientation,
+			'step': steps,
+			'slide': update,
+			'change': update
+		});
+
+		// append tooltips
+		var innerHtml = goog.isDef(opt_baseValues) ? opt_baseValues[0] : '';
+		var valueEl = goog.dom.createDom('div',{
+			'class':'tooltip value '+className,
+			'innerHTML': innerHtml
+		});
+		goog.dom.appendChild(sliderEl, valueEl);
+
+		return sliderEl;
+	};
+
+	/**
+	 * Events adds the filters to the layer.
+	 * @param {Object} event
+	 */
+	var postcomposeHandler = function(event){
+			var webglContext = event['glContext'],
+				canvas = webglContext.getCanvas();
+
+			if (webglContext !== undefined && webglContext !== null) {
+				var gl = webglContext.getGL();
+
+				if (filterUpdate) {
+					glif.reset();
+
+					for (var filter in filters) {
+						glif.addFilter(filter, filters[filter]);
+					};
+
+					filterUpdate = false;
+				}
+
+				glif.apply(gl, canvas);
+
+				// for showing openlayers that the program changed
+				// if missing openlayers will produce errors because it
+				// expected other shaders in the webgl program
+				webglContext.useProgram(undefined);
+			}
+		},
+		/**
+		 * Parameters is true if the handler is registered
+		 * @type {boolean}
+		 */
+		postcomposeRegistered = false;
+
 	// create the container
 	var sliderContainer = goog.dom.createDom('div', {'class':'slider-container', 'style':'display:none;'});
 	goog.dom.appendChild(parentEl, sliderContainer);
-	
-	// add contrast slider
-	var notInitContrast = true,
-		contrast = 1;
-		postcomposeHandler = function(event) {
-			console.log('Trigger postcompose contrast - value: ' + contrast);
 
-			var context = event['glContext'];
-			if (context !== undefined && context !== null) {
-				var webglContext = context.getGL();
-
-				debugger;
-			}
-		},
-		precomposeHandler = function(event) {
-			console.log('Trigger precompose contrast - value: ' + contrast);
-
-			var webglContext = event['glContext'],
-				canvasContext = event['context'];
-			if (webglContext !== undefined && webglContext !== null) {
-				var webglRenderingContext = webglContext.getGL();
-			}
-		};
-
-	var contrastSlider = this.createSlider_('slider-contrast', 'horizontal', goog.bind(function(value){
-		var layer = this.getBaseLayer_();
-
-		// if the event handler are not initialize yet, attach them to the layer
-		if (notInitContrast) {
-			layer.on('postcompose', postcomposeHandler);
-			layer.on('precompose', precomposeHandler);
-			notInitContrast = false;
-		};
-
-		// update contrast value
-		contrast = value/100;
-
-		// trigger changed event
-		layer.changed();
-	}, this), undefined, vk2.utils.getMsg('contrast'));
+	// create contrast slider
+	var contrastSlider = createSlider_('slider-contrast', 'horizontal', 'contrast', this.getBaseLayer_(),
+		[1, 0, 2, 0.01], vk2.utils.getMsg('contrast'));
 	goog.dom.appendChild(sliderContainer, contrastSlider);
-	
-	// add satuartion slider
-	var saturationSlider = this.createSlider_('slider-saturation', 'horizontal', goog.bind(function(value){
-		this.getBaseLayer_()['setSaturation'](value/100);
-	}, this), undefined, vk2.utils.getMsg('saturation'));
+
+	// create saturation slider
+	var saturationSlider = createSlider_('slider-saturation', 'horizontal', 'saturation', this.getBaseLayer_(),
+		[0, -1, 1, 0.01], vk2.utils.getMsg('saturation'));
 	goog.dom.appendChild(sliderContainer, saturationSlider);
-	
-	// add brightness slider
-	var brightnessSlider = this.createSlider_('slider-brightness', 'horizontal', goog.bind(function(value){
-		// doing linar mapping (normalisierung)
-		var linarMapping = 2 * value / 100 -1;
-		this.getBaseLayer_()['setBrightness'](linarMapping);
-	}, this), 50, vk2.utils.getMsg('brightness'));
+
+	// create brightness slider
+	var brightnessSlider = createSlider_('slider-brightness', 'horizontal', 'brightness', this.getBaseLayer_(),
+		[1, 0, 2, 0.1], vk2.utils.getMsg('brightness'));
 	goog.dom.appendChild(sliderContainer, brightnessSlider);
 
-	// add contrast slider
-	var baseValue = 50;
-	var hueSlider = this.createSlider_('slider-hue', 'horizontal', goog.bind(function(value){
-		// doing arbitray mapping 
-		var mapping = (value - baseValue) * 0.25;
-		var hueValue = mapping == 0 ? 0 : mapping + this.getBaseLayer_()['getHue']();
-		this.getBaseLayer_()['setHue'](hueValue);
-	}, this), baseValue, vk2.utils.getMsg('hue'));
+	// create hue slider
+	var hueSlider = createSlider_('slider-hue', 'horizontal','hue', this.getBaseLayer_(),
+		[0, -180, 180, 5], vk2.utils.getMsg('hue'));
 	goog.dom.appendChild(sliderContainer, hueSlider);
-	
-	// button for reset to default state
+
+	//
+	// Append button for reset filters
+	//
 	var resetBtn = goog.dom.createDom('button', {
 		'class':'reset-btn',
 		'title': vk2.utils.getMsg('reset'),
 		'innerHTML': 'Reset'
 	});
 	goog.dom.appendChild(sliderContainer, resetBtn);
-	 
-	var defaultValues = {
-		hue: 0,
-		brightness:0,
-		contrast: 1,
-		saturation: 1
-	};
-	
+
 	goog.events.listen(resetBtn, 'click', function(e){
-		// reset the layer
-		var layer = this.getBaseLayer_();
-		layer['setHue'](defaultValues.hue);
-		layer['setBrightness'](defaultValues.brightness);
-		layer['setContrast'](defaultValues.contrast);
-		layer['setSaturation'](defaultValues.saturation);
+		// remove postcomposeHandler
+		this.getBaseLayer_().un('postcompose', postcomposeHandler);
+		postcomposeRegistered = false;
 		
 		// reset the sliders
 		var sliderEls = goog.dom.getElementsByClass('slider', sliderContainer);
 		for (var i = 0; i < sliderEls.length; i++){
-			var sliderEl = sliderEls[i];
-			var resetValue = goog.dom.classes.has(sliderEl, 'slider-hue') || goog.dom.classes.has(sliderEl, 'slider-brightness') ? 50 : 100;
-			$(sliderEl).slider('value', resetValue);
+			var sliderEl = sliderEls[i],
+				type = sliderEl.getAttribute('data-type'),
+				value = defaultFilters[type];
+
+			$(sliderEl).slider('value', value);
 		};
 	}, undefined, this);
 		

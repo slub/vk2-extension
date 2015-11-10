@@ -72,63 +72,6 @@ vk2.app.MapProfileApp.prototype.initApp_ = function(feature, settings) {
 	// append image manipulation tool
 	goog.events.listen(zoomifyViewer, vk2.viewer.ZoomifyViewerEventType.LOADEND, function(event){
 		zoomifyViewer.getMap().addControl(new vk2.control.ImageManipulation());
-		
-		var layer = zoomifyViewer.getLayer();
-/*		layer.on('precompose', function(evt) {
-			console.log('Precompose event triggered');
-			
-			var webglContext = evt['glContext'],
-				canvasContext = evt['context'];
-			if (webglContext !== undefined && webglContext !== null) {
-				var webglRenderingContext = webglContext.getGL();
-			}
-		});*/
-        //
-		//layer.on('precompose', function(evt) {
-		//	console.log('Postcompose event triggered');
-        //
-		//	var webglContext = evt['glContext'];
-		//	if (webglContext !== undefined && webglContext !== null) {
-		//		var webglRenderingContext = webglContext.getGL();
-		//		var filter = new WebGLImageFilter(webglContext.getCanvas());
-		//		filter.addFilter('contrast', 1);
-		//		filter.applyToWebGLRenderingContext(webglRenderingContext);
-        //
-        //
-		//	}
-		//});
-
-		//layer.on('precompose', function(evt) {
-		//	console.log('Postcompose event triggered');
-        //
-		//	var webglContext = evt['glContext'];
-		//	if (webglContext !== undefined && webglContext !== null) {
-		//		var webglRenderingContext = webglContext.getGL();
-		//		var filter = new WebGLImageFilter(webglContext.getCanvas());
-		//		filter.addFilter('negative');
-		//		filter.applyToWebGLRenderingContext(webglContext.getCanvas(), webglRenderingContext);
-        //
-		//	}
-		//});
-
-		var counter = 0;
-		layer.on('postcompose', function(evt) {
-			console.log('Postcompose event triggered');
-
-			//var context = evt['glContext'];
-			//var gl = context.getGL();
-			//gl.disable(gl.STENCIL_TEST);
-
-			var webglContext = evt['glContext'];
-			if (webglContext !== undefined && webglContext !== null) {
-				var webglRenderingContext = webglContext.getGL();
-				var filter = new WebGLImageFilter(webglContext.getCanvas());
-				//filter.addFilter('contrast', 100);
-				filter.addFilter('negative');
-				//filter.addFilter('blur', 7);
-				filter.applyToWebGLRenderingContext(webglContext.getCanvas(), webglRenderingContext);
-			}
-		});
 	}); 
 	
 	return;
