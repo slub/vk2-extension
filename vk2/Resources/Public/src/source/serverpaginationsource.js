@@ -7,10 +7,10 @@ goog.require('goog.net.XhrIo');
 goog.require('goog.events');
 goog.require('goog.events.EventTarget');
 goog.require('goog.events.EventType');
-goog.require('vk2.settings');
 goog.require('vk2.utils');
 goog.require('vk2.request.ElasticSearch');
 goog.require('vk2.parser.ElasticSearch');
+goog.require('vk2.settings');
 
 /**
  * @enum {string}
@@ -253,7 +253,7 @@ vk2.source.ServerPagination.prototype.loadFeatures_ = function(extent, projectio
 	
 	// build elasticsearch request
 	var requestPayload = this.createSearchRequest_(extent, projection),
-		requestUrl = vk2.settings.ELASTICSEARCH + '/_search?from=' + this.index_ + '&size=' + this.maxFeatures_;
+		requestUrl = vk2.settings.ELASTICSEARCH_NODE + '/_search?from=' + this.index_ + '&size=' + this.maxFeatures_;
 
 	var xhr = new goog.net.XhrIo();
 	goog.events.listenOnce(xhr, 'success', function(e){

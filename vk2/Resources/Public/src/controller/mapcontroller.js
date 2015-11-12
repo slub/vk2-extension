@@ -1,7 +1,6 @@
 goog.provide('vk2.controller.MapController');
 
 goog.require('goog.dom');
-goog.require('goog.object');
 goog.require('goog.array');
 goog.require('goog.events');
 goog.require('vk2.utils');
@@ -30,29 +29,48 @@ ol.Map.prototype.getHistoricMapLayer = function(){
 };
 
 /**
- * @param {Object} settings
- * @param {string} map_container
+ * @param {string} mapElId
+ * @param {Object|undefined} opt_mapViewSettings
  * @constructor
  * @export
  */
-vk2.controller.MapController = function(settings, map_container){
+vk2.controller.MapController = function(mapElId, opt_mapViewSettings){
 		
+	var settings = opt_mapViewSettings !== undefined ? opt_mapViewSettings : {
+		projection: 'EPSG:3857',
+		center: [1528150, 6630500],
+		zoom: 2
+	};
+
 	/**
-	 * @type {Object}
+	 * @type {ol.Map}
 	 * @private
 	 */
-	this._settings = {};
-	goog.object.extend(this._settings, settings);
-	
-	this._loadBaseMap(map_container);
-	this.appendMapClickBehavior_(this.map_);
+	this.map_ = vk2.controller.MapController.createBaseMap(mapElId, settings);
+
+	// append click behavior to map object
+	this.map_.on('singleclick', function(event){
+		if (goog.DEBUG)
+			console.log('Pixel: '+event.pixel);
+
+		var features = [];
+		this.forEachFeatureAtPixel(event['pixel'], function(feature){
+			features.push(feature);
+		});
+
+		if (goog.DEBUG)
+			console.log(features);
+
+		vk2.controller.MapController.showMapProfile(features);
+	});
 };
 
 /**
- * @param {string} map_container
- * @private
+ * @param {string} mapElId
+ * @param {Object} mapViewSettings
+ * @return
  */
-vk2.controller.MapController.prototype._loadBaseMap = function(map_container){
+vk2.controller.MapController.createBaseMap = function(mapElId, mapViewSettings){
 	
 	var styleArray = [new ol.style.Style({
 		  stroke: new ol.style.Stroke({
@@ -61,11 +79,7 @@ vk2.controller.MapController.prototype._loadBaseMap = function(map_container){
 		  })
 	})];
 	
-	/**
-	 * @type {ol.Map}
-	 * @private
-	 */
-	this.map_ = new ol.Map({
+	return new ol.Map({
 		'layers': [
 		   new ol.layer.Tile({
 			 //  preload: Infinity,
@@ -77,7 +91,7 @@ vk2.controller.MapController.prototype._loadBaseMap = function(map_container){
 //				})
 		],
 		'renderer': 'canvas',
-		'target': map_container,
+		'target': mapElId,
 		'interactions': ol.interaction.defaults().extend([
 		    new ol.interaction.DragRotateAndZoom()
 		]),
@@ -201,26 +215,7 @@ vk2.controller.MapController.prototype._createHistoricMapForFeature = function(f
 };
 
 
-/**
- * @param {ol.Map} map
- * @private
- */
-vk2.controller.MapController.prototype.appendMapClickBehavior_ = function(map){
-	map.on('singleclick', function(event){
-		if (goog.DEBUG)
-			console.log('Pixel: '+event.pixel);
-		
-		var features = [];
-		this.forEachFeatureAtPixel(event['pixel'], function(feature){
-			features.push(feature);
-		});
-		
-		if (goog.DEBUG)
-			console.log(features);
-	
-		vk2.controller.MapController.showMapProfile(features);
-	});
-};
+
 
 /**
  * @param {Array.<ol.Feature>} features

@@ -4,12 +4,12 @@ goog.require('goog.dom');
 goog.require('goog.events');
 goog.require('goog.events.EventType');
 
-goog.require('vk2.settings');
 goog.require('vk2.utils');
 goog.require('vk2.controller.MapController');
 goog.require('vk2.tool.Permalink');
 goog.require('vk2.module.SpatialTemporalSearchModule');
 goog.require('vk2.module.LayerManagementModule');
+goog.require('vk2.settings');
 
 /**
  * @export
@@ -31,7 +31,7 @@ vk2.app.PresentationApp = function(settings){
 	
 	// check if the app should be started in georeference mode
 	var isAuthenticate = goog.isDef(settings['authenticate']) && goog.isBoolean(settings['authenticate']) ? settings['authenticate'] : false,
-		georeferenceModuleActivate = isAuthenticate && vk2.settings.GEOREFERENCE_ACTIVE ? true : false;
+		georeferenceModuleActivate = isAuthenticate && vk2.settings.GEOREFERENCE_ON ? true : false;
 		
 	// append modal behavior to page anchors
 	var modalAnchorClassName = goog.isDef(settings['modalAnchorClassName']) ? settings['modalAnchorClassName'] : 'vk2-modal-anchor';
@@ -43,7 +43,7 @@ vk2.app.PresentationApp = function(settings){
 	//
 	// initialize basic application modules
 	//
-	var mapController = new vk2.controller.MapController(vk2.settings.MAIN_MAP_SETTINGS, settings['mapContainerId']);
+	var mapController = new vk2.controller.MapController(settings['mapContainerId'], vk2.settings.MAPVIEW_PARAMS);
 	
 	// load spatialsearch 
 	var spatialSearch = new vk2.module.SpatialTemporalSearchModule(settings['spatialsearchContainerId'], mapController.getMap(), georeferenceModuleActivate);

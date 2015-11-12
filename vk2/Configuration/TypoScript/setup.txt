@@ -140,6 +140,7 @@ page {
 		jquery-lazy-loading = EXT:vk2/Resources/Public/lib/jquery-lazy-loading.js
 		ol3 = EXT:vk2/Resources/Public/lib/openlayers/ol-debug.js
 		filter = EXT:vk2/Resources/Public/lib/glif/dist/glif.min.js
+		params = EXT:vk2/Resources/Public/vk2-params.js
 		#ol3 = EXT:vk2/Resources/Public/ol-vk2.js
 		goog-base = EXT:vk2/Resources/Public/lib/closure-library/closure/goog/base.js
 		goog-deps = EXT:vk2/Resources/Public/lib/closure-library/closure/goog/deps.js

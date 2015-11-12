@@ -10,6 +10,7 @@ goog.require('goog.events.EventType');
 goog.require('vk2.parser.ElasticSearch');
 goog.require('vk2.request.ElasticSearch');
 goog.require('vk2.utils.routing');
+goog.require('vk2.settings');
 
 /**
  * @enum {string}
@@ -86,7 +87,7 @@ vk2.tool.Permalink.prototype.parsePermalink_ = function(map){
 
 	    	if (goog.isDef(data)) {
 	    		var feature = vk2.parser.ElasticSearch.readFeature(objectids[0], data['_source'],
-	    				vk2.settings.ELASTICSEARCH_SRS, vk2.settings.DISPLAY_SRS);
+	    				vk2.settings.ELASTICSEARCH_SRS, 'EPSG:3857');
 	    		
 	    		if (feature !== undefined) {
 	    			center = feature.getGeometry().getInteriorPoint().getCoordinates();
@@ -104,7 +105,7 @@ vk2.tool.Permalink.prototype.parsePermalink_ = function(map){
 	    	
 	    	if (goog.isDef(data)) {
 	    		var features = vk2.parser.ElasticSearch.readFeatures(data['docs'],
-	    				vk2.settings.ELASTICSEARCH_SRS, vk2.settings.DISPLAY_SRS);
+	    				vk2.settings.ELASTICSEARCH_SRS, 'EPSG:3857');
 	    				    		
 		    	// dispatch addmtb events, but dispatch them in the correct ording corresponding to the 
 		    	// ordering of the objectids array

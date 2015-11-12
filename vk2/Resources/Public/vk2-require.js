@@ -7,4 +7,5 @@ goog.require('vk2.app.MapProfileApp');
 goog.require('vk2.app.PresentationApp');
 goog.require('vk2.app.UserHistoryApp');
 goog.require('vk2.app.WelcomePageApp');
+goog.require('vk2.settings');
 goog.require('vk2.utils');

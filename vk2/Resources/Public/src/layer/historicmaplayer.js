@@ -2,9 +2,9 @@ goog.provide('vk2.layer.HistoricMap');
 
 goog.require('goog.events');
 goog.require('goog.object');
-goog.require('vk2.settings');
 goog.require('vk2.utils');
 goog.require('vk2.utils.Styles');
+goog.require('vk2.settings')
 
 /**
  * Right now there are problems with the compiled version when using a ol3 compiled version. In that case
@@ -44,7 +44,7 @@ vk2.layer.HistoricMap = function(settings, map){
 	 * @private
 	 * @expose
 	 */
-	this.thumb_ = goog.isDef(settings.thumbnail) ? settings.thumbnail : vk2.settings.DEFAULT_IMAGE_PATH + 'layer_default.png';
+	this.thumb_ = goog.isDef(settings.thumbnail) ? settings.thumbnail : vk2.settings.THUMB_PATH;
 	
 	/**
 	 * @type {boolean}
@@ -71,7 +71,7 @@ vk2.layer.HistoricMap = function(settings, map){
 			'extent': settings.extent,
 			'source': new ol.source.XYZ({
 				'maxZoom': 15,
-				'urls': urls//vk2.settings.TMS_URL + settings['dataid'] + '/{z}/{x}/{-y}.png'
+				'urls': urls
 			})
 		}),
 		borderLayer = new ol.layer.Vector({

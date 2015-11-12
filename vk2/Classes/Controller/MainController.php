@@ -44,9 +44,5 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * action show
 	 * @return void
 	 */
-	public function showAction() {
-		if ($this->settings['georef']['active'] == '1') {
-
-		}
-	}
+	public function showAction() {}
 }

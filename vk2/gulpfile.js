@@ -18,16 +18,18 @@ gulp.task('js-compile-simple', function() {
 	return gulp.src(['Resources/Public/vk2-require.js', 'Resources/Public/src/**/*.js', 'Resources/Public/lib/closure-library/closure/goog/**/*.js'])
     	.pipe(closureCompiler({
     		compilerPath: 'node_modules/closure-compiler/node_modules/google-closure-compiler/compiler.jar',
-    		fileName: 'Resources/Public/vk2-simple.js',
+    		fileName: 'Resources/Public/vk2.js',
     		compilerFlags: {
     			closure_entry_point: 'vk2.require',
     			compilation_level: 'SIMPLE',
     			only_closure_dependencies: true,
     			externs: [
+					'Build/externs/glif.js',
 					'Build/externs/proj4.js',
 					'Build/externs/ol-externs.js',
 					'Build/externs/jquery.js',
-					'Build/externs/general.js'
+					'Build/externs/general.js',
+					'Build/externs/vk2x.js'
     			],
     			warning_level: 'VERBOSE'
     		}
@@ -56,6 +58,7 @@ gulp.task('js-compile-advanced-debug', function() {
     			    'goog.DEBUG=false'
     			],
     			externs: [
+					'Build/externs/glif.js',
 					'Build/externs/proj4.js',
 					'Build/externs/ol-externs.js',
 					'Build/externs/jquery.js',
@@ -87,6 +90,7 @@ gulp.task('js-compile-advanced', function() {
     			    'goog.DEBUG=false'
     			],
     			externs: [
+					'Build/externs/glif.js',
 					'Build/externs/proj4.js',
 					'Build/externs/ol-externs.js',
 					'Build/externs/jquery.js',

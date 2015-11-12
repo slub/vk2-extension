@@ -20,7 +20,7 @@ vk2.utils.routing.clearPath = function(string) {
  * @return {string}
  */
 vk2.utils.routing.getBaseUrl = function() {
-	var uri = new goog.Uri(window.location.href)
+	var uri = new goog.Uri(window.location.href),
 		languageParam = vk2.utils.getQueryParam("L"),
 		language = languageParam !== undefined && languageParam !== "" ? languageParam : 0;
 	if (!vk2.settings.WITH_SPEAKING_URLS)
@@ -135,8 +135,8 @@ vk2.utils.routing.getGeorefPageRoute = function(opt_objectid, opt_params) {
 vk2.utils.routing.getMapProfileRoute = function(key) {
 	var uri = new goog.Uri(window.location.href);
 	if (!vk2.settings.WITH_SPEAKING_URLS)
-		return vk2.utils.routing.getBaseUrl() + '&' + vk2.settings.MAP_PROFILE_PAGE + '&objectid=' + key;
-	return vk2.utils.routing.clearPath(uri.getPath() + '/' + vk2.settings.MAP_PROFILE_PAGE) + '?objectid=' + key;
+		return vk2.utils.routing.getBaseUrl() + '&' + vk2.settings.MAPPROFILE_PAGE + '&objectid=' + key;
+	return vk2.utils.routing.clearPath(uri.getPath() + '/' + vk2.settings.MAPPROFILE_PAGE) + '?objectid=' + key;
 };
 
 /**

@@ -88,7 +88,7 @@ vk2.app.UserHistoryApp.prototype.fetchData_ = function(targetEl, targetPointsEl)
 vk2.app.UserHistoryApp.prototype.renderRecord_ = function(record) {
 	var wmsUrl = record['transformed'] !== undefined && record['transformed'] === true ? 
 			vk2.settings.WMS_DYNAMIC_TEMPLATE + '?SERVICE=WMS&VERSION=1.0.0&REQUEST=GetCapabilities&map=' + record['mapid'] : '#',
-		imageUrl = record['thumbnail'] !== undefined ? record['thumbnail'] : vk2.settings.THUMBNAILS_DEFAULT,
+		imageUrl = record['thumbnail'] !== undefined ? record['thumbnail'] : '#',
 		innerHTMLPermalink = record['transformed'] !== undefined && record['transformed'] === true ? 
 				'<a href="#" target="_blank">Klick</a>' : vk2.utils.getMsg('georef-history-beingGenerated'),
 		isValide = record['isvalide'] !== "" ? record['isvalide'] : 'unknown'; 

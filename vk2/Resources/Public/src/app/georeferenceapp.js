@@ -6,7 +6,6 @@ goog.require('goog.events.EventType');
 goog.require('goog.Uri');
 goog.require('goog.net.XhrIo');
 
-goog.require('vk2.settings');
 goog.require('vk2.utils');
 goog.require('vk2.utils.routing');
 goog.require('vk2.viewer.ZoomifyViewer');
@@ -15,6 +14,8 @@ goog.require('vk2.georeference.Georeferencer');
 goog.require('vk2.georeference.GeoreferencerService');
 goog.require('vk2.georeference.view.SourceView');
 goog.require('vk2.georeference.view.TargetView');
+goog.require('vk2.settings');
+
 /**
  * @constructor
  * @export
@@ -97,8 +98,8 @@ vk2.app.GeoreferenceApp.prototype.loaderFunction_ = function(originalMapContaine
 		
 	var extent = data.hasOwnProperty('extent') ? data['extent'] : [13.8,51, 14.2,52],
 		srsView = new vk2.georeference.view.SourceView(originalMapContainerId, data['zoomify']),
-		targetView = new vk2.georeference.view.TargetView(geoMapContainerId, ol.proj.transformExtent(extent, 
-			vk2.settings.GEOREFERNCE_DEFAULT_EXTENT_SRS, vk2.settings.DISPLAY_SRS ));		
+		targetView = new vk2.georeference.view.TargetView(geoMapContainerId, ol.proj.transformExtent(extent,
+			vk2.settings.GEOREFERENCE_EXTENT_SRS, 'EPSG:3857' ));
 	
 	// before calling this function the zoomify layer has to be loaded
 	goog.events.listen(srsView, 'loadend', function(){

@@ -160,7 +160,7 @@ vk2.request.ElasticSearch.getToGeorefQuery = function(timeFieldName, timeValues,
  * @return {string}
  */
 vk2.request.ElasticSearch.getFeatureForId = function(type, featureId){
-	return vk2.settings.ELASTICSEARCH + '/' + type + '/' + featureId;
+	return vk2.settings.ELASTICSEARCH_NODE + '/' + type + '/' + featureId;
 };
 
 /**
@@ -172,7 +172,7 @@ vk2.request.ElasticSearch.getFeatureForId = function(type, featureId){
  * @return {Object}
  */
 vk2.request.ElasticSearch.getFeatureForIds = function(type, featureIds, callback){
-	var url =  vk2.settings.ELASTICSEARCH + '/' + type + '/_mget',
+	var url =  vk2.settings.ELASTICSEARCH_NODE + '/' + type + '/_mget',
 		payload = JSON.stringify({'ids':featureIds});
 	
 	// send request
