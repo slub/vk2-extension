@@ -3,6 +3,18 @@ var closureCompiler = require('gulp-closure-compiler');
 var minifyCss = require('gulp-minify-css');
 
 /**
+ * Externs used by the closure compiler
+ */
+var closureExterns = [
+	'Build/externs/glif.js',
+	'Build/externs/proj4.js',
+	'Build/externs/ol-externs.js',
+	'Build/externs/jquery.js',
+	'Build/externs/general.js',
+	'Build/externs/vk2x.js'
+];
+
+/**
  * Minifies the css 
  */
 gulp.task('minify-css', function() {
@@ -23,14 +35,7 @@ gulp.task('js-compile-simple', function() {
     			closure_entry_point: 'vk2.require',
     			compilation_level: 'SIMPLE',
     			only_closure_dependencies: true,
-    			externs: [
-					'Build/externs/glif.js',
-					'Build/externs/proj4.js',
-					'Build/externs/ol-externs.js',
-					'Build/externs/jquery.js',
-					'Build/externs/general.js',
-					'Build/externs/vk2x.js'
-    			],
+    			externs: closureExterns,
     			warning_level: 'VERBOSE'
     		}
     	}))
@@ -57,14 +62,7 @@ gulp.task('js-compile-advanced-debug', function() {
     			define: [
     			    'goog.DEBUG=false'
     			],
-    			externs: [
-					'Build/externs/glif.js',
-					'Build/externs/proj4.js',
-					'Build/externs/ol-externs.js',
-					'Build/externs/jquery.js',
-					'Build/externs/general.js',
-					'Build/externs/vk2x.js'
-    			],
+    			externs: closureExterns,
     			output_wrapper: '(function(){%output%}).call(window);',
     			warning_level: 'VERBOSE'
     		}
@@ -89,14 +87,7 @@ gulp.task('js-compile-advanced', function() {
     			define: [
     			    'goog.DEBUG=false'
     			],
-    			externs: [
-					'Build/externs/glif.js',
-					'Build/externs/proj4.js',
-					'Build/externs/ol-externs.js',
-					'Build/externs/jquery.js',
-					'Build/externs/general.js',
-					'Build/externs/vk2x.js'
-    			],
+    			externs: closureExterns,
     			output_wrapper: '(function(){%output%}).call(window);',
     			warning_level: 'VERBOSE'
     		}
