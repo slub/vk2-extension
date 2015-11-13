@@ -3,10 +3,21 @@
         <sDEF>
             <ROOT>
                 <TCEforms>
-                    <sheetTitle>Configuration of plugin - search.</sheetTitle>
+                    <sheetTitle>Configuration of Virtual Map Forum 2.0 Extension.</sheetTitle>
                 </TCEforms>
                 <type>array</type>
                 <el>
+
+                    <!-- Should the client use realurl or absolute urls -->
+                    <settings.general.realurl>
+                        <TCEforms>
+                            <label>RealURL active</label>
+                            <config>
+                                <type>check</type>
+                                <default>0</default>
+                            </config>
+                        </TCEforms>
+                    </settings.general.realurl>
 
                     <!-- Defines the elasticsearch url which is used by the client for querying search data -->
                     <settings.search.elasticsearch>
@@ -16,7 +27,7 @@
                                 <type>input</type>
                                 <size>80</size>
                                 <eval>string</eval>
-                                <default>http://localhost/spatialdocuments</default>
+                                <default>http://194.95.145.46/spatialdocuments</default>
                             </config>
                         </TCEforms>
                     </settings.search.elasticsearch>
@@ -58,6 +69,20 @@
                             </config>
                         </TCEforms>
                     </switchableControllerActions>
+
+                    <!-- The Dynamic WMS URL is used by the UserHistoryApp to access georeference results -->
+                    <settings.georef.dynamicWmsUrl>
+                        <TCEforms>
+                            <label>Dynamic WMS URL</label>
+                            <config>
+                                <type>input</type>
+                                <size>80</size>
+                                <eval>string</eval>
+                                <default>http://kartenforum.slub-dresden.de/cgi-bin/dynamic-ows</default>
+                            </config>
+                        </TCEforms>
+                    </settings.georef.dynamicWmsUrl>
+
                 </el>
             </ROOT>
         </sDEF>
