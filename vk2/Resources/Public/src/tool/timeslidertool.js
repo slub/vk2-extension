@@ -7,10 +7,11 @@ goog.require('goog.events.EventType');
 
 /**
  * @param {Element|string} parentEl
+ * @param {Array.<number>|undefined} opt_timeInterval
  * @constructor
  * @extends {goog.events.EventTarget}
  */
-vk2.tool.TimeSlider = function(parentEl){
+vk2.tool.TimeSlider = function(parentEl, opt_timeInterval){
 	
 	/**
 	 * @type {Element}
@@ -18,10 +19,11 @@ vk2.tool.TimeSlider = function(parentEl){
 	 */
 	this._parentEl = goog.isString(parentEl) ? goog.dom.getElement(parentEl) : parentEl;
 
+	var timeInterval = opt_timeInterval !== undefined ? opt_timeInterval : [1868, 1945];
 
 	// load html content
 	this._loadHtmlContent(this._parentEl);
-	this._appendSliderBehavior(this._sliderEl);
+	this._appendSliderBehavior(this._sliderEl, timeInterval);
 	
 	goog.base(this);
 };
@@ -52,26 +54,27 @@ vk2.tool.TimeSlider.prototype._loadHtmlContent = function(parentEl){
 
 /**
  * @param {Element} sliderEl
+ * @param {Array.<number>} timeInterval
  * @private
  */
-vk2.tool.TimeSlider.prototype._appendSliderBehavior = function(sliderEl){
-	var baseMin = 1868, baseMax = 1965;
+vk2.tool.TimeSlider.prototype._appendSliderBehavior = function(sliderEl, timeInterval){
 	var minValueEl, maxValueEl;
+	
 	/**
 	 * 	@param {number} value
 	 *	@param {Element} element 
 	 */
 	var updatePosition = function(value, element){
-		var style_left = (value - baseMin) / (baseMax - baseMin) * 100;
+		var style_left = (value - timeInterval[0]) / (timeInterval[1] - timeInterval[0]) * 100;
 		element.style.left = style_left + '%';
 		element.innerHTML = value;
 	};
 	
 	$(sliderEl).slider({
         'range': true,
-        'min': baseMin,
-        'max': baseMax,
-        'values': [baseMin, baseMax],
+        'min': timeInterval[0],
+        'max': timeInterval[1],
+        'values': [timeInterval[0], timeInterval[1]],
         'animate': 'slow',
         'orientation': 'horizontal',
         'step': 1,
@@ -91,13 +94,13 @@ vk2.tool.TimeSlider.prototype._appendSliderBehavior = function(sliderEl){
 	// append tooltips
 	minValueEl = goog.dom.createDom('div',{
 		'class':'tooltip min-value',
-		'innerHTML':baseMin
+		'innerHTML':timeInterval[0]
 	});
 	goog.dom.appendChild(sliderEl, minValueEl);
 	
 	maxValueEl = goog.dom.createDom('div',{
 		'class':'tooltip max-value',
-		'innerHTML':baseMax
+		'innerHTML':timeInterval[1]
 	});
 	goog.dom.appendChild(sliderEl, maxValueEl);
 };

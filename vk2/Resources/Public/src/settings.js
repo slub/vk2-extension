@@ -30,6 +30,7 @@ vk2.settings.updateSettings = function() {
     vk2.settings.MAIN_PAGE = vk2x.settings.MAIN_PAGE;
     vk2.settings.MAPPROFILE_PAGE = vk2x.settings.MAPPROFILE_PAGE;
     vk2.settings.MAPVIEW_PARAMS = vk2x.settings.MAPVIEW_PARAMS;
+    vk2.settings.SEARCH_TIMEINTERVAL = vk2x.settings.SEARCH_TIMEINTERVAL;
     vk2.settings.THUMB_PATH = vk2x.settings.THUMB_PATH;
     vk2.settings.TMS_URL_SUBDOMAINS = vk2x.settings.TMS_URL_SUBDOMAINS;
     vk2.settings.WITH_SPEAKING_URLS = vk2x.settings.WITH_SPEAKING_URLS;
@@ -90,3 +91,53 @@ vk2.settings.GEOREFERENCE_INFORMATION;
  * @type {boolean}
  */
 vk2.settings.GEOREFERENCE_ON;
+
+/**
+ * @type {string}
+ */
+vk2.settings.GEOREFERENCE_PAGE;
+
+/**
+ * @type {string}
+ */
+vk2.settings.GEOREFERENCE_VALIDATION
+
+/**
+ * @type {string}
+ */
+vk2.settings.MAIN_PAGE;
+
+/**
+ * @type {string}
+ */
+vk2.settings.MAPPROFILE_PAGE;
+
+/**
+ * @type {string}
+ */
+vk2.settings.MAPVIEW_PARAMS;
+
+/**
+ * @type {string}
+ */
+vk2.settings.SEARCH_TIMEINTERVAL;
+
+/**
+ * @type {string}
+ */
+vk2.settings.THUMB_PATH;
+
+/**
+ * @type {Array.<string>}
+ */
+vk2.settings.TMS_URL_SUBDOMAINS;
+
+/**
+ * @type {string}
+ */
+vk2.settings.WITH_SPEAKING_URLS;
+
+/**
+ * @type {string}
+ */
+vk2.settings.WMS_DYNAMIC_TEMPLATE;

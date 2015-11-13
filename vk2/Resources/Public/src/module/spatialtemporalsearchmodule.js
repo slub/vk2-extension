@@ -3,12 +3,13 @@ goog.provide('vk2.module.SpatialTemporalSearchModule');
 goog.require('goog.dom');
 goog.require('goog.dom.classes');
 goog.require('goog.events');
-//goog.require('ol.FeatureOverlay');
+
 goog.require('vk2.factory.MapSearchFactory');
 goog.require('vk2.tool.FacetedSearch');
 goog.require('vk2.tool.TimeSlider');
 goog.require('vk2.tool.GazetteerSearch');
 goog.require('vk2.module.MapSearchModule');
+goog.require('vk2.settings');
 
 /**
  * @param {Element|string} parentEl
@@ -95,7 +96,7 @@ vk2.module.SpatialTemporalSearchModule.prototype._loadTimeSlider = function(pare
 	 * @type {vk2.tool.TimeSlider}
 	 * @private
 	 */
-	this._timeslider = new vk2.tool.TimeSlider(parentEl);
+	this._timeslider = new vk2.tool.TimeSlider(parentEl, vk2.settings.SEARCH_TIMEINTERVAL);
 };
 
 /**
