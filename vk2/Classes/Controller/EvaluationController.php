@@ -38,17 +38,17 @@ class EvaluationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
 	/**
 	 * @var string
 	 */
-	protected $getProcessEndpoint = 'http://localhost:8080/georeference/admin/process'; #'http://localhost:8080/vkviewer/georeference/getprocess';
+	protected $getProcessEndpoint = '/admin/process';
 	
 	/**
 	 * @var string
 	 */
-	protected $setIsValidationEndpoint = 'http://localhost:8080/georeference/admin/process/setisvalide';
+	protected $setIsValidationEndpoint = '/admin/process/setisvalide';
 	
 	/**
 	 * @var string
 	 */
-	protected $setIsInValidationEndpoint = 'http://localhost:8080/georeference/admin/process/setinvalide';
+	protected $setIsInValidationEndpoint = '/admin/process/setinvalide';
 	
 	/**
 	 * GeoreferenceProcessRepository
@@ -73,7 +73,7 @@ class EvaluationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
 		$validationStatus = $GLOBALS['_GET']['validation'];
 		
 		# generate request url
-		$url = $this->getProcessEndpoint . '?';
+		$url = $this->settings['georef']['backend'] . $this->getProcessEndpoint . '?';
 		if (!is_null($mapid)) {
 			$url = $url . 'mapid=' . $mapid; 
 		} else if(!is_null($userid)) {
@@ -102,7 +102,7 @@ class EvaluationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
 		$username = $GLOBALS['TSFE']->fe_user->user['username'];
 	
 		# generate request url
-		$url = $this->setIsValidationEndpoint . '?';
+		$url = $this->settings['georef']['backend'] . $this->setIsValidationEndpoint . '?';
 		
 		if ($georeferenceid) {
 			$url = $url . 'georeferenceid=' . $georeferenceid . '&userid=' . $username;
@@ -130,7 +130,7 @@ class EvaluationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
 		$username = $GLOBALS['TSFE']->fe_user->user['username'];
 	
 		# generate request url
-		$url = $this->setIsInValidationEndpoint . '?';
+		$url = $this->settings['georef']['backend'] . $this->setIsInValidationEndpoint . '?';
 		if ($georeferenceid) {
 			$url = $url . 'georeferenceid=' . $georeferenceid . '&userid=' . $username;;
 		}

@@ -40,22 +40,22 @@ class GeoreferenceController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 	/**
 	 * @var string
 	 */
-	protected $getProcessEndpoint = 'http://localhost:8080/georeference/georef/process'; #'http://localhost:8080/vkviewer/georeference/getprocess';
+	protected $getProcessEndpoint = '/georef/process'; #'http://localhost:8080/vkviewer/georeference/getprocess';
 	
 	/**
 	 * @var string
 	 */
-	protected $validationEndpoint = 'http://localhost:8080/georeference/georef/validation';
+	protected $validationEndpoint = '/georef/validation';
 	
 	/**
 	 * @var string
 	 */
-	protected $confirmationEndpoint = 'http://localhost:8080/georeference/georef/confirm';
+	protected $confirmationEndpoint = '/georef/confirm';
 	
 	/**
 	 * @var string
 	 */
-	protected $userEndpoint = 'http://localhost:8080/georeference/user';
+	protected $userEndpoint = '/user';
 	
 	/**
 	 * feUserRepository
@@ -80,7 +80,7 @@ class GeoreferenceController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 		
 		if ($objectid) {
 			$body = array('objectid' => $objectid);
-			$request = GeneralUtility::makeInstance('t3lib_http_Request', $this->getProcessEndpoint);
+			$request = GeneralUtility::makeInstance('t3lib_http_Request', $this->settings['georef']['backend'] . $this->getProcessEndpoint);
 			$request->setMethod('POST');
 			$request->setHeader('Content-Type', 'application/json;charset=UTF-8');
 			$request->setBody(json_encode(array('objectid' => $objectid)));
@@ -101,7 +101,7 @@ class GeoreferenceController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 		if (!is_null($validationRequest)) {
 			# generate request
 			$body = json_decode(stripslashes($validationRequest), TRUE);
-			$request = GeneralUtility::makeInstance('t3lib_http_Request', $this->validationEndpoint);
+			$request = GeneralUtility::makeInstance('t3lib_http_Request', $this->settings['georef']['backend'] . $this->validationEndpoint);
 			$request->setMethod('POST');
 			$request->setHeader('Content-Type', 'application/json;charset=UTF-8');
 			$request->setBody(json_encode($body));
@@ -129,7 +129,7 @@ class GeoreferenceController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 			# generate request
 			$body = json_decode(stripslashes($confirmRequest), TRUE);
 			$body['userid'] = $user['username'];
-			$this->routeRequest($this->confirmationEndpoint, $body);
+			$this->routeRequest($this->settings['georef']['backend'] . $this->confirmationEndpoint, $body);
 		}
 		return;
 	}
@@ -145,7 +145,7 @@ class GeoreferenceController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 		$this->checkIfAllowed($user);
 	
 		# generate request url
-		$url = $this->userEndpoint . '/' . $user->getUsername() . '/history';
+		$url = $this->settings['georef']['backend'] . $this->userEndpoint . '/' . $user->getUsername() . '/history';
 	
 		// generate request
 		$request = GeneralUtility::makeInstance('t3lib_http_Request', $url);
@@ -162,7 +162,7 @@ class GeoreferenceController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 	 */
 	public function georeferenceUserInformationAction(){
 		# generate request url
-		$url = $this->userEndpoint . '/information';
+		$url = $this->settings['georef']['backend'] . $this->userEndpoint . '/information';
 	
 				// generate request
 				$request = GeneralUtility::makeInstance('t3lib_http_Request', $url);

@@ -4,7 +4,7 @@
     <script>
         // should be set at first because it is important for the rest parameters
         vk2x.settings.WITH_SPEAKING_URLS = {settings.general.realurl} === 1 ? true: false;
-        vk2x.settings.ELASTICSEARCH_NODE = {settings.search.elasticsearch};
+        vk2x.settings.ELASTICSEARCH_NODE = '{settings.search.elasticsearch}';
         vk2x.settings.ELASTICSEARCH_SRS = 'EPSG:4326';
         vk2x.settings.EVALUATION_GETPROCESS = !vk2x.settings.WITH_SPEAKING_URLS ?
                 'tx_vk2_search[controller]=Evaluation&tx_vk2_search[action]=getProcess&type=999' : '';
@@ -39,7 +39,7 @@
         };
         vk2x.settings.THUMB_PATH = '/typo3conf/ext/vk2/Resources/Public/images/layer_default.png';
         vk2x.settings.TMS_URL_SUBDOMAINS = [ '1', '2', '3' ];
-        vk2x.settings.WMS_DYNAMIC_TEMPLATE = {settings.georef.dynamicWmsUrl};
+        vk2x.settings.WMS_DYNAMIC_TEMPLATE = '{settings.georef.dynamicWmsUrl}';
 
         // trigger to update the default values
         vk2.settings.updateSettings();

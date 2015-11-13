@@ -71,7 +71,7 @@
                     </switchableControllerActions>
 
                     <!-- URL of the georeferencing backend -->
-                    <settings.georef.dynamicWmsUrl>
+                    <settings.georef.backend>
                         <TCEforms>
                             <label>Georeferencing backend</label>
                             <config>
@@ -81,7 +81,7 @@
                                 <default>http://localhost:8080/georeference</default>
                             </config>
                         </TCEforms>
-                    </settings.georef.dynamicWmsUrl>
+                    </settings.georef.backend>
 
                     <!-- The Dynamic WMS URL is used by the UserHistoryApp to access georeference results -->
                     <settings.georef.dynamicWmsUrl>

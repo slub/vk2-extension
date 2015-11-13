@@ -44,5 +44,7 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * action show
 	 * @return void
 	 */
-	public function showAction() {}
+	public function showAction() {
+		\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($this->settings['georef']['backend']);
+	}
 }
