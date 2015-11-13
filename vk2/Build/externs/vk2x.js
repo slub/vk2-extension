@@ -25,7 +25,7 @@ vk2x.layer.HistoricMapOptions;
 /**
  * @type {Array.<Array.<number>>}
  */
-vk2x.layer.HistoricMapOptions.prototype.border;
+vk2x.layer.HistoricMapOptions.prototype.clip;
 
 /**
  * @type {string}

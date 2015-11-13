@@ -153,7 +153,7 @@ vk2.georeference.view.TargetView.prototype.displayValidationMap = function(wms_u
 			new ol.geom.Polygon([clip['polygon']]) : undefined,
 		clipPolygonViewerSrs = clipPolygon !== undefined ? clipPolygon.transform(clip['source'], this.proj_)
 				: undefined;
-	
+
 	// reset control zoomToExtent
 	var zoomExtent = clipPolygonViewerSrs === undefined ? this.map_.getView().calculateExtent(this.map_.getSize())  
 			: clipPolygonViewerSrs.getExtent();

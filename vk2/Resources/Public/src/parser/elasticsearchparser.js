@@ -38,7 +38,7 @@ vk2.parser.ElasticSearch.readFeature = function(id, record, opt_source_projectio
 	 * @param {Array.<number>} coordinates
 	 * @param {string} type
 	 * @param {string} sourceProjection (should be something like 'EPSG:4326')
-	 * @param {string} targetPojection (should be something like 'EPSG:900913')
+	 * @param {string} targetPojection (should be something like 'EPSG:3857')
 	 * @return {ol.geom.Geometry|undefined}
 	 */
 	var readGeometry = function(coordinates, type, sourceProjection, targetProjection) {

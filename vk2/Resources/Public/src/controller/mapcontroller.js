@@ -201,16 +201,21 @@ vk2.controller.MapController.prototype.registerTimeSliderTool_ = function(timeSl
  * @return {vk2.layer.HistoricMap}
  */
 vk2.controller.MapController.prototype._createHistoricMapForFeature = function(feature){
+	if (goog.DEBUG) {
+		console.log(feature.getGeometry().getExtent());
+		console.log(feature.get('clippolygon'));
+	}
+
 	return new vk2.layer.HistoricMap({
 		'time':feature.get('time'),
-		'border': feature.getGeometry().getCoordinates()[0],
 		'extent': feature.getGeometry().getExtent(),
 		'thumbnail': feature.get('thumb'),
 		'title': feature.get('title'),
 		'objectid': feature.get('id'),
 		'id': feature.getId(),
 		'dataid':feature.get('dataid'),
-		'tms': feature.get('tms')
+		'tms': feature.get('tms'),
+		'clip': feature.get('clippolygon')
 	}, this.map_);
 };
 

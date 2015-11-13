@@ -73,7 +73,7 @@ class EvaluationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
 		$validationStatus = $GLOBALS['_GET']['validation'];
 		
 		# generate request url
-		$url = $this->settings['georef']['backend'] . $this->getProcessEndpoint . '?';
+		$url = $GLOBALS['TSFE']->tmpl->setup['config.']['georefBackend'] . $this->getProcessEndpoint . '?';
 		if (!is_null($mapid)) {
 			$url = $url . 'mapid=' . $mapid; 
 		} else if(!is_null($userid)) {
@@ -102,7 +102,7 @@ class EvaluationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
 		$username = $GLOBALS['TSFE']->fe_user->user['username'];
 	
 		# generate request url
-		$url = $this->settings['georef']['backend'] . $this->setIsValidationEndpoint . '?';
+		$url = $GLOBALS['TSFE']->tmpl->setup['config.']['georefBackend'] . $this->setIsValidationEndpoint . '?';
 		
 		if ($georeferenceid) {
 			$url = $url . 'georeferenceid=' . $georeferenceid . '&userid=' . $username;
@@ -130,7 +130,7 @@ class EvaluationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
 		$username = $GLOBALS['TSFE']->fe_user->user['username'];
 	
 		# generate request url
-		$url = $this->settings['georef']['backend'] . $this->setIsInValidationEndpoint . '?';
+		$url = $GLOBALS['TSFE']->tmpl->setup['config.']['georefBackend'] . $this->setIsInValidationEndpoint . '?';
 		if ($georeferenceid) {
 			$url = $url . 'georeferenceid=' . $georeferenceid . '&userid=' . $username;;
 		}
