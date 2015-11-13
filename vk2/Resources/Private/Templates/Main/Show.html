@@ -163,22 +163,28 @@
 				<f:then>
 					<script>
 						// set the cookie for proper working of the javascript client code
-						vk2.utils.setCookie('vk2-auth', true);				
+						vk2.utils.setCookie('vk2-auth', true);
+
+						var app = new vk2.app.PresentationApp({
+							'authenticate': true,
+							'modalAnchorClassName':'vk2-modal-anchor',
+							'mapContainerId':'mapdiv',
+							'spatialsearchContainerId':'spatialsearch-container'
+						});
 					</script>
 				</f:then>
 				<f:else>
 						<script>
 						// set the cookie for proper working of the javascript client code
-						vk2.utils.setCookie('vk2-auth', '');				
+						vk2.utils.setCookie('vk2-auth', '');
+
+						var app = new vk2.app.PresentationApp({
+							'authenticate': false,
+							'modalAnchorClassName':'vk2-modal-anchor',
+							'mapContainerId':'mapdiv',
+							'spatialsearchContainerId':'spatialsearch-container'
+						});
 					</script>
 				</f:else>
 			</vk:isUser>
-
-			<script>
-				var app = new vk2.app.PresentationApp({
-					'modalAnchorClassName':'vk2-modal-anchor',
-					'mapContainerId':'mapdiv',
-					'spatialsearchContainerId':'spatialsearch-container'
-				});
-			</script>
 </f:section>
