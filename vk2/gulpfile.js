@@ -15,12 +15,17 @@ var closureExterns = [
 ];
 
 /**
+ * Target directory for compiled files
+ */
+var targetDir = 'Resources/Public/dist/';
+
+/**
  * Minifies the css 
  */
 gulp.task('minify-css', function() {
 	return gulp.src('Resources/Public/css/*.css')
 		.pipe(minifyCss({compatibility: 'ie8'}))
-	    .pipe(gulp.dest('Resources/Public/'));
+	    .pipe(gulp.dest(targetDir));
 });
 
 /**
@@ -30,7 +35,7 @@ gulp.task('js-compile-simple', function() {
 	return gulp.src(['Resources/Public/vk2-require.js', 'Resources/Public/src/**/*.js', 'Resources/Public/lib/closure-library/closure/goog/**/*.js'])
     	.pipe(closureCompiler({
     		compilerPath: 'node_modules/closure-compiler/node_modules/google-closure-compiler/compiler.jar',
-    		fileName: 'Resources/Public/vk2.js',
+    		fileName: targetDir + 'vk2.js',
     		compilerFlags: {
     			closure_entry_point: 'vk2.require',
     			compilation_level: 'SIMPLE',
@@ -50,7 +55,7 @@ gulp.task('js-compile-advanced-debug', function() {
 	return gulp.src(['Resources/Public/vk2-require.js', 'Resources/Public/src/**/*.js', 'Resources/Public/lib/closure-library/closure/goog/**/*.js'])
     	.pipe(closureCompiler({
     		compilerPath: 'node_modules/closure-compiler/node_modules/google-closure-compiler/compiler.jar',
-    		fileName: 'Resources/Public/vk2-min-debug.js',
+    		fileName: targetDir + 'vk2-min-debug.js',
     		compilerFlags: {
     			closure_entry_point: 'vk2.require',
     			formatting: [
@@ -78,7 +83,7 @@ gulp.task('js-compile-advanced', function() {
 	return gulp.src(['Resources/Public/vk2-require.js', 'Resources/Public/src/**/*.js', 'Resources/Public/lib/closure-library/closure/goog/**/*.js'])
     	.pipe(closureCompiler({
     		compilerPath: 'node_modules/closure-compiler/node_modules/google-closure-compiler/compiler.jar',
-    		fileName: 'Resources/Public/vk2-min.js',
+    		fileName: targetDir + 'vk2-min.js',
     		compilerFlags: {
     			closure_entry_point: 'vk2.require',
     			compilation_level: 'ADVANCED_OPTIMIZATIONS',

@@ -160,7 +160,7 @@ page {
 #		bootstrap = http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css
 #		jquery-ui = http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css
 #		ol3 = EXT:vk2/Resources/Public/lib/openlayers/css/ol.css
-#		vk2 = EXT:vk2/Resources/Public/style.css
+#		vk2 = EXT:vk2/Resources/Public/dist/style.css
 #	}
 #	includeJSlibs {
 #		jquery = http://code.jquery.com/jquery-1.9.1.min.js
@@ -168,7 +168,9 @@ page {
 #		proj4 = http://cdnjs.cloudflare.com/ajax/libs/proj4js/2.2.1/proj4.js
 #		jquery-ui = http://code.jquery.com/ui/1.10.3/jquery-ui.min.js		
 #		jquery-lazy-loading = http://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js
-#		ol3 = EXT:vk2/Resources/Public/ol-vk2.js
-#		vk2 = EXT:vk2/Resources/Public/vk2-min.js	
+#		filter = EXT:vk2/Resources/Public/lib/glif/dist/glif.min.js
+#		params = EXT:vk2/Resources/Public/vk2-params.js
+#		ol3 = EXT:vk2/Resources/Public/dist/ol-vk2.js
+#		vk2 = EXT:vk2/Resources/Public/dist/vk2-min.js
 #	}
 #}

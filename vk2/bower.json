@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "closure-library": "https://github.com/google/closure-library.git",
-    "openlayers": "https://github.com/openlayers/ol3.git#v3.5.0",
+    "openlayers": "https://github.com/openlayers/ol3.git#v3.11.1",
     "plovr": "https://github.com/bolinfest/plovr.git#v3.1.0",
     "glif": "https://github.com/slub/webgl-image-filter.git#v1.0.0"
   }

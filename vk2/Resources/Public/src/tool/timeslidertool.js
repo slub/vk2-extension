@@ -59,7 +59,7 @@ vk2.tool.TimeSlider.prototype._loadHtmlContent = function(parentEl){
  */
 vk2.tool.TimeSlider.prototype._appendSliderBehavior = function(sliderEl, timeInterval){
 	var minValueEl, maxValueEl;
-	
+
 	/**
 	 * 	@param {number} value
 	 *	@param {Element} element 
