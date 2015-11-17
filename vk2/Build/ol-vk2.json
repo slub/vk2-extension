@@ -76,6 +76,7 @@
 	"ol.Map#addLayer",
 	"ol.Map#forEachFeatureAtPixel",
 	"ol.Map#getCoordinateFromPixel",
+	"ol.Map#getEventCoordinate",
 	"ol.Map#getEventPixel",
 	"ol.Map#getLayers",
 	"ol.Map#getPixelFromCoordinate",

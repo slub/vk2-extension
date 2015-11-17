@@ -112,6 +112,9 @@ var lang_dictionary = {
 		
 		// permalink msg
 		'permalink_msg':'For copying the link push',
+
+		// mousepositiononoff
+		'mouseposition':'Mouse position',
 		
 		// generic
 		'backToMain': 'back to main page ...',

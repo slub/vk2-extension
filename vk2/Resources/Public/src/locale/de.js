@@ -112,6 +112,9 @@ var lang_dictionary = {
 		
 		// permalink msg
 		'permalink_msg':'Um den Link zu kopieren drücken Sie bitte',
+
+		// mousepositiononoff
+		'mouseposition':'Cursor Position',
 		
 		// generic
 		'backToMain': 'zurück zur Hauptseite ...',

@@ -15,6 +15,7 @@ goog.require('vk2.layer.HistoricMap');
 goog.require('vk2.control.LayerSpy');
 goog.require('vk2.control.RotateNorth');
 goog.require('vk2.control.Permalink');
+goog.require('vk2.control.MousePositionOnOff');
 goog.require('vk2.utils.routing');
 
 ol.Map.prototype.getHistoricMapLayer = function(){
@@ -110,7 +111,8 @@ vk2.controller.MapController.createBaseMap = function(mapElId, mapViewSettings){
 			}),
 			new vk2.control.RotateNorth(),
 			new ol.control.ScaleLine(),
-			new vk2.control.Permalink()
+			new vk2.control.Permalink(),
+			new vk2.control.MousePositionOnOff()
 		],
 		'view': new ol.View({
 			'projection': 'EPSG:900913',
