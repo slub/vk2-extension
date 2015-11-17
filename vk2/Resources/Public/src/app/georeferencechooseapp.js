@@ -5,6 +5,7 @@ goog.require('goog.events');
 goog.require('goog.net.EventType');
 goog.require('goog.net.XhrIo');
 goog.require('vk2.request.ElasticSearch');
+goog.require('vk2.settings');
 goog.require('vk2.utils');
 goog.require('vk2.utils.routing');
 
@@ -88,7 +89,7 @@ vk2.app.GeoreferenceChooseApp.prototype.fetchData_ = function(targetEl, targetCo
 	}, false, this);
 	
 	// send request
-	var url = vk2x.settings.ELASTICSEARCH_ + '/_search?size=2000',
+	var url = vk2.settings.ELASTICSEARCH_NODE + '/_search?size=2000',
 		payload = vk2.request.ElasticSearch.getFeaturesForIdsFilterQuery('georeference', [false]);
 	// append sorting
 	payload['sort'] = {'title': {'order':'asc'}};
