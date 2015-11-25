@@ -48,20 +48,15 @@ vk2.control.Permalink = function(opt_options) {
   goog.dom.appendChild(permalinkForm, label);
   goog.dom.appendChild(element, permalinkForm);
   
-  var permalink = undefined;
   var handleClick = goog.bind(function(e) {
     // prevent #rotate-north anchor from getting appended to the url
     e.preventDefault();
-    
-    if (!permalink){
-    	permalink = new vk2.tool.Permalink(this.getMap());
-    };
     
     if($(permalinkForm).hasClass('open')){
     	$(permalinkForm).fadeOut().removeClass('open');
 		$(permaLinkResult).blur();
     } else {
-    	permaLinkResult.value = permalink.createPermalink();
+    	permaLinkResult.value = vk2.tool.Permalink.createPermalink(this.getMap());
     	$(permalinkForm).fadeIn().addClass('open');
 		$(permaLinkResult).focus().select();
     };

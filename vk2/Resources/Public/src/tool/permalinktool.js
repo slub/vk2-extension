@@ -20,29 +20,20 @@ vk2.tool.PermalinkEventType = {
 };
 
 /**
- * @param {ol.Map} map
  * @constructor
  * @extends {goog.events.EventTarget}
  */
 vk2.tool.Permalink = function(map){
-	
-	/**
-	 * @type {ol.Map}
-	 * @private
-	 */
-	this._map = map;
-		
-	this.parsePermalink_(map);
-	
+
 	goog.base(this);
+
 };
 goog.inherits(vk2.tool.Permalink, goog.events.EventTarget);
 
 /**
  * @param {ol.Map} map
- * @private
  */
-vk2.tool.Permalink.prototype.parsePermalink_ = function(map){
+vk2.tool.Permalink.prototype.parsePermalink = function(map){
 	var uri = new goog.Uri(window.location.href),
 		queryData = uri.getQueryData(),
 		center,
@@ -53,17 +44,17 @@ vk2.tool.Permalink.prototype.parsePermalink_ = function(map){
 	if (queryData.containsKey('z') && queryData.containsKey('c')){
 		// zoom to given center
 		var centerArr = queryData.get('c').split(',');
-		center = [parseInt(centerArr[0], 0),parseInt(centerArr[1], 0)];
+		center = ol.proj.transform([parseFloat(centerArr[0], 0),parseFloat(centerArr[1], 0)], 'EPSG:4326', vk2.settings.MAPVIEW_PARAMS['projection']);
 		zoom = parseInt(queryData.get('z'), 0);
 	};
 	
 	// if there is center information but not oid zoom to center
-	if (!queryData.containsKey('oid') && goog.isDef(center)){
-		this.zoomToMapView_(center, zoom);
+	if ((!queryData.containsKey('oid') || queryData.get('oid') === "") && goog.isDef(center)){
+		this.zoomToMapView_(map, center, zoom);
 		return;
 	};
 	
-	// now oid so return
+	// no oid so return
 	if (!queryData.containsKey('oid') || queryData.get('oid') === "")
 		return;
 	
@@ -131,49 +122,52 @@ vk2.tool.Permalink.prototype.parsePermalink_ = function(map){
 };
 
 /**
+ * @param {ol.Map} map
+ * @static
  * @return {string}
  */
-vk2.tool.Permalink.prototype.createPermalink = function(){
-	if (goog.isDef(this._map)){
-		var layers = this._map.getLayers();
+vk2.tool.Permalink.createPermalink = function(map){
+
+	var layers = map.getLayers();
 		
-		// get objectids
-		var objectids = '';
-		layers.forEach(function(layer){
-			if (goog.isDef(layer.getId)){
-				objectids += layer.getId() + ',';
-			};
-		});
-		
-		// get zoom & center
-		var center = this._map.getView().getCenter();
-		var zoom = this._map.getView().getZoom();
-		
-		// create permalink
-		var permalink = new goog.Uri(window.location.origin + vk2.utils.routing.getBaseUrl() + 'welcomepage=off');
-		var qData = permalink.getQueryData();
-		
-		// append zoom, center and objectids to queryData
-		qData.set('z',zoom);
-		qData.set('c',center[0]+','+center[1]);
-		qData.set('oid', objectids);
-		permalink.setQueryData(qData);
-		
-		if (goog.DEBUG){
-			console.log(objectids);
-			console.log(permalink.toString());
+	// get objectids
+	var objectids = '';
+	layers.forEach(function(layer){
+		if (goog.isDef(layer.getId)){
+			objectids += layer.getId() + ',';
 		};
+	});
 		
-		return permalink.toString();
-	};	
+	// get zoom & center
+	var center = ol.proj.transform(map.getView().getCenter(), vk2.settings.MAPVIEW_PARAMS['projection'], 'EPSG:4326');
+	var zoom = map.getView().getZoom();
+		
+	// create permalink
+	var permalink = new goog.Uri(window.location.origin + vk2.utils.routing.getBaseUrl() + '&welcomepage=off');
+	var qData = permalink.getQueryData();
+		
+	// append zoom, center and objectids to queryData
+	qData.set('z',zoom);
+	qData.set('c',vk2.utils.round(center[0], 4) + ',' + vk2.utils.round(center[1], 4));
+	qData.set('oid', objectids);
+	permalink.setQueryData(qData);
+		
+	if (goog.DEBUG){
+		console.log(objectids);
+		console.log(permalink.toString());
+	};
+		
+	return permalink.toString();
+
 };
 
 /**
+ * @param {ol.Map} map
  * @param {ol.Coordinate} center
  * @param {number} zoom
  * @private
  */
-vk2.tool.Permalink.prototype.zoomToMapView_ = function(center, zoom) {
-	this._map.getView().setCenter(center);
-	this._map.getView().setZoom(zoom);
+vk2.tool.Permalink.prototype.zoomToMapView_ = function(map, center, zoom) {
+	map.getView().setCenter(center);
+	map.getView().setZoom(zoom);
 };
