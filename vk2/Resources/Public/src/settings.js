@@ -11,7 +11,7 @@ goog.provide('vk2.settings');
  *
  * @param {string} key
  * @returns {*}
- * @expose
+ * @export
  */
 vk2.settings.updateSettings = function() {
     vk2.settings.ELASTICSEARCH_NODE = vk2x.settings.ELASTICSEARCH_NODE;

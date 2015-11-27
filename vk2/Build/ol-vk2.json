@@ -39,6 +39,7 @@
 	"ol.geom.Polygon",
 	"ol.geom.Polygon#getCoordinates",
 	"ol.geom.Polygon#getExtent",
+	"ol.geom.Polygon#getInteriorPoint",
 	"ol.geom.Polygon#getType",
 	"ol.geom.Polygon#transform",
 	"ol.geom.SimpleGeometry#applyTransform",
