@@ -82,7 +82,7 @@ plugin.tx_vk2 {
 }
 
 # For accessing this parameter within AJAX controllers
-config.georefBackend = http://194.95.145.42:8000/georeference
+config.georefBackend = http://194.95.144.96:8080/georeference
 
 # Configuration of languages
 config.linkVars = L

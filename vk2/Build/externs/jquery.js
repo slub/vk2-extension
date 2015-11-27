@@ -1,6 +1,8 @@
 // define used namespaces of jquery
 var $ = {};
 $.autocomplete = {};
+$.change = {};
+$.prop = {};
 $.click = {};
 $.effect = {};
 $.fadeIn = {};
