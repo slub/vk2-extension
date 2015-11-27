@@ -20,17 +20,17 @@
                     </settings.general.realurl>
 
                     <!-- Base id -->
-                    <settings.gernal.baseurl>
+                    <settings.gernal.baseid>
                         <TCEforms>
-                            <label>Base url path</label>
+                            <label>Base id</label>
                             <config>
                                 <type>input</type>
                                 <size>80</size>
                                 <eval>string</eval>
-                                <default>index.php?id=19</default>
+                                <default>19</default>
                             </config>
                         </TCEforms>
-                    </settings.gernal.baseurl>
+                    </settings.gernal.baseid>
 
                     <!-- Defines the elasticsearch url which is used by the client for querying search data -->
                     <settings.search.elasticsearch>

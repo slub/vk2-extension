@@ -26,7 +26,7 @@
                 'tx_vk2_search[controller]=Static&tx_vk2_search[action]=georefPage' : '';
         vk2x.settings.GEOREFERENCE_VALIDATION = !vk2x.settings.WITH_SPEAKING_URLS ?
                 'tx_vk2_search[controller]=Georeference&tx_vk2_search[action]=validateGeorefProcess&type=999': '';
-        vk2x.settings.MAIN_PAGE = '{settings.gernal.baseurl}';
+        vk2x.settings.MAIN_PAGE = 'id={settings.gernal.baseid}';
         vk2x.settings.MAPPROFILE_PAGE = !vk2x.settings.WITH_SPEAKING_URLS ?
                 'tx_vk2_search[controller]=Static&tx_vk2_search[action]=profileMap' : '';
         vk2x.settings.MAPVIEW_PARAMS = {

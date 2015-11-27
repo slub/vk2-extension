@@ -171,6 +171,6 @@ page {
 		filter = EXT:vk2/Resources/Public/dist/glif.min.js
 		params = EXT:vk2/Resources/Public/vk2-params.js
 		ol3 = EXT:vk2/Resources/Public/dist/ol-vk2.js
-		vk2 = EXT:vk2/Resources/Public/dist/vk2-min.js
+		vk2 = EXT:vk2/Resources/Public/dist/vk2.js
 	}
 }
