@@ -155,7 +155,7 @@ class AuthController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		}
 		
 		// attached usergroup to user
-		$usergroup = $this->userGroupRepository->findByUid(2);
+		$usergroup = $this->userGroupRepository->findByTitle('vk2-public')[0];
 		$user->addUsergroup($usergroup);
 		
 		// hash passpord
