@@ -106,6 +106,7 @@ class AuthController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		//DebuggerUtility::var_dump($this->vk2Config['persistence']['storagePid']);
 		//DebuggerUtility::var_dump($this->vk2config['settings']['passwordSave']);
 		//DebuggerUtility::var_dump($GLOBALS['TSFE']->loginUser);
+		//\TYPO3\CMS\Extbase\Utility\DebuggerUtility();
 	}
 	
 	/**
@@ -116,6 +117,9 @@ class AuthController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 */
 	public function loginAction(
 			\SLUB\Vk2\Domain\Model\User $user = NULL){
+		\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($user);
+		\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($GLOBALS['TSFE']);
+
 		$this->view->assign('user', $user);
 	}
 	

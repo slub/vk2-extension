@@ -46,39 +46,6 @@ plugin.tx_vk2 {
 		# uncomment the following line to enable the new Property Mapper.
 		# rewrittenPropertyMapper = 1
 	}
-
-	_CSS_DEFAULT_STYLE {
-    	textarea.f3-form-error {
-    		background-color:#FF9F9F;
-    		border: 1px #FF0000 solid;
-    	}
-
-    	input.f3-form-error {
-    		background-color:#FF9F9F;
-    		border: 1px #FF0000 solid;
-    	}
-
-    	.tx-vk2 table {
-    		border-collapse:separate;
-    		border-spacing:10px;
-    	}
-
-    	.tx-vk2 table th {
-    		font-weight:bold;
-    	}
-
-    	.tx-vk2 table td {
-    		vertical-align:top;
-    	}
-
-    	.typo3-messages .message-error {
-    		color:red;
-    	}
-
-    	.typo3-messages .message-ok {
-    		color:green;
-    	}
-    }
 }
 
 # For accessing this parameter within AJAX controllers
@@ -112,7 +79,7 @@ lib.felogin  {
    showForgotPasswordLink = 1
    domains = http://kartenforum.slub-dresden.de
    forgotMessage_stdWrap.wrap = <p>|</p>
-   feloginBaseURL = http://localhost/login
+   # feloginBaseURL = http://localhost/login
    _LOCAL_LANG.default {
       ll_forgot_reset_message = Please enter your username or email address. Instructions for resetting the password will be immediately emailed to you.
       ll_forgot_header = Forget your password?
