@@ -164,14 +164,16 @@
 						<f:render partial="Main/Footer" />
 					</div>
 
+					<f:link.action id="welcome-page-link" action="welcomePage" controller="Static" class="vk2-modal-anchor" absolute="True"
+								   additionalAttributes="{data-classes:'welcomeBox'}"></f:link.action>
+
 				</f:else>
 
 			</vk:isChangePw>
 		</div>
 	</div>
 
-	<f:link.action id="welcome-page-link" action="welcomePage" controller="Static" class="vk2-modal-anchor" absolute="True"
-				   additionalAttributes="{data-classes:'welcomeBox'}"></f:link.action>
+
 
 	<vk:isUser>
 		<f:then>
