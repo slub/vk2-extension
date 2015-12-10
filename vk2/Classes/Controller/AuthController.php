@@ -117,9 +117,6 @@ class AuthController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 */
 	public function loginAction(
 			\SLUB\Vk2\Domain\Model\User $user = NULL){
-		\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($user);
-		\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($GLOBALS['TSFE']);
-
 		$this->view->assign('user', $user);
 	}
 	

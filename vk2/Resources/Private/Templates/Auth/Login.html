@@ -1,75 +1,95 @@
+{namespace vk=SLUB\Vk2\ViewHelpers}
 <f:layout name="Default" />
 
 <f:section name="main">
 
 	<f:flashMessages renderMode="div" />
-	
-	<div class="container login-screen page-container">
-		<div class="panel panel-default">
-			<div class="panel-heading" id="panelHeading">
-				<p id="validationTips" class="validation-tips">
-					<f:translate id="login.title" />
-				</p>
-			</div>
 
-			<div class="panel-body">
-				<!-- Anmeldung für existierende Nutzer -->
-				<div class="panel panel-default panel-vk2Login">
-					<!-- use felogin -->
-					<f:cObject typoscriptObjectPath="lib.felogin" />
-				</div>
-			</div>
+	<vk:isUser>
+		<f:then>
 
-			<!--  added ".back-to-login" for switch back if registration is active -->
-			<div class="back-to-login">
-				<f:translate id="login.backtosignin" />
+			<f:cObject typoscriptObjectPath="lib.felogin" />
+
+		</f:then>
+		<f:else>
+
+			<div class="container login-screen page-container" id="vk2-login-form">
+				<div class="panel panel-default">
+					<div class="panel-heading" id="panelHeading">
+						<p id="validationTips" class="validation-tips">
+							<f:translate id="login.title" />
+						</p>
+					</div>
+
+					<div class="panel-body">
+						<!-- Anmeldung für existierende Nutzer -->
+						<div class="panel panel-default panel-vk2Login">
+							<!-- use felogin -->
+							<f:cObject typoscriptObjectPath="lib.felogin" />
+						</div>
+					</div>
+
+					<!--  added ".back-to-login" for switch back if registration is active -->
+					<div class="back-to-login">
+						<f:translate id="login.backtosignin" />
 				<span class="trigger-login"><f:translate
 						id="login.registration" /></span>
-			</div>
+					</div>
 
-			<div class="panel panel-default panel-vk2RegisterNewUser">
-				<div class="panel-heading">
-					<p class="validation-tips">
-						<f:translate id="login.newto" />
+					<div class="panel panel-default panel-vk2RegisterNewUser">
+						<div class="panel-heading">
+							<p class="validation-tips">
+								<f:translate id="login.newto" />
 						<span class="trigger-registration"><f:translate
 								id="login.signupnow" /></span>
-					</p>
-				</div>
-				<div id="validationTipsRegisterUser" class="alert validation-error">
-				</div>
-				<div class="panel-body">
+							</p>
+						</div>
+						<div id="validationTipsRegisterUser" class="alert validation-error">
+						</div>
+						<div class="panel-body">
 
-					<f:render partial="Auth/Signup" arguments="{user:user}" />
-						
+							<f:render partial="Auth/Signup" arguments="{user:user}" />
+
+						</div>
+					</div>
 				</div>
 			</div>
 
-		</div>
-	</div>
-	</div>
+			<script>
+				$(document).ready(function() {
+					$('.back-to-login').hide();
+					$('.panel-vk2RegisterNewUser .panel-body').hide();
+					$('.panel-vk2RegisterNewUser #validationTipsRegisterUser').hide();
 
-	<script>
-		$(document)
-		 .ready(
-		 function() {
-		 $('.trigger-registration, .trigger-login')
-		 .click(
-		 function() {
-		 $('.panel-vk2Login')
-		 .slideToggle();
-		 $(
-		 '.panel-vk2RegisterNewUser .panel-heading')
-		 .slideToggle();
-		 $(
-		 '.panel-vk2RegisterNewUser .panel-body')
-		 .slideToggle();
-		 $(
-		 '.panel-vk2RegisterNewUser #validationTipsRegisterUser')
-		 .slideToggle();
-		 $('.back-to-login')
-		 .fadeToggle();
-		 });
-		 }); 
-	</script>
+					$('.trigger-registration, .trigger-login').click(
+						function() {
+							$('.panel-vk2Login').slideToggle();
+							$('.panel-vk2RegisterNewUser .panel-heading').slideToggle();
+							$('.panel-vk2RegisterNewUser .panel-body').slideToggle();
+							$('.panel-vk2RegisterNewUser #validationTipsRegisterUser').slideToggle();
+							$('.back-to-login').fadeToggle();
+						}
+					);
+				});
+			</script>
+
+			<!-- dirty solution for updating the link to the reset password dialog -->
+			<script>
+/*				$('a').each(function(i, val) {
+					val.href = val.href + 'tx_vk2_search[action]=login&tx_vk2_search[controller]=Auth';
+				})*/
+
+				// if forget form is display hide the rest
+				if ($('#vk2-forget-form').length == 1 || $('#vk2-change-form').length == 1) {
+					$('.back-to-login').hide();
+					$('.panel-vk2RegisterNewUser').hide();
+				}
+			</script>
+
+
+		</f:else>
+	</vk:isUser>
+
+
 
 </f:section>

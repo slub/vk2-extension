@@ -49,7 +49,7 @@ plugin.tx_vk2 {
 }
 
 # For accessing this parameter within AJAX controllers
-config.georefBackend = http://194.95.144.96:8080/georeference
+config.georefBackend = http://194.95.145.42/georeference
 
 # Configuration of languages
 config.linkVars = L
@@ -75,11 +75,15 @@ lib.felogin < plugin.tx_felogin_pi1
 lib.felogin  {
    storagePid = 10
    templateFile = EXT:vk2/Resources/Private/Templates/Login/FELogin.html
-   redirectMode = referer
+   redirectMode = login, referer
+   redirectPageLogin = 19
    showForgotPasswordLink = 1
-   domains = http://kartenforum.slub-dresden.de
+   domains = http://localhost/
    forgotMessage_stdWrap.wrap = <p>|</p>
-   # feloginBaseURL = http://localhost/login
+   preserveGETvars = all
+#   linkConfig {
+#   		target = "_top"
+#   }
    _LOCAL_LANG.default {
       ll_forgot_reset_message = Please enter your username or email address. Instructions for resetting the password will be immediately emailed to you.
       ll_forgot_header = Forget your password?

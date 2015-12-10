@@ -2,6 +2,7 @@
 <f:layout name="Default" />
 
 <f:section name="main">
+
 	<!-- load language javascript file -->
 	<vk:language urlPattern="{f:uri.resource(path:'src/locale/%s.js')}"
 		languageTag="{f:translate(id:'language.tag')}" />
@@ -10,181 +11,199 @@
 
 		<div class="container main-page content-container">
 
-			<!-- Map panel -->
+			<vk:isChangePw>
 
-			<div id="vk2MapPanel" class="vk2MapPanel">
-				<!-- map container -->
-				<div id="mapdiv" class="olMap" tabindex="0"></div>
-				<!-- /end map container -->
-
-				<!-- user header -->
-				<div class="user-header">
-
-					<vk:isGeorefOn>
-						<f:then>
-
-							<!-- user menu -->
-							<ul class="nav nav-pills vk2-navbar-user" id="vk2-navbar-user">
-								<li class="dropdown user-dropdown">
-									<vk:isUser>
-										<f:then>
-											<a class="dropdown-toggle" data-toggle="dropdown"> <span
-													class="glyphicon glyphicon-user"></span> <vk:username />
-												<b class="caret"></b></a>
-											<ul class="dropdown-menu">
-												<li>
-													<f:link.action action="georeferenceHistoryPage" controller="Static"
-																   additionalAttributes="{data-classes:'georef-history'}" absolute="True"
-																   title="{f:translate(id:'main.link.goToGeoreferenceHistory')}"
-																   class="vk2-modal-anchor">
-														<f:translate id="main.link.goToGeoreferenceHistory" />
-													</f:link.action>
-												</li>
-												<li>
-													<f:link.action action="georeferenceChoosePage" controller="Static"
-																   additionalAttributes="{data-classes:'georef-chooser'}" absolute="True"
-																   title="{f:translate(id:'main.link.goToGeoreferenceChooser')}"
-																   class="vk2-modal-anchor">
-														<f:translate id="main.link.goToGeoreferenceChooser" />
-													</f:link.action>
-												</li>
-
-												<!-- admin menu -->
-												<vk:isAdmin>
-													<f:then>
-														<li>
-															<f:link.action action="evaluationPage" controller="Static"
-																		   absolute="True" target="_blank">
-																<f:translate id="main.link.goToEvaluationPage" />
-															</f:link.action>
-														</li>
-													</f:then>
-												</vk:isAdmin>
-												<!--  /admin menu -->
-
-												<li class="divider"></li>
-												<li>
-													<f:link.action action="logout" controller="Auth"
-																   additionalAttributes="{data-classes:'login', target: '_top'}"
-																   title="{f:translate(id:'main.auth.logout')}">
-														<span class="glyphicon glyphicon-off"></span>
-														<f:translate id="main.auth.logout" />
-													</f:link.action>
-												</li>
-
-											</ul>
-										</f:then>
-										<f:else>
-											<li class="listelement">
-												<f:link.action action="login"
-															   controller="Auth" class="vk2-modal-anchor"
-															   additionalAttributes="{data-classes:'login'}"
-															   title="{f:translate(id:'main.login.title')}">
-													<f:translate id="main.login.title" />
-													<b class="caret"></b>
-												</f:link.action>
-											</li>
-										</f:else>
-									</vk:isUser>
-								</li>
-							</ul>
-
-						</f:then>
-					</vk:isGeorefOn>
-
-					<!-- language switcher -->
-					<ul class="langswitch">
-						<li>
-							<f:link.action action="show" controller="Main" additionalParams="{L:1}">
-								<span class="language_switcher switch_de" title="{f:translate(id:'main.language.de')}"></span>
-								<f:translate id="main.language.de" />
-							</f:link.action>
-						</li>
-						<li>
-							<f:link.action action="show" controller="Main" additionalParams="{L:0}">
-								<span class="language_switcher switch_en" title="{f:translate(id:'main.language.en')}"></span>
-								<f:translate id="main.language.en" />
-							</f:link.action>
-						</li>
-					</ul>
-				</div>
-				<!-- user header end -->
-
-				<!-- spatial search div -->
-				<div class="spatialsearch-container" id="spatialsearch-container">
-
-					<!-- navbar -->
-					<div class="vk2HeaderNavBar" role="navigation">
-
-						<!-- Brand and toggle get grouped for better mobile display -->
-						<div class="vk2-navbar-header">
-							<a class="navbar-brand" href="#">Virtuelles Kartenforum 2.0</a>
-
-							<!-- Collect the nav links, forms, and other content for toggling -->
-							<ul class="nav nav-pills">
-								<li class="dropdown info-dropdown"><a href="#"
-									class="dropdown-toggle" data-toggle="dropdown"
-									title="{f:translate(id:'main.header.service')}"><f:translate
-											id="main.header.service" /><b class="caret"></b></a>
-									<ul class="dropdown-menu">
-										<li class="listelement"><f:link.action action="faq"
-												controller="Static" class="vk2-modal-anchor"
-												additionalAttributes="{data-classes:'faq'}" absolute="True"
-												title="{f:translate(id:'faq.title')}">
-												FAQ
-											</f:link.action></li>
-										<li class="listelement"><f:link.action action="contact"
-												controller="Static" class="vk2-modal-anchor" absolute="True"
-												additionalAttributes="{data-classes:'contact'}"
-												title="{f:translate(id:'main.contact.title')}">
-												<f:translate id="main.contact" />
-											</f:link.action></li>
-										<li class="listelement"><f:link.action action="impressum"
-												controller="Static" class="vk2-modal-anchor" absolute="True"
-												additionalAttributes="{data-classes:'impressum'}"
-												title="{f:translate(id:'main.impressum.title')}">
-												<f:translate id="main.impressum" />
-											</f:link.action></li>
-									</ul></li>
-							</ul>
-						</div>
-					</div>
-					<!-- end spatial search -->
-				</div>
-
-				<!-- Footer panel -->
-				<f:render partial="Main/Footer" />
-			</div>
-
-			<f:link.action id="welcome-page-link" action="welcomePage" controller="Static" class="vk2-modal-anchor" absolute="True"
-				additionalAttributes="{data-classes:'welcomeBox'}"></f:link.action>
-				
-			<vk:isUser>
 				<f:then>
-					<script>
-						// set the cookie for proper working of the javascript client code
-						vk2.utils.setCookie('vk2-auth', true);
 
-						var app = new vk2.app.PresentationApp({
-							'authenticate': true,
-							'modalAnchorClassName':'vk2-modal-anchor',
-							'mapContainerId':'mapdiv',
-							'spatialsearchContainerId':'spatialsearch-container'
-						});
-					</script>
+					<f:cObject typoscriptObjectPath="lib.felogin" />
+
 				</f:then>
 				<f:else>
-						<script>
-						// set the cookie for proper working of the javascript client code
-						vk2.utils.setCookie('vk2-auth', '');
 
-						var app = new vk2.app.PresentationApp({
-							'authenticate': false,
-							'modalAnchorClassName':'vk2-modal-anchor',
-							'mapContainerId':'mapdiv',
-							'spatialsearchContainerId':'spatialsearch-container'
-						});
-					</script>
+					<div id="vk2MapPanel" class="vk2MapPanel">
+						<!-- map container -->
+						<div id="mapdiv" class="olMap" tabindex="0"></div>
+						<!-- /end map container -->
+
+						<!-- user header -->
+						<div class="user-header">
+
+							<vk:isGeorefOn>
+								<f:then>
+
+									<!-- user menu -->
+									<ul class="nav nav-pills vk2-navbar-user" id="vk2-navbar-user">
+										<li class="dropdown user-dropdown">
+											<vk:isUser>
+												<f:then>
+													<a class="dropdown-toggle" data-toggle="dropdown"> <span
+															class="glyphicon glyphicon-user"></span> <vk:username />
+														<b class="caret"></b></a>
+													<ul class="dropdown-menu">
+														<li>
+															<f:link.action action="georeferenceHistoryPage" controller="Static"
+																		   additionalAttributes="{data-classes:'georef-history'}" absolute="True"
+																		   title="{f:translate(id:'main.link.goToGeoreferenceHistory')}"
+																		   class="vk2-modal-anchor">
+																<f:translate id="main.link.goToGeoreferenceHistory" />
+															</f:link.action>
+														</li>
+														<li>
+															<f:link.action action="georeferenceChoosePage" controller="Static"
+																		   additionalAttributes="{data-classes:'georef-chooser'}" absolute="True"
+																		   title="{f:translate(id:'main.link.goToGeoreferenceChooser')}"
+																		   class="vk2-modal-anchor">
+																<f:translate id="main.link.goToGeoreferenceChooser" />
+															</f:link.action>
+														</li>
+
+														<!-- admin menu -->
+														<vk:isAdmin>
+															<f:then>
+																<li>
+																	<f:link.action action="evaluationPage" controller="Static"
+																				   absolute="True" target="_blank">
+																		<f:translate id="main.link.goToEvaluationPage" />
+																	</f:link.action>
+																</li>
+															</f:then>
+														</vk:isAdmin>
+														<!--  /admin menu -->
+
+														<li class="divider"></li>
+														<li>
+															<f:link.action action="logout" controller="Auth"
+																		   additionalAttributes="{data-classes:'login', target: '_top'}"
+																		   title="{f:translate(id:'main.auth.logout')}">
+																<span class="glyphicon glyphicon-off"></span>
+																<f:translate id="main.auth.logout" />
+															</f:link.action>
+														</li>
+
+													</ul>
+												</f:then>
+												<f:else>
+													<li class="listelement">
+														<f:link.action action="login"
+																	   controller="Auth" class="vk2-modal-anchor"
+																	   additionalAttributes="{data-classes:'login'}"
+																	   title="{f:translate(id:'main.login.title')}">
+															<f:translate id="main.login.title" />
+															<b class="caret"></b>
+														</f:link.action>
+													</li>
+												</f:else>
+											</vk:isUser>
+										</li>
+									</ul>
+
+								</f:then>
+							</vk:isGeorefOn>
+
+							<!-- language switcher -->
+							<ul class="langswitch">
+								<li>
+									<f:link.action action="show" controller="Main" additionalParams="{L:1}">
+										<span class="language_switcher switch_de" title="{f:translate(id:'main.language.de')}"></span>
+										<f:translate id="main.language.de" />
+									</f:link.action>
+								</li>
+								<li>
+									<f:link.action action="show" controller="Main" additionalParams="{L:0}">
+										<span class="language_switcher switch_en" title="{f:translate(id:'main.language.en')}"></span>
+										<f:translate id="main.language.en" />
+									</f:link.action>
+								</li>
+							</ul>
+						</div>
+						<!-- user header end -->
+
+						<!-- spatial search div -->
+						<div class="spatialsearch-container" id="spatialsearch-container">
+
+							<!-- navbar -->
+							<div class="vk2HeaderNavBar" role="navigation">
+
+								<!-- Brand and toggle get grouped for better mobile display -->
+								<div class="vk2-navbar-header">
+									<a class="navbar-brand" href="#">Virtuelles Kartenforum 2.0</a>
+
+									<!-- Collect the nav links, forms, and other content for toggling -->
+									<ul class="nav nav-pills">
+										<li class="dropdown info-dropdown"><a href="#"
+																			  class="dropdown-toggle" data-toggle="dropdown"
+																			  title="{f:translate(id:'main.header.service')}"><f:translate
+												id="main.header.service" /><b class="caret"></b></a>
+											<ul class="dropdown-menu">
+												<li class="listelement"><f:link.action action="faq"
+																					   controller="Static" class="vk2-modal-anchor"
+																					   additionalAttributes="{data-classes:'faq'}" absolute="True"
+																					   title="{f:translate(id:'faq.title')}">
+													FAQ
+												</f:link.action></li>
+												<li class="listelement"><f:link.action action="contact"
+																					   controller="Static" class="vk2-modal-anchor" absolute="True"
+																					   additionalAttributes="{data-classes:'contact'}"
+																					   title="{f:translate(id:'main.contact.title')}">
+													<f:translate id="main.contact" />
+												</f:link.action></li>
+												<li class="listelement"><f:link.action action="impressum"
+																					   controller="Static" class="vk2-modal-anchor" absolute="True"
+																					   additionalAttributes="{data-classes:'impressum'}"
+																					   title="{f:translate(id:'main.impressum.title')}">
+													<f:translate id="main.impressum" />
+												</f:link.action></li>
+											</ul></li>
+									</ul>
+								</div>
+							</div>
+							<!-- end spatial search -->
+						</div>
+
+						<!-- Footer panel -->
+						<f:render partial="Main/Footer" />
+					</div>
+
 				</f:else>
-			</vk:isUser>
+
+			</vk:isChangePw>
+		</div>
+	</div>
+
+	<f:link.action id="welcome-page-link" action="welcomePage" controller="Static" class="vk2-modal-anchor" absolute="True"
+				   additionalAttributes="{data-classes:'welcomeBox'}"></f:link.action>
+
+	<vk:isUser>
+		<f:then>
+
+			<script>
+				// set the cookie for proper working of the javascript client code
+				vk2.utils.setCookie('vk2-auth', true);
+
+				var app = new vk2.app.PresentationApp({
+					'authenticate': true,
+					'modalAnchorClassName':'vk2-modal-anchor',
+					'mapContainerId':'mapdiv',
+					'spatialsearchContainerId':'spatialsearch-container'
+				});
+			</script>
+
+		</f:then>
+		<f:else>
+
+			<script>
+				// set the cookie for proper working of the javascript client code
+				vk2.utils.setCookie('vk2-auth', '');
+
+				var app = new vk2.app.PresentationApp({
+					'authenticate': false,
+					'modalAnchorClassName':'vk2-modal-anchor',
+					'mapContainerId':'mapdiv',
+					'spatialsearchContainerId':'spatialsearch-container'
+				});
+			</script>
+
+		</f:else>
+	</vk:isUser>
+
 </f:section>
