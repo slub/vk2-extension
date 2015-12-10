@@ -13,7 +13,7 @@
 .map-profile-page .description a { display: none; } /*  maybe temp?! */
 
 .map-profile-page .metdata-col { width: 100%; padding: 0; margin: -4px; }
-.map-profile-page .thumbnail-col { display: none; }
+.map-profile-page .thumbnail-col { display: none !important; }
 
 .map-profile-page .description h3 { margin: 0 4px 10px 4px; }
 

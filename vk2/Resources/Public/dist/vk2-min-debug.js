@@ -276,68 +276,11 @@ g.round = function() {
   this.height = Math.round(this.height);
   return this;
 };
-function $a(a, b) {
-  for (var c in a) {
-    b.call(void 0, a[c], c, a);
-  }
-}
-function ab(a, b) {
-  for (var c in a) {
-    if (b.call(void 0, a[c], c, a)) {
-      return !0;
-    }
-  }
-  return !1;
-}
-function bb(a) {
-  var b = [], c = 0, d;
-  for (d in a) {
-    b[c++] = a[d];
-  }
-  return b;
-}
-function cb(a) {
-  var b = [], c = 0, d;
-  for (d in a) {
-    b[c++] = d;
-  }
-  return b;
-}
-function db(a) {
-  var b = {}, c;
-  for (c in a) {
-    b[c] = a[c];
-  }
-  return b;
-}
-var eb = "constructor hasOwnProperty isPrototypeOf propertyIsEnumerable toLocaleString toString valueOf".split(" ");
-function fb(a, b) {
-  for (var c, d, e = 1;e < arguments.length;e++) {
-    d = arguments[e];
-    for (c in d) {
-      a[c] = d[c];
-    }
-    for (var f = 0;f < eb.length;f++) {
-      c = eb[f], Object.prototype.hasOwnProperty.call(d, c) && (a[c] = d[c]);
-    }
-  }
-}
-function gb(a) {
-  var b = arguments.length;
-  if (1 == b && fa(arguments[0])) {
-    return gb.apply(null, arguments[0]);
-  }
-  for (var c = {}, d = 0;d < b;d++) {
-    c[arguments[d]] = !0;
-  }
-  return c;
-}
-;gb("area base br col command embed hr img input keygen link meta param source track wbr".split(" "));
-function hb(a) {
+function $a(a) {
   this.a = a;
 }
-var ib = /\s*;\s*/;
-g = hb.prototype;
+var ab = /\s*;\s*/;
+g = $a.prototype;
 g.set = function(a, b, c, d, e, f) {
   if (/[;=\s]/.test(a)) {
     throw Error('Invalid cookie name "' + a + '"');
@@ -353,7 +296,7 @@ g.set = function(a, b, c, d, e, f) {
   this.a.cookie = a + "=" + b + e + d + c + f;
 };
 g.get = function(a, b) {
-  for (var c = a + "=", d = (this.a.cookie || "").split(ib), e = 0, f;f = d[e];e++) {
+  for (var c = a + "=", d = (this.a.cookie || "").split(ab), e = 0, f;f = d[e];e++) {
     if (0 == f.lastIndexOf(c, 0)) {
       return f.substr(c.length);
     }
@@ -369,40 +312,97 @@ g.remove = function(a, b, c) {
   return d;
 };
 g.getKeys = function() {
-  return jb(this).keys;
+  return bb(this).keys;
 };
 g.F = function() {
-  return jb(this).values;
+  return bb(this).values;
 };
 g.isEmpty = function() {
   return !this.a.cookie;
 };
 g.ua = function() {
-  return this.a.cookie ? (this.a.cookie || "").split(ib).length : 0;
+  return this.a.cookie ? (this.a.cookie || "").split(ab).length : 0;
 };
 g.clear = function() {
-  for (var a = jb(this).keys, b = a.length - 1;0 <= b;b--) {
+  for (var a = bb(this).keys, b = a.length - 1;0 <= b;b--) {
     this.remove(a[b]);
   }
 };
-function jb(a) {
-  a = (a.a.cookie || "").split(ib);
+function bb(a) {
+  a = (a.a.cookie || "").split(ab);
   for (var b = [], c = [], d, e, f = 0;e = a[f];f++) {
     d = e.indexOf("="), -1 == d ? (b.push(""), c.push(e)) : (b.push(e.substring(0, d)), c.push(e.substring(d + 1)));
   }
   return {keys:b, values:c};
 }
-var kb = new hb(document);
-kb.b = 3950;
-function lb() {
+var cb = new $a(document);
+cb.b = 3950;
+function db() {
 }
-lb.prototype.a = null;
-function mb(a) {
+db.prototype.a = null;
+function eb(a) {
   var b;
-  (b = a.a) || (b = {}, nb(a) && (b[0] = !0, b[1] = !0), b = a.a = b);
+  (b = a.a) || (b = {}, fb(a) && (b[0] = !0, b[1] = !0), b = a.a = b);
   return b;
 }
-;function ob(a) {
+;function gb(a, b) {
+  for (var c in a) {
+    b.call(void 0, a[c], c, a);
+  }
+}
+function hb(a, b) {
+  for (var c in a) {
+    if (b.call(void 0, a[c], c, a)) {
+      return !0;
+    }
+  }
+  return !1;
+}
+function ib(a) {
+  var b = [], c = 0, d;
+  for (d in a) {
+    b[c++] = a[d];
+  }
+  return b;
+}
+function jb(a) {
+  var b = [], c = 0, d;
+  for (d in a) {
+    b[c++] = d;
+  }
+  return b;
+}
+function kb(a) {
+  var b = {}, c;
+  for (c in a) {
+    b[c] = a[c];
+  }
+  return b;
+}
+var lb = "constructor hasOwnProperty isPrototypeOf propertyIsEnumerable toLocaleString toString valueOf".split(" ");
+function mb(a, b) {
+  for (var c, d, e = 1;e < arguments.length;e++) {
+    d = arguments[e];
+    for (c in d) {
+      a[c] = d[c];
+    }
+    for (var f = 0;f < lb.length;f++) {
+      c = lb[f], Object.prototype.hasOwnProperty.call(d, c) && (a[c] = d[c]);
+    }
+  }
+}
+function nb(a) {
+  var b = arguments.length;
+  if (1 == b && fa(arguments[0])) {
+    return nb.apply(null, arguments[0]);
+  }
+  for (var c = {}, d = 0;d < b;d++) {
+    c[arguments[d]] = !0;
+  }
+  return c;
+}
+;nb("area base br col command embed hr img input keygen link meta param source track wbr".split(" "));
+function ob(a) {
   ob[" "](a);
   return a;
 }
@@ -591,7 +591,7 @@ Tb.prototype.xa = function(a, b, c, d) {
 };
 Tb.prototype.hasListener = function(a, b) {
   var c = l(a), d = c ? a.toString() : "", e = l(b);
-  return ab(this.a, function(a) {
+  return hb(this.a, function(a) {
     for (var h = 0;h < a.length;++h) {
       if (!(c && a[h].type != d || e && a[h].X != b)) {
         return !0;
@@ -612,11 +612,11 @@ function Ub(a, b, c, d) {
 ;var Wb;
 function Xb() {
 }
-u(Xb, lb);
+u(Xb, db);
 function Yb(a) {
-  return (a = nb(a)) ? new ActiveXObject(a) : new XMLHttpRequest;
+  return (a = fb(a)) ? new ActiveXObject(a) : new XMLHttpRequest;
 }
-function nb(a) {
+function fb(a) {
   if (!a.b && "undefined" == typeof XMLHttpRequest && "undefined" != typeof ActiveXObject) {
     for (var b = ["MSXML2.XMLHTTP.6.0", "MSXML2.XMLHTTP.3.0", "MSXML2.XMLHTTP", "Microsoft.XMLHTTP"], c = 0;c < b.length;c++) {
       var d = b[c];
@@ -644,7 +644,7 @@ function $b(a, b) {
     }
   } else {
     if (a) {
-      a instanceof $b ? (c = a.getKeys(), d = a.F()) : (c = cb(a), d = bb(a));
+      a instanceof $b ? (c = a.getKeys(), d = a.F()) : (c = jb(a), d = ib(a));
       for (var e = 0;e < c.length;e++) {
         this.set(c[e], d[e]);
       }
@@ -743,7 +743,7 @@ function cc(a, b) {
     }
     return b;
   }
-  return bb(a);
+  return ib(a);
 }
 function ec(a, b) {
   if ("function" == typeof a.forEach) {
@@ -763,7 +763,7 @@ function ec(a, b) {
               c.push(e);
             }
           } else {
-            c = cb(a);
+            c = jb(a);
           }
         } else {
           c = void 0;
@@ -888,7 +888,7 @@ function tc(a, b, c) {
   return c;
 }
 function uc(a, b) {
-  $a(b, function(b, d) {
+  gb(b, function(b, d) {
     "style" == d ? a.style.cssText = b : "class" == d ? a.className = b : "for" == d ? a.htmlFor = b : d in vc ? a.setAttribute(vc[d], b) : 0 == d.lastIndexOf("aria-", 0) || 0 == d.lastIndexOf("data-", 0) ? a.setAttribute(d, b) : a[d] = b;
   });
 }
@@ -901,7 +901,7 @@ function Q(a, b, c) {
     if (h.type) {
       f.push(' type="', qb(h.type), '"');
       var n = {};
-      fb(n, h);
+      mb(n, h);
       delete n.type;
       h = n;
     }
@@ -1299,7 +1299,7 @@ g.dispatchEvent = function(a) {
     } else {
       var e = a;
       a = new y(d, c);
-      fb(a, e);
+      mb(a, e);
     }
   }
   var e = !0, f;
@@ -2050,7 +2050,7 @@ g.send = function(a, b, c, d) {
   this.R = !1;
   this.u = !0;
   this.a = this.L ? Yb(this.L) : Yb(Wb);
-  this.K = this.L ? mb(this.L) : mb(Wb);
+  this.K = this.L ? eb(this.L) : eb(Wb);
   this.a.onreadystatechange = r(this.Qa, this);
   try {
     this.T = !0, this.a.open(b, String(a), !0), this.T = !1;
@@ -2489,7 +2489,7 @@ w.getQueryParam = function(a, b) {
   return l(b) ? w.Ja(b).get(a) : w.Ja().get(a);
 };
 w.hb = function() {
-  return kb.get("vk2-welcomepage");
+  return cb.get("vk2-welcomepage");
 };
 w.gb = function(a, b, c, d) {
   var e = new Cd("vk2-overlay-modal", document.body, !0);
@@ -2506,7 +2506,7 @@ w.gb = function(a, b, c, d) {
   });
 };
 w.Gb = function() {
-  return l(kb.get("auth_tkt")) ? !0 : !1;
+  return l(cb.get("auth_tkt")) ? !0 : !1;
 };
 w.Oa = function(a) {
   a = O(a, (l(void 0) ? void 0 : document.body).body);
@@ -2551,7 +2551,7 @@ w.Hb = function(a, b, c) {
   d.send(a);
 };
 w.Ua = function(a, b) {
-  kb.set(a, b);
+  cb.set(a, b);
 };
 t("vk2.utils.setCookie", w.Ua);
 w.Ib = function() {
@@ -2676,7 +2676,7 @@ function Le(a, b) {
     m.appendChild(Zb);
     return m;
   }
-  var e = {brightness:1, contrast:1, hue:0, saturation:0}, f = db(e), h = !1, n = !1, m = Q("div", {"class":"slider-container", style:"display:none;"});
+  var e = {brightness:1, contrast:1, hue:0, saturation:0}, f = kb(e), h = !1, n = !1, m = Q("div", {"class":"slider-container", style:"display:none;"});
   b.appendChild(m);
   var q = d("slider-contrast", "contrast", Me(a), [1, 0, 2, .01], w.f("contrast"));
   m.appendChild(q);
@@ -2845,20 +2845,237 @@ function Re(a, b) {
   return d;
 }
 ;function Se(a) {
-  this.i = p(a) ? N(a) : a;
-  Te(this, this.i);
-  this.b = {};
-  this.l = {placename:r(function(a) {
-    this.b.hasOwnProperty(a) ? Ue(this, this.b[a][0]) : Ve(this, a, r(function(a) {
-      0 < a.length ? Ue(this, a[0]) : alert("The choosen placename is unknown.");
-    }, this));
-  }, this)};
-  We(this);
-  Xe(this);
+  this.s = l(a.projection) ? a.projection : "EPSG:900913";
+  this.da = l(a.ub) ? a.ub : 20;
+  this.za = void 0;
+  this.l = new ol.Collection;
+  this.L = "title";
+  this.T = "ascending";
+  this.c = 0;
+  this.i = void 0;
+  this.b = {V:l(a.time) ? a.time[0] : 1868, qa:l(a.time) ? a.time[1] : 1945};
+  this.g = a.map;
+  this.K = [];
+  this.R = !0;
+  this.a();
   V.call(this);
 }
 u(Se, V);
-function Te(a, b) {
+Se.prototype.a = function() {
+  this.g.on("moveend", function() {
+    var a = w.W(this.g);
+    l(this.za) && ol.extent.equals(this.za, a) || this.pa();
+  }, this);
+};
+function Te(a, b, c) {
+  var d = [a.b.V + "-01-01", a.b.qa + "-01-01"], e = "ascending" === a.T ? "asc" : "desc";
+  if (a.R) {
+    b = w.rb(ol.proj.transformExtent(b, c, ra));
+    c = a.L;
+    a = a.K;
+    var f = [], h = ge();
+    f.push(je(d));
+    f.push(he(b));
+    f.push(ie(a));
+    f.push({term:{georeference:!0}});
+    h.query.filtered.filter.bool.must = f;
+    h.sort[c] = {order:e};
+    return h;
+  }
+  b = a.L;
+  a = a.K;
+  c = [];
+  f = ge();
+  c.push(je(d));
+  c.push(ie(a));
+  c.push({term:{georeference:!1}});
+  f.query.filtered.filter.bool.must = c;
+  f.sort[b] = {order:e};
+  return f;
+}
+Se.prototype.ca = function(a) {
+  this.dispatchEvent(new y("refresh", {features:a, totalFeatureCount:this.i}));
+};
+Se.prototype.ba = function(a) {
+  this.dispatchEvent(new y("paginate", {features:a, totalFeatureCount:this.i}));
+};
+function Ue(a, b, c, d) {
+  b = Te(a, b, c);
+  c = qa + "/_search?from=" + a.c + "&size=" + a.da;
+  var e = new X;
+  U(e, "success", function(a) {
+    a = a.target;
+    if (Y(a)) {
+      var b = Y(a);
+      this.i = b.hits.total;
+      x(a);
+      a = Na(b.hits.hits);
+      this.l.extend(a);
+      this.c += a.length;
+      d.call(this, a);
+    } else {
+      console.log("Response is empty");
+    }
+  }, !1, a);
+  e.send(c, "POST", JSON.stringify(b));
+}
+Se.prototype.pa = function() {
+  var a = w.W(this.g);
+  Ve(this, a, this.s);
+  this.za = Jb(a);
+};
+function Ve(a, b, c) {
+  a.l.clear();
+  a.c = 0;
+  Ue(a, b, c, a.ca);
+}
+;function We(a, b, c) {
+  this.m = p(a) ? N(a) : a;
+  this.a = new Se({projection:"EPSG:900913", map:b});
+  T(this.a, "refresh", r(this.s, this));
+  T(this.a, "paginate", r(this.pa, this));
+  this.i = ["time", "title", "georeference"];
+  this.c = new ol.layer.Vector({source:new ol.source.Vector, style:function() {
+    return [w.j.bb];
+  }});
+  b.addLayer(this.c);
+  Xe(this, this.m);
+  Ye(this, this.m);
+  Ze(this);
+  $e(this);
+  af(this, c);
+  V.call(this);
+}
+u(We, V);
+function Xe(a, b) {
+  var c = Q("div", {"class":"mapsearch-container"});
+  b.appendChild(c);
+  var d = Q("div", {"class":"panel panel-default searchTablePanel"});
+  c.appendChild(d);
+  c = Q("div", {"class":"panel-heading"});
+  d.appendChild(c);
+  a.l = Q("div", {"class":"content"});
+  c.appendChild(a.l);
+  c = Q("div", {"class":"panel-body"});
+  d.appendChild(c);
+  d = Q("div", {"class":"mapsearch-list"});
+  c.appendChild(d);
+  c = Q("div", {"class":"list-header"});
+  d.appendChild(c);
+  for (var e = 0;e < a.i.length;e++) {
+    var f = a.i[e], h = Q("div", {"class":"inner-col " + f}), f = Q("div", {"data-type":f, "class":"sort-element " + f, innerHTML:w.f(f) + ' <span class="caret caret-reversed"></span>'});
+    h.appendChild(f);
+    c.appendChild(h);
+  }
+  a.b = Q("ul", {id:"mapsearch-contentlist", "class":"mapsearch-contentlist"});
+  d.appendChild(a.b);
+}
+function $e(a) {
+  l(a.b) && T(a.b, "click", function(a) {
+    a.preventDefault();
+    var c = w.Ka(a.I.target, "mapsearch-record"), d;
+    this.a.l.forEach(function(a) {
+      a.get("id") == c.id && (d = a);
+    });
+    this.dispatchEvent(new y("click-record", {feature:d}));
+  }, void 0, a);
+}
+function Ye(a, b) {
+  for (var c = O("sort-element", b), d = 0;d < c.length;d++) {
+    T(c[d], "click", function(a) {
+      a = a.target.getAttribute("data-type");
+      for (var b = P("sort-element " + a), c = F(b, "ascending") ? "descending" : "ascending", d = O("sort-element"), m = 0;m < d.length;m++) {
+        D(d[m], "descending"), D(d[m], "ascending");
+      }
+      B(b, c);
+      this.a.L = a;
+      this.a.T = c;
+      a = this.a;
+      Ve(a, w.W(a.g), a.s);
+    }, void 0, a);
+  }
+}
+function Ze(a) {
+  var b = !1;
+  l(a.b) && T(a.b, "scroll", function(a) {
+    if (!b) {
+      b = !0;
+      a = a.currentTarget;
+      if (a.offsetHeight + a.scrollTop >= a.scrollHeight && (a = this.a, !(a.l.getLength() >= a.i) && (a = this.a, a.c < a.i && 500 > a.c))) {
+        var d = w.W(a.g);
+        Ue(a, d, a.s, a.ba);
+      }
+      b = !1;
+    }
+  }, void 0, a);
+}
+function af(a, b) {
+  T(b, "facet-change", function(a) {
+    var b = this.a;
+    a = a.target;
+    b.R = a.georeference;
+    b.K = a.facets;
+    b.pa();
+  }, void 0, a);
+}
+function bf(a, b) {
+  for (var c = 0;c < b.length;c++) {
+    var d, e = b[c];
+    d = Q("li", {"class":"mapsearch-record type " + e.get("maptype"), id:e.get("id")});
+    var f = Q("span", {"class":"data-col time", innerHTML:parseInt(e.get("time"), 0)});
+    d.appendChild(f);
+    f = Q("span", {"class":"data-col title", innerHTML:e.get("title")});
+    d.appendChild(f);
+    f = Q("span", {"class":"data-col time", innerHTML:1});
+    d.appendChild(f);
+    f = Q("div", {"class":"view-item"});
+    d.appendChild(f);
+    var h = Q("a", {"class":"thumbnail", href:"#"});
+    f.appendChild(h);
+    var n = Q("img", {onerror:'this.onerror=null;this.src="http://www.deutschefotothek.de/images/noimage/image120.jpg"', alt:"...", src:e.get("thumb")});
+    h.appendChild(n);
+    h = Q("div", {"class":"overview"});
+    f.appendChild(h);
+    f = Q("h2", {innerHTML:e.get("title")});
+    h.appendChild(f);
+    f = Q("p", {"class":"details"});
+    h.appendChild(f);
+    h = Q("div", {"class":"timestamp", innerHTML:w.f("timestamp") + " " + e.get("time")});
+    f.appendChild(h);
+    h = Q("div", {"class":"scale", innerHTML:w.f("scale") + " 1:25.000"});
+    f.appendChild(h);
+    e.get("georeference") || (e = Q("div", {"class":"georeference", innerHTML:w.f("not_georeference")}), f.appendChild(e));
+    a.b.appendChild(d);
+    l(a.c) && Pe(d, b[c], a.c);
+  }
+}
+We.prototype.s = function(a) {
+  cf(this, a.target.totalFeatureCount);
+  this.b.innerHTML = "";
+  bf(this, a.target.features);
+};
+We.prototype.pa = function(a) {
+  cf(this, a.target.Lb);
+  bf(this, a.target.features);
+};
+function cf(a, b) {
+  a.l.innerHTML = 0 < b ? b + " " + w.f("found_mtb") : w.f("found_no_maps");
+}
+;function df(a) {
+  this.i = p(a) ? N(a) : a;
+  ef(this, this.i);
+  this.b = {};
+  this.l = {placename:r(function(a) {
+    this.b.hasOwnProperty(a) ? ff(this, this.b[a][0]) : gf(this, a, r(function(a) {
+      0 < a.length ? ff(this, a[0]) : alert("The choosen placename is unknown.");
+    }, this));
+  }, this)};
+  hf(this);
+  jf(this);
+  V.call(this);
+}
+u(df, V);
+function ef(a, b) {
   var c = Q("div", {"class":"gazetteersearch-container"});
   b.appendChild(c);
   var d = Q("div", {"class":"form-group"});
@@ -2868,18 +3085,18 @@ function Te(a, b) {
   a.c = Q("input", {value:w.f("gazetteer_submit"), type:"submit", "class":"form-control gazetteersearch-submit"});
   d.appendChild(a.c);
 }
-function We(a) {
+function hf(a) {
   $(a.a).autocomplete({source:r(function(a, c) {
-    Ve(this, a.term, c);
+    gf(this, a.term, c);
   }, a), delay:300, minLength:3, autoFocus:!0, select:r(function(a, c) {
-    Ue(this, c.item);
+    ff(this, c.item);
   }, a), open:function() {
     $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
   }, close:function() {
     $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
   }});
 }
-function Xe(a) {
+function jf(a) {
   var b = r(function(a) {
     this.l.placename(-1 < a.indexOf(",") ? a.split(",")[0] : a);
   }, a);
@@ -2890,7 +3107,7 @@ function Xe(a) {
     b(this.a.value);
   }, void 0, a);
 }
-function Ve(a, b, c) {
+function gf(a, b, c) {
   B(a.a, "loading");
   Xd("https://search.mapzen.com/v1/autocomplete?api_key=search-53q8sJs&text=" + b + "&focus.point.lat=51&focus.point.lon=13", r(function(a) {
     a = a.target;
@@ -2913,11 +3130,29 @@ function Ve(a, b, c) {
     F(this.a, "loading") && D(this.a, "loading");
   }, a), "GET");
 }
-function Ue(a, b) {
-  a.dispatchEvent(new y(Ye, {location_type:b.type, lonlat:[b.lonlat.x, b.lonlat.y], srs:l(void 0) ? void 0 : "EPSG:4326"}));
+function ff(a, b) {
+  a.dispatchEvent(new y(kf, {location_type:b.type, lonlat:[b.lonlat.x, b.lonlat.y], srs:l(void 0) ? void 0 : "EPSG:4326"}));
 }
-var Ye = "jumpto";
-function Ze(a, b, c) {
+var kf = "jumpto";
+function lf(a, b, c) {
+  var d = this.l = p(a) ? N(a) : a;
+  a = Q("div", {"class":"spatialsearch-inner-container"});
+  d.appendChild(a);
+  d = Q("div", {"class":"spatialsearch-content-panel"});
+  a.appendChild(d);
+  a = Q("div", {"class":"header-container"});
+  d.appendChild(a);
+  this.c = Q("div", {"class":"content"});
+  a.appendChild(this.c);
+  this.a = Q("div", {"class":"body-container"});
+  d.appendChild(this.a);
+  this.b = new df(this.a);
+  this.i = new cd(this.a, Ia);
+  a = this.a;
+  c = new bd(a, c);
+  this.o = new We(a, b, c);
+}
+;function mf(a, b, c) {
   this.a = p(a) ? N(a) : a;
   a = Q("div", {"class":"container"});
   this.a.appendChild(a);
@@ -2935,13 +3170,13 @@ function Ze(a, b, c) {
   e.appendChild(d);
   f = w.f("mdrecord_keyword");
   d = c.keywords;
-  e = $e(a);
+  e = nf(a);
   f = Q("div", {"class":"label", innerHTML:f});
   e.appendChild(f);
   d = Q("div", {innerHTML:d});
   e.appendChild(d);
   for (e = 0;e < c["online-resources"].length;e++) {
-    var f = w.f("mdrecord_onlineresource"), d = c["online-resources"][e].url, h = $e(a), f = Q("div", {"class":"label", innerHTML:f});
+    var f = w.f("mdrecord_onlineresource"), d = c["online-resources"][e].url, h = nf(a), f = Q("div", {"class":"label", innerHTML:f});
     h.appendChild(f);
     f = Q("div");
     h.appendChild(f);
@@ -2953,7 +3188,7 @@ function Ze(a, b, c) {
   }
   d = w.f("mdrecord_spatialresolution");
   c = c.denominator;
-  e = $e(a);
+  e = nf(a);
   d = Q("div", {"class":"label", innerHTML:d});
   e.appendChild(d);
   d = Q("div");
@@ -2965,7 +3200,7 @@ function Ze(a, b, c) {
   b = Q("span", {"class":"unique-id metadata-content-row", innerHTML:'<div class="label">' + w.f("mdrecord_uniqueid") + "</div><div>" + b + "</div>"});
   a.appendChild(b);
 }
-function $e(a) {
+function nf(a) {
   var b = Q("div", {"class":"metadata-content-row"});
   a.appendChild(b);
   return b;
@@ -2974,22 +3209,22 @@ function $e(a) {
   var b = w.getQueryParam("objectid");
   null != b ? Xd(qa + "/map/" + b, r(function(b) {
     if (b = Y(b.target)) {
-      b = Ma(b._id, b._source), af(b, a);
+      b = Ma(b._id, b._source), of(b, a);
     }
   }, this)) : console.log("Could not identify objectid.");
 });
-function af(a, b) {
+function of(a, b) {
   var c = a.getProperties();
   N(b.titleshortId).innerHTML = c.title;
   N(b.titlelongId).innerHTML = c.titlelong;
   N(b.linkToFotothekId).href = c.plink;
   if (ol.has.WEBGL) {
-    d = new me(b.zoomifyContainer, c.zoomify, !0), new Ze(b.metadataContainer, a.getId(), c), T(d, "loadend", function() {
+    d = new me(b.zoomifyContainer, c.zoomify, !0), new mf(b.metadataContainer, a.getId(), c), T(d, "loadend", function() {
       d.getMap().addControl(new Ke);
     });
   } else {
     var d = new me(b.zoomifyContainer, c.zoomify);
-    new Ze(b.metadataContainer, a.getId(), c);
+    new mf(b.metadataContainer, a.getId(), c);
   }
 }
 ;w.h = {};
@@ -3049,9 +3284,9 @@ w.h.pb = function() {
   return v ? w.h.sa(a.b) + "/" + Fa : w.h.A();
 };
 t("vk2.app.GeoreferenceChooseApp", function(a) {
-  bf(this, N(a.target), N(a.targetCount));
+  pf(this, N(a.target), N(a.targetCount));
 });
-function cf(a, b, c) {
+function qf(a, b, c) {
   void 0 !== a.hits && void 0 !== a.hits.total && (c.innerHTML = a.hits.total);
   if (void 0 !== a.hits && void 0 !== a.hits.hits && 0 < a.hits.hits.length) {
     b.innerHTML = "";
@@ -3059,7 +3294,7 @@ function cf(a, b, c) {
     b.appendChild(c);
     b = 0;
     for (var d = a.hits.hits.length;b < d;b++) {
-      R(c, df(a.hits.hits[b]));
+      R(c, rf(a.hits.hits[b]));
     }
   }
   $("body").scroll(function() {
@@ -3067,12 +3302,12 @@ function cf(a, b, c) {
   });
   $(".lazy-image").sb();
 }
-function bf(a, b, c) {
+function pf(a, b, c) {
   var d = new X;
   U(d, "success", function(a) {
     a = a.target;
     var d = Y(a);
-    cf(d, b, c);
+    qf(d, b, c);
     x(a);
   }, !1, a);
   U(d, "error", function() {
@@ -3083,16 +3318,16 @@ function bf(a, b, c) {
   e.sort = {title:{order:"asc"}};
   d.send(a, "POST", JSON.stringify(e));
 }
-function df(a) {
+function rf(a) {
   var b = a._source, c = a._id;
   a = b.maptype;
   var d = void 0 !== b.thumb ? b.thumb : "#", c = void 0 !== c ? w.h.ia(c) : "#", e = b.time;
   return Q("li", {id:b.id, innerHTML:'<div class="container record-container"><div class="image"><img class="lazy-image" alt="" data-original="' + d + '"></div><div class="body"><p><strong>' + b.title + "</strong></p><p>" + w.f("georef-choose-time") + ": " + e + "</p><p>" + w.f("georef-choose-maptype") + ": " + a + '</p></div><div class="tools"><a class="btn btn-primary" href="' + c + '" target="_blank">' + w.f("georef-choose-goToGeoreference") + "</a></div></div>"});
 }
 ;t("vk2.app.UserHistoryApp", function(a) {
-  ef(this, N(a.target), N(a.targetPoints));
+  sf(this, N(a.target), N(a.targetPoints));
 });
-function ef(a, b, c) {
+function sf(a, b, c) {
   var d = new X;
   U(d, "success", function(a) {
     a = a.target;
@@ -3122,15 +3357,15 @@ function ef(a, b, c) {
     var a = $(this).prop("checked") ? "off" : "on";
     w.Ua("vk2-welcomepage", a);
   });
-  void 0 !== b && void 0 !== c && void 0 !== d && void 0 !== e && ff(this, b, c, d, e);
+  void 0 !== b && void 0 !== c && void 0 !== d && void 0 !== e && tf(this, b, c, d, e);
 });
-function ff(a, b, c, d, e) {
+function tf(a, b, c, d, e) {
   var f = new X;
   U(f, "success", function(a) {
     a = a.target;
     var f = Y(a), m = f.georeference_map_count, q = m + f.missing_georeference_map_count, z = parseInt(m / q * 100);
-    gf(b, m);
-    gf(c, q);
+    uf(b, m);
+    uf(c, q);
     for (m = 0;m < d.length;m++) {
       var q = zd(d[m], "width"), E = zd(d[m], "margin-left");
       void 0 !== q && "" !== q && wd(d[m], "width", z + "%");
@@ -3149,12 +3384,12 @@ function ff(a, b, c, d, e) {
   a = w.h.nb();
   f.send(a, "GET");
 }
-function gf(a, b) {
+function uf(a, b) {
   for (var c = 0;c < a.length;c++) {
     a[c].innerHTML = b;
   }
 }
-;function hf(a, b, c) {
+;function vf(a, b, c) {
   var d = a.getVisible() ? "visible" : "notvisible", e = Q("li", {"class":"layermanagement-record " + d, id:b, "data-id":a.getId()});
   b = Q("div", {"class":"control-container"});
   e.appendChild(b);
@@ -3190,22 +3425,22 @@ function gf(a, b) {
   d.appendChild(f);
   d = Q("span", {"class":"timestamps-label", innerHTML:w.f("timestamp") + " " + a.getTime()});
   f.appendChild(d);
-  kb.get("vk2-auth") && (d = Q("a", {"class":"georeference-update", innerHTML:w.f("updateGeoref") + " ...", target:"_blank", href:w.h.ia(a.getId())}), b.appendChild(d));
+  cb.get("vk2-auth") && (d = Q("a", {"class":"georeference-update", innerHTML:w.f("updateGeoref") + " ...", target:"_blank", href:w.h.ia(a.getId())}), b.appendChild(d));
   new Hc(e, a);
   a.on("change:visible", function() {
     !a.getVisible() && F(e, "visible") ? Ob(e, "visible", "notvisible") : a.getVisible() && F(e, "notvisible") && Ob(e, "notvisible", "visible");
   });
   return e;
 }
-;function jf(a, b, c) {
+;function wf(a, b, c) {
   Xd(w.h.kb(), function(a) {
     200 === ee(a.target) ? b(a) : c(a);
   }, "POST", "req=" + JSON.stringify(a));
 }
-function kf(a, b) {
+function xf(a, b) {
   Xd(w.h.ib(), b, "POST", "req=" + JSON.stringify(a));
 }
-;function lf(a, b, c) {
+;function yf(a, b, c) {
   this.l = p(a) ? N(a) : a;
   this.a = b;
   this.g = c;
@@ -3225,46 +3460,46 @@ function kf(a, b) {
   this.a.on("remove", this.c, this);
   V.call(this);
 }
-u(lf, V);
-function mf(a) {
+u(yf, V);
+function zf(a) {
   a = a.a.getArray();
   for (var b = [], c = 0, d = a.length;c < d;c++) {
     l(a[c].ha) && a[c].ha() && b.push(a[c]);
   }
   return b;
 }
-function nf(a, b) {
+function Af(a, b) {
   for (var c = a.a.getArray(), d = 0, e = c.length;d < e;d++) {
     if (b === c[d]) {
       return d;
     }
   }
 }
-lf.prototype.c = function(a) {
+yf.prototype.c = function(a) {
   if (l(a.element.ha) && a.element.ha()) {
     this.b.innerHTML = "";
-    a = mf(this);
+    a = zf(this);
     for (var b = a.length - 1;0 <= b;b--) {
-      var c = hf(a[b], b, this.g);
+      var c = vf(a[b], b, this.g);
       this.b.appendChild(c);
     }
   }
   $(this.b).sortable({revert:!0, handle:".drag-btn", stop:r(function(a, b) {
-    var c = mf(this), h = O("layermanagement-record", this.b), n = h.length - parseInt(h[b.item.index()].id, 0) - 1, m = b.item.index(), q = c.length - 1 - m, h = parseInt(h[m].id, 0);
-    l(h) && n != m && (n = c[h], m = nf(this, n), this.a.removeAt(m), c = nf(this, c[q]), q > h ? this.a.insertAt(c + 1, n) : this.a.insertAt(c, n));
+    var c = zf(this), h = O("layermanagement-record", this.b), n = h.length - parseInt(h[b.item.index()].id, 0) - 1, m = b.item.index(), q = c.length - 1 - m, h = parseInt(h[m].id, 0);
+    l(h) && n != m && (n = c[h], m = Af(this, n), this.a.removeAt(m), c = Af(this, c[q]), q > h ? this.a.insertAt(c + 1, n) : this.a.insertAt(c, n));
   }, this)});
 };
-function of() {
+function Bf() {
   V.call(this);
 }
-u(of, V);
-function pf(a, b) {
+u(Bf, V);
+function Cf(a, b) {
   var c = Be(new Z(window.location.href)), d, e = 4;
   if (Fe(c, "c")) {
     var f = c.get("c").split(",");
     d = ol.proj.transform([parseFloat(f[0], 0), parseFloat(f[1], 0)], "EPSG:4326", Ha.projection);
     e = parseInt(c.get("z"), 0);
-    qf(b, d, e);
+    Df(b, d, e);
   }
   var h = r(function(a, c) {
     var f = Na(a);
@@ -3280,7 +3515,7 @@ function pf(a, b) {
       }
     }
     !d && 0 < f.length && (d = f[0].getGeometry().getInteriorPoint().getCoordinates());
-    qf(b, d, e);
+    Df(b, d, e);
   }, a);
   if (Fe(c, "oid") && "" !== c.get("oid")) {
     for (var n = c.get("oid").split(","), c = 0;c < n.length;c++) {
@@ -3302,7 +3537,7 @@ function pf(a, b) {
     }, "POST", JSON.stringify(c)));
   }
 }
-function rf(a) {
+function Ef(a) {
   var b = "";
   a.getLayers().forEach(function(a) {
     l(a.getId) && (b += a.getId() + ",");
@@ -3316,11 +3551,11 @@ function rf(a) {
   re(d, e);
   return d.toString();
 }
-function qf(a, b, c) {
+function Df(a, b, c) {
   a.getView().setCenter(b);
   a.getView().setZoom(c);
 }
-;function sf(a) {
+;function Ff(a) {
   a = a || {};
   var b = Q("div", {"class":"permalink ol-unselectable"}), c = Q("a", {href:"#permalink", innerHTML:"P", "class":"ol-has-tooltip"});
   b.appendChild(c);
@@ -3340,249 +3575,14 @@ function qf(a, b, c) {
   b.appendChild(e);
   d = r(function(a) {
     a.preventDefault();
-    $(e).hasClass("open") ? ($(e).fadeOut().removeClass("open"), $(f).blur()) : (f.value = rf(this.getMap()), $(e).fadeIn().addClass("open"), $(f).focus().select());
+    $(e).hasClass("open") ? ($(e).fadeOut().removeClass("open"), $(f).blur()) : (f.value = Ef(this.getMap()), $(e).fadeIn().addClass("open"), $(f).focus().select());
   }, this);
   T(c, "click", d);
   T(c, "touchstart", d);
   ol.control.Control.call(this, {element:b, target:a.target});
 }
-ol.inherits(sf, ol.control.Control);
-function tf(a) {
-  this.s = l(a.projection) ? a.projection : "EPSG:900913";
-  this.da = l(a.ub) ? a.ub : 20;
-  this.za = void 0;
-  this.l = new ol.Collection;
-  this.L = "title";
-  this.T = "ascending";
-  this.c = 0;
-  this.i = void 0;
-  this.b = {V:l(a.time) ? a.time[0] : 1868, qa:l(a.time) ? a.time[1] : 1945};
-  this.g = a.map;
-  this.K = [];
-  this.R = !0;
-  this.a();
-  V.call(this);
-}
-u(tf, V);
-tf.prototype.a = function() {
-  this.g.on("moveend", function() {
-    var a = w.W(this.g);
-    l(this.za) && ol.extent.equals(this.za, a) || this.pa();
-  }, this);
-};
-function uf(a, b, c) {
-  var d = [a.b.V + "-01-01", a.b.qa + "-01-01"], e = "ascending" === a.T ? "asc" : "desc";
-  if (a.R) {
-    b = w.rb(ol.proj.transformExtent(b, c, ra));
-    c = a.L;
-    a = a.K;
-    var f = [], h = ge();
-    f.push(je(d));
-    f.push(he(b));
-    f.push(ie(a));
-    f.push({term:{georeference:!0}});
-    h.query.filtered.filter.bool.must = f;
-    h.sort[c] = {order:e};
-    return h;
-  }
-  b = a.L;
-  a = a.K;
-  c = [];
-  f = ge();
-  c.push(je(d));
-  c.push(ie(a));
-  c.push({term:{georeference:!1}});
-  f.query.filtered.filter.bool.must = c;
-  f.sort[b] = {order:e};
-  return f;
-}
-tf.prototype.ca = function(a) {
-  this.dispatchEvent(new y("refresh", {features:a, totalFeatureCount:this.i}));
-};
-tf.prototype.ba = function(a) {
-  this.dispatchEvent(new y("paginate", {features:a, totalFeatureCount:this.i}));
-};
-function vf(a, b, c, d) {
-  b = uf(a, b, c);
-  c = qa + "/_search?from=" + a.c + "&size=" + a.da;
-  var e = new X;
-  U(e, "success", function(a) {
-    a = a.target;
-    if (Y(a)) {
-      var b = Y(a);
-      this.i = b.hits.total;
-      x(a);
-      a = Na(b.hits.hits);
-      this.l.extend(a);
-      this.c += a.length;
-      d.call(this, a);
-    } else {
-      console.log("Response is empty");
-    }
-  }, !1, a);
-  e.send(c, "POST", JSON.stringify(b));
-}
-tf.prototype.pa = function() {
-  var a = w.W(this.g);
-  wf(this, a, this.s);
-  this.za = Jb(a);
-};
-function wf(a, b, c) {
-  a.l.clear();
-  a.c = 0;
-  vf(a, b, c, a.ca);
-}
-;function xf(a, b, c) {
-  this.m = p(a) ? N(a) : a;
-  this.a = new tf({projection:"EPSG:900913", map:b});
-  T(this.a, "refresh", r(this.s, this));
-  T(this.a, "paginate", r(this.pa, this));
-  this.i = ["time", "title", "georeference"];
-  this.c = new ol.layer.Vector({source:new ol.source.Vector, style:function() {
-    return [w.j.bb];
-  }});
-  b.addLayer(this.c);
-  yf(this, this.m);
-  zf(this, this.m);
-  Af(this);
-  Bf(this);
-  Cf(this, c);
-  V.call(this);
-}
-u(xf, V);
-function yf(a, b) {
-  var c = Q("div", {"class":"mapsearch-container"});
-  b.appendChild(c);
-  var d = Q("div", {"class":"panel panel-default searchTablePanel"});
-  c.appendChild(d);
-  c = Q("div", {"class":"panel-heading"});
-  d.appendChild(c);
-  a.l = Q("div", {"class":"content"});
-  c.appendChild(a.l);
-  c = Q("div", {"class":"panel-body"});
-  d.appendChild(c);
-  d = Q("div", {"class":"mapsearch-list"});
-  c.appendChild(d);
-  c = Q("div", {"class":"list-header"});
-  d.appendChild(c);
-  for (var e = 0;e < a.i.length;e++) {
-    var f = a.i[e], h = Q("div", {"class":"inner-col " + f}), f = Q("div", {"data-type":f, "class":"sort-element " + f, innerHTML:w.f(f) + ' <span class="caret caret-reversed"></span>'});
-    h.appendChild(f);
-    c.appendChild(h);
-  }
-  a.b = Q("ul", {id:"mapsearch-contentlist", "class":"mapsearch-contentlist"});
-  d.appendChild(a.b);
-}
-function Bf(a) {
-  l(a.b) && T(a.b, "click", function(a) {
-    a.preventDefault();
-    var c = w.Ka(a.I.target, "mapsearch-record"), d;
-    this.a.l.forEach(function(a) {
-      a.get("id") == c.id && (d = a);
-    });
-    this.dispatchEvent(new y("click-record", {feature:d}));
-  }, void 0, a);
-}
-function zf(a, b) {
-  for (var c = O("sort-element", b), d = 0;d < c.length;d++) {
-    T(c[d], "click", function(a) {
-      a = a.target.getAttribute("data-type");
-      for (var b = P("sort-element " + a), c = F(b, "ascending") ? "descending" : "ascending", d = O("sort-element"), m = 0;m < d.length;m++) {
-        D(d[m], "descending"), D(d[m], "ascending");
-      }
-      B(b, c);
-      this.a.L = a;
-      this.a.T = c;
-      a = this.a;
-      wf(a, w.W(a.g), a.s);
-    }, void 0, a);
-  }
-}
-function Af(a) {
-  var b = !1;
-  l(a.b) && T(a.b, "scroll", function(a) {
-    if (!b) {
-      b = !0;
-      a = a.currentTarget;
-      if (a.offsetHeight + a.scrollTop >= a.scrollHeight && (a = this.a, !(a.l.getLength() >= a.i) && (a = this.a, a.c < a.i && 500 > a.c))) {
-        var d = w.W(a.g);
-        vf(a, d, a.s, a.ba);
-      }
-      b = !1;
-    }
-  }, void 0, a);
-}
-function Cf(a, b) {
-  T(b, "facet-change", function(a) {
-    var b = this.a;
-    a = a.target;
-    b.R = a.georeference;
-    b.K = a.facets;
-    b.pa();
-  }, void 0, a);
-}
-function Df(a, b) {
-  for (var c = 0;c < b.length;c++) {
-    var d, e = b[c];
-    d = Q("li", {"class":"mapsearch-record type " + e.get("maptype"), id:e.get("id")});
-    var f = Q("span", {"class":"data-col time", innerHTML:parseInt(e.get("time"), 0)});
-    d.appendChild(f);
-    f = Q("span", {"class":"data-col title", innerHTML:e.get("title")});
-    d.appendChild(f);
-    f = Q("span", {"class":"data-col time", innerHTML:1});
-    d.appendChild(f);
-    f = Q("div", {"class":"view-item"});
-    d.appendChild(f);
-    var h = Q("a", {"class":"thumbnail", href:"#"});
-    f.appendChild(h);
-    var n = Q("img", {onerror:'this.onerror=null;this.src="http://www.deutschefotothek.de/images/noimage/image120.jpg"', alt:"...", src:e.get("thumb")});
-    h.appendChild(n);
-    h = Q("div", {"class":"overview"});
-    f.appendChild(h);
-    f = Q("h2", {innerHTML:e.get("title")});
-    h.appendChild(f);
-    f = Q("p", {"class":"details"});
-    h.appendChild(f);
-    h = Q("div", {"class":"timestamp", innerHTML:w.f("timestamp") + " " + e.get("time")});
-    f.appendChild(h);
-    h = Q("div", {"class":"scale", innerHTML:w.f("scale") + " 1:25.000"});
-    f.appendChild(h);
-    e.get("georeference") || (e = Q("div", {"class":"georeference", innerHTML:w.f("not_georeference")}), f.appendChild(e));
-    a.b.appendChild(d);
-    l(a.c) && Pe(d, b[c], a.c);
-  }
-}
-xf.prototype.s = function(a) {
-  Ef(this, a.target.totalFeatureCount);
-  this.b.innerHTML = "";
-  Df(this, a.target.features);
-};
-xf.prototype.pa = function(a) {
-  Ef(this, a.target.Lb);
-  Df(this, a.target.features);
-};
-function Ef(a, b) {
-  a.l.innerHTML = 0 < b ? b + " " + w.f("found_mtb") : w.f("found_no_maps");
-}
-;function Ff(a, b, c) {
-  var d = this.l = p(a) ? N(a) : a;
-  a = Q("div", {"class":"spatialsearch-inner-container"});
-  d.appendChild(a);
-  d = Q("div", {"class":"spatialsearch-content-panel"});
-  a.appendChild(d);
-  a = Q("div", {"class":"header-container"});
-  d.appendChild(a);
-  this.c = Q("div", {"class":"content"});
-  a.appendChild(this.c);
-  this.a = Q("div", {"class":"body-container"});
-  d.appendChild(this.a);
-  this.b = new Se(this.a);
-  this.i = new cd(this.a, Ia);
-  a = this.a;
-  c = new bd(a, c);
-  this.o = new xf(a, b, c);
-}
-;function Gf(a) {
+ol.inherits(Ff, ol.control.Control);
+function Gf(a) {
   this.g = Jf(a);
   this.g.on("singleclick", function(a) {
     var c = [];
@@ -3595,7 +3595,7 @@ function Ef(a, b) {
 t("vk2.controller.MapController", Gf);
 function Jf(a) {
   new ol.style.Style({stroke:new ol.style.Stroke({color:"#000000", width:3})});
-  return new ol.Map({layers:[new ol.layer.Tile({source:new ol.source.OSM})], renderer:"canvas", target:a, interactions:ol.interaction.defaults().extend([new ol.interaction.DragRotateAndZoom]), controls:[new ol.control.Attribution({collapsible:!1, collapsed:!1}), new ol.control.Zoom, new ol.control.FullScreen, new Ne({spyLayer:new ol.layer.Tile({attribution:void 0, source:new ol.source.OSM})}), new Zc, new ol.control.ScaleLine, new sf, new Oe], view:new ol.View({projection:"EPSG:900913", minResolution:1.194328566789627, 
+  return new ol.Map({layers:[new ol.layer.Tile({source:new ol.source.OSM})], renderer:"canvas", target:a, interactions:ol.interaction.defaults().extend([new ol.interaction.DragRotateAndZoom]), controls:[new ol.control.Attribution({collapsible:!1, collapsed:!1}), new ol.control.Zoom, new ol.control.FullScreen, new Ne({spyLayer:new ol.layer.Tile({attribution:void 0, source:new ol.source.OSM})}), new Zc, new ol.control.ScaleLine, new Ff, new Oe], view:new ol.View({projection:"EPSG:900913", minResolution:1.194328566789627, 
   maxResolution:2445.9849047851562, extent:[640161.933, 5958026.134, 3585834.8011505, 7847377.4901306], center:[1531627.8847864927, 6632124.286850829], zoom:4})});
 }
 function Lf(a, b) {
@@ -3647,7 +3647,7 @@ function Pf(a, b) {
       b.b.qa = a;
     }
     b = this.a.a;
-    wf(b, w.W(b.g), b.s);
+    Ve(b, w.W(b.g), b.s);
   }, void 0, a);
 }
 function Nf(a) {
@@ -3682,11 +3682,11 @@ function Qf(a, b) {
   w.Oa(l(a.modalAnchorClassName) ? a.modalAnchorClassName : "vk2-modal-anchor");
   b || Rf();
   b = new Gf(a.mapContainerId);
-  c = new Ff(a.spatialsearchContainerId, b.getMap(), c);
+  c = new lf(a.spatialsearchContainerId, b.getMap(), c);
   Qf(b, c);
-  new lf(a.mapContainerId, b.getMap().getLayers(), b.getMap());
-  c = new of(b.getMap());
-  pf(c, b.getMap());
+  new yf(a.mapContainerId, b.getMap().getLayers(), b.getMap());
+  c = new Bf(b.getMap());
+  Cf(c, b.getMap());
   Of(b, c);
   setTimeout(function() {
     w.xb(a.mapContainerId);
@@ -3712,7 +3712,7 @@ Sf.prototype.a = function(a, b, c) {
     this.dispatchEvent(new y("end-confirm", {data:a}));
   }, this), r(function() {
     this.dispatchEvent(new y("error", {error:"Something went wrong, while sending confirmation data from the server."}));
-  }, this), kf(a, b));
+  }, this), xf(a, b));
 };
 function Uf(a, b, c, d) {
   var e = Q("div", {"class":"vk2GeorefToolsBtn btn btn-default btn-validate", innerHTML:'<span class="glyphicon glyphicon-refresh"></span> ' + w.f("validateBtn_validate")});
@@ -3730,10 +3730,10 @@ Uf.prototype.a = function(a, b, c) {
     this.dispatchEvent(new y("end-warping", {data:a}));
   }, this), b = r(function() {
     this.dispatchEvent(new y("error", {error:"Something went wrong, while fetching validation data from the server."}));
-  }, this), jf(a, c, b));
+  }, this), wf(a, c, b));
 };
 function Wf(a) {
-  this.a = l(a.O) && ja(a.O) ? l(a.O["new"]) ? db(a.O["new"]) : db(a.O) : {source:"pixel", target:"EPSG:4314"};
+  this.a = l(a.O) && ja(a.O) ? l(a.O["new"]) ? kb(a.O["new"]) : kb(a.O) : {source:"pixel", target:"EPSG:4314"};
   this.Ra = l(a.Aa) ? a.Aa : void 0;
   this.b = l(a.Kb) ? a.Ba : {source:"pixel", target:"EPSG:900913"};
   this.U = a.sources;
@@ -3816,7 +3816,7 @@ function Yf(a, b) {
       c.push({source:e, target:z});
     }
     return c;
-  }, a), d = db(a.a), e = l(b) ? b : d.target;
+  }, a), d = kb(a.a), e = l(b) ? b : d.target;
   d.gcps = c(function(a) {
     for (var b = [], c = 0;c < a[0].getFeatures().length;c++) {
       var d = a[0].getFeatures()[c], e;
@@ -3829,7 +3829,7 @@ function Yf(a, b) {
   return d;
 }
 function Tf(a) {
-  var b = Fc(), c = Gc(), b = l(b) ? b : "affine", d = db(a.a), c = Vf(a, b, l(c) ? c : d.target);
+  var b = Fc(), c = Gc(), b = l(b) ? b : "affine", d = kb(a.a), c = Vf(a, b, l(c) ? c : d.target);
   Vf(a, b, d.target);
   return c;
 }
@@ -4180,7 +4180,7 @@ function ng(a, b, c) {
   this.g.getView().fit(c, this.g.getSize());
   this.b = new ol.control.ZoomToExtent({extent:c});
   this.g.addControl(this.b);
-  c = new Se(this.m);
+  c = new df(this.m);
   T(c, "jumpto", function(a) {
     var b = this.g.getView(), c = a.target.lonlat;
     b.setCenter(ol.proj.transform([parseFloat(c[0]), parseFloat(c[1])], a.target.srs, "EPSG:3857"));
@@ -4339,7 +4339,7 @@ function zg(a, b) {
     a = parseInt(a.currentTarget.getAttribute("data-params-id"), 0);
     a = {georeference:b, id:a, clip:e};
     og(this.ma);
-    jf(a, r(function(a) {
+    wf(a, r(function(a) {
       qg(this.ma);
       a = Y(a.target);
       pg(this.ma, a.wmsUrl, a.layerId, a.clip);
