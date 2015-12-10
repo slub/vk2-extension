@@ -70,6 +70,16 @@ config {
 }
 [global]
 
+# configurations for realurl
+config.simulateStaticDocuments = 0
+config.absRefPrefix = /
+# config.absRelPath = /
+config.prefixLocalAnchors = all
+# config.tx_realurl_enable = 1
+config.uniqueLinkVars = 1
+# dont forget to set the allowed range - otherwise anything else could be inserted
+config.linkVars = L(0-3)
+
 # Configuration of felogin
 lib.felogin < plugin.tx_felogin_pi1
 lib.felogin  {
