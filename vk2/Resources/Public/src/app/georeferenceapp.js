@@ -106,7 +106,8 @@ vk2.app.GeoreferenceApp.prototype.loaderFunction_ = function(originalMapContaine
 		
 		// load toolbox
 		var georeferencer = new vk2.georeference.Georeferencer({
-			parentEl: originalMapContainerId,
+			parentElOriginal: originalMapContainerId,
+			parentElGeoref: geoMapContainerId,
 			menuElId: 'georef-validate-menu',
 			mapId: data['objectid'],
 			srcViewer: srsView,

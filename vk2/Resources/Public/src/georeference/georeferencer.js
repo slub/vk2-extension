@@ -41,7 +41,8 @@ vk2.georeference.Georeferencer = function(options){
 	 * @type {Element}
 	 * @private
 	 */
-	var parentEl = goog.isString(options.parentEl) ? goog.dom.getElement(options.parentEl) : parentEl,
+	var parentOriginalEl = goog.isString(options.parentElOriginal) ? goog.dom.getElement(options.parentElOriginal) : options.parentElOriginal,
+		parentGeorefEl = goog.isString(options.parentElGeoref) ? goog.dom.getElement(options.parentElGeoref) : options.parentElGeoref,
 		menuElId = options.menuElId,
 		mapId = options.mapId,
 		srcViewer = options.srcViewer,
@@ -56,33 +57,27 @@ vk2.georeference.Georeferencer = function(options){
 	//
 	// set correct value of the transformation algorithm
 	//
-	this.updateSelectOfTransformationChooser_(gcp['algorithm']);
+	if (gcp !== undefined)
+		this.updateSelectOfTransformationChooser_(gcp['algorithm']);
+
 	// 
 	// generate and add gcp and clip toolbox
 	//
-	var gcpHandler = (goog.isDef(gcp) && vk2.georeference.utils.isNewTKGCP(gcp)) ?
-		new vk2.georeference.handler.GCPTK25Handler({
-			sources: gcpSources,
-			gcps: gcp,
-			type: type,
-			overwriteId: overwriteId,
-			projections: projections,
-			srcViewer: srcViewer
-		}) : new vk2.georeference.handler.GCPDefaultHandler({
+	var gcpHandler = new vk2.georeference.handler.GCPDefaultHandler({
 			sources: gcpSources,
 			gcps: gcp,
 			type: type,
 			overwriteId: overwriteId,
 			projections: projections
 		}),
-		gcpToolbox = new vk2.georeference.toolbox.GCPToolbox(parentEl),
+		gcpToolbox = new vk2.georeference.toolbox.GCPToolbox(parentOriginalEl),
 		gcpToolboxHandler = new vk2.georeference.handler.GCPToolboxHandler({
 			toolbox: gcpToolbox,
 			handler: gcpHandler,
 			maps: [srcViewer.getMap(), targetViewer.getMap()],
 			sources: gcpSources			
 		}),
-		clipToolbox = new vk2.georeference.toolbox.ClipToolbox(parentEl),
+		clipToolbox = new vk2.georeference.toolbox.ClipToolbox(parentGeorefEl),
 		clipToolboxHandler = new vk2.georeference.handler.ClipToolboxHandler(clipToolbox, srcViewer.getMap(), clipPolygon);
 	this.addToolboxBehavior_(gcpToolboxHandler, clipToolboxHandler);
 	

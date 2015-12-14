@@ -11,6 +11,8 @@ vk2.georeference.handler.GCPTK25HandlerEventType = {
 };
 
 /**
+ * Not used anymore
+ * @deprecated
  * @param {vk2.GCPTK25HandlerOptions} options
  * @constructor
  * @extends {vk2.georeference.handler.GCPDefaultHandler}
