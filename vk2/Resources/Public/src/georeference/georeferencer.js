@@ -53,6 +53,10 @@ vk2.georeference.Georeferencer = function(options){
 		gcpSources = [new ol.source.Vector(), new ol.source.Vector()],
 		projections = goog.isDef(options.projections) ? projections : undefined;
 
+	//
+	// set correct value of the transformation algorithm
+	//
+	this.updateSelectOfTransformationChooser_(gcp['algorithm']);
 	// 
 	// generate and add gcp and clip toolbox
 	//
@@ -93,39 +97,8 @@ vk2.georeference.Georeferencer = function(options){
 	
 	// open gcp toolbox on start up
 	gcpToolbox.activate();
-	
-	//this.testing(targetViewer);
-};
 
-//vk2.georeference.Georeferencer.prototype.testing = function(targetViewer) {
-//	var map = targetViewer.getMap(),
-//		height = 8966,
-//		width = 8329,
-//		proj = new ol.proj.Projection({
-//			'code': 'ZOOMIFY',
-//			'units': 'pixels',
-//			'extent': [0, 0, width, height]
-//		}),
-//		view = new ol.View({
-//		    'projection': proj,
-//		    'center': [width / 2, - height / 2],
-//			'zoom': 1,
-//			'maxZoom': 9
-//	    }),
-//		layer = new ol.layer.Tile({
-//			source: new vk2.georeference.transform.AffineSource({
-//				  'url': 'http://fotothek.slub-dresden.de/zooms/df/dk/0010000/df_dk_0010001_7114_1825/',
-//				  'size': [width, height],
-//				  'crossOrigin': '*'
-//			}),
-//			projection:'EPSG:3857'
-//		});
-//	map.addLayer(layer);
-//	
-//	if (goog.DEBUG) {
-//		window['map'] = map;
-//	}
-//};
+};
 
 /**
  * @param {vk2.georeference.control.WarpImageControl} warpImageControl
@@ -183,3 +156,18 @@ vk2.georeference.Georeferencer.prototype.addToolboxBehavior_ = function(gcpToolb
 	goog.events.listenOnce(gcpToolboxHandler.getHandler(), vk2.georeference.handler.GCPTK25HandlerEventType.ADD_GCP_CLIPPOLYGON, 
 			clipToolboxHandler.addClipPolygon, undefined, clipToolboxHandler); 
 };
+
+/**
+ * Update the selected option of the transformation-chooser tool
+ * @param {string} algorithm
+ * @private
+ */
+vk2.georeference.Georeferencer.prototype.updateSelectOfTransformationChooser_ = function(algorithm) {
+	var transformationChooserElId = 'transformation-chooser',
+		transformationChooserOptionEl = $('#' + transformationChooserElId + ' option');
+
+	for (var i = 0; i < transformationChooserOptionEl.length; i++) {
+		if (algorithm.toLowerCase() === transformationChooserOptionEl[i].innerHTML.toLowerCase())
+			$('#' + transformationChooserElId).val(transformationChooserOptionEl[i].innerHTML);
+	}
+}
