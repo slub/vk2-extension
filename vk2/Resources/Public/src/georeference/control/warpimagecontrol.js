@@ -95,7 +95,7 @@ vk2.georeference.control.WarpImageControl.prototype.warpImage_ = function(object
 		var responseData = event.target.getResponseJson();
 		
 		// end warping process
-		this.dispatchEvent(new goog.events.Event(vk2.georeference.control.WarpImageControlEventType.END_WARPING, {'data':responseData}));
+		this.dispatchEvent(new goog.events.Event(vk2.georeference.control.WarpImageControlEventType.END_WARPING, {'data':responseData, 'georefParams':requestParams}));
 	}, this);
 	
 	var error_callback = goog.bind(function(event){		

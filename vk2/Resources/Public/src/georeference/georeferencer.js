@@ -116,9 +116,15 @@ vk2.georeference.Georeferencer.prototype.addControlBehavior_ = function(warpImag
 			console.log('End warping ...');
 			console.log(e.target['data']);	
 		};
-		
-		var data = e.target['data'];
-		targetViewer.displayValidationMap(data['wmsUrl'], data['layerId'], clipPolygonSource.getFeatures()[0]);
+
+		var data = e.target['data'],
+			clipFeature = clipPolygonSource.getFeatures().length > 0 ? clipPolygonSource.getFeatures()[0] : undefined,
+			extent = ol.proj.transformExtent(data['extent'], vk2.georeference.utils.extractProjection('projection-chooser'),
+				vk2.settings.MAPVIEW_PARAMS['projection']);
+
+		// show validation map
+		targetViewer.displayValidationMap(data['wmsUrl'], data['layerId'], clipFeature);
+		targetViewer.setZoom(extent);
 		targetViewer.deactivateLoadingBar();
 	});
 	

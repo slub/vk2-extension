@@ -53,6 +53,27 @@ vk2.georeference.utils.extractProjection = function(elementId){
 };
 
 /**
+ * Generates for a given set of georeference params an extent
+ * @param {Object} params
+ * @return {Array.<number>}
+ */
+vk2.georeference.utils.getExtentForGeorefParams = function(params) {
+	var featureCol = [],
+		tag = 'target';
+
+	for (var i = 0; i < params['georeference']['gcps'].length; i++) {
+		var geom = new ol.geom.Point(params['georeference']['gcps'][i][tag])
+			feature = new ol.Feature({
+				'geometry': geom.transform(params['georeference'][tag], vk2.settings.MAPVIEW_PARAMS['projection'])
+			});
+		featureCol.push(feature);
+	};
+
+	var source = new ol.source.Vector({ 'features' : featureCol});
+	return source.getExtent();
+};
+
+/**
  * Function checks if the given gcp object is a gcp object for initial setup. Means there are no source 
  * cooridinates given, but 4 corner coordinates for the target srs.
  *  

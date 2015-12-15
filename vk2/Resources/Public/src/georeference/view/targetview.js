@@ -141,34 +141,30 @@ vk2.georeference.view.TargetView.prototype.deactivateLoadingBar = function(){
 /**
  * @param {string} wms_url Url to the web mapping service which publish the validation file
  * @param {string} layer_id
- * @param {ol.Feature} clipFeature
+ * @param {ol.Feature|undefined} opt_clipFeature
  */
-vk2.georeference.view.TargetView.prototype.displayValidationMap = function(wms_url, layer_id, clipFeature){
+vk2.georeference.view.TargetView.prototype.displayValidationMap = function(wms_url, layer_id, opt_clipFeature){
 
 	if (goog.isDef(this.valLayer_)){
 		// remove old layer
 		this.map_.removeLayer(this.valLayer_);
 	};
 
-	// reset control zoomToExtent
-	var zoomExtent = clipFeature === undefined ? this.map_.getView().calculateExtent(this.map_.getSize())
-			: clipFeature.getGeometry().getExtent();
-	this.map_.removeControl(this.zoomToExtentControl_);
-	this.zoomToExtentControl_ = new ol.control.ZoomToExtent({ extent: zoomExtent});
-	this.map_.addControl(this.zoomToExtentControl_);
-	
 	// create new validation layer and add layer to correct position
+	var clipPolygon = opt_clipFeature !== undefined ? opt_clipFeature.getGeometry() : undefined;
 	this.valLayer_ = vk2.layer.Messtischblatt({
 		wms_url: wms_url, 
 		layerid: layer_id,
-		clipPolygon: clipFeature.getGeometry()
+		clipPolygon: clipPolygon
 	}, this.map_);
 	this.map_.getLayers().insertAt(1, this.valLayer_); 
-	
-	// zoom to extent by parsing getcapabilites request from wms
-	if (clipFeature !== undefined)
-		this.map_.getView().fit(clipFeature.getGeometry().getExtent(), this.map_.getSize());
-	this.resetOpacitySlider_(this.valLayer_);
+
+	// Remove old opactiy slider and add new one
+	if (goog.dom.getElement('opacity-slider-container')){
+		var opacitySliderEl = goog.dom.getElement('opacity-slider-container');
+		opacitySliderEl.innerHTML = '';
+		var opacitySlider = new vk2.tool.OpacitySlider(goog.dom.getElement('opacity-slider-container'), this.valLayer_, 'vertical')
+	};
 
 };
 
@@ -193,14 +189,20 @@ vk2.georeference.view.TargetView.prototype.getLoadingPanel_ = function(loadingPa
 };
 
 /**
- * Remove old opactiy slider and add new one
- * @param {ol.layer.Layer} valLayer
- * @private
+ * Update the zoom behavior
+ * @param {Array.<number>|undefined} opt_extent
  */
-vk2.georeference.view.TargetView.prototype.resetOpacitySlider_  = function(valLayer) {
-	if (goog.dom.getElement('opacity-slider-container')){
-		var opacitySliderEl = goog.dom.getElement('opacity-slider-container');
-		opacitySliderEl.innerHTML = '';
-		var opacitySlider = new vk2.tool.OpacitySlider(goog.dom.getElement('opacity-slider-container'), valLayer, 'vertical')
-	};	
+vk2.georeference.view.TargetView.prototype.setZoom = function(opt_extent) {
+
+	if (opt_extent !== undefined) {
+		// reset control zoomToExtent
+		var zoomExtent = opt_extent === undefined ? this.map_.getView().calculateExtent(this.map_.getSize())
+			: opt_extent;
+		this.map_.removeControl(this.zoomToExtentControl_);
+		this.zoomToExtentControl_ = new ol.control.ZoomToExtent({ extent: zoomExtent});
+		this.map_.addControl(this.zoomToExtentControl_);
+
+		// zoom to extent by parsing getcapabilites request from wms
+		this.map_.getView().fit(zoomExtent, this.map_.getSize());
+	}
 };
