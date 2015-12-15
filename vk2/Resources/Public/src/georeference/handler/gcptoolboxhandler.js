@@ -106,11 +106,7 @@ vk2.georeference.handler.GCPToolboxHandler.prototype.addEquivalentGcpSelectStyle
 	var equivalentGcpStyleBehavior = function(event){
 		var baseFeature = event['target']['feature'];
 		var selectStyle = event['target']['targetStyle'];
-		var equivalentGcpFeature = gcpHandler.getGcpEquivalent(baseFeature);
 		baseFeature.setStyle(selectStyle);
-		
-		if (goog.isDefAndNotNull(equivalentGcpFeature))
-			equivalentGcpFeature.setStyle(selectStyle);
 	};	
 	
 	goog.events.listen(dragGcpInteraction, vk2.georeference.interaction.DragGcpInteractionEventType.SELECTED, equivalentGcpStyleBehavior);

@@ -51,7 +51,7 @@ vk2.georeference.Georeferencer = function(options){
 		type = goog.isDef(options.type) ? options.type: undefined,
 		clipPolygon = goog.isDef(options.clipPolygon) ? options.clipPolygon: undefined,
 		overwriteId = goog.isDef(options.georeferenceId) ? options.georeferenceId: undefined,
-		gcpSources = [new ol.source.Vector(), new ol.source.Vector()],
+		gcpSources = [new ol.source.Vector({'features': new ol.Collection}), new ol.source.Vector({'features': new ol.Collection})],
 		projections = goog.isDef(options.projections) ? projections : undefined;
 
 	//
@@ -151,8 +151,8 @@ vk2.georeference.Georeferencer.prototype.addToolboxBehavior_ = function(gcpToolb
 		clipToolbox = clipToolboxHandler.getToolbox();
 	
 	// bind events
-	goog.events.listen(gcpToolbox, vk2.georeference.toolbox.GCPToolboxEventType.ACTIVATE, clipToolbox.deactivate);
-	goog.events.listen(clipToolbox, vk2.georeference.toolbox.ClipToolboxEventType.ACTIVATE, gcpToolbox.deactivate);
+	//goog.events.listen(gcpToolbox, vk2.georeference.toolbox.GCPToolboxEventType.ACTIVATE, clipToolbox.deactivate);
+	//goog.events.listen(clipToolbox, vk2.georeference.toolbox.ClipToolboxEventType.ACTIVATE, gcpToolbox.deactivate);
 	
 	// couple for special create clip box behavior gcp handler
 	goog.events.listenOnce(gcpToolboxHandler.getHandler(), vk2.georeference.handler.GCPTK25HandlerEventType.ADD_GCP_CLIPPOLYGON, 

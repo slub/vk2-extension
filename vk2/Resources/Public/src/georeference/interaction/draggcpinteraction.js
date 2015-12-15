@@ -35,68 +35,42 @@ vk2.georeference.interaction.DragGcpInteraction = function(unrefGcpLayer, georef
 	 * @private
 	 */
 	this.maps_ = [unrefMap, georefMap];
-	
-	var hoverStyle = vk2.utils.Styles.getGeoreferencePointHover();
+
 	/**
-	 * @type {Array.<ol.interaction.Select>}
-	 * @private 
+	 * @private
+	 * @type {ol.style.Style}
 	 */
-	var selects_ = [
-		new ol.interaction.Select({
-			'style': function(feature, resolution) {
-				return [hoverStyle];
-			},
-			'layer': unrefGcpLayer,
-			'condition': function(event) {
-				if (event['type'] === 'click'){
-					return true;
-				};
-				return false;
-			}
-		}),
-		new ol.interaction.Select({
-			'style': function(feature, resolution) {
-				return [hoverStyle];
-			},
-			'layer': georefGcpLayer,
-			'condition': function(event) {
-				if (event['type'] === 'click'){
-					return true;
-				};
-				return false;
-			}
-		})
-	];
-	
+	this.defaultStyle_ = unrefGcpLayer.getStyle();
+
+	/**
+	 * @private
+	 * @type {ol.style.Style}
+	 */
+	this.hoverStyle_ = vk2.utils.Styles.getGeoreferencePointHover();
+
 	/**
 	 * @type {Array.<Array.<ol.interaction.Interaction>>}
 	 * @private
 	 */
 	this.interactions_ = [
-		[
-		 selects_[0],       
-		 new ol.interaction.Modify({
-			 'features': selects_[0].getFeatures(),
-			 'pixelTolerance': 10,
-			 'style': function(feature, resolution) {
-				 return [hoverStyle];
-			 }
-		 })
-		],
-		[
-		 selects_[1],       
-		 new ol.interaction.Modify({
-			 'features': selects_[1].getFeatures(),
-			 'pixelTolerance': 10,
-			 'style': function(feature, resolution) {
-				 return [hoverStyle];
-			 }
-		 })
-		]
+		new ol.interaction.Modify({
+			'features': unrefGcpLayer.getSource().getFeaturesCollection(),
+			'pixelTolerance': 10,
+			'style': function(feature, resolution) {
+				return [vk2.utils.Styles.getGeoreferencePointHover()];
+			}
+		}),
+		new ol.interaction.Modify({
+			'features': georefGcpLayer.getSource().getFeaturesCollection(), //selects_[1].getFeatures(),
+			'pixelTolerance': 10,
+			'style': function(feature, resolution) {
+				return [vk2.utils.Styles.getGeoreferencePointHover()];
+			}
+		})
 	];
 
 	// append event behavior if features are selected
-	this.loadEventBehavior_(selects_, [unrefGcpLayer, georefGcpLayer]);
+	this.loadEventBehavior_(this.interactions_, [unrefGcpLayer, georefGcpLayer]);
 	
 	goog.base(this);
 };
@@ -122,9 +96,7 @@ vk2.georeference.interaction.DragGcpInteraction.prototype.activate_ = function()
 		console.log('Activate drag gcp interaction.');
 	
 	for (var i = 0; i < this.maps_.length; i++){
-		for (var j = 0; j < this.interactions_[i].length; j++){
-			this.maps_[i].addInteraction(this.interactions_[i][j]);
-		}
+		this.maps_[i].addInteraction(this.interactions_[i]);
 	};
 };
 
@@ -149,73 +121,64 @@ vk2.georeference.interaction.DragGcpInteraction.prototype.deactivate_ = function
 	
 	// remove the interactions
 	for (var i = 0; i < this.maps_.length; i++){
-		for (var j = 0; j < this.interactions_[i].length; j++){
-			this.maps_[i].removeInteraction(this.interactions_[i][j]);
-		}
+		this.maps_[i].removeInteraction(this.interactions_[i]);
 	};
 };
 
 /**
  * This event handling is necessary for update the style of the selected features equivalently
- * @param {Array.<ol.interaction.Select>} selects
+ * @param {Array.<ol.interaction.Modify>} selects
  * @param {Array.<ol.layer.Vector>} layers
  * @private
  */
-vk2.georeference.interaction.DragGcpInteraction.prototype.loadEventBehavior_ = function(selects, layers){	
-	
+vk2.georeference.interaction.DragGcpInteraction.prototype.loadEventBehavior_ = function(modifies, layers){
+
+	var unrefSource = layers[0].getSource(),
+		georefSource = layers[1].getSource();
+
 	/**
-	 * This functions adds/remove the equivalent gcp feature to the respective selection collection.
-	 * @param {ol.Feature} feature
-	 * @param {string} type
+	 * Helper function for extracting the equivalent feature to the modify event
+	 * @param {ol.Map} map
+	 * @param {Array.<number>} pixel
+	 * @param {ol.source.Vector} targetSource
+	 * @returns {ol.Feature|undefined}
 	 */
-	var toggleEquivalentFeature = function(feature, type){
-		// add equivalent feature to selection
-		if (!goog.isDefAndNotNull(feature.getId()))
-			return undefined;
-		
-		var unrefFt = layers[0].getSource().getFeatureById(feature.getId());
-		var georefFt = layers[0].getSource().getFeatureById(feature.getId());
-		
-		if (type === 'add'){
-			selects[0].getFeatures().addFeature(unrefFt);
-			selects[1].getFeatures().addFeature(georefFt);
-		} else if (type === 'remove'){
-			selects[0].getFeatures().clear();
-			selects[1].getFeatures().clear();
-		};			
+	var getFeatureForBrowserEventInTargetSource = function(map, pixel, targetSource) {
+		var feature;
+		map.forEachFeatureAtPixel(pixel, function(ft) {
+			feature = ft;
+		});
+		return targetSource.getFeatureById(feature.getId());
+	};
+
+	var dispatchSelectEvent = function(targetSource, event){
+		var feature = getFeatureForBrowserEventInTargetSource(event['target'].getMap(), event['mapBrowserPointerEvent']['pixel'], targetSource);
+
+		// dispatch event
+		if (goog.isDefAndNotNull(feature.getId()))
+			this.dispatchEvent(new goog.events.Event(vk2.georeference.interaction.DragGcpInteractionEventType.SELECTED, {
+				'feature': feature,
+				'srcStyle': vk2.utils.Styles.getGeoreferencePointStyle(feature.getId()),
+				'targetStyle': vk2.utils.Styles.getGeoreferencePointHover(feature.getId())
+			}));
 	};
 	
-	var dispatchSelectEvent = goog.bind(function(event){
-		toggleEquivalentFeature(event['element'], 'add');
-		
+	var dispatchDeselectEvent = function(targetSource, event){
+		var feature = getFeatureForBrowserEventInTargetSource(event['target'].getMap(), event['mapBrowserPointerEvent']['pixel'], targetSource);
+
 		// dispatch event
-		if (goog.isDefAndNotNull(event['element'].getId()))
-			this.dispatchEvent(new goog.events.Event(vk2.georeference.interaction.DragGcpInteractionEventType.SELECTED, {
-				'feature': event['element'],
-				'srcStyle': vk2.utils.Styles.getGeoreferencePointStyle(event['element'].getId()),
-				'targetStyle': vk2.utils.Styles.getGeoreferencePointHover(event['element'].getId())
-			}));
-	}, this);
-	
-	var dispatchDeselectEvent = goog.bind(function(event){
-		toggleEquivalentFeature(event['element'], 'remove');
-		
-		// dispatch event
-		if (goog.isDefAndNotNull(event['element'].getId()))
+		if (goog.isDefAndNotNull(feature.getId()))
 			this.dispatchEvent(new goog.events.Event(vk2.georeference.interaction.DragGcpInteractionEventType.DESELECTED, {
-				'feature': event['element'],
-				'srcStyle': vk2.utils.Styles.getGeoreferencePointHover(event['element'].getId()),
-				'targetStyle': vk2.utils.Styles.getGeoreferencePointStyle(event['element'].getId())
+				'feature': feature,
+				'srcStyle': vk2.utils.Styles.getGeoreferencePointHover(feature.getId()),
+				'targetStyle': vk2.utils.Styles.getGeoreferencePointStyle(feature.getId())
 			}));
-	}, this);
-	
-	var unrefSelectFeatures = selects[0].getFeatures();
-	unrefSelectFeatures.on('add', dispatchSelectEvent);
-	unrefSelectFeatures.on('remove', dispatchDeselectEvent);
-	
-	var georefSelectFeatures = selects[1].getFeatures();
-	georefSelectFeatures.on('add', dispatchSelectEvent);
-	georefSelectFeatures.on('remove', dispatchDeselectEvent);
+	};
+
+	modifies[0].on('modifystart', goog.bind(dispatchSelectEvent, this, georefSource));
+	modifies[1].on('modifystart', goog.bind(dispatchSelectEvent, this, unrefSource));
+	modifies[0].on('modifyend', goog.bind(dispatchDeselectEvent, this, georefSource));
+	modifies[1].on('modifyend', goog.bind(dispatchDeselectEvent, this, unrefSource));
 };
 
 /**
