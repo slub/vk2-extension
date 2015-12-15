@@ -104,6 +104,10 @@ vk2.app.GeoreferenceApp.prototype.loaderFunction_ = function(originalMapContaine
 	// before calling this function the zoomify layer has to be loaded
 	goog.events.listen(srsView, 'loadend', function(){
 
+		// set georeference projection
+		var projection = data.hasOwnProperty('recommendedsrid') ? 'EPSG:' + data['recommendedsrid'] : 'EPSG:4326';
+		$('#projection-chooser').val(projection);
+
 		// load toolbox
 		var georeferencer = new vk2.georeference.Georeferencer({
 			parentElOriginal: originalMapContainerId,
