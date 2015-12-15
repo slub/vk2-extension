@@ -51,9 +51,12 @@ vk2.georeference.handler.ClipToolboxHandler = function(tbx, map, opt_clipPolygon
 		'source': this.clipPolygonSource_,
 		'style': vk2.utils.Styles.GEOREFERENCE_CLIP_POLYGON
 	});
-	
-	// create clip interactions
-	var drawClipInteraction = new vk2.georeference.interaction.DrawClipInteraction(map, this.featureOverlay_, this.clipPolygonSource_);
+
+	/**
+	 * @private
+ 	 * @type {vk2.georeference.interaction.DrawClipInteraction}
+	 */
+	this.drawClipInteraction_ = new vk2.georeference.interaction.DrawClipInteraction(map, this.featureOverlay_, this.clipPolygonSource_);
 	
 	/**
 	 * @important The key values have to be matching with the ACTIVATE events from 
@@ -62,8 +65,8 @@ vk2.georeference.handler.ClipToolboxHandler = function(tbx, map, opt_clipPolygon
 	 * @private
 	 */
 	var interactions_ = {
-			'activate-drawclip': drawClipInteraction,
-			'deactivate-drawclip': drawClipInteraction
+			'activate-drawclip': this.drawClipInteraction_,
+			'deactivate-drawclip': this.drawClipInteraction_
 	};	
 	
 	this.coupleToolboxWithInteractions_(tbx_, map, this.featureOverlay_, interactions_);
@@ -83,8 +86,6 @@ vk2.georeference.handler.ClipToolboxHandler.prototype.addClipPolygon = function(
 	if (this.clipPolygonSource_.getFeatures().length === 0){
 		this.clipPolygonSource_.addFeature(clipFeature);
 		this.featureOverlay_.addFeature(clipFeature);
-		//this.clipPolygonSource_.addFeature(clipFeature);
-		//this.featureOverlay_.setFeatures(this.clipPolygonSource_.getFeatures());
 	};
 };
 
@@ -178,6 +179,14 @@ vk2.georeference.handler.ClipToolboxHandler.prototype.extractClipPolygon_ = func
 			: undefined,
 		feature = new ol.Feature({'geometry':clipPolygon});
 	return feature;
+};
+
+/**
+ * @public
+ * @return {vk2.georeference.interaction.DrawClipInteraction}
+ */
+vk2.georeference.handler.ClipToolboxHandler.prototype.getDrawClipInteration = function(){
+	return this.drawClipInteraction_;
 };
 
 /**

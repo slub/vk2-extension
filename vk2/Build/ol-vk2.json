@@ -65,6 +65,7 @@
 	"ol.layer.Layer",
 	"ol.layer.Image",
 	"ol.layer.Tile",
+	"ol.layer.Tile#getProperties",
 	"ol.layer.Tile#getSource",
 	"ol.layer.Tile#on",
 	"ol.layer.Tile#un",

@@ -1,11 +1,20 @@
 goog.provide('vk2.georeference.interaction.DrawClipInteraction');
+goog.provide('vk2.georeference.interaction.DrawClipInteractionEventType');
 
 //goog.require('ol.interaction.Draw');
 //goog.require('ol.layer.Vector');
 //goog.require('ol.source.Vector');
+goog.require('goog.events.Event');
 
 goog.require('vk2.utils.Styles');
 goog.require('vk2.georeference.interaction.GeoreferenceInteraction')
+
+/**
+ * @enum
+ */
+vk2.georeference.interaction.DrawClipInteractionEventType = {
+	DRAWEND: 'drawend'
+};
 
 /**
  * @param {ol.Map} map
@@ -58,12 +67,19 @@ vk2.georeference.interaction.DrawClipInteraction = function(map, featureOverlay,
 	}, this.interactions_[0]);
 	
 	source.getFeaturesCollection().on('add', function(event){
+		// check if there is already a feature and if yes prevent to draw a new one
 		if (source.getFeatures().length > 1){
 			if (goog.DEBUG)
 				console.log('There is already a clip polygon ...');
 			source.getFeatures().splice(1,1);
-		};		
-	}, featureOverlay);
+			return;
+		};
+
+		// dispatch event
+		this.dispatchEvent(new goog.events.Event(vk2.georeference.interaction.DrawClipInteractionEventType.DRAWEND, {
+			'feature': source.getFeatures()[0]
+		}));
+	}, this);
 	
 	goog.base(this);
 };

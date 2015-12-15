@@ -189,6 +189,22 @@ vk2.georeference.view.TargetView.prototype.getLoadingPanel_ = function(loadingPa
 };
 
 /**
+ * Called when a new clip polygon should be registered
+ * @param {ol.Feature} clipFeature
+ */
+
+vk2.georeference.view.TargetView.prototype.registerNewClipFeature = function(clipFeature) {
+
+	if (this.valLayer_ === undefined) {
+		// return because there is now layer on which the clip polygon could be used
+		return;
+	};
+
+	var properties = this.valLayer_.getProperties();
+	this.displayValidationMap(properties['wms_url'], properties['layerid'], clipFeature);
+};
+
+/**
  * Update the zoom behavior
  * @param {Array.<number>|undefined} opt_extent
  */

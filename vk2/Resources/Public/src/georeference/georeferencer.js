@@ -7,6 +7,7 @@ goog.require('goog.events');
 
 goog.require('vk2.utils');
 goog.require('vk2.utils.Styles');
+goog.require('vk2.georeference.interaction.DrawClipInteractionEventType');
 goog.require('vk2.georeference.toolbox.ClipToolbox');
 goog.require('vk2.georeference.toolbox.ClipToolboxEventType');
 goog.require('vk2.georeference.handler.ClipToolboxHandler');
@@ -88,8 +89,8 @@ vk2.georeference.Georeferencer = function(options){
 			gcpToolboxHandler.getHandler()),
 		confirmControl = new vk2.georeference.control.ConfirmationControl(menuElId, mapId, 
 			gcpToolboxHandler.getHandler(), clipToolboxHandler.getFeatureSource());
-	this.addControlBehavior_(warpImageControl, confirmControl, targetViewer, clipToolboxHandler.getFeatureSource());
-	
+	this.addControlBehavior_(warpImageControl, confirmControl, targetViewer, clipToolboxHandler);
+
 	// open toolboxs on start up
 	gcpToolbox.activate();
 	clipToolbox.activate();
@@ -100,10 +101,11 @@ vk2.georeference.Georeferencer = function(options){
  * @param {vk2.georeference.control.WarpImageControl} warpImageControl
  * @param {vk2.georeference.control.ConfirmationControl} confirmControl
  * @param {vk2.georeference.ResultViewer} targetViewer
- * @param {ol.source.Vector} clipPolygonSource
+ * @param {vk2.georeference.handler.ClipToolboxHandler} clipToolboxHandler
  */
-vk2.georeference.Georeferencer.prototype.addControlBehavior_ = function(warpImageControl, confirmControl, targetViewer, clipPolygonSource){
-	// append behavior for warp image control
+vk2.georeference.Georeferencer.prototype.addControlBehavior_ = function(warpImageControl, confirmControl, targetViewer, clipToolboxHandler){
+
+	// called when the warping of an map starts at the server side
 	goog.events.listen(warpImageControl, vk2.georeference.control.WarpImageControlEventType.START_WARPING, function(e){
 		if (goog.DEBUG){
 			console.log('Start warping ...')
@@ -111,7 +113,8 @@ vk2.georeference.Georeferencer.prototype.addControlBehavior_ = function(warpImag
 		
 		targetViewer.activateLoadingBar();
 	});
-	
+
+	// called after a new map was warped through the server
 	goog.events.listen(warpImageControl, vk2.georeference.control.WarpImageControlEventType.END_WARPING, function(e){
 		if (goog.DEBUG){
 			console.log('End warping ...');
@@ -119,7 +122,7 @@ vk2.georeference.Georeferencer.prototype.addControlBehavior_ = function(warpImag
 		};
 
 		var data = e.target['data'],
-			clipFeature = clipPolygonSource.getFeatures().length > 0 ? clipPolygonSource.getFeatures()[0] : undefined,
+			clipFeature = clipToolboxHandler.getFeatureSource().getFeatures().length > 0 ? clipToolboxHandler.getFeatureSource().getFeatures()[0] : undefined,
 			extent = ol.proj.transformExtent(data['extent'], vk2.georeference.utils.extractProjection('projection-chooser'),
 				vk2.settings.MAPVIEW_PARAMS['projection']);
 
@@ -128,17 +131,23 @@ vk2.georeference.Georeferencer.prototype.addControlBehavior_ = function(warpImag
 		targetViewer.setZoom(extent);
 		targetViewer.deactivateLoadingBar();
 	});
-	
+
+	// called in case of an error while warping the map at the server side
 	goog.events.listen(warpImageControl, vk2.georeference.control.WarpImageControlEventType.ERROR, function(e){	
 		alert('Something went wrong, while trying to request a validation result.')
 		targetViewer.deactivateLoadingBar();
 	});
 	
-	// append behavior for confirm params control
+	// called after new georeference params are registered successful at the server side
 	goog.events.listen(confirmControl, vk2.georeference.control.ConfirmationControlEventType.END_CONFIRM, function(e){
-		//window.location.href = vk2.utils.routing.getMainPageRoute();
+		window.location.href = vk2.utils.routing.getMainPageRoute();
 	});
-	
+
+	// called after new clip polygon has been created
+	var drawclipinteraction = clipToolboxHandler.getDrawClipInteration();
+	goog.events.listen(drawclipinteraction, vk2.georeference.interaction.DrawClipInteractionEventType.DRAWEND, function(e) {
+		targetViewer.registerNewClipFeature(e['target']['feature']);
+	});
 };
 
 /**
