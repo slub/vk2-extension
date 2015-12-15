@@ -5,11 +5,12 @@ goog.provide('vk2.georeference.handler.ClipToolboxHandler');
 //goog.require('ol.geom.Polygon');
 //goog.require('ol.Feature');
 
-goog.require('vk2.utils');
-goog.require('vk2.utils.Styles');
 goog.require('vk2.georeference.toolbox.ClipToolboxEventType');
 goog.require('vk2.georeference.interaction.DrawClipInteraction');
-goog.require('vk2.georeference.handler.ToolboxHandler');
+goog.require('vk2.georeference.handler.ToolboxHandler')
+goog.require('vk2.settings');
+goog.require('vk2.utils');
+goog.require('vk2.utils.Styles');
 
 /**
  * @param {vk2.georeference.ClipToolbox) tbx
@@ -19,7 +20,7 @@ goog.require('vk2.georeference.handler.ToolboxHandler');
  * @constructor
  */
 vk2.georeference.handler.ClipToolboxHandler = function(tbx, map, opt_clipPolygon){
-	
+
 	/**
 	 * @type {vk2.georeference.toolbox.ClipToolbox}
 	 * @private
@@ -167,21 +168,16 @@ vk2.georeference.handler.ClipToolboxHandler.prototype.coupleToolboxWithInteracti
 
 /**
  * @param {Object} clipPolygonObj
- * @return {ol.Feature|undefined}
+ * @return {ol.Feature}
  * @private
  */
 vk2.georeference.handler.ClipToolboxHandler.prototype.extractClipPolygon_ = function(clipPolygonObj){
-	if (clipPolygonObj['source'] === 'pixel'){
-		var transformedCoords = [];
-		for (var i = 0; i < clipPolygonObj['polygon'].length; i++){
-			transformedCoords.push(vk2.utils.transformPixelToGeoCoords(clipPolygonObj['polygon'][i]));
-		};
-		
-		var clipPolygon = new ol.geom.Polygon([transformedCoords]),
-			clipFeature = new ol.Feature({'geometry':clipPolygon});
-		return clipFeature;
-	};
-	return undefined;
+	var clipPolygon = clipPolygonObj.hasOwnProperty('polygon') && clipPolygonObj['polygon'].length > 0 ?
+			new ol.geom.Polygon([clipPolygonObj['polygon']]) : undefined,
+		clipPolygonTransformed = clipPolygon !== undefined ? clipPolygon.transform(clipPolygonObj['source'], vk2.settings.MAPVIEW_PARAMS['projection'])
+			: undefined,
+		feature = new ol.Feature({'geometry':clipPolygon});
+	return feature;
 };
 
 /**

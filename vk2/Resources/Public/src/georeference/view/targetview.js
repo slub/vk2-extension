@@ -13,11 +13,12 @@ goog.require('goog.Timer');
 //goog.require('ol.View2D');
 //goog.require('ol.interaction.DragZoom');
 
-goog.require('vk2.utils');
-goog.require('vk2.layer.Messtischblatt');
 goog.require('vk2.control.LayerSpy');
+goog.require('vk2.settings');
+goog.require('vk2.layer.Messtischblatt');
 goog.require('vk2.tool.OpacitySlider');
 goog.require('vk2.tool.GazetteerSearch');
+goog.require('vk2.utils');
 
 /**
  * @param {string} map_container
@@ -30,7 +31,7 @@ vk2.georeference.view.TargetView = function(mapElId, opt_extent){
 	 * @type {string}
 	 * @private
 	 */
-	this.proj_ = 'EPSG:3857';
+	this.proj_ = vk2.settings.MAPVIEW_PARAMS['projection'];
 	
 	/**
 	 * @type {ol.layer.Tile|undefined}
@@ -72,8 +73,8 @@ vk2.georeference.view.TargetView = function(mapElId, opt_extent){
 						'attribution': undefined,
 						'source': new ol.source.OSM()
 					})
-			   }),
-			   new ol.control.MousePosition()
+			   })
+			   //new ol.control.MousePosition()
 		  ]
 	});
 	
@@ -140,23 +141,18 @@ vk2.georeference.view.TargetView.prototype.deactivateLoadingBar = function(){
 /**
  * @param {string} wms_url Url to the web mapping service which publish the validation file
  * @param {string} layer_id
- * @param {Object} clip
+ * @param {ol.Feature} clipFeature
  */
-vk2.georeference.view.TargetView.prototype.displayValidationMap = function(wms_url, layer_id, clip){
+vk2.georeference.view.TargetView.prototype.displayValidationMap = function(wms_url, layer_id, clipFeature){
 
 	if (goog.isDef(this.valLayer_)){
 		// remove old layer
 		this.map_.removeLayer(this.valLayer_);
 	};
 
-	var clipPolygon = clip.hasOwnProperty('polygon') && clip['polygon'].length > 0 ? 
-			new ol.geom.Polygon([clip['polygon']]) : undefined,
-		clipPolygonViewerSrs = clipPolygon !== undefined ? clipPolygon.transform(clip['source'], this.proj_)
-				: undefined;
-
 	// reset control zoomToExtent
-	var zoomExtent = clipPolygonViewerSrs === undefined ? this.map_.getView().calculateExtent(this.map_.getSize())  
-			: clipPolygonViewerSrs.getExtent();
+	var zoomExtent = clipFeature === undefined ? this.map_.getView().calculateExtent(this.map_.getSize())
+			: clipFeature.getGeometry().getExtent();
 	this.map_.removeControl(this.zoomToExtentControl_);
 	this.zoomToExtentControl_ = new ol.control.ZoomToExtent({ extent: zoomExtent});
 	this.map_.addControl(this.zoomToExtentControl_);
@@ -165,13 +161,13 @@ vk2.georeference.view.TargetView.prototype.displayValidationMap = function(wms_u
 	this.valLayer_ = vk2.layer.Messtischblatt({
 		wms_url: wms_url, 
 		layerid: layer_id,
-		clipPolygon: clipPolygonViewerSrs
+		clipPolygon: clipFeature.getGeometry()
 	}, this.map_);
 	this.map_.getLayers().insertAt(1, this.valLayer_); 
 	
 	// zoom to extent by parsing getcapabilites request from wms
-	if (clipPolygonViewerSrs !== undefined)
-		this.map_.getView().fit(clipPolygonViewerSrs.getExtent(), this.map_.getSize());
+	if (clipFeature !== undefined)
+		this.map_.getView().fit(clipFeature.getGeometry().getExtent(), this.map_.getSize());
 	this.resetOpacitySlider_(this.valLayer_);
 
 };

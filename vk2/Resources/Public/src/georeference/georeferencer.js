@@ -78,17 +78,17 @@ vk2.georeference.Georeferencer = function(options){
 			sources: gcpSources			
 		}),
 		clipToolbox = new vk2.georeference.toolbox.ClipToolbox(parentGeorefEl),
-		clipToolboxHandler = new vk2.georeference.handler.ClipToolboxHandler(clipToolbox, srcViewer.getMap(), clipPolygon);
+		clipToolboxHandler = new vk2.georeference.handler.ClipToolboxHandler(clipToolbox, targetViewer.getMap(), clipPolygon);
 	this.addToolboxBehavior_(gcpToolboxHandler, clipToolboxHandler);
 	
 	//
 	// append warp and confirm controls for communication with backend
 	//
 	var warpImageControl = new vk2.georeference.control.WarpImageControl(menuElId, mapId, 
-			gcpToolboxHandler.getHandler(), clipToolboxHandler.getFeatureSource()),
+			gcpToolboxHandler.getHandler()),
 		confirmControl = new vk2.georeference.control.ConfirmationControl(menuElId, mapId, 
 			gcpToolboxHandler.getHandler(), clipToolboxHandler.getFeatureSource());
-	this.addControlBehavior_(warpImageControl, confirmControl, targetViewer);
+	this.addControlBehavior_(warpImageControl, confirmControl, targetViewer, clipToolboxHandler.getFeatureSource());
 	
 	// open gcp toolbox on start up
 	gcpToolbox.activate();
@@ -99,8 +99,9 @@ vk2.georeference.Georeferencer = function(options){
  * @param {vk2.georeference.control.WarpImageControl} warpImageControl
  * @param {vk2.georeference.control.ConfirmationControl} confirmControl
  * @param {vk2.georeference.ResultViewer} targetViewer
+ * @param {ol.source.Vector} clipPolygonSource
  */
-vk2.georeference.Georeferencer.prototype.addControlBehavior_ = function(warpImageControl, confirmControl, targetViewer){
+vk2.georeference.Georeferencer.prototype.addControlBehavior_ = function(warpImageControl, confirmControl, targetViewer, clipPolygonSource){
 	// append behavior for warp image control
 	goog.events.listen(warpImageControl, vk2.georeference.control.WarpImageControlEventType.START_WARPING, function(e){
 		if (goog.DEBUG){
@@ -117,7 +118,7 @@ vk2.georeference.Georeferencer.prototype.addControlBehavior_ = function(warpImag
 		};
 		
 		var data = e.target['data'];
-		targetViewer.displayValidationMap(data['wmsUrl'], data['layerId'], data['clip']);
+		targetViewer.displayValidationMap(data['wmsUrl'], data['layerId'], clipPolygonSource.getFeatures()[0]);
 		targetViewer.deactivateLoadingBar();
 	});
 	
@@ -128,7 +129,7 @@ vk2.georeference.Georeferencer.prototype.addControlBehavior_ = function(warpImag
 	
 	// append behavior for confirm params control
 	goog.events.listen(confirmControl, vk2.georeference.control.ConfirmationControlEventType.END_CONFIRM, function(e){
-		window.location.href = vk2.utils.routing.getMainPageRoute();
+		//window.location.href = vk2.utils.routing.getMainPageRoute();
 	});
 	
 };

@@ -103,7 +103,7 @@ vk2.app.GeoreferenceApp.prototype.loaderFunction_ = function(originalMapContaine
 	
 	// before calling this function the zoomify layer has to be loaded
 	goog.events.listen(srsView, 'loadend', function(){
-		
+
 		// load toolbox
 		var georeferencer = new vk2.georeference.Georeferencer({
 			parentElOriginal: originalMapContainerId,
@@ -114,7 +114,7 @@ vk2.app.GeoreferenceApp.prototype.loaderFunction_ = function(originalMapContaine
 			trgViewer: targetView,
 			gcp: data['georeference'], 
 			type: data['type'],
-			clipPolygon: data['clip'],
+			clipPolygon: data['clippolygon'],
 			georeferenceId: data['georeferenceid']
 		});
 	},undefined, this);

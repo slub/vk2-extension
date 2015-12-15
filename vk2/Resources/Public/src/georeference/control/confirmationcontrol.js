@@ -6,9 +6,10 @@ goog.require('goog.events');
 goog.require('goog.events.Event');
 goog.require('goog.events.EventTarget');
 
-goog.require('vk2.utils');
 goog.require('vk2.georeference.GeoreferencerService');
 goog.require('vk2.georeference.utils');
+goog.require('vk2.settings');
+goog.require('vk2.utils');
 
 /**
  * @enum
@@ -58,7 +59,7 @@ vk2.georeference.control.ConfirmationControl.prototype.confirmImage_ = function(
 	var projection = vk2.georeference.utils.extractProjection('projection-chooser'),
 		algorithm = vk2.georeference.utils.extractTransformationAlgorithm('transformation-chooser'),
 		newGeorefParams = gcpHandler.getGcpsForRequest(algorithm, projection),
-		clipPolygon = vk2.georeference.utils.extractClipPolygon(clipPolygonSource),
+		clipPolygon = clipPolygonSource.getFeatures()[0].getGeometry().clone().transform(vk2.settings.MAPVIEW_PARAMS['projection'], projection),
 		type = gcpHandler.getType();
 	
 	if (newGeorefParams['gcps'].length < 4) {
@@ -70,8 +71,8 @@ vk2.georeference.control.ConfirmationControl.prototype.confirmImage_ = function(
 		'georeference': newGeorefParams,
 		'id': objectid,
 		'clip': {
-			'source':'pixel',
-			'polygon': clipPolygon
+			'source':projection,
+			'polygon': clipPolygon.getCoordinates()[0]
 		},
 		'type': type
 	};
@@ -107,7 +108,6 @@ vk2.georeference.control.ConfirmationControl.prototype.confirmImage_ = function(
 		// end warping process
 		this.dispatchEvent(new goog.events.Event(vk2.georeference.control.ConfirmationControlEventType.ERROR, {'error':'Something went wrong, while sending confirmation data from the server.'}));
 	}, this);
-	
+
 	vk2.georeference.GeoreferencerService.requestConfirmResult(requestParams, success_callback, error_callback);
-	
 };

@@ -23,11 +23,10 @@ vk2.georeference.control.WarpImageControlEventType = {
  * @param {string} topMenuContainerEl
  * @param {string} objectid
  * @param {vk2.georeference.handler.GcpHandler} gcpHandler
- * @param {ol.source.Vector} clipPolygonSource 
  * @extends {goog.events.EventTarget}
  * @constructor
  */
-vk2.georeference.control.WarpImageControl = function(topMenuContainerEl, objectid, gcpHandler, clipPolygonSource){
+vk2.georeference.control.WarpImageControl = function(topMenuContainerEl, objectid, gcpHandler){
 		
 	// create html element
 	var controlEl = goog.dom.createDom('div',{
@@ -36,7 +35,7 @@ vk2.georeference.control.WarpImageControl = function(topMenuContainerEl, objecti
 	});
 	goog.dom.appendChild(goog.dom.getElement(topMenuContainerEl), controlEl);
 	
-	goog.events.listen(controlEl, 'click', goog.bind(this.warpImage_, this, objectid, gcpHandler, clipPolygonSource));
+	goog.events.listen(controlEl, 'click', goog.bind(this.warpImage_, this, objectid, gcpHandler));
 	
 	goog.base(this);
 };
@@ -58,24 +57,18 @@ vk2.georeference.control.WarpImageControl.prototype.validateParams_ = function(p
 /**
  * @param {string} objectid
  * @param {vk2.georeference.GcpHandler} gcpHandler
- * @param {ol.source.Vector} clipPolygonSource
  * @private
  */
-vk2.georeference.control.WarpImageControl.prototype.warpImage_ = function(objectid, gcpHandler, clipPolygonSource){
+vk2.georeference.control.WarpImageControl.prototype.warpImage_ = function(objectid, gcpHandler){
 
 	// get relevant parameters
 	var projection = vk2.georeference.utils.extractProjection('projection-chooser'),
 		algorithm = vk2.georeference.utils.extractTransformationAlgorithm('transformation-chooser'),
-		newGeorefParams = gcpHandler.getGcpParams(algorithm, projection),
-		clipPolygon = vk2.georeference.utils.extractClipPolygon(clipPolygonSource);
-	
+		newGeorefParams = gcpHandler.getGcpParams(algorithm, projection);
+
 	var requestParams = {
 		'georeference': newGeorefParams,
-		'id': objectid,
-		'clip': {
-			'source':'pixel',
-			'polygon': clipPolygon
-		}
+		'id': objectid
 	};
 	
 	if (goog.DEBUG){

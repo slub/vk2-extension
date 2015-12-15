@@ -53,8 +53,13 @@ vk2.parser.ElasticSearch.readFeature = function(id, record, opt_source_projectio
 		} 
 		return undefined;
 	};
-		
-	var geometry = 'geometry' in record ? readGeometry(record['geometry']['coordinates'][0], record['geometry']['type'], sourceProjection_, targetProjection_) : undefined;
+
+	// First try to use the clip polygon as a geometry. As an alternative try to use the geometry attribute
+	// In bothe cases the geometry attribute has to be deleted from the record afterwards for proper working of the
+	// following code
+	var geometry = 'clippolygon' in record ? readGeometry(record['clippolygon'], 'polygon', sourceProjection_, targetProjection_) : undefined,
+		geometry = geometry === undefined && 'geometry' in record ? readGeometry(record['geometry']['coordinates'][0],
+			record['geometry']['type'], sourceProjection_, targetProjection_) : undefined;
 	delete record['geometry'];
 	
 	// create feature and append properties
