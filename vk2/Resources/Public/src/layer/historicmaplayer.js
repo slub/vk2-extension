@@ -60,7 +60,7 @@ vk2.layer.HistoricMap = function(settings, map){
 	
 	var feature = this.createClipFeature_(settings['clip']),
 		rasterLayer = new ol.layer.Tile({
-			'extent': settings.extent,
+			'extent': settings['clip'].getExtent(),
 			'source': new ol.source.XYZ({
 				'maxZoom': 15,
 				'urls': urls
@@ -81,30 +81,20 @@ vk2.layer.HistoricMap = function(settings, map){
 ol.inherits(vk2.layer.HistoricMap, ol.layer.Group);
 
 /**
- * @param {Array.<Array.<number>>} clip
+ * @param {ol.geom.Polygon} clip
  * @return {ol.Feature}
  * @private
  */
 vk2.layer.HistoricMap.prototype.createClipFeature_ = function(clip) {
 
-	var coords = [];
-	for (var i = 0, ii = clip.length; i < ii; i++){
-		// transform coordinates in correct projection
-		coords.push(ol.proj.transform(clip[i], vk2.settings.ELASTICSEARCH_SRS, vk2.settings.MAPVIEW_PARAMS['projection']));
-	};
-
 	// create the clip feature
-	var feature = new ol.Feature(new ol.geom.Polygon([coords]));
+	var feature = new ol.Feature(clip);
 	feature.setProperties({
 		'objectid':this.id_,
 		'time':this.time_,
 		'title':this.title_
 	});
 	feature.setId(this.id_);
-
-	// transform the coordinates to view coordinates
-	//var transformFn = ol.proj.getTransform(vk2.settings.ELASTICSEARCH_SRS, vk2.settings.MAPVIEW_PARAMS['projection']);
-	//feature.getGeometry().applyTransform(transformFn);
 
 	return feature;
 };

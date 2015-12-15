@@ -59,7 +59,9 @@ vk2.georeference.control.ConfirmationControl.prototype.confirmImage_ = function(
 	var projection = vk2.georeference.utils.extractProjection('projection-chooser'),
 		algorithm = vk2.georeference.utils.extractTransformationAlgorithm('transformation-chooser'),
 		newGeorefParams = gcpHandler.getGcpsForRequest(algorithm, projection),
-		clipPolygon = clipPolygonSource.getFeatures()[0].getGeometry().clone().transform(vk2.settings.MAPVIEW_PARAMS['projection'], projection),
+		clipPolygon = clipPolygonSource.getFeatures().length > 0 ?
+			clipPolygonSource.getFeatures()[0].getGeometry().clone().transform(vk2.settings.MAPVIEW_PARAMS['projection'], projection) :
+			undefined,
 		type = gcpHandler.getType();
 	
 	if (newGeorefParams['gcps'].length < 4) {
@@ -70,13 +72,15 @@ vk2.georeference.control.ConfirmationControl.prototype.confirmImage_ = function(
 	var requestParams = {
 		'georeference': newGeorefParams,
 		'id': objectid,
-		'clip': {
-			'source':projection,
-			'polygon': clipPolygon.getCoordinates()[0]
-		},
 		'type': type
 	};
-	
+
+	if (clipPolygon !== undefined)
+		requestParams['clip'] = {
+			'source':projection,
+			'polygon': clipPolygon.getCoordinates()[0]
+		};
+
 	if (type === 'update')
 		requestParams['overwrites'] = gcpHandler.getOverriteId();
 	
