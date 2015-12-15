@@ -90,8 +90,9 @@ vk2.georeference.Georeferencer = function(options){
 			gcpToolboxHandler.getHandler(), clipToolboxHandler.getFeatureSource());
 	this.addControlBehavior_(warpImageControl, confirmControl, targetViewer, clipToolboxHandler.getFeatureSource());
 	
-	// open gcp toolbox on start up
+	// open toolboxs on start up
 	gcpToolbox.activate();
+	clipToolbox.activate();
 
 };
 
