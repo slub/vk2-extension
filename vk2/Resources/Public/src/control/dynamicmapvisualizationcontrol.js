@@ -2,51 +2,42 @@ goog.provide('vk2.control.DynamicMapVisualization');
 
 goog.require('goog.dom');
 goog.require('goog.events');
-goog.require('vk2.utils');
 goog.require('vk2.tool.DynamicMapVisualization');
+goog.require('vk2.utils');
 
 /**
+ * @param {Element} parentEl
  * @param {ol.Map} map
  * @constructor
  */
-vk2.control.DynamicMapVisualization = function(map){
-	
-	/**
-	 * @type {ol.Map}
-	 * @private
-	 */
-	this.map_ = map;
-	
-	/**
-	 * @type {Element}
-	 * @private
-	 */
-	this.parentEl_ = goog.dom.createDom('div', {'class':'dyn-vis-control'});
-	
-	// create content container with control / feedback elements
-	var contentEl = goog.dom.createDom('div', {'class':'content', 'style':'display:none;'});
-	goog.dom.appendChild(this.parentEl_, contentEl);	
-	
-	var feedbackEl = this.createFeedbackEl_(contentEl);
-	
-	/**
-	 * @type {vk2.tool.DynamicMapVisualization}
-	 * @private
-	 */
-	this.dynamicMapVis_ = new vk2.tool.DynamicMapVisualization(this.parentEl_, feedbackEl);
+vk2.control.DynamicMapVisualization = function(parentEl, map){
 
-	this.createContentEl_(contentEl);
-	
-	// create control element for the content container
-	this.createMenuEl_(this.parentEl_, contentEl);
+	//
+	// Create container DOM nodes
+	//
+	var containerEl_ = goog.dom.createDom('div', {'class':'dyn-vis-control'}),
+		contentEl_ = goog.dom.createDom('div', {'class':'content', 'style':'display:none;'});
+	goog.dom.appendChild(containerEl_, contentEl_);
+	goog.dom.appendChild(parentEl, containerEl_);
+
+	// create content container with control / feedback elements
+	var feedbackEl_ = this.createFeedbackEl_(contentEl_);
+
+	//
+	// Create DynamicMapVisualization tool and couple it with control elements
+	//
+	var dynamicMapVis_ = new vk2.tool.DynamicMapVisualization(containerEl_, feedbackEl_);
+	this.createContentEl_(contentEl_, dynamicMapVis_, map);
+	this.createMenuEl_(containerEl_, contentEl_, dynamicMapVis_);
 };
 
 /**
  * @param {Element} parentEl
  * @param {Element} contentEl
+ * @param {vk2.tool.DynamicMapVisualization} dynamicMapVis
  * @private
  */
-vk2.control.DynamicMapVisualization.prototype.createMenuEl_ = function(parentEl, contentEl){
+vk2.control.DynamicMapVisualization.prototype.createMenuEl_ = function(parentEl, contentEl, dynamicMapVis){
 	var controlEl = goog.dom.createDom('a', {'innerHTML':'o','class':'open-dyn-vis'});
 	goog.dom.insertChildAt(parentEl, controlEl, 0);
 	
@@ -55,7 +46,7 @@ vk2.control.DynamicMapVisualization.prototype.createMenuEl_ = function(parentEl,
 		$(contentEl).slideToggle();
 		
 		if (goog.dom.classes.has(event.currentTarget, 'open')){
-			this.dynamicMapVis_.stopTimerseriesAnimation();
+			dynamicMapVis.stopTimerseriesAnimation();
 			goog.dom.classes.remove(event.currentTarget, 'open');
 		} else {
 			goog.dom.classes.add(event.currentTarget, 'open');
@@ -65,19 +56,21 @@ vk2.control.DynamicMapVisualization.prototype.createMenuEl_ = function(parentEl,
 
 /**
  * @param {Element} contentEl
+ * @param {vk2.tool.DynamicMapVisualization} dynamicMapVis
+ * @param {ol.Map} map
  * @private
  */
-vk2.control.DynamicMapVisualization.prototype.createContentEl_ = function(contentEl){
+vk2.control.DynamicMapVisualization.prototype.createContentEl_ = function(contentEl, dynamicMapVis, map){
 		
 	var eventListeners = {
 		start: function(event){
 			event.preventDefault();
-			var layers = this.map_.getHistoricMapLayer();
-			this.dynamicMapVis_.startTimerseriesAnimation(layers, this.map_);
+			var layers = map.getHistoricMapLayer();
+			dynamicMapVis.startTimerseriesAnimation(layers, map);
 		},
 		stop: function(event){
 			event.preventDefault();
-			this.dynamicMapVis_.stopTimerseriesAnimation();
+			dynamicMapVis.stopTimerseriesAnimation();
 		}
 	};
 
@@ -118,16 +111,7 @@ vk2.control.DynamicMapVisualization.prototype.createContentEl_ = function(conten
  * @private
  */
 vk2.control.DynamicMapVisualization.prototype.createFeedbackEl_ = function(contentEl){
-	
 	var feedbackEl = goog.dom.createDom('div', {'class':'feedback'});
 	goog.dom.appendChild(contentEl, feedbackEl);
-	
 	return feedbackEl;
-};
-
-/**
- * @return {Element}
- */
-vk2.control.DynamicMapVisualization.prototype.getElement = function(){
-	return this.parentEl_;
 };

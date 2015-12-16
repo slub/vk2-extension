@@ -1,0 +1,26 @@
+.deactivate-map-col-control {
+	right: 100px;
+	top: 3px;
+	position: absolute;
+	background: rgba(255,255,255,0.4);
+	border-radius: 4px;
+	padding: 2px;
+}
+
+.deactivate-map-col-control > a {
+	display: block;
+	margin: 1px;
+	padding: 0;
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
+	text-align: center;
+	width: 22px;
+	text-indent: 200%;
+	white-space: nowrap;
+	overflow: hidden;
+	border-radius: 0;
+	background: rgb(0,177,158) url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWAQAAAADsz1GWAAAAAnRSTlMAAHaTzTgAAAAQSURBVHgBY8AHGP/hxfgAAF8PB/kohvR0AAAAAElFTkSuQmCC') no-repeat 0 0;
+	cursor: pointer;
+}
+
