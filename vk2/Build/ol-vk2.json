@@ -72,6 +72,8 @@
 	"ol.layer.Tile#getProperties",
 	"ol.layer.Tile#getSource",
 	"ol.layer.Tile#on",
+	"ol.layer.Tile#set",
+	"ol.layer.Tile#setProperties",
 	"ol.layer.Tile#un",
 	"ol.layer.Vector",
 	"ol.layer.Vector#getSource",
