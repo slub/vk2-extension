@@ -2813,6 +2813,8 @@ function Oe(a, b) {
   a.source = new ol.source.TileWMS({url:e, params:{LAYERS:f, VERSION:"1.1.1"}, projection:d, extent:h});
   a.preload = Infinity;
   d = new ol.layer.Tile(a);
+  d.set("wms_url", e);
+  d.set("layerid", f);
   d.xb = q(function(a) {
     for (var b = [], d = c.getCoordinates()[0], e = 0;e < d.length;e++) {
       b.push(a.getPixelFromCoordinate(d[e]));
@@ -3383,14 +3385,6 @@ function rf(a, b) {
   }
 }
 ;function sf(a, b, c) {
-  Td(x.h.rb(), function(a) {
-    200 === ae(a.target) ? b(a) : c(a);
-  }, "POST", "req=" + JSON.stringify(a));
-}
-function tf(a, b) {
-  Td(x.h.pb(), b, "POST", "req=" + JSON.stringify(a));
-}
-;function uf(a, b, c) {
   var d = a.getVisible() ? "visible" : "notvisible", e = Q("li", {"class":"layermanagement-record " + d, id:b, "data-id":a.getId()});
   b = Q("div", {"class":"control-container"});
   e.appendChild(b);
@@ -3433,6 +3427,14 @@ function tf(a, b) {
   });
   return e;
 }
+;function tf(a, b, c) {
+  Td(x.h.rb(), function(a) {
+    200 === ae(a.target) ? b(a) : c(a);
+  }, "POST", "req=" + JSON.stringify(a));
+}
+function uf(a, b) {
+  Td(x.h.pb(), b, "POST", "req=" + JSON.stringify(a));
+}
 ;function vf(a, b, c) {
   this.a = b;
   this.g = c;
@@ -3471,7 +3473,7 @@ vf.prototype.f = function(a) {
     this.b.innerHTML = "";
     a = wf(this);
     for (var b = a.length - 1;0 <= b;b--) {
-      var c = uf(a[b], b, this.g);
+      var c = sf(a[b], b, this.g);
       this.b.appendChild(c);
     }
   }
@@ -3719,7 +3721,7 @@ Nf.prototype.a = function(a, b, c) {
     this.dispatchEvent(new B("end-confirm", {data:a}));
   }, this), q(function() {
     this.dispatchEvent(new B("error", {error:"Something went wrong, while sending confirmation data from the server."}));
-  }, this), tf(a, b));
+  }, this), uf(a, b));
 };
 function Pf(a, b, c) {
   var d = Q("div", {"class":"vk2GeorefToolsBtn btn btn-default btn-validate", innerHTML:'<span class="glyphicon glyphicon-refresh"></span> ' + x.c("validateBtn_validate")});
@@ -3738,7 +3740,7 @@ Pf.prototype.a = function(a, b) {
     }, this), e = q(function() {
       this.dispatchEvent(new B("error", {error:"Something went wrong, while fetching validation data from the server."}));
     }, this);
-    sf(c, d, e);
+    tf(c, d, e);
   }
 };
 function Rf(a) {
@@ -4008,7 +4010,7 @@ function eg(a, b) {
     a = parseInt(a.currentTarget.getAttribute("data-params-id"), 0);
     a = {georeference:b, id:a, clip:e};
     Vf(this.pa);
-    sf(a, q(function(a) {
+    tf(a, q(function(a) {
       Xf(this.pa);
       a = Y(a.target);
       Yf(this.pa, a.wmsUrl, a.layerId, a.clip);

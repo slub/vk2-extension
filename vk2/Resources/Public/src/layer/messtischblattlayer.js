@@ -31,7 +31,13 @@ vk2.layer.Messtischblatt = function(settings, map){
 	// define preload behavior
 	settings['preload'] = Infinity; 
 	var messtischblattLayer = new ol.layer.Tile(settings);
-	
+
+	//
+	// Set properties
+	//
+	messtischblattLayer.set('wms_url', wms_url);
+	messtischblattLayer.set('layerid', layerid);
+
 	/**
 	 * @param {ol.Map} map
 	 * @private
