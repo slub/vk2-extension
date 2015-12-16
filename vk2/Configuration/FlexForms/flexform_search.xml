@@ -20,7 +20,7 @@
                     </settings.general.realurl>
 
                     <!-- Base id -->
-                    <settings.gernal.baseid>
+                    <settings.general.baseid>
                         <TCEforms>
                             <label>Base id</label>
                             <config>
@@ -30,7 +30,7 @@
                                 <default>19</default>
                             </config>
                         </TCEforms>
-                    </settings.gernal.baseid>
+                    </settings.general.baseid>
 
                     <!-- Defines the elasticsearch url which is used by the client for querying search data -->
                     <settings.search.elasticsearch>
@@ -55,6 +55,32 @@
                             </config>
                         </TCEforms>
                     </settings.georef.active>
+
+                    <!-- URL of the georeferencing backend -->
+                    <settings.georef.backend>
+                        <TCEforms>
+                            <label>Georeferencing backend</label>
+                            <config>
+                                <type>input</type>
+                                <size>80</size>
+                                <eval>string</eval>
+                                <default>http://localhost:8080/georeference</default>
+                            </config>
+                        </TCEforms>
+                    </settings.georef.backend>
+
+                    <!-- The Dynamic WMS URL is used by the UserHistoryApp to access georeference results -->
+                    <settings.georef.dynamicwmsurl>
+                        <TCEforms>
+                            <label>Dynamic WMS URL</label>
+                            <config>
+                                <type>input</type>
+                                <size>80</size>
+                                <eval>string</eval>
+                                <default>http://kartenforum.slub-dresden.de/cgi-bin/dynamic-ows</default>
+                            </config>
+                        </TCEforms>
+                    </settings.georef.dynamicwmsurl>
 
                     <!-- Defines two plugin modes (with georeferencing and without) -->
                     <switchableControllerActions>
@@ -83,31 +109,6 @@
                         </TCEforms>
                     </switchableControllerActions>
 
-                    <!-- URL of the georeferencing backend -->
-                    <settings.georef.backend>
-                        <TCEforms>
-                            <label>Georeferencing backend</label>
-                            <config>
-                                <type>input</type>
-                                <size>80</size>
-                                <eval>string</eval>
-                                <default>http://localhost:8080/georeference</default>
-                            </config>
-                        </TCEforms>
-                    </settings.georef.backend>
-
-                    <!-- The Dynamic WMS URL is used by the UserHistoryApp to access georeference results -->
-                    <settings.georef.dynamicWmsUrl>
-                        <TCEforms>
-                            <label>Dynamic WMS URL</label>
-                            <config>
-                                <type>input</type>
-                                <size>80</size>
-                                <eval>string</eval>
-                                <default>http://kartenforum.slub-dresden.de/cgi-bin/dynamic-ows</default>
-                            </config>
-                        </TCEforms>
-                    </settings.georef.dynamicWmsUrl>
 
                 </el>
             </ROOT>

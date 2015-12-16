@@ -167,8 +167,8 @@ vk2.georeference.handler.GCPToolboxHandler.prototype.coupleToolboxWithInteractio
 			console.log('Activate GCP Toolbox');
 		};
 		
-		maps.unref.addLayer(layers.unref);
-		maps.georef.addLayer(layers.georef);
+		//maps.unref.addLayer(layers.unref);
+		//maps.georef.addLayer(layers.georef);
 	};
 	
 	/** 
@@ -182,8 +182,8 @@ vk2.georeference.handler.GCPToolboxHandler.prototype.coupleToolboxWithInteractio
 		
 		deactivateInteractions();
 		
-		maps.unref.removeLayer(layers.unref);
-		maps.georef.removeLayer(layers.georef);
+		//maps.unref.removeLayer(layers.unref);
+		//maps.georef.removeLayer(layers.georef);
 	};
 	
 	// activate and deactivate interactions
@@ -197,6 +197,8 @@ vk2.georeference.handler.GCPToolboxHandler.prototype.coupleToolboxWithInteractio
 	// activate and deactivate toolbox
 	goog.events.listen(gcpToolbox, vk2.georeference.toolbox.GCPToolboxEventType.ACTIVATE, activateToolbox);
 	goog.events.listen(gcpToolbox, vk2.georeference.toolbox.GCPToolboxEventType.DEACTIVATE, deactivateToolbox);
+	maps.unref.addLayer(layers.unref);
+	maps.georef.addLayer(layers.georef);
 };
 
 /**

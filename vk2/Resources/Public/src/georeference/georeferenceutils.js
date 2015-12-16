@@ -62,7 +62,7 @@ vk2.georeference.utils.getExtentForGeorefParams = function(params) {
 		tag = 'target';
 
 	for (var i = 0; i < params['georeference']['gcps'].length; i++) {
-		var geom = new ol.geom.Point(params['georeference']['gcps'][i][tag])
+		var geom = new ol.geom.Point(params['georeference']['gcps'][i][tag]),
 			feature = new ol.Feature({
 				'geometry': geom.transform(params['georeference'][tag], vk2.settings.MAPVIEW_PARAMS['projection'])
 			});

@@ -80,14 +80,17 @@ vk2.georeference.view.TargetView = function(mapElId, opt_extent){
 	
 	// zoom to map extent
 	this.map_.getView().fit(extent_, this.map_.getSize());
-	
-	/**
-	 * @type {ol.control.ZoomToExtent}
-	 * @private
-	 */
-	this.zoomToExtentControl_ = new ol.control.ZoomToExtent({ 'extent': extent_ });
-	// add zoom to extent control
-	this.map_.addControl(this.zoomToExtentControl_);
+
+	if (goog.isDef(opt_extent)) {
+		/**
+		 * @type {ol.control.ZoomToExtent}
+		 * @private
+		 */
+		this.zoomToExtentControl_ = new ol.control.ZoomToExtent({ 'extent': extent_ });
+		// add zoom to extent control
+		this.map_.addControl(this.zoomToExtentControl_);
+	}
+
 	
 	// add gazetteer to view
 	var gazetteer = new vk2.tool.GazetteerSearch(this.parentEl_);

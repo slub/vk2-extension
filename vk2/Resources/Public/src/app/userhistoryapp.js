@@ -40,7 +40,7 @@ vk2.app.UserHistoryApp.prototype.displayData_ = function(data, targetEl, targetP
 		targetPointsEl.innerHTML = data['points'];
 	};
 	
-	// render map records 
+	// render map records
 	if (data['georef_profile'] !== undefined) {
 		for (var i = 0, ii = data['georef_profile'].length; i < ii; i++) {
 			goog.dom.appendChild(targetEl, 
@@ -86,11 +86,12 @@ vk2.app.UserHistoryApp.prototype.fetchData_ = function(targetEl, targetPointsEl)
  * @return {Element}
  */
 vk2.app.UserHistoryApp.prototype.renderRecord_ = function(record) {
-	var wmsUrl = record['transformed'] !== undefined && record['transformed'] === true ? 
+	var wmsUrl = record['transformed'] !== undefined && record['transformed'] === true ?
 			vk2.settings.WMS_DYNAMIC_TEMPLATE + '?SERVICE=WMS&VERSION=1.0.0&REQUEST=GetCapabilities&map=' + record['mapid'] : '#',
 		imageUrl = record['thumbnail'] !== undefined ? record['thumbnail'] : '#',
+		permalink = vk2.utils.routing.getBaseUrl() + '&oid=' + record['mapid'],
 		innerHTMLPermalink = record['transformed'] !== undefined && record['transformed'] === true ? 
-				'<a href="#" target="_blank">Klick</a>' : vk2.utils.getMsg('georef-history-beingGenerated'),
+				'<a href="' + permalink + '" target="_blank">Klick</a>' : vk2.utils.getMsg('georef-history-beingGenerated'),
 		isValide = record['isvalide'] !== "" ? record['isvalide'] : 'unknown'; 
 		
 	var articleEl = goog.dom.createDom('article', {

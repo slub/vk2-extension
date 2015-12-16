@@ -51,6 +51,7 @@ vk2.georeference.handler.ClipToolboxHandler = function(tbx, map, opt_clipPolygon
 		'source': this.clipPolygonSource_,
 		'style': vk2.utils.Styles.GEOREFERENCE_CLIP_POLYGON
 	});
+	this.featureOverlay_.setMap(map);
 
 	/**
 	 * @private
@@ -142,7 +143,7 @@ vk2.georeference.handler.ClipToolboxHandler.prototype.coupleToolboxWithInteracti
 		if (goog.DEBUG){
 			console.log('Activate Clip Toolbox');
 		};
-		featureOverlay.setMap(map);
+		//featureOverlay.setMap(map);
 	};
 	
 	/** 
@@ -155,7 +156,7 @@ vk2.georeference.handler.ClipToolboxHandler.prototype.coupleToolboxWithInteracti
 		};
 		
 		deactivateInteractions();
-		featureOverlay.setMap(null);
+		//featureOverlay.setMap(null);
 	};
 	
 	// activate and deactivate interactions

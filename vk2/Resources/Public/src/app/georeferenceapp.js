@@ -96,10 +96,10 @@ vk2.app.GeoreferenceApp.prototype.loaderFunction_ = function(originalMapContaine
 		console.log(data);
 	};
 		
-	var extent = data.hasOwnProperty('extent') ? data['extent'] : [13.8,51, 14.2,52],
+	var extent = data.hasOwnProperty('extent') ? ol.proj.transformExtent(data['extent'],
+			vk2.settings.GEOREFERENCE_EXTENT_SRS, 'EPSG:3857' ) : undefined,
 		srsView = new vk2.georeference.view.SourceView(originalMapContainerId, data['zoomify']),
-		targetView = new vk2.georeference.view.TargetView(geoMapContainerId, ol.proj.transformExtent(extent,
-			vk2.settings.GEOREFERENCE_EXTENT_SRS, 'EPSG:3857' ));
+		targetView = new vk2.georeference.view.TargetView(geoMapContainerId, extent);
 	
 	// before calling this function the zoomify layer has to be loaded
 	goog.events.listen(srsView, 'loadend', function(){

@@ -49,13 +49,17 @@
 	"ol.interaction.DragRotateAndZoom",
 	"ol.interaction.DragZoom",
 	"ol.interaction.Draw",
+	"ol.interaction.Draw#finishDrawing",
 	"ol.interaction.Draw#on",
 	"ol.interaction.Draw#un",
 	"ol.interaction.Interaction",
 	"ol.interaction.Modify",
+	"ol.interaction.Modify#on",
+	"ol.interaction.Modify#un",
 	"ol.interaction.Select",
 	"ol.interaction.Select#getFeatures",
 	"ol.layer.Base",
+	"ol.layer.Base#changed",
 	"ol.layer.Base#getOpacity",
 	"ol.layer.Base#getVisible",
 	"ol.layer.Base#on",
@@ -126,7 +130,9 @@
 	"ol.View#getZoom",
 	"ol.View#setCenter",
 	"ol.View#setRotation",
-	"ol.View#setZoom"
+	"ol.View#setZoom",
+	"ol.webgl.Context#getGL",
+	"ol.webgl.Context#useProgram"
   ],
   "compile": {
     "externs": [

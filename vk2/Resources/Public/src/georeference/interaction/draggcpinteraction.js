@@ -69,6 +69,10 @@ vk2.georeference.interaction.DragGcpInteraction = function(unrefGcpLayer, georef
 		})
 	];
 
+	// as a fix for accessing the correct map in case of an event
+	this.interactions_[0].getMap = function() { return unrefMap; };
+	this.interactions_[1].getMap = function() { return georefMap; };
+
 	// append event behavior if features are selected
 	this.loadEventBehavior_(this.interactions_, [unrefGcpLayer, georefGcpLayer]);
 	

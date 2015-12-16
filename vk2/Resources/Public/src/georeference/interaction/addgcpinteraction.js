@@ -47,7 +47,7 @@ vk2.georeference.interaction.AddGcpInteraction = function(unrefGcpSource, georef
 			}
 		})
 	];
-	
+
 	goog.base(this);
 };
 goog.inherits(vk2.georeference.interaction.AddGcpInteraction, vk2.georeference.interaction.GeoreferenceInteraction);

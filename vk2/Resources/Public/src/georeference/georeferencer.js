@@ -89,11 +89,10 @@ vk2.georeference.Georeferencer = function(options){
 			gcpToolboxHandler.getHandler()),
 		confirmControl = new vk2.georeference.control.ConfirmationControl(menuElId, mapId, 
 			gcpToolboxHandler.getHandler(), clipToolboxHandler.getFeatureSource());
-	this.addControlBehavior_(warpImageControl, confirmControl, targetViewer, clipToolboxHandler);
+	this.addControlBehavior_(warpImageControl, confirmControl, targetViewer, clipToolboxHandler, clipToolbox);
 
 	// open toolboxs on start up
 	gcpToolbox.activate();
-	clipToolbox.activate();
 
 };
 
@@ -102,8 +101,9 @@ vk2.georeference.Georeferencer = function(options){
  * @param {vk2.georeference.control.ConfirmationControl} confirmControl
  * @param {vk2.georeference.ResultViewer} targetViewer
  * @param {vk2.georeference.handler.ClipToolboxHandler} clipToolboxHandler
+ * @param {vk2.georeference.toolbox.ClipToolbox} clipToolbox
  */
-vk2.georeference.Georeferencer.prototype.addControlBehavior_ = function(warpImageControl, confirmControl, targetViewer, clipToolboxHandler){
+vk2.georeference.Georeferencer.prototype.addControlBehavior_ = function(warpImageControl, confirmControl, targetViewer, clipToolboxHandler, clipToolbox){
 
 	// called when the warping of an map starts at the server side
 	goog.events.listen(warpImageControl, vk2.georeference.control.WarpImageControlEventType.START_WARPING, function(e){
@@ -130,6 +130,7 @@ vk2.georeference.Georeferencer.prototype.addControlBehavior_ = function(warpImag
 		targetViewer.displayValidationMap(data['wmsUrl'], data['layerId'], clipFeature);
 		targetViewer.setZoom(extent);
 		targetViewer.deactivateLoadingBar();
+		clipToolbox.activate();
 	});
 
 	// called in case of an error while warping the map at the server side
@@ -161,8 +162,8 @@ vk2.georeference.Georeferencer.prototype.addToolboxBehavior_ = function(gcpToolb
 		clipToolbox = clipToolboxHandler.getToolbox();
 	
 	// bind events
-	//goog.events.listen(gcpToolbox, vk2.georeference.toolbox.GCPToolboxEventType.ACTIVATE, clipToolbox.deactivate);
-	//goog.events.listen(clipToolbox, vk2.georeference.toolbox.ClipToolboxEventType.ACTIVATE, gcpToolbox.deactivate);
+	goog.events.listen(gcpToolbox, vk2.georeference.toolbox.GCPToolboxEventType.ACTIVATE, clipToolbox.deactivate);
+	goog.events.listen(clipToolbox, vk2.georeference.toolbox.ClipToolboxEventType.ACTIVATE, gcpToolbox.deactivate);
 	
 	// couple for special create clip box behavior gcp handler
 	goog.events.listenOnce(gcpToolboxHandler.getHandler(), vk2.georeference.handler.GCPTK25HandlerEventType.ADD_GCP_CLIPPOLYGON, 
