@@ -72,14 +72,7 @@ vk2.controller.MapController = function(mapElId, opt_mapViewSettings){
  * @return
  */
 vk2.controller.MapController.createBaseMap = function(mapElId, mapViewSettings){
-	
-	var styleArray = [new ol.style.Style({
-		  stroke: new ol.style.Stroke({
-		    color: '#000000',
-		    width: 3
-		  })
-	})];
-	
+
 	return new ol.Map({
 		'layers': [
 		   new ol.layer.Tile({
@@ -114,14 +107,7 @@ vk2.controller.MapController.createBaseMap = function(mapElId, mapViewSettings){
 			new vk2.control.Permalink(),
 			new vk2.control.MousePositionOnOff()
 		],
-		'view': new ol.View({
-			'projection': 'EPSG:900913',
-	        'minResolution': 1.194328566789627,
-	        'maxResolution': 2445.9849047851562,
-	        'extent': [640161.933,5958026.134,3585834.8011505,7847377.4901306],
-	        'center': [1531627.8847864927, 6632124.286850829],
-			'zoom': 4
-		})
+		'view': new ol.View(mapViewSettings)
 	});
 };
 

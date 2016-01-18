@@ -179,8 +179,7 @@ vk2.tool.GazetteerSearch.prototype._requestPlacenameData = function(placename, c
 	// add loading
 	goog.dom.classes.add(this._inputText, 'loading');
 	
-	var request_url = 'https://search.mapzen.com/v1/autocomplete?api_key='+key+'&text='+text+
-		'&focus.point.lat='+focusLat+'&focus.point.lon='+focusLon;
+	var request_url = 'https://search.mapzen.com/v1/autocomplete?api_key='+key+'&text='+text;
 	goog.net.XhrIo.send(request_url, goog.bind(function(e){
 				var xhr = /** @type {goog.net.XhrIo} */ (e.target);
 		    	var data = xhr.getResponseJson() ? xhr.getResponseJson() : xhr.getResponseText();
