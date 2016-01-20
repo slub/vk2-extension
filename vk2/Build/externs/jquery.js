@@ -8,6 +8,7 @@ $.effect = {};
 $.fadeIn = {};
 $.fadeOut = {};
 $.focus = {};
+$.lazyload = {};
 $.show = {};
 $.slider = {};
 $.sortable = {};
