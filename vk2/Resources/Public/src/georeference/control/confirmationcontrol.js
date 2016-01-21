@@ -113,5 +113,13 @@ vk2.georeference.control.ConfirmationControl.prototype.confirmImage_ = function(
 		this.dispatchEvent(new goog.events.Event(vk2.georeference.control.ConfirmationControlEventType.ERROR, {'error':'Something went wrong, while sending confirmation data from the server.'}));
 	}, this);
 
-	//vk2.georeference.GeoreferencerService.requestConfirmResult(requestParams, success_callback, error_callback);
+	// if clip polygon is undefined ask user if he really wants to send the params
+	if (!requestParams.hasOwnProperty('clip')) {
+		vk2.utils.getConfirmationDialog(vk2.utils.getMsg('confirm_dialog_clip_title'), vk2.utils.getMsg('confirm_dialog_clip_msg'),
+			function() {
+				vk2.georeference.GeoreferencerService.requestConfirmResult(requestParams, success_callback, error_callback);
+			}, 'georeference-confirm-without-clip');
+	} else {
+		vk2.georeference.GeoreferencerService.requestConfirmResult(requestParams, success_callback, error_callback);
+	};
 };

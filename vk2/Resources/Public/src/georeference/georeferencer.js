@@ -21,7 +21,6 @@ goog.require('vk2.georeference.control.WarpImageControl');
 goog.require('vk2.georeference.control.WarpImageControlEventType');
 goog.require('vk2.georeference.control.ConfirmationControl');
 goog.require('vk2.georeference.control.ConfirmationControlEventType');
-//goog.require('vk2.georeference.transform.AffineSource');
 goog.require('vk2.georeference.utils');
 
 /**

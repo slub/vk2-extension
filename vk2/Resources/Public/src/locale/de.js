@@ -39,6 +39,8 @@ var lang_dictionary = {
 		'checkCornerPoint_count' : 'Bitte nur 4 Punkte setzen',
 		'checkCornerPoint_distance' : 'Eckpunkt in diesem Bereich bereits gesetzt! Verwenden Sie "Eckpunkt verschieben"!',
 		'georef_validate_msg':'Sind Sie sicher das Sie die Georeferenzierung persistent abspeichern wollen?',
+		'confirm_dialog_clip_title': 'Georeferenzierungsparameter bestätigen',
+		'confirm_dialog_clip_msg': 'Bestätige Georeferenzierungsparameter ohne Clip-Parameter?',
 		
 		// report error
 		'report_error_alert': 'Fehler konnte nicht gemeldet werden. Wenden Sie sich an die Administrator dieser Seite.',

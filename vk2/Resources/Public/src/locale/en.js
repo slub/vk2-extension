@@ -39,6 +39,8 @@ var lang_dictionary = {
 		'checkCornerPoint_count' : 'Please select only 4 points',
 		'checkCornerPoint_distance' : 'Corner point already set in this area! Please use "Move corner point"!',
 		'georef_validate_msg':'Are you sure you want to persistent save the georeference paramater?',
+		'confirm_dialog_clip_title': 'Confirm georeference params',
+		'confirm_dialog_clip_msg': 'Confirm georeference params without clip params?',
 			
 		// report error
 		'report_error_alert': 'Problems while notify error. Please contact the administrator.',
