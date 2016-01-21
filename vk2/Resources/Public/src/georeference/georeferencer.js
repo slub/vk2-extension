@@ -53,13 +53,22 @@ vk2.georeference.Georeferencer = function(options){
 		clipPolygon = goog.isDef(options.clipPolygon) ? options.clipPolygon: undefined,
 		overwriteId = goog.isDef(options.georeferenceId) ? options.georeferenceId: undefined,
 		gcpSources = [new ol.source.Vector({'features': new ol.Collection}), new ol.source.Vector({'features': new ol.Collection})],
-		projections = goog.isDef(options.projections) ? projections : undefined;
+		projections = goog.isDef(options.projections) ? projections : undefined,
+		mapType = options.mapType.toLowerCase();
 
 	//
 	// set correct value of the transformation algorithm
 	//
-	if (gcp !== undefined)
-		this.updateSelectOfTransformationChooser_(gcp['algorithm']);
+	var suggestions = {
+			'mtb': 'affine',
+			'gl': 'affine',
+			'ae': 'affine',
+			'tk': 'affine',
+			'ak': 'tps'
+		},
+		transformationAlgorithm = gcp !== undefined ? gcp['algorithm'] :
+			suggestions.hasOwnProperty(mapType) ? suggestions[mapType] : suggestions['mtb'];
+	this.updateSelectOfTransformationChooser_(suggestions[mapType.toLowerCase()]);
 
 	// 
 	// generate and add gcp and clip toolbox

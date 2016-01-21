@@ -9,10 +9,17 @@
   background-size: 290px 55px; float: left; }
 .georef-validate-menu { padding: 25px 20px 25px 25px; }
 .georef-validate-menu .btn,  .georef-validate-menu .transformation-chooser { border-radius: 0; border: 1px solid #fff;}
-.georef-validate-menu .transformation-chooser { color: white; background-color: rgba(255,51,51, 0.9); }
+.georef-validate-menu .transformation-chooser { padding: 0px; }
 .georef-validate-menu .btn, .georef-validate-menu > div { background: transparent; color: #fff; text-transform: uppercase; font-size: 12px; }
-.georef-validate-menu .dropdown {  padding: 6px 12px; display: inline-block; font-weight: 400; line-height: 1.42857143;
+.georef-validate-menu > div {  padding: 6px 12px; display: inline-block; font-weight: 400; line-height: 1.42857143;
   text-align: center; white-space: nowrap; vertical-align: middle; padding: 6px 12px;}
+.georef-validate-menu .transformation-chooser > div, .georef-validate-menu .transformation-chooser > a { position: relative;
+	float: left; }
+.georef-validate-menu .transformation-chooser > a { background-color: rgba(255,51,51, 0.9); padding: 6px 0px 1px 7px;
+	font-size: 16px; cursor: pointer; color: white; }
+.georef-validate-menu .transformation-chooser select { color: white; background-color: rgba(255,51,51, 0.9); border: none; height: 29px;}
+.georef-validate-menu .transformation-chooser select:focus { outline: none; border-color: inherit; -webkit-box-shadow: none;
+	box-shadow: none;}
 .georef-validate-menu .btn-submit { background: #fff; color: #f33; font-weight: 500; margin-left: 10px; }
 .georef-validate-menu .btn:hover { background: rgba(255,255,255,0.3); color: #fff; }
 /* in case of responsive breakpoint behaviour display overflow */

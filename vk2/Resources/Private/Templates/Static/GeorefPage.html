@@ -22,12 +22,19 @@
 						<option>EPSG:3043</option>
 					</select>
 				</div>
-				<div class="dropdown">						
-					<select id="transformation-chooser" class="transformation-chooser form-control">
-	        			<option>Affine</option>
-	        			<option>Polynom</option>
-	        			<option>TPS</option>
-	      			</select>
+				<div class="transformation-chooser">
+					<f:link.action action="faq" controller="Static" class="vk2-modal-anchor"
+								   additionalAttributes="{data-classes:'faq'}" absolute="True"
+								   title="{f:translate(id:'faq.title')}" section="manage-chosen-maps">
+						<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+					</f:link.action>
+					<div class="dropdown">
+						<select id="transformation-chooser" class="form-control">
+							<option>Affine</option>
+							<option>Polynom</option>
+							<option>TPS</option>
+						</select>
+					</div>
 				</div>
 			</div>
 		</div>

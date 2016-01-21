@@ -113,5 +113,5 @@ vk2.georeference.control.ConfirmationControl.prototype.confirmImage_ = function(
 		this.dispatchEvent(new goog.events.Event(vk2.georeference.control.ConfirmationControlEventType.ERROR, {'error':'Something went wrong, while sending confirmation data from the server.'}));
 	}, this);
 
-	vk2.georeference.GeoreferencerService.requestConfirmResult(requestParams, success_callback, error_callback);
+	//vk2.georeference.GeoreferencerService.requestConfirmResult(requestParams, success_callback, error_callback);
 };

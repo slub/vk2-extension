@@ -119,7 +119,8 @@ vk2.app.GeoreferenceApp.prototype.loaderFunction_ = function(originalMapContaine
 			gcp: data['georeference'], 
 			type: data['type'],
 			clipPolygon: data['clippolygon'],
-			georeferenceId: data['georeferenceid']
+			georeferenceId: data['georeferenceid'],
+			mapType: data['maptype']
 		});
 	},undefined, this);
 	
