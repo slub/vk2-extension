@@ -106,7 +106,7 @@ function t(a, b) {
   a.fa = b.prototype;
   a.prototype = new c;
   a.prototype.constructor = a;
-  a.Nb = function(a, c, f) {
+  a.Ob = function(a, c, f) {
     for (var h = Array(arguments.length - 2), m = 2;m < arguments.length;m++) {
       h[m - 2] = arguments[m];
     }
@@ -138,12 +138,12 @@ r("vk2.settings.updateSettings", function() {
   Ha = vk2x.settings.WMS_DYNAMIC_TEMPLATE;
 });
 function Ia(a, b) {
-  function c(a, b) {
-    if ("polygon" === b.toLowerCase()) {
-      for (var c = [], d = 0, e = a.length;d < e;d++) {
-        c.push(ol.proj.transform(a[d], "EPSG:4326", "EPSG:900913"));
+  function c(a, c) {
+    if ("polygon" === c.toLowerCase()) {
+      for (var b = [], d = 0, e = a.length;d < e;d++) {
+        b.push(ol.proj.transform(a[d], "EPSG:4326", "EPSG:900913"));
       }
-      return new ol.geom.Polygon([c]);
+      return new ol.geom.Polygon([b]);
     }
   }
   var d = "clippolygon" in b ? c(b.clippolygon, "polygon") : void 0, d = void 0 === d && "geometry" in b ? c(b.geometry.coordinates[0], b.geometry.type) : d;
@@ -162,9 +162,9 @@ function Ja(a) {
   return b;
 }
 ;var x = {l:{}};
-x.l.Lb = new ol.style.Style({stroke:new ol.style.Stroke({color:"rgba(0, 0, 255, 1.0)", width:2})});
-x.l.jb = new ol.style.Style({stroke:new ol.style.Stroke({color:"#f00", width:1}), fill:new ol.style.Fill({color:"rgba(255,0,0,0.1)"})});
-x.l.kb = new ol.style.Style({stroke:new ol.style.Stroke({color:"#000000", width:2})});
+x.l.Mb = new ol.style.Style({stroke:new ol.style.Stroke({color:"rgba(0, 0, 255, 1.0)", width:2})});
+x.l.lb = new ol.style.Style({stroke:new ol.style.Stroke({color:"#f00", width:1}), fill:new ol.style.Fill({color:"rgba(255,0,0,0.1)"})});
+x.l.mb = new ol.style.Style({stroke:new ol.style.Stroke({color:"#000000", width:2})});
 x.l.Fa = new ol.style.Style({fill:new ol.style.Fill({color:"rgba(255, 255, 255, 0.2)"}), stroke:new ol.style.Stroke({color:"#ffcc33", width:2}), image:new ol.style.Circle({radius:7, fill:new ol.style.Fill({color:"#ffcc33"})})});
 x.l.xa = function(a) {
   var b = 16 * Math.PI / 6, b = [0, b, b, b, b, b, b];
@@ -210,13 +210,13 @@ function B(a, b) {
   this.type = a;
   this.currentTarget = this.target = b;
   this.b = !1;
-  this.ab = !0;
+  this.cb = !0;
 }
 B.prototype.stopPropagation = function() {
   this.b = !0;
 };
 B.prototype.preventDefault = function() {
-  this.ab = !1;
+  this.cb = !1;
 };
 var Ra = "closure_listenable_" + (1E6 * Math.random() | 0), Sa = 0;
 function Ta(a, b, c, d, e) {
@@ -627,7 +627,7 @@ function lb(a) {
 }
 Ub = new Vb;
 function Yb(a, b) {
-  this.g = {};
+  this.h = {};
   this.a = [];
   this.b = 0;
   var c = arguments.length;
@@ -654,7 +654,7 @@ g.va = function() {
 g.I = function() {
   Zb(this);
   for (var a = [], b = 0;b < this.a.length;b++) {
-    a.push(this.g[this.a[b]]);
+    a.push(this.h[this.a[b]]);
   }
   return a;
 };
@@ -685,17 +685,17 @@ g.isEmpty = function() {
   return 0 == this.b;
 };
 g.clear = function() {
-  this.g = {};
+  this.h = {};
   this.b = this.a.length = 0;
 };
 g.remove = function(a) {
-  return ac(this.g, a) ? (delete this.g[a], this.b--, this.a.length > 2 * this.b && Zb(this), !0) : !1;
+  return ac(this.h, a) ? (delete this.h[a], this.b--, this.a.length > 2 * this.b && Zb(this), !0) : !1;
 };
 function Zb(a) {
   if (a.b != a.a.length) {
     for (var b = 0, c = 0;b < a.a.length;) {
       var d = a.a[b];
-      ac(a.g, d) && (a.a[c++] = d);
+      ac(a.h, d) && (a.a[c++] = d);
       b++;
     }
     a.a.length = c;
@@ -708,11 +708,11 @@ function Zb(a) {
   }
 }
 g.get = function(a, b) {
-  return ac(this.g, a) ? this.g[a] : b;
+  return ac(this.h, a) ? this.h[a] : b;
 };
 g.set = function(a, b) {
-  ac(this.g, a) || (this.b++, this.a.push(a));
-  this.g[a] = b;
+  ac(this.h, a) || (this.b++, this.a.push(a));
+  this.h[a] = b;
 };
 g.forEach = function(a, b) {
   for (var c = this.getKeys(), d = 0;d < c.length;d++) {
@@ -881,8 +881,8 @@ function qc(a, b, c) {
   return c;
 }
 function rc(a, b) {
-  Xa(b, function(b, d) {
-    "style" == d ? a.style.cssText = b : "class" == d ? a.className = b : "for" == d ? a.htmlFor = b : d in sc ? a.setAttribute(sc[d], b) : 0 == d.lastIndexOf("aria-", 0) || 0 == d.lastIndexOf("data-", 0) ? a.setAttribute(d, b) : a[d] = b;
+  Xa(b, function(c, b) {
+    "style" == b ? a.style.cssText = c : "class" == b ? a.className = c : "for" == b ? a.htmlFor = c : b in sc ? a.setAttribute(sc[b], c) : 0 == b.lastIndexOf("aria-", 0) || 0 == b.lastIndexOf("data-", 0) ? a.setAttribute(b, c) : a[b] = c;
   });
 }
 var sc = {cellpadding:"cellPadding", cellspacing:"cellSpacing", colspan:"colSpan", frameborder:"frameBorder", height:"height", maxlength:"maxLength", role:"role", rowspan:"rowSpan", type:"type", usemap:"useMap", valign:"vAlign", width:"width"};
@@ -1015,7 +1015,7 @@ function S(a, b) {
   B.call(this, a ? a.type : "");
   this.currentTarget = this.target = null;
   this.keyCode = this.clientY = this.clientX = this.offsetY = this.offsetX = 0;
-  this.f = this.j = this.a = this.i = !1;
+  this.g = this.j = this.a = this.i = !1;
   this.K = null;
   if (a) {
     this.type = a.type;
@@ -1036,7 +1036,7 @@ function S(a, b) {
     this.i = a.ctrlKey;
     this.a = a.altKey;
     this.j = a.shiftKey;
-    this.f = a.metaKey;
+    this.g = a.metaKey;
     this.K = a;
     a.defaultPrevented && this.preventDefault();
   }
@@ -1253,7 +1253,7 @@ ol.inherits(Vc, ol.control.Control);
 function V() {
   Oa.call(this);
   this.C = new Rb(this);
-  this.fb = this;
+  this.hb = this;
   this.Da = null;
 }
 t(V, Oa);
@@ -1272,7 +1272,7 @@ g.dispatchEvent = function(a) {
       b.push(c);
     }
   }
-  var c = this.fb, d = a.type || a;
+  var c = this.hb, d = a.type || a;
   if (p(a)) {
     a = new B(a, c);
   } else {
@@ -1326,7 +1326,7 @@ function Wc(a, b, c, d) {
       e = !1 !== m.call(n, d) && e;
     }
   }
-  return e && 0 != d.ab;
+  return e && 0 != d.cb;
 }
 g.ya = function(a, b, c, d) {
   return this.C.ya(String(a), b, c, d);
@@ -1551,7 +1551,7 @@ ol.Collection.prototype.removeFeature = function(a) {
 };
 function fd(a, b) {
   var c = b.getSource();
-  this.g = a;
+  this.h = a;
   this.s = [new ol.interaction.Draw({features:c.getFeaturesCollection(), type:"Polygon", style:x.l.Fa}), new ol.interaction.Modify({features:b.getSource().getFeaturesCollection(), deleteCondition:function(a) {
     return ol.events.condition.shiftKeyOnly(a) && ol.events.condition.singleClick(a);
   }})];
@@ -1570,7 +1570,7 @@ fd.prototype.A = function() {
 };
 fd.prototype.G = function() {
   for (var a = 0;a < this.s.length;a++) {
-    this.g.addInteraction(this.s[a]);
+    this.h.addInteraction(this.s[a]);
   }
 };
 fd.prototype.B = function() {
@@ -1579,7 +1579,7 @@ fd.prototype.B = function() {
 };
 fd.prototype.J = function() {
   for (var a = 0;a < this.s.length;a++) {
-    this.g.removeInteraction(this.s[a]);
+    this.h.removeInteraction(this.s[a]);
   }
 };
 function gd() {
@@ -1734,8 +1734,8 @@ g.ta = !1;
 var nd = {3:13, 12:144, 63232:38, 63233:40, 63234:37, 63235:39, 63236:112, 63237:113, 63238:114, 63239:115, 63240:116, 63241:117, 63242:118, 63243:119, 63244:120, 63245:121, 63246:122, 63247:123, 63248:44, 63272:46, 63273:36, 63275:35, 63276:33, 63277:34, 63289:144, 63302:45}, od = {Up:38, Down:40, Left:37, Right:39, Enter:13, F1:112, F2:113, F3:114, F4:115, F5:116, F6:117, F7:118, F8:119, F9:120, F10:121, F11:122, F12:123, "U+007F":46, Home:36, End:35, PageUp:33, PageDown:34, Insert:45}, pd = J || 
 L && M("525"), qd = gc && K;
 ld.prototype.a = function(a) {
-  L && (17 == this.D && !a.i || 18 == this.D && !a.a || gc && 91 == this.D && !a.f) && (this.N = this.D = -1);
-  -1 == this.D && (a.i && 17 != a.keyCode ? this.D = 17 : a.a && 18 != a.keyCode ? this.D = 18 : a.f && 91 != a.keyCode && (this.D = 91));
+  L && (17 == this.D && !a.i || 18 == this.D && !a.a || gc && 91 == this.D && !a.g) && (this.N = this.D = -1);
+  -1 == this.D && (a.i && 17 != a.keyCode ? this.D = 17 : a.a && 18 != a.keyCode ? this.D = 18 : a.g && 91 != a.keyCode && (this.D = 91));
   pd && !hd(a.keyCode, this.D, a.j, a.i, a.a) ? this.handleEvent(a) : (this.N = jd(a.keyCode), qd && (this.ta = a.a));
 };
 ld.prototype.b = function(a) {
@@ -1950,7 +1950,7 @@ function Hd(a, b) {
       var h = l(a[f]) ? a[f] : [];
       delete a[f];
       a = q(this.start, this, a, b, e);
-      Ed(na(e.Gb, h, a), b, e);
+      Ed(na(e.Hb, h, a), b, e);
       l(e.ka) && (e.ka.innerHTML = l(f) ? f : "");
       l(f) || (console.log("Visualization finished ...."), e.u = !1, l(e.o) && E(e.o, "play"));
     }
@@ -1967,15 +1967,15 @@ function Id(a, b) {
   }
   return e;
 }
-Fd.prototype.Gb = function(a, b) {
-  ({Oa:function(a, b, e, f, h) {
+Fd.prototype.Hb = function(a, b) {
+  ({Qa:function(a, b, e, f, h) {
     if (h.u) {
       var m = a[0].getOpacity() + b;
       if (1.05 >= m) {
         for (var n = 0;n < a.length;n++) {
           a[n].setOpacity(m);
         }
-        Ed(na(this.Oa, a, b, e, f, h), e, this);
+        Ed(na(this.Qa, a, b, e, f, h), e, this);
       } else {
         l(f) && f();
       }
@@ -1984,7 +1984,7 @@ Fd.prototype.Gb = function(a, b) {
     for (var m = 0;m < a.length;m++) {
       a[m].setOpacity(0), a[m].setVisible(!0);
     }
-    Ed(na(this.Oa, a, b, e, f, h), e, this);
+    Ed(na(this.Qa, a, b, e, f, h), e, this);
   }}).start(a, .1, 500, b, this);
 };
 function Jd(a) {
@@ -2016,16 +2016,16 @@ function Nd(a, b) {
 }
 ;function X(a) {
   V.call(this);
-  this.gb = new Yb;
+  this.ib = new Yb;
   this.S = a || null;
   this.u = !1;
   this.O = this.a = null;
   this.j = this.ga = "";
-  this.b = this.ea = this.f = this.V = !1;
+  this.b = this.ea = this.g = this.V = !1;
   this.v = 0;
   this.m = null;
   this.Ea = Od;
-  this.ha = this.hb = !1;
+  this.ha = this.jb = !1;
 }
 t(X, V);
 var Od = "", Qd = /^https?$/i, Rd = ["POST", "PUT"], Sd = [];
@@ -2033,11 +2033,11 @@ function Td(a, b, c, d) {
   var e = new X;
   Sd.push(e);
   b && e.C.add("complete", b, !1, void 0, void 0);
-  e.C.add("ready", e.lb, !0, void 0, void 0);
+  e.C.add("ready", e.nb, !0, void 0, void 0);
   e.send(a, c, d, void 0);
 }
 g = X.prototype;
-g.lb = function() {
+g.nb = function() {
   z(this);
   Fb(Sd, this);
 };
@@ -2052,7 +2052,7 @@ g.send = function(a, b, c, d) {
   this.u = !0;
   this.a = this.S ? Xb(this.S) : Xb(Ub);
   this.O = this.S ? kb(this.S) : kb(Ub);
-  this.a.onreadystatechange = q(this.Va, this);
+  this.a.onreadystatechange = q(this.Xa, this);
   try {
     this.ea = !0, this.a.open(b, String(a), !0), this.ea = !1;
   } catch (e) {
@@ -2060,7 +2060,7 @@ g.send = function(a, b, c, d) {
     return;
   }
   a = c || "";
-  var f = this.gb.clone();
+  var f = this.ib.clone();
   d && cc(d, function(a, b) {
     f.set(b, a);
   });
@@ -2071,9 +2071,9 @@ g.send = function(a, b, c, d) {
     this.a.setRequestHeader(b, a);
   }, this);
   this.Ea && (this.a.responseType = this.Ea);
-  "withCredentials" in this.a && (this.a.withCredentials = this.hb);
+  "withCredentials" in this.a && (this.a.withCredentials = this.jb);
   try {
-    Vd(this), 0 < this.v && ((this.ha = Wd(this.a)) ? (this.a.timeout = this.v, this.a.ontimeout = q(this.cb, this)) : this.m = Ed(this.cb, this.v, this)), this.f = !0, this.a.send(a), this.f = !1;
+    Vd(this), 0 < this.v && ((this.ha = Wd(this.a)) ? (this.a.timeout = this.v, this.a.ontimeout = q(this.fb, this)) : this.m = Ed(this.fb, this.v, this)), this.g = !0, this.a.send(a), this.g = !1;
   } catch (h) {
     Ud(this, h);
   }
@@ -2084,7 +2084,7 @@ function Wd(a) {
 function Db(a) {
   return "content-type" == a.toLowerCase();
 }
-g.cb = function() {
+g.fb = function() {
   "undefined" != typeof aa && this.a && (this.j = "Timed out after " + this.v + "ms, aborting", this.dispatchEvent("timeout"), this.a && this.u && (this.u = !1, this.b = !0, this.a.abort(), this.b = !1, this.dispatchEvent("complete"), this.dispatchEvent("abort"), Xd(this)));
 };
 function Ud(a, b) {
@@ -2101,16 +2101,16 @@ g.R = function() {
   this.a && (this.u && (this.u = !1, this.b = !0, this.a.abort(), this.b = !1), Xd(this, !0));
   X.fa.R.call(this);
 };
-g.Va = function() {
-  this.i || (this.ea || this.f || this.b ? Zd(this) : this.Cb());
+g.Xa = function() {
+  this.i || (this.ea || this.g || this.b ? Zd(this) : this.Db());
 };
-g.Cb = function() {
+g.Db = function() {
   Zd(this);
 };
 function Zd(a) {
   if (a.u && "undefined" != typeof aa && (!a.O[1] || 4 != $d(a) || 2 != ae(a))) {
-    if (a.f && 4 == $d(a)) {
-      Ed(a.Va, 0, a);
+    if (a.g && 4 == $d(a)) {
+      Ed(a.Xa, 0, a);
     } else {
       if (a.dispatchEvent("readystatechange"), 4 == $d(a)) {
         a.u = !1;
@@ -2256,7 +2256,7 @@ function he(a, b) {
 }
 t(ie, V);
 function je(a, b, c, d, e, f, h) {
-  a.f = c;
+  a.g = c;
   a.j = d;
   var m = new ol.proj.Projection({code:"ZOOMIFY", units:"pixels", extent:[0, 0, d, c]});
   a.m = new ol.source.Zoomify({url:b, size:[d, c], crossOrigin:"*"});
@@ -2272,7 +2272,7 @@ ie.prototype.getMap = function() {
   return this.a;
 };
 ie.prototype.getHeight = function() {
-  return parseInt(this.f, 0);
+  return parseInt(this.g, 0);
 };
 ie.prototype.getWidth = function() {
   return parseInt(this.j, 0);
@@ -2282,15 +2282,15 @@ function ke(a, b) {
 }
 t(ke, ie);
 function Z(a, b) {
-  this.j = this.v = this.f = "";
+  this.j = this.v = this.g = "";
   this.m = null;
   this.H = this.b = "";
   this.i = !1;
   var c;
-  a instanceof Z ? (this.i = l(b) ? b : a.i, le(this, a.f), this.v = a.v, this.j = a.j, me(this, a.m), this.b = a.b, ne(this, a.a.clone()), this.H = a.H) : a && (c = Ld(String(a))) ? (this.i = !!b, le(this, c[1] || "", !0), this.v = oe(c[2] || ""), this.j = oe(c[3] || "", !0), me(this, c[4]), this.b = oe(c[5] || "", !0), ne(this, c[6] || "", !0), this.H = oe(c[7] || "")) : (this.i = !!b, this.a = new pe(null, 0, this.i));
+  a instanceof Z ? (this.i = l(b) ? b : a.i, le(this, a.g), this.v = a.v, this.j = a.j, me(this, a.m), this.b = a.b, ne(this, a.a.clone()), this.H = a.H) : a && (c = Ld(String(a))) ? (this.i = !!b, le(this, c[1] || "", !0), this.v = oe(c[2] || ""), this.j = oe(c[3] || "", !0), me(this, c[4]), this.b = oe(c[5] || "", !0), ne(this, c[6] || "", !0), this.H = oe(c[7] || "")) : (this.i = !!b, this.a = new pe(null, 0, this.i));
 }
 Z.prototype.toString = function() {
-  var a = [], b = this.f;
+  var a = [], b = this.g;
   b && a.push(qe(b, re, !0), ":");
   if (b = this.j) {
     a.push("//");
@@ -2311,8 +2311,8 @@ Z.prototype.clone = function() {
   return new Z(this);
 };
 function le(a, b, c) {
-  a.f = c ? oe(b, !0) : b;
-  a.f && (a.f = a.f.replace(/:$/, ""));
+  a.g = c ? oe(b, !0) : b;
+  a.g && (a.g = a.g.replace(/:$/, ""));
 }
 function me(a, b) {
   if (b) {
@@ -2345,7 +2345,7 @@ var re = /[#\/\?@]/g, te = /[\#\?:]/g, se = /[\#\?]/g, we = /[\#\?@]/g, ue = /#/
 function pe(a, b, c) {
   this.b = this.a = null;
   this.i = a || null;
-  this.f = !!c;
+  this.g = !!c;
 }
 function ze(a) {
   a.a || (a.a = new Yb, a.b = 0, a.i && Nd(a.i, function(b, c) {
@@ -2370,7 +2370,7 @@ g.add = function(a, b) {
 g.remove = function(a) {
   ze(this);
   a = Ae(this, a);
-  return ac(this.a.g, a) ? (this.i = null, this.b -= this.a.get(a).length, this.a.remove(a)) : !1;
+  return ac(this.a.h, a) ? (this.i = null, this.b -= this.a.get(a).length, this.a.remove(a)) : !1;
 };
 g.clear = function() {
   this.a = this.i = null;
@@ -2383,7 +2383,7 @@ g.isEmpty = function() {
 function Be(a, b) {
   ze(a);
   b = Ae(a, b);
-  return ac(a.a.g, b);
+  return ac(a.a.h, b);
 }
 g.getKeys = function() {
   ze(this);
@@ -2444,17 +2444,17 @@ g.clone = function() {
 };
 function Ae(a, b) {
   var c = String(b);
-  a.f && (c = c.toLowerCase());
+  a.g && (c = c.toLowerCase());
   return c;
 }
 function ve(a, b) {
-  b && !a.f && (ze(a), a.i = null, a.a.forEach(function(a, b) {
+  b && !a.g && (ze(a), a.i = null, a.a.forEach(function(a, b) {
     var e = b.toLowerCase();
     b != e && (this.remove(b), this.remove(e), 0 < a.length && (this.i = null, this.a.set(Ae(this, e), Hb(a)), this.b += a.length));
   }, a));
-  a.f = b;
+  a.g = b;
 }
-;x.Mb = function() {
+;x.Nb = function() {
   $(window);
 };
 x.Y = function(a) {
@@ -2489,10 +2489,10 @@ x.yb = function(a) {
 x.getQueryParam = function(a, b) {
   return l(b) ? x.La(b).get(a) : x.La().get(a);
 };
-x.ob = function() {
+x.pb = function() {
   return ib.get("vk2-welcomepage");
 };
-x.nb = function(a, b, c, d) {
+x.Na = function(a, b, c, d) {
   var e = new yd("vk2-overlay-modal", document.body, !0);
   e.open(a, l(d) ? d : "");
   Dd(e, "<p>" + b + '</p><br><button type="button" class="btn btn-primary" id="confirm-dialog-btn-yes">' + x.c("yes") + '</button><button type="button" class="btn btn-primary"id="confirm-dialog-btn-no">' + x.c("no") + "</button>");
@@ -2506,10 +2506,10 @@ x.nb = function(a, b, c, d) {
     e.close();
   });
 };
-x.Ob = function() {
+x.Pb = function() {
   return l(ib.get("auth_tkt")) ? !0 : !1;
 };
-x.Ra = function(a) {
+x.Ta = function(a) {
   a = O(a, (l(void 0) ? void 0 : document.body).body);
   for (var b = 0;b < a.length;b++) {
     T(a[b], "click", function(a) {
@@ -2527,7 +2527,7 @@ x.round = function(a, b) {
   var c = l(b) ? Math.pow(10, Math.ceil(b)) : Math.pow(10, 2);
   return Math.round(a * c) / c;
 };
-x.Db = function(a) {
+x.Eb = function(a) {
   a = P("ol-overlaycontainer-stopevent", N(a));
   for (var b = 0;b < a.children.length;b++) {
     var c = a.children[b];
@@ -2538,7 +2538,7 @@ x.Db = function(a) {
     }
   }
 };
-x.Pb = function(a, b, c) {
+x.Qb = function(a, b, c) {
   var d = new X;
   U(d, "success", function(a) {
     a = a.target;
@@ -2551,13 +2551,13 @@ x.Pb = function(a, b, c) {
   });
   d.send(a);
 };
-x.bb = function(a, b) {
+x.eb = function(a, b) {
   ib.set(a, b);
 };
-r("vk2.utils.setCookie", x.bb);
-x.Qb = function() {
+r("vk2.utils.setCookie", x.eb);
+x.Rb = function() {
 };
-x.Rb = function(a, b) {
+x.Sb = function(a, b) {
   var c = Q("div", {"class":"georef-point-container alert alert-warning", style:"display:none;"});
   a.appendChild(c);
   c.innerHTML = "+" + b + " " + x.c("georef_points");
@@ -2565,10 +2565,10 @@ x.Rb = function(a, b) {
     c.innerHTML = "";
   });
 };
-x.Ib = function(a) {
+x.Jb = function(a) {
   return [Math.round(a[0]), Math.round(-1 * a[1])];
 };
-x.Jb = function(a) {
+x.Kb = function(a) {
   return [Math.round(a[0]), Math.round(-1 * a[1])];
 };
 function Ce(a, b) {
@@ -2689,43 +2689,43 @@ function Je(a) {
   var b = l(a.spyLayer) ? a.spyLayer : new ol.layer.Tile({attribution:void 0, source:new ol.source.OSM({attribution:void 0})}), c = l(a.radius) ? parseInt(a.radius, 0) : 75, d = null, e = Q("a", {"class":"ol-has-tooltip", href:"#layerspy", innerHTML:"L"}), f = Q("div", {"class":"ol-layerspy ol-unselectable"}), h = Q("span", {role:"tooltip", innerHTML:x.c("layerspy")});
   f.appendChild(e);
   e.appendChild(h);
-  var m = {Ya:function(a) {
+  var m = {$a:function(a) {
     a.context.restore();
-  }, Za:function(a) {
+  }, ab:function(a) {
     var b = a.context;
     a = a.frameState.pixelRatio;
     b.save();
     b.beginPath();
     d && (b.arc(d[0] * a, d[1] * a, c * a, 0, 2 * Math.PI), b.lineWidth = 5 * a, b.strokeStyle = "rgba(0,0,0,0.5)", b.stroke());
     b.clip();
-  }, Ta:function(a) {
+  }, Va:function(a) {
     d = this.getMap().getEventPixel(a.K);
     this.getMap().render();
-  }, Ua:function() {
+  }, Wa:function() {
     d = null;
     this.getMap().render();
-  }, Pa:function(a) {
+  }, Ra:function(a) {
     89 === a.keyCode ? (c = Math.min(c + 5, 150), this.getMap().render()) : 88 === a.keyCode && (c = Math.max(c - 5, 25), this.getMap().render());
   }, Ha:function(a) {
     a.target.getArray()[a.target.getLength() - 1] !== b && (this.getMap().removeLayer(b), this.getMap().addLayer(b));
   }}, n = null, w = q(function(a, b, c) {
     this.getMap().addLayer(b);
-    b.on("precompose", c.Za, this);
-    b.on("postcompose", c.Ya, this);
-    T(this.getMap().getViewport(), "mousemove", c.Ta, void 0, this);
-    T(this.getMap().getViewport(), "mouseout", c.Ua, void 0, this);
+    b.on("precompose", c.ab, this);
+    b.on("postcompose", c.$a, this);
+    T(this.getMap().getViewport(), "mousemove", c.Va, void 0, this);
+    T(this.getMap().getViewport(), "mouseout", c.Wa, void 0, this);
     D(a, "active");
     n = n || new ld(document);
-    T(n, "key", c.Pa, void 0, this);
+    T(n, "key", c.Ra, void 0, this);
     this.getMap().getLayers().on("add", c.Ha, this);
   }, this), y = q(function(a, b, c) {
-    b.un("precompose", c.Za, this);
-    b.un("postcompose", c.Ya, this);
-    Qc(this.getMap().getViewport(), "mousemove", c.Ta, void 0, this);
-    Qc(this.getMap().getViewport(), "mouseout", c.Ua, void 0, this);
+    b.un("precompose", c.ab, this);
+    b.un("postcompose", c.$a, this);
+    Qc(this.getMap().getViewport(), "mousemove", c.Va, void 0, this);
+    Qc(this.getMap().getViewport(), "mouseout", c.Wa, void 0, this);
     this.getMap().removeLayer(b);
     E(a, "active");
-    Qc(n, "key", c.Pa, void 0, this);
+    Qc(n, "key", c.Ra, void 0, this);
     this.getMap().getLayers().un("add", c.Ha, this);
   }, this);
   T(e, "click", q(function(a) {
@@ -2787,7 +2787,7 @@ function Le(a, b, c) {
   c = Ne(this, a.clip);
   b = new ol.layer.Tile({extent:a.clip.getExtent(), source:new ol.source.XYZ({maxZoom:15, urls:b})});
   c = new ol.layer.Vector({source:new ol.source.Vector({features:[c]}), style:function() {
-    return [x.l.kb];
+    return [x.l.mb];
   }});
   a.layers = [b, c];
   ol.layer.Group.call(this, a);
@@ -2809,7 +2809,7 @@ Me.prototype.getId = function() {
   return this.id_;
 };
 function Oe(a, b) {
-  var c = l(a.aa) ? a.aa : void 0, d = l(a.projection) ? a.projection : "EPSG:900913", e = l(a.eb) ? a.eb : void 0, f = l(a.Qa) ? a.Qa : void 0, h = void 0 === c ? void 0 : c.getExtent();
+  var c = l(a.aa) ? a.aa : void 0, d = l(a.projection) ? a.projection : "EPSG:900913", e = l(a.gb) ? a.gb : void 0, f = l(a.Sa) ? a.Sa : void 0, h = void 0 === c ? void 0 : c.getExtent();
   a.source = new ol.source.TileWMS({url:e, params:{LAYERS:f, VERSION:"1.1.1"}, projection:d, extent:h});
   a.preload = Infinity;
   d = new ol.layer.Tile(a);
@@ -2821,7 +2821,7 @@ function Oe(a, b) {
     }
     return b;
   }, d);
-  d.mb = function(a, b, c) {
+  d.ob = function(a, b, c) {
     c.beginPath();
     c.moveTo(a[0][0] * b, a[0][1] * b);
     for (var d = 1;d < a.length;d++) {
@@ -2832,7 +2832,7 @@ function Oe(a, b) {
   l(c) && (d.on("precompose", function(a) {
     var c = a.context, d = this.xb(b);
     c.save();
-    this.mb(d, a.frameState.pixelRatio, c);
+    this.ob(d, a.frameState.pixelRatio, c);
     c.clip();
   }, d), d.on("postcompose", function(a) {
     a.context.restore();
@@ -2841,15 +2841,15 @@ function Oe(a, b) {
 }
 ;function Pe(a) {
   this.m = l(a.projection) ? a.projection : "EPSG:900913";
-  this.ha = l(a.Ab) ? a.Ab : 20;
+  this.ha = l(a.Bb) ? a.Bb : 20;
   this.Aa = void 0;
   this.j = new ol.Collection;
   this.O = "title";
   this.V = "ascending";
   this.b = 0;
-  this.f = void 0;
+  this.g = void 0;
   this.a = {X:l(a.time) ? a.time[0] : 1868, sa:l(a.time) ? a.time[1] : 1945};
-  this.g = a.map;
+  this.h = a.map;
   this.v = [];
   this.S = !0;
   this.A();
@@ -2857,8 +2857,8 @@ function Oe(a, b) {
 }
 t(Pe, V);
 Pe.prototype.A = function() {
-  this.g.on("moveend", function() {
-    var a = x.Y(this.g);
+  this.h.on("moveend", function() {
+    var a = x.Y(this.h);
     l(this.Aa) && ol.extent.equals(this.Aa, a) || this.ra();
   }, this);
 };
@@ -2889,10 +2889,10 @@ function Qe(a, b, c) {
   return f;
 }
 Pe.prototype.ga = function(a) {
-  this.dispatchEvent(new B("refresh", {features:a, totalFeatureCount:this.f}));
+  this.dispatchEvent(new B("refresh", {features:a, totalFeatureCount:this.g}));
 };
 Pe.prototype.ea = function(a) {
-  this.dispatchEvent(new B("paginate", {features:a, totalFeatureCount:this.f}));
+  this.dispatchEvent(new B("paginate", {features:a, totalFeatureCount:this.g}));
 };
 function Re(a, b, c, d) {
   b = Qe(a, b, c);
@@ -2902,7 +2902,7 @@ function Re(a, b, c, d) {
     a = a.target;
     if (Y(a)) {
       var b = Y(a);
-      this.f = b.hits.total;
+      this.g = b.hits.total;
       z(a);
       a = Ja(b.hits.hits);
       this.j.extend(a);
@@ -2915,7 +2915,7 @@ function Re(a, b, c, d) {
   e.send(c, "POST", JSON.stringify(b));
 }
 Pe.prototype.ra = function() {
-  var a = x.Y(this.g);
+  var a = x.Y(this.h);
   Se(this, a, this.m);
   this.Aa = Hb(a);
 };
@@ -2930,10 +2930,10 @@ function Se(a, b, c) {
   T(this.a, "refresh", q(this.v, this));
   T(this.a, "paginate", q(this.ra, this));
   this.j = ["time", "title", "georeference"];
-  this.f = new ol.layer.Vector({source:new ol.source.Vector, style:function() {
-    return [x.l.jb];
+  this.g = new ol.layer.Vector({source:new ol.source.Vector, style:function() {
+    return [x.l.lb];
   }});
-  b.addLayer(this.f);
+  b.addLayer(this.g);
   Ue(this, this.o);
   Ve(this, this.o);
   We(this);
@@ -2986,7 +2986,7 @@ function Ve(a, b) {
       this.a.O = a;
       this.a.V = c;
       a = this.a;
-      Se(a, x.Y(a.g), a.m);
+      Se(a, x.Y(a.h), a.m);
     }, void 0, a);
   }
 }
@@ -2996,8 +2996,8 @@ function We(a) {
     if (!b) {
       b = !0;
       a = a.currentTarget;
-      if (a.offsetHeight + a.scrollTop >= a.scrollHeight && (a = this.a, !(a.j.getLength() >= a.f) && (a = this.a, a.b < a.f && 500 > a.b))) {
-        var d = x.Y(a.g);
+      if (a.offsetHeight + a.scrollTop >= a.scrollHeight && (a = this.a, !(a.j.getLength() >= a.g) && (a = this.a, a.b < a.g && 500 > a.b))) {
+        var d = x.Y(a.h);
         Re(a, d, a.m, a.ea);
       }
       b = !1;
@@ -3041,7 +3041,7 @@ function Ze(a, b) {
     f.appendChild(h);
     e.get("georeference") || (e = Q("div", {"class":"georeference", innerHTML:x.c("not_georeference")}), f.appendChild(e));
     a.b.appendChild(d);
-    l(a.f) && Le(d, b[c], a.f);
+    l(a.g) && Le(d, b[c], a.g);
   }
 }
 Te.prototype.v = function(a) {
@@ -3050,7 +3050,7 @@ Te.prototype.v = function(a) {
   Ze(this, a.target.features);
 };
 Te.prototype.ra = function(a) {
-  $e(this, a.target.Tb);
+  $e(this, a.target.Ub);
   Ze(this, a.target.features);
 };
 function $e(a, b) {
@@ -3077,8 +3077,8 @@ function bf(a, b) {
   c.appendChild(d);
   a.a = Q("input", {placeholder:x.c("gazetteer_placeholder"), type:"text", "class":"form-control gazetteersearch-input"});
   d.appendChild(a.a);
-  a.f = Q("input", {value:x.c("gazetteer_submit"), type:"submit", "class":"form-control gazetteersearch-submit"});
-  d.appendChild(a.f);
+  a.g = Q("input", {value:x.c("gazetteer_submit"), type:"submit", "class":"form-control gazetteersearch-submit"});
+  d.appendChild(a.g);
 }
 function ef(a) {
   $(a.a).autocomplete({source:q(function(a, c) {
@@ -3098,7 +3098,7 @@ function ff(a) {
   T(a.a, "keydown", function(a) {
     13 === a.keyCode && b(this.a.value);
   }, void 0, a);
-  T(a.f, "click", function() {
+  T(a.g, "click", function() {
     b(this.a.value);
   }, void 0, a);
 }
@@ -3145,7 +3145,7 @@ function hf(a, b, c) {
   this.j = new Zc(this.a, Ea);
   a = this.a;
   c = new Yc(a, c);
-  this.f = new Te(a, b, c);
+  this.g = new Te(a, b, c);
 }
 ;function jf(a, b, c) {
   this.a = p(a) ? N(a) : a;
@@ -3222,61 +3222,61 @@ function lf(a, b) {
     new jf(b.metadataContainer, a.getId(), c);
   }
 }
-;x.h = {};
-x.h.ua = function(a) {
+;x.f = {};
+x.f.ua = function(a) {
   a = a.split("/");
   for (var b = "/", c = 0;c < a.length;c++) {
     "" !== a[c] && (b += a[c] + "/");
   }
   return b;
 };
-x.h.w = function() {
+x.f.w = function() {
   var a = new Z(window.location.href), b = x.getQueryParam("L");
   return v ? Ca : a.b + "?" + Ca + "&L=" + (void 0 !== b && "" !== b ? b : 0);
 };
-x.h.wa = function(a) {
+x.f.wa = function(a) {
   new Z(window.location.href);
-  return v ? ra + "&" + a : x.h.w() + "&" + ra + "&" + a;
+  return v ? ra + "&" + a : x.f.w() + "&" + ra + "&" + a;
 };
-x.h.tb = function(a) {
+x.f.ub = function(a) {
   new Z(window.location.href);
-  return v ? ta + "&" + a : x.h.w() + "&" + ta + "&" + a;
+  return v ? ta + "&" + a : x.f.w() + "&" + ta + "&" + a;
 };
-x.h.sb = function(a) {
+x.f.tb = function(a) {
   new Z(window.location.href);
-  return v ? sa + "&" + a : x.h.w() + "&" + sa + "&" + a;
+  return v ? sa + "&" + a : x.f.w() + "&" + sa + "&" + a;
 };
-x.h.vb = function() {
+x.f.wb = function() {
   new Z(window.location.href);
-  return v ? xa : x.h.w() + "&" + xa;
+  return v ? xa : x.f.w() + "&" + xa;
 };
-x.h.ub = function() {
+x.f.vb = function() {
   new Z(window.location.href);
-  return v ? ya : x.h.w() + "&" + ya;
+  return v ? ya : x.f.w() + "&" + ya;
 };
-x.h.qb = function(a) {
+x.f.rb = function(a) {
   new Z(window.location.href);
-  return v ? wa + "&" + a : x.h.w() + "&" + wa + "&" + a;
+  return v ? wa + "&" + a : x.f.w() + "&" + wa + "&" + a;
 };
-x.h.rb = function() {
+x.f.sb = function() {
   new Z(window.location.href);
-  return v ? Ba + "&undefined" : x.h.w() + "&" + Ba + "&undefined";
+  return v ? Ba + "&undefined" : x.f.w() + "&" + Ba + "&undefined";
 };
-x.h.pb = function() {
+x.f.qb = function() {
   new Z(window.location.href);
-  return v ? ua + "&undefined" : x.h.w() + "&" + ua + "&undefined";
+  return v ? ua + "&undefined" : x.f.w() + "&" + ua + "&undefined";
 };
-x.h.ma = function(a, b) {
+x.f.ma = function(a, b) {
   var c = void 0 !== a ? "&objectid=" + a : void 0 !== b ? "&" + b : "", d = new Z(window.location.href);
-  return v ? x.h.ua(d.b + "/" + Aa) + "?" + c : x.h.w() + "&" + Aa + c;
+  return v ? x.f.ua(d.b + "/" + Aa) + "?" + c : x.f.w() + "&" + Aa + c;
 };
-x.h.Na = function(a) {
+x.f.Pa = function(a) {
   var b = new Z(window.location.href);
-  return v ? x.h.ua(b.b + "/" + Da) + "?objectid=" + a : x.h.w() + "&" + Da + "&objectid=" + a;
+  return v ? x.f.ua(b.b + "/" + Da) + "?objectid=" + a : x.f.w() + "&" + Da + "&objectid=" + a;
 };
-x.h.wb = function() {
+x.f.Oa = function() {
   var a = new Z(window.location.href);
-  return v ? x.h.ua(a.b) + "/" + Ca : x.h.w();
+  return v ? x.f.ua(a.b) + "/" + Ca : x.f.w();
 };
 r("vk2.app.GeoreferenceChooseApp", function(a) {
   mf(this, N(a.target), N(a.targetCount));
@@ -3316,7 +3316,7 @@ function mf(a, b, c) {
 function of(a) {
   var b = a._source, c = a._id;
   a = b.maptype;
-  var d = void 0 !== b.thumb ? b.thumb : "#", c = void 0 !== c ? x.h.ma(c) : "#", e = b.time;
+  var d = void 0 !== b.thumb ? b.thumb : "#", c = void 0 !== c ? x.f.ma(c) : "#", e = b.time;
   return Q("li", {id:b.id, innerHTML:'<div class="container record-container"><div class="image"><img class="lazy-image" alt="" data-original="' + d + '"></div><div class="body"><p><strong>' + b.title + "</strong></p><p>" + x.c("georef-choose-time") + ": " + e + "</p><p>" + x.c("georef-choose-maptype") + ": " + a + '</p></div><div class="tools"><a class="btn btn-primary" href="' + c + '" target="_blank">' + x.c("georef-choose-goToGeoreference") + "</a></div></div>"});
 }
 ;r("vk2.app.UserHistoryApp", function(a) {
@@ -3332,7 +3332,7 @@ function pf(a, b, c) {
       for (var h = 0, m = d.georef_profile.length;h < m;h++) {
         var n;
         n = d.georef_profile[h];
-        var w = void 0 !== n.transformed && !0 === n.transformed ? Ha + "?SERVICE=WMS&VERSION=1.0.0&REQUEST=GetCapabilities&map=" + n.mapid : "#", y = void 0 !== n.thumbnail ? n.thumbnail : "#", A = x.h.w() + "&oid=" + n.mapid, A = void 0 !== n.transformed && !0 === n.transformed ? '<a href="' + A + '" target="_blank">Klick</a>' : x.c("georef-history-beingGenerated"), G = "" !== n.isvalide ? n.isvalide : "unknown";
+        var w = void 0 !== n.transformed && !0 === n.transformed ? Ha + "?SERVICE=WMS&VERSION=1.0.0&REQUEST=GetCapabilities&map=" + n.mapid : "#", y = void 0 !== n.thumbnail ? n.thumbnail : "#", A = x.f.w() + "&oid=" + n.mapid, A = void 0 !== n.transformed && !0 === n.transformed ? '<a href="' + A + '" target="_blank">Klick</a>' : x.c("georef-history-beingGenerated"), G = "" !== n.isvalide ? n.isvalide : "unknown";
         n = Q("article", {id:n.georefid, innerHTML:'<div class="media"><a class="pull-right" href="' + w + '"><img alt="" src="' + y + '"></a><div class="media-body"><p><strong>' + x.c("georef-history-processId") + ":</strong><br>" + n.georefid + "</p><p><strong>" + x.c("georef-history-isValidated") + ":</strong><br>" + G + "</p><p><strong>" + x.c("georef-history-mapId") + ":</strong><br>" + n.mapid + "</p><p><strong>" + x.c("georef-history-mapSheetInfo") + ":</strong><br>" + n.title + "</p><p><strong>" + 
         x.c("georef-history-georefParams") + ":</strong><br>" + JSON.stringify(n.georefparams) + "</p><p><strong>" + x.c("georef-history-persistentAccess") + ":</strong><br>" + A + '</p><p class="meta">Created: ' + n.georeftime + "</p></div></div>"});
         b.appendChild(n);
@@ -3343,14 +3343,14 @@ function pf(a, b, c) {
   U(d, "error", function() {
     alert("Something went wrong, while trying to fetch data from the server.");
   }, !1, a);
-  a = x.h.vb();
+  a = x.f.wb();
   d.send(a, "GET");
 }
 ;r("vk2.app.WelcomePageApp", function(a) {
   var b = void 0 !== a.georefenceElClass ? O(a.georefenceElClass) : void 0, c = void 0 !== a.overallGeorefenceElClass ? O(a.overallGeorefenceElClass) : void 0, d = void 0 !== a.relGeoreferenceElClass ? O(a.relGeoreferenceElClass) : void 0, e = void 0 !== a.georeferenceUserRankingElId ? N(a.georeferenceUserRankingElId) : void 0;
   $("#" + a.deactivateWelcomePageId).change(function() {
     var a = $(this).prop("checked") ? "off" : "on";
-    x.bb("vk2-welcomepage", a);
+    x.eb("vk2-welcomepage", a);
   });
   void 0 !== b && void 0 !== c && void 0 !== d && void 0 !== e && qf(this, b, c, d, e);
 });
@@ -3376,7 +3376,7 @@ function qf(a, b, c, d, e) {
   U(f, "error", function() {
     alert("Something went wrong, while trying to fetch data from the server.");
   }, !1, a);
-  a = x.h.ub();
+  a = x.f.vb();
   f.send(a, "GET");
 }
 function rf(a, b) {
@@ -3420,7 +3420,7 @@ function rf(a, b) {
   d.appendChild(f);
   d = Q("span", {"class":"timestamps-label", innerHTML:x.c("timestamp") + " " + a.getTime()});
   f.appendChild(d);
-  ib.get("vk2-auth") && (d = Q("a", {"class":"georeference-update", innerHTML:x.c("updateGeoref") + " ...", target:"_blank", href:x.h.ma(a.getId())}), b.appendChild(d));
+  ib.get("vk2-auth") && (d = Q("a", {"class":"georeference-update", innerHTML:x.c("updateGeoref") + " ...", target:"_blank", href:x.f.ma(a.getId())}), b.appendChild(d));
   new Dc(e, a);
   a.on("change:visible", function() {
     !a.getVisible() && F(e, "visible") ? Mb(e, "visible", "notvisible") : a.getVisible() && F(e, "notvisible") && Mb(e, "notvisible", "visible");
@@ -3428,16 +3428,16 @@ function rf(a, b) {
   return e;
 }
 ;function tf(a, b, c) {
-  Td(x.h.rb(), function(a) {
+  Td(x.f.sb(), function(a) {
     200 === ae(a.target) ? b(a) : c(a);
   }, "POST", "req=" + JSON.stringify(a));
 }
 function uf(a, b) {
-  Td(x.h.pb(), b, "POST", "req=" + JSON.stringify(a));
+  Td(x.f.qb(), b, "POST", "req=" + JSON.stringify(a));
 }
 ;function vf(a, b, c) {
   this.a = b;
-  this.g = c;
+  this.h = c;
   b = p(a) ? N(a) : a;
   a = Q("div", {"class":"layermanagement-container", id:"layermanagement-container"});
   b.appendChild(a);
@@ -3448,8 +3448,8 @@ function uf(a, b) {
   c = Q("ul", {"class":"layermanagement-body", innerHTML:'<li class="empty">' + x.c("start_message") + "</li>"});
   a.appendChild(c);
   this.b = c;
-  new Ce(b, this.g);
-  new Ee(b, this.g);
+  new Ce(b, this.h);
+  new Ee(b, this.h);
   this.G();
   V.call(this);
 }
@@ -3468,12 +3468,12 @@ function xf(a, b) {
     }
   }
 }
-vf.prototype.f = function(a) {
+vf.prototype.g = function(a) {
   if (l(a.element.la) && a.element.la()) {
     this.b.innerHTML = "";
     a = wf(this);
     for (var b = a.length - 1;0 <= b;b--) {
-      var c = sf(a[b], b, this.g);
+      var c = sf(a[b], b, this.h);
       this.b.appendChild(c);
     }
   }
@@ -3483,12 +3483,12 @@ vf.prototype.f = function(a) {
   }, this)});
 };
 vf.prototype.G = function() {
-  this.a.on("add", this.f, this);
-  this.a.on("remove", this.f, this);
+  this.a.on("add", this.g, this);
+  this.a.on("remove", this.g, this);
 };
 vf.prototype.J = function() {
-  this.a.un("add", this.f, this);
-  this.a.un("remove", this.f, this);
+  this.a.un("add", this.g, this);
+  this.a.un("remove", this.g, this);
 };
 function yf() {
   V.call(this);
@@ -3545,7 +3545,7 @@ function Bf(a) {
   });
   var c = ol.proj.transform(a.getView().getCenter(), u.projection, "EPSG:4326");
   a = a.getView().getZoom();
-  var d = new Z(window.location.origin + x.h.w() + "&welcomepage=off"), e = d.a;
+  var d = new Z(window.location.origin + x.f.w() + "&welcomepage=off"), e = d.a;
   e.set("z", a);
   e.set("c", x.round(c[0], 4) + "," + x.round(c[1], 4));
   e.set("oid", b);
@@ -3591,8 +3591,8 @@ function De(a) {
   return b;
 }
 function Df(a, b) {
-  this.g = Ef(a, void 0 !== b ? b : {projection:"EPSG:3857", center:[1528150, 6630500], zoom:2});
-  this.g.on("singleclick", function(a) {
+  this.h = Ef(a, void 0 !== b ? b : {projection:"EPSG:3857", center:[1528150, 6630500], zoom:2});
+  this.h.on("singleclick", function(a) {
     var b = [];
     this.forEachFeatureAtPixel(a.pixel, function(a) {
       b.push(a);
@@ -3606,7 +3606,7 @@ function Ef(a, b) {
 }
 function Gf(a, b) {
   T(b, "jumpto", function(a) {
-    var b = this.g.getView(), e = a.target.lonlat;
+    var b = this.h.getView(), e = a.target.lonlat;
     b.setCenter(ol.proj.transform([parseFloat(e[0]), parseFloat(e[1])], a.target.srs, "EPSG:900913"));
     b.setZoom(5);
   }, void 0, a);
@@ -3616,14 +3616,14 @@ function Hf(a, b) {
   T(a.a, "click-record", function(a) {
     a = a.target.feature;
     if (a.get("georeference")) {
-      this.g.addLayer(If(a));
+      this.h.addLayer(If(a));
     } else {
       if (void 0 !== a) {
         var b = new yd("vk2-overlay-modal", document.body, !0);
         b.open(void 0, "mapcontroller-click-modal georeference-dialog");
-        var e = Q("section"), f = Q("a", {"class":"btn btn-primary", href:x.h.ma(a.getId()), innerHTML:x.c("go_to_georeference"), target:"_blank"});
+        var e = Q("section"), f = Q("a", {"class":"btn btn-primary", href:x.f.ma(a.getId()), innerHTML:x.c("go_to_georeference"), target:"_blank"});
         e.appendChild(f);
-        f = Q("a", {"class":"btn btn-primary", href:x.h.Na(a.getId()), innerHTML:x.c("go_to_originalmap"), target:"_self"});
+        f = Q("a", {"class":"btn btn-primary", href:x.f.Pa(a.getId()), innerHTML:x.c("go_to_originalmap"), target:"_self"});
         e.appendChild(f);
         Cd(b, e);
       }
@@ -3632,7 +3632,7 @@ function Hf(a, b) {
 }
 function Jf(a, b) {
   T(b, "addmap", function(a) {
-    this.g.addLayer(If(a.target.feature));
+    this.h.addLayer(If(a.target.feature));
   }, void 0, a);
 }
 function Kf(a, b) {
@@ -3653,7 +3653,7 @@ function Kf(a, b) {
       b.a.sa = a;
     }
     b = this.a.a;
-    Se(b, x.Y(b.g), b.m);
+    Se(b, x.Y(b.h), b.m);
   }, void 0, a);
 }
 function If(a) {
@@ -3664,7 +3664,7 @@ function Ff(a) {
     var b = new yd("vk2-overlay-modal", document.body, !0);
     b.open(void 0, "mapcontroller-click-modal");
     for (var c = Q("section"), d = 0;d < a.length;d++) {
-      var e = Q("a", {href:x.h.Na(a[d].getId()), innerHTML:a[d].get("title") + " " + a[d].get("time"), target:"_self"});
+      var e = Q("a", {href:x.f.Pa(a[d].getId()), innerHTML:a[d].get("title") + " " + a[d].get("time"), target:"_self"});
       c.appendChild(e);
       var f = Q("br");
       c.appendChild(f);
@@ -3674,18 +3674,18 @@ function Ff(a) {
   }
 }
 Df.prototype.getMap = function() {
-  return this.g;
+  return this.h;
 };
 Df.prototype.getMap = Df.prototype.getMap;
 function Lf(a, b) {
-  Hf(a, b.f);
+  Hf(a, b.g);
   Kf(a, b.j);
   Gf(a, b.b);
 }
 ;r("vk2.app.PresentationApp", function(a) {
   x.Ia();
   var b = l(a.authenticate) && "boolean" == typeof a.authenticate ? a.authenticate : !1, c = b && za ? !0 : !1;
-  x.Ra(l(a.modalAnchorClassName) ? a.modalAnchorClassName : "vk2-modal-anchor");
+  x.Ta(l(a.modalAnchorClassName) ? a.modalAnchorClassName : "vk2-modal-anchor");
   b || Mf();
   b = new Df(a.mapContainerId, u);
   c = new hf(a.spatialsearchContainerId, b.getMap(), c);
@@ -3695,40 +3695,90 @@ function Lf(a, b) {
   zf(c, b.getMap());
   Jf(b, c);
   setTimeout(function() {
-    x.Db(a.mapContainerId);
+    x.Eb(a.mapContainerId);
   }, 500);
 });
 function Mf() {
   var a = x.getQueryParam("welcomepage");
-  N("welcome-page-link") && "off" !== x.ob() && "off" !== a && N("welcome-page-link").click();
+  N("welcome-page-link") && "off" !== x.pb() && "off" !== a && N("welcome-page-link").click();
 }
-;function Nf(a) {
+;function Nf(a, b, c, d) {
+  var e = Q("div", {"class":"vk2GeorefToolsBtn btn btn-default btn-submit deactivate", innerHTML:'<span class="glyphicon glyphicon-refresh"></span> ' + x.c("submitBtn_validate")});
+  N(a).appendChild(e);
+  T(e, "click", q(this.a, this, b, c, d));
+  V.call(this);
+}
+t(Nf, V);
+Nf.prototype.a = function(a, b, c) {
+  this.dispatchEvent(new B("start-confirm", {}));
+  var d = Cc(), e = Of(b, d);
+  c = 0 < c.getFeatures().length ? c.getFeatures()[0].getGeometry().clone().transform(u.projection, d) : void 0;
+  var f = b.getType();
+  if (4 > e.gcps.length) {
+    alert("You have to place at least 4 ground control points");
+  } else {
+    var h = {georeference:e, id:a, type:f};
+    void 0 !== c && (h.clip = {source:d, polygon:c.getCoordinates()[0]});
+    "update" === f && (a = l(b.Za) ? b.Za : void 0, h.overwrites = a);
+    var m = q(function(a) {
+      a = Y(a.target);
+      this.dispatchEvent(new B("end-confirm", {data:a}));
+    }, this);
+    q(function() {
+      this.dispatchEvent(new B("error", {error:"Something went wrong, while sending confirmation data from the server."}));
+    }, this);
+    h.hasOwnProperty("clip") ? uf(h, m) : x.Na(x.c("confirm_dialog_clip_title"), x.c("confirm_dialog_clip_msg"), function() {
+      uf(h, m);
+    }, "georeference-confirm-without-clip");
+  }
+};
+function Pf(a, b, c) {
+  var d = Q("div", {"class":"vk2GeorefToolsBtn btn btn-default btn-validate", innerHTML:'<span class="glyphicon glyphicon-refresh"></span> ' + x.c("validateBtn_validate")});
+  N(a).appendChild(d);
+  T(d, "click", q(this.a, this, b, c));
+  V.call(this);
+}
+t(Pf, V);
+Pf.prototype.a = function(a, b) {
+  var c = {georeference:Qf(b, Bc(), Cc()), id:a};
+  if (!(4 > c.georeference.gcps.length)) {
+    this.dispatchEvent(new B("start-warping", {}));
+    var d = q(function(a) {
+      a = Y(a.target);
+      this.dispatchEvent(new B("end-warping", {data:a, georefParams:c}));
+    }, this), e = q(function() {
+      this.dispatchEvent(new B("error", {error:"Something went wrong, while fetching validation data from the server."}));
+    }, this);
+    tf(c, d, e);
+  }
+};
+function Rf(a) {
   this.a = l(a.ca) && ia(a.ca) ? l(a.ca["new"]) ? ab(a.ca["new"]) : ab(a.ca) : {source:"pixel", target:"EPSG:4314"};
-  this.Xa = l(a.Wa) ? a.Wa : void 0;
-  this.f = l(a.Sb) ? a.$a : {source:"pixel", target:"EPSG:900913"};
+  this.Za = l(a.Ya) ? a.Ya : void 0;
+  this.g = l(a.Tb) ? a.bb : {source:"pixel", target:"EPSG:900913"};
   this.b = a.sources;
   this.m = l(a.type) ? "update" === a.type ? !0 : !1 : !1;
   this.j = new Ka;
   this.G();
   V.call(this);
 }
-t(Nf, V);
-Nf.prototype.G = function() {
-  Of(this, this.b);
+t(Rf, V);
+Rf.prototype.G = function() {
+  Sf(this, this.b);
   if (this.a.hasOwnProperty("gcps")) {
-    for (var a = this.a, b = this.b, c = this.f, d = 0;d < a.gcps.length;d++) {
-      var e = a.gcps[d], f = x.Jb(e.source), f = new ol.Feature(new ol.geom.Point(f)), e = ol.proj.transform(e.target, a.target, c.target), e = new ol.Feature(new ol.geom.Point(e));
+    for (var a = this.a, b = this.b, c = this.g, d = 0;d < a.gcps.length;d++) {
+      var e = a.gcps[d], f = x.Kb(e.source), f = new ol.Feature(new ol.geom.Point(f)), e = ol.proj.transform(e.target, a.target, c.target), e = new ol.Feature(new ol.geom.Point(e));
       b[0].addFeature(f);
       b[1].addFeature(e);
     }
   }
 };
-function Of(a, b) {
+function Sf(a, b) {
   function c(a) {
     var c = b[0].getFeatureById(a), h = b[1].getFeatureById(a);
     if (null != c && null != h) {
-      c.setProperties({Eb:!0});
-      h.setProperties({Eb:!0});
+      c.setProperties({Fb:!0});
+      h.setProperties({Fb:!0});
       var m = x.l.xa();
       m.getText().setText("" + a);
       c.setStyle(m);
@@ -3773,16 +3823,16 @@ function Of(a, b) {
     }
   });
 }
-function Pf(a, b, c) {
+function Qf(a, b, c) {
   b = l(b) ? b : "affine";
-  a = Qf(a, l(c) ? c : void 0);
+  a = Tf(a, l(c) ? c : void 0);
   a.algorithm = b;
   return a;
 }
-function Qf(a, b) {
+function Tf(a, b) {
   var c = q(function(a, b) {
     for (var c = [], d = 0;d < a.length;d++) {
-      var e = x.Ib(a[d][0].getGeometry().getCoordinates()), y = ol.proj.transform(a[d][1].getGeometry().getCoordinates(), this.f.target, b);
+      var e = x.Jb(a[d][0].getGeometry().getCoordinates()), y = ol.proj.transform(a[d][1].getGeometry().getCoordinates(), this.g.target, b);
       c.push({source:e, target:y});
     }
     return c;
@@ -3798,43 +3848,43 @@ function Qf(a, b) {
   d.target = e;
   return d;
 }
-function Rf(a, b) {
-  var c = Bc(), c = l(c) ? c : "affine", d = ab(a.a), e = Pf(a, c, l(b) ? b : d.target);
-  Pf(a, c, d.target);
+function Of(a, b) {
+  var c = Bc(), c = l(c) ? c : "affine", d = ab(a.a), e = Qf(a, c, l(b) ? b : d.target);
+  Qf(a, c, d.target);
   return e;
 }
-Nf.prototype.getType = function() {
+Rf.prototype.getType = function() {
   return this.m ? "update" : "new";
 };
-function Sf(a) {
+function Uf(a) {
   this.b = p(a) ? N(a) : a;
   var b = Q("div", {"class":"georef-tools-clip-container", id:"georef-tools-clip-container"});
   this.b.appendChild(b);
-  Tf(this, b);
+  Vf(this, b);
   a = Q("div", {"class":"georef-tools-clip-inner-container", id:"georef-tools-clip-inner-container"});
   b.appendChild(a);
-  var b = [], c = Uf("noneToggle", "none", x.c("moveMap"));
+  var b = [], c = Wf("noneToggle", "none", x.c("moveMap"));
   a.appendChild(c);
   b.push(c);
-  var d = Uf("drawClip", "drawclip", x.c("drawClip"));
+  var d = Wf("drawClip", "drawclip", x.c("drawClip"));
   a.appendChild(d);
   b.push(d);
   T(c, "click", q(this.a, this, "none", b));
   T(d, "click", q(this.a, this, "drawclip", b));
   V.call(this);
 }
-t(Sf, gd);
-Sf.prototype.A = function() {
+t(Uf, gd);
+Uf.prototype.A = function() {
   var a = N("georef-tools-clip-handler");
   null != a && F(a, "open") || $(a).trigger("click");
 };
-function Uf(a, b, c) {
+function Wf(a, b, c) {
   var d = Q("div", {"class":"tool"});
   a = Q("div", {id:a, "class":"tool-move toggle-elements", value:b, innerHTML:'<span class="tool-title">' + c + "</span>"});
   d.appendChild(a);
   return d;
 }
-Sf.prototype.B = function() {
+Uf.prototype.B = function() {
   var a = N("georef-tools-clip-handler");
   if (null == a || F(a, "open")) {
     $(a).trigger("click");
@@ -3843,7 +3893,7 @@ Sf.prototype.B = function() {
     }
   }
 };
-Sf.prototype.a = function(a, b) {
+Uf.prototype.a = function(a, b) {
   for (var c = q(function(a, b) {
     F(a, "activate") || D(a, "activate");
     this.dispatchEvent(new B("activate-" + b, a));
@@ -3855,7 +3905,7 @@ Sf.prototype.a = function(a, b) {
     f.value === a ? c(f, f.value) : d(f, f.value);
   }
 };
-function Tf(a, b) {
+function Vf(a, b) {
   var c = Q("div", {"class":"georef-tools-clip-handler", id:"georef-tools-clip-handler"});
   b.appendChild(c);
   R(c, Q("span", {"class":"icon"}));
@@ -3867,21 +3917,21 @@ function Tf(a, b) {
     });
   }, a));
 }
-;function Vf(a, b, c) {
+;function Xf(a, b, c) {
   this.a = new ol.source.Vector({features:new ol.Collection});
-  l(c) && (c = Wf(c), this.a.addFeature(c));
+  l(c) && (c = Yf(c), this.a.addFeature(c));
   this.i = new ol.layer.Vector({source:this.a, style:x.l.Fa});
   this.i.setMap(b);
   this.b = new fd(b, this.i);
-  Xf(a, {"activate-drawclip":this.b, "deactivate-drawclip":this.b});
+  Zf(a, {"activate-drawclip":this.b, "deactivate-drawclip":this.b});
   this.qa = a;
 }
-t(Vf, Na);
-Vf.prototype.f = function(a) {
-  a = Wf(a.target.clip);
+t(Xf, Na);
+Xf.prototype.g = function(a) {
+  a = Yf(a.target.clip);
   0 === this.a.getFeatures().length && (this.a.addFeature(a), this.i.addFeature(a));
 };
-function Xf(a, b) {
+function Zf(a, b) {
   function c(a) {
     if (l(a)) {
       var c = a.type;
@@ -3903,28 +3953,28 @@ function Xf(a, b) {
     c();
   });
 }
-function Wf(a) {
+function Yf(a) {
   var b = a.hasOwnProperty("polygon") && 0 < a.polygon.length ? new ol.geom.Polygon([a.polygon]) : void 0;
   void 0 !== b && b.transform(a.source, u.projection);
   return new ol.Feature({geometry:b});
 }
-;function Yf(a) {
+;function $f(a) {
   this.o = p(a) ? N(a) : a;
   var b = Q("div", {"class":"georef-tools-gcp-container", id:"georef-tools-gcp-container"});
   this.o.appendChild(b);
-  Zf(this, b);
+  ag(this, b);
   a = Q("div", {"class":"georef-tools-gcp-inner-container", id:"georef-tools-gcp-inner-container"});
   b.appendChild(a);
-  var b = [], c = $f("noneToggle", "none", x.c("moveMap"));
+  var b = [], c = bg("noneToggle", "none", x.c("moveMap"));
   a.appendChild(c);
   b.push(c);
-  var d = $f("pointToggle", "addgcp", x.c("setCornerPoint"));
+  var d = bg("pointToggle", "addgcp", x.c("setCornerPoint"));
   a.appendChild(d);
   b.push(d);
-  var e = $f("dragToggle", "draggcp", x.c("moveCornerPoint"));
+  var e = bg("dragToggle", "draggcp", x.c("moveCornerPoint"));
   a.appendChild(e);
   b.push(e);
-  var f = $f("deleteToggle", "delgcp", x.c("deleteCornerPoint"));
+  var f = bg("deleteToggle", "delgcp", x.c("deleteCornerPoint"));
   a.appendChild(f);
   b.push(f);
   T(c, "click", q(this.a, this, "none", b));
@@ -3933,18 +3983,18 @@ function Wf(a) {
   T(f, "click", q(this.a, this, "delgcp", b));
   V.call(this);
 }
-t(Yf, gd);
-Yf.prototype.A = function() {
+t($f, gd);
+$f.prototype.A = function() {
   var a = N("georef-tools-gcp-handler");
   null != a && F(a, "open") || $(a).trigger("click");
 };
-function $f(a, b, c) {
+function bg(a, b, c) {
   var d = Q("div", {"class":"tool"});
   a = Q("div", {id:a, "class":"tool-move toggle-elements", value:b, innerHTML:'<span class="tool-title">' + c + "</span>"});
   d.appendChild(a);
   return d;
 }
-Yf.prototype.B = function() {
+$f.prototype.B = function() {
   var a = N("georef-tools-gcp-handler");
   if (null == a || F(a, "open")) {
     $(a).trigger("click");
@@ -3953,7 +4003,7 @@ Yf.prototype.B = function() {
     }
   }
 };
-Yf.prototype.a = function(a, b) {
+$f.prototype.a = function(a, b) {
   for (var c = q(function(a, b) {
     F(a, "activate") || D(a, "activate");
     this.dispatchEvent(new B("activate-" + b, a));
@@ -3965,7 +4015,7 @@ Yf.prototype.a = function(a, b) {
     f.value === a ? c(f, f.value) : d(f, f.value);
   }
 };
-function Zf(a, b) {
+function ag(a, b) {
   var c = Q("div", {"class":"georef-tools-gcp-handler", id:"georef-tools-gcp-handler"});
   b.appendChild(c);
   R(c, Q("span", {"class":"icon"}));
@@ -3977,28 +4027,28 @@ function Zf(a, b) {
     });
   }, a));
 }
-;function ag(a) {
+;function cg(a) {
   this.a = a.U;
-  var b = a.Hb, c = a.sources[0], d = a.sources[1];
-  a = {P:a.Sa[0], L:a.Sa[1]};
+  var b = a.Ib, c = a.sources[0], d = a.sources[1];
+  a = {P:a.Ua[0], L:a.Ua[1]};
   var e = {P:new ol.layer.Vector({source:c, style:function() {
-    return [x.l.ib];
+    return [x.l.kb];
   }}), L:new ol.layer.Vector({source:d, style:function() {
-    return [x.l.ib];
+    return [x.l.kb];
   }})}, d = new bd(c, d, a.P, a.L), c = new dd(e.P, e.L, a.P, a.L), f = new cd(e.P, e.L, a.P, a.L), d = {"activate-addgcp":d, "deactivate-addgcp":d, "activate-draggcp":c, "deactivate-draggcp":c, "activate-delgcp":f, "deactivate-delgcp":f};
-  bg(c);
-  cg(b, a, e, d);
+  dg(c);
+  eg(b, a, e, d);
   this.qa = b;
 }
-t(ag, Na);
-function bg(a) {
+t(cg, Na);
+function dg(a) {
   function b(a) {
     a.target.feature.setStyle(a.target.targetStyle);
   }
   T(a, "selected", b);
   T(a, "deselected", b);
 }
-function cg(a, b, c, d) {
+function eg(a, b, c, d) {
   function e(a) {
     f();
     d[a.type].A();
@@ -4027,51 +4077,99 @@ function cg(a, b, c, d) {
   b.P.addLayer(c.P);
   b.L.addLayer(c.L);
 }
-;function dg(a, b) {
+;function fg(a) {
+  var b = p(a.Ca) ? N(a.Ca) : a.Ca, c = p(a.Ba) ? N(a.Ba) : a.Ba, d = a.Cb, e = a.zb, f = a.Gb, h = a.Lb, m = l(a.Ja) ? a.Ja : void 0, n = l(a.type) ? a.type : void 0, w = l(a.aa) ? a.aa : void 0, y = l(a.Ka) ? a.Ka : void 0, A = [new ol.source.Vector({features:new ol.Collection}), new ol.source.Vector({features:new ol.Collection})], G = l(a.bb) ? G : void 0;
+  a = {mtb:"affine", gl:"affine", ae:"affine", tk:"affine", ak:"tps"}[a.Ab.toLowerCase().toLowerCase()];
+  for (var Wb = $("#transformation-chooser option"), db = 0;db < Wb.length;db++) {
+    a.toLowerCase() === Wb[db].innerHTML.toLowerCase() && $("#transformation-chooser").val(Wb[db].innerHTML);
+  }
+  m = new Rf({sources:A, ca:m, type:n, Ya:y, bb:G});
+  b = new $f(b);
+  f = new cg({Ib:b, U:m, Ua:[f.getMap(), h.getMap()], sources:A});
+  c = new Uf(c);
+  w = new Xf(c, h.getMap(), w);
+  A = f.qa;
+  m = w.qa;
+  T(A, "activate", m.B);
+  T(m, "activate", A.B);
+  U(f.a, "add-gcp-clippolygon", w.g, void 0, w);
+  A = new Pf(d, e, f.a);
+  d = new Nf(d, e, f.a, w.a);
+  gg(A, d, h, w, c);
+  b.A();
+}
+function gg(a, b, c, d, e) {
+  T(a, "start-warping", function() {
+    hg(c);
+  });
+  T(a, "end-warping", function(a) {
+    a = a.target.data;
+    var b = 0 < d.a.getFeatures().length ? d.a.getFeatures()[0] : void 0, m = ol.proj.transformExtent(a.extent, Cc(), u.projection);
+    ig(c, a.wmsUrl, a.layerId, b);
+    c.setZoom(m);
+    jg(c);
+    e.A();
+  });
+  T(a, "error", function() {
+    alert("Something went wrong, while trying to request a validation result.");
+    jg(c);
+  });
+  T(b, "end-confirm", function() {
+    window.location.href = x.f.Oa();
+  });
+  T(d.b, "drawend", function(a) {
+    a = a.target.feature;
+    if (void 0 !== c.T) {
+      var b = c.T.getProperties();
+      ig(c, b.wms_url, b.layerid, a);
+    }
+  });
+}
+;function kg(a, b) {
   this.b = u.projection;
   this.T = void 0;
   this.o = N(a);
   var c = l(b) ? b : [640161.933, 5958026.134, 3585834.8011505, 7847377.4901306], d = new ol.layer.Tile({source:new ol.source.OSM});
-  this.g = new ol.Map({layers:[d], interactions:ol.interaction.defaults().extend([new ol.interaction.DragZoom]), renderer:"canvas", target:this.o, view:new ol.View({projection:this.b, center:[0, 0], zoom:2}), controls:[new ol.control.FullScreen, new ol.control.Zoom, new ol.control.Attribution, new Je({spyLayer:new ol.layer.Tile({attribution:void 0, source:new ol.source.OSM})})]});
-  this.g.getView().fit(c, this.g.getSize());
-  l(b) && (this.a = new ol.control.ZoomToExtent({extent:c}), this.g.addControl(this.a));
+  this.h = new ol.Map({layers:[d], interactions:ol.interaction.defaults().extend([new ol.interaction.DragZoom]), renderer:"canvas", target:this.o, view:new ol.View({projection:this.b, center:[0, 0], zoom:2}), controls:[new ol.control.FullScreen, new ol.control.Zoom, new ol.control.Attribution, new Je({spyLayer:new ol.layer.Tile({attribution:void 0, source:new ol.source.OSM})})]});
+  this.h.getView().fit(c, this.h.getSize());
+  l(b) && (this.a = new ol.control.ZoomToExtent({extent:c}), this.h.addControl(this.a));
   c = new af(this.o);
   T(c, "jumpto", function(a) {
-    var b = this.g.getView(), c = a.target.lonlat;
+    var b = this.h.getView(), c = a.target.lonlat;
     b.setCenter(ol.proj.transform([parseFloat(c[0]), parseFloat(c[1])], a.target.srs, this.b));
     b.setZoom(12);
   }, void 0, this);
   P("ol-attribution").children[0].children[0].remove();
 }
-function eg(a) {
-  if (!l(fg(a))) {
+function hg(a) {
+  if (!l(lg(a))) {
     var b = Q("div", {"class":"result-viewer-loading-panel", id:"result-viewer-loading-panel", innerHTML:'<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100"aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% Complete</span></div></div>'});
     a.o.appendChild(b);
   }
 }
-function gg(a) {
-  a = fg(a);
+function jg(a) {
+  a = lg(a);
   l(a) && vc(a);
 }
-function hg(a, b, c, d) {
-  l(a.T) && a.g.removeLayer(a.T);
+function ig(a, b, c, d) {
+  l(a.T) && a.h.removeLayer(a.T);
   d = void 0 !== d ? d.getGeometry() : void 0;
-  a.T = Oe({eb:b, Qa:c, aa:d}, a.g);
-  a.g.getLayers().insertAt(1, a.T);
+  a.T = Oe({gb:b, Sa:c, aa:d}, a.h);
+  a.h.getLayers().insertAt(1, a.T);
   N("opacity-slider-container") && (N("opacity-slider-container").innerHTML = "", new Dc(N("opacity-slider-container"), a.T));
 }
-dg.prototype.getMap = function() {
-  return this.g;
+kg.prototype.getMap = function() {
+  return this.h;
 };
-function fg(a) {
+function lg(a) {
   for (var b = 0;b < a.o.children.length;b++) {
     if ("result-viewer-loading-panel" === a.o.children[b].id) {
       return a.o.children[b];
     }
   }
 }
-dg.prototype.setZoom = function(a) {
-  void 0 !== a && (a = void 0 === a ? this.g.getView().calculateExtent(this.g.getSize()) : a, this.g.removeControl(this.a), this.a = new ol.control.ZoomToExtent({extent:a}), this.g.addControl(this.a), this.g.getView().fit(a, this.g.getSize()));
+kg.prototype.setZoom = function(a) {
+  void 0 !== a && (a = void 0 === a ? this.h.getView().calculateExtent(this.h.getSize()) : a, this.h.removeControl(this.a), this.a = new ol.control.ZoomToExtent({extent:a}), this.h.addControl(this.a), this.h.getView().fit(a, this.h.getSize()));
 };
 r("vk2.app.AdminEvaluationApp", function(a) {
   if (!a.hasOwnProperty("process_list") || !a.hasOwnProperty("map_container")) {
@@ -4079,75 +4177,75 @@ r("vk2.app.AdminEvaluationApp", function(a) {
   }
   var b = a.map_container;
   Ac();
-  this.pa = new dg(b);
-  a.hasOwnProperty("btn_getallprocess") && ig(this, a.btn_getallprocess, a.process_list);
-  a.hasOwnProperty("btn_getallinvalideprocess") && ig(this, a.btn_getallinvalideprocess, a.process_list, "validation=invalide");
-  a.hasOwnProperty("btn_getsingleprocess_mapid") && jg(this, a.btn_getsingleprocess_mapid, a.process_list);
-  a.hasOwnProperty("btn_getsingleprocess_userid") && kg(this, a.btn_getsingleprocess_userid, a.process_list);
+  this.pa = new kg(b);
+  a.hasOwnProperty("btn_getallprocess") && mg(this, a.btn_getallprocess, a.process_list);
+  a.hasOwnProperty("btn_getallinvalideprocess") && mg(this, a.btn_getallinvalideprocess, a.process_list, "validation=invalide");
+  a.hasOwnProperty("btn_getsingleprocess_mapid") && ng(this, a.btn_getsingleprocess_mapid, a.process_list);
+  a.hasOwnProperty("btn_getsingleprocess_userid") && og(this, a.btn_getsingleprocess_userid, a.process_list);
 });
-function ig(a, b, c, d) {
+function mg(a, b, c, d) {
   T(N(b), "click", function() {
     var a = new X;
     U(a, "success", function(a) {
       a = a.target;
-      lg(this, c, Y(a));
+      pg(this, c, Y(a));
       z(a);
     }, !1, this);
     U(a, "error", function() {
       alert("Something went wrong, while trying to fetch data from the server.");
     }, !1, this);
-    var b = x.h.wa(l(d) ? d : void 0);
+    var b = x.f.wa(l(d) ? d : void 0);
     a.send(b, "GET");
   }, void 0, a);
 }
-function jg(a, b, c) {
+function ng(a, b, c) {
   T(N(b), "click", function(a) {
     a = a.currentTarget.getAttribute("data-src");
     var b = N(a).value;
     a = new X;
     U(a, "success", function(a) {
       a = a.target;
-      lg(this, c, Y(a));
+      pg(this, c, Y(a));
       z(a);
     }, !1, this);
-    b = x.h.wa("mapid=" + b);
+    b = x.f.wa("mapid=" + b);
     a.send(b, "GET");
   }, void 0, a);
 }
-function kg(a, b, c) {
+function og(a, b, c) {
   T(N(b), "click", function(a) {
     a = a.currentTarget.getAttribute("data-src");
     var b = N(a).value;
     a = new X;
     U(a, "success", function(a) {
       a = a.target;
-      lg(this, c, Y(a));
+      pg(this, c, Y(a));
       z(a);
     }, !1, this);
     U(a, "error", function() {
       alert("Something went wrong, while trying to fetch data from the server.");
     }, !1, this);
-    b = x.h.wa("userid=" + b);
+    b = x.f.wa("userid=" + b);
     a.send(b, "GET");
   }, void 0, a);
 }
-function mg(a, b) {
+function qg(a, b) {
   function c(a, b) {
     return Q("p", {innerHTML:"<strong>" + a + ":</strong><br> " + b});
   }
   var d = Q("article", {id:b.georef_id}), e = q(function(a) {
     var b = Q("p");
     if ("isvalide" != a.adminvalidation) {
-      var c = Q("button", {"data-href":x.h.tb("georeferenceid=" + a.georef_id), "class":"btn btn-primary action-btn", innerHTML:"Is valide"});
-      ng(c, d, "Georeference process is valide?", "Are you sure you wanna set this georeference process to isvalide? Why?");
+      var c = Q("button", {"data-href":x.f.ub("georeferenceid=" + a.georef_id), "class":"btn btn-primary action-btn", innerHTML:"Is valide"});
+      rg(c, d, "Georeference process is valide?", "Are you sure you wanna set this georeference process to isvalide? Why?");
       b.appendChild(c);
     }
     c = Q("button", {"data-params-georef":a.georef_params, "data-params-clip":a.clippolygon, "data-params-id":a.mapid, "class":"btn btn-primary btn-show-georef", innerHTML:"Show map"});
-    og(this, c);
+    sg(this, c);
     b.appendChild(c);
-    c = Q("a", {href:x.h.ma(void 0, "georeferenceid=" + a.georef_id), "class":"btn btn-primary action-btn", target:"_blank", innerHTML:"Go to process ..."});
+    c = Q("a", {href:x.f.ma(void 0, "georeferenceid=" + a.georef_id), "class":"btn btn-primary action-btn", target:"_blank", innerHTML:"Go to process ..."});
     b.appendChild(c);
-    "invalide" != a.adminvalidation && (a = Q("button", {"data-href":x.h.sb("georeferenceid=" + a.georef_id), "class":"btn btn-warning action-btn", innerHTML:"Is invalide"}), ng(a, d, "Georeference process is invalide?", "Are you sure you wanna set this georeference process to invalide? Why?"), b.appendChild(a));
+    "invalide" != a.adminvalidation && (a = Q("button", {"data-href":x.f.tb("georeferenceid=" + a.georef_id), "class":"btn btn-warning action-btn", innerHTML:"Is invalide"}), rg(a, d, "Georeference process is invalide?", "Are you sure you wanna set this georeference process to invalide? Why?"), b.appendChild(a));
     return b;
   }, a);
   R(d, c("Process-ID", b.georef_id));
@@ -4163,16 +4261,16 @@ function mg(a, b) {
   R(d, e(b));
   return d;
 }
-function lg(a, b, c) {
+function pg(a, b, c) {
   b = N(b);
   b.innerHTML = "";
   for (var d = 0, e = c.length;d < e;d++) {
-    var f = mg(a, c[d]);
+    var f = qg(a, c[d]);
     b.appendChild(f);
   }
 }
-function ng(a, b, c, d) {
-  T(a, "click", na(x.nb, c, d + '<br><div id="admin-validation-comment" class="input-group"><input type="radio" value="imprecision"> Imprecision<br><input type="radio" value="wrong-parameter"> Wrong Parameter<br><input type="radio" value="wrong-map-sheet-number"> Wrong map sheet number<br><input type="radio" value="bad-original"> Bad original<br><br><input type="text" class="form-control" placeholder="comment" id="confirm-comment"></div>', function() {
+function rg(a, b, c, d) {
+  T(a, "click", na(x.Na, c, d + '<br><div id="admin-validation-comment" class="input-group"><input type="radio" value="imprecision"> Imprecision<br><input type="radio" value="wrong-parameter"> Wrong Parameter<br><input type="radio" value="wrong-map-sheet-number"> Wrong map sheet number<br><input type="radio" value="bad-original"> Bad original<br><br><input type="text" class="form-control" placeholder="comment" id="confirm-comment"></div>', function() {
     for (var c = qc("input", void 0, N("admin-validation-comment")), d = void 0, h = 0;h < c.length;h++) {
       "radio" == c[h].type && c[h].checked && (d = c[h].value);
     }
@@ -4184,132 +4282,44 @@ function ng(a, b, c, d) {
     }, "GET");
   }));
 }
-function og(a, b) {
+function sg(a, b) {
   T(b, "click", function(a) {
     var b = JSON.parse(a.currentTarget.getAttribute("data-params-georef")), b = b.hasOwnProperty("new") ? b["new"] : b, e = JSON.parse(a.currentTarget.getAttribute("data-params-clip"));
     a = parseInt(a.currentTarget.getAttribute("data-params-id"), 0);
     a = {georeference:b, id:a, clip:e};
-    eg(this.pa);
+    hg(this.pa);
     tf(a, q(function(a) {
-      gg(this.pa);
+      jg(this.pa);
       a = Y(a.target);
-      hg(this.pa, a.wmsUrl, a.layerId, a.clip);
+      ig(this.pa, a.wmsUrl, a.layerId, a.clip);
     }, this), function() {
-      gg(this.pa);
+      jg(this.pa);
       alert("Something went wrong while trying to fetch a georeference validation result from server ....");
     });
   }, !1, a);
 }
-;function pg(a, b, c, d) {
-  var e = Q("div", {"class":"vk2GeorefToolsBtn btn btn-default btn-submit deactivate", innerHTML:'<span class="glyphicon glyphicon-refresh"></span> ' + x.c("submitBtn_validate")});
-  N(a).appendChild(e);
-  T(e, "click", q(this.a, this, b, c, d));
-  V.call(this);
-}
-t(pg, V);
-pg.prototype.a = function(a, b, c) {
-  this.dispatchEvent(new B("start-confirm", {}));
-  var d = Cc(), e = Rf(b, d);
-  c = 0 < c.getFeatures().length ? c.getFeatures()[0].getGeometry().clone().transform(u.projection, d) : void 0;
-  var f = b.getType();
-  4 > e.gcps.length ? alert("You have to place at least 4 ground control points") : (a = {georeference:e, id:a, type:f}, void 0 !== c && (a.clip = {source:d, polygon:c.getCoordinates()[0]}), "update" === f && (b = l(b.Xa) ? b.Xa : void 0, a.overwrites = b), b = q(function(a) {
-    a = Y(a.target);
-    this.dispatchEvent(new B("end-confirm", {data:a}));
-  }, this), q(function() {
-    this.dispatchEvent(new B("error", {error:"Something went wrong, while sending confirmation data from the server."}));
-  }, this), uf(a, b));
-};
-function qg(a, b, c) {
-  var d = Q("div", {"class":"vk2GeorefToolsBtn btn btn-default btn-validate", innerHTML:'<span class="glyphicon glyphicon-refresh"></span> ' + x.c("validateBtn_validate")});
-  N(a).appendChild(d);
-  T(d, "click", q(this.a, this, b, c));
-  V.call(this);
-}
-t(qg, V);
-qg.prototype.a = function(a, b) {
-  var c = {georeference:Pf(b, Bc(), Cc()), id:a};
-  if (!(4 > c.georeference.gcps.length)) {
-    this.dispatchEvent(new B("start-warping", {}));
-    var d = q(function(a) {
-      a = Y(a.target);
-      this.dispatchEvent(new B("end-warping", {data:a, georefParams:c}));
-    }, this), e = q(function() {
-      this.dispatchEvent(new B("error", {error:"Something went wrong, while fetching validation data from the server."}));
-    }, this);
-    tf(c, d, e);
-  }
-};
-function rg(a) {
-  var b = p(a.Ca) ? N(a.Ca) : a.Ca, c = p(a.Ba) ? N(a.Ba) : a.Ba, d = a.Bb, e = a.zb, f = a.Fb, h = a.Kb, m = l(a.Ja) ? a.Ja : void 0, n = l(a.type) ? a.type : void 0, w = l(a.aa) ? a.aa : void 0, y = l(a.Ka) ? a.Ka : void 0, A = [new ol.source.Vector({features:new ol.Collection}), new ol.source.Vector({features:new ol.Collection})], G = l(a.$a) ? G : void 0;
-  if (void 0 !== m) {
-    a = m.algorithm;
-    for (var Wb = $("#transformation-chooser option"), db = 0;db < Wb.length;db++) {
-      a.toLowerCase() === Wb[db].innerHTML.toLowerCase() && $("#transformation-chooser").val(Wb[db].innerHTML);
-    }
-  }
-  m = new Nf({sources:A, ca:m, type:n, Wa:y, $a:G});
-  b = new Yf(b);
-  f = new ag({Hb:b, U:m, Sa:[f.getMap(), h.getMap()], sources:A});
-  c = new Sf(c);
-  w = new Vf(c, h.getMap(), w);
-  A = f.qa;
-  m = w.qa;
-  T(A, "activate", m.B);
-  T(m, "activate", A.B);
-  U(f.a, "add-gcp-clippolygon", w.f, void 0, w);
-  A = new qg(d, e, f.a);
-  d = new pg(d, e, f.a, w.a);
-  sg(A, d, h, w, c);
-  b.A();
-}
-function sg(a, b, c, d, e) {
-  T(a, "start-warping", function() {
-    eg(c);
-  });
-  T(a, "end-warping", function(a) {
-    a = a.target.data;
-    var b = 0 < d.a.getFeatures().length ? d.a.getFeatures()[0] : void 0, m = ol.proj.transformExtent(a.extent, Cc(), u.projection);
-    hg(c, a.wmsUrl, a.layerId, b);
-    c.setZoom(m);
-    gg(c);
-    e.A();
-  });
-  T(a, "error", function() {
-    alert("Something went wrong, while trying to request a validation result.");
-    gg(c);
-  });
-  T(b, "end-confirm", function() {
-    window.location.href = x.h.wb();
-  });
-  T(d.b, "drawend", function(a) {
-    a = a.target.feature;
-    if (void 0 !== c.T) {
-      var b = c.T.getProperties();
-      hg(c, b.wms_url, b.layerid, a);
-    }
-  });
-}
 ;function tg(a, b) {
   x.Ia();
-  x.Ra("vk2-modal-anchor");
+  x.Ta("vk2-modal-anchor");
   Ac();
   var c = new Z(window.location.href), d = c.a.get("objectid"), c = c.a.get("georeferenceid");
   l(c) ? ug("georeferenceid=" + c, q(this.a, this, a, b)) : l(d) && ug("objectid=" + d, q(this.a, this, a, b));
 }
 r("vk2.app.GeoreferenceApp", tg);
 function ug(a, b) {
-  var c = x.h.qb(a);
+  var c = x.f.rb(a);
   Td(c, function(a) {
     200 != ae(a.target) && alert("Something went wrong, while trying to get the process information from the server. Please try again or contact the administrator.");
     b(Y(a.target));
   });
 }
 tg.prototype.a = function(a, b, c) {
-  var d = c.hasOwnProperty("extent") ? ol.proj.transformExtent(c.extent, va, "EPSG:3857") : void 0, e = new ke(a, c.zoomify), f = new dg(b, d);
+  var d = c.hasOwnProperty("extent") ? ol.proj.transformExtent(c.extent, va, "EPSG:3857") : void 0, e = new ke(a, c.zoomify), f = new kg(b, d);
   T(e, "loadend", function() {
     var d = c.hasOwnProperty("recommendedsrid") ? "EPSG:" + c.recommendedsrid : "EPSG:4326";
     $("#projection-chooser").val(d);
-    new rg({Ca:a, Ba:b, Bb:"georef-validate-menu", zb:c.objectid, Fb:e, Kb:f, Ja:c.georeference, type:c.type, aa:c.clippolygon, Ka:c.georeferenceid});
+    new fg({Ca:a, Ba:b, Cb:"georef-validate-menu", zb:c.objectid, Gb:e, Lb:f, Ja:c.georeference, type:c.type, aa:c.clippolygon, Ka:c.georeferenceid, Ab:c.maptype});
   }, void 0, this);
+  c.hasOwnProperty("warn") && (d = Q("div", {innerHTML:c.warn + ' <a href="' + x.f.Oa() + '">' + x.c("backToMain") + "</a>", "class":"alert alert-danger warn-msg"}), N(a).appendChild(d));
 };
 }).call(window);

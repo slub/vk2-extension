@@ -437,8 +437,118 @@
 			</trans-unit>
 			<trans-unit id="georeferencehistory.page.beingGenerated">
 				<source>Being generated (duration approx. 15min)</source>
-			</trans-unit> 
-			
+			</trans-unit>
+			<trans-unit id="faq.sidebar.georef">
+			    <source>Georeferencing of maps</source>
+			</trans-unit>
+			<trans-unit id="faq.sidebar.georef.selection">
+			    <source>Map selection</source>
+            </trans-unit>
+            <trans-unit id="faq.sidebar.georef.georeferencing">
+                <source>Georeferencing</source>
+            </trans-unit>
+            <trans-unit id="faq.sidebar.georef.history">
+                <source>Georeference History</source>
+            </trans-unit>
+		    <trans-unit id="faq.georef.title">
+			    <source>Georeferencing of Maps</source>
+			</trans-unit>
+            <trans-unit id="faq.georef.text.1">
+			    <source>
+			        The Virtual Map Forum 2.0 gives access to more than 7.000 historic maps. For the complete
+			        georeferencing of them we need your help.
+			    </source>
+			</trans-unit>
+            <trans-unit id="faq.georef.text.2">
+			    <source>
+			        Basically you have to set ground control points, which are a prerequisite for the usage of
+			        different transformation algorithms. Further you can draw a clip polygon, which is used to
+			        clip away the unnecessary edge of the georeferenced maps. The following video gives a short
+			        overview over the georeferencing process.
+			    </source>
+			</trans-unit>
+            <trans-unit id="faq.georef.callout">
+			    <source>
+			        To participate in the georeferencing process of the historic maps you have to sign up in the
+			        Virtual Map Forum 2.0.
+			    </source>
+			</trans-unit>
+		    <trans-unit id="faq.georef.selection.title">
+			    <source>Map selection</source>
+			</trans-unit>
+		    <trans-unit id="faq.georef.selection.text.1">
+			    <source>
+			        If signed in, click on the dropdown in the upper right corner. There you can display unreferenced
+			        by clicking on the menu point "Show unreferenced maps". In the displayed window you can than choose
+			        a map for georeferencing by clicking on the "Georeference" button.
+			    </source>
+			</trans-unit>
+		    <trans-unit id="faq.georef.georeference.title">
+			    <source>Georeferencing</source>
+			</trans-unit>
+		    <trans-unit id="faq.georef.georeference.text.1">
+			    <source>
+			        For apply transformation algorithms on the image, ground control points (gcp) are need. A ground control
+			        is composed of a point on the unreferenced image (left side) and the corresponding point on the
+			        georeferenced map (right side). Depending on the used transformation algorithm more or less ground
+			        control points are used (e.g. affine > 4 gcp). Based on a validation result also a clip polygon can
+			        be drawn. The clip polygon can than be used for clipping away the unnecessary edge content.
+			    </source>
+			</trans-unit>
+		    <trans-unit id="faq.georef.georeference.text.2">
+			    <source>
+			        The toolbox on the unreferenced image viewer (left side) holds different tools for drawing, moving
+			        and deleting ground control points.
+			    </source>
+			</trans-unit>
+		    <trans-unit id="faq.georef.georeference.text.3">
+			    <source>
+			        <![CDATA[For setting a ground control point choose the tool <b>Set ground control point</b> and then click on
+			        the unreference image (left side) and the corresponding place on the georeferenced image (rigth side).
+			        If a point was set wrong, you can adjust the position by using the tool <b>Move ground control point</b>
+			        and move the corresponding point by drag&amp;drop. If you wanna remove a ground control point use the tool
+			        <b>Delete ground control point</b>.]]>
+			    </source>
+			</trans-unit>
+		    <trans-unit id="faq.georef.georeference.text.4">
+			    <source>
+			        <![CDATA[By using the tool <b>Move map</b> you can move the map to the wanted view.]]>
+			    </source>
+			</trans-unit>
+		    <trans-unit id="faq.georef.georeference.text.5">
+			    <source>
+			        <![CDATA[If enough ground control points have been set, a validation image can be produced by the clicking on
+			        the <b>Update Preview</b> button. It is also possible to switch the used transformation algorithm.
+			        Generally it is recommended to use an "Affine" transformation for geological maps or plane survey sheets
+			        and a minimum number of 4 ground control points. In case of older historic maps types a "TPS" transformation
+			        is recommended. There you can always increase the georeferencing quality by adding more ground control
+			        points.]]>
+			    </source>
+			</trans-unit>
+		    <trans-unit id="faq.georef.georeference.text.6">
+			    <source>
+			        <![CDATA[On the basis of a georeferenced validation results a clip polygon can be drawn. Therefor use the tool
+			        <b>Draw Clip Polygon</b> on the georeferenced map view.]]>
+			    </source>
+			</trans-unit>
+		    <trans-unit id="faq.georef.georeference.text.7">
+			    <source>
+			        The captured georeference paramater could be saved permanently by using the button "Confirm Georeferencing".
+			        This will navigate the user back to the main page and save the georeference result permantly. After a
+			        view minutes the new georeference results are also accessible through the web client by all users.
+			    </source>
+			</trans-unit>
+		    <trans-unit id="faq.georef.history.title">
+			    <source>Georeference History</source>
+			</trans-unit>
+		    <trans-unit id="faq.georef.history.text.1">
+			    <source>
+			        If signed in, click on the dropdown in the upper right corner. There you can display your personal
+			        georeference history by clicking on the menu point "Georeference History". This will open a window,
+			        which gives you an overview over your personal georeference achievements.
+                </source>
+			</trans-unit>
+
 			<!-- georeference choose -->
 			<trans-unit id="georeferencechoose.page.georeferenceChoose">
 				<source>Choose a Map for georeferencing</source>

@@ -28,9 +28,9 @@ var lang_dictionary = {
 			
 		// They are assigned to the Georeference Tools
 		'moveMap': 'Move map',
-		'setCornerPoint': 'Set corner point',
-		'moveCornerPoint': 'Move corner point',
-		'deleteCornerPoint': 'Delete corner point',
+		'setCornerPoint': 'Set ground control point',
+		'moveCornerPoint': 'Move ground control point',
+		'deleteCornerPoint': 'Delete ground control point',
 		'drawClip': 'Draw Clip-Polygon',
 		'validateBtn_georeference': 'Preview georeferencing',
 		'submitBtn_georeference': 'Submit without preview',

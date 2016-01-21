@@ -108,51 +108,51 @@ lib.felogin  {
 #
 # css / js dependencies for debugging
 #
-page {
-	includeCSS {
-		bootstrap = EXT:vk2/Resources/Public/lib/bootstrap/dist/css/bootstrap.min.css
-		jquery-ui = EXT:vk2/Resources/Public/lib/jquery-ui/themes/base/minified/jquery-ui.min.css
-		ol3 = EXT:vk2/Resources/Public/lib/openlayers/css/ol.css
-		vk2 = EXT:vk2/Resources/Public/css/style.css
-	}
-	includeJSlibs {
-		jquery = EXT:vk2/Resources/Public/lib/jquery/jquery.min.js
-		bootstrap = EXT:vk2/Resources/Public/lib/bootstrap/dist/js/bootstrap.min.js
-		proj4 = EXT:vk2/Resources/Public/lib/proj4/dist/proj4.js
-		jquery-ui = EXT:vk2/Resources/Public/lib/jquery-ui/ui/minified/jquery-ui.min.js
-		jquery-lazy-loading = EXT:vk2/Resources/Public/lib/jquery-lazy-loading.js
-		ol3 = EXT:vk2/Resources/Public/lib/openlayers/ol-debug.js
-		filter = EXT:vk2/Resources/Public/lib/glif/dist/glif.min.js
-		params = EXT:vk2/Resources/Public/vk2-params.js
-		# ol3 = EXT:vk2/Resources/Public/ol-vk2.js
-		goog-base = EXT:vk2/Resources/Public/lib/closure-library/closure/goog/base.js
-		goog-deps = EXT:vk2/Resources/Public/lib/closure-library/closure/goog/deps.js
-		vk2-deps = EXT:vk2/Resources/Public/src/vk2-deps.js
-		vk2-require = EXT:vk2/Resources/Public/vk2-require.js
-		#vk2 = EXT:vk2/Resources/Public/vk2-min-debug.js
-	}
-}
+#page {
+#	includeCSS {
+#		bootstrap = EXT:vk2/Resources/Public/lib/bootstrap/dist/css/bootstrap.min.css
+#		jquery-ui = EXT:vk2/Resources/Public/lib/jquery-ui/themes/base/minified/jquery-ui.min.css
+#		ol3 = EXT:vk2/Resources/Public/lib/openlayers/css/ol.css
+#		vk2 = EXT:vk2/Resources/Public/css/style.css
+#	}
+#	includeJSlibs {
+#		jquery = EXT:vk2/Resources/Public/lib/jquery/jquery.min.js
+#		bootstrap = EXT:vk2/Resources/Public/lib/bootstrap/dist/js/bootstrap.min.js
+#		proj4 = EXT:vk2/Resources/Public/lib/proj4/dist/proj4.js
+#		jquery-ui = EXT:vk2/Resources/Public/lib/jquery-ui/ui/minified/jquery-ui.min.js
+#		jquery-lazy-loading = EXT:vk2/Resources/Public/lib/jquery-lazy-loading.js
+#		ol3 = EXT:vk2/Resources/Public/lib/openlayers/ol-debug.js
+#		filter = EXT:vk2/Resources/Public/lib/glif/dist/glif.min.js
+#		params = EXT:vk2/Resources/Public/vk2-params.js
+#		# ol3 = EXT:vk2/Resources/Public/ol-vk2.js
+#		goog-base = EXT:vk2/Resources/Public/lib/closure-library/closure/goog/base.js
+#		goog-deps = EXT:vk2/Resources/Public/lib/closure-library/closure/goog/deps.js
+#		vk2-deps = EXT:vk2/Resources/Public/src/vk2-deps.js
+#		vk2-require = EXT:vk2/Resources/Public/vk2-require.js
+#		#vk2 = EXT:vk2/Resources/Public/vk2-min-debug.js
+#	}
+#}
 
 #
 # css / js dependencies for production
 #
 #
-#page {
-#	includeCSS {
-#		bootstrap = http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css
-#		jquery-ui = http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.min.css
-#		ol3 = EXT:vk2/Resources/Public/dist/ol.css
-#		vk2 = EXT:vk2/Resources/Public/dist/style.css
-#	}
-#	includeJSlibs {
-#		jquery = http://code.jquery.com/jquery-1.9.1.min.js
-#		bootstrap = http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js
-#		proj4 = http://cdnjs.cloudflare.com/ajax/libs/proj4js/2.2.1/proj4.js
-#		jquery-ui = http://code.jquery.com/ui/1.10.3/jquery-ui.min.js
-#		jquery-lazy-loading = http://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js
-#		filter = EXT:vk2/Resources/Public/dist/glif.min.js
-#		params = EXT:vk2/Resources/Public/vk2-params.js
-#		ol3 = EXT:vk2/Resources/Public/dist/ol-vk2.js
-#		vk2 = EXT:vk2/Resources/Public/dist/vk2-min.js
-#	}
-#}
+page {
+	includeCSS {
+		bootstrap = http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css
+		jquery-ui = http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.min.css
+		ol3 = EXT:vk2/Resources/Public/dist/ol.css
+		vk2 = EXT:vk2/Resources/Public/dist/style.css
+	}
+	includeJSlibs {
+		jquery = http://code.jquery.com/jquery-1.9.1.min.js
+		bootstrap = http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js
+		proj4 = http://cdnjs.cloudflare.com/ajax/libs/proj4js/2.2.1/proj4.js
+		jquery-ui = http://code.jquery.com/ui/1.10.3/jquery-ui.min.js
+		jquery-lazy-loading = http://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js
+		filter = EXT:vk2/Resources/Public/dist/glif.min.js
+		params = EXT:vk2/Resources/Public/vk2-params.js
+		ol3 = EXT:vk2/Resources/Public/dist/ol-vk2.js
+		vk2 = EXT:vk2/Resources/Public/dist/vk2-min.js
+	}
+}

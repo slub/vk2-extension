@@ -28,9 +28,9 @@ var lang_dictionary = {
 			
 		// They are assigned to the Georeference Tools
 		'moveMap': 'Karten verschieben',
-		'setCornerPoint': 'Eckpunkt setzen',
-		'moveCornerPoint': 'Eckpunkt verschieben',
-		'deleteCornerPoint': 'Eckpunkt löschen',
+		'setCornerPoint': 'Passpunkt setzen',
+		'moveCornerPoint': 'Passpunkt verschieben',
+		'deleteCornerPoint': 'Passpunkt löschen',
 		'drawClip': 'Zeichne Clip-Polygon',
 		'validateBtn_georeference': 'Vorschau Georeferenzieren',
 		'submitBtn_georeference': 'Absenden ohne Vorschau',

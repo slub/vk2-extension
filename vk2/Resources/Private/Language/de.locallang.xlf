@@ -229,7 +229,189 @@
 				<source>Being generated (duration approx. 15min)</source>
 				<target state="translated">Georeferenzierung wird aktuell noch bearbeitet (Wartezeit ca. 15min)</target>
 			</trans-unit> 
-			
+			<trans-unit id="faq.sidebar.georef">
+			    <source>Georeferencing of maps</source>
+			    <target state="translated">Georeferenzierung</target>
+			</trans-unit>
+			<trans-unit id="faq.sidebar.georef.selection">
+			    <source>Map selection</source>
+			    <target state="translated">Kartenauswahl</target>
+            </trans-unit>
+            <trans-unit id="faq.sidebar.georef.georeferencing">
+                <source>Georeferencing</source>
+                <target state="translated">Georeferenzierung</target>
+            </trans-unit>
+            <trans-unit id="faq.sidebar.georef.history">
+                <source>Georeference History</source>
+                <target state="translated">Georeferenzierungshistorie</target>
+            </trans-unit>
+            <trans-unit id="faq.georef.title">
+			    <source>Georeferencing of Maps</source>
+			    <target state="translated">Georeferenzierung von Karten</target>
+			</trans-unit>
+            <trans-unit id="faq.georef.text.1">
+			    <source>
+			        The Virtual Map Forum 2.0 gives access to more than 7.000 historic maps. For the complete
+			        georeferencing of them we need your help.
+			    </source>
+			    <target state="translated">
+			        Das Virtuellen Kartenforum 2.0 erlaubt den Zugriff auf über 7.000 historische Karten. Um diesen Kartenbestand
+			        zu georeferenzieren sind wir auf ihre Hilfe angewiesen.
+			    </target>
+			</trans-unit>
+            <trans-unit id="faq.georef.text.2">
+			    <source>
+			        Basically you have to set ground control points, which are a prerequisite for the usage of
+			        different transformation algorithms. Further you can draw a clip polygon, which is used to
+			        clip away the unnecessary edge of the georeferenced maps. The following video gives a short
+			        overview over the georeferencing process.
+			    </source>
+			    <target state="translated">
+			        Grundsätzlich benötigen wir ihre Hilfe bei der Erfassung von Passpunkten, welche eine Vorrausetzung
+			        für die Anwendung von unterschiedlichen Transformationsalgorithmen auf die Karten sind. Weiterhin
+			        können sie ein Clip-Polygon zeichen, welches genutzt werden kann um den nicht benötigten Kartenrand
+			        abzuschneiden. Das folgende Video gibt eine kurze Einführung in die Georeferenzierung im Kartenforum.
+			    </target>
+			</trans-unit>
+            <trans-unit id="faq.georef.callout">
+			    <source>
+			        To participate in the georeferencing process of the historic maps you have to sign up in the
+			        Virtual Map Forum 2.0.
+			    </source>
+			    <target state="translated">
+			        Um sich an der Georeferenzierung um Virtuellen Kartenforum zu beteiligen, müssen sie sich vorher
+			        als Nutzer registrieren.
+			    </target>
+			</trans-unit>
+		    <trans-unit id="faq.georef.selection.title">
+			    <source>Map selection</source>
+			    <target state="translated">Auswahl der Karte</target>
+			</trans-unit>
+		    <trans-unit id="faq.georef.selection.text.1">
+			    <source>
+			        If signed in, click on the dropdown in the upper right corner. There you can display unreferenced
+			        by clicking on the menu point "Show unreferenced maps". In the displayed window you can than choose
+			        a map for georeferencing by clicking on the "Georeference" button.
+			    </source>
+			    <target state="translated">
+			        Ist man als Nutzer angemeldet, kann man sich durch einen Klick auf das Dropdown-Menu in der oberen rechten
+			        Ecke und einen Klick auf den Menu-Punkt "Zeige unreferenzierte Karte", eine Auswahl der noch nicht
+			        georeferenzierten Karten anzeigen lassen. Möchte man eine dieser Karten georeferenzieren, kann man die
+			        Georeferenzierungsansicht durch einen Klick auf den Button "Georeferenzierung" öffnen.
+			    </target>
+			</trans-unit>
+		    <trans-unit id="faq.georef.georeference.title">
+			    <source>Georeferencing</source>
+			    <target state="translated">Georeferenzierung</target>
+			</trans-unit>
+		    <trans-unit id="faq.georef.georeference.text.1">
+			    <source>
+			        For apply transformation algorithms on the image, ground control points (gcp) are need. A ground control
+			        is composed of a point on the unreferenced image (left side) and the corresponding point on the
+			        georeferenced map (right side). Depending on the used transformation algorithm more or less ground
+			        control points are used (e.g. affine > 4 gcp). Based on a validation result also a clip polygon can
+			        be drawn. The clip polygon can than be used for clipping away the unnecessary edge content.
+			    </source>
+			    <target state="translated">
+			        Für die Georeferenzierung der Karten werden Passpunkte benötigt. Ein Passpunkt setzt sich aus einem
+			        Punktepaar zusammen, welches sich aus einem Punkt auf der unreferenzierten Karten (linke Seite) sowie den dazugehörigen
+			        Punkt auf der georeferenzierten Karten (rechte Seite) zusammensetzt. Basierend auf diesen Passpunkten
+			        können Transformationsalgorithmen angewendet werden (z.B. Affine-Transformation). Auch kann basierend
+			        auf einem Validierungsergebnis ein Clip-Polygon gezeichnet werden, welches im weiteren Verlauf für das
+			        Abschneiden des nicht relevanten Kartenrandes genutzt werden kann.
+			    </target>
+			</trans-unit>
+		    <trans-unit id="faq.georef.georeference.text.2">
+			    <source>
+			        The toolbox on the unreferenced image viewer (left side) holds different tools for drawing, moving
+			        and deleting ground control points.
+			    </source>
+			    <target state="translated">
+                    Die Toolbox im der unreferenzierten Kartenansicht (linke Seite) bietet unterschiedliche Werkzeuge für
+                    das zeichnen, verschieben und löschen von Passpunkten.
+			    </target>
+			</trans-unit>
+		    <trans-unit id="faq.georef.georeference.text.3">
+			    <source>
+			        <![CDATA[For setting a ground control point choose the tool <b>Set ground control point</b> and then click on
+			        the unreference image (left side) and the corresponding place on the georeferenced image (rigth side).
+			        If a point was set wrong, you can adjust the position by using the tool <b>Move ground control point</b>
+			        and move the corresponding point by drag&amp;drop. If you wanna remove a ground control point use the tool
+			        <b>Delete ground control point</b>.]]>
+			    </source>
+			    <target state="translated">
+			        <![CDATA[Um einen Passpunkt zu setzen wird das Werkzeug <b>Passpunkt setzen</b> ausgewählt. Anschließend kann durch
+			        das Klicken auf die unreferenzierte Karten sowie das anschließende Klicken auf die georeferenzierte Karte
+			        ein Passpunkt gesetzt werden. Ist dieser Falsch, können die Punkte mittels des Werkzeuges <b>Passpunkt
+			        verschieben</b> verschoben werden. Auch können sie ggf. mit dem Werkzeug <b>Passpunkt löschen</b> gelöscht
+			        werden.]]>
+			    </target>
+			</trans-unit>
+		    <trans-unit id="faq.georef.georeference.text.4">
+			    <source>
+			        <![CDATA[By using the tool <b>Move map</b> you can move the map to the wanted view.]]>
+			    </source>
+			    <target state="translated">
+			        <![CDATA[Durch die Verwendung des Werkzeuges <b>Karte verschieben</b> kann die Kartenansicht verändert werden.]]>
+			    </target>
+			</trans-unit>
+		    <trans-unit id="faq.georef.georeference.text.5">
+			    <source>
+			        <![CDATA[If enough ground control points have been set, a validation image can be produced by the clicking on
+			        the <b>Update Preview</b> button. It is also possible to switch the used transformation algorithm.
+			        Generally it is recommended to use an "Affine" transformation for geological maps or plane survey sheets
+			        and a minimum number of 4 ground control points. In case of older historic maps types a "TPS" transformation
+			        is recommended. There you can always increase the georeferencing quality by adding more ground control
+			        points.]]>
+			    </source>
+			    <target state="translated">
+			        <![CDATA[Wurden genug Passpunkte gesetzt, kann ein Validierungsergebnis erzeugt werden. Dafür wird das Werkzeug
+			        <b>Vorschau aktualisieren</b>, welches sich oben links befindet, genutzt. Man kann auch auch unterschiedliche
+			        Transformationsalgorithmen auswählen. Generell wird für geologische oder topographische Karte eine
+			        "Affine" Transformation empfohlen mit einem Minimum von 4 Passpunkten. Für ältere Kartentypen wird hingegen
+			        "TPS" Transformation empfohlen. Die Georeferenzierungsqualität steigt dabei in der Regel mit der Anzahl
+			        der Passpunkte.]]>
+			    </target>
+			</trans-unit>
+		    <trans-unit id="faq.georef.georeference.text.6">
+			    <source>
+			        <![CDATA[On the basis of a georeferenced validation results a clip polygon can be drawn. Therefor use the tool
+			        <b>Draw Clip Polygon</b> on the georeferenced map view.]]>
+			    </source>
+			    <target state="translated">
+			        <![CDATA[Auf der Basis des Georeferenzierungsvorschau kann ein Clip-Polygon gezeichnet werden. Dazu kann das Werkzeug
+			        <b>Zeichne Clip-Polygon</b> auf der georeferenzierten Karte genutzt werden.]]>
+			    </target>
+			</trans-unit>
+		    <trans-unit id="faq.georef.georeference.text.7">
+			    <source>
+			        The captured georeference paramater could be saved permanently by using the button "Confirm Georeferencing".
+			        This will navigate the user back to the main page and save the georeference result permantly. After a
+			        view minutes the new georeference results are also accessible through the web client by all users.
+			    </source>
+			    <target state="translated">
+			        Die erfassten Georeferenzierungsparamater können durch einen Klick auf den Button "Georeferenzierung Bestätigen"
+			        permanent gespeichert werden. Der Nutzer wird außerdem zur Hauptseite zurückgeleitet. Nach wenigen Minuten
+			        stehen die neuen Georeferenzierungsergebnisse auch allen anderen Nutzern über die Plattform zur Verfügung.
+			    </target>
+			</trans-unit>
+		    <trans-unit id="faq.georef.history.title">
+			    <source>Georeference History</source>
+			    <target state="translated">Georeferenzierungshistorie</target>
+			</trans-unit>
+		    <trans-unit id="faq.georef.history.text.1">
+			    <source>
+			        If signed in, click on the dropdown in the upper right corner. There you can display your personal
+			        georeference history by clicking on the menu point "Georeference History". This will open a window,
+			        which gives you an overview over your personal georeference achievements.
+                </source>
+                <target state="translated">
+                    Ist man als Nutzer angemeldet, kann man sich durch einen Klick auf das Dropdown-Menu in der oberen rechten
+        	        Ecke und einen Klick auf den Menu-Punkt "Georeferenzierungshistorie", eine Übersicht seiner persönlichen
+        	        Georeferenzierungsgeschichte anzeigen lassen.
+                </target>
+			</trans-unit>
+
 			<!-- georeference choose -->
 			<trans-unit id="georeferencechoose.page.georeferenceChoose">
 				<source>Choose a Map for georeferencing</source>
