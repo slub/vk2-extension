@@ -334,14 +334,17 @@ vk2.app.AdminEvaluationApp.prototype.registerShowMapEventListener_ = function(el
 		var georefParamsNewOrUpdate = JSON.parse(event.currentTarget.getAttribute('data-params-georef')),
 			georefParams = georefParamsNewOrUpdate.hasOwnProperty('new') ? georefParamsNewOrUpdate['new'] 
 				: georefParamsNewOrUpdate,
-			clipParams = JSON.parse(event.currentTarget.getAttribute('data-params-clip')),
+			clipParams = event.currentTarget.getAttribute('data-params-clip') == 'None' ? undefined :
+				JSON.parse(event.currentTarget.getAttribute('data-params-clip')),
 			objectId = parseInt(event.currentTarget.getAttribute('data-params-id'), 0);
 		
 		var requestParams = {
 			'georeference': georefParams,
-			'id': objectId,
-			'clip': clipParams
+			'id': objectId
 		};
+
+		if (clipParams !== undefined)
+			requestParams['clip'] = clipParams;
 		
 		if (goog.DEBUG) {
 			console.log(requestParams);
