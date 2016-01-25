@@ -184,11 +184,14 @@ vk2.app.AdminEvaluationApp.prototype.createProcessListElement_ = function(record
 		// show map
 		var showMapBtn = goog.dom.createDom('button', {
 			'data-params-georef': JSON.stringify(record['georef_params']),
-			'data-params-clip': JSON.stringify(record['clippolygon']),
 			'data-params-id': record['mapid'],
 			'class':'btn btn-primary btn-show-georef',
 			'innerHTML': 'Show map'
 		});
+		// if clippolygon exists add it
+		if (record['clippolygon'] !== undefined)
+			showMapBtn.setAttribute('data-params-clip',JSON.stringify(record['clippolygon']));
+
 		this.registerShowMapEventListener_(showMapBtn);
 		goog.dom.appendChild(phrase, showMapBtn);
 		
@@ -334,8 +337,8 @@ vk2.app.AdminEvaluationApp.prototype.registerShowMapEventListener_ = function(el
 		var georefParamsNewOrUpdate = JSON.parse(event.currentTarget.getAttribute('data-params-georef')),
 			georefParams = georefParamsNewOrUpdate.hasOwnProperty('new') ? georefParamsNewOrUpdate['new'] 
 				: georefParamsNewOrUpdate,
-			clipParams = event.currentTarget.getAttribute('data-params-clip') == 'None' ? undefined :
-				JSON.parse(event.currentTarget.getAttribute('data-params-clip')),
+			clipParams = event.currentTarget.getAttribute('data-params-clip') == null || event.currentTarget.getAttribute('data-params-clip') == undefined ?
+				undefined : JSON.parse(event.currentTarget.getAttribute('data-params-clip')),
 			objectId = parseInt(event.currentTarget.getAttribute('data-params-id'), 0);
 		
 		var requestParams = {
