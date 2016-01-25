@@ -169,7 +169,8 @@ vk2.controller.MapController.prototype.registerPermalinkTool = function(permalin
 		var feature = event.target['feature'];
 		
 		// request associated messtischblaetter for a blattnr
-		this.map_.addLayer(this._createHistoricMapForFeature(feature));
+		if (feature.get('georeference') === true)
+			this.map_.addLayer(this._createHistoricMapForFeature(feature));
 	}, undefined, this);
 };
 
