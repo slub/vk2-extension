@@ -11,8 +11,8 @@ goog.require('goog.events.EventTarget');
  * @enum
  */
 vk2.tool.FacetedSearchTypes = {
-	'Ä': 'maptype-ä',
-	'M': 'maptype-m',
+	'Ä': 'maptype-ae',
+	'M': 'maptype-mtb',
 	'TK': 'maptype-tk',
 	'GL': 'maptype-gl',
 	'ToGeoref': 'georeference-false'
