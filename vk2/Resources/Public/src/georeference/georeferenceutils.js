@@ -14,20 +14,16 @@ vk2.georeference.utils.initializeGeorefenceCRS = function(){
 };
 
 /**
- * @param {ol.source.Vector} clipPolygonSource
- * @return {Array.<Array.<Number>>}
+ * @param {Object} clipPolygonObj
+ * @return {ol.Feature}
  */
-vk2.georeference.utils.extractClipPolygon = function(clipPolygonSource){
-	var clipFeature = clipPolygonSource.getFeatures()[0];
-	if (goog.isDef(clipFeature) && clipFeature.getGeometry().getType() === "Polygon"){
-		var response = [];
-		var coordinates = clipFeature.getGeometry().getCoordinates()[0];
-		for (var i = 0; i < coordinates.length; i++){
-			response.push(vk2.utils.transformGeoCoordsToPixel(coordinates[i]));
-		};
-		return response;
-	};
-	return [];
+vk2.georeference.utils.extractClipPolygon = function(clipPolygonObj){
+	var clipPolygon = clipPolygonObj.hasOwnProperty('polygon') && clipPolygonObj['polygon'].length > 0 ?
+			new ol.geom.Polygon([clipPolygonObj['polygon']]) : undefined,
+		clipPolygonTransformed = clipPolygon !== undefined ? clipPolygon.transform(clipPolygonObj['source'], vk2.settings.MAPVIEW_PARAMS['projection'])
+			: undefined,
+		feature = new ol.Feature({'geometry':clipPolygon});
+	return feature;
 };
 
 /**

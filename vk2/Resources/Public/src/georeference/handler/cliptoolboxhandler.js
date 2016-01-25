@@ -35,7 +35,7 @@ vk2.georeference.handler.ClipToolboxHandler = function(tbx, map, opt_clipPolygon
 	
 	// extract clip polygon from passed data
 	if (goog.isDef(opt_clipPolygon)){
-		var clipFeature = this.extractClipPolygon_(opt_clipPolygon)
+		var clipFeature = vk2.georeference.utils.extractClipPolygon(opt_clipPolygon)
 		this.clipPolygonSource_.addFeature(clipFeature);
 	};	
 	
@@ -80,8 +80,8 @@ goog.inherits(vk2.georeference.handler.ClipToolboxHandler, vk2.georeference.hand
  * @param {goog.events.Event} event
  */
 vk2.georeference.handler.ClipToolboxHandler.prototype.addClipPolygon = function(event){
-	var clipPolygon = event.target['clip'];
-	var clipFeature = this.extractClipPolygon_(clipPolygon);
+	var clipPolygon = event.target['clip'],
+		clipFeature = vk2.georeference.utils.extractClipPolygon(clipPolygon);
 	
 	// check if there exist already a clip polygon, if yes do not overwrite it
 	if (this.clipPolygonSource_.getFeatures().length === 0){
@@ -166,20 +166,6 @@ vk2.georeference.handler.ClipToolboxHandler.prototype.coupleToolboxWithInteracti
 	// activate and deactivate toolbox
 	goog.events.listen(clipToolbox, vk2.georeference.toolbox.ClipToolboxEventType.ACTIVATE, activateToolbox);
 	goog.events.listen(clipToolbox, vk2.georeference.toolbox.ClipToolboxEventType.DEACTIVATE, deactivateToolbox);
-};
-
-/**
- * @param {Object} clipPolygonObj
- * @return {ol.Feature}
- * @private
- */
-vk2.georeference.handler.ClipToolboxHandler.prototype.extractClipPolygon_ = function(clipPolygonObj){
-	var clipPolygon = clipPolygonObj.hasOwnProperty('polygon') && clipPolygonObj['polygon'].length > 0 ?
-			new ol.geom.Polygon([clipPolygonObj['polygon']]) : undefined,
-		clipPolygonTransformed = clipPolygon !== undefined ? clipPolygon.transform(clipPolygonObj['source'], vk2.settings.MAPVIEW_PARAMS['projection'])
-			: undefined,
-		feature = new ol.Feature({'geometry':clipPolygon});
-	return feature;
 };
 
 /**

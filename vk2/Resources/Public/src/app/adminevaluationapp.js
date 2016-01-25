@@ -183,8 +183,8 @@ vk2.app.AdminEvaluationApp.prototype.createProcessListElement_ = function(record
 		
 		// show map
 		var showMapBtn = goog.dom.createDom('button', {
-			'data-params-georef': record['georef_params'],
-			'data-params-clip': record['clippolygon'],
+			'data-params-georef': JSON.stringify(record['georef_params']),
+			'data-params-clip': JSON.stringify(record['clippolygon']),
 			'data-params-id': record['mapid'],
 			'class':'btn btn-primary btn-show-georef',
 			'innerHTML': 'Show map'
@@ -352,9 +352,17 @@ vk2.app.AdminEvaluationApp.prototype.registerShowMapEventListener_ = function(el
 		// request a validation result
 		this.targetView_.activateLoadingBar();
 		vk2.georeference.GeoreferencerService.requestValidationResult(requestParams, goog.bind(function(response){
+			var data = response.target.getResponseJson(),
+				extent = ol.proj.transformExtent(data['extent'], georefParams['target'],
+					vk2.settings.MAPVIEW_PARAMS['projection']),
+				clipPolygon = clipParams !== undefined ? vk2.georeference.utils.extractClipPolygon(clipParams) : undefined;
+
+			// display validation result and zoom to extent
+			this.targetView_.displayValidationMap(data['wmsUrl'], data['layerId'], clipPolygon);
+			this.targetView_.setZoom(extent);
+
+			// deavtivate the loading bar
 			this.targetView_.deactivateLoadingBar();
-			var data = response.target.getResponseJson();
-			this.targetView_.displayValidationMap(data['wmsUrl'], data['layerId'], data['clip']);
 		}, this), function(response){
 			this.targetView_.deactivateLoadingBar();
 			alert('Something went wrong while trying to fetch a georeference validation result from server ....');
