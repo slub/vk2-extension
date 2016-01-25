@@ -63,7 +63,17 @@ vk2.module.MapSearchModule = function(parentEl, map, facetSearch){
 		    return [vk2.utils.Styles.MAP_SEARCH_HOVER_FEATURE];
 		}	
 	});
-	map.addLayer(this.featureOverlay_)
+	map.addLayer(this.featureOverlay_);
+
+	// hold the overlay layer on top of the historic map layers
+	map.getLayers().on('add', function(event) {
+		var topLayer = event.target.getArray()[event.target.getLength() - 1];
+		console.log(topLayer);
+		if (topLayer instanceof vk2.layer.HistoricMap) {
+			map.removeLayer(this.featureOverlay_);
+			map.addLayer(this.featureOverlay_);
+		}
+	}, this);
 	
 	// load html content
 	this.loadHtmlContent_(this.parentEl_);
