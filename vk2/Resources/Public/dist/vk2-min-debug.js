@@ -103,10 +103,10 @@ function t(a, b) {
   function c() {
   }
   c.prototype = b.prototype;
-  a.fa = b.prototype;
+  a.ga = b.prototype;
   a.prototype = new c;
   a.prototype.constructor = a;
-  a.Ob = function(a, c, f) {
+  a.Pb = function(a, c, f) {
     for (var h = Array(arguments.length - 2), m = 2;m < arguments.length;m++) {
       h[m - 2] = arguments[m];
     }
@@ -162,18 +162,18 @@ function Ja(a) {
   return b;
 }
 ;var x = {l:{}};
-x.l.Mb = new ol.style.Style({stroke:new ol.style.Stroke({color:"rgba(0, 0, 255, 1.0)", width:2})});
-x.l.lb = new ol.style.Style({stroke:new ol.style.Stroke({color:"#f00", width:1}), fill:new ol.style.Fill({color:"rgba(255,0,0,0.1)"})});
-x.l.mb = new ol.style.Style({stroke:new ol.style.Stroke({color:"#000000", width:2})});
-x.l.Fa = new ol.style.Style({fill:new ol.style.Fill({color:"rgba(255, 255, 255, 0.2)"}), stroke:new ol.style.Stroke({color:"#ffcc33", width:2}), image:new ol.style.Circle({radius:7, fill:new ol.style.Fill({color:"#ffcc33"})})});
-x.l.xa = function(a) {
+x.l.Nb = new ol.style.Style({stroke:new ol.style.Stroke({color:"rgba(0, 0, 255, 1.0)", width:2})});
+x.l.mb = new ol.style.Style({stroke:new ol.style.Stroke({color:"#f00", width:1}), fill:new ol.style.Fill({color:"rgba(255,0,0,0.1)"})});
+x.l.nb = new ol.style.Style({stroke:new ol.style.Stroke({color:"#000000", width:2})});
+x.l.Ga = new ol.style.Style({fill:new ol.style.Fill({color:"rgba(255, 255, 255, 0.2)"}), stroke:new ol.style.Stroke({color:"#ffcc33", width:2}), image:new ol.style.Circle({radius:7, fill:new ol.style.Fill({color:"#ffcc33"})})});
+x.l.ya = function(a) {
   var b = 16 * Math.PI / 6, b = [0, b, b, b, b, b, b];
   a = l(a) ? a : void 0;
   return new ol.style.Style({image:new ol.style.Circle({radius:8, fill:new ol.style.Fill({color:"rgba(255,255,255,0.6)"}), stroke:new ol.style.Stroke({color:"rgba(49,159,211,0.5)", width:15, lineDash:b})}), text:new ol.style.Text({textAlign:"start", textBaseline:"bottom", font:"12px Calibri,sans-serif", text:a, fill:new ol.style.Fill({color:"#aa3300"}), stroke:new ol.style.Stroke({color:"#ffffff", width:3}), offsetX:10, offsetY:-5})});
 };
-x.l.Ga = new ol.style.Style({image:new ol.style.Circle({radius:7, fill:new ol.style.Fill({color:"rgba(255, 255, 255, 0.6)"}), stroke:new ol.style.Stroke({color:"#29A329", width:1.5})})});
-x.l.ia = new ol.style.Style({image:new ol.style.Circle({radius:7, fill:new ol.style.Fill({color:"rgba(255,0,0,0.1)"}), stroke:new ol.style.Stroke({color:"#f00", width:1})}), zIndex:1E5});
-x.l.da = function(a) {
+x.l.Ha = new ol.style.Style({image:new ol.style.Circle({radius:7, fill:new ol.style.Fill({color:"rgba(255, 255, 255, 0.6)"}), stroke:new ol.style.Stroke({color:"#29A329", width:1.5})})});
+x.l.ka = new ol.style.Style({image:new ol.style.Circle({radius:7, fill:new ol.style.Fill({color:"rgba(255,0,0,0.1)"}), stroke:new ol.style.Stroke({color:"#f00", width:1})}), zIndex:1E5});
+x.l.ea = function(a) {
   var b = 22 * Math.PI / 6, b = [0, b, b, b, b, b, b];
   a = l(a) ? a : void 0;
   return new ol.style.Style({image:new ol.style.Circle({radius:11, fill:new ol.style.Fill({color:"rgba(255,128,0,0.6)"}), stroke:new ol.style.Stroke({color:"rgba(240,0,0,0.5)", width:15, lineDash:b})}), text:new ol.style.Text({textAlign:"start", textBaseline:"bottom", font:"12px Calibri,sans-serif", text:a, fill:new ol.style.Fill({color:"#aa3300"}), stroke:new ol.style.Stroke({color:"#ffffff", width:3}), offsetX:10, offsetY:-5})});
@@ -187,7 +187,7 @@ function Ma(a) {
   return "" + a.i;
 }
 ;function Na(a) {
-  this.qa = a;
+  this.ra = a;
 }
 ;function Oa() {
   0 != Pa && (Qa[this[ja] || (this[ja] = ++ka)] = this);
@@ -197,9 +197,9 @@ function Ma(a) {
 var Pa = 0, Qa = {};
 Oa.prototype.i = !1;
 function z(a) {
-  a.i || (a.i = !0, a.R(), 0 != Pa && (a = a[ja] || (a[ja] = ++ka), delete Qa[a]));
+  a.i || (a.i = !0, a.S(), 0 != Pa && (a = a[ja] || (a[ja] = ++ka), delete Qa[a]));
 }
-Oa.prototype.R = function() {
+Oa.prototype.S = function() {
   if (this.H) {
     for (;this.H.length;) {
       this.H.shift()();
@@ -210,13 +210,13 @@ function B(a, b) {
   this.type = a;
   this.currentTarget = this.target = b;
   this.b = !1;
-  this.cb = !0;
+  this.eb = !0;
 }
 B.prototype.stopPropagation = function() {
   this.b = !0;
 };
 B.prototype.preventDefault = function() {
-  this.cb = !1;
+  this.eb = !1;
 };
 var Ra = "closure_listenable_" + (1E6 * Math.random() | 0), Sa = 0;
 function Ta(a, b, c, d, e) {
@@ -224,17 +224,17 @@ function Ta(a, b, c, d, e) {
   this.a = null;
   this.src = b;
   this.type = c;
-  this.Z = !!d;
-  this.U = e;
+  this.aa = !!d;
+  this.V = e;
   ++Sa;
-  this.W = this.ja = !1;
+  this.X = this.la = !1;
 }
 function Ua(a) {
-  a.W = !0;
+  a.X = !0;
   a.listener = null;
   a.a = null;
   a.src = null;
-  a.U = null;
+  a.V = null;
 }
 ;function Va(a) {
   a = String(a);
@@ -373,7 +373,7 @@ g.I = function() {
 g.isEmpty = function() {
   return !this.a.cookie;
 };
-g.va = function() {
+g.wa = function() {
   return this.a.cookie ? (this.a.cookie || "").split(gb).length : 0;
 };
 g.clear = function() {
@@ -563,7 +563,7 @@ Rb.prototype.add = function(a, b, c, d, e) {
   a = this.a[f];
   a || (a = this.a[f] = [], this.b++);
   var h = Sb(a, b, d, e);
-  -1 < h ? (b = a[h], c || (b.ja = !1)) : (b = new Ta(b, this.src, f, !!d, e), b.ja = c, a.push(b));
+  -1 < h ? (b = a[h], c || (b.la = !1)) : (b = new Ta(b, this.src, f, !!d, e), b.la = c, a.push(b));
   return b;
 };
 Rb.prototype.remove = function(a, b, c, d) {
@@ -579,7 +579,7 @@ function Tb(a, b) {
   var c = b.type;
   c in a.a && Fb(a.a[c], b) && (Ua(b), 0 == a.a[c].length && (delete a.a[c], a.b--));
 }
-Rb.prototype.ya = function(a, b, c, d) {
+Rb.prototype.za = function(a, b, c, d) {
   a = this.a[a.toString()];
   var e = -1;
   a && (e = Sb(a, b, c, d));
@@ -589,7 +589,7 @@ Rb.prototype.hasListener = function(a, b) {
   var c = l(a), d = c ? a.toString() : "", e = l(b);
   return Ya(this.a, function(a) {
     for (var h = 0;h < a.length;++h) {
-      if (!(c && a[h].type != d || e && a[h].Z != b)) {
+      if (!(c && a[h].type != d || e && a[h].aa != b)) {
         return !0;
       }
     }
@@ -599,7 +599,7 @@ Rb.prototype.hasListener = function(a, b) {
 function Sb(a, b, c, d) {
   for (var e = 0;e < a.length;++e) {
     var f = a[e];
-    if (!f.W && f.listener == b && f.Z == !!c && f.U == d) {
+    if (!f.X && f.listener == b && f.aa == !!c && f.V == d) {
       return e;
     }
   }
@@ -609,7 +609,7 @@ function Sb(a, b, c, d) {
 function Vb() {
 }
 t(Vb, jb);
-function Xb(a) {
+function Wb(a) {
   return (a = lb(a)) ? new ActiveXObject(a) : new XMLHttpRequest;
 }
 function lb(a) {
@@ -627,7 +627,7 @@ function lb(a) {
 }
 Ub = new Vb;
 function Yb(a, b) {
-  this.h = {};
+  this.g = {};
   this.a = [];
   this.b = 0;
   var c = arguments.length;
@@ -648,13 +648,13 @@ function Yb(a, b) {
   }
 }
 g = Yb.prototype;
-g.va = function() {
+g.wa = function() {
   return this.b;
 };
 g.I = function() {
   Zb(this);
   for (var a = [], b = 0;b < this.a.length;b++) {
-    a.push(this.h[this.a[b]]);
+    a.push(this.g[this.a[b]]);
   }
   return a;
 };
@@ -666,7 +666,7 @@ g.equals = function(a, b) {
   if (this === a) {
     return !0;
   }
-  if (this.b != a.va()) {
+  if (this.b != a.wa()) {
     return !1;
   }
   var c = b || $b;
@@ -685,17 +685,17 @@ g.isEmpty = function() {
   return 0 == this.b;
 };
 g.clear = function() {
-  this.h = {};
+  this.g = {};
   this.b = this.a.length = 0;
 };
 g.remove = function(a) {
-  return ac(this.h, a) ? (delete this.h[a], this.b--, this.a.length > 2 * this.b && Zb(this), !0) : !1;
+  return ac(this.g, a) ? (delete this.g[a], this.b--, this.a.length > 2 * this.b && Zb(this), !0) : !1;
 };
 function Zb(a) {
   if (a.b != a.a.length) {
     for (var b = 0, c = 0;b < a.a.length;) {
       var d = a.a[b];
-      ac(a.h, d) && (a.a[c++] = d);
+      ac(a.g, d) && (a.a[c++] = d);
       b++;
     }
     a.a.length = c;
@@ -708,11 +708,11 @@ function Zb(a) {
   }
 }
 g.get = function(a, b) {
-  return ac(this.h, a) ? this.h[a] : b;
+  return ac(this.g, a) ? this.g[a] : b;
 };
 g.set = function(a, b) {
-  ac(this.h, a) || (this.b++, this.a.push(a));
-  this.h[a] = b;
+  ac(this.g, a) || (this.b++, this.a.push(a));
+  this.g[a] = b;
 };
 g.forEach = function(a, b) {
   for (var c = this.getKeys(), d = 0;d < c.length;d++) {
@@ -967,15 +967,20 @@ function uc(a) {
   proj4.defs("EPSG:900913", "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +over no_defs");
   proj4.defs("EPSG:3857", "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs");
 }
-function Bc() {
+function Bc(a) {
+  var b = a.hasOwnProperty("polygon") && 0 < a.polygon.length ? new ol.geom.Polygon([a.polygon]) : void 0;
+  void 0 !== b && b.transform(a.source, u.projection);
+  return new ol.Feature({geometry:b});
+}
+function Cc() {
   var a = N("transformation-chooser");
   return "tps" === a.value.toLowerCase() ? "tps" : "polynom" === a.value.toLowerCase() ? "polynom" : "affine";
 }
-function Cc() {
+function Dc() {
   var a = N("projection-chooser");
   return null !== a && void 0 !== a ? a.value : "EPSG:4314";
 }
-;function Dc(a, b) {
+;function Ec(a, b) {
   this.b = p(a) ? N(a) : a;
   var c = l("vertical") && p("vertical") ? "vertical" : "horizontal", d = this.b, e = Q("div", {"class":"opacity-container"});
   d.appendChild(e);
@@ -983,9 +988,9 @@ function Cc() {
   e.appendChild(d);
   this.a = Q("div", {"class":"slider"});
   d.appendChild(this.a);
-  Ec(this, this.a, b, c);
+  Fc(this, this.a, b, c);
 }
-function Ec(a, b, c, d) {
+function Fc(a, b, c, d) {
   function e(a, b) {
     "vertical" == d ? b.style.top = 100 - (a - 0) / 100 * 100 + "%" : b.style.left = (a - 0) / 100 * 100 + "%";
     b.innerHTML = a + "%";
@@ -1007,7 +1012,7 @@ function Ec(a, b, c, d) {
     19 < Math.abs(a - $(b).slider("value")) && $(b).slider("value", a);
   });
 }
-;var Fc = !J || J && (I() || 9 <= nc), Gc = J && !M("9");
+;var Gc = !J || J && (I() || 9 <= nc), Hc = J && !M("9");
 !L || M("528");
 K && M("1.9b") || J && M("8") || fc && M("9.5") || L && M("528");
 K && !M("8") || J && M("9");
@@ -1015,8 +1020,8 @@ function S(a, b) {
   B.call(this, a ? a.type : "");
   this.currentTarget = this.target = null;
   this.keyCode = this.clientY = this.clientX = this.offsetY = this.offsetX = 0;
-  this.g = this.j = this.a = this.i = !1;
-  this.K = null;
+  this.h = this.j = this.a = this.i = !1;
+  this.L = null;
   if (a) {
     this.type = a.type;
     this.target = a.target || a.srcElement;
@@ -1036,23 +1041,23 @@ function S(a, b) {
     this.i = a.ctrlKey;
     this.a = a.altKey;
     this.j = a.shiftKey;
-    this.g = a.metaKey;
-    this.K = a;
+    this.h = a.metaKey;
+    this.L = a;
     a.defaultPrevented && this.preventDefault();
   }
 }
 t(S, B);
 S.prototype.stopPropagation = function() {
-  S.fa.stopPropagation.call(this);
-  this.K.stopPropagation ? this.K.stopPropagation() : this.K.cancelBubble = !0;
+  S.ga.stopPropagation.call(this);
+  this.L.stopPropagation ? this.L.stopPropagation() : this.L.cancelBubble = !0;
 };
 S.prototype.preventDefault = function() {
-  S.fa.preventDefault.call(this);
-  var a = this.K;
+  S.ga.preventDefault.call(this);
+  var a = this.L;
   if (a.preventDefault) {
     a.preventDefault();
   } else {
-    if (a.returnValue = !1, Gc) {
+    if (a.returnValue = !1, Hc) {
       try {
         if (a.ctrlKey || 112 <= a.keyCode && 123 >= a.keyCode) {
           a.keyCode = -1;
@@ -1062,7 +1067,7 @@ S.prototype.preventDefault = function() {
     }
   }
 };
-var Hc = "closure_lm_" + (1E6 * Math.random() | 0), Ic = {}, Jc = 0;
+var Ic = "closure_lm_" + (1E6 * Math.random() | 0), Jc = {}, Kc = 0;
 function T(a, b, c, d, e) {
   if (ea(b)) {
     for (var f = 0;f < b.length;f++) {
@@ -1070,20 +1075,20 @@ function T(a, b, c, d, e) {
     }
     return null;
   }
-  c = Kc(c);
-  return a && a[Ra] ? a.C.add(String(b), c, !1, d, e) : Lc(a, b, c, !1, d, e);
+  c = Lc(c);
+  return a && a[Ra] ? a.C.add(String(b), c, !1, d, e) : Mc(a, b, c, !1, d, e);
 }
-function Lc(a, b, c, d, e, f) {
+function Mc(a, b, c, d, e, f) {
   if (!b) {
     throw Error("Invalid event type");
   }
-  var h = !!e, m = Mc(a);
-  m || (a[Hc] = m = new Rb(a));
+  var h = !!e, m = Nc(a);
+  m || (a[Ic] = m = new Rb(a));
   c = m.add(b, c, d, e, f);
   if (c.a) {
     return c;
   }
-  d = Nc();
+  d = Oc();
   c.a = d;
   d.src = a;
   d.listener = c;
@@ -1091,16 +1096,16 @@ function Lc(a, b, c, d, e, f) {
     a.addEventListener(b.toString(), d, h);
   } else {
     if (a.attachEvent) {
-      a.attachEvent(Oc(b.toString()), d);
+      a.attachEvent(Pc(b.toString()), d);
     } else {
       throw Error("addEventListener and attachEvent are unavailable.");
     }
   }
-  Jc++;
+  Kc++;
   return c;
 }
-function Nc() {
-  var a = Pc, b = Fc ? function(c) {
+function Oc() {
+  var a = Qc, b = Gc ? function(c) {
     return a.call(b.src, b.listener, c);
   } : function(c) {
     c = a.call(b.src, b.listener, c);
@@ -1116,56 +1121,56 @@ function U(a, b, c, d, e) {
       U(a, b[f], c, d, e);
     }
   } else {
-    c = Kc(c), a && a[Ra] ? a.C.add(String(b), c, !0, d, e) : Lc(a, b, c, !0, d, e);
+    c = Lc(c), a && a[Ra] ? a.C.add(String(b), c, !0, d, e) : Mc(a, b, c, !0, d, e);
   }
 }
-function Qc(a, b, c, d, e) {
+function Rc(a, b, c, d, e) {
   if (ea(b)) {
     for (var f = 0;f < b.length;f++) {
-      Qc(a, b[f], c, d, e);
+      Rc(a, b[f], c, d, e);
     }
   } else {
-    c = Kc(c), a && a[Ra] ? a.C.remove(String(b), c, d, e) : a && (a = Mc(a)) && (b = a.ya(b, c, !!d, e)) && Rc(b);
+    c = Lc(c), a && a[Ra] ? a.C.remove(String(b), c, d, e) : a && (a = Nc(a)) && (b = a.za(b, c, !!d, e)) && Sc(b);
   }
 }
-function Rc(a) {
-  if (!ga(a) && a && !a.W) {
+function Sc(a) {
+  if (!ga(a) && a && !a.X) {
     var b = a.src;
     if (b && b[Ra]) {
       Tb(b.C, a);
     } else {
       var c = a.type, d = a.a;
-      b.removeEventListener ? b.removeEventListener(c, d, a.Z) : b.detachEvent && b.detachEvent(Oc(c), d);
-      Jc--;
-      (c = Mc(b)) ? (Tb(c, a), 0 == c.b && (c.src = null, b[Hc] = null)) : Ua(a);
+      b.removeEventListener ? b.removeEventListener(c, d, a.aa) : b.detachEvent && b.detachEvent(Pc(c), d);
+      Kc--;
+      (c = Nc(b)) ? (Tb(c, a), 0 == c.b && (c.src = null, b[Ic] = null)) : Ua(a);
     }
   }
 }
-function Oc(a) {
-  return a in Ic ? Ic[a] : Ic[a] = "on" + a;
+function Pc(a) {
+  return a in Jc ? Jc[a] : Jc[a] = "on" + a;
 }
-function Sc(a, b, c, d) {
+function Tc(a, b, c, d) {
   var e = !0;
-  if (a = Mc(a)) {
+  if (a = Nc(a)) {
     if (b = a.a[b.toString()]) {
       for (b = b.concat(), a = 0;a < b.length;a++) {
         var f = b[a];
-        f && f.Z == c && !f.W && (f = Tc(f, d), e = e && !1 !== f);
+        f && f.aa == c && !f.X && (f = Uc(f, d), e = e && !1 !== f);
       }
     }
   }
   return e;
 }
-function Tc(a, b) {
-  var c = a.listener, d = a.U || a.src;
-  a.ja && Rc(a);
+function Uc(a, b) {
+  var c = a.listener, d = a.V || a.src;
+  a.la && Sc(a);
   return c.call(d, b);
 }
-function Pc(a, b) {
-  if (a.W) {
+function Qc(a, b) {
+  if (a.X) {
     return !0;
   }
-  if (!Fc) {
+  if (!Gc) {
     var c;
     if (!(c = b)) {
       a: {
@@ -1205,31 +1210,31 @@ function Pc(a, b) {
       }
       for (var f = a.type, m = e.length - 1;!c.b && 0 <= m;m--) {
         c.currentTarget = e[m];
-        var n = Sc(e[m], f, !0, c), d = d && n;
+        var n = Tc(e[m], f, !0, c), d = d && n;
       }
       for (m = 0;!c.b && m < e.length;m++) {
-        c.currentTarget = e[m], n = Sc(e[m], f, !1, c), d = d && n;
+        c.currentTarget = e[m], n = Tc(e[m], f, !1, c), d = d && n;
       }
     }
     return d;
   }
-  return Tc(a, new S(b, this));
+  return Uc(a, new S(b, this));
 }
-function Mc(a) {
-  a = a[Hc];
+function Nc(a) {
+  a = a[Ic];
   return a instanceof Rb ? a : null;
 }
-var Uc = "__closure_events_fn_" + (1E9 * Math.random() >>> 0);
-function Kc(a) {
+var Vc = "__closure_events_fn_" + (1E9 * Math.random() >>> 0);
+function Lc(a) {
   if (ha(a)) {
     return a;
   }
-  a[Uc] || (a[Uc] = function(b) {
+  a[Vc] || (a[Vc] = function(b) {
     return a.handleEvent(b);
   });
-  return a[Uc];
+  return a[Vc];
 }
-;function Vc(a) {
+;function Wc(a) {
   function b(a) {
     a.preventDefault();
     e.getMap().getView().setRotation(0);
@@ -1249,12 +1254,12 @@ function Kc(a) {
   d.appendChild(c);
   ol.control.Control.call(this, {element:d, target:a.target});
 }
-ol.inherits(Vc, ol.control.Control);
+ol.inherits(Wc, ol.control.Control);
 function V() {
   Oa.call(this);
   this.C = new Rb(this);
-  this.hb = this;
-  this.Da = null;
+  this.ib = this;
+  this.Ea = null;
 }
 t(V, Oa);
 V.prototype[Ra] = !0;
@@ -1263,16 +1268,16 @@ g.addEventListener = function(a, b, c, d) {
   T(this, a, b, c, d);
 };
 g.removeEventListener = function(a, b, c, d) {
-  Qc(this, a, b, c, d);
+  Rc(this, a, b, c, d);
 };
 g.dispatchEvent = function(a) {
-  var b, c = this.Da;
+  var b, c = this.Ea;
   if (c) {
-    for (b = [];c;c = c.Da) {
+    for (b = [];c;c = c.Ea) {
       b.push(c);
     }
   }
-  var c = this.hb, d = a.type || a;
+  var c = this.ib, d = a.type || a;
   if (p(a)) {
     a = new B(a, c);
   } else {
@@ -1287,19 +1292,19 @@ g.dispatchEvent = function(a) {
   var e = !0, f;
   if (b) {
     for (var h = b.length - 1;!a.b && 0 <= h;h--) {
-      f = a.currentTarget = b[h], e = Wc(f, d, !0, a) && e;
+      f = a.currentTarget = b[h], e = Xc(f, d, !0, a) && e;
     }
   }
-  a.b || (f = a.currentTarget = c, e = Wc(f, d, !0, a) && e, a.b || (e = Wc(f, d, !1, a) && e));
+  a.b || (f = a.currentTarget = c, e = Xc(f, d, !0, a) && e, a.b || (e = Xc(f, d, !1, a) && e));
   if (b) {
     for (h = 0;!a.b && h < b.length;h++) {
-      f = a.currentTarget = b[h], e = Wc(f, d, !1, a) && e;
+      f = a.currentTarget = b[h], e = Xc(f, d, !1, a) && e;
     }
   }
   return e;
 };
-g.R = function() {
-  V.fa.R.call(this);
+g.S = function() {
+  V.ga.S.call(this);
   if (this.C) {
     var a = this.C, b = 0, c;
     for (c in a.a) {
@@ -1310,9 +1315,9 @@ g.R = function() {
       a.b--;
     }
   }
-  this.Da = null;
+  this.Ea = null;
 };
-function Wc(a, b, c, d) {
+function Xc(a, b, c, d) {
   b = a.C.a[String(b)];
   if (!b) {
     return !0;
@@ -1320,27 +1325,27 @@ function Wc(a, b, c, d) {
   b = b.concat();
   for (var e = !0, f = 0;f < b.length;++f) {
     var h = b[f];
-    if (h && !h.W && h.Z == c) {
-      var m = h.listener, n = h.U || h.src;
-      h.ja && Tb(a.C, h);
+    if (h && !h.X && h.aa == c) {
+      var m = h.listener, n = h.V || h.src;
+      h.la && Tb(a.C, h);
       e = !1 !== m.call(n, d) && e;
     }
   }
-  return e && 0 != d.cb;
+  return e && 0 != d.eb;
 }
-g.ya = function(a, b, c, d) {
-  return this.C.ya(String(a), b, c, d);
+g.za = function(a, b, c, d) {
+  return this.C.za(String(a), b, c, d);
 };
 g.hasListener = function(a, b) {
   return this.C.hasListener(l(a) ? String(a) : void 0, b);
 };
-var Xc = {"\u00c4":"maptype-\u00e4", M:"maptype-m", TK:"maptype-tk", GL:"maptype-gl", ToGeoref:"georeference-false"};
-function Yc(a, b) {
+var Yc = {"\u00c4":"maptype-ae", M:"maptype-mtb", TK:"maptype-tk", GL:"maptype-gl", ToGeoref:"georeference-false"};
+function Zc(a, b) {
   this.o = p(a) ? N(a) : a;
-  b || delete Xc.ToGeoref;
+  b || delete Yc.ToGeoref;
   var c = "", d;
-  for (d in Xc) {
-    c += '<label class="checkbox-inline"><input class="facet-search-el" type="checkbox" id="' + d + '" value="' + Xc[d] + '">' + d + "</label>";
+  for (d in Yc) {
+    c += '<label class="checkbox-inline"><input class="facet-search-el" type="checkbox" id="' + d + '" value="' + Yc[d] + '">' + d + "</label>";
   }
   c = Q("div", {"class":"search-facet", innerHTML:c});
   this.o.appendChild(c);
@@ -1357,8 +1362,8 @@ function Yc(a, b) {
   }, void 0, this);
   V.call(this);
 }
-t(Yc, V);
-function Zc(a, b) {
+t(Zc, V);
+function $c(a, b) {
   this.b = p(a) ? N(a) : a;
   var c = void 0 !== b ? b : [1868, 1945], d = this.b, e = Q("div", {"class":"timeslider-container"});
   d.appendChild(e);
@@ -1368,11 +1373,11 @@ function Zc(a, b) {
   e.appendChild(d);
   this.a = Q("div", {"class":"slider"});
   d.appendChild(this.a);
-  $c(this, this.a, c);
+  ad(this, this.a, c);
   V.call(this);
 }
-t(Zc, V);
-function $c(a, b, c) {
+t($c, V);
+function ad(a, b, c) {
   function d(a, b) {
     b.style.left = (a - c[0]) / (c[1] - c[0]) * 100 + "%";
     b.innerHTML = a;
@@ -1386,14 +1391,14 @@ function $c(a, b, c) {
     var c = b.values;
     d(c[0], e);
     d(c[1], f);
-    this.dispatchEvent(new B(ad, {time:c}));
+    this.dispatchEvent(new B(bd, {time:c}));
   }, a)});
   e = Q("div", {"class":"tooltip min-value", innerHTML:c[0]});
   b.appendChild(e);
   f = Q("div", {"class":"tooltip max-value", innerHTML:c[1]});
   b.appendChild(f);
 }
-var ad = "timechange";
+var bd = "timechange";
 function W() {
   this.status_ = !1;
   V.call(this);
@@ -1403,57 +1408,13 @@ W.prototype.A = function() {
 };
 W.prototype.B = function() {
 };
-function bd(a, b, c, d) {
+function cd(a, b, c, d) {
   this.a = [c, d];
   this.s = [new ol.interaction.Draw({source:a, type:"Point", style:function() {
-    return [x.l.ia];
+    return [x.l.ka];
   }}), new ol.interaction.Draw({source:b, type:"Point", style:function() {
-    return [x.l.ia];
+    return [x.l.ka];
   }})];
-  W.call(this);
-}
-t(bd, W);
-bd.prototype.A = function() {
-  this.G();
-  this.status_ = !0;
-};
-bd.prototype.G = function() {
-  for (var a = 0;a < this.a.length;a++) {
-    this.a[a].addInteraction(this.s[a]);
-  }
-};
-bd.prototype.B = function() {
-  this.J();
-  this.status_ = !1;
-};
-bd.prototype.J = function() {
-  for (var a = 0;a < this.a.length;a++) {
-    this.a[a].removeInteraction(this.s[a]);
-  }
-};
-function cd(a, b, c, d) {
-  function e(a, b, c) {
-    var d = b.getSource().getFeatureById(a.getId());
-    a = c.getSource().getFeatureById(a.getId());
-    null != d && b.getSource().removeFeature(d);
-    null != a && c.getSource().removeFeature(a);
-  }
-  this.a = [c, d];
-  this.s = [new ol.interaction.Select({condition:ol.events.condition.click, layer:a, style:function() {
-    return [x.l.ia];
-  }, condition:q(function(d) {
-    "click" === d.type && c.forEachFeatureAtPixel(d.pixel, function(c) {
-      e(c, a, b);
-    });
-    return !1;
-  }, this)}), new ol.interaction.Select({condition:ol.events.condition.click, layer:b, style:function() {
-    return [x.l.ia];
-  }, condition:q(function(c) {
-    "click" === c.type && d.forEachFeatureAtPixel(c.pixel, function(c) {
-      e(c, a, b);
-    });
-    return !1;
-  }, this)})];
   W.call(this);
 }
 t(cd, W);
@@ -1467,30 +1428,37 @@ cd.prototype.G = function() {
   }
 };
 cd.prototype.B = function() {
-  this.J();
+  this.K();
   this.status_ = !1;
 };
-cd.prototype.J = function() {
+cd.prototype.K = function() {
   for (var a = 0;a < this.a.length;a++) {
     this.a[a].removeInteraction(this.s[a]);
   }
 };
 function dd(a, b, c, d) {
+  function e(a, b, c) {
+    var d = b.getSource().getFeatureById(a.getId());
+    a = c.getSource().getFeatureById(a.getId());
+    null != d && b.getSource().removeFeature(d);
+    null != a && c.getSource().removeFeature(a);
+  }
   this.a = [c, d];
-  a.getStyle();
-  x.l.da();
-  this.s = [new ol.interaction.Modify({features:a.getSource().getFeaturesCollection(), pixelTolerance:10, style:function() {
-    return [x.l.da()];
-  }}), new ol.interaction.Modify({features:b.getSource().getFeaturesCollection(), pixelTolerance:10, style:function() {
-    return [x.l.da()];
-  }})];
-  this.s[0].getMap = function() {
-    return c;
-  };
-  this.s[1].getMap = function() {
-    return d;
-  };
-  ed(this, this.s, [a, b]);
+  this.s = [new ol.interaction.Select({condition:ol.events.condition.click, layer:a, style:function() {
+    return [x.l.ka];
+  }, condition:q(function(d) {
+    "click" === d.type && c.forEachFeatureAtPixel(d.pixel, function(c) {
+      e(c, a, b);
+    });
+    return !1;
+  }, this)}), new ol.interaction.Select({condition:ol.events.condition.click, layer:b, style:function() {
+    return [x.l.ka];
+  }, condition:q(function(c) {
+    "click" === c.type && d.forEachFeatureAtPixel(c.pixel, function(c) {
+      e(c, a, b);
+    });
+    return !1;
+  }, this)})];
   W.call(this);
 }
 t(dd, W);
@@ -1504,22 +1472,59 @@ dd.prototype.G = function() {
   }
 };
 dd.prototype.B = function() {
-  this.J();
+  this.K();
   this.status_ = !1;
 };
-dd.prototype.J = function() {
+dd.prototype.K = function() {
   for (var a = 0;a < this.a.length;a++) {
     this.a[a].removeInteraction(this.s[a]);
   }
 };
-function ed(a, b, c) {
+function ed(a, b, c, d) {
+  this.a = [c, d];
+  a.getStyle();
+  x.l.ea();
+  this.s = [new ol.interaction.Modify({features:a.getSource().getFeaturesCollection(), pixelTolerance:10, style:function() {
+    return [x.l.ea()];
+  }}), new ol.interaction.Modify({features:b.getSource().getFeaturesCollection(), pixelTolerance:10, style:function() {
+    return [x.l.ea()];
+  }})];
+  this.s[0].getMap = function() {
+    return c;
+  };
+  this.s[1].getMap = function() {
+    return d;
+  };
+  fd(this, this.s, [a, b]);
+  W.call(this);
+}
+t(ed, W);
+ed.prototype.A = function() {
+  this.G();
+  this.status_ = !0;
+};
+ed.prototype.G = function() {
+  for (var a = 0;a < this.a.length;a++) {
+    this.a[a].addInteraction(this.s[a]);
+  }
+};
+ed.prototype.B = function() {
+  this.K();
+  this.status_ = !1;
+};
+ed.prototype.K = function() {
+  for (var a = 0;a < this.a.length;a++) {
+    this.a[a].removeInteraction(this.s[a]);
+  }
+};
+function fd(a, b, c) {
   function d(a, b) {
     var c = f(b.target.getMap(), b.mapBrowserPointerEvent.pixel, a);
-    da(c.getId()) && this.dispatchEvent(new B("deselected", {feature:c, srcStyle:x.l.da(c.getId()), targetStyle:x.l.xa(c.getId())}));
+    da(c.getId()) && this.dispatchEvent(new B("deselected", {feature:c, srcStyle:x.l.ea(c.getId()), targetStyle:x.l.ya(c.getId())}));
   }
-  function e(a, b) {
-    var c = f(b.target.getMap(), b.mapBrowserPointerEvent.pixel, a);
-    da(c.getId()) && this.dispatchEvent(new B("selected", {feature:c, srcStyle:x.l.xa(c.getId()), targetStyle:x.l.da(c.getId())}));
+  function e(a, c) {
+    var b = f(c.target.getMap(), c.mapBrowserPointerEvent.pixel, a);
+    da(b.getId()) && this.dispatchEvent(new B("selected", {feature:b, srcStyle:x.l.ya(b.getId()), targetStyle:x.l.ea(b.getId())}));
   }
   function f(a, b, c) {
     var d;
@@ -1549,10 +1554,10 @@ ol.Collection.prototype.removeFeature = function(a) {
   });
   b && this.remove(a);
 };
-function fd(a, b) {
+function gd(a, b) {
   var c = b.getSource();
-  this.h = a;
-  this.s = [new ol.interaction.Draw({features:c.getFeaturesCollection(), type:"Polygon", style:x.l.Fa}), new ol.interaction.Modify({features:b.getSource().getFeaturesCollection(), deleteCondition:function(a) {
+  this.g = a;
+  this.s = [new ol.interaction.Draw({features:c.getFeaturesCollection(), type:"Polygon", style:x.l.Ga}), new ol.interaction.Modify({features:b.getSource().getFeaturesCollection(), deleteCondition:function(a) {
     return ol.events.condition.shiftKeyOnly(a) && ol.events.condition.singleClick(a);
   }})];
   this.s[0].on("drawstart", function() {
@@ -1563,40 +1568,40 @@ function fd(a, b) {
   }, this);
   W.call(this);
 }
-t(fd, W);
-fd.prototype.A = function() {
+t(gd, W);
+gd.prototype.A = function() {
   this.G();
   this.status_ = !0;
 };
-fd.prototype.G = function() {
+gd.prototype.G = function() {
   for (var a = 0;a < this.s.length;a++) {
-    this.h.addInteraction(this.s[a]);
+    this.g.addInteraction(this.s[a]);
   }
 };
-fd.prototype.B = function() {
-  this.J();
+gd.prototype.B = function() {
+  this.K();
   this.status_ = !1;
 };
-fd.prototype.J = function() {
+gd.prototype.K = function() {
   for (var a = 0;a < this.s.length;a++) {
-    this.h.removeInteraction(this.s[a]);
+    this.g.removeInteraction(this.s[a]);
   }
 };
-function gd() {
+function hd() {
   V.call(this);
 }
-t(gd, V);
-function hd(a, b, c, d, e) {
+t(hd, V);
+function id(a, b, c, d, e) {
   if (!(J || L && M("525"))) {
     return !0;
   }
   if (gc && e) {
-    return id(a);
+    return jd(a);
   }
   if (e && !d) {
     return !1;
   }
-  ga(b) && (b = jd(b));
+  ga(b) && (b = kd(b));
   if (!c && (17 == b || 18 == b || gc && 91 == b)) {
     return !1;
   }
@@ -1637,9 +1642,9 @@ function hd(a, b, c, d, e) {
     case 27:
       return !L;
   }
-  return id(a);
+  return jd(a);
 }
-function id(a) {
+function jd(a) {
   if (48 <= a && 57 >= a || 96 <= a && 106 >= a || 65 <= a && 90 >= a || L && 0 == a) {
     return !0;
   }
@@ -1686,9 +1691,9 @@ function id(a) {
       return !1;
   }
 }
-function jd(a) {
+function kd(a) {
   if (K) {
-    a = kd(a);
+    a = ld(a);
   } else {
     if (gc && L) {
       a: {
@@ -1702,7 +1707,7 @@ function jd(a) {
   }
   return a;
 }
-function kd(a) {
+function ld(a) {
   switch(a) {
     case 61:
       return 187;
@@ -1718,84 +1723,84 @@ function kd(a) {
       return a;
   }
 }
-;function ld(a, b) {
+;function md(a, b) {
   V.call(this);
-  a && (this.oa && md(this), this.ba = a, this.na = T(this.ba, "keypress", this, b), this.za = T(this.ba, "keydown", this.a, b, this), this.oa = T(this.ba, "keyup", this.b, b, this));
+  a && (this.qa && nd(this), this.ca = a, this.pa = T(this.ca, "keypress", this, b), this.Aa = T(this.ca, "keydown", this.a, b, this), this.qa = T(this.ca, "keyup", this.b, b, this));
 }
-t(ld, V);
-g = ld.prototype;
-g.ba = null;
-g.na = null;
-g.za = null;
-g.oa = null;
+t(md, V);
+g = md.prototype;
+g.ca = null;
+g.pa = null;
+g.Aa = null;
+g.qa = null;
 g.D = -1;
-g.N = -1;
-g.ta = !1;
-var nd = {3:13, 12:144, 63232:38, 63233:40, 63234:37, 63235:39, 63236:112, 63237:113, 63238:114, 63239:115, 63240:116, 63241:117, 63242:118, 63243:119, 63244:120, 63245:121, 63246:122, 63247:123, 63248:44, 63272:46, 63273:36, 63275:35, 63276:33, 63277:34, 63289:144, 63302:45}, od = {Up:38, Down:40, Left:37, Right:39, Enter:13, F1:112, F2:113, F3:114, F4:115, F5:116, F6:117, F7:118, F8:119, F9:120, F10:121, F11:122, F12:123, "U+007F":46, Home:36, End:35, PageUp:33, PageDown:34, Insert:45}, pd = J || 
-L && M("525"), qd = gc && K;
-ld.prototype.a = function(a) {
-  L && (17 == this.D && !a.i || 18 == this.D && !a.a || gc && 91 == this.D && !a.g) && (this.N = this.D = -1);
-  -1 == this.D && (a.i && 17 != a.keyCode ? this.D = 17 : a.a && 18 != a.keyCode ? this.D = 18 : a.g && 91 != a.keyCode && (this.D = 91));
-  pd && !hd(a.keyCode, this.D, a.j, a.i, a.a) ? this.handleEvent(a) : (this.N = jd(a.keyCode), qd && (this.ta = a.a));
+g.O = -1;
+g.ua = !1;
+var od = {3:13, 12:144, 63232:38, 63233:40, 63234:37, 63235:39, 63236:112, 63237:113, 63238:114, 63239:115, 63240:116, 63241:117, 63242:118, 63243:119, 63244:120, 63245:121, 63246:122, 63247:123, 63248:44, 63272:46, 63273:36, 63275:35, 63276:33, 63277:34, 63289:144, 63302:45}, pd = {Up:38, Down:40, Left:37, Right:39, Enter:13, F1:112, F2:113, F3:114, F4:115, F5:116, F6:117, F7:118, F8:119, F9:120, F10:121, F11:122, F12:123, "U+007F":46, Home:36, End:35, PageUp:33, PageDown:34, Insert:45}, qd = J || 
+L && M("525"), rd = gc && K;
+md.prototype.a = function(a) {
+  L && (17 == this.D && !a.i || 18 == this.D && !a.a || gc && 91 == this.D && !a.h) && (this.O = this.D = -1);
+  -1 == this.D && (a.i && 17 != a.keyCode ? this.D = 17 : a.a && 18 != a.keyCode ? this.D = 18 : a.h && 91 != a.keyCode && (this.D = 91));
+  qd && !id(a.keyCode, this.D, a.j, a.i, a.a) ? this.handleEvent(a) : (this.O = kd(a.keyCode), rd && (this.ua = a.a));
 };
-ld.prototype.b = function(a) {
-  this.N = this.D = -1;
-  this.ta = a.a;
+md.prototype.b = function(a) {
+  this.O = this.D = -1;
+  this.ua = a.a;
 };
-ld.prototype.handleEvent = function(a) {
-  var b = a.K, c, d, e = b.altKey;
-  J && "keypress" == a.type ? c = this.N : L && "keypress" == a.type ? c = this.N : fc && !L ? c = this.N : (c = b.keyCode || this.N, d = b.charCode || 0, qd && (e = this.ta), gc && 63 == d && 224 == c && (c = 191));
-  d = c = jd(c);
+md.prototype.handleEvent = function(a) {
+  var b = a.L, c, d, e = b.altKey;
+  J && "keypress" == a.type ? c = this.O : L && "keypress" == a.type ? c = this.O : fc && !L ? c = this.O : (c = b.keyCode || this.O, d = b.charCode || 0, rd && (e = this.ua), gc && 63 == d && 224 == c && (c = 191));
+  d = c = kd(c);
   var f = b.keyIdentifier;
-  c ? 63232 <= c && c in nd ? d = nd[c] : 25 == c && a.j && (d = 9) : f && f in od && (d = od[f]);
+  c ? 63232 <= c && c in od ? d = od[c] : 25 == c && a.j && (d = 9) : f && f in pd && (d = pd[f]);
   this.D = d;
-  a = new rd(d, 0, 0, b);
+  a = new sd(d, 0, 0, b);
   a.a = e;
   this.dispatchEvent(a);
 };
-function md(a) {
-  a.na && (Rc(a.na), Rc(a.za), Rc(a.oa), a.na = null, a.za = null, a.oa = null);
-  a.ba = null;
+function nd(a) {
+  a.pa && (Sc(a.pa), Sc(a.Aa), Sc(a.qa), a.pa = null, a.Aa = null, a.qa = null);
+  a.ca = null;
   a.D = -1;
-  a.N = -1;
+  a.O = -1;
 }
-ld.prototype.R = function() {
-  ld.fa.R.call(this);
-  md(this);
+md.prototype.S = function() {
+  md.ga.S.call(this);
+  nd(this);
 };
-function rd(a, b, c, d) {
+function sd(a, b, c, d) {
   S.call(this, d);
   this.type = "key";
   this.keyCode = a;
 }
-t(rd, S);
-function sd(a, b, c) {
+t(sd, S);
+function td(a, b, c) {
   if (p(b)) {
-    (b = td(a, b)) && (a.style[b] = c);
+    (b = ud(a, b)) && (a.style[b] = c);
   } else {
     for (var d in b) {
       c = a;
-      var e = b[d], f = td(c, d);
+      var e = b[d], f = ud(c, d);
       f && (c.style[f] = e);
     }
   }
 }
-var ud = {};
-function td(a, b) {
-  var c = ud[b];
+var vd = {};
+function ud(a, b) {
+  var c = vd[b];
   if (!c) {
     var d = xb(b), c = d;
     void 0 === a.style[d] && (d = (L ? "Webkit" : K ? "Moz" : J ? "ms" : fc ? "O" : null) + yb(d), void 0 !== a.style[d] && (c = d));
-    ud[b] = c;
+    vd[b] = c;
   }
   return c;
 }
-function vd(a, b) {
+function wd(a, b) {
   var c = a.style[xb(b)];
-  return "undefined" !== typeof c ? c : a.style[td(a, b)] || "";
+  return "undefined" !== typeof c ? c : a.style[ud(a, b)] || "";
 }
-function wd(a) {
-  var b = xd, c;
+function xd(a) {
+  var b = yd, c;
   a: {
     c = 9 == a.nodeType ? a : a.ownerDocument || a.document;
     if (c.defaultView && c.defaultView.getComputedStyle && (c = c.defaultView.getComputedStyle(a, null))) {
@@ -1818,7 +1823,7 @@ function wd(a) {
   c.visibility = e;
   return a;
 }
-function xd(a) {
+function yd(a) {
   var b = a.offsetWidth, c = a.offsetHeight, d = L && !b && !c;
   if ((!l(b) || d) && a.getBoundingClientRect) {
     var e;
@@ -1836,7 +1841,7 @@ function xd(a) {
   return new Wa(b, c);
 }
 J && M(12);
-function yd(a, b, c) {
+function zd(a, b, c) {
   a = Q("div", {"class":"modal fade " + a, id:a});
   var d = Q("div", {"class":"modal-dialog"});
   a.appendChild(d);
@@ -1856,9 +1861,9 @@ function yd(a, b, c) {
   d.appendChild(e);
   this.F = a;
   b.appendChild(this.F);
-  zd(this.F, c || !1);
+  Ad(this.F, c || !1);
 }
-function Ad(a, b) {
+function Bd(a, b) {
   for (var c = zc(b, function(a) {
     return "a" === a.nodeName.toLowerCase() && a.hasAttribute("href");
   }), d = P("modal-content", a.F), e = 0;e < c.length;e++) {
@@ -1870,14 +1875,14 @@ function Ad(a, b) {
       T(f, "click", na(function(a, b) {
         b.preventDefault();
         var c = b.currentTarget.getAttribute("data-href");
-        Bd(this, {href:c, classes:a});
+        Cd(this, {href:c, classes:a});
         d.className = "modal-content " + a;
         return !1;
       }, h), void 0, a);
     }
   }
 }
-function zd(a, b) {
+function Ad(a, b) {
   $(a).on("hidden.bs.modal", function() {
     P("modal-body", this).innerHTML = "";
     P("modal-title", this.F).innerHTML = "";
@@ -1885,36 +1890,36 @@ function zd(a, b) {
     b && vc(this);
   });
 }
-function Bd(a, b) {
+function Cd(a, b) {
   var c = P("modal-body", a.F);
   c.innerHTML = "";
   var d = Q("iframe", {frameborder:"0", src:b.href});
   d.setAttribute("webkitallowfullscreen", "");
   d.setAttribute("mozallowfullscreen", "");
   d.setAttribute("allowfullscreen", "");
-  l(b.width) && sd(d, "width", b.width);
-  l(b.height) && sd(d, "height", b.height);
+  l(b.width) && td(d, "width", b.width);
+  l(b.height) && td(d, "height", b.height);
   l(b.classes) && D(d, b.classes);
   c.appendChild(d);
 }
-yd.prototype.close = function() {
+zd.prototype.close = function() {
   l(this.F) && $(this.F).modal("hide");
 };
-yd.prototype.open = function(a, b, c) {
+zd.prototype.open = function(a, b, c) {
   null != a && a ? P("modal-title", this.F).innerHTML = a : this.a.style.display = "none";
   l(b) && (a = P("modal-content", this.F), D(a, b));
-  l(c) && Bd(this, c);
+  l(c) && Cd(this, c);
   $(this.F).modal("show");
 };
-function Cd(a, b) {
-  var c = P("modal-body", a.F);
-  ia(b) && 1 == b.nodeType && (c.appendChild(b), Ad(a, b));
-}
 function Dd(a, b) {
+  var c = P("modal-body", a.F);
+  ia(b) && 1 == b.nodeType && (c.appendChild(b), Bd(a, b));
+}
+function Ed(a, b) {
   var c = P("modal-body", a.F);
   p(b) && (c.innerHTML = b);
 }
-;function Ed(a, b, c) {
+;function Fd(a, b, c) {
   if (ha(a)) {
     c && (a = q(a, c));
   } else {
@@ -1926,12 +1931,12 @@ function Dd(a, b) {
   }
   return 2147483647 < b ? -1 : k.setTimeout(a, b || 0);
 }
-;function Fd(a, b) {
-  this.ka = l(b) ? b : void 0;
+;function Gd(a, b) {
+  this.ma = l(b) ? b : void 0;
   this.o = l(a) ? a : void 0;
   this.u = !1;
 }
-function Gd(a) {
+function Hd(a) {
   for (var b in a) {
     if (a.hasOwnProperty(b)) {
       for (var c = a[b], d = 0;d < c.length;d++) {
@@ -1940,8 +1945,8 @@ function Gd(a) {
     }
   }
 }
-function Hd(a, b) {
-  Gd(b);
+function Id(a, b) {
+  Hd(b);
   ({start:function(a, b, e) {
     if (e.u) {
       for (var f in a) {
@@ -1950,13 +1955,13 @@ function Hd(a, b) {
       var h = l(a[f]) ? a[f] : [];
       delete a[f];
       a = q(this.start, this, a, b, e);
-      Ed(na(e.Hb, h, a), b, e);
-      l(e.ka) && (e.ka.innerHTML = l(f) ? f : "");
+      Fd(na(e.Ib, h, a), b, e);
+      l(e.ma) && (e.ma.innerHTML = l(f) ? f : "");
       l(f) || (console.log("Visualization finished ...."), e.u = !1, l(e.o) && E(e.o, "play"));
     }
   }}).start(b, 500, a);
 }
-function Id(a, b) {
+function Jd(a, b) {
   for (var c = a.sort(function(a, b) {
     return a.getTime() > b.getTime() ? 1 : a.getTime() < b.getTime() ? -1 : 0;
   }), d = 0;d < c.length;d++) {
@@ -1967,15 +1972,15 @@ function Id(a, b) {
   }
   return e;
 }
-Fd.prototype.Hb = function(a, b) {
-  ({Qa:function(a, b, e, f, h) {
+Gd.prototype.Ib = function(a, b) {
+  ({Ra:function(a, b, e, f, h) {
     if (h.u) {
       var m = a[0].getOpacity() + b;
       if (1.05 >= m) {
         for (var n = 0;n < a.length;n++) {
           a[n].setOpacity(m);
         }
-        Ed(na(this.Qa, a, b, e, f, h), e, this);
+        Fd(na(this.Ra, a, b, e, f, h), e, this);
       } else {
         l(f) && f();
       }
@@ -1984,30 +1989,30 @@ Fd.prototype.Hb = function(a, b) {
     for (var m = 0;m < a.length;m++) {
       a[m].setOpacity(0), a[m].setVisible(!0);
     }
-    Ed(na(this.Qa, a, b, e, f, h), e, this);
+    Fd(na(this.Ra, a, b, e, f, h), e, this);
   }}).start(a, .1, 500, b, this);
 };
-function Jd(a) {
+function Kd(a) {
   a.u = !1;
-  l(a.ka) && (a.ka.innerHTML = l(void 0) ? void 0 : "");
+  l(a.ma) && (a.ma.innerHTML = l(void 0) ? void 0 : "");
   l(a.o) && E(a.o, "play");
 }
-;var Kd = /^(?:([^:/?#.]+):)?(?:\/\/(?:([^/?#]*)@)?([^/#?]*?)(?::([0-9]+))?(?=[/#?]|$))?([^?#]+)?(?:\?([^#]*))?(?:#(.*))?$/;
-function Ld(a) {
-  if (Md) {
-    Md = !1;
+;var Ld = /^(?:([^:/?#.]+):)?(?:\/\/(?:([^/?#]*)@)?([^/#?]*?)(?::([0-9]+))?(?=[/#?]|$))?([^?#]+)?(?:\?([^#]*))?(?:#(.*))?$/;
+function Md(a) {
+  if (Nd) {
+    Nd = !1;
     var b = k.location;
     if (b) {
       var c = b.href;
-      if (c && (c = (c = Ld(c)[3] || null) ? decodeURI(c) : c) && c != b.hostname) {
-        throw Md = !0, Error();
+      if (c && (c = (c = Md(c)[3] || null) ? decodeURI(c) : c) && c != b.hostname) {
+        throw Nd = !0, Error();
       }
     }
   }
-  return a.match(Kd);
+  return a.match(Ld);
 }
-var Md = L;
-function Nd(a, b) {
+var Nd = L;
+function Od(a, b) {
   for (var c = a.split("&"), d = 0;d < c.length;d++) {
     var e = c[d].indexOf("="), f = null, h = null;
     0 <= e ? (f = c[d].substring(0, e), h = c[d].substring(e + 1)) : f = c[d];
@@ -2016,106 +2021,106 @@ function Nd(a, b) {
 }
 ;function X(a) {
   V.call(this);
-  this.ib = new Yb;
-  this.S = a || null;
+  this.jb = new Yb;
+  this.T = a || null;
   this.u = !1;
-  this.O = this.a = null;
-  this.j = this.ga = "";
-  this.b = this.ea = this.g = this.V = !1;
-  this.v = 0;
+  this.P = this.a = null;
+  this.j = this.ia = "";
+  this.b = this.fa = this.h = this.W = !1;
+  this.w = 0;
   this.m = null;
-  this.Ea = Od;
-  this.ha = this.jb = !1;
+  this.Fa = Pd;
+  this.ja = this.kb = !1;
 }
 t(X, V);
-var Od = "", Qd = /^https?$/i, Rd = ["POST", "PUT"], Sd = [];
-function Td(a, b, c, d) {
+var Pd = "", Rd = /^https?$/i, Sd = ["POST", "PUT"], Td = [];
+function Ud(a, b, c, d) {
   var e = new X;
-  Sd.push(e);
+  Td.push(e);
   b && e.C.add("complete", b, !1, void 0, void 0);
-  e.C.add("ready", e.nb, !0, void 0, void 0);
+  e.C.add("ready", e.ob, !0, void 0, void 0);
   e.send(a, c, d, void 0);
 }
 g = X.prototype;
-g.nb = function() {
+g.ob = function() {
   z(this);
-  Fb(Sd, this);
+  Fb(Td, this);
 };
 g.send = function(a, b, c, d) {
   if (this.a) {
-    throw Error("[goog.net.XhrIo] Object is active with another request=" + this.ga + "; newUri=" + a);
+    throw Error("[goog.net.XhrIo] Object is active with another request=" + this.ia + "; newUri=" + a);
   }
   b = b ? b.toUpperCase() : "GET";
-  this.ga = a;
+  this.ia = a;
   this.j = "";
-  this.V = !1;
+  this.W = !1;
   this.u = !0;
-  this.a = this.S ? Xb(this.S) : Xb(Ub);
-  this.O = this.S ? kb(this.S) : kb(Ub);
-  this.a.onreadystatechange = q(this.Xa, this);
+  this.a = this.T ? Wb(this.T) : Wb(Ub);
+  this.P = this.T ? kb(this.T) : kb(Ub);
+  this.a.onreadystatechange = q(this.Ya, this);
   try {
-    this.ea = !0, this.a.open(b, String(a), !0), this.ea = !1;
+    this.fa = !0, this.a.open(b, String(a), !0), this.fa = !1;
   } catch (e) {
-    Ud(this, e);
+    Vd(this, e);
     return;
   }
   a = c || "";
-  var f = this.ib.clone();
+  var f = this.jb.clone();
   d && cc(d, function(a, b) {
     f.set(b, a);
   });
   d = Cb(f.getKeys());
   c = k.FormData && a instanceof k.FormData;
-  !Eb(Rd, b) || d || c || f.set("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+  !Eb(Sd, b) || d || c || f.set("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
   f.forEach(function(a, b) {
     this.a.setRequestHeader(b, a);
   }, this);
-  this.Ea && (this.a.responseType = this.Ea);
-  "withCredentials" in this.a && (this.a.withCredentials = this.jb);
+  this.Fa && (this.a.responseType = this.Fa);
+  "withCredentials" in this.a && (this.a.withCredentials = this.kb);
   try {
-    Vd(this), 0 < this.v && ((this.ha = Wd(this.a)) ? (this.a.timeout = this.v, this.a.ontimeout = q(this.fb, this)) : this.m = Ed(this.fb, this.v, this)), this.g = !0, this.a.send(a), this.g = !1;
+    Wd(this), 0 < this.w && ((this.ja = Xd(this.a)) ? (this.a.timeout = this.w, this.a.ontimeout = q(this.gb, this)) : this.m = Fd(this.gb, this.w, this)), this.h = !0, this.a.send(a), this.h = !1;
   } catch (h) {
-    Ud(this, h);
+    Vd(this, h);
   }
 };
-function Wd(a) {
+function Xd(a) {
   return J && M(9) && ga(a.timeout) && l(a.ontimeout);
 }
 function Db(a) {
   return "content-type" == a.toLowerCase();
 }
-g.fb = function() {
-  "undefined" != typeof aa && this.a && (this.j = "Timed out after " + this.v + "ms, aborting", this.dispatchEvent("timeout"), this.a && this.u && (this.u = !1, this.b = !0, this.a.abort(), this.b = !1, this.dispatchEvent("complete"), this.dispatchEvent("abort"), Xd(this)));
+g.gb = function() {
+  "undefined" != typeof aa && this.a && (this.j = "Timed out after " + this.w + "ms, aborting", this.dispatchEvent("timeout"), this.a && this.u && (this.u = !1, this.b = !0, this.a.abort(), this.b = !1, this.dispatchEvent("complete"), this.dispatchEvent("abort"), Yd(this)));
 };
-function Ud(a, b) {
+function Vd(a, b) {
   a.u = !1;
   a.a && (a.b = !0, a.a.abort(), a.b = !1);
   a.j = b;
+  Zd(a);
   Yd(a);
-  Xd(a);
 }
-function Yd(a) {
-  a.V || (a.V = !0, a.dispatchEvent("complete"), a.dispatchEvent("error"));
-}
-g.R = function() {
-  this.a && (this.u && (this.u = !1, this.b = !0, this.a.abort(), this.b = !1), Xd(this, !0));
-  X.fa.R.call(this);
-};
-g.Xa = function() {
-  this.i || (this.ea || this.g || this.b ? Zd(this) : this.Db());
-};
-g.Db = function() {
-  Zd(this);
-};
 function Zd(a) {
-  if (a.u && "undefined" != typeof aa && (!a.O[1] || 4 != $d(a) || 2 != ae(a))) {
-    if (a.g && 4 == $d(a)) {
-      Ed(a.Xa, 0, a);
+  a.W || (a.W = !0, a.dispatchEvent("complete"), a.dispatchEvent("error"));
+}
+g.S = function() {
+  this.a && (this.u && (this.u = !1, this.b = !0, this.a.abort(), this.b = !1), Yd(this, !0));
+  X.ga.S.call(this);
+};
+g.Ya = function() {
+  this.i || (this.fa || this.h || this.b ? $d(this) : this.Eb());
+};
+g.Eb = function() {
+  $d(this);
+};
+function $d(a) {
+  if (a.u && "undefined" != typeof aa && (!a.P[1] || 4 != ae(a) || 2 != be(a))) {
+    if (a.h && 4 == ae(a)) {
+      Fd(a.Ya, 0, a);
     } else {
-      if (a.dispatchEvent("readystatechange"), 4 == $d(a)) {
+      if (a.dispatchEvent("readystatechange"), 4 == ae(a)) {
         a.u = !1;
         try {
-          var b = ae(a), c;
+          var b = be(a), c;
           a: {
             switch(b) {
               case 200:
@@ -2141,11 +2146,11 @@ function Zd(a) {
           if (!(d = c)) {
             var e;
             if (e = 0 === b) {
-              var f = Ld(String(a.ga))[1] || null;
+              var f = Md(String(a.ia))[1] || null;
               if (!f && self.location) {
                 var h = self.location.protocol, f = h.substr(0, h.length - 1)
               }
-              e = !Qd.test(f ? f.toLowerCase() : "");
+              e = !Rd.test(f ? f.toLowerCase() : "");
             }
             d = e;
           }
@@ -2154,26 +2159,26 @@ function Zd(a) {
           } else {
             var m;
             try {
-              m = 2 < $d(a) ? a.a.statusText : "";
+              m = 2 < ae(a) ? a.a.statusText : "";
             } catch (n) {
               m = "";
             }
-            a.j = m + " [" + ae(a) + "]";
-            Yd(a);
+            a.j = m + " [" + be(a) + "]";
+            Zd(a);
           }
         } finally {
-          Xd(a);
+          Yd(a);
         }
       }
     }
   }
 }
-function Xd(a, b) {
+function Yd(a, b) {
   if (a.a) {
-    Vd(a);
-    var c = a.a, d = a.O[0] ? ba : null;
+    Wd(a);
+    var c = a.a, d = a.P[0] ? ba : null;
     a.a = null;
-    a.O = null;
+    a.P = null;
     b || a.dispatchEvent("ready");
     try {
       c.onreadystatechange = d;
@@ -2181,21 +2186,21 @@ function Xd(a, b) {
     }
   }
 }
-function Vd(a) {
-  a.a && a.ha && (a.a.ontimeout = null);
+function Wd(a) {
+  a.a && a.ja && (a.a.ontimeout = null);
   ga(a.m) && (k.clearTimeout(a.m), a.m = null);
 }
-function $d(a) {
+function ae(a) {
   return a.a ? a.a.readyState : 0;
 }
-function ae(a) {
+function be(a) {
   try {
-    return 2 < $d(a) ? a.a.status : -1;
+    return 2 < ae(a) ? a.a.status : -1;
   } catch (b) {
     return -1;
   }
 }
-function be(a) {
+function ce(a) {
   try {
     return a.a ? a.a.responseXML : null;
   } catch (b) {
@@ -2207,15 +2212,15 @@ function Y(a) {
     return Va(a.a.responseText);
   }
 }
-;function ce() {
+;function de() {
   return {query:{filtered:{filter:{bool:{must:[]}}}}, sort:{}};
 }
-function de(a) {
+function ee(a) {
   var b = {geo_shape:{}};
   b.geo_shape.geometry = {relation:"intersects", shape:{type:"polygon", coordinates:[a]}};
   return b;
 }
-function ee(a) {
+function fe(a) {
   for (var b = [], c = {bool:{should:b}}, d = 0;d < a.length;d++) {
     var e = a[d], f = {term:{}};
     f.term[e.key] = e.value.toLowerCase();
@@ -2223,16 +2228,16 @@ function ee(a) {
   }
   return c;
 }
-function fe(a) {
+function ge(a) {
   var b = {range:{}};
   b.range.time = {gte:a[0], lte:a[1]};
   return b;
 }
-function ge(a, b) {
-  var c = pa + "/map/_mget", d = JSON.stringify({ids:a});
-  Td(c, b, "POST", d);
-}
 function he(a, b) {
+  var c = pa + "/map/_mget", d = JSON.stringify({ids:a});
+  Ud(c, b, "POST", d);
+}
+function ie(a, b) {
   for (var c = [], d = {query:{filtered:{filter:{bool:{should:c}}}}}, e = 0, f = b.length;e < f;e++) {
     var h = {term:{}};
     h.term[a] = b[e];
@@ -2240,23 +2245,23 @@ function he(a, b) {
   }
   return d;
 }
-;function ie(a, b, c, d) {
+;function je(a, b, c, d) {
   var e = l(c) ? "webgl" : "canvas", f = l(d) ? d : !1;
-  Td(b, q(function(c) {
-    200 != ae(c.target) && alert("Something went wrong, while trying to get the process information from the server. Please try again or contact the administrator.");
-    c = be(c.target);
+  Ud(b, q(function(c) {
+    200 != be(c.target) && alert("Something went wrong, while trying to get the process information from the server. Please try again or contact the administrator.");
+    c = ce(c.target);
     var d = xc(c, function(a) {
       return 1 == a.nodeType && "IMAGE_PROPERTIES" == a.tagName;
     });
     c = parseInt(d.getAttribute("WIDTH"), 0);
     d = parseInt(d.getAttribute("HEIGHT"), 0);
-    je(this, b.substring(0, b.lastIndexOf("/") + 1), d, c, a, e, f);
+    ke(this, b.substring(0, b.lastIndexOf("/") + 1), d, c, a, e, f);
   }, this), "GET");
   V.call(this);
 }
-t(ie, V);
-function je(a, b, c, d, e, f, h) {
-  a.g = c;
+t(je, V);
+function ke(a, b, c, d, e, f, h) {
+  a.h = c;
   a.j = d;
   var m = new ol.proj.Projection({code:"ZOOMIFY", units:"pixels", extent:[0, 0, d, c]});
   a.m = new ol.source.Zoomify({url:b, size:[d, c], crossOrigin:"*"});
@@ -2268,53 +2273,53 @@ function je(a, b, c, d, e, f, h) {
   a.a.addControl(new ol.control.ZoomToExtent({extent:b.calculateExtent(a.a.getSize())}));
   a.dispatchEvent(new B("loadend", {}));
 }
-ie.prototype.getMap = function() {
+je.prototype.getMap = function() {
   return this.a;
 };
-ie.prototype.getHeight = function() {
-  return parseInt(this.g, 0);
+je.prototype.getHeight = function() {
+  return parseInt(this.h, 0);
 };
-ie.prototype.getWidth = function() {
+je.prototype.getWidth = function() {
   return parseInt(this.j, 0);
 };
-function ke(a, b) {
-  ie.call(this, a, b);
+function le(a, b) {
+  je.call(this, a, b);
 }
-t(ke, ie);
+t(le, je);
 function Z(a, b) {
-  this.j = this.v = this.g = "";
+  this.j = this.w = this.h = "";
   this.m = null;
   this.H = this.b = "";
   this.i = !1;
   var c;
-  a instanceof Z ? (this.i = l(b) ? b : a.i, le(this, a.g), this.v = a.v, this.j = a.j, me(this, a.m), this.b = a.b, ne(this, a.a.clone()), this.H = a.H) : a && (c = Ld(String(a))) ? (this.i = !!b, le(this, c[1] || "", !0), this.v = oe(c[2] || ""), this.j = oe(c[3] || "", !0), me(this, c[4]), this.b = oe(c[5] || "", !0), ne(this, c[6] || "", !0), this.H = oe(c[7] || "")) : (this.i = !!b, this.a = new pe(null, 0, this.i));
+  a instanceof Z ? (this.i = l(b) ? b : a.i, me(this, a.h), this.w = a.w, this.j = a.j, ne(this, a.m), this.b = a.b, oe(this, a.a.clone()), this.H = a.H) : a && (c = Md(String(a))) ? (this.i = !!b, me(this, c[1] || "", !0), this.w = pe(c[2] || ""), this.j = pe(c[3] || "", !0), ne(this, c[4]), this.b = pe(c[5] || "", !0), oe(this, c[6] || "", !0), this.H = pe(c[7] || "")) : (this.i = !!b, this.a = new qe(null, 0, this.i));
 }
 Z.prototype.toString = function() {
-  var a = [], b = this.g;
-  b && a.push(qe(b, re, !0), ":");
+  var a = [], b = this.h;
+  b && a.push(re(b, se, !0), ":");
   if (b = this.j) {
     a.push("//");
-    var c = this.v;
-    c && a.push(qe(c, re, !0), "@");
+    var c = this.w;
+    c && a.push(re(c, se, !0), "@");
     a.push(encodeURIComponent(String(b)).replace(/%25([0-9a-fA-F]{2})/g, "%$1"));
     b = this.m;
     null != b && a.push(":", String(b));
   }
   if (b = this.b) {
-    this.j && "/" != b.charAt(0) && a.push("/"), a.push(qe(b, "/" == b.charAt(0) ? se : te, !0));
+    this.j && "/" != b.charAt(0) && a.push("/"), a.push(re(b, "/" == b.charAt(0) ? te : ue, !0));
   }
   (b = this.a.toString()) && a.push("?", b);
-  (b = this.H) && a.push("#", qe(b, ue));
+  (b = this.H) && a.push("#", re(b, ve));
   return a.join("");
 };
 Z.prototype.clone = function() {
   return new Z(this);
 };
-function le(a, b, c) {
-  a.g = c ? oe(b, !0) : b;
-  a.g && (a.g = a.g.replace(/:$/, ""));
+function me(a, b, c) {
+  a.h = c ? pe(b, !0) : b;
+  a.h && (a.h = a.h.replace(/:$/, ""));
 }
-function me(a, b) {
+function ne(a, b) {
   if (b) {
     b = Number(b);
     if (isNaN(b) || 0 > b) {
@@ -2325,42 +2330,42 @@ function me(a, b) {
     a.m = null;
   }
 }
-function ne(a, b, c) {
-  b instanceof pe ? (a.a = b, ve(a.a, a.i)) : (c || (b = qe(b, we)), a.a = new pe(b, 0, a.i));
-}
-function xe(a) {
-  return a.a;
-}
-function oe(a, b) {
-  return a ? b ? decodeURI(a.replace(/%25/g, "%2525")) : decodeURIComponent(a) : "";
-}
-function qe(a, b, c) {
-  return p(a) ? (a = encodeURI(a).replace(b, ye), c && (a = a.replace(/%25([0-9a-fA-F]{2})/g, "%$1")), a) : null;
+function oe(a, b, c) {
+  b instanceof qe ? (a.a = b, we(a.a, a.i)) : (c || (b = re(b, xe)), a.a = new qe(b, 0, a.i));
 }
 function ye(a) {
+  return a.a;
+}
+function pe(a, b) {
+  return a ? b ? decodeURI(a.replace(/%25/g, "%2525")) : decodeURIComponent(a) : "";
+}
+function re(a, b, c) {
+  return p(a) ? (a = encodeURI(a).replace(b, ze), c && (a = a.replace(/%25([0-9a-fA-F]{2})/g, "%$1")), a) : null;
+}
+function ze(a) {
   a = a.charCodeAt(0);
   return "%" + (a >> 4 & 15).toString(16) + (a & 15).toString(16);
 }
-var re = /[#\/\?@]/g, te = /[\#\?:]/g, se = /[\#\?]/g, we = /[\#\?@]/g, ue = /#/g;
-function pe(a, b, c) {
+var se = /[#\/\?@]/g, ue = /[\#\?:]/g, te = /[\#\?]/g, xe = /[\#\?@]/g, ve = /#/g;
+function qe(a, b, c) {
   this.b = this.a = null;
   this.i = a || null;
-  this.g = !!c;
+  this.h = !!c;
 }
-function ze(a) {
-  a.a || (a.a = new Yb, a.b = 0, a.i && Nd(a.i, function(b, c) {
+function Ae(a) {
+  a.a || (a.a = new Yb, a.b = 0, a.i && Od(a.i, function(b, c) {
     a.add(decodeURIComponent(b.replace(/\+/g, " ")), c);
   }));
 }
-g = pe.prototype;
-g.va = function() {
-  ze(this);
+g = qe.prototype;
+g.wa = function() {
+  Ae(this);
   return this.b;
 };
 g.add = function(a, b) {
-  ze(this);
+  Ae(this);
   this.i = null;
-  a = Ae(this, a);
+  a = Be(this, a);
   var c = this.a.get(a);
   c || this.a.set(a, c = []);
   c.push(b);
@@ -2368,25 +2373,25 @@ g.add = function(a, b) {
   return this;
 };
 g.remove = function(a) {
-  ze(this);
-  a = Ae(this, a);
-  return ac(this.a.h, a) ? (this.i = null, this.b -= this.a.get(a).length, this.a.remove(a)) : !1;
+  Ae(this);
+  a = Be(this, a);
+  return ac(this.a.g, a) ? (this.i = null, this.b -= this.a.get(a).length, this.a.remove(a)) : !1;
 };
 g.clear = function() {
   this.a = this.i = null;
   this.b = 0;
 };
 g.isEmpty = function() {
-  ze(this);
+  Ae(this);
   return 0 == this.b;
 };
-function Be(a, b) {
-  ze(a);
-  b = Ae(a, b);
-  return ac(a.a.h, b);
+function Ce(a, b) {
+  Ae(a);
+  b = Be(a, b);
+  return ac(a.a.g, b);
 }
 g.getKeys = function() {
-  ze(this);
+  Ae(this);
   for (var a = this.a.I(), b = this.a.getKeys(), c = [], d = 0;d < b.length;d++) {
     for (var e = a[d], f = 0;f < e.length;f++) {
       c.push(b[d]);
@@ -2395,10 +2400,10 @@ g.getKeys = function() {
   return c;
 };
 g.I = function(a) {
-  ze(this);
+  Ae(this);
   var b = [];
   if (p(a)) {
-    Be(this, a) && (b = Gb(b, this.a.get(Ae(this, a))));
+    Ce(this, a) && (b = Gb(b, this.a.get(Be(this, a))));
   } else {
     a = this.a.I();
     for (var c = 0;c < a.length;c++) {
@@ -2408,10 +2413,10 @@ g.I = function(a) {
   return b;
 };
 g.set = function(a, b) {
-  ze(this);
+  Ae(this);
   this.i = null;
-  a = Ae(this, a);
-  Be(this, a) && (this.b -= this.a.get(a).length);
+  a = Be(this, a);
+  Ce(this, a) && (this.b -= this.a.get(a).length);
   this.a.set(a, [b]);
   this.b++;
   return this;
@@ -2437,39 +2442,39 @@ g.toString = function() {
   return this.i = a.join("&");
 };
 g.clone = function() {
-  var a = new pe;
+  var a = new qe;
   a.i = this.i;
   this.a && (a.a = this.a.clone(), a.b = this.b);
   return a;
 };
-function Ae(a, b) {
+function Be(a, b) {
   var c = String(b);
-  a.g && (c = c.toLowerCase());
+  a.h && (c = c.toLowerCase());
   return c;
 }
-function ve(a, b) {
-  b && !a.g && (ze(a), a.i = null, a.a.forEach(function(a, b) {
+function we(a, b) {
+  b && !a.h && (Ae(a), a.i = null, a.a.forEach(function(a, b) {
     var e = b.toLowerCase();
-    b != e && (this.remove(b), this.remove(e), 0 < a.length && (this.i = null, this.a.set(Ae(this, e), Hb(a)), this.b += a.length));
+    b != e && (this.remove(b), this.remove(e), 0 < a.length && (this.i = null, this.a.set(Be(this, e), Hb(a)), this.b += a.length));
   }, a));
-  a.g = b;
+  a.h = b;
 }
-;x.Nb = function() {
+;x.Ob = function() {
   $(window);
 };
-x.Y = function(a) {
-  var b = wd(N("spatialsearch-container")), c = wd(N("layermanagement-container")), d = wd(N("mapdiv")), c = d.width - c.width - 30, b = a.getCoordinateFromPixel([0 + b.width + 30, d.height - 25 - 30]);
+x.Z = function(a) {
+  var b = xd(N("spatialsearch-container")), c = xd(N("layermanagement-container")), d = xd(N("mapdiv")), c = d.width - c.width - 30, b = a.getCoordinateFromPixel([0 + b.width + 30, d.height - 25 - 30]);
   a = a.getCoordinateFromPixel([c, 35]);
   return [b[0], b[1], a[0], a[1]];
 };
-x.Ia = function() {
+x.Ja = function() {
   navigator.cookieEnabled || alert("For proper working of the virtuel map forum 2.0 please activate cookies in your browser");
 };
-x.La = function(a) {
-  return xe(l(a) ? new Z(a) : new Z(window.location.href));
+x.Ma = function(a) {
+  return ye(l(a) ? new Z(a) : new Z(window.location.href));
 };
-x.Ma = function(a, b) {
-  return a = F(a, b) ? a : x.Ma(wc(a), b);
+x.Na = function(a, b) {
+  return a = F(a, b) ? a : x.Na(wc(a), b);
 };
 x.c = function(a) {
   if (!l(a)) {
@@ -2483,19 +2488,19 @@ x.c = function(a) {
     return "";
   }
 };
-x.yb = function(a) {
+x.zb = function(a) {
   return [[a[0], a[1]], [a[0], a[3]], [a[2], a[3]], [a[2], a[1]], [a[0], a[1]]];
 };
 x.getQueryParam = function(a, b) {
-  return l(b) ? x.La(b).get(a) : x.La().get(a);
+  return l(b) ? x.Ma(b).get(a) : x.Ma().get(a);
 };
-x.pb = function() {
+x.qb = function() {
   return ib.get("vk2-welcomepage");
 };
-x.Na = function(a, b, c, d) {
-  var e = new yd("vk2-overlay-modal", document.body, !0);
+x.Oa = function(a, b, c, d) {
+  var e = new zd("vk2-overlay-modal", document.body, !0);
   e.open(a, l(d) ? d : "");
-  Dd(e, "<p>" + b + '</p><br><button type="button" class="btn btn-primary" id="confirm-dialog-btn-yes">' + x.c("yes") + '</button><button type="button" class="btn btn-primary"id="confirm-dialog-btn-no">' + x.c("no") + "</button>");
+  Ed(e, "<p>" + b + '</p><br><button type="button" class="btn btn-primary" id="confirm-dialog-btn-yes">' + x.c("yes") + '</button><button type="button" class="btn btn-primary"id="confirm-dialog-btn-no">' + x.c("no") + "</button>");
   var f = l(c) ? c : function() {
   };
   T(N("confirm-dialog-btn-yes"), "click", function() {
@@ -2506,16 +2511,16 @@ x.Na = function(a, b, c, d) {
     e.close();
   });
 };
-x.Pb = function() {
+x.Qb = function() {
   return l(ib.get("auth_tkt")) ? !0 : !1;
 };
-x.Ta = function(a) {
+x.Ua = function(a) {
   a = O(a, (l(void 0) ? void 0 : document.body).body);
   for (var b = 0;b < a.length;b++) {
     T(a[b], "click", function(a) {
       a.preventDefault();
       try {
-        var b = new yd("vk2-overlay-modal", document.body, !0), e = this.title, f = this.getAttribute("data-classes");
+        var b = new zd("vk2-overlay-modal", document.body, !0), e = this.title, f = this.getAttribute("data-classes");
         b.open(e, f, {href:this.href, classes:f});
         a.preventDefault();
       } catch (h) {
@@ -2527,7 +2532,7 @@ x.round = function(a, b) {
   var c = l(b) ? Math.pow(10, Math.ceil(b)) : Math.pow(10, 2);
   return Math.round(a * c) / c;
 };
-x.Eb = function(a) {
+x.Fb = function(a) {
   a = P("ol-overlaycontainer-stopevent", N(a));
   for (var b = 0;b < a.children.length;b++) {
     var c = a.children[b];
@@ -2538,7 +2543,7 @@ x.Eb = function(a) {
     }
   }
 };
-x.Qb = function(a, b, c) {
+x.Rb = function(a, b, c) {
   var d = new X;
   U(d, "success", function(a) {
     a = a.target;
@@ -2551,13 +2556,13 @@ x.Qb = function(a, b, c) {
   });
   d.send(a);
 };
-x.eb = function(a, b) {
+x.fb = function(a, b) {
   ib.set(a, b);
 };
-r("vk2.utils.setCookie", x.eb);
-x.Rb = function() {
+r("vk2.utils.setCookie", x.fb);
+x.Sb = function() {
 };
-x.Sb = function(a, b) {
+x.Tb = function(a, b) {
   var c = Q("div", {"class":"georef-point-container alert alert-warning", style:"display:none;"});
   a.appendChild(c);
   c.innerHTML = "+" + b + " " + x.c("georef_points");
@@ -2565,15 +2570,15 @@ x.Sb = function(a, b) {
     c.innerHTML = "";
   });
 };
-x.Jb = function(a) {
-  return [Math.round(a[0]), Math.round(-1 * a[1])];
-};
 x.Kb = function(a) {
   return [Math.round(a[0]), Math.round(-1 * a[1])];
 };
-function Ce(a, b) {
+x.Lb = function(a) {
+  return [Math.round(a[0]), Math.round(-1 * a[1])];
+};
+function De(a, b) {
   function c() {
-    for (var a = De(b), c = 0;c < a.length;c++) {
+    for (var a = Ee(b), c = 0;c < a.length;c++) {
       a[c].setVisible(!1);
     }
   }
@@ -2584,34 +2589,34 @@ function Ce(a, b) {
   T(e, "click", c);
   T(e, "touchstart", c);
 }
-;function Ee(a, b) {
+;function Fe(a, b) {
   var c = Q("div", {"class":"dyn-vis-control"}), d = Q("div", {"class":"content", style:"display:none;"});
   c.appendChild(d);
   a.appendChild(c);
   var e = Q("div", {"class":"feedback"});
   d.appendChild(e);
-  e = new Fd(c, e);
-  Fe(this, d, e, b);
-  Ge(this, c, d, e);
+  e = new Gd(c, e);
+  Ge(this, d, e, b);
+  He(this, c, d, e);
 }
-function Ge(a, b, c, d) {
+function He(a, b, c, d) {
   var e = Q("a", {innerHTML:"o", "class":"open-dyn-vis"});
   b.insertBefore(e, b.childNodes[0] || null);
   T(e, "click", function(a) {
     a.preventDefault();
     $(c).slideToggle();
-    F(a.currentTarget, "open") ? (Jd(d), E(a.currentTarget, "open")) : D(a.currentTarget, "open");
+    F(a.currentTarget, "open") ? (Kd(d), E(a.currentTarget, "open")) : D(a.currentTarget, "open");
   }, void 0, a);
 }
-function Fe(a, b, c, d) {
+function Ge(a, b, c, d) {
   var e = Q("div", {"class":"start-container"});
   b.appendChild(e);
   var f = Q("a", {href:"#dynamic-start", title:x.c("dynMapVisStart"), innerHTML:"Start"});
   e.appendChild(f);
   T(f, "click", function(a) {
     a.preventDefault();
-    a = De(d);
-    c.u || (c.u = !0, a = Id(a, d), Hd(c, a), l(c.o) && !F(c.o, "play") && D(c.o, "play"));
+    a = Ee(d);
+    c.u || (c.u = !0, a = Jd(a, d), Id(c, a), l(c.o) && !F(c.o, "play") && D(c.o, "play"));
   }, void 0, a);
   e = Q("span", {role:"tooltip", innerHTML:x.c("dynMapVisStart")});
   f.appendChild(e);
@@ -2621,13 +2626,13 @@ function Fe(a, b, c, d) {
   f.appendChild(b);
   T(b, "click", function(a) {
     a.preventDefault();
-    Jd(c);
+    Kd(c);
   }, void 0, a);
   a = Q("span", {role:"tooltip", innerHTML:x.c("dynMapVisStop")});
   b.appendChild(a);
 }
-;var He = {brightness:1, contrast:1, hue:0, saturation:0};
-function Ie(a) {
+;var Ie = {brightness:1, contrast:1, hue:0, saturation:0};
+function Je(a) {
   function b(a) {
     a.preventDefault();
     F(a.target, "active") ? (E(a.target, "active"), $(h).fadeOut().removeClass("open")) : (D(a.target, "active"), $(h).fadeIn().addClass("open"));
@@ -2653,14 +2658,14 @@ function Ie(a) {
   d.appendChild(e);
   f.appendChild(d);
   f.appendChild(h);
-  var m = ab(He), n = !1, w = !1, y = q(function(a, b, d, e, f) {
+  var m = ab(Ie), n = !1, w = !1, y = q(function(a, b, d, e, f) {
     f = Q("div", {"class":"slider " + a, title:l("opt_title") ? f : "", "data-type":d});
-    var h = l(e) ? e[1] : 0, A = l(e) ? e[2] : 100, y = l(e) ? e[3] : 1, G = l(e) ? e[0] : 100, Pd = q(function(a, e) {
+    var h = l(e) ? e[1] : 0, A = l(e) ? e[2] : 100, y = l(e) ? e[3] : 1, G = l(e) ? e[0] : 100, Qd = q(function(a, e) {
       var f = e.value, y = this.getMap().getLayers().getArray()[0];
       w || (y.on("postcompose", c), w = !0);
       "vertical" == b ? (La.style.top = 100 - (f - h) / (A - h) * 100 + "%", La.innerHTML = f + "%") : (La.style.left = (f - h) / (A - h) * 100 + "%", La.innerHTML = f, m[d] = f, n = !0, y.changed());
     }, this);
-    $(f).slider({min:h, max:A, value:G, animate:"slow", orientation:b, step:y, slide:Pd, change:Pd});
+    $(f).slider({min:h, max:A, value:G, animate:"slow", orientation:b, step:y, slide:Qd, change:Qd});
     var La = Q("div", {"class":"tooltip value " + a, innerHTML:l(e) ? e[0] : ""});
     f.appendChild(La);
     return f;
@@ -2675,7 +2680,7 @@ function Ie(a) {
     this.getMap().getLayers().getArray()[0].un("postcompose", c);
     w = !1;
     for (var a = O("slider", h), b = 0;b < a.length;b++) {
-      var d = a[b], e = d.getAttribute("data-type"), e = He[e];
+      var d = a[b], e = d.getAttribute("data-type"), e = Ie[e];
       $(d).slider("value", e);
     }
   }, void 0, this);
@@ -2683,50 +2688,50 @@ function Ie(a) {
   T(d, "touchstart", b);
   ol.control.Control.call(this, {element:f, target:a.target});
 }
-ol.inherits(Ie, ol.control.Control);
-function Je(a) {
+ol.inherits(Je, ol.control.Control);
+function Ke(a) {
   a = a || {};
   var b = l(a.spyLayer) ? a.spyLayer : new ol.layer.Tile({attribution:void 0, source:new ol.source.OSM({attribution:void 0})}), c = l(a.radius) ? parseInt(a.radius, 0) : 75, d = null, e = Q("a", {"class":"ol-has-tooltip", href:"#layerspy", innerHTML:"L"}), f = Q("div", {"class":"ol-layerspy ol-unselectable"}), h = Q("span", {role:"tooltip", innerHTML:x.c("layerspy")});
   f.appendChild(e);
   e.appendChild(h);
-  var m = {$a:function(a) {
+  var m = {ab:function(a) {
     a.context.restore();
-  }, ab:function(a) {
+  }, bb:function(a) {
     var b = a.context;
     a = a.frameState.pixelRatio;
     b.save();
     b.beginPath();
     d && (b.arc(d[0] * a, d[1] * a, c * a, 0, 2 * Math.PI), b.lineWidth = 5 * a, b.strokeStyle = "rgba(0,0,0,0.5)", b.stroke());
     b.clip();
-  }, Va:function(a) {
-    d = this.getMap().getEventPixel(a.K);
+  }, Wa:function(a) {
+    d = this.getMap().getEventPixel(a.L);
     this.getMap().render();
-  }, Wa:function() {
+  }, Xa:function() {
     d = null;
     this.getMap().render();
-  }, Ra:function(a) {
+  }, Sa:function(a) {
     89 === a.keyCode ? (c = Math.min(c + 5, 150), this.getMap().render()) : 88 === a.keyCode && (c = Math.max(c - 5, 25), this.getMap().render());
-  }, Ha:function(a) {
+  }, Ia:function(a) {
     a.target.getArray()[a.target.getLength() - 1] !== b && (this.getMap().removeLayer(b), this.getMap().addLayer(b));
   }}, n = null, w = q(function(a, b, c) {
     this.getMap().addLayer(b);
-    b.on("precompose", c.ab, this);
-    b.on("postcompose", c.$a, this);
-    T(this.getMap().getViewport(), "mousemove", c.Va, void 0, this);
-    T(this.getMap().getViewport(), "mouseout", c.Wa, void 0, this);
+    b.on("precompose", c.bb, this);
+    b.on("postcompose", c.ab, this);
+    T(this.getMap().getViewport(), "mousemove", c.Wa, void 0, this);
+    T(this.getMap().getViewport(), "mouseout", c.Xa, void 0, this);
     D(a, "active");
-    n = n || new ld(document);
-    T(n, "key", c.Ra, void 0, this);
-    this.getMap().getLayers().on("add", c.Ha, this);
+    n = n || new md(document);
+    T(n, "key", c.Sa, void 0, this);
+    this.getMap().getLayers().on("add", c.Ia, this);
   }, this), y = q(function(a, b, c) {
-    b.un("precompose", c.ab, this);
-    b.un("postcompose", c.$a, this);
-    Qc(this.getMap().getViewport(), "mousemove", c.Va, void 0, this);
-    Qc(this.getMap().getViewport(), "mouseout", c.Wa, void 0, this);
+    b.un("precompose", c.bb, this);
+    b.un("postcompose", c.ab, this);
+    Rc(this.getMap().getViewport(), "mousemove", c.Wa, void 0, this);
+    Rc(this.getMap().getViewport(), "mouseout", c.Xa, void 0, this);
     this.getMap().removeLayer(b);
     E(a, "active");
-    Qc(n, "key", c.Ra, void 0, this);
-    this.getMap().getLayers().un("add", c.Ha, this);
+    Rc(n, "key", c.Sa, void 0, this);
+    this.getMap().getLayers().un("add", c.Ia, this);
   }, this);
   T(e, "click", q(function(a) {
     a.preventDefault();
@@ -2734,8 +2739,8 @@ function Je(a) {
   }, this));
   ol.control.Control.call(this, {element:f, target:a.target});
 }
-ol.inherits(Je, ol.control.Control);
-function Ke(a) {
+ol.inherits(Ke, ol.control.Control);
+function Le(a) {
   function b(a) {
     var b = this.getMap();
     a = ol.proj.transform(b.getEventCoordinate(a), u.projection, "EPSG:4326");
@@ -2755,7 +2760,7 @@ function Ke(a) {
     var n = a.target;
     Ob(n) ? Qb(n) : Pb(n);
     void 0 === e ? (n = d.getViewport(), e = Q("div", {"class":"mouse-position-box", innerHTML:"Hallo"}), n.appendChild(e)) : e.innerHTML = "";
-    c ? T(d.getViewport(), "mousemove", b, void 0, this) : Qc(d.getViewport(), "mousemove", b, void 0, this);
+    c ? T(d.getViewport(), "mousemove", b, void 0, this) : Rc(d.getViewport(), "mousemove", b, void 0, this);
     b.call(this, [a]);
     a = e;
     Ob(a) ? Qb(a) : Pb(a);
@@ -2767,15 +2772,15 @@ function Ke(a) {
   d.appendChild(c);
   ol.control.Control.call(this, {element:d, target:a.target});
 }
-ol.inherits(Ke, ol.control.Control);
-function Le(a, b, c) {
+ol.inherits(Le, ol.control.Control);
+function Me(a, b, c) {
   $(a).hover(function() {
     F(this, "hover") || (c.getSource().clear(), c.getSource().addFeature(b), D(this, "hover"));
   }, function() {
     F(this, "hover") && (c.getSource().clear(), E(this, "hover"));
   });
 }
-;function Me(a) {
+;function Ne(a) {
   this.id_ = l(a.id) ? a.id : void 0;
   this.time_ = a.time;
   this.title_ = l(a.title) ? a.title : void 0;
@@ -2784,44 +2789,44 @@ function Le(a, b, c) {
   for (var b = [], c = 0;c < Ga.length;c++) {
     b.push(a.tms.replace("{s}", Ga[c]) + "/{z}/{x}/{-y}.png");
   }
-  c = Ne(this, a.clip);
+  c = Oe(this, a.clip);
   b = new ol.layer.Tile({extent:a.clip.getExtent(), source:new ol.source.XYZ({maxZoom:15, urls:b})});
   c = new ol.layer.Vector({source:new ol.source.Vector({features:[c]}), style:function() {
-    return [x.l.mb];
+    return [x.l.nb];
   }});
   a.layers = [b, c];
   ol.layer.Group.call(this, a);
 }
-ol.inherits(Me, ol.layer.Group);
-function Ne(a, b) {
+ol.inherits(Ne, ol.layer.Group);
+function Oe(a, b) {
   var c = new ol.Feature(b);
   c.setProperties({objectid:a.id_, time:a.time_, title:a.title_});
   c.setId(a.id_);
   return c;
 }
-Me.prototype.getTime = function() {
+Ne.prototype.getTime = function() {
   return this.time_;
 };
-Me.prototype.la = function() {
+Ne.prototype.na = function() {
   return this.allowManage_;
 };
-Me.prototype.getId = function() {
+Ne.prototype.getId = function() {
   return this.id_;
 };
-function Oe(a, b) {
-  var c = l(a.aa) ? a.aa : void 0, d = l(a.projection) ? a.projection : "EPSG:900913", e = l(a.gb) ? a.gb : void 0, f = l(a.Sa) ? a.Sa : void 0, h = void 0 === c ? void 0 : c.getExtent();
+function Pe(a, b) {
+  var c = l(a.ba) ? a.ba : void 0, d = l(a.projection) ? a.projection : "EPSG:900913", e = l(a.hb) ? a.hb : void 0, f = l(a.Ta) ? a.Ta : void 0, h = void 0 === c ? void 0 : c.getExtent();
   a.source = new ol.source.TileWMS({url:e, params:{LAYERS:f, VERSION:"1.1.1"}, projection:d, extent:h});
   a.preload = Infinity;
   d = new ol.layer.Tile(a);
   d.set("wms_url", e);
   d.set("layerid", f);
-  d.xb = q(function(a) {
+  d.yb = q(function(a) {
     for (var b = [], d = c.getCoordinates()[0], e = 0;e < d.length;e++) {
       b.push(a.getPixelFromCoordinate(d[e]));
     }
     return b;
   }, d);
-  d.ob = function(a, b, c) {
+  d.pb = function(a, b, c) {
     c.beginPath();
     c.moveTo(a[0][0] * b, a[0][1] * b);
     for (var d = 1;d < a.length;d++) {
@@ -2830,79 +2835,79 @@ function Oe(a, b) {
     c.closePath();
   };
   l(c) && (d.on("precompose", function(a) {
-    var c = a.context, d = this.xb(b);
+    var c = a.context, d = this.yb(b);
     c.save();
-    this.ob(d, a.frameState.pixelRatio, c);
+    this.pb(d, a.frameState.pixelRatio, c);
     c.clip();
   }, d), d.on("postcompose", function(a) {
     a.context.restore();
   }));
   return d;
 }
-;function Pe(a) {
+;function Qe(a) {
   this.m = l(a.projection) ? a.projection : "EPSG:900913";
-  this.ha = l(a.Bb) ? a.Bb : 20;
-  this.Aa = void 0;
+  this.ja = l(a.Cb) ? a.Cb : 20;
+  this.Ba = void 0;
   this.j = new ol.Collection;
-  this.O = "title";
-  this.V = "ascending";
+  this.P = "title";
+  this.W = "ascending";
   this.b = 0;
-  this.g = void 0;
-  this.a = {X:l(a.time) ? a.time[0] : 1868, sa:l(a.time) ? a.time[1] : 1945};
-  this.h = a.map;
-  this.v = [];
-  this.S = !0;
+  this.h = void 0;
+  this.a = {Y:l(a.time) ? a.time[0] : 1868, ta:l(a.time) ? a.time[1] : 1945};
+  this.g = a.map;
+  this.w = [];
+  this.T = !0;
   this.A();
   V.call(this);
 }
-t(Pe, V);
-Pe.prototype.A = function() {
-  this.h.on("moveend", function() {
-    var a = x.Y(this.h);
-    l(this.Aa) && ol.extent.equals(this.Aa, a) || this.ra();
+t(Qe, V);
+Qe.prototype.A = function() {
+  this.g.on("moveend", function() {
+    var a = x.Z(this.g);
+    l(this.Ba) && ol.extent.equals(this.Ba, a) || this.sa();
   }, this);
 };
-function Qe(a, b, c) {
-  var d = [a.a.X + "-01-01", a.a.sa + "-01-01"], e = "ascending" === a.V ? "asc" : "desc";
-  if (a.S) {
-    b = x.yb(ol.proj.transformExtent(b, c, qa));
-    c = a.O;
-    a = a.v;
-    var f = [], h = ce();
-    f.push(fe(d));
-    f.push(de(b));
-    f.push(ee(a));
+function Re(a, b, c) {
+  var d = [a.a.Y + "-01-01", a.a.ta + "-01-01"], e = "ascending" === a.W ? "asc" : "desc";
+  if (a.T) {
+    b = x.zb(ol.proj.transformExtent(b, c, qa));
+    c = a.P;
+    a = a.w;
+    var f = [], h = de();
+    f.push(ge(d));
+    f.push(ee(b));
+    f.push(fe(a));
     f.push({term:{georeference:!0}});
     h.query.filtered.filter.bool.must = f;
     h.sort[c] = {order:e};
     return h;
   }
-  b = a.O;
-  a = a.v;
+  b = a.P;
+  a = a.w;
   c = [];
-  f = ce();
-  c.push(fe(d));
-  c.push(ee(a));
+  f = de();
+  c.push(ge(d));
+  c.push(fe(a));
   c.push({term:{georeference:!1}});
   f.query.filtered.filter.bool.must = c;
   f.sort[b] = {order:e};
   return f;
 }
-Pe.prototype.ga = function(a) {
-  this.dispatchEvent(new B("refresh", {features:a, totalFeatureCount:this.g}));
+Qe.prototype.ia = function(a) {
+  this.dispatchEvent(new B("refresh", {features:a, totalFeatureCount:this.h}));
 };
-Pe.prototype.ea = function(a) {
-  this.dispatchEvent(new B("paginate", {features:a, totalFeatureCount:this.g}));
+Qe.prototype.fa = function(a) {
+  this.dispatchEvent(new B("paginate", {features:a, totalFeatureCount:this.h}));
 };
-function Re(a, b, c, d) {
-  b = Qe(a, b, c);
-  c = pa + "/_search?from=" + a.b + "&size=" + a.ha;
+function Se(a, b, c, d) {
+  b = Re(a, b, c);
+  c = pa + "/_search?from=" + a.b + "&size=" + a.ja;
   var e = new X;
   U(e, "success", function(a) {
     a = a.target;
     if (Y(a)) {
       var b = Y(a);
-      this.g = b.hits.total;
+      this.h = b.hits.total;
       z(a);
       a = Ja(b.hits.hits);
       this.j.extend(a);
@@ -2914,68 +2919,73 @@ function Re(a, b, c, d) {
   }, !1, a);
   e.send(c, "POST", JSON.stringify(b));
 }
-Pe.prototype.ra = function() {
-  var a = x.Y(this.h);
-  Se(this, a, this.m);
-  this.Aa = Hb(a);
+Qe.prototype.sa = function() {
+  var a = x.Z(this.g);
+  Te(this, a, this.m);
+  this.Ba = Hb(a);
 };
-function Se(a, b, c) {
+function Te(a, b, c) {
   a.j.clear();
   a.b = 0;
-  Re(a, b, c, a.ga);
+  Se(a, b, c, a.ia);
 }
-;function Te(a, b, c) {
+;function Ue(a, b, c) {
   this.o = p(a) ? N(a) : a;
-  this.a = new Pe({projection:"EPSG:900913", map:b});
-  T(this.a, "refresh", q(this.v, this));
-  T(this.a, "paginate", q(this.ra, this));
-  this.j = ["time", "title", "georeference"];
-  this.g = new ol.layer.Vector({source:new ol.source.Vector, style:function() {
-    return [x.l.lb];
+  this.a = new Qe({projection:"EPSG:900913", map:b});
+  T(this.a, "refresh", q(this.m, this));
+  T(this.a, "paginate", q(this.sa, this));
+  this.h = ["time", "title", "georeference"];
+  this.J = new ol.layer.Vector({source:new ol.source.Vector, style:function() {
+    return [x.l.mb];
   }});
-  b.addLayer(this.g);
-  Ue(this, this.o);
+  b.addLayer(this.J);
+  b.getLayers().on("add", function(a) {
+    a = a.target.getArray()[a.target.getLength() - 1];
+    console.log(a);
+    a instanceof Ne && (b.removeLayer(this.J), b.addLayer(this.J));
+  }, this);
   Ve(this, this.o);
-  We(this);
+  We(this, this.o);
   Xe(this);
-  Ye(this, c);
+  Ye(this);
+  Ze(this, c);
   V.call(this);
 }
-t(Te, V);
-function Ue(a, b) {
+t(Ue, V);
+function Ve(a, b) {
   var c = Q("div", {"class":"mapsearch-container"});
   b.appendChild(c);
   var d = Q("div", {"class":"panel panel-default searchTablePanel"});
   c.appendChild(d);
   c = Q("div", {"class":"panel-heading"});
   d.appendChild(c);
-  a.m = Q("div", {"class":"content"});
-  c.appendChild(a.m);
+  a.j = Q("div", {"class":"content"});
+  c.appendChild(a.j);
   c = Q("div", {"class":"panel-body"});
   d.appendChild(c);
   d = Q("div", {"class":"mapsearch-list"});
   c.appendChild(d);
   c = Q("div", {"class":"list-header"});
   d.appendChild(c);
-  for (var e = 0;e < a.j.length;e++) {
-    var f = a.j[e], h = Q("div", {"class":"inner-col " + f}), f = Q("div", {"data-type":f, "class":"sort-element " + f, innerHTML:x.c(f) + ' <span class="caret caret-reversed"></span>'});
+  for (var e = 0;e < a.h.length;e++) {
+    var f = a.h[e], h = Q("div", {"class":"inner-col " + f}), f = Q("div", {"data-type":f, "class":"sort-element " + f, innerHTML:x.c(f) + ' <span class="caret caret-reversed"></span>'});
     h.appendChild(f);
     c.appendChild(h);
   }
   a.b = Q("ul", {id:"mapsearch-contentlist", "class":"mapsearch-contentlist"});
   d.appendChild(a.b);
 }
-function Xe(a) {
+function Ye(a) {
   l(a.b) && T(a.b, "click", function(a) {
     a.preventDefault();
-    var c = x.Ma(a.K.target, "mapsearch-record"), d;
+    var c = x.Na(a.L.target, "mapsearch-record"), d;
     this.a.j.forEach(function(a) {
       a.get("id") == c.id && (d = a);
     });
     this.dispatchEvent(new B("click-record", {feature:d}));
   }, void 0, a);
 }
-function Ve(a, b) {
+function We(a, b) {
   for (var c = O("sort-element", b), d = 0;d < c.length;d++) {
     T(c[d], "click", function(a) {
       a = a.target.getAttribute("data-type");
@@ -2983,37 +2993,37 @@ function Ve(a, b) {
         E(d[n], "descending"), E(d[n], "ascending");
       }
       D(b, c);
-      this.a.O = a;
-      this.a.V = c;
+      this.a.P = a;
+      this.a.W = c;
       a = this.a;
-      Se(a, x.Y(a.h), a.m);
+      Te(a, x.Z(a.g), a.m);
     }, void 0, a);
   }
 }
-function We(a) {
+function Xe(a) {
   var b = !1;
   l(a.b) && T(a.b, "scroll", function(a) {
     if (!b) {
       b = !0;
       a = a.currentTarget;
-      if (a.offsetHeight + a.scrollTop >= a.scrollHeight && (a = this.a, !(a.j.getLength() >= a.g) && (a = this.a, a.b < a.g && 500 > a.b))) {
-        var d = x.Y(a.h);
-        Re(a, d, a.m, a.ea);
+      if (a.offsetHeight + a.scrollTop >= a.scrollHeight && (a = this.a, !(a.j.getLength() >= a.h) && (a = this.a, a.b < a.h && 500 > a.b))) {
+        var d = x.Z(a.g);
+        Se(a, d, a.m, a.fa);
       }
       b = !1;
     }
   }, void 0, a);
 }
-function Ye(a, b) {
+function Ze(a, b) {
   T(b, "facet-change", function(a) {
     var b = this.a;
     a = a.target;
-    b.S = a.georeference;
-    b.v = a.facets;
-    b.ra();
+    b.T = a.georeference;
+    b.w = a.facets;
+    b.sa();
   }, void 0, a);
 }
-function Ze(a, b) {
+function $e(a, b) {
   for (var c = 0;c < b.length;c++) {
     var d, e = b[c];
     d = Q("li", {"class":"mapsearch-record type " + e.get("maptype"), id:e.get("id")});
@@ -3041,70 +3051,70 @@ function Ze(a, b) {
     f.appendChild(h);
     e.get("georeference") || (e = Q("div", {"class":"georeference", innerHTML:x.c("not_georeference")}), f.appendChild(e));
     a.b.appendChild(d);
-    l(a.g) && Le(d, b[c], a.g);
+    l(a.J) && Me(d, b[c], a.J);
   }
 }
-Te.prototype.v = function(a) {
-  $e(this, a.target.totalFeatureCount);
+Ue.prototype.m = function(a) {
+  af(this, a.target.totalFeatureCount);
   this.b.innerHTML = "";
-  Ze(this, a.target.features);
+  $e(this, a.target.features);
 };
-Te.prototype.ra = function(a) {
-  $e(this, a.target.Ub);
-  Ze(this, a.target.features);
+Ue.prototype.sa = function(a) {
+  af(this, a.target.Vb);
+  $e(this, a.target.features);
 };
-function $e(a, b) {
-  a.m.innerHTML = 0 < b ? b + " " + x.c("found_mtb") : x.c("found_no_maps");
+function af(a, b) {
+  a.j.innerHTML = 0 < b ? b + " " + x.c("found_mtb") : x.c("found_no_maps");
 }
-;function af(a) {
+;function bf(a) {
   this.j = p(a) ? N(a) : a;
-  bf(this, this.j);
+  cf(this, this.j);
   this.b = {};
   this.m = {placename:q(function(a) {
-    this.b.hasOwnProperty(a) ? cf(this, this.b[a][0]) : df(this, a, q(function(a) {
-      0 < a.length ? cf(this, a[0]) : alert("The choosen placename is unknown.");
+    this.b.hasOwnProperty(a) ? df(this, this.b[a][0]) : ef(this, a, q(function(a) {
+      0 < a.length ? df(this, a[0]) : alert("The choosen placename is unknown.");
     }, this));
   }, this)};
-  ef(this);
   ff(this);
+  gf(this);
   V.call(this);
 }
-t(af, V);
-function bf(a, b) {
+t(bf, V);
+function cf(a, b) {
   var c = Q("div", {"class":"gazetteersearch-container"});
   b.appendChild(c);
   var d = Q("div", {"class":"form-group"});
   c.appendChild(d);
   a.a = Q("input", {placeholder:x.c("gazetteer_placeholder"), type:"text", "class":"form-control gazetteersearch-input"});
   d.appendChild(a.a);
-  a.g = Q("input", {value:x.c("gazetteer_submit"), type:"submit", "class":"form-control gazetteersearch-submit"});
-  d.appendChild(a.g);
+  a.h = Q("input", {value:x.c("gazetteer_submit"), type:"submit", "class":"form-control gazetteersearch-submit"});
+  d.appendChild(a.h);
 }
-function ef(a) {
+function ff(a) {
   $(a.a).autocomplete({source:q(function(a, c) {
-    df(this, a.term, c);
+    ef(this, a.term, c);
   }, a), delay:300, minLength:3, autoFocus:!0, select:q(function(a, c) {
-    cf(this, c.item);
+    df(this, c.item);
   }, a), open:function() {
     $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
   }, close:function() {
     $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
   }});
 }
-function ff(a) {
+function gf(a) {
   var b = q(function(a) {
     this.m.placename(-1 < a.indexOf(",") ? a.split(",")[0] : a);
   }, a);
   T(a.a, "keydown", function(a) {
     13 === a.keyCode && b(this.a.value);
   }, void 0, a);
-  T(a.g, "click", function() {
+  T(a.h, "click", function() {
     b(this.a.value);
   }, void 0, a);
 }
-function df(a, b, c) {
+function ef(a, b, c) {
   D(a.a, "loading");
-  Td("https://search.mapzen.com/v1/autocomplete?api_key=search-53q8sJs&text=" + b, q(function(a) {
+  Ud("https://search.mapzen.com/v1/autocomplete?api_key=search-53q8sJs&text=" + b, q(function(a) {
     a = a.target;
     var e;
     if (Y(a)) {
@@ -3125,11 +3135,11 @@ function df(a, b, c) {
     F(this.a, "loading") && E(this.a, "loading");
   }, a), "GET");
 }
-function cf(a, b) {
-  a.dispatchEvent(new B(gf, {location_type:b.type, lonlat:[b.lonlat.x, b.lonlat.y], srs:l(void 0) ? void 0 : "EPSG:4326"}));
+function df(a, b) {
+  a.dispatchEvent(new B(hf, {location_type:b.type, lonlat:[b.lonlat.x, b.lonlat.y], srs:l(void 0) ? void 0 : "EPSG:4326"}));
 }
-var gf = "jumpto";
-function hf(a, b, c) {
+var hf = "jumpto";
+function jf(a, b, c) {
   var d = this.H = p(a) ? N(a) : a;
   a = Q("div", {"class":"spatialsearch-inner-container"});
   d.appendChild(a);
@@ -3141,13 +3151,13 @@ function hf(a, b, c) {
   a.appendChild(this.i);
   this.a = Q("div", {"class":"body-container"});
   d.appendChild(this.a);
-  this.b = new af(this.a);
-  this.j = new Zc(this.a, Ea);
+  this.b = new bf(this.a);
+  this.j = new $c(this.a, Ea);
   a = this.a;
-  c = new Yc(a, c);
-  this.g = new Te(a, b, c);
+  c = new Zc(a, c);
+  this.h = new Ue(a, b, c);
 }
-;function jf(a, b, c) {
+;function kf(a, b, c) {
   this.a = p(a) ? N(a) : a;
   a = Q("div", {"class":"container"});
   this.a.appendChild(a);
@@ -3165,25 +3175,25 @@ function hf(a, b, c) {
   e.appendChild(d);
   f = x.c("mdrecord_keyword");
   d = c.keywords;
-  e = kf(a);
+  e = lf(a);
   f = Q("div", {"class":"label", innerHTML:f});
   e.appendChild(f);
   d = Q("div", {innerHTML:d});
   e.appendChild(d);
   for (e = 0;e < c["online-resources"].length;e++) {
-    var f = x.c("mdrecord_onlineresource"), d = c["online-resources"][e].url, h = kf(a), f = Q("div", {"class":"label", innerHTML:f});
+    var f = x.c("mdrecord_onlineresource"), d = c["online-resources"][e].url, h = lf(a), f = Q("div", {"class":"label", innerHTML:f});
     h.appendChild(f);
     f = Q("div");
     h.appendChild(f);
     var h = new Z(d), m = !1;
     l(h.a.get("SERVICE")) && "wcs" == h.a.get("SERVICE").toLowerCase() && h.a.get("REQUEST") && "getcoverage" == h.a.get("REQUEST").toLowerCase() && (m = !0);
-    ne(h, "", void 0);
+    oe(h, "", void 0);
     d = m ? Q("a", {target:"_blank", href:d, innerHTML:h.toString(), "class":"download"}) : Q("a", {target:"_blank", href:d, innerHTML:h.toString()});
     f.appendChild(d);
   }
   d = x.c("mdrecord_spatialresolution");
   c = c.denominator;
-  e = kf(a);
+  e = lf(a);
   d = Q("div", {"class":"label", innerHTML:d});
   e.appendChild(d);
   d = Q("div");
@@ -3195,93 +3205,93 @@ function hf(a, b, c) {
   b = Q("span", {"class":"unique-id metadata-content-row", innerHTML:'<div class="label">' + x.c("mdrecord_uniqueid") + "</div><div>" + b + "</div>"});
   a.appendChild(b);
 }
-function kf(a) {
+function lf(a) {
   var b = Q("div", {"class":"metadata-content-row"});
   a.appendChild(b);
   return b;
 }
 ;r("vk2.app.MapProfileApp", function(a) {
   var b = x.getQueryParam("objectid");
-  null != b ? Td(pa + "/map/" + b, q(function(b) {
+  null != b ? Ud(pa + "/map/" + b, q(function(b) {
     if (b = Y(b.target)) {
-      b = Ia(b._id, b._source), lf(b, a);
+      b = Ia(b._id, b._source), mf(b, a);
     }
   }, this)) : console.log("Could not identify objectid.");
 });
-function lf(a, b) {
+function mf(a, b) {
   var c = a.getProperties();
   N(b.titleshortId).innerHTML = c.title;
   N(b.titlelongId).innerHTML = c.titlelong;
   N(b.linkToFotothekId).href = c.plink;
   if (ol.has.WEBGL) {
-    d = new ie(b.zoomifyContainer, c.zoomify, !0), new jf(b.metadataContainer, a.getId(), c), T(d, "loadend", function() {
-      d.getMap().addControl(new Ie);
+    d = new je(b.zoomifyContainer, c.zoomify, !0), new kf(b.metadataContainer, a.getId(), c), T(d, "loadend", function() {
+      d.getMap().addControl(new Je);
     });
   } else {
-    var d = new ie(b.zoomifyContainer, c.zoomify);
-    new jf(b.metadataContainer, a.getId(), c);
+    var d = new je(b.zoomifyContainer, c.zoomify);
+    new kf(b.metadataContainer, a.getId(), c);
   }
 }
 ;x.f = {};
-x.f.ua = function(a) {
+x.f.va = function(a) {
   a = a.split("/");
   for (var b = "/", c = 0;c < a.length;c++) {
     "" !== a[c] && (b += a[c] + "/");
   }
   return b;
 };
-x.f.w = function() {
+x.f.v = function() {
   var a = new Z(window.location.href), b = x.getQueryParam("L");
   return v ? Ca : a.b + "?" + Ca + "&L=" + (void 0 !== b && "" !== b ? b : 0);
 };
-x.f.wa = function(a) {
+x.f.xa = function(a) {
   new Z(window.location.href);
-  return v ? ra + "&" + a : x.f.w() + "&" + ra + "&" + a;
+  return v ? ra + "&" + a : x.f.v() + "&" + ra + "&" + a;
+};
+x.f.vb = function(a) {
+  new Z(window.location.href);
+  return v ? ta + "&" + a : x.f.v() + "&" + ta + "&" + a;
 };
 x.f.ub = function(a) {
   new Z(window.location.href);
-  return v ? ta + "&" + a : x.f.w() + "&" + ta + "&" + a;
+  return v ? sa + "&" + a : x.f.v() + "&" + sa + "&" + a;
 };
-x.f.tb = function(a) {
+x.f.xb = function() {
   new Z(window.location.href);
-  return v ? sa + "&" + a : x.f.w() + "&" + sa + "&" + a;
+  return v ? xa : x.f.v() + "&" + xa;
 };
 x.f.wb = function() {
   new Z(window.location.href);
-  return v ? xa : x.f.w() + "&" + xa;
+  return v ? ya : x.f.v() + "&" + ya;
 };
-x.f.vb = function() {
+x.f.sb = function(a) {
   new Z(window.location.href);
-  return v ? ya : x.f.w() + "&" + ya;
+  return v ? wa + "&" + a : x.f.v() + "&" + wa + "&" + a;
 };
-x.f.rb = function(a) {
+x.f.tb = function() {
   new Z(window.location.href);
-  return v ? wa + "&" + a : x.f.w() + "&" + wa + "&" + a;
+  return v ? Ba + "&undefined" : x.f.v() + "&" + Ba + "&undefined";
 };
-x.f.sb = function() {
+x.f.rb = function() {
   new Z(window.location.href);
-  return v ? Ba + "&undefined" : x.f.w() + "&" + Ba + "&undefined";
+  return v ? ua + "&undefined" : x.f.v() + "&" + ua + "&undefined";
 };
-x.f.qb = function() {
-  new Z(window.location.href);
-  return v ? ua + "&undefined" : x.f.w() + "&" + ua + "&undefined";
-};
-x.f.ma = function(a, b) {
+x.f.oa = function(a, b) {
   var c = void 0 !== a ? "&objectid=" + a : void 0 !== b ? "&" + b : "", d = new Z(window.location.href);
-  return v ? x.f.ua(d.b + "/" + Aa) + "?" + c : x.f.w() + "&" + Aa + c;
+  return v ? x.f.va(d.b + "/" + Aa) + "?" + c : x.f.v() + "&" + Aa + c;
 };
-x.f.Pa = function(a) {
+x.f.Qa = function(a) {
   var b = new Z(window.location.href);
-  return v ? x.f.ua(b.b + "/" + Da) + "?objectid=" + a : x.f.w() + "&" + Da + "&objectid=" + a;
+  return v ? x.f.va(b.b + "/" + Da) + "?objectid=" + a : x.f.v() + "&" + Da + "&objectid=" + a;
 };
-x.f.Oa = function() {
+x.f.Pa = function() {
   var a = new Z(window.location.href);
-  return v ? x.f.ua(a.b) + "/" + Ca : x.f.w();
+  return v ? x.f.va(a.b) + "/" + Ca : x.f.v();
 };
 r("vk2.app.GeoreferenceChooseApp", function(a) {
-  mf(this, N(a.target), N(a.targetCount));
+  nf(this, N(a.target), N(a.targetCount));
 });
-function nf(a, b, c) {
+function of(a, b, c) {
   void 0 !== a.hits && void 0 !== a.hits.total && (c.innerHTML = a.hits.total);
   if (void 0 !== a.hits && void 0 !== a.hits.hits && 0 < a.hits.hits.length) {
     b.innerHTML = "";
@@ -3289,7 +3299,7 @@ function nf(a, b, c) {
     b.appendChild(c);
     b = 0;
     for (var d = a.hits.hits.length;b < d;b++) {
-      R(c, of(a.hits.hits[b]));
+      R(c, pf(a.hits.hits[b]));
     }
   }
   $("body").scroll(function() {
@@ -3297,32 +3307,32 @@ function nf(a, b, c) {
   });
   $(".lazy-image").lazyload();
 }
-function mf(a, b, c) {
+function nf(a, b, c) {
   var d = new X;
   U(d, "success", function(a) {
     a = a.target;
     var d = Y(a);
-    nf(d, b, c);
+    of(d, b, c);
     z(a);
   }, !1, a);
   U(d, "error", function() {
     alert("Something went wrong, while trying to fetch data from the server.");
   }, !1, a);
   a = pa + "/_search?size=2000";
-  var e = he("georeference", [!1]);
+  var e = ie("georeference", [!1]);
   e.sort = {title:{order:"asc"}};
   d.send(a, "POST", JSON.stringify(e));
 }
-function of(a) {
+function pf(a) {
   var b = a._source, c = a._id;
   a = b.maptype;
-  var d = void 0 !== b.thumb ? b.thumb : "#", c = void 0 !== c ? x.f.ma(c) : "#", e = b.time;
+  var d = void 0 !== b.thumb ? b.thumb : "#", c = void 0 !== c ? x.f.oa(c) : "#", e = b.time;
   return Q("li", {id:b.id, innerHTML:'<div class="container record-container"><div class="image"><img class="lazy-image" alt="" data-original="' + d + '"></div><div class="body"><p><strong>' + b.title + "</strong></p><p>" + x.c("georef-choose-time") + ": " + e + "</p><p>" + x.c("georef-choose-maptype") + ": " + a + '</p></div><div class="tools"><a class="btn btn-primary" href="' + c + '" target="_blank">' + x.c("georef-choose-goToGeoreference") + "</a></div></div>"});
 }
 ;r("vk2.app.UserHistoryApp", function(a) {
-  pf(this, N(a.target), N(a.targetPoints));
+  qf(this, N(a.target), N(a.targetPoints));
 });
-function pf(a, b, c) {
+function qf(a, b, c) {
   var d = new X;
   U(d, "success", function(a) {
     a = a.target;
@@ -3332,7 +3342,7 @@ function pf(a, b, c) {
       for (var h = 0, m = d.georef_profile.length;h < m;h++) {
         var n;
         n = d.georef_profile[h];
-        var w = void 0 !== n.transformed && !0 === n.transformed ? Ha + "?SERVICE=WMS&VERSION=1.0.0&REQUEST=GetCapabilities&map=" + n.mapid : "#", y = void 0 !== n.thumbnail ? n.thumbnail : "#", A = x.f.w() + "&oid=" + n.mapid, A = void 0 !== n.transformed && !0 === n.transformed ? '<a href="' + A + '" target="_blank">Klick</a>' : x.c("georef-history-beingGenerated"), G = "" !== n.isvalide ? n.isvalide : "unknown";
+        var w = void 0 !== n.transformed && !0 === n.transformed ? Ha + "?SERVICE=WMS&VERSION=1.0.0&REQUEST=GetCapabilities&map=" + n.mapid : "#", y = void 0 !== n.thumbnail ? n.thumbnail : "#", A = x.f.v() + "&oid=" + n.mapid, A = void 0 !== n.transformed && !0 === n.transformed ? '<a href="' + A + '" target="_blank">Klick</a>' : x.c("georef-history-beingGenerated"), G = "" !== n.isvalide ? n.isvalide : "unknown";
         n = Q("article", {id:n.georefid, innerHTML:'<div class="media"><a class="pull-right" href="' + w + '"><img alt="" src="' + y + '"></a><div class="media-body"><p><strong>' + x.c("georef-history-processId") + ":</strong><br>" + n.georefid + "</p><p><strong>" + x.c("georef-history-isValidated") + ":</strong><br>" + G + "</p><p><strong>" + x.c("georef-history-mapId") + ":</strong><br>" + n.mapid + "</p><p><strong>" + x.c("georef-history-mapSheetInfo") + ":</strong><br>" + n.title + "</p><p><strong>" + 
         x.c("georef-history-georefParams") + ":</strong><br>" + JSON.stringify(n.georefparams) + "</p><p><strong>" + x.c("georef-history-persistentAccess") + ":</strong><br>" + A + '</p><p class="meta">Created: ' + n.georeftime + "</p></div></div>"});
         b.appendChild(n);
@@ -3343,28 +3353,28 @@ function pf(a, b, c) {
   U(d, "error", function() {
     alert("Something went wrong, while trying to fetch data from the server.");
   }, !1, a);
-  a = x.f.wb();
+  a = x.f.xb();
   d.send(a, "GET");
 }
 ;r("vk2.app.WelcomePageApp", function(a) {
   var b = void 0 !== a.georefenceElClass ? O(a.georefenceElClass) : void 0, c = void 0 !== a.overallGeorefenceElClass ? O(a.overallGeorefenceElClass) : void 0, d = void 0 !== a.relGeoreferenceElClass ? O(a.relGeoreferenceElClass) : void 0, e = void 0 !== a.georeferenceUserRankingElId ? N(a.georeferenceUserRankingElId) : void 0;
   $("#" + a.deactivateWelcomePageId).change(function() {
     var a = $(this).prop("checked") ? "off" : "on";
-    x.eb("vk2-welcomepage", a);
+    x.fb("vk2-welcomepage", a);
   });
-  void 0 !== b && void 0 !== c && void 0 !== d && void 0 !== e && qf(this, b, c, d, e);
+  void 0 !== b && void 0 !== c && void 0 !== d && void 0 !== e && rf(this, b, c, d, e);
 });
-function qf(a, b, c, d, e) {
+function rf(a, b, c, d, e) {
   var f = new X;
   U(f, "success", function(a) {
     a = a.target;
     var f = Y(a), n = f.georeference_map_count, w = n + f.missing_georeference_map_count, y = parseInt(n / w * 100);
-    rf(b, n);
-    rf(c, w);
+    sf(b, n);
+    sf(c, w);
     for (n = 0;n < d.length;n++) {
-      var w = vd(d[n], "width"), A = vd(d[n], "margin-left");
-      void 0 !== w && "" !== w && sd(d[n], "width", y + "%");
-      void 0 !== A && "" !== A && (-1 < A.indexOf("-") ? sd(d[n], "margin-left", "-" + y + "%") : sd(d[n], "margin-left", y + "%"));
+      var w = wd(d[n], "width"), A = wd(d[n], "margin-left");
+      void 0 !== w && "" !== w && td(d[n], "width", y + "%");
+      void 0 !== A && "" !== A && (-1 < A.indexOf("-") ? td(d[n], "margin-left", "-" + y + "%") : td(d[n], "margin-left", y + "%"));
     }
     $("head").append("<style>.vk2WelcomePageBody .vk2GeoreferenceProgressText .content:after{ left:" + y + "%; }</style>");
     y = Math.min(f.pointoverview.length, 3);
@@ -3376,15 +3386,15 @@ function qf(a, b, c, d, e) {
   U(f, "error", function() {
     alert("Something went wrong, while trying to fetch data from the server.");
   }, !1, a);
-  a = x.f.vb();
+  a = x.f.wb();
   f.send(a, "GET");
 }
-function rf(a, b) {
+function sf(a, b) {
   for (var c = 0;c < a.length;c++) {
     a[c].innerHTML = b;
   }
 }
-;function sf(a, b, c) {
+;function tf(a, b, c) {
   var d = a.getVisible() ? "visible" : "notvisible", e = Q("li", {"class":"layermanagement-record " + d, id:b, "data-id":a.getId()});
   b = Q("div", {"class":"control-container"});
   e.appendChild(b);
@@ -3420,24 +3430,24 @@ function rf(a, b) {
   d.appendChild(f);
   d = Q("span", {"class":"timestamps-label", innerHTML:x.c("timestamp") + " " + a.getTime()});
   f.appendChild(d);
-  ib.get("vk2-auth") && (d = Q("a", {"class":"georeference-update", innerHTML:x.c("updateGeoref") + " ...", target:"_blank", href:x.f.ma(a.getId())}), b.appendChild(d));
-  new Dc(e, a);
+  ib.get("vk2-auth") && (d = Q("a", {"class":"georeference-update", innerHTML:x.c("updateGeoref") + " ...", target:"_blank", href:x.f.oa(a.getId())}), b.appendChild(d));
+  new Ec(e, a);
   a.on("change:visible", function() {
     !a.getVisible() && F(e, "visible") ? Mb(e, "visible", "notvisible") : a.getVisible() && F(e, "notvisible") && Mb(e, "notvisible", "visible");
   });
   return e;
 }
-;function tf(a, b, c) {
-  Td(x.f.sb(), function(a) {
-    200 === ae(a.target) ? b(a) : c(a);
+;function uf(a, b, c) {
+  Ud(x.f.tb(), function(a) {
+    200 === be(a.target) ? b(a) : c(a);
   }, "POST", "req=" + JSON.stringify(a));
 }
-function uf(a, b) {
-  Td(x.f.qb(), b, "POST", "req=" + JSON.stringify(a));
+function vf(a, b) {
+  Ud(x.f.rb(), b, "POST", "req=" + JSON.stringify(a));
 }
-;function vf(a, b, c) {
+;function wf(a, b, c) {
   this.a = b;
-  this.h = c;
+  this.g = c;
   b = p(a) ? N(a) : a;
   a = Q("div", {"class":"layermanagement-container", id:"layermanagement-container"});
   b.appendChild(a);
@@ -3448,59 +3458,59 @@ function uf(a, b) {
   c = Q("ul", {"class":"layermanagement-body", innerHTML:'<li class="empty">' + x.c("start_message") + "</li>"});
   a.appendChild(c);
   this.b = c;
-  new Ce(b, this.h);
-  new Ee(b, this.h);
+  new De(b, this.g);
+  new Fe(b, this.g);
   this.G();
   V.call(this);
 }
-t(vf, V);
-function wf(a) {
+t(wf, V);
+function xf(a) {
   a = a.a.getArray();
   for (var b = [], c = 0, d = a.length;c < d;c++) {
-    l(a[c].la) && a[c].la() && b.push(a[c]);
+    l(a[c].na) && a[c].na() && b.push(a[c]);
   }
   return b;
 }
-function xf(a, b) {
+function yf(a, b) {
   for (var c = a.a.getArray(), d = 0, e = c.length;d < e;d++) {
     if (b === c[d]) {
       return d;
     }
   }
 }
-vf.prototype.g = function(a) {
-  if (l(a.element.la) && a.element.la()) {
+wf.prototype.h = function(a) {
+  if (l(a.element.na) && a.element.na()) {
     this.b.innerHTML = "";
-    a = wf(this);
+    a = xf(this);
     for (var b = a.length - 1;0 <= b;b--) {
-      var c = sf(a[b], b, this.h);
+      var c = tf(a[b], b, this.g);
       this.b.appendChild(c);
     }
   }
   $(this.b).sortable({revert:!0, handle:".drag-btn", stop:q(function(a, b) {
-    var c = wf(this), h = O("layermanagement-record", this.b), m = h.length - parseInt(h[b.item.index()].id, 0) - 1, n = b.item.index(), w = c.length - 1 - n, h = parseInt(h[n].id, 0);
-    l(h) && m != n && (m = c[h], n = xf(this, m), this.a.removeAt(n), c = xf(this, c[w]), w > h ? this.a.insertAt(c + 1, m) : this.a.insertAt(c, m));
+    var c = xf(this), h = O("layermanagement-record", this.b), m = h.length - parseInt(h[b.item.index()].id, 0) - 1, n = b.item.index(), w = c.length - 1 - n, h = parseInt(h[n].id, 0);
+    l(h) && m != n && (m = c[h], n = yf(this, m), this.a.removeAt(n), c = yf(this, c[w]), w > h ? this.a.insertAt(c + 1, m) : this.a.insertAt(c, m));
   }, this)});
 };
-vf.prototype.G = function() {
-  this.a.on("add", this.g, this);
-  this.a.on("remove", this.g, this);
+wf.prototype.G = function() {
+  this.a.on("add", this.h, this);
+  this.a.on("remove", this.h, this);
 };
-vf.prototype.J = function() {
-  this.a.un("add", this.g, this);
-  this.a.un("remove", this.g, this);
+wf.prototype.K = function() {
+  this.a.un("add", this.h, this);
+  this.a.un("remove", this.h, this);
 };
-function yf() {
+function zf() {
   V.call(this);
 }
-t(yf, V);
-function zf(a, b) {
-  var c = xe(new Z(window.location.href)), d, e = 4;
-  if (Be(c, "c")) {
+t(zf, V);
+function Af(a, b) {
+  var c = ye(new Z(window.location.href)), d, e = 4;
+  if (Ce(c, "c")) {
     var f = c.get("c").split(",");
     d = ol.proj.transform([parseFloat(f[0], 0), parseFloat(f[1], 0)], "EPSG:4326", u.projection);
     e = parseInt(c.get("z"), 0);
-    Af(b, d, e);
+    Bf(b, d, e);
   }
   var h = q(function(a, c) {
     var f = Ja(a);
@@ -3516,21 +3526,21 @@ function zf(a, b) {
       }
     }
     !d && 0 < f.length && (d = f[0].getGeometry().getInteriorPoint().getCoordinates());
-    Af(b, d, e);
+    Bf(b, d, e);
   }, a);
-  if (Be(c, "oid") && "" !== c.get("oid")) {
+  if (Ce(c, "oid") && "" !== c.get("oid")) {
     for (var m = c.get("oid").split(","), c = 0;c < m.length;c++) {
       "" == m[c] && m.splice(c, 1);
     }
     m.reverse();
-    ge(m, function(a) {
+    he(m, function(a) {
       a = a.target;
       var b = Y(a) ? Y(a) : void 0;
       z(a);
       void 0 !== b.docs && 0 < b.docs.length && h(b.docs, m);
     });
   } else {
-    Be(c, "dataid") && "" !== c.get("dataid") && (f = pa + "/_search", c = he("dataid", [c.get("dataid")]), Td(f, function(a) {
+    Ce(c, "dataid") && "" !== c.get("dataid") && (f = pa + "/_search", c = ie("dataid", [c.get("dataid")]), Ud(f, function(a) {
       a = a.target;
       var b = Y(a) ? Y(a) : void 0;
       z(a);
@@ -3538,25 +3548,25 @@ function zf(a, b) {
     }, "POST", JSON.stringify(c)));
   }
 }
-function Bf(a) {
+function Cf(a) {
   var b = "";
   a.getLayers().forEach(function(a) {
     l(a.getId) && (b += a.getId() + ",");
   });
   var c = ol.proj.transform(a.getView().getCenter(), u.projection, "EPSG:4326");
   a = a.getView().getZoom();
-  var d = new Z(window.location.origin + x.f.w() + "&welcomepage=off"), e = d.a;
+  var d = new Z(window.location.origin + x.f.v() + "&welcomepage=off"), e = d.a;
   e.set("z", a);
   e.set("c", x.round(c[0], 4) + "," + x.round(c[1], 4));
   e.set("oid", b);
-  ne(d, e);
+  oe(d, e);
   return d.toString();
 }
-function Af(a, b, c) {
+function Bf(a, b, c) {
   a.getView().setCenter(b);
   a.getView().setZoom(c);
 }
-;function Cf(a) {
+;function Df(a) {
   a = a || {};
   var b = Q("div", {"class":"permalink ol-unselectable"}), c = Q("a", {href:"#permalink", innerHTML:"P", "class":"ol-has-tooltip"});
   b.appendChild(c);
@@ -3576,142 +3586,143 @@ function Af(a, b, c) {
   b.appendChild(e);
   d = q(function(a) {
     a.preventDefault();
-    $(e).hasClass("open") ? ($(e).fadeOut().removeClass("open"), $(f).blur()) : (f.value = Bf(this.getMap()), $(e).fadeIn().addClass("open"), $(f).focus().select());
+    $(e).hasClass("open") ? ($(e).fadeOut().removeClass("open"), $(f).blur()) : (f.value = Cf(this.getMap()), $(e).fadeIn().addClass("open"), $(f).focus().select());
   }, this);
   T(c, "click", d);
   T(c, "touchstart", d);
   ol.control.Control.call(this, {element:b, target:a.target});
 }
-ol.inherits(Cf, ol.control.Control);
-function De(a) {
+ol.inherits(Df, ol.control.Control);
+function Ee(a) {
   a = a.getLayers().getArray();
   for (var b = [], c = 0;c < a.length;c++) {
-    a[c] instanceof Me && b.push(a[c]);
+    a[c] instanceof Ne && b.push(a[c]);
   }
   return b;
 }
-function Df(a, b) {
-  this.h = Ef(a, void 0 !== b ? b : {projection:"EPSG:3857", center:[1528150, 6630500], zoom:2});
-  this.h.on("singleclick", function(a) {
+function Ef(a, b) {
+  this.g = Ff(a, void 0 !== b ? b : {projection:"EPSG:3857", center:[1528150, 6630500], zoom:2});
+  this.g.on("singleclick", function(a) {
     var b = [];
     this.forEachFeatureAtPixel(a.pixel, function(a) {
       b.push(a);
     });
-    Ff(b);
+    Gf(b);
   });
 }
-r("vk2.controller.MapController", Df);
-function Ef(a, b) {
-  return new ol.Map({layers:[new ol.layer.Tile({source:new ol.source.OSM})], renderer:"canvas", target:a, interactions:ol.interaction.defaults().extend([new ol.interaction.DragRotateAndZoom]), controls:[new ol.control.Attribution({collapsible:!1, collapsed:!1}), new ol.control.Zoom, new ol.control.FullScreen, new Je({spyLayer:new ol.layer.Tile({attribution:void 0, source:new ol.source.OSM})}), new Vc, new ol.control.ScaleLine, new Cf, new Ke], view:new ol.View(b)});
+r("vk2.controller.MapController", Ef);
+function Ff(a, b) {
+  return new ol.Map({layers:[new ol.layer.Tile({source:new ol.source.OSM})], renderer:"canvas", target:a, interactions:ol.interaction.defaults().extend([new ol.interaction.DragRotateAndZoom]), controls:[new ol.control.Attribution({collapsible:!1, collapsed:!1}), new ol.control.Zoom, new ol.control.FullScreen, new Ke({spyLayer:new ol.layer.Tile({attribution:void 0, source:new ol.source.OSM})}), new Wc, new ol.control.ScaleLine, new Df, new Le], view:new ol.View(b)});
 }
-function Gf(a, b) {
+function Hf(a, b) {
   T(b, "jumpto", function(a) {
-    var b = this.h.getView(), e = a.target.lonlat;
+    var b = this.g.getView(), e = a.target.lonlat;
     b.setCenter(ol.proj.transform([parseFloat(e[0]), parseFloat(e[1])], a.target.srs, "EPSG:900913"));
     b.setZoom(5);
   }, void 0, a);
 }
-function Hf(a, b) {
+function If(a, b) {
   a.a = b;
   T(a.a, "click-record", function(a) {
     a = a.target.feature;
     if (a.get("georeference")) {
-      this.h.addLayer(If(a));
+      this.g.addLayer(Jf(a));
     } else {
       if (void 0 !== a) {
-        var b = new yd("vk2-overlay-modal", document.body, !0);
+        var b = new zd("vk2-overlay-modal", document.body, !0);
         b.open(void 0, "mapcontroller-click-modal georeference-dialog");
-        var e = Q("section"), f = Q("a", {"class":"btn btn-primary", href:x.f.ma(a.getId()), innerHTML:x.c("go_to_georeference"), target:"_blank"});
+        var e = Q("section"), f = Q("a", {"class":"btn btn-primary", href:x.f.oa(a.getId()), innerHTML:x.c("go_to_georeference"), target:"_blank"});
         e.appendChild(f);
-        f = Q("a", {"class":"btn btn-primary", href:x.f.Pa(a.getId()), innerHTML:x.c("go_to_originalmap"), target:"_self"});
+        f = Q("a", {"class":"btn btn-primary", href:x.f.Qa(a.getId()), innerHTML:x.c("go_to_originalmap"), target:"_self"});
         e.appendChild(f);
-        Cd(b, e);
+        Dd(b, e);
       }
     }
-  }, void 0, a);
-}
-function Jf(a, b) {
-  T(b, "addmap", function(a) {
-    this.h.addLayer(If(a.target.feature));
   }, void 0, a);
 }
 function Kf(a, b) {
+  T(b, "addmap", function(a) {
+    a = a.target.feature;
+    !0 === a.get("georeference") && this.g.addLayer(Jf(a));
+  }, void 0, a);
+}
+function Lf(a, b) {
   T(b, "timechange", function(a) {
     var b = this.a.a, e = a.target.time[0];
     a = a.target.time[1];
-    var f = b.a.X;
+    var f = b.a.Y;
     if (null != e && ga(e)) {
-      if (e > b.a.sa) {
+      if (e > b.a.ta) {
         throw {name:"WrongParameterExecption", message:"Start value shouldn't be higher than the end value."};
       }
-      b.a.X = e;
+      b.a.Y = e;
     }
     if (null != a && ga(a)) {
-      if (a < b.a.X) {
-        throw b.a.X = f, {name:"WrongParameterExecption", message:"End value shouldn't be lower than the start value."};
+      if (a < b.a.Y) {
+        throw b.a.Y = f, {name:"WrongParameterExecption", message:"End value shouldn't be lower than the start value."};
       }
-      b.a.sa = a;
+      b.a.ta = a;
     }
     b = this.a.a;
-    Se(b, x.Y(b.h), b.m);
+    Te(b, x.Z(b.g), b.m);
   }, void 0, a);
 }
-function If(a) {
-  return new Me({time:a.get("time"), thumbnail:a.get("thumb"), title:a.get("title"), objectid:a.get("id"), id:a.getId(), dataid:a.get("dataid"), tms:a.get("tms"), clip:a.getGeometry().clone()});
+function Jf(a) {
+  return new Ne({time:a.get("time"), thumbnail:a.get("thumb"), title:a.get("title"), objectid:a.get("id"), id:a.getId(), dataid:a.get("dataid"), tms:a.get("tms"), clip:a.getGeometry().clone()});
 }
-function Ff(a) {
+function Gf(a) {
   if (0 < a.length) {
-    var b = new yd("vk2-overlay-modal", document.body, !0);
+    var b = new zd("vk2-overlay-modal", document.body, !0);
     b.open(void 0, "mapcontroller-click-modal");
     for (var c = Q("section"), d = 0;d < a.length;d++) {
-      var e = Q("a", {href:x.f.Pa(a[d].getId()), innerHTML:a[d].get("title") + " " + a[d].get("time"), target:"_self"});
+      var e = Q("a", {href:x.f.Qa(a[d].getId()), innerHTML:a[d].get("title") + " " + a[d].get("time"), target:"_self"});
       c.appendChild(e);
       var f = Q("br");
       c.appendChild(f);
     }
-    Cd(b, c);
+    Dd(b, c);
     1 == a.length && e.click();
   }
 }
-Df.prototype.getMap = function() {
-  return this.h;
+Ef.prototype.getMap = function() {
+  return this.g;
 };
-Df.prototype.getMap = Df.prototype.getMap;
-function Lf(a, b) {
-  Hf(a, b.g);
-  Kf(a, b.j);
-  Gf(a, b.b);
+Ef.prototype.getMap = Ef.prototype.getMap;
+function Mf(a, b) {
+  If(a, b.h);
+  Lf(a, b.j);
+  Hf(a, b.b);
 }
 ;r("vk2.app.PresentationApp", function(a) {
-  x.Ia();
+  x.Ja();
   var b = l(a.authenticate) && "boolean" == typeof a.authenticate ? a.authenticate : !1, c = b && za ? !0 : !1;
-  x.Ta(l(a.modalAnchorClassName) ? a.modalAnchorClassName : "vk2-modal-anchor");
-  b || Mf();
-  b = new Df(a.mapContainerId, u);
-  c = new hf(a.spatialsearchContainerId, b.getMap(), c);
-  Lf(b, c);
-  new vf(a.mapContainerId, b.getMap().getLayers(), b.getMap());
-  c = new yf(b.getMap());
-  zf(c, b.getMap());
-  Jf(b, c);
+  x.Ua(l(a.modalAnchorClassName) ? a.modalAnchorClassName : "vk2-modal-anchor");
+  b || Nf();
+  b = new Ef(a.mapContainerId, u);
+  c = new jf(a.spatialsearchContainerId, b.getMap(), c);
+  Mf(b, c);
+  new wf(a.mapContainerId, b.getMap().getLayers(), b.getMap());
+  c = new zf(b.getMap());
+  Af(c, b.getMap());
+  Kf(b, c);
   setTimeout(function() {
-    x.Eb(a.mapContainerId);
+    x.Fb(a.mapContainerId);
   }, 500);
 });
-function Mf() {
+function Nf() {
   var a = x.getQueryParam("welcomepage");
-  N("welcome-page-link") && "off" !== x.pb() && "off" !== a && N("welcome-page-link").click();
+  N("welcome-page-link") && "off" !== x.qb() && "off" !== a && N("welcome-page-link").click();
 }
-;function Nf(a, b, c, d) {
+;function Of(a, b, c, d) {
   var e = Q("div", {"class":"vk2GeorefToolsBtn btn btn-default btn-submit deactivate", innerHTML:'<span class="glyphicon glyphicon-refresh"></span> ' + x.c("submitBtn_validate")});
   N(a).appendChild(e);
   T(e, "click", q(this.a, this, b, c, d));
   V.call(this);
 }
-t(Nf, V);
-Nf.prototype.a = function(a, b, c) {
+t(Of, V);
+Of.prototype.a = function(a, b, c) {
   this.dispatchEvent(new B("start-confirm", {}));
-  var d = Cc(), e = Of(b, d);
+  var d = Dc(), e = Pf(b, d);
   c = 0 < c.getFeatures().length ? c.getFeatures()[0].getGeometry().clone().transform(u.projection, d) : void 0;
   var f = b.getType();
   if (4 > e.gcps.length) {
@@ -3719,7 +3730,7 @@ Nf.prototype.a = function(a, b, c) {
   } else {
     var h = {georeference:e, id:a, type:f};
     void 0 !== c && (h.clip = {source:d, polygon:c.getCoordinates()[0]});
-    "update" === f && (a = l(b.Za) ? b.Za : void 0, h.overwrites = a);
+    "update" === f && (a = l(b.$a) ? b.$a : void 0, h.overwrites = a);
     var m = q(function(a) {
       a = Y(a.target);
       this.dispatchEvent(new B("end-confirm", {data:a}));
@@ -3727,20 +3738,20 @@ Nf.prototype.a = function(a, b, c) {
     q(function() {
       this.dispatchEvent(new B("error", {error:"Something went wrong, while sending confirmation data from the server."}));
     }, this);
-    h.hasOwnProperty("clip") ? uf(h, m) : x.Na(x.c("confirm_dialog_clip_title"), x.c("confirm_dialog_clip_msg"), function() {
-      uf(h, m);
+    h.hasOwnProperty("clip") ? vf(h, m) : x.Oa(x.c("confirm_dialog_clip_title"), x.c("confirm_dialog_clip_msg"), function() {
+      vf(h, m);
     }, "georeference-confirm-without-clip");
   }
 };
-function Pf(a, b, c) {
+function Qf(a, b, c) {
   var d = Q("div", {"class":"vk2GeorefToolsBtn btn btn-default btn-validate", innerHTML:'<span class="glyphicon glyphicon-refresh"></span> ' + x.c("validateBtn_validate")});
   N(a).appendChild(d);
   T(d, "click", q(this.a, this, b, c));
   V.call(this);
 }
-t(Pf, V);
-Pf.prototype.a = function(a, b) {
-  var c = {georeference:Qf(b, Bc(), Cc()), id:a};
+t(Qf, V);
+Qf.prototype.a = function(a, b) {
+  var c = {georeference:Rf(b, Cc(), Dc()), id:a};
   if (!(4 > c.georeference.gcps.length)) {
     this.dispatchEvent(new B("start-warping", {}));
     var d = q(function(a) {
@@ -3749,37 +3760,37 @@ Pf.prototype.a = function(a, b) {
     }, this), e = q(function() {
       this.dispatchEvent(new B("error", {error:"Something went wrong, while fetching validation data from the server."}));
     }, this);
-    tf(c, d, e);
+    uf(c, d, e);
   }
 };
-function Rf(a) {
-  this.a = l(a.ca) && ia(a.ca) ? l(a.ca["new"]) ? ab(a.ca["new"]) : ab(a.ca) : {source:"pixel", target:"EPSG:4314"};
-  this.Za = l(a.Ya) ? a.Ya : void 0;
-  this.g = l(a.Tb) ? a.bb : {source:"pixel", target:"EPSG:900913"};
+function Sf(a) {
+  this.a = l(a.da) && ia(a.da) ? l(a.da["new"]) ? ab(a.da["new"]) : ab(a.da) : {source:"pixel", target:"EPSG:4314"};
+  this.$a = l(a.Za) ? a.Za : void 0;
+  this.h = l(a.Ub) ? a.cb : {source:"pixel", target:"EPSG:900913"};
   this.b = a.sources;
   this.m = l(a.type) ? "update" === a.type ? !0 : !1 : !1;
   this.j = new Ka;
   this.G();
   V.call(this);
 }
-t(Rf, V);
-Rf.prototype.G = function() {
-  Sf(this, this.b);
+t(Sf, V);
+Sf.prototype.G = function() {
+  Tf(this, this.b);
   if (this.a.hasOwnProperty("gcps")) {
-    for (var a = this.a, b = this.b, c = this.g, d = 0;d < a.gcps.length;d++) {
-      var e = a.gcps[d], f = x.Kb(e.source), f = new ol.Feature(new ol.geom.Point(f)), e = ol.proj.transform(e.target, a.target, c.target), e = new ol.Feature(new ol.geom.Point(e));
+    for (var a = this.a, b = this.b, c = this.h, d = 0;d < a.gcps.length;d++) {
+      var e = a.gcps[d], f = x.Lb(e.source), f = new ol.Feature(new ol.geom.Point(f)), e = ol.proj.transform(e.target, a.target, c.target), e = new ol.Feature(new ol.geom.Point(e));
       b[0].addFeature(f);
       b[1].addFeature(e);
     }
   }
 };
-function Sf(a, b) {
+function Tf(a, b) {
   function c(a) {
     var c = b[0].getFeatureById(a), h = b[1].getFeatureById(a);
     if (null != c && null != h) {
-      c.setProperties({Fb:!0});
-      h.setProperties({Fb:!0});
-      var m = x.l.xa();
+      c.setProperties({Gb:!0});
+      h.setProperties({Gb:!0});
+      var m = x.l.ya();
       m.getText().setText("" + a);
       c.setStyle(m);
       h.setStyle(m);
@@ -3794,7 +3805,7 @@ function Sf(a, b) {
       a = a.feature;
       d.a = !0;
       a.setId(b);
-      a.setStyle(x.l.Ga);
+      a.setStyle(x.l.Ha);
       d.a && d.b && c(b);
     } else {
       alert("Please add source to other map!"), this.removeFeature(a.feature);
@@ -3816,23 +3827,23 @@ function Sf(a, b) {
       a = a.feature;
       d.b = !0;
       a.setId(b);
-      a.setStyle(x.l.Ga);
+      a.setStyle(x.l.Ha);
       d.a && d.b && c(b);
     } else {
       alert("Please add source to other map!"), this.removeFeature(a.feature);
     }
   });
 }
-function Qf(a, b, c) {
+function Rf(a, b, c) {
   b = l(b) ? b : "affine";
-  a = Tf(a, l(c) ? c : void 0);
+  a = Uf(a, l(c) ? c : void 0);
   a.algorithm = b;
   return a;
 }
-function Tf(a, b) {
+function Uf(a, b) {
   var c = q(function(a, b) {
     for (var c = [], d = 0;d < a.length;d++) {
-      var e = x.Jb(a[d][0].getGeometry().getCoordinates()), y = ol.proj.transform(a[d][1].getGeometry().getCoordinates(), this.g.target, b);
+      var e = x.Kb(a[d][0].getGeometry().getCoordinates()), y = ol.proj.transform(a[d][1].getGeometry().getCoordinates(), this.h.target, b);
       c.push({source:e, target:y});
     }
     return c;
@@ -3848,43 +3859,43 @@ function Tf(a, b) {
   d.target = e;
   return d;
 }
-function Of(a, b) {
-  var c = Bc(), c = l(c) ? c : "affine", d = ab(a.a), e = Qf(a, c, l(b) ? b : d.target);
-  Qf(a, c, d.target);
+function Pf(a, b) {
+  var c = Cc(), c = l(c) ? c : "affine", d = ab(a.a), e = Rf(a, c, l(b) ? b : d.target);
+  Rf(a, c, d.target);
   return e;
 }
-Rf.prototype.getType = function() {
+Sf.prototype.getType = function() {
   return this.m ? "update" : "new";
 };
-function Uf(a) {
+function Vf(a) {
   this.b = p(a) ? N(a) : a;
   var b = Q("div", {"class":"georef-tools-clip-container", id:"georef-tools-clip-container"});
   this.b.appendChild(b);
-  Vf(this, b);
+  Wf(this, b);
   a = Q("div", {"class":"georef-tools-clip-inner-container", id:"georef-tools-clip-inner-container"});
   b.appendChild(a);
-  var b = [], c = Wf("noneToggle", "none", x.c("moveMap"));
+  var b = [], c = Xf("noneToggle", "none", x.c("moveMap"));
   a.appendChild(c);
   b.push(c);
-  var d = Wf("drawClip", "drawclip", x.c("drawClip"));
+  var d = Xf("drawClip", "drawclip", x.c("drawClip"));
   a.appendChild(d);
   b.push(d);
   T(c, "click", q(this.a, this, "none", b));
   T(d, "click", q(this.a, this, "drawclip", b));
   V.call(this);
 }
-t(Uf, gd);
-Uf.prototype.A = function() {
+t(Vf, hd);
+Vf.prototype.A = function() {
   var a = N("georef-tools-clip-handler");
   null != a && F(a, "open") || $(a).trigger("click");
 };
-function Wf(a, b, c) {
+function Xf(a, b, c) {
   var d = Q("div", {"class":"tool"});
   a = Q("div", {id:a, "class":"tool-move toggle-elements", value:b, innerHTML:'<span class="tool-title">' + c + "</span>"});
   d.appendChild(a);
   return d;
 }
-Uf.prototype.B = function() {
+Vf.prototype.B = function() {
   var a = N("georef-tools-clip-handler");
   if (null == a || F(a, "open")) {
     $(a).trigger("click");
@@ -3893,7 +3904,7 @@ Uf.prototype.B = function() {
     }
   }
 };
-Uf.prototype.a = function(a, b) {
+Vf.prototype.a = function(a, b) {
   for (var c = q(function(a, b) {
     F(a, "activate") || D(a, "activate");
     this.dispatchEvent(new B("activate-" + b, a));
@@ -3905,7 +3916,7 @@ Uf.prototype.a = function(a, b) {
     f.value === a ? c(f, f.value) : d(f, f.value);
   }
 };
-function Vf(a, b) {
+function Wf(a, b) {
   var c = Q("div", {"class":"georef-tools-clip-handler", id:"georef-tools-clip-handler"});
   b.appendChild(c);
   R(c, Q("span", {"class":"icon"}));
@@ -3917,19 +3928,19 @@ function Vf(a, b) {
     });
   }, a));
 }
-;function Xf(a, b, c) {
+;function Yf(a, b, c) {
   this.a = new ol.source.Vector({features:new ol.Collection});
-  l(c) && (c = Yf(c), this.a.addFeature(c));
-  this.i = new ol.layer.Vector({source:this.a, style:x.l.Fa});
-  this.i.setMap(b);
-  this.b = new fd(b, this.i);
+  l(c) && (c = Bc(c), this.a.addFeature(c));
+  this.J = new ol.layer.Vector({source:this.a, style:x.l.Ga});
+  this.J.setMap(b);
+  this.b = new gd(b, this.J);
   Zf(a, {"activate-drawclip":this.b, "deactivate-drawclip":this.b});
-  this.qa = a;
+  this.ra = a;
 }
-t(Xf, Na);
-Xf.prototype.g = function(a) {
-  a = Yf(a.target.clip);
-  0 === this.a.getFeatures().length && (this.a.addFeature(a), this.i.addFeature(a));
+t(Yf, Na);
+Yf.prototype.i = function(a) {
+  a = Bc(a.target.clip);
+  0 === this.a.getFeatures().length && (this.a.addFeature(a), this.J.addFeature(a));
 };
 function Zf(a, b) {
   function c(a) {
@@ -3952,11 +3963,6 @@ function Zf(a, b) {
   T(a, "deactivate", function() {
     c();
   });
-}
-function Yf(a) {
-  var b = a.hasOwnProperty("polygon") && 0 < a.polygon.length ? new ol.geom.Polygon([a.polygon]) : void 0;
-  void 0 !== b && b.transform(a.source, u.projection);
-  return new ol.Feature({geometry:b});
 }
 ;function $f(a) {
   this.o = p(a) ? N(a) : a;
@@ -3983,7 +3989,7 @@ function Yf(a) {
   T(f, "click", q(this.a, this, "delgcp", b));
   V.call(this);
 }
-t($f, gd);
+t($f, hd);
 $f.prototype.A = function() {
   var a = N("georef-tools-gcp-handler");
   null != a && F(a, "open") || $(a).trigger("click");
@@ -4028,17 +4034,17 @@ function ag(a, b) {
   }, a));
 }
 ;function cg(a) {
-  this.a = a.U;
-  var b = a.Ib, c = a.sources[0], d = a.sources[1];
-  a = {P:a.Ua[0], L:a.Ua[1]};
-  var e = {P:new ol.layer.Vector({source:c, style:function() {
-    return [x.l.kb];
-  }}), L:new ol.layer.Vector({source:d, style:function() {
-    return [x.l.kb];
-  }})}, d = new bd(c, d, a.P, a.L), c = new dd(e.P, e.L, a.P, a.L), f = new cd(e.P, e.L, a.P, a.L), d = {"activate-addgcp":d, "deactivate-addgcp":d, "activate-draggcp":c, "deactivate-draggcp":c, "activate-delgcp":f, "deactivate-delgcp":f};
+  this.a = a.V;
+  var b = a.Jb, c = a.sources[0], d = a.sources[1];
+  a = {R:a.Va[0], N:a.Va[1]};
+  var e = {R:new ol.layer.Vector({source:c, style:function() {
+    return [x.l.lb];
+  }}), N:new ol.layer.Vector({source:d, style:function() {
+    return [x.l.lb];
+  }})}, d = new cd(c, d, a.R, a.N), c = new ed(e.R, e.N, a.R, a.N), f = new dd(e.R, e.N, a.R, a.N), d = {"activate-addgcp":d, "deactivate-addgcp":d, "activate-draggcp":c, "deactivate-draggcp":c, "activate-delgcp":f, "deactivate-delgcp":f};
   dg(c);
   eg(b, a, e, d);
-  this.qa = b;
+  this.ra = b;
 }
 t(cg, Na);
 function dg(a) {
@@ -4074,27 +4080,27 @@ function eg(a, b, c, d) {
   T(a, "deactivate", function() {
     f();
   });
-  b.P.addLayer(c.P);
-  b.L.addLayer(c.L);
+  b.R.addLayer(c.R);
+  b.N.addLayer(c.N);
 }
 ;function fg(a) {
-  var b = p(a.Ca) ? N(a.Ca) : a.Ca, c = p(a.Ba) ? N(a.Ba) : a.Ba, d = a.Cb, e = a.zb, f = a.Gb, h = a.Lb, m = l(a.Ja) ? a.Ja : void 0, n = l(a.type) ? a.type : void 0, w = l(a.aa) ? a.aa : void 0, y = l(a.Ka) ? a.Ka : void 0, A = [new ol.source.Vector({features:new ol.Collection}), new ol.source.Vector({features:new ol.Collection})], G = l(a.bb) ? G : void 0;
-  a = {mtb:"affine", gl:"affine", ae:"affine", tk:"affine", ak:"tps"}[a.Ab.toLowerCase().toLowerCase()];
-  for (var Wb = $("#transformation-chooser option"), db = 0;db < Wb.length;db++) {
-    a.toLowerCase() === Wb[db].innerHTML.toLowerCase() && $("#transformation-chooser").val(Wb[db].innerHTML);
+  var b = p(a.Da) ? N(a.Da) : a.Da, c = p(a.Ca) ? N(a.Ca) : a.Ca, d = a.Db, e = a.Ab, f = a.Hb, h = a.Mb, m = l(a.Ka) ? a.Ka : void 0, n = l(a.type) ? a.type : void 0, w = l(a.ba) ? a.ba : void 0, y = l(a.La) ? a.La : void 0, A = [new ol.source.Vector({features:new ol.Collection}), new ol.source.Vector({features:new ol.Collection})], G = l(a.cb) ? G : void 0;
+  a = {mtb:"affine", gl:"affine", ae:"affine", tk:"affine", ak:"tps"}[a.Bb.toLowerCase().toLowerCase()];
+  for (var Xb = $("#transformation-chooser option"), db = 0;db < Xb.length;db++) {
+    a.toLowerCase() === Xb[db].innerHTML.toLowerCase() && $("#transformation-chooser").val(Xb[db].innerHTML);
   }
-  m = new Rf({sources:A, ca:m, type:n, Ya:y, bb:G});
+  m = new Sf({sources:A, da:m, type:n, Za:y, cb:G});
   b = new $f(b);
-  f = new cg({Ib:b, U:m, Ua:[f.getMap(), h.getMap()], sources:A});
-  c = new Uf(c);
-  w = new Xf(c, h.getMap(), w);
-  A = f.qa;
-  m = w.qa;
+  f = new cg({Jb:b, V:m, Va:[f.getMap(), h.getMap()], sources:A});
+  c = new Vf(c);
+  w = new Yf(c, h.getMap(), w);
+  A = f.ra;
+  m = w.ra;
   T(A, "activate", m.B);
   T(m, "activate", A.B);
-  U(f.a, "add-gcp-clippolygon", w.g, void 0, w);
-  A = new Pf(d, e, f.a);
-  d = new Nf(d, e, f.a, w.a);
+  U(f.a, "add-gcp-clippolygon", w.i, void 0, w);
+  A = new Qf(d, e, f.a);
+  d = new Of(d, e, f.a, w.a);
   gg(A, d, h, w, c);
   b.A();
 }
@@ -4104,7 +4110,7 @@ function gg(a, b, c, d, e) {
   });
   T(a, "end-warping", function(a) {
     a = a.target.data;
-    var b = 0 < d.a.getFeatures().length ? d.a.getFeatures()[0] : void 0, m = ol.proj.transformExtent(a.extent, Cc(), u.projection);
+    var b = 0 < d.a.getFeatures().length ? d.a.getFeatures()[0] : void 0, m = ol.proj.transformExtent(a.extent, Dc(), u.projection);
     ig(c, a.wmsUrl, a.layerId, b);
     c.setZoom(m);
     jg(c);
@@ -4115,27 +4121,27 @@ function gg(a, b, c, d, e) {
     jg(c);
   });
   T(b, "end-confirm", function() {
-    window.location.href = x.f.Oa();
+    window.location.href = x.f.Pa();
   });
   T(d.b, "drawend", function(a) {
     a = a.target.feature;
-    if (void 0 !== c.T) {
-      var b = c.T.getProperties();
+    if (void 0 !== c.U) {
+      var b = c.U.getProperties();
       ig(c, b.wms_url, b.layerid, a);
     }
   });
 }
 ;function kg(a, b) {
   this.b = u.projection;
-  this.T = void 0;
+  this.U = void 0;
   this.o = N(a);
   var c = l(b) ? b : [640161.933, 5958026.134, 3585834.8011505, 7847377.4901306], d = new ol.layer.Tile({source:new ol.source.OSM});
-  this.h = new ol.Map({layers:[d], interactions:ol.interaction.defaults().extend([new ol.interaction.DragZoom]), renderer:"canvas", target:this.o, view:new ol.View({projection:this.b, center:[0, 0], zoom:2}), controls:[new ol.control.FullScreen, new ol.control.Zoom, new ol.control.Attribution, new Je({spyLayer:new ol.layer.Tile({attribution:void 0, source:new ol.source.OSM})})]});
-  this.h.getView().fit(c, this.h.getSize());
-  l(b) && (this.a = new ol.control.ZoomToExtent({extent:c}), this.h.addControl(this.a));
-  c = new af(this.o);
+  this.g = new ol.Map({layers:[d], interactions:ol.interaction.defaults().extend([new ol.interaction.DragZoom]), renderer:"canvas", target:this.o, view:new ol.View({projection:this.b, center:[0, 0], zoom:2}), controls:[new ol.control.FullScreen, new ol.control.Zoom, new ol.control.Attribution, new Ke({spyLayer:new ol.layer.Tile({attribution:void 0, source:new ol.source.OSM})})]});
+  this.g.getView().fit(c, this.g.getSize());
+  l(b) && (this.a = new ol.control.ZoomToExtent({extent:c}), this.g.addControl(this.a));
+  c = new bf(this.o);
   T(c, "jumpto", function(a) {
-    var b = this.h.getView(), c = a.target.lonlat;
+    var b = this.g.getView(), c = a.target.lonlat;
     b.setCenter(ol.proj.transform([parseFloat(c[0]), parseFloat(c[1])], a.target.srs, this.b));
     b.setZoom(12);
   }, void 0, this);
@@ -4152,14 +4158,14 @@ function jg(a) {
   l(a) && vc(a);
 }
 function ig(a, b, c, d) {
-  l(a.T) && a.h.removeLayer(a.T);
+  l(a.U) && a.g.removeLayer(a.U);
   d = void 0 !== d ? d.getGeometry() : void 0;
-  a.T = Oe({gb:b, Sa:c, aa:d}, a.h);
-  a.h.getLayers().insertAt(1, a.T);
-  N("opacity-slider-container") && (N("opacity-slider-container").innerHTML = "", new Dc(N("opacity-slider-container"), a.T));
+  a.U = Pe({hb:b, Ta:c, ba:d}, a.g);
+  a.g.getLayers().insertAt(1, a.U);
+  N("opacity-slider-container") && (N("opacity-slider-container").innerHTML = "", new Ec(N("opacity-slider-container"), a.U));
 }
 kg.prototype.getMap = function() {
-  return this.h;
+  return this.g;
 };
 function lg(a) {
   for (var b = 0;b < a.o.children.length;b++) {
@@ -4169,7 +4175,7 @@ function lg(a) {
   }
 }
 kg.prototype.setZoom = function(a) {
-  void 0 !== a && (a = void 0 === a ? this.h.getView().calculateExtent(this.h.getSize()) : a, this.h.removeControl(this.a), this.a = new ol.control.ZoomToExtent({extent:a}), this.h.addControl(this.a), this.h.getView().fit(a, this.h.getSize()));
+  void 0 !== a && (a = void 0 === a ? this.g.getView().calculateExtent(this.g.getSize()) : a, this.g.removeControl(this.a), this.a = new ol.control.ZoomToExtent({extent:a}), this.g.addControl(this.a), this.g.getView().fit(a, this.g.getSize()));
 };
 r("vk2.app.AdminEvaluationApp", function(a) {
   if (!a.hasOwnProperty("process_list") || !a.hasOwnProperty("map_container")) {
@@ -4177,7 +4183,7 @@ r("vk2.app.AdminEvaluationApp", function(a) {
   }
   var b = a.map_container;
   Ac();
-  this.pa = new kg(b);
+  this.ha = new kg(b);
   a.hasOwnProperty("btn_getallprocess") && mg(this, a.btn_getallprocess, a.process_list);
   a.hasOwnProperty("btn_getallinvalideprocess") && mg(this, a.btn_getallinvalideprocess, a.process_list, "validation=invalide");
   a.hasOwnProperty("btn_getsingleprocess_mapid") && ng(this, a.btn_getsingleprocess_mapid, a.process_list);
@@ -4194,7 +4200,7 @@ function mg(a, b, c, d) {
     U(a, "error", function() {
       alert("Something went wrong, while trying to fetch data from the server.");
     }, !1, this);
-    var b = x.f.wa(l(d) ? d : void 0);
+    var b = x.f.xa(l(d) ? d : void 0);
     a.send(b, "GET");
   }, void 0, a);
 }
@@ -4208,7 +4214,7 @@ function ng(a, b, c) {
       pg(this, c, Y(a));
       z(a);
     }, !1, this);
-    b = x.f.wa("mapid=" + b);
+    b = x.f.xa("mapid=" + b);
     a.send(b, "GET");
   }, void 0, a);
 }
@@ -4225,7 +4231,7 @@ function og(a, b, c) {
     U(a, "error", function() {
       alert("Something went wrong, while trying to fetch data from the server.");
     }, !1, this);
-    b = x.f.wa("userid=" + b);
+    b = x.f.xa("userid=" + b);
     a.send(b, "GET");
   }, void 0, a);
 }
@@ -4236,16 +4242,17 @@ function qg(a, b) {
   var d = Q("article", {id:b.georef_id}), e = q(function(a) {
     var b = Q("p");
     if ("isvalide" != a.adminvalidation) {
-      var c = Q("button", {"data-href":x.f.ub("georeferenceid=" + a.georef_id), "class":"btn btn-primary action-btn", innerHTML:"Is valide"});
+      var c = Q("button", {"data-href":x.f.vb("georeferenceid=" + a.georef_id), "class":"btn btn-primary action-btn", innerHTML:"Is valide"});
       rg(c, d, "Georeference process is valide?", "Are you sure you wanna set this georeference process to isvalide? Why?");
       b.appendChild(c);
     }
-    c = Q("button", {"data-params-georef":a.georef_params, "data-params-clip":a.clippolygon, "data-params-id":a.mapid, "class":"btn btn-primary btn-show-georef", innerHTML:"Show map"});
+    c = Q("button", {"data-params-georef":JSON.stringify(a.georef_params), "data-params-id":a.mapid, "class":"btn btn-primary btn-show-georef", innerHTML:"Show map"});
+    void 0 !== a.clippolygon && c.setAttribute("data-params-clip", JSON.stringify(a.clippolygon));
     sg(this, c);
     b.appendChild(c);
-    c = Q("a", {href:x.f.ma(void 0, "georeferenceid=" + a.georef_id), "class":"btn btn-primary action-btn", target:"_blank", innerHTML:"Go to process ..."});
+    c = Q("a", {href:x.f.oa(void 0, "georeferenceid=" + a.georef_id), "class":"btn btn-primary action-btn", target:"_blank", innerHTML:"Go to process ..."});
     b.appendChild(c);
-    "invalide" != a.adminvalidation && (a = Q("button", {"data-href":x.f.tb("georeferenceid=" + a.georef_id), "class":"btn btn-warning action-btn", innerHTML:"Is invalide"}), rg(a, d, "Georeference process is invalide?", "Are you sure you wanna set this georeference process to invalide? Why?"), b.appendChild(a));
+    "invalide" != a.adminvalidation && (a = Q("button", {"data-href":x.f.ub("georeferenceid=" + a.georef_id), "class":"btn btn-warning action-btn", innerHTML:"Is invalide"}), rg(a, d, "Georeference process is invalide?", "Are you sure you wanna set this georeference process to invalide? Why?"), b.appendChild(a));
     return b;
   }, a);
   R(d, c("Process-ID", b.georef_id));
@@ -4270,13 +4277,13 @@ function pg(a, b, c) {
   }
 }
 function rg(a, b, c, d) {
-  T(a, "click", na(x.Na, c, d + '<br><div id="admin-validation-comment" class="input-group"><input type="radio" value="imprecision"> Imprecision<br><input type="radio" value="wrong-parameter"> Wrong Parameter<br><input type="radio" value="wrong-map-sheet-number"> Wrong map sheet number<br><input type="radio" value="bad-original"> Bad original<br><br><input type="text" class="form-control" placeholder="comment" id="confirm-comment"></div>', function() {
+  T(a, "click", na(x.Oa, c, d + '<br><div id="admin-validation-comment" class="input-group"><input type="radio" value="imprecision"> Imprecision<br><input type="radio" value="wrong-parameter"> Wrong Parameter<br><input type="radio" value="wrong-map-sheet-number"> Wrong map sheet number<br><input type="radio" value="bad-original"> Bad original<br><br><input type="text" class="form-control" placeholder="comment" id="confirm-comment"></div>', function() {
     for (var c = qc("input", void 0, N("admin-validation-comment")), d = void 0, h = 0;h < c.length;h++) {
       "radio" == c[h].type && c[h].checked && (d = c[h].value);
     }
     c = l(d) ? d : N("confirm-comment").value;
     c = a.getAttribute("data-href") + "&comment=" + c;
-    Td(c, function(a) {
+    Ud(c, function(a) {
       alert(Y(a.target).message);
       vc(b);
     }, "GET");
@@ -4284,42 +4291,45 @@ function rg(a, b, c, d) {
 }
 function sg(a, b) {
   T(b, "click", function(a) {
-    var b = JSON.parse(a.currentTarget.getAttribute("data-params-georef")), b = b.hasOwnProperty("new") ? b["new"] : b, e = JSON.parse(a.currentTarget.getAttribute("data-params-clip"));
+    var b = JSON.parse(a.currentTarget.getAttribute("data-params-georef")), e = b.hasOwnProperty("new") ? b["new"] : b, f = null == a.currentTarget.getAttribute("data-params-clip") || void 0 == a.currentTarget.getAttribute("data-params-clip") ? void 0 : JSON.parse(a.currentTarget.getAttribute("data-params-clip"));
     a = parseInt(a.currentTarget.getAttribute("data-params-id"), 0);
-    a = {georeference:b, id:a, clip:e};
-    hg(this.pa);
-    tf(a, q(function(a) {
-      jg(this.pa);
+    a = {georeference:e, id:a};
+    void 0 !== f && (a.clip = f);
+    hg(this.ha);
+    uf(a, q(function(a) {
       a = Y(a.target);
-      ig(this.pa, a.wmsUrl, a.layerId, a.clip);
+      var b = ol.proj.transformExtent(a.extent, e.target, u.projection), c = void 0 !== f ? Bc(f) : void 0;
+      ig(this.ha, a.wmsUrl, a.layerId, c);
+      this.ha.setZoom(b);
+      jg(this.ha);
     }, this), function() {
-      jg(this.pa);
+      jg(this.ha);
       alert("Something went wrong while trying to fetch a georeference validation result from server ....");
     });
   }, !1, a);
 }
 ;function tg(a, b) {
-  x.Ia();
-  x.Ta("vk2-modal-anchor");
+  x.Ja();
+  x.Ua("vk2-modal-anchor");
   Ac();
   var c = new Z(window.location.href), d = c.a.get("objectid"), c = c.a.get("georeferenceid");
   l(c) ? ug("georeferenceid=" + c, q(this.a, this, a, b)) : l(d) && ug("objectid=" + d, q(this.a, this, a, b));
 }
 r("vk2.app.GeoreferenceApp", tg);
 function ug(a, b) {
-  var c = x.f.rb(a);
-  Td(c, function(a) {
-    200 != ae(a.target) && alert("Something went wrong, while trying to get the process information from the server. Please try again or contact the administrator.");
+  var c = x.f.sb(a);
+  Ud(c, function(a) {
+    200 != be(a.target) && alert("Something went wrong, while trying to get the process information from the server. Please try again or contact the administrator.");
     b(Y(a.target));
   });
 }
 tg.prototype.a = function(a, b, c) {
-  var d = c.hasOwnProperty("extent") ? ol.proj.transformExtent(c.extent, va, "EPSG:3857") : void 0, e = new ke(a, c.zoomify), f = new kg(b, d);
+  var d = c.hasOwnProperty("extent") ? ol.proj.transformExtent(c.extent, va, "EPSG:3857") : void 0, e = new le(a, c.zoomify), f = new kg(b, d);
   T(e, "loadend", function() {
     var d = c.hasOwnProperty("recommendedsrid") ? "EPSG:" + c.recommendedsrid : "EPSG:4326";
     $("#projection-chooser").val(d);
-    new fg({Ca:a, Ba:b, Cb:"georef-validate-menu", zb:c.objectid, Gb:e, Lb:f, Ja:c.georeference, type:c.type, aa:c.clippolygon, Ka:c.georeferenceid, Ab:c.maptype});
+    new fg({Da:a, Ca:b, Db:"georef-validate-menu", Ab:c.objectid, Hb:e, Mb:f, Ka:c.georeference, type:c.type, ba:c.clippolygon, La:c.georeferenceid, Bb:c.maptype});
   }, void 0, this);
-  c.hasOwnProperty("warn") && (d = Q("div", {innerHTML:c.warn + ' <a href="' + x.f.Oa() + '">' + x.c("backToMain") + "</a>", "class":"alert alert-danger warn-msg"}), N(a).appendChild(d));
+  c.hasOwnProperty("warn") && (d = Q("div", {innerHTML:c.warn + ' <a href="' + x.f.Pa() + '">' + x.c("backToMain") + "</a>", "class":"alert alert-danger warn-msg"}), N(a).appendChild(d));
 };
 }).call(window);
