@@ -15,7 +15,23 @@
 
 				<f:then>
 
-					<f:cObject typoscriptObjectPath="lib.felogin" />
+					<div class="login-screen container" class="change-pw">
+
+						<div class="panel panel-default">
+							<div class="panel-heading" id="panelHeading">
+								<h2><f:translate id="login.title" /></h2>
+							</div>
+
+							<div class="panel-body">
+								<!-- Anmeldung für existierende Nutzer -->
+								<div class="panel panel-default panel-vk2Login">
+									<!-- use felogin -->
+									<f:cObject typoscriptObjectPath="lib.felogin" />
+								</div>
+							</div>
+						</div>
+
+					</div>
 
 				</f:then>
 				<f:else>

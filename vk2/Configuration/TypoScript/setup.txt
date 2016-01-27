@@ -87,6 +87,8 @@ lib.felogin  {
    templateFile = EXT:vk2/Resources/Private/Templates/Login/FELogin.html
    redirectMode = login, referer
    redirectPageLogin = 19
+   redirectPageLoginError = 19
+   redirectPageLogout = 19
    showForgotPasswordLink = 1
    domains = http://localhost/
    forgotMessage_stdWrap.wrap = <p>|</p>
