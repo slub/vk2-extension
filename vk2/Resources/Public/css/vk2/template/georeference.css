@@ -100,40 +100,28 @@
   cursor: pointer;
 }
 
-.georef-tools-gcp-container .georef-tools-gcp-handler.open .icon, .georef-tools-clip-container .georef-tools-clip-handler.open .icon { background-color: rgb(19,141,141); }
-.georef-tools-gcp-container .georef-tools-gcp-handler.open:after, .georef-tools-clip-container .georef-tools-clip-handler.open:after { position: absolute; bottom: -6px; left: 10px; width: 0; height: 0; border: 4px solid rgb(19,141,141); border-color: rgb(19,141,141) transparent transparent transparent; border-bottom-width: 0;  content: ""; }
-
-.georef-tools-gcp-container .georef-tools-gcp-inner-container, .georef-tools-clip-container .georef-tools-clip-inner-container{
-  position: absolute;
-  top: 35px;
-  left: 0;
-  background: rgba(255,255,255,0.4);
-  padding: 3px;
-  display: none;
-}
-
-.georef-tools-gcp-container .tool > div, .georef-tools-clip-container .tool > div {
- position: relative;
- width: 22px;
- height: 22px;
- display: block;
- white-space: nowrap;
- background-color: rgb(0,177,158);
- margin-top: 1px;
- background-size: 22px 22px;
- cursor: pointer;
-}
-
-
-#noneToggle { background: rgb(0,177,158) url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMiAyMiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMjIgMjIiPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik00IDR2N2gxdi01aDEydjhoLTF2MWgydi0xMXpNNyA4LjNjMC0uNi41LTEuMSAxLjEtMS4xLjYgMCAxLjEuNSAxLjEgMS4xdjQuNWwzLjMgMS4xYy43LjIuOSAxLjEuNyAxLjlsLS43IDQuMmgtNS44bC0yLjktNC41Yy0uNC0uNi0uNC0xLjUuMy0xLjVzMS41LjMgMi45IDIuNnYtOC4zeiIvPjwvc3ZnPg==') no-repeat 0 0; }
-#pointToggle, #drawClip { background: rgb(0,177,158) url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMiAyMiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMjIgMjIiPjxwYXRoIGZpbGw9IiNmZmYiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJNNi41IDEwbC0zLjUtNyA3IDMuNS0yLjguN3oiLz48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMTMuNSA4Yy0zLjEgMC01LjUgMi41LTUuNSA1LjUgMCAzLjEgMi41IDUuNSA1LjUgNS41IDMuMSAwIDUuNS0yLjUgNS41LTUuNXMtMi41LTUuNS01LjUtNS41em0yLjUgNmgtMnYyaC0xdi0yaC0ydi0xaDJ2LTJoMXYyaDJ2MXoiLz48L3N2Zz4=') no-repeat 0 0; }
-#dragToggle { background: rgb(0,177,158) url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMiAyMiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMjIgMjIiPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik05IDEyaDh2MWgtOHpNMTAgMTQuOWwtMy0yLjQgMy0yLjV6TTkgMTJoOHYxaC04ek0xMCAxNC45bC0zLTIuNCAzLTIuNXpNMTcgMTBsMyAyLjUtMyAyLjR6TTEzIDloMXY4aC0xek0xNiAxNmwtMi41IDMtMi41LTN6TTExIDlsMi41LTMgMi41IDN6Ii8+PHBhdGggZmlsbD0iI2ZmZiIgc3Ryb2tlPSIjZmZmIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIGQ9Ik02LjUgMTBsLTMuNS03IDcgMy41LTIuOC43eiIvPjwvc3ZnPg==') no-repeat 0 0; }
-#deleteToggle { background: rgb(0,177,158) url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMiAyMiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMjIgMjIiPjxwYXRoIGZpbGw9IiNmZmYiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJNNi41IDkuOWwtMy41LTYuOSA3IDMuNC0yLjguN3oiLz48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMTMuNSA4Yy0zLjEgMC01LjUgMi40LTUuNSA1LjVzMi41IDUuNSA1LjUgNS41YzMuMSAwIDUuNS0yLjUgNS41LTUuNSAwLTMuMS0yLjUtNS41LTUuNS01LjV6bTIuNSA2aC01di0xaDV2MXoiLz48L3N2Zz4=') no-repeat 0 0; }
-
+.georef-tools-gcp-container .georef-tools-gcp-handler.open .icon, .georef-tools-clip-container
+.georef-tools-clip-handler.open .icon { background-color: rgb(19,141,141); }
+.georef-tools-gcp-container .georef-tools-gcp-handler.open:after, .georef-tools-clip-container
+.georef-tools-clip-handler.open:after { position: absolute; bottom: -6px; left: 10px; width: 0; height: 0;
+		border: 4px solid rgb(19,141,141); border-color: rgb(19,141,141) transparent transparent transparent;
+		border-bottom-width: 0;  content: ""; }
+.georef-tools-gcp-container .georef-tools-gcp-inner-container, .georef-tools-clip-container .georef-tools-clip-inner-container {
+  	position: absolute; top: 35px; left: 0;  background: rgba(255,255,255,0.4);  padding: 3px; display: none; }
+.georef-tools-gcp-container .tool > div, .georef-tools-clip-container .tool > div { position: relative; width: 22px; height: 22px; display: block; white-space: nowrap;
+	background-color: rgb(0,177,158); margin-top: 1px; background-size: 22px 22px; cursor: pointer; }
+.georef-tools-gcp-inner-container .noneToggle, .georef-tools-clip-inner-container .noneToggle { background: rgb(0,177,158) url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMiAyMiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMjIgMjIiPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik00IDR2N2gxdi01aDEydjhoLTF2MWgydi0xMXpNNyA4LjNjMC0uNi41LTEuMSAxLjEtMS4xLjYgMCAxLjEuNSAxLjEgMS4xdjQuNWwzLjMgMS4xYy43LjIuOSAxLjEuNyAxLjlsLS43IDQuMmgtNS44bC0yLjktNC41Yy0uNC0uNi0uNC0xLjUuMy0xLjVzMS41LjMgMi45IDIuNnYtOC4zeiIvPjwvc3ZnPg==') no-repeat 0 0; }
+.georef-tools-gcp-inner-container .pointToggle, .georef-tools-clip-inner-container .drawClip { background: rgb(0,177,158) url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMiAyMiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMjIgMjIiPjxwYXRoIGZpbGw9IiNmZmYiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJNNi41IDEwbC0zLjUtNyA3IDMuNS0yLjguN3oiLz48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMTMuNSA4Yy0zLjEgMC01LjUgMi41LTUuNSA1LjUgMCAzLjEgMi41IDUuNSA1LjUgNS41IDMuMSAwIDUuNS0yLjUgNS41LTUuNXMtMi41LTUuNS01LjUtNS41em0yLjUgNmgtMnYyaC0xdi0yaC0ydi0xaDJ2LTJoMXYyaDJ2MXoiLz48L3N2Zz4=') no-repeat 0 0; }
+.georef-tools-gcp-inner-container .dragToggle { background: rgb(0,177,158) url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMiAyMiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMjIgMjIiPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik05IDEyaDh2MWgtOHpNMTAgMTQuOWwtMy0yLjQgMy0yLjV6TTkgMTJoOHYxaC04ek0xMCAxNC45bC0zLTIuNCAzLTIuNXpNMTcgMTBsMyAyLjUtMyAyLjR6TTEzIDloMXY4aC0xek0xNiAxNmwtMi41IDMtMi41LTN6TTExIDlsMi41LTMgMi41IDN6Ii8+PHBhdGggZmlsbD0iI2ZmZiIgc3Ryb2tlPSIjZmZmIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIGQ9Ik02LjUgMTBsLTMuNS03IDcgMy41LTIuOC43eiIvPjwvc3ZnPg==') no-repeat 0 0; }
+.georef-tools-gcp-inner-container .deleteToggle { background: rgb(0,177,158) url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMiAyMiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMjIgMjIiPjxwYXRoIGZpbGw9IiNmZmYiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJNNi41IDkuOWwtMy41LTYuOSA3IDMuNC0yLjguN3oiLz48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMTMuNSA4Yy0zLjEgMC01LjUgMi40LTUuNSA1LjVzMi41IDUuNSA1LjUgNS41YzMuMSAwIDUuNS0yLjUgNS41LTUuNSAwLTMuMS0yLjUtNS41LTUuNS01LjV6bTIuNSA2aC01di0xaDV2MXoiLz48L3N2Zz4=') no-repeat 0 0; }
 .georef-tools-gcp-container .tool:hover > div, .georef-tools-clip-container .tool:hover > div { background-color: rgb(19,141,141) !important; }
 .georef-tools-gcp-container .tool .active,.georef-tools-clip-container .tool .active { background-color: #f33 !important; }
-.georef-tools-gcp-container .tool .tool-title, .georef-tools-clip-container .tool .tool-title { position: absolute; left: 30px; top: 0; background: rgb(19,141,141); color: #fff; display: none; padding: 2px 5px; font-size: 11px; font-weight: 700; height: 22px; }
-.georef-tools-gcp-container .tool .tool-title:before, .georef-tools-clip-container .tool .tool-title:before { position: absolute; left: -5px; top: 6px; width: 0; height: 0; content: ""; border: 5px solid rgb(19,141,141); border-color: transparent rgb(19,141,141) transparent transparent; border-left-width: 0;  }
+.georef-tools-gcp-container .tool .tool-title, .georef-tools-clip-container .tool .tool-title { position: absolute; left: 30px;
+	top: 0; background: rgb(19,141,141); color: #fff; display: none; padding: 2px 5px; font-size: 11px;
+	font-weight: 700; height: 22px; }
+.georef-tools-gcp-container .tool .tool-title:before, .georef-tools-clip-container .tool .tool-title:before {
+	position: absolute; left: -5px; top: 6px; width: 0; height: 0; content: ""; border: 5px solid rgb(19,141,141);
+	border-color: transparent rgb(19,141,141) transparent transparent; border-left-width: 0;  }
 .georef-tools-gcp-container .tool:hover .tool-title, .georef-tools-clip-container .tool:hover .tool-title { display: block; }
 
 /** style of the form- and input-elements*/

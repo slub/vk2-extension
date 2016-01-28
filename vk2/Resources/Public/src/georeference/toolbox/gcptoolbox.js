@@ -82,7 +82,7 @@ vk2.georeference.toolbox.GCPToolbox.prototype.createGcpInteractionControlEl_ = f
 	var divEl = goog.dom.createDom('div',{'class':'tool'});
 	var toggleControl = goog.dom.createDom('div',{
 		'id':elemId,
-		'class':'tool-move toggle-elements',
+		'class':'tool-move toggle-elements ' + elemId,
 		'value':elemValue,
 		'innerHTML':'<span class="tool-title">' + elemText + '</span>'
 	});
@@ -107,8 +107,8 @@ vk2.georeference.toolbox.GCPToolbox.prototype.deactivate = function(){
 	var toogleElContainer = goog.dom.getElement('georef-tools-gcp-inner-container');
 	var toggleEls = goog.dom.getElementsByClass('toggle-elements');
 	for (var i = 0; i < toggleEls.length; i++){
-		if (goog.dom.classes.has(toggleEls[i], 'activate'))
-			goog.dom.classes.remove(toggleEls[i], 'activate');
+		if (goog.dom.classes.has(toggleEls[i], 'active'))
+			goog.dom.classes.remove(toggleEls[i], 'active');
 	};
 };
 
@@ -127,10 +127,10 @@ vk2.georeference.toolbox.GCPToolbox.prototype.dispatchToggleEvents_ = function(t
 	 * @param {string} toggleType
 	 */
 	var activate = goog.bind(function(eventEl, eventType){
-		if (!goog.dom.classes.has(eventEl, 'activate'))
-			goog.dom.classes.add(eventEl, 'activate');
+		if (!goog.dom.classes.has(eventEl, 'active'))
+			goog.dom.classes.add(eventEl, 'active');
 		
-		var event = new goog.events.Event('activate-'+eventType, eventEl);
+		var event = new goog.events.Event('active-'+eventType, eventEl);
 		this.dispatchEvent(event);		
 	}, this);
 	
@@ -139,8 +139,8 @@ vk2.georeference.toolbox.GCPToolbox.prototype.dispatchToggleEvents_ = function(t
 	 * @param {string} toggleType
 	 */
 	var deactivate = goog.bind(function(eventEl, eventType){
-		if (goog.dom.classes.has(eventEl, 'activate'))
-			goog.dom.classes.remove(eventEl, 'activate');
+		if (goog.dom.classes.has(eventEl, 'active'))
+			goog.dom.classes.remove(eventEl, 'active');
 		
 		var event = new goog.events.Event('deactivate-'+eventType, eventEl);
 		this.dispatchEvent(event);
