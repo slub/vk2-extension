@@ -30,14 +30,17 @@ vk2.georeference.interaction.DeleteGcpInteraction = function(unrefGcpLayer, geor
 	 * @param {ol.layer.Vector} georefGcpLayer
 	 */
 	var removeGcp = function(feature, unrefGcpLayer, georefGcpLayer){
-		var featureUnref = unrefGcpLayer.getSource().getFeatureById(feature.getId());
-		var featureGeoref = georefGcpLayer.getSource().getFeatureById(feature.getId());
-		
-		if (goog.isDefAndNotNull(featureUnref))
-			unrefGcpLayer.getSource().removeFeature(featureUnref);
-		
-		if (goog.isDefAndNotNull(featureGeoref))
-			georefGcpLayer.getSource().removeFeature(featureGeoref);
+		// only run this function in case the feature is of type point
+		if (feature.getGeometry().getType().toLowerCase() === 'point') {
+			var featureUnref = unrefGcpLayer.getSource().getFeatureById(feature.getId());
+			var featureGeoref = georefGcpLayer.getSource().getFeatureById(feature.getId());
+
+			if (goog.isDefAndNotNull(featureUnref))
+				unrefGcpLayer.getSource().removeFeature(featureUnref);
+
+			if (goog.isDefAndNotNull(featureGeoref))
+				georefGcpLayer.getSource().removeFeature(featureGeoref);
+		}
 	};
 	
 	/**
@@ -68,7 +71,7 @@ vk2.georeference.interaction.DeleteGcpInteraction = function(unrefGcpLayer, geor
 	         },
 	         'condition': goog.bind(function(event){
 	        	 if (event.type === 'click'){
-	        		 georefMap.forEachFeatureAtPixel(event['pixel'], function(feature){
+					 georefMap.forEachFeatureAtPixel(event['pixel'], function(feature){
 	        			 removeGcp(feature, unrefGcpLayer, georefGcpLayer); 
 	        		 });
 	            }
