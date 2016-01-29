@@ -130,7 +130,7 @@ vk2.georeference.toolbox.GCPToolbox.prototype.dispatchToggleEvents_ = function(t
 		if (!goog.dom.classes.has(eventEl, 'active'))
 			goog.dom.classes.add(eventEl, 'active');
 		
-		var event = new goog.events.Event('active-'+eventType, eventEl);
+		var event = new goog.events.Event('activate-'+eventType, eventEl);
 		this.dispatchEvent(event);		
 	}, this);
 	
