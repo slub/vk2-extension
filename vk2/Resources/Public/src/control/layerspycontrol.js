@@ -33,7 +33,7 @@ vk2.control.LayerSpy = function (opt_options) {
 	//
 	var controlEl = goog.dom.createDom('a', {'class': 'ol-has-tooltip', 'href': '#layerspy', 'innerHTML': 'L'}),
 		containerEl = goog.dom.createDom('div', {'class': 'ol-layerspy ol-unselectable'}),
-		tooltipEl = goog.dom.createDom('span', {'role': 'tooltip', 'innerHTML': vk2.utils.getMsg('layerspy')})
+		tooltipEl = goog.dom.createDom('span', {'role': 'tooltip', 'innerHTML': vk2.utils.getMsg('layerspy-title')})
 
 	goog.dom.appendChild(containerEl, controlEl);
 	goog.dom.appendChild(controlEl, tooltipEl);

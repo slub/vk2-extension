@@ -77,7 +77,7 @@ vk2.georeference.toolbox.ClipToolbox.prototype.createClipInteractionControlEl_ =
 	var divEl = goog.dom.createDom('div',{'class':'tool'});
 	var toggleControl = goog.dom.createDom('div',{
 		'id':elemId,
-		'class':'tool-move toggle-elements',
+		'class':'tool-move toggle-elements ' + elemId,
 		'value':elemValue,
 		'innerHTML':'<span class="tool-title">' + elemText + '</span>'
 	});
@@ -102,8 +102,8 @@ vk2.georeference.toolbox.ClipToolbox.prototype.deactivate = function(){
 	var toogleElContainer = goog.dom.getElement('georef-tools-clip-inner-container');
 	var toggleEls = goog.dom.getElementsByClass('toggle-elements');
 	for (var i = 0; i < toggleEls.length; i++){
-		if (goog.dom.classes.has(toggleEls[i], 'activate'))
-			goog.dom.classes.remove(toggleEls[i], 'activate');
+		if (goog.dom.classes.has(toggleEls[i], 'active'))
+			goog.dom.classes.remove(toggleEls[i], 'active');
 	};
 };
 
@@ -122,8 +122,8 @@ vk2.georeference.toolbox.ClipToolbox.prototype.dispatchToggleEvents_ = function(
 	 * @param {string} toggleType
 	 */
 	var activate = goog.bind(function(eventEl, eventType){
-		if (!goog.dom.classes.has(eventEl, 'activate'))
-			goog.dom.classes.add(eventEl, 'activate');
+		if (!goog.dom.classes.has(eventEl, 'active'))
+			goog.dom.classes.add(eventEl, 'active');
 		
 		// dispatch specific activate event
 		var event = new goog.events.Event('activate-'+eventType, eventEl);
@@ -135,8 +135,8 @@ vk2.georeference.toolbox.ClipToolbox.prototype.dispatchToggleEvents_ = function(
 	 * @param {string} toggleType
 	 */
 	var deactivate = goog.bind(function(eventEl, eventType){
-		if (goog.dom.classes.has(eventEl, 'activate'))
-			goog.dom.classes.remove(eventEl, 'activate');
+		if (goog.dom.classes.has(eventEl, 'active'))
+			goog.dom.classes.remove(eventEl, 'active');
 		
 		var event = new goog.events.Event('deactivate-'+eventType, eventEl);
 		this.dispatchEvent(event);
@@ -169,12 +169,12 @@ vk2.georeference.toolbox.ClipToolbox.prototype.loadGcpControls_ = function(toolb
 	// create tool list elements
 	var toggleControlElements = [];
 	// move map
-	var moveMapControl = this.createClipInteractionControlEl_('noneToggle', 'none', vk2.utils.getMsg('moveMap'));
+	var moveMapControl = this.createClipInteractionControlEl_('noneToggle', 'none', vk2.utils.getMsg('georef-movemap'));
 	goog.dom.appendChild(toolContainer, moveMapControl);
 	toggleControlElements.push(moveMapControl);
 
 	// draw clip polygon	
-	var drawClipPolygon = this.createClipInteractionControlEl_('drawClip', 'drawclip', vk2.utils.getMsg('drawClip'));
+	var drawClipPolygon = this.createClipInteractionControlEl_('drawClip', 'drawclip', vk2.utils.getMsg('georef-drawclip'));
 	goog.dom.appendChild(toolContainer, drawClipPolygon);	
 	toggleControlElements.push(drawClipPolygon);
 

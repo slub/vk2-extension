@@ -22,7 +22,7 @@ vk2.control.Permalink = function(opt_options) {
   });
   goog.dom.appendChild(element, anchor);
   
-  var tooltip = goog.dom.createDom('span', {'role':'tooltip','innerHTML':vk2.utils.getMsg('permalink')})
+  var tooltip = goog.dom.createDom('span', {'role':'tooltip','innerHTML':vk2.utils.getMsg('permalink-title')})
   goog.dom.appendChild(anchor, tooltip);
   
   // form for displaying the permalink stuff
@@ -43,7 +43,7 @@ vk2.control.Permalink = function(opt_options) {
   var osCopyKey = (navigator.platform == "MacIntel") ? "&#8984;" : "Strg";
   var label = goog.dom.createDom('label',{
 	  'for':'permalinkResult',
-	  'innerHTML':vk2.utils.getMsg('permalink_msg') + ' ' + osCopyKey + '+C.'
+	  'innerHTML':vk2.utils.getMsg('permalink-msg') + ' ' + osCopyKey + '+C.'
   });
   goog.dom.appendChild(permalinkForm, label);
   goog.dom.appendChild(element, permalinkForm);

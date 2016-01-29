@@ -31,7 +31,7 @@ vk2.app.PresentationApp = function(settings){
 	
 	// check if the app should be started in georeference mode
 	var isAuthenticate = goog.isDef(settings['authenticate']) && goog.isBoolean(settings['authenticate']) ? settings['authenticate'] : false,
-		georeferenceModuleActivate = isAuthenticate && vk2.settings.GEOREFERENCE_ON ? true : false;
+		georeferenceModuleActivate = false; //isAuthenticate && vk2.settings.GEOREFERENCE_ON ? true : false;
 		
 	// append modal behavior to page anchors
 	var modalAnchorClassName = goog.isDef(settings['modalAnchorClassName']) ? settings['modalAnchorClassName'] : 'vk2-modal-anchor';

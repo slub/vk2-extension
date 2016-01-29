@@ -36,7 +36,7 @@ vk2.control.ImageManipulation = function (opt_options) {
 		}),
 		tooltipEl = goog.dom.createDom('span', {
 			'role': 'tooltip',
-			'innerHTML': vk2.utils.getMsg('openImagemanipulation')
+			'innerHTML': vk2.utils.getMsg('imagemanipulation-open')
 		}),
 		containerEl = goog.dom.createDom('div', {'class': 'image-manipulation ol-unselectable'}),
 		sliderContainer = goog.dom.createDom('div', {'class': 'slider-container', 'style': 'display:none;'});
@@ -165,13 +165,13 @@ vk2.control.ImageManipulation = function (opt_options) {
 	// Create slider for filters
 	//
 	var contrastSlider = createSlider_('slider-contrast', 'horizontal', 'contrast',
-			[1, 0, 2, 0.01], vk2.utils.getMsg('contrast')),
+			[1, 0, 2, 0.01], vk2.utils.getMsg('imagemanipulation-contrast')),
 		saturationSlider = createSlider_('slider-saturation', 'horizontal', 'saturation',
-			[0, -1, 1, 0.01], vk2.utils.getMsg('saturation')),
+			[0, -1, 1, 0.01], vk2.utils.getMsg('imagemanipulation-saturation')),
 		brightnessSlider = createSlider_('slider-brightness', 'horizontal', 'brightness',
-			[1, 0, 2, 0.1], vk2.utils.getMsg('brightness')),
+			[1, 0, 2, 0.1], vk2.utils.getMsg('imagemanipulation-brightness')),
 		hueSlider = createSlider_('slider-hue', 'horizontal', 'hue',
-			[0, -180, 180, 5], vk2.utils.getMsg('hue'))
+			[0, -180, 180, 5], vk2.utils.getMsg('imagemanipulation-hue'))
 	goog.dom.appendChild(sliderContainer, contrastSlider);
 	goog.dom.appendChild(sliderContainer, saturationSlider);
 	goog.dom.appendChild(sliderContainer, brightnessSlider);
@@ -182,7 +182,7 @@ vk2.control.ImageManipulation = function (opt_options) {
 	//
 	var resetBtn = goog.dom.createDom('button', {
 		'class': 'reset-btn',
-		'title': vk2.utils.getMsg('reset'),
+		'title': vk2.utils.getMsg('imagemanipulation-reset'),
 		'innerHTML': 'Reset'
 	});
 	goog.dom.appendChild(sliderContainer, resetBtn);

@@ -103,7 +103,7 @@ vk2.module.MapSearchModule.prototype.loadHtmlContent_ = function(parentEl){
 		var content = goog.dom.createDom('div',{
 			'data-type':type,
 			'class': 'sort-element '+type,
-			'innerHTML': vk2.utils.getMsg(type)+' <span class="caret caret-reversed"></span>'
+			'innerHTML': vk2.utils.getMsg('mapsearch-' + type) + ' <span class="caret caret-reversed"></span>'
 		});
 		goog.dom.appendChild(col, content);
 		return col;
@@ -324,8 +324,8 @@ vk2.module.MapSearchModule.prototype.update_ = function(event){
  */
 vk2.module.MapSearchModule.prototype.updateHeading_ = function(count_features){
 	if (count_features > 0){
-		this.headingContentEl_.innerHTML = count_features + ' ' + vk2.utils.getMsg('found_mtb');
+		this.headingContentEl_.innerHTML = count_features + ' ' + vk2.utils.getMsg('mapsearch-found-maps');
 		return undefined;
 	};
-	this.headingContentEl_.innerHTML = vk2.utils.getMsg('found_no_maps');
+	this.headingContentEl_.innerHTML = vk2.utils.getMsg('mapsearch-found-no-maps');
 };

@@ -69,7 +69,7 @@
 
 
 <!-- ###FORGOT_FORM### -->
-<form action="###ACTION_URI###" method="post" id="vk2-forget-form">
+<form action="###ACTION_URI###" method="post" id="vk2-forget-form" class="reset-password-form">
     <div class="felogin-hidden">
 		<input type="hidden" name="tx_felogin_pi1[forgot_hash]" value="###FORGOTHASH###" />
 	</div>
@@ -77,12 +77,12 @@
 	<legend>###LEGEND###</legend>
 	###STATUS_MESSAGE###
 	
-	<div>
+	<div class="form-group text-input">
 		<label for="tx_felogin_pi1-forgot-email">###DATA_LABEL###</label>
-		<input type="text" name="###FORGOT_EMAIL###" id="tx_felogin_pi1-forgot-email" />
+		<input type="text" name="###FORGOT_EMAIL###" id="tx_felogin_pi1-forgot-email" class="form-control" />
 	</div>
 	<div>
-		<input type="submit" name="submit" value="###SEND_PASSWORD###" />
+		<input type="submit" name="submit" value="###SEND_PASSWORD###" class="btn-submit btn btn-primary" />
 	 </div>
 	</fieldset>
 </form>
@@ -97,19 +97,19 @@
 
 
 <!-- ###CHANGEPASSWORD_FORM### -->
-<form action="###ACTION_URI###" method="post" id="vk2-change-form">
+<form action="###ACTION_URI###" method="post" id="vk2-change-form" class="change-password-form">
 	<fieldset>
 		<legend>###LEGEND###</legend>
-		<div>
+		<div class="form-group">
 			<label for="tx_felogin_pi1-newpassword1">###NEWPASSWORD1_LABEL###</label>
-			<input type="password" name="###NEWPASSWORD1###" id="tx_felogin_pi1-newpassword1" />
+			<input type="password" name="###NEWPASSWORD1###" id="tx_felogin_pi1-newpassword1" class="form-control" />
 		</div>
-		<div>
+		<div class="form-group">
 			<label for="tx_felogin_pi1-newpassword2">###NEWPASSWORD2_LABEL###</label>
-			<input type="password" name="###NEWPASSWORD2###" id="tx_felogin_pi1-newpassword2" />
+			<input type="password" name="###NEWPASSWORD2###" id="tx_felogin_pi1-newpassword2" class="form-control"/>
 		</div>
 		<div>
-			<input type="submit" name="tx_felogin_pi1[changepasswordsubmit]" value="###SEND_PASSWORD###" />
+			<input type="submit" name="tx_felogin_pi1[changepasswordsubmit]" value="###SEND_PASSWORD###" class="btn btn-primary"/>
 		 </div>
 	</fieldset>
 

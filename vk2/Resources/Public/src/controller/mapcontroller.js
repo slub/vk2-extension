@@ -246,7 +246,7 @@ vk2.controller.MapController.showGeoreferenceDialog = function(feature) {
 		var anchor = goog.dom.createDom('a', {
 			'class': 'btn btn-primary',
 			'href': vk2.utils.routing.getGeorefPageRoute(feature.getId()),
-			'innerHTML': vk2.utils.getMsg('go_to_georeference'),
+			'innerHTML': vk2.utils.getMsg('go-to-georef'),
 			'target':'_blank'
 		});
 		goog.dom.appendChild(section, anchor);
@@ -255,7 +255,7 @@ vk2.controller.MapController.showGeoreferenceDialog = function(feature) {
 		var anchor = goog.dom.createDom('a', {
 			'class': 'btn btn-primary',
 			'href': vk2.utils.routing.getMapProfileRoute(feature.getId()),
-			'innerHTML': vk2.utils.getMsg('go_to_originalmap'),
+			'innerHTML': vk2.utils.getMsg('go-to-org'),
 			'target':'_self'
 		});
 		goog.dom.appendChild(section, anchor);

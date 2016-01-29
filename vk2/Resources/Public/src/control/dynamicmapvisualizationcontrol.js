@@ -80,13 +80,13 @@ vk2.control.DynamicMapVisualization.prototype.createContentEl_ = function(conten
 	
 	var startAnchor = goog.dom.createDom('a', {
 		'href':'#dynamic-start',
-		'title':vk2.utils.getMsg('dynMapVisStart'),
+		'title':vk2.utils.getMsg('dynamicmapvis-start'),
 		'innerHTML':'Start'
 	});
 	goog.dom.appendChild(startContainerEl, startAnchor);
 	goog.events.listen(startAnchor, 'click', eventListeners.start, undefined, this);
 	
-	var tooltipStart = goog.dom.createDom('span', {'role':'tooltip','innerHTML':vk2.utils.getMsg('dynMapVisStart')});
+	var tooltipStart = goog.dom.createDom('span', {'role':'tooltip','innerHTML':vk2.utils.getMsg('dynamicmapvis-start')});
 	goog.dom.appendChild(startAnchor, tooltipStart);
 	
 	// create stop button
@@ -95,13 +95,13 @@ vk2.control.DynamicMapVisualization.prototype.createContentEl_ = function(conten
 	
 	var stopAnchor = goog.dom.createDom('a', {
 		'href':'#dynamic-stop',
-		'title':vk2.utils.getMsg('dynMapVisStop'),
+		'title':vk2.utils.getMsg('dynamicmapvis-stop'),
 		'innerHTML':'Stop'
 	});
 	goog.dom.appendChild(stopContainerEl, stopAnchor);
 	goog.events.listen(stopAnchor, 'click', eventListeners.stop, undefined, this);
 	
-	var tooltipStop = goog.dom.createDom('span', {'role':'tooltip','innerHTML':vk2.utils.getMsg('dynMapVisStop')});
+	var tooltipStop = goog.dom.createDom('span', {'role':'tooltip','innerHTML':vk2.utils.getMsg('dynamicmapvis-stop')});
 	goog.dom.appendChild(stopAnchor, tooltipStop);
 };
 

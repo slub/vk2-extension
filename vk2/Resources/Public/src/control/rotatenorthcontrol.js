@@ -16,7 +16,7 @@ vk2.control.RotateNorth = function(opt_options) {
   anchor.innerHTML = 'N';
   anchor.className = 'ol-has-tooltip';
 
-  var tooltip = goog.dom.createDom('span', {'role':'tooltip','innerHTML':vk2.utils.getMsg('rotatenorth')})
+  var tooltip = goog.dom.createDom('span', {'role':'tooltip','innerHTML':vk2.utils.getMsg('rotatenorth-title')})
   goog.dom.appendChild(anchor, tooltip);
   
   var this_ = this;

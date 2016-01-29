@@ -87,7 +87,7 @@ vk2.tool.GazetteerSearch.prototype._loadHtmlContent = function(parentEl){
 	 * @private
 	 */
 	this._inputText = goog.dom.createDom('input',{
-		'placeholder': vk2.utils.getMsg('gazetteer_placeholder'),
+		'placeholder': vk2.utils.getMsg('gazetteer-placeholder'),
 		'type':'text',
 		'class':'form-control gazetteersearch-input'
 	});
@@ -98,7 +98,7 @@ vk2.tool.GazetteerSearch.prototype._loadHtmlContent = function(parentEl){
 	 * @private
 	 */
 	this._inputSubmit = goog.dom.createDom('input',{
-		'value': vk2.utils.getMsg('gazetteer_submit'),
+		'value': vk2.utils.getMsg('gazetteer-submit'),
 		'type':'submit',
 		'class':'form-control gazetteersearch-submit'
 	});

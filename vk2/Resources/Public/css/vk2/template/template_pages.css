@@ -2,15 +2,10 @@
  * Styles which are matching the template pages 
  */
 /* Page: Change password */
-.container.change-pw{
-	min-width: 200px;
-	max-width: 600px; 
-}
+.container.change-pw{ min-width: 200px; max-width: 600px; }
 
 /* Page: Login screen */
-div.login-screen{
-
-}
+div.login-screen { max-width: 600px; }
 
 .form-user-register .form-group.double-input-field{
 	position: relative;
@@ -48,13 +43,8 @@ div.reset-pw{
 }
 
 /* Page: Forget password reset successfully */
-div.reset-pw-success{
-	max-width: 600px;
-}
+.reset-password-form > fieldset > p, .reset-password-form > fieldset .text-input { padding-bottom: 10px;}
 
-.reset-pw-container{
-	padding: 10px;
-}
 
 /* Page: Error message */
 div.error{

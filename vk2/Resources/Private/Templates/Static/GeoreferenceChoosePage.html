@@ -6,22 +6,9 @@
 	<vk:head>
 		<style>
 			html {overflow: hidden;}
-			.georef-chooser h1 { padding: 0; color: #f33; font-size: 30px; font-weight: 300;
-				margin: 15px 0 5px 0;}
-			.georef-chooser h2 { color: #666; font-weight: 600; font-size: 16px; text-transform: uppercase; margin-bottom: 0; padding-bottom: 10px; border-bottom: 1px dotted #ccc; }
-			.georef-chooser header hgroup > a { display: none; }	
-			.content-container > p { margin-top: 10px; color: #666; font-weight: 600; font-size: 16px; }
-			.content-container > ul { list-style: none; margin-top: 10px; }
-			.content-container > ul > li { margin-top: 5px; }
-			.record-container { border: 1px solid; width: 100%; }
-			.record-container > div { position: relative; float: left; padding: 10px 10px 10px 10px; }
-			.record-container > div.tools { float: right; }
+
 		</style>
 	</vk:head>
-	
-	<!-- load language javascript file -->
-	<vk:language urlPattern="{f:uri.resource(path:'src/locale/%s.js')}"
-		languageTag="{f:translate(id:'language.tag')}" />
 
 	<div class="georef-chooser container">
 		<div>
@@ -31,7 +18,7 @@
 					<vk:isUser>
 						<f:then>						
 							<h1><f:translate id="georeferencechoose.page.georeferenceChoose" /> #<vk:username /></h1>
-							<h2><f:translate id="georeferencechoose.page.outstandingMaps" />: 
+							<h2><f:translate id="georeferencechoose.page.outstandingMaps" />:
 								<span id="georeferencechoose-count"></span>
 							</h2>
 						</f:then>
@@ -44,28 +31,19 @@
 	                     
 	            <!--  default overview -->        
 				<p>
-					<f:translate id="georeferencechoose.page.nothingToGeoreference" />. 
+					<f:translate id="georeferencechoose.page.nothingToGeoreference" />.
 					<f:link.action action="show" controller="Main" target="_top">
 						<f:translate id="evaluation.page.backToMain" />
 					</f:link.action> 
 				</p>
 				
 			</div>
-	
+
 	<script type="text/javascript">
  		var app = new vk2.app.GeoreferenceChooseApp({
 			target: "content-container",
 			targetCount: "georeferencechoose-count"
-		}) 
-
-		// set language dictionary 
-		<![CDATA[
-		var lang_dictionary = {
-			"georef-choose-time": "]]>{f:translate(id:'georeferencechoose.page.time')}<![CDATA[",
-			"georef-choose-maptype": "]]>{f:translate(id:'georeferencechoose.page.maptype')}<![CDATA[",
-			"georef-choose-goToGeoreference": "]]>{f:translate(id:'georeferencechoose.page.goToGeoreference')}<![CDATA["
-		};
-		]]>
+		})
     </script> 
 
 </f:section>
