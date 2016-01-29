@@ -55,13 +55,13 @@ vk2.tool.MetadataBinding.prototype._displayMetadata = function(id, metadata){
 	this._setThumbnail(thumbnail_container, metadata['thumb']);
 	
 	// set further metadata information
-	this._setCatchwords(metadata_container, vk2.utils.getMsg('mdrecord_keyword'), metadata['keywords']);
+	this._setCatchwords(metadata_container, vk2.utils.getMsg('metadata-keyword'), metadata['keywords']);
 	
 	for (var i = 0; i < metadata['online-resources'].length; i++){
-		this._setOnlineRessource(metadata_container, vk2.utils.getMsg('mdrecord_onlineresource'),metadata['online-resources'][i]['url']);
+		this._setOnlineRessource(metadata_container, vk2.utils.getMsg('metadata-online-res'),metadata['online-resources'][i]['url']);
 	};
 	
-	this._setResolution(metadata_container, vk2.utils.getMsg('mdrecord_spatialresolution'), metadata['denominator']);
+	this._setResolution(metadata_container, vk2.utils.getMsg('metadata-spatial-res'), metadata['denominator']);
 	this._setUniqueId(metadata_container, id);
 };
 
@@ -211,7 +211,7 @@ vk2.tool.MetadataBinding.prototype._setResolution = function(container, label_na
  */
 vk2.tool.MetadataBinding.prototype._setUniqueId = function(container, dataset_id){
 	var span = goog.dom.createDom('span', {'class':'unique-id metadata-content-row','innerHTML':
-		'<div class="label">' + vk2.utils.getMsg('mdrecord_uniqueid') + '</div><div>' + dataset_id + '</div>'});
+		'<div class="label">' + vk2.utils.getMsg('metadata-unqiue-id') + '</div><div>' + dataset_id + '</div>'});
 	goog.dom.appendChild(container, span);
 };
 

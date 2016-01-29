@@ -69,8 +69,8 @@ vk2.factory.LayerManagementFactory.getLayerManagementRecord = function(layer, in
 	var moveUp_button = goog.dom.createDom('button', {
 		'class':'move-layer-top minimize-tool',
 		'type':'button',
-		'title':vk2.utils.getMsg('moveToTop'),
-		'innerHTML':vk2.utils.getMsg('moveToTop')
+		'title':vk2.utils.getMsg('factory-move-top'),
+		'innerHTML':vk2.utils.getMsg('factory-move-top')
 	});
 	goog.dom.appendChild(controlContainer, moveUp_button);	
 	goog.events.listen(moveUp_button, 'click', eventListener.moveontop);
@@ -78,8 +78,8 @@ vk2.factory.LayerManagementFactory.getLayerManagementRecord = function(layer, in
 	var disableLayer = goog.dom.createDom('button', {
 		'class':'disable-layer minimize-tool',
 		'type':'button',
-		'title':vk2.utils.getMsg('showLayer'),
-		'innerHTML': vk2.utils.getMsg('showLayer')
+		'title':vk2.utils.getMsg('factory-show-map'),
+		'innerHTML': vk2.utils.getMsg('factory-show-map')
 	});
 	goog.dom.appendChild(controlContainer, disableLayer);
 	goog.events.listen(disableLayer, 'click', eventListener.changevisibility);
@@ -87,8 +87,8 @@ vk2.factory.LayerManagementFactory.getLayerManagementRecord = function(layer, in
 	var delete_button = goog.dom.createDom('button', {
 		'class':'remove-layer minimize-tool',
 		'type':'button',
-		'title':vk2.utils.getMsg('removeLayer'),
-		'innerHTML':vk2.utils.getMsg('removeLayer')
+		'title':vk2.utils.getMsg('factory-rm-map'),
+		'innerHTML':vk2.utils.getMsg('factory-rm-map')
 	});
 	goog.dom.appendChild(controlContainer, delete_button);
 	goog.events.listen(delete_button, 'click', eventListener.removelayer);
@@ -131,7 +131,7 @@ vk2.factory.LayerManagementFactory.getLayerManagementRecord = function(layer, in
 		
 		var anchorGeoreferenceUpdate = goog.dom.createDom('a', {
 			'class':'georeference-update',
-			'innerHTML': vk2.utils.getMsg('updateGeoref') + ' ...',
+			'innerHTML': vk2.utils.getMsg('factory-update-georef') + ' ...',
 			'target':'_blank',
 			'href': vk2.utils.routing.getGeorefPageRoute(layer.getId())
 		});

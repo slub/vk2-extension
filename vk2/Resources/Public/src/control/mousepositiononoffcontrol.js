@@ -20,7 +20,7 @@ vk2.control.MousePositionOnOff = function(opt_options) {
   anchor.innerHTML = 'M';
   anchor.className = 'ol-has-tooltip';
 
-  var tooltip = goog.dom.createDom('span', {'role':'tooltip','innerHTML':vk2.utils.getMsg('mouseposition')})
+  var tooltip = goog.dom.createDom('span', {'role':'tooltip','innerHTML':vk2.utils.getMsg('mouseposition-title')})
   goog.dom.appendChild(anchor, tooltip);
 
   var targetEl = undefined,
@@ -46,7 +46,7 @@ vk2.control.MousePositionOnOff = function(opt_options) {
           // initialize container for mouseposition display
           if (targetEl === undefined) {
               var viewport = map.getViewport();
-            targetEl = goog.dom.createDom('div', { 'class': 'mouse-position-box', 'innerHTML':'Hallo'});
+            targetEl = goog.dom.createDom('div', { 'class': 'mouse-position-box', 'innerHTML':''});
 
               goog.dom.appendChild(viewport, targetEl);
           } else {

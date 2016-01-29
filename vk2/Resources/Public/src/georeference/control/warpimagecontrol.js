@@ -31,7 +31,7 @@ vk2.georeference.control.WarpImageControl = function(topMenuContainerEl, objecti
 	// create html element
 	var controlEl = goog.dom.createDom('div',{
 		'class': 'vk2GeorefToolsBtn btn btn-default btn-validate',
-		'innerHTML': '<span class="glyphicon glyphicon-refresh"></span> ' + vk2.utils.getMsg('validateBtn_validate')
+		'innerHTML': '<span class="glyphicon glyphicon-refresh"></span> ' + vk2.utils.getMsg('georef-validate')
 	});
 	goog.dom.appendChild(goog.dom.getElement(topMenuContainerEl), controlEl);
 	

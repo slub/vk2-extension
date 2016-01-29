@@ -129,7 +129,7 @@ vk2.app.GeoreferenceApp.prototype.loaderFunction_ = function(originalMapContaine
 	if (data.hasOwnProperty('warn')){
 		var warnMsg  = data['warn'];
 		var warnEl = goog.dom.createDom('div', {
-			'innerHTML': warnMsg + ' <a href="' + vk2.utils.routing.getMainPageRoute() + '">' + vk2.utils.getMsg('backToMain') + '</a>',
+			'innerHTML': warnMsg + ' <a href="' + vk2.utils.routing.getMainPageRoute() + '">' + vk2.utils.getMsg('back-to-main') + '</a>',
 			'class': 'alert alert-danger warn-msg'
 		});
 

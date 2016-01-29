@@ -169,12 +169,12 @@ vk2.georeference.toolbox.ClipToolbox.prototype.loadGcpControls_ = function(toolb
 	// create tool list elements
 	var toggleControlElements = [];
 	// move map
-	var moveMapControl = this.createClipInteractionControlEl_('noneToggle', 'none', vk2.utils.getMsg('moveMap'));
+	var moveMapControl = this.createClipInteractionControlEl_('noneToggle', 'none', vk2.utils.getMsg('georef-movemap'));
 	goog.dom.appendChild(toolContainer, moveMapControl);
 	toggleControlElements.push(moveMapControl);
 
 	// draw clip polygon	
-	var drawClipPolygon = this.createClipInteractionControlEl_('drawClip', 'drawclip', vk2.utils.getMsg('drawClip'));
+	var drawClipPolygon = this.createClipInteractionControlEl_('drawClip', 'drawclip', vk2.utils.getMsg('georef-drawclip'));
 	goog.dom.appendChild(toolContainer, drawClipPolygon);	
 	toggleControlElements.push(drawClipPolygon);
 

@@ -22,7 +22,7 @@
 					<vk:isUser>
 						<f:then>						
 							<h1><f:translate id="georeferencechoose.page.georeferenceChoose" /> #<vk:username /></h1>
-							<h2><f:translate id="georeferencechoose.page.outstandingMaps" />: 
+							<h2><f:translate id="georeferencechoose.page.outstandingMaps" />:
 								<span id="georeferencechoose-count"></span>
 							</h2>
 						</f:then>
@@ -35,29 +35,21 @@
 	                     
 	            <!--  default overview -->        
 				<p>
-					<f:translate id="georeferencechoose.page.nothingToGeoreference" />. 
+					<f:translate id="georeferencechoose.page.nothingToGeoreference" />.
 					<f:link.action action="show" controller="Main" target="_top">
 						<f:translate id="evaluation.page.backToMain" />
 					</f:link.action> 
 				</p>
 				
 			</div>
-	
+
+	<f:render partial="Main/Language" />
+
 	<script type="text/javascript">
  		var app = new vk2.app.GeoreferenceChooseApp({
 			target: "content-container",
 			targetCount: "georeferencechoose-count"
-		}) 
-
-		// set language dictionary 
-		<![CDATA[
-		var lang_dictionary = {
-			"georef-search-field": "]]>{f:translate(id:'georeferencechoose.page.searchField')}<![CDATA[",
-			"georef-choose-time": "]]>{f:translate(id:'georeferencechoose.page.time')}<![CDATA[",
-			"georef-choose-maptype": "]]>{f:translate(id:'georeferencechoose.page.maptype')}<![CDATA[",
-			"georef-choose-goToGeoreference": "]]>{f:translate(id:'georeferencechoose.page.goToGeoreference')}<![CDATA["
-		};
-		]]>
+		})
     </script> 
 
 </f:section>

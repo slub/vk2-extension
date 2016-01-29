@@ -309,7 +309,7 @@ vk2.utils.showAchievedPoints = function(parentEl, points){
 	});
 	goog.dom.appendChild(parentEl, container);
 	
-	container.innerHTML = '+' + points + ' ' + vk2.utils.getMsg('georef_points')
+	container.innerHTML = '+' + points + ' ' + vk2.utils.getMsg('points')
 	$(container).fadeIn(1000).effect('puff', {}, 3000, function(){
 		container.innerHTML = '';
 	});

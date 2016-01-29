@@ -33,7 +33,7 @@ vk2.georeference.control.ConfirmationControl = function(topMenuContainerEl, obje
 	// create html element
 	var controlEl = goog.dom.createDom('div',{
 		'class': 'vk2GeorefToolsBtn btn btn-default btn-submit deactivate',
-		'innerHTML': '<span class="glyphicon glyphicon-refresh"></span> ' + vk2.utils.getMsg('submitBtn_validate')
+		'innerHTML': '<span class="glyphicon glyphicon-refresh"></span> ' + vk2.utils.getMsg('georef-confirm')
 	});
 	goog.dom.appendChild(goog.dom.getElement(topMenuContainerEl), controlEl);
 	
@@ -115,7 +115,7 @@ vk2.georeference.control.ConfirmationControl.prototype.confirmImage_ = function(
 
 	// if clip polygon is undefined ask user if he really wants to send the params
 	if (!requestParams.hasOwnProperty('clip')) {
-		vk2.utils.getConfirmationDialog(vk2.utils.getMsg('confirm_dialog_clip_title'), vk2.utils.getMsg('confirm_dialog_clip_msg'),
+		vk2.utils.getConfirmationDialog(vk2.utils.getMsg('georef-confirm-clip-title'), vk2.utils.getMsg('georef-confirm-clip-msg'),
 			function() {
 				vk2.georeference.GeoreferencerService.requestConfirmResult(requestParams, success_callback, error_callback);
 			}, 'georeference-confirm-without-clip');

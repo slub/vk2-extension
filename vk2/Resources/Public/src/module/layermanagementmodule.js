@@ -66,7 +66,7 @@ goog.inherits(vk2.module.LayerManagementModule, goog.events.EventTarget);
 vk2.module.LayerManagementModule.prototype.createBodyEl_ = function(parentEl) {
 	var bodyEl_ = goog.dom.createDom('ul',{
 		'class':'layermanagement-body',
-		'innerHTML':'<li class="empty">' + vk2.utils.getMsg('start_message') + '</li>'});
+		'innerHTML':'<li class="empty">' + vk2.utils.getMsg('layermanagement-start-msg') + '</li>'});
 	goog.dom.appendChild(parentEl, bodyEl_);
 	return bodyEl_;
 };
@@ -93,7 +93,7 @@ vk2.module.LayerManagementModule.prototype.createHeaderEl_ = function(parentEl) 
 
 	var label_ = goog.dom.createDom('span', {
 		'class':'header-label',
-		'innerHTML': vk2.utils.getMsg('layermanagement_label')
+		'innerHTML': vk2.utils.getMsg('layermanagement-header-lbl')
 	});
 	goog.dom.appendChild(headerEl_, label_);
 	return headerEl_;

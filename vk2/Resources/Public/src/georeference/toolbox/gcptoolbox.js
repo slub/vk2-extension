@@ -173,22 +173,22 @@ vk2.georeference.toolbox.GCPToolbox.prototype.loadGcpControls_ = function(toolbo
 	// create tool list elements
 	var toggleControlElements = [];
 	// move map
-	var moveMapControl = this.createGcpInteractionControlEl_('noneToggle', 'none', vk2.utils.getMsg('moveMap'));
+	var moveMapControl = this.createGcpInteractionControlEl_('noneToggle', 'none', vk2.utils.getMsg('georef-movemap'));
 	goog.dom.appendChild(toolContainer, moveMapControl);
 	toggleControlElements.push(moveMapControl);
 
 	// set point 	
-	var addGcpControl = this.createGcpInteractionControlEl_('pointToggle', 'addgcp', vk2.utils.getMsg('setCornerPoint'));
+	var addGcpControl = this.createGcpInteractionControlEl_('pointToggle', 'addgcp', vk2.utils.getMsg('georef-setgcp'));
 	goog.dom.appendChild(toolContainer, addGcpControl);	
 	toggleControlElements.push(addGcpControl);
 
 	// drag point
-	var dragGcpControl = this.createGcpInteractionControlEl_('dragToggle', 'draggcp', vk2.utils.getMsg('moveCornerPoint'));
+	var dragGcpControl = this.createGcpInteractionControlEl_('dragToggle', 'draggcp', vk2.utils.getMsg('georef-movegcp'));
 	goog.dom.appendChild(toolContainer, dragGcpControl);	
 	toggleControlElements.push(dragGcpControl);
 
 	// del point 
-	var delGcpControl = this.createGcpInteractionControlEl_('deleteToggle', 'delgcp', vk2.utils.getMsg('deleteCornerPoint'));
+	var delGcpControl = this.createGcpInteractionControlEl_('deleteToggle', 'delgcp', vk2.utils.getMsg('georef-delgcp'));
 	goog.dom.appendChild(toolContainer, delGcpControl);
 	toggleControlElements.push(delGcpControl);
 	

@@ -70,14 +70,14 @@ vk2.factory.MapSearchFactory.getMapSearchRecord = function(feature){
 	
 	var description = goog.dom.createDom('div',{
 		'class':'scale',
-		'innerHTML': vk2.utils.getMsg('scale') + ' 1:25.000'
+		'innerHTML': vk2.utils.getMsg('factory-scale') + ' 1:25.000'
 	});
 	goog.dom.appendChild(details, description);
 	
 	if (!feature.get('georeference')){
 		var georeference = goog.dom.createDom('div',{
 			'class':'georeference',
-			'innerHTML': vk2.utils.getMsg('not_georeference')
+			'innerHTML': vk2.utils.getMsg('factory-no-georef')
 		});
 		goog.dom.appendChild(details, georeference);
 	};
