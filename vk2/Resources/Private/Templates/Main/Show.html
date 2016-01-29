@@ -3,10 +3,6 @@
 
 <f:section name="main">
 
-	<!-- load language javascript file -->
-	<vk:language urlPattern="{f:uri.resource(path:'src/locale/%s.js')}"
-		languageTag="{f:translate(id:'language.tag')}" />
-
 	<div id="main-page-container" class="body-container">
 
 		<div class="container main-page content-container">
@@ -188,9 +184,6 @@
 			</vk:isChangePw>
 		</div>
 	</div>
-
-
-	<f:render partial="Main/Language" />
 
 	<vk:isUser>
 		<f:then>
