@@ -425,6 +425,10 @@
 				<source>Time</source>
 				<target state="translated">Zeitstempel</target>
 			</trans-unit>
+			<trans-unit id="georeferencechoose.page.searchField">
+			    <source>Map name</source>
+                <target state="translated">Kartenname</target>
+            </trans-unit>
 			<trans-unit id="georeferencechoose.page.maptype">
 				<source>Map type</source>
 				<target state="translated">Kartentypen</target>

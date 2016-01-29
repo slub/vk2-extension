@@ -22,7 +22,7 @@ var lang_dictionary = {
 		'toolname_layerbar': 'Auswahl Kartenlayer',
 		
 		// They are assigned to the Gazetteersearch module
-		'gazetteer_placeholder':'Ortsname oder Blattnummer',
+		'gazetteer_placeholder':'Ortsname',
 		'gazetteer_submit':'Suchen',
 		'noResultsBlattnr': 'Diese Blattnummer wird vom Virtuellen Kartenforum 2.0 nicht unterstüzt!',
 			
@@ -138,6 +138,7 @@ var lang_dictionary = {
 		// vk2.controller.MapController
 		'go_to_georeference': 'Gehe zu Georeferenzierungsansicht',
 		'go_to_originalmap': 'Gehe zur Originalansicht.'
+
 }
 	
 

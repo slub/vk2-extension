@@ -559,6 +559,9 @@
 			<trans-unit id="georeferencechoose.page.time">
 				<source>Time</source>
 			</trans-unit>
+			<trans-unit id="georeferencechoose.page.searchField">
+            	<source>Map name</source>
+            </trans-unit>
 			<trans-unit id="georeferencechoose.page.maptype">
 				<source>Map type</source>
 			</trans-unit>

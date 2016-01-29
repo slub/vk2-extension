@@ -22,7 +22,7 @@ var lang_dictionary = {
 		'toolname_layerbar': 'Choose map layer',
 		
 		// They are assigned to the Gazetteersearch module
-		'gazetteer_placeholder':'Placename or map sheet number',
+		'gazetteer_placeholder':'Placename',
 		'gazetteer_submit':'Search',
 		'noResultsBlattnr': 'This blatt number is not supported by the Virtuelle Kartenforum 2.0!',
 			
