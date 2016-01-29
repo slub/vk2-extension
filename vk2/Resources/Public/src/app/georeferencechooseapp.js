@@ -64,7 +64,10 @@ vk2.app.GeoreferenceChooseApp.prototype.addRecordSearchBehavior_ = function(targ
 			for (var i = 0, ii = searchRecords.length; i < ii; i++) {
 				goog.dom.appendChild(listContainerEl,
 					this.renderRecord_(searchRecords[i]));
-			}
+			};
+
+			// for trigger lazyloading behavior in case list is not long enough
+			setTimeout(function() {$('body').scroll();}, 100);
 		}, this),
 		timeout = 1000,
 		updateWithTimeout_;
