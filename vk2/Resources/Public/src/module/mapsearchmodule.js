@@ -103,7 +103,7 @@ vk2.module.MapSearchModule.prototype.loadHtmlContent_ = function(parentEl){
 		var content = goog.dom.createDom('div',{
 			'data-type':type,
 			'class': 'sort-element '+type,
-			'innerHTML': vk2.utils.getMsg(type)+' <span class="caret caret-reversed"></span>'
+			'innerHTML': vk2.utils.getMsg('mapsearch-' + type) + ' <span class="caret caret-reversed"></span>'
 		});
 		goog.dom.appendChild(col, content);
 		return col;

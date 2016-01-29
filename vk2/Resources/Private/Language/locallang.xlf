@@ -718,6 +718,32 @@
 			<trans-unit id="client.mapsearchmodule.foundNoMaps">
 				<source>No maps available</source>
 			</trans-unit>
+			<trans-unit id="client.mapsearchmodule.georeference">
+				<source>Georeference</source>
+			</trans-unit>
+			<trans-unit id="client.mapsearchmodule.time">
+				<source>Time</source>
+			</trans-unit>
+			<trans-unit id="client.mapsearchmodule.title">
+				<source>Title</source>
+			</trans-unit>
+
+			<!-- vk2.tool.FacetedSearchTool -->
+			<trans-unit id="client.facetedsearch.titleAE">
+				<source>Topographical maps (1:25.000)</source>
+			</trans-unit>
+			<trans-unit id="client.facetedsearch.titleAK">
+				<source>Historic map</source>
+			</trans-unit>
+			<trans-unit id="client.facetedsearch.titleGL">
+				<source>Geological maps (1:25.000)</source>
+			</trans-unit>
+			<trans-unit id="client.facetedsearch.titleMTB">
+				<source>Plane survey sheets (1:25.000)</source>
+			</trans-unit>
+			<trans-unit id="client.facetedsearch.titleTK">
+				<source>Topographical maps (1:100.000)</source>
+			</trans-unit>
 
 			<!-- vk2.tool.GazetteerSearchTool -->
 			<trans-unit id="client.gazetteer.placeholder">

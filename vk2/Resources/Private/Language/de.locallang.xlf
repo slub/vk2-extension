@@ -642,6 +642,40 @@
 				<source>No maps available</source>
 				<target state="translated">Keine Karten gefunden</target>
 			</trans-unit>
+			<trans-unit id="client.mapsearchmodule.georeference">
+				<source>Georeference</source>
+				<target state="translated">Georeferenzierung</target>
+			</trans-unit>
+			<trans-unit id="client.mapsearchmodule.time">
+				<source>Time</source>
+				<target state="translated">Zeit</target>
+			</trans-unit>
+			<trans-unit id="client.mapsearchmodule.title">
+				<source>Title</source>
+				<target state="translated">Titel</target>
+			</trans-unit>
+
+			<!-- vk2.tool.FacetedSearchTool -->
+			<trans-unit id="client.facetedsearch.titleAE">
+				<source>Topographical maps (1:25.000)</source>
+				<target state="translated">Äquidistantenkarten (1:25.000)</target>
+			</trans-unit>
+			<trans-unit id="client.facetedsearch.titleAK">
+				<source>Historic map</source>
+				<target state="translated">Altkarten</target>
+			</trans-unit>
+			<trans-unit id="client.facetedsearch.titleGL">
+				<source>Geological maps</source>
+				<target state="translated">Geologische Karten (1:25.000)</target>
+			</trans-unit>
+			<trans-unit id="client.facetedsearch.titleMTB">
+				<source>Plane survey sheets (1:25.000)</source>
+				<target state="translated">Messtischblätter (1:25.000)</target>
+			</trans-unit>
+			<trans-unit id="client.facetedsearch.titleTK">
+				<source>Topographical maps (1:100.000)</source>
+				<target state="translated">Topographische Karten des Deutschen Reiches (1:100.000)</target>
+			</trans-unit>
 
 			<!-- vk2.tool.GazetteerSearchTool -->
 			<trans-unit id="client.gazetteer.placeholder">

@@ -11,8 +11,8 @@ goog.require('goog.events.EventTarget');
  * @enum
  */
 vk2.tool.FacetedSearchTypes = {
-	'Ä': 'maptype-ae',
-	'M': 'maptype-mtb',
+	'AE': 'maptype-ae',
+	'MTB': 'maptype-mtb',
 	'TK': 'maptype-tk',
 	'GL': 'maptype-gl',
 	'ToGeoref': 'georeference-false'
@@ -47,8 +47,10 @@ vk2.tool.FacetedSearch = function(parentEl, georeferenceMode){
 	// append html
 	var innerHTML = '';
 	for (var key in vk2.tool.FacetedSearchTypes) {
-		innerHTML += '<label class="checkbox-inline"><input class="facet-search-el" type="checkbox" id="' + key +
-			'" value="' + vk2.tool.FacetedSearchTypes[key] + '">' + key + '</label>';
+		var title = vk2.utils.getMsg('facet-' + key.toLowerCase());
+		innerHTML += '<label class="checkbox-inline" title="' + title + '"><input class="facet-search-el" type="checkbox" id="' + key +
+			'" value="' + vk2.tool.FacetedSearchTypes[key] + '" title="' + title +
+			'" >' + key + '</label>';
 	};
 	
 	var facetEl_ = goog.dom.createDom('div', {
