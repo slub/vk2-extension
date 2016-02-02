@@ -160,10 +160,21 @@ vk2.app.AdminEvaluationApp.prototype.addFetchSingleProcessForUserId_ = function(
 vk2.app.AdminEvaluationApp.prototype.createProcessListElement_ = function(record){
 	var parentEl = goog.dom.createDom('article', {'id':record['georef_id']});
 	
-	var helperFactory = function(label, value){
-		return goog.dom.createDom('p',{
-			'innerHTML':'<strong>' + label + ':</strong><br> ' + value
-		});
+	var helperFactory = function(label, value, opt_className, opt_isCode){
+		var className = opt_className !== undefined ? opt_className : '',
+			isCode = opt_isCode !== undefined ? opt_isCode : false;
+
+		if (isCode) {
+			return goog.dom.createDom('p',{
+				'class': className,
+				'innerHTML':'<strong>' + label + ':</strong><br><span>' + value + '</span>'
+			});
+		} else {
+			return goog.dom.createDom('p',{
+				'class': className,
+				'innerHTML':'<strong>' + label + ':</strong> ' + value
+			});
+		}
 	};
 	
 	var helperFactoryAnchors = goog.bind(function(record){
@@ -174,7 +185,7 @@ vk2.app.AdminEvaluationApp.prototype.createProcessListElement_ = function(record
 			var setIsValideBtn = goog.dom.createDom('button', {
 				'data-href': vk2.utils.routing.getGeoreferenceAdminSetIsValideRoute('georeferenceid=' + record['georef_id']),
 				'class':'btn btn-primary action-btn',
-				'innerHTML': 'Is valide'
+				'innerHTML': vk2.utils.getMsg('evaluation-isvalide')
 			});
 			this.registerSetAdminValidationRequest_(setIsValideBtn, parentEl,
 					'Georeference process is valide?', 'Are you sure you wanna set this georeference process to isvalide? Why?');
@@ -186,7 +197,7 @@ vk2.app.AdminEvaluationApp.prototype.createProcessListElement_ = function(record
 			'data-params-georef': JSON.stringify(record['georef_params']),
 			'data-params-id': record['mapid'],
 			'class':'btn btn-primary btn-show-georef',
-			'innerHTML': 'Show map'
+			'innerHTML': vk2.utils.getMsg('evaluation-showmap')
 		});
 		// if clippolygon exists add it
 		if (record['clippolygon'] !== undefined)
@@ -200,7 +211,7 @@ vk2.app.AdminEvaluationApp.prototype.createProcessListElement_ = function(record
 			'href': vk2.utils.routing.getGeorefPageRoute(undefined, 'georeferenceid=' + record['georef_id']),
 			'class':'btn btn-primary action-btn',
 			'target':'_blank',
-			'innerHTML': 'Go to process ...'
+			'innerHTML': vk2.utils.getMsg('evaluation-gotoprocess')
 		}));
 		
 		if (record['adminvalidation'] != 'invalide'){			
@@ -208,7 +219,7 @@ vk2.app.AdminEvaluationApp.prototype.createProcessListElement_ = function(record
 			var deactiveBtn = goog.dom.createDom('button', {
 				'data-href': vk2.utils.routing.getGeoreferenceAdminSetIsInValideRoute('georeferenceid=' + record['georef_id']),
 				'class':'btn btn-warning action-btn',
-				'innerHTML': 'Is invalide'
+				'innerHTML': vk2.utils.getMsg('evaluation-isinvalide')
 			});
 			this.registerSetAdminValidationRequest_(deactiveBtn, parentEl,
 					'Georeference process is invalide?', 'Are you sure you wanna set this georeference process to invalide? Why?');
@@ -233,7 +244,7 @@ vk2.app.AdminEvaluationApp.prototype.createProcessListElement_ = function(record
 	goog.dom.appendChild(parentEl, helperFactory('Map sheet description', record['title']));
 	
 	// add admin validation
-	goog.dom.appendChild(parentEl, helperFactory('Georeference parameter (lon:lat)', record['georef_params']));
+	goog.dom.appendChild(parentEl, helperFactory('Georeference parameter (lon:lat)', JSON.stringify(record['georef_params']), 'json', true));
 	
 	// add admin validation
 	goog.dom.appendChild(parentEl, helperFactory('Type', record['type']));

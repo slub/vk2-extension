@@ -175,23 +175,26 @@
 				<target state="translated">Zurück zur Hauptseite</target>
 			</trans-unit> 
 			<trans-unit id="evaluation.page.enterMapId">
-				<source>Enter map id</source>
-				<target state="translated">Enter Map Identifier</target>
+				<source>Map-Id</source>
+				<target state="translated">Karten-Id</target>
 			</trans-unit> 
 			<trans-unit id="evaluation.page.getAllProcess">
 				<source>Get processes</source>
 				<target state="translated">Zeige Prozesse</target>
-			</trans-unit> 
-			
+			</trans-unit>
 			<trans-unit id="evaluation.page.enterUserId">
-				<source>Enter User Id</source>
-				<target state="translated">Enter Nutzerid</target>
-			</trans-unit> 
+				<source>Enter User.Id</source>
+				<target state="translated">Nutzer-Id</target>
+			</trans-unit>
 			<trans-unit id="evaluation.page.getAllUnvalideProcesses">
 				<source>Get all pending processes</source>
 				<target state="translated">Zeige alle ausstehenden Prozesse</target>
 			</trans-unit>
-			
+			<trans-unit id="evaluation.page.getAllInvalideProcess">
+				<source>Get all "invalide" processes</source>
+				<target state="translated">Zeige alle "invaliden" Prozesse an</target>
+			</trans-unit>
+
 			<!-- georeference history -->
 			<trans-unit id="georeferencehistory.page.userHistory">
 				<source>History of user</source>
@@ -492,6 +495,24 @@
 			<trans-unit id="client.georeferencechoose.goToGeoreference">
 				<source>Georeference</source>
 				<target state="translated">Georeferenzierung</target>
+			</trans-unit>
+
+			<!-- vk2.app.AdminEvaluationApp -->
+            <trans-unit id="client.evaluation.btnIsValid">
+				<source>Set 'isvalide'</source>
+				<target state="translated">Setze 'isvalide'</target>
+			</trans-unit>
+            <trans-unit id="client.evaluation.btnShowMap">
+				<source>Show map</source>
+				<target state="translated">Zeige Karte</target>
+			</trans-unit>
+            <trans-unit id="client.evaluation.btnGoToProcess">
+				<source>Go to process</source>
+				<target state="translated">Gehe zu Prozess</target>
+			</trans-unit>
+            <trans-unit id="client.evaluation.btnSetIsInvalid">
+				<source>Set 'invalide'</source>
+				<target state="translated">Setze 'invalide'</target>
 			</trans-unit>
 
             <!-- vk2.control.DynamicMapVisualizationControl -->

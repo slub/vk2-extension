@@ -47,8 +47,8 @@
 			textarea{overflow:auto}
 			.ie6 legend,.ie7 legend{margin-left:-7px}
 			input[type="radio"]{vertical-align:text-bottom}
-			input[type="checkbox"]{vertical-align:bottombottom}
-			.ie7 input[type="checkbox"]{vertical-align:baselinebaseline}
+			input[type="checkbox"]{vertical-align:bottom; }
+			.ie7 input[type="checkbox"]{vertical-align:baseline; }
 			.ie6 input{vertical-align:text-bottom}
 			label,input[type="button"],input[type="submit"],input[type="image"],button{cursor:pointer}
 			button,input,select,textarea{margin:0}
@@ -76,10 +76,11 @@
 			p{margin:0 0 5px}
 			moo{font-weight:bold}
 			.meta{font-size:0.8em;font-style:italic;color:#888}
-			.links{font-size:1.8em;line-height:0.8em;float:rightright;margin:-10px 0 0}
+			.links{font-size:1.8em;line-height:0.8em;float:right;margin:-10px 0 0}
 			.links a{display:block;text-decoration:none}
 			.notice{color:green}
 			.error{color:red}
+			.json > code, .json > span { white-space: pre-wrap; font: 13px/1.231 sans-serif; }
 		</style>
 	</vk:head>
 
@@ -110,7 +111,7 @@
 									<div class="form-group">
 										<label class="sr-only" for="mapid">Map Id</label> <input
 											type="name" class="form-control" id="input-mapid"
-											placeholder="{f:translate(id:'evaluation.page.enterMapId')}">
+											placeholder="{f:translate(id:'evaluation.page.enterMapId')}: z.B. oai:de:slub-dresden:vk:id-10000911">
 									</div>
 									<button class="btn btn-default" id="getsingleprocesss-mapid"
 										data-src="input-mapid"><f:translate id="evaluation.page.getAllProcess" />
@@ -126,15 +127,19 @@
 										data-src="input-userid"><f:translate id="evaluation.page.getAllProcess" /></button>
 								</form>
 								<ul class="nav navbar-nav navbar-right">
-									<li><a href="#" id="getallprocesses"><f:translate id="evaluation.page.getAllUnvalideProcess" /></a></li>
-									<li class="dropdown"><a href="#" class="dropdown-toggle"
-										data-toggle="dropdown" role="button" aria-expanded="false">Get
-											Process<span class="caret"></span>
-									</a>
+									<li><a href="#" id="getallprocesses"><f:translate id="evaluation.page.getAllUnvalideProcesses" /></a></li>
+									<li class="dropdown">
+										<a href="#" class="dropdown-toggle"	data-toggle="dropdown" role="button" aria-expanded="false">
+											<f:translate id="evaluation.page.getAllProcess" /><span class="caret"></span>
+										</a>
 										<ul class="dropdown-menu" role="menu">
-											<li><a href="#" id="getallinvalideprocesses">Get all
-													"invalide" processes</a></li>
-										</ul></li>
+											<li>
+												<a href="#" id="getallinvalideprocesses">
+													<f:translate id="evaluation.page.getAllInvalideProcess" />
+												</a>
+											</li>
+										</ul>
+									</li>
 								</ul>
 							</div>
 							<!-- /.navbar-collapse -->

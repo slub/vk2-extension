@@ -398,16 +398,19 @@
 				<source>Back to map sheet overview</source>
 			</trans-unit> 	
 			<trans-unit id="evaluation.page.enterMapId">
-				<source>Enter map id</source>
+				<source>Map-Id</source>
 			</trans-unit>
 			<trans-unit id="evaluation.page.getAllProcess">
 				<source>Get processes</source>
 			</trans-unit>
 			<trans-unit id="evaluation.page.enterUserId">
-				<source>Enter User Id</source>
+				<source>User-Id</source>
 			</trans-unit> 	
 			<trans-unit id="evaluation.page.getAllUnvalideProcess">
 				<source>Get all pending processes</source>
+			</trans-unit>
+			<trans-unit id="evaluation.page.getAllInvalideProcess">
+				<source>Get all "invalide" processes</source>
 			</trans-unit>
 			
 			<!-- georeference history -->
@@ -600,6 +603,20 @@
 			</trans-unit>
 			<trans-unit id="client.georeferencechoose.goToGeoreference">
 				<source>Georeference</source>
+			</trans-unit>
+
+			<!-- vk2.app.AdminEvaluationApp -->
+            <trans-unit id="client.evaluation.btnIsValid">
+				<source>Set 'isvalide'</source>
+			</trans-unit>
+            <trans-unit id="client.evaluation.btnShowMap">
+				<source>Show map</source>
+			</trans-unit>
+            <trans-unit id="client.evaluation.btnGoToProcess">
+				<source>Go to process</source>
+			</trans-unit>
+            <trans-unit id="client.evaluation.btnSetIsInvalid">
+				<source>Set 'invalide'</source>
 			</trans-unit>
 
             <!-- vk2.control.DynamicMapVisualizationControl -->
