@@ -64,7 +64,59 @@
 				<source>Show unreferenced maps</source>
 				<target state="translate">Zeige unreferenzierte Karten</target>
 			</trans-unit>
-			
+
+            <!-- login page -->
+			<trans-unit id="login.title">
+				<source>Welcome to the Virtual Map Forum 2.0</source>
+				<target state="translate">Willkommen im Virtuellen Kartenforum 2.0</target>
+			</trans-unit>
+			<trans-unit id="login.username">
+				<source>Username</source>
+				<target state="translate">Nutzername</target>
+			</trans-unit>
+			<trans-unit id="login.password">
+				<source>Password</source>
+				<target state="translate">Passwort</target>
+			</trans-unit>
+			<trans-unit id="login.signin">
+				<source>Login</source>
+			</trans-unit>
+			<trans-unit id="login.reset">
+				<source>Reset password?</source>
+				<target state="translate">Passwort zurücksetzen</target>
+			</trans-unit>
+			<trans-unit id="login.newto">
+				<source>New to the Virtual Map Forum 2.0?</source>
+				<target state="translate">Neu im Virtuellen Kartenforum 2.0?</target>
+			</trans-unit>
+			<trans-unit id="login.signupnow">
+				<source>Register now</source>
+				<target state="translate">Jetzt anmelden</target>
+			</trans-unit>
+			<trans-unit id="login.backtosignin">
+				<source>back to the</source>
+				<target state="translate">zurück zur</target>
+			</trans-unit>
+			<trans-unit id="login.registration">
+				<source>Registration</source>
+				<target state="translate">Anmeldung</target>
+			</trans-unit>
+			<trans-unit id="login.signup">
+				<source>Login</source>
+				<target state="translate">Registrieren</target>
+			</trans-unit>
+			<trans-unit id="login.email">
+				<source>Email</source>
+			</trans-unit>
+			<trans-unit id="login.firstname">
+				<source>First name</source>
+				<target state="translate">Vorname</target>
+			</trans-unit>
+			<trans-unit id="login.lastname">
+				<source>Last name</source>
+				<target state="translate">Nachname</target>
+			</trans-unit>
+
 			<!-- logout page -->
 			<trans-unit id="logout.title">
 				<source>Are you sure you want to logout</source>

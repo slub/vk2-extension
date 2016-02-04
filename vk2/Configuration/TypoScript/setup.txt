@@ -101,6 +101,10 @@ lib.felogin  {
       ll_forgot_header = Forget your password?
    }
    _LOCAL_LANG.de {
+      login = Anmelden
+      username = Nutzername
+      password = Passwort
+      ll_welcome_message = Bitte geben Sie ihren Nutzername und ihr Passwort ein
       ll_forgot_reset_message = Bitte geben Sie ihren Nutzernamen oder ihre Email-Adresse ein. Sie erhalten anschließend einen Link zum Zurücksetzen des Passwortes.
       ll_forgot_header = Passwort vergessen?
    }
