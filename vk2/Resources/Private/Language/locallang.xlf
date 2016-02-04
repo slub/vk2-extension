@@ -605,7 +605,6 @@
 				<source>Georeference</source>
 			</trans-unit>
 
-<<<<<<< HEAD
 			<!-- vk2.app.AdminEvaluationApp -->
             <trans-unit id="client.evaluation.btnIsValid">
 				<source>Set 'isvalide'</source>
@@ -618,11 +617,10 @@
 			</trans-unit>
             <trans-unit id="client.evaluation.btnSetIsInvalid">
 				<source>Set 'invalide'</source>
-=======
+			</trans-unit>
             <!-- vk2.control.DeactiveMapVisualizationControl -->
 			<trans-unit id="client.deactivemap.deactiveAll">
 				<source>Deactivate all maps</source>
->>>>>>> Add title to control buttons
 			</trans-unit>
 			<trans-unit id="client.deactivemap.activeAll">
 				<source>Activate all maps</source>

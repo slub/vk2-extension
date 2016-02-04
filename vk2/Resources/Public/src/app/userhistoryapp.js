@@ -25,6 +25,12 @@ vk2.app.UserHistoryApp = function(settings) {
 		targetPointsEl = goog.dom.getElement(settings['targetPoints']);
 	
 	this.fetchData_(targetEl, targetPointsEl);
+
+	// in case jquery lazy loading is active
+	$('body').scroll(function() {
+		$('.lazy-image').lazyload();
+	});
+	$('.lazy-image').lazyload();
 };
 
 /**
@@ -46,7 +52,9 @@ vk2.app.UserHistoryApp.prototype.displayData_ = function(data, targetEl, targetP
 			goog.dom.appendChild(targetEl, 
 				this.renderRecord_(data['georef_profile'][i]));
 		}
-	}
+	};
+
+	setTimeout(function() {$('body').scroll();}, 100);
 };
 
 /** 
@@ -90,22 +98,28 @@ vk2.app.UserHistoryApp.prototype.renderRecord_ = function(record) {
 			vk2.settings.WMS_DYNAMIC_TEMPLATE + '?SERVICE=WMS&VERSION=1.0.0&REQUEST=GetCapabilities&map=' + record['mapid'] : '#',
 		imageUrl = record['thumbnail'] !== undefined ? record['thumbnail'] : '#',
 		permalink = vk2.utils.routing.getBaseUrl() + '&oid=' + record['mapid'],
-		innerHTMLPermalink = record['transformed'] !== undefined && record['transformed'] === true ? 
-				'<a href="' + permalink + '" target="_blank">Klick</a>' : vk2.utils.getMsg('georef-history-beingGenerated'),
-		isValide = record['isvalide'] !== "" ? record['isvalide'] : 'unknown'; 
+		permalinkEl = record['transformed'] !== undefined && record['transformed'] === true ?
+				'<a href="' + permalink + '" target="_blank" class="btn btn-default">' + vk2.utils.getMsg('evaluation-showmap') + '</a>' : '',
+		georefProcessEl = record['transformed'] !== undefined && record['transformed'] === true ?
+			'<a href="' + vk2.utils.routing.getGeorefPageRoute(undefined, 'georeferenceid=' + record['georefid']) +
+			'" target="_blank" class="btn btn-default">' + vk2.utils.getMsg('evaluation-gotoprocess') + '</a>' : '',
+		isValide = record['isvalide'] !== "" ? record['isvalide'] : 'waiting',
+		validationClass = isValide === 'waiting' ? 'label-warning' : isValide === 'isvalide' ? 'label-success' : 'label-danger',
+		validation = '<span class="label ' + validationClass + '">' + isValide + '</span>';
 		
 	var articleEl = goog.dom.createDom('article', {
 		id: record['georefid'],
 		innerHTML: '<div class="media"><a class="pull-right" href="' + wmsUrl + '">' +
-				'<img alt="" src="' + imageUrl + '"></a><div class="media-body">' + 
-				'<p><strong>' + vk2.utils.getMsg('georef-history-processId') + ':</strong><br>' + record['georefid']+ '</p>' +
-				'<p><strong>' + vk2.utils.getMsg('georef-history-isValidated') + ':</strong><br>' + isValide + '</p>' +
-				'<p><strong>' + vk2.utils.getMsg('georef-history-mapId') + ':</strong><br>' + record['mapid'] + '</p>' +
-				'<p><strong>' + vk2.utils.getMsg('georef-history-mapSheetInfo') + ':</strong><br>' + record['title'] + '</p>' +
-				'<p><strong>' + vk2.utils.getMsg('georef-history-georefParams') + ':</strong><br>' + JSON.stringify(record['georefparams']) + '</p>' +
-				'<p><strong>' + vk2.utils.getMsg('georef-history-persistentAccess') + ':</strong><br>' + innerHTMLPermalink + '</p>' +
+				'<img alt="" class="lazy-image" alt="" data-original="' + imageUrl + '"></a><div class="media-body">' +
+				'<h3>' + record['title'] + '</h3>' +
+				'<p><strong>' + vk2.utils.getMsg('georef-history-mapId') + ':</strong> ' + record['mapid'] + '</p>' +
+				'<p><strong>Validation:</strong> ' + validation + '</p>' +
+
+				'<p class="links">' + permalinkEl + ' ' + georefProcessEl + '</p>' +
 				'<p class="meta">Created: ' + record['georeftime'] + '</p>' +
 				'</div></div>'	
 	});
+
+
 	return articleEl;
 };

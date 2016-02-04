@@ -549,7 +549,6 @@
 				<target state="translated">Georeferenzierung</target>
 			</trans-unit>
 
-<<<<<<< HEAD
 			<!-- vk2.app.AdminEvaluationApp -->
             <trans-unit id="client.evaluation.btnIsValid">
 				<source>Set 'isvalide'</source>
@@ -566,12 +565,12 @@
             <trans-unit id="client.evaluation.btnSetIsInvalid">
 				<source>Set 'invalide'</source>
 				<target state="translated">Setze 'invalide'</target>
-=======
+			</trans-unit>
+
             <!-- vk2.control.DeactiveMapVisualizationControl -->
 			<trans-unit id="client.deactivemap.deactiveAll">
 				<source>Deactivate all maps</source>
 				<target state="translated">Deaktiviere alle Karten</target>
->>>>>>> Add title to control buttons
 			</trans-unit>
 			<trans-unit id="client.deactivemap.activeAll">
 				<source>Activate all maps</source>
