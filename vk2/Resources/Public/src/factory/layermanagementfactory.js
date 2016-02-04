@@ -131,6 +131,7 @@ vk2.factory.LayerManagementFactory.getLayerManagementRecord = function(layer, in
 		
 		var anchorGeoreferenceUpdate = goog.dom.createDom('a', {
 			'class':'georeference-update',
+			'title': vk2.utils.getMsg('factory-update-georef') + ' ...',
 			'innerHTML': vk2.utils.getMsg('factory-update-georef') + ' ...',
 			'target':'_blank',
 			'href': vk2.utils.routing.getGeorefPageRoute(layer.getId())

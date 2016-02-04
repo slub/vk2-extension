@@ -624,6 +624,9 @@
 				<source>Deactivate all maps</source>
 >>>>>>> Add title to control buttons
 			</trans-unit>
+			<trans-unit id="client.deactivemap.activeAll">
+				<source>Activate all maps</source>
+			</trans-unit>
 
             <!-- vk2.control.DynamicMapVisualizationControl -->
 			<trans-unit id="client.dynamicmapvis.start">

@@ -573,6 +573,10 @@
 				<target state="translated">Deaktiviere alle Karten</target>
 >>>>>>> Add title to control buttons
 			</trans-unit>
+			<trans-unit id="client.deactivemap.activeAll">
+				<source>Activate all maps</source>
+				<target state="translated">Aktiviere alle Karten</target>
+			</trans-unit>
 
             <!-- vk2.control.DynamicMapVisualizationControl -->
 			<trans-unit id="client.dynamicmapvis.start">
