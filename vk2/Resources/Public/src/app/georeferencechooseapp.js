@@ -194,7 +194,7 @@ vk2.app.GeoreferenceChooseApp.prototype.renderRecord_ = function(record) {
 			'<p><strong>' + title + '</strong></p>' +
 			'<p>' + vk2.utils.getMsg('georef-choose-time') + ': ' + time + '</p>' +
 			'<p>' + vk2.utils.getMsg('georef-choose-maptype') + ': ' + maptype + '</p>' +
-			'</div><div class="tools"><a class="btn btn-primary" href="' + georefUrl + '" target="_blank">' +
+			'</div><div class="tools"><a class="btn btn-primary" href="' + georefUrl + '" target="_top">' +
 			vk2.utils.getMsg('georef-choose-goToGeoreference') +'</a></div></div>'
 	});
 };

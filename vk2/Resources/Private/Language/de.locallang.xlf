@@ -141,7 +141,11 @@
 				<source>Please insert your contact message in this text field.</source>
 				<target state="translated">Bitte tragen Sie in diesem Text-Feld ihre Kontaktnachricht ein.</target>
 			</trans-unit>
-			
+            <trans-unit id="contact.input.submit">
+				<source>Submit.</source>
+				<target state="translated">Absenden</target>
+			</trans-unit>
+
 			<!-- impressum page -->
 			<trans-unit id="impressum.title">
 				<source>Impressum</source>
@@ -474,7 +478,7 @@
 			</trans-unit>
 			<trans-unit id="georeferencechoose.page.outstandingMaps">
 				<source>Count of outstanding maps</source>
-				<target state="translated">Number unrefenzierter Karten</target>
+				<target state="translated">Anzahl unrefenzierter Karten</target>
 			</trans-unit>
 			<trans-unit id="georeferencechoose.page.time">
 				<source>Time</source>

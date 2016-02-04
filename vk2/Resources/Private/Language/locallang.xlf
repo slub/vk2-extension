@@ -112,7 +112,10 @@
 			<trans-unit id="contact.input.textarea.help">
 				<source>Please insert your contact message in this text field.</source>
 			</trans-unit>
-			
+			<trans-unit id="contact.input.submit">
+				<source>Submit.</source>
+			</trans-unit>
+
 			<!-- impressum page -->
 			<trans-unit id="impressum.title">
 				<source>Impressum</source>

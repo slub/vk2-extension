@@ -89,6 +89,7 @@ div.faq{
 /* Page: Contact */
 .contact-formular{
 	width: 600px;
+	margin-bottom: 0px;
 }
 		
 .contact-formular .form-group.right{
