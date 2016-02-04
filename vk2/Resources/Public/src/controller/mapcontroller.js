@@ -112,6 +112,28 @@ vk2.controller.MapController.createBaseMap = function(mapElId, mapViewSettings){
 };
 
 /**
+ * Checks if the layer collection already contains a layer with that id.
+ *
+ * @param {string} id
+ * @param {ol.Collection} layers
+ * @return {boolean}
+ */
+vk2.controller.MapController.containsLayerWithId = function(id, layers) {
+	var array = layers.getArray();
+	for (var i = 0; i < array.length; i++) {
+		if (array[i] instanceof vk2.layer.HistoricMap) {
+			if (array[i].getId() == id) {
+				if (goog.DEBUG)
+					console.log('Map is already displayed');
+
+				return true;
+			}
+		}
+	}
+	return false;
+};
+
+/**
  * @param {vk2.tool.GazetteerSearch} gazetteersearch
  */
 vk2.controller.MapController.prototype.registerGazetteerSearchTool_ = function(gazetteersearch){
@@ -140,8 +162,16 @@ vk2.controller.MapController.prototype.registerMapSearchModule_ = function(mapse
 		if (goog.DEBUG){
 			console.log('Trigger map search event');
 		};			
-			
+
 		var feature = event.target['feature'];
+
+		// checks if a layer for this features is already present
+		if (vk2.controller.MapController.containsLayerWithId(feature.getId(), this.map_.getLayers())) {
+			return;
+		}
+
+
+		// add layer to map
 		if (feature.get("georeference")){
 			if (goog.DEBUG){
 				console.log('Add map to layer management.')
