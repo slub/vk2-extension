@@ -605,6 +605,7 @@
 				<source>Georeference</source>
 			</trans-unit>
 
+<<<<<<< HEAD
 			<!-- vk2.app.AdminEvaluationApp -->
             <trans-unit id="client.evaluation.btnIsValid">
 				<source>Set 'isvalide'</source>
@@ -617,6 +618,11 @@
 			</trans-unit>
             <trans-unit id="client.evaluation.btnSetIsInvalid">
 				<source>Set 'invalide'</source>
+=======
+            <!-- vk2.control.DeactiveMapVisualizationControl -->
+			<trans-unit id="client.deactivemap.deactiveAll">
+				<source>Deactivate all maps</source>
+>>>>>>> Add title to control buttons
 			</trans-unit>
 
             <!-- vk2.control.DynamicMapVisualizationControl -->
@@ -625,6 +631,12 @@
 			</trans-unit>
 			<trans-unit id="client.dynamicmapvis.stop">
 				<source>Stop timeseries visualization</source>
+			</trans-unit>
+			<trans-unit id="client.dynamicmapvis.open">
+				<source>Open dynamic map visualization tool</source>
+			</trans-unit>
+			<trans-unit id="client.dynamicmapvis.close">
+				<source>Close dynamic map visualization tool</source>
 			</trans-unit>
 
             <!-- vk2.control.ImageManipulationControl -->

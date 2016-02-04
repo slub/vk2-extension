@@ -22,7 +22,8 @@ vk2.control.DeactivateMapCollection = function(parentEl, map){
 	//
 	var controlAnchor_ = goog.dom.createDom('a', {
 		'href':'#',
-		'innerHTML': 'D'
+		'innerHTML': 'D',
+		'title': vk2.utils.getMsg('deactivatemap-all')
 	});
 	goog.dom.appendChild(containerEl_, controlAnchor_);
 

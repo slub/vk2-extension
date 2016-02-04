@@ -15,8 +15,11 @@ vk2.control.DynamicMapVisualization = function(parentEl, map){
 	//
 	// Create container DOM nodes
 	//
-	var containerEl_ = goog.dom.createDom('div', {'class':'dyn-vis-control'}),
-		contentEl_ = goog.dom.createDom('div', {'class':'content', 'style':'display:none;'});
+	var containerEl_ = goog.dom.createDom('div', {'class':'dyn-vis-control','title': vk2.utils.getMsg('dynamicmapvis-open')}),
+		contentEl_ = goog.dom.createDom('div', {
+			'class':'content',
+			'style':'display:none;'
+	});
 	goog.dom.appendChild(containerEl_, contentEl_);
 	goog.dom.appendChild(parentEl, containerEl_);
 
@@ -48,8 +51,10 @@ vk2.control.DynamicMapVisualization.prototype.createMenuEl_ = function(parentEl,
 		if (goog.dom.classes.has(event.currentTarget, 'open')){
 			dynamicMapVis.stopTimerseriesAnimation();
 			goog.dom.classes.remove(event.currentTarget, 'open');
+			event.currentTarget.parentElement['title'] = vk2.utils.getMsg('dynamicmapvis-open');
 		} else {
 			goog.dom.classes.add(event.currentTarget, 'open');
+			event.currentTarget.parentElement['title'] = vk2.utils.getMsg('dynamicmapvis-close');
 		};
 	}, undefined, this);
 };

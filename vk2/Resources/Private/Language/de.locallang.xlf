@@ -549,6 +549,7 @@
 				<target state="translated">Georeferenzierung</target>
 			</trans-unit>
 
+<<<<<<< HEAD
 			<!-- vk2.app.AdminEvaluationApp -->
             <trans-unit id="client.evaluation.btnIsValid">
 				<source>Set 'isvalide'</source>
@@ -565,6 +566,12 @@
             <trans-unit id="client.evaluation.btnSetIsInvalid">
 				<source>Set 'invalide'</source>
 				<target state="translated">Setze 'invalide'</target>
+=======
+            <!-- vk2.control.DeactiveMapVisualizationControl -->
+			<trans-unit id="client.deactivemap.deactiveAll">
+				<source>Deactivate all maps</source>
+				<target state="translated">Deaktiviere alle Karten</target>
+>>>>>>> Add title to control buttons
 			</trans-unit>
 
             <!-- vk2.control.DynamicMapVisualizationControl -->
@@ -575,6 +582,14 @@
 			<trans-unit id="client.dynamicmapvis.stop">
 				<source>Stop timeseries visualization</source>
 				<target state="translated">Stoppe Zeitreihenvisualisierung der Kartenauswahl</target>
+			</trans-unit>
+			<trans-unit id="client.dynamicmapvis.open">
+				<source>Open dynamic map visualization tool</source>
+				<target state="translated">Öffne dynamische Kartenvisualisierung</target>
+			</trans-unit>
+			<trans-unit id="client.dynamicmapvis.close">
+				<source>Close dynamic map visualization tool</source>
+				<target state="translated">Schließe dynamische Kartenvisualisierung</target>
 			</trans-unit>
 
             <!-- vk2.control.ImageManipulationControl -->
