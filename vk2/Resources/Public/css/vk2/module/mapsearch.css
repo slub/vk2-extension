@@ -24,7 +24,7 @@
 }
 
 .mapsearch-list .list-header:after { position: relative; clear: both; display: table; content: ""; }
-.mapsearch-list .list-header:before { position: absolute; bottom: -6px; right: 10px; width: 0; height: 0; content: ""; border: 5px solid transparent; border-bottom-width: 0; border-top-color: #ccc; z-index: 301; }
+.mapsearch-list .list-header:before { position: absolute; bottom: -5px; right: 10px; width: 0; height: 0; content: ""; border: 5px solid transparent; border-bottom-width: 0; border-top-color: #ccc; z-index: 301; }
 
 .mapsearch-list .list-header .inner-col{
 	position: relative;
