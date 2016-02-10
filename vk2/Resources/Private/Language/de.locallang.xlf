@@ -501,6 +501,63 @@
 				<target state="translated">Aktuell sind alle Karten georefernziert</target>
 			</trans-unit>
 
+            <!-- Welcome page -->
+			<trans-unit id="welcome.page.header">
+				<source>Welcome to the Virtual Map Forum 2.0.</source>
+				<target state="translated">Willkommen im virtuellen Kartenforum 2.0.</target>
+			</trans-unit>
+			<trans-unit id="welcome.page.msg">
+				<source>
+				    The Virtual Map Forum was funded through the German Research Assoication (DFG) and developed by the
+				    Saxon State and University Library Dresden (SLUB) and the Chair of Geodesy and Geoformatics from the
+				    University of Rostock. It gives access to main parts of the map collection of the SLUB and allows users
+                    to georeference the historic maps.
+				</source>
+				<target state="translated">
+				    Das Virtuelle Kartenforum 2.0 wurde 2014 im Rahmen des gleichnamigen DFG Projektes durch die
+				    Sächsische Landesbibliothek – Staats- und Universitätsbibliothek Dresden (SLUB) und den Lehrstuhl für
+				    Geodäsie und Geoinformatik der Universität Rostock entwickelt. Es bietet einen Zugriff auf große Teile
+				    der historischen Kartensammlung der SLUB und ermöglicht den Nutzern die Georeferenzierung der Historischen
+				    Karten.
+				</target>
+			</trans-unit>
+			<trans-unit id="welcome.page.progress.1">
+				<source>Already</source>
+				<target state="translated">Bereits</target>
+			</trans-unit>
+			<trans-unit id="welcome.page.progress.2">
+				<source>of</source>
+				<target state="translated">von</target>
+			</trans-unit>
+			<trans-unit id="welcome.page.progress.3">
+				<source>maps georeferenced.</source>
+				<target state="translated">Karten georeferenziert.</target>
+			</trans-unit>
+			<trans-unit id="welcome.page.ranking.header">
+				<source>The Top-Georeferencer:</source>
+				<target state="translated">Die Top-Georeferenzierer:</target>
+			</trans-unit>
+			<trans-unit id="welcome.page.ranking.header">
+				<source>The Top-Georeferencer:</source>
+				<target state="translated">Die Top-Georeferenzierer:</target>
+			</trans-unit>
+			<trans-unit id="welcome.page.ranking.points">
+				<source>points</source>
+				<target state="translated">Punkte</target>
+			</trans-unit>
+			<trans-unit id="welcome.page.help.1">
+				<source>Take part and collect points.</source>
+				<target state="translated">Jetzt mithelfen und selbst Punkte sammeln.</target>
+			</trans-unit>
+			<trans-unit id="welcome.page.help.2">
+				<source>Start now.</source>
+				<target state="translated">So einfach geht's.</target>
+			</trans-unit>
+			<trans-unit id="welcome.page.help.3">
+				<source>Hide welcome page in the future.</source>
+				<target state="translated">Diese Begrüßung zukünftig nicht mehr anzeigen.</target>
+			</trans-unit>
+
             <!-- **************************************** -->
             <!-- language dictionary for using in javascript -->
             <!-- **************************************** -->

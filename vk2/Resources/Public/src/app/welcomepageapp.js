@@ -70,7 +70,7 @@ vk2.app.WelcomePageApp.prototype.displayData_ = function(data, georeferenceEls, 
 			id = record.hasOwnProperty('username') ? record['username'] : record['userid'];
 
 		goog.dom.appendChild(georeferenceUserRankingEl, goog.dom.createDom('li', {
-			'innerHTML': '<span><b>' + id + ':</b> ' + record['points'] + ' Punkt</span>'
+			'innerHTML': '<span><b>' + id + ':</b> ' + record['points'] + ' ' + vk2.utils.getMsg('welcome-points') + '</span>'
 		}));
 	}
 };

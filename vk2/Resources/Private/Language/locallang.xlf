@@ -567,6 +567,46 @@
 				<source>Actually there are no georeference maps</source>
 			</trans-unit>
 
+            <!-- Welcome page -->
+			<trans-unit id="welcome.page.header">
+				<source>Welcome to the Virtual Map Forum 2.0.</source>
+			</trans-unit>
+			<trans-unit id="welcome.page.msg">
+				<source>
+				    The Virtual Map Forum was funded through the German Research Assoication (DFG) and developed by the
+				    Saxon State and University Library Dresden (SLUB) and the Chair of Geodesy and Geoformatics from the
+				    University of Rostock. It gives access to main parts of the map collection of the SLUB and allows users
+                    to georeference the historic maps.
+				</source>
+			</trans-unit>
+			<trans-unit id="welcome.page.progress.1">
+				<source>Already</source>
+			</trans-unit>
+			<trans-unit id="welcome.page.progress.2">
+				<source>of</source>
+			</trans-unit>
+			<trans-unit id="welcome.page.progress.3">
+				<source>maps georeferenced.</source>
+			</trans-unit>
+			<trans-unit id="welcome.page.ranking.header">
+				<source>The Top-Georeferencer:</source>
+			</trans-unit>
+			<trans-unit id="welcome.page.ranking.header">
+				<source>The Top-Georeferencer:</source>
+			</trans-unit>
+			<trans-unit id="welcome.page.ranking.points">
+				<source>points</source>
+			</trans-unit>
+			<trans-unit id="welcome.page.help.1">
+				<source>Take part and collect points.</source>
+			</trans-unit>
+			<trans-unit id="welcome.page.help.2">
+				<source>Start now.</source>
+			</trans-unit>
+			<trans-unit id="welcome.page.help.3">
+				<source>Hide welcome page in the future.</source>
+			</trans-unit>
+
             <!-- **************************************** -->
             <!-- language dictionary for using in javascript -->
             <!-- **************************************** -->
