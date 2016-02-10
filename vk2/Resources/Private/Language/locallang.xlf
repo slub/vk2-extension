@@ -187,27 +187,23 @@
 				<source>General navigation</source>
 			</trans-unit>
 			<trans-unit id="faq.general.content.1">
-				<source><![CDATA[The Virtual Map Forum 2.0 offers a lot of tools and content. General 
-					topics as the <b>FAQ</b>, the <b>Contact</b> details, the <b>Project</b> 
-					or the <b>Masthead / Impressum</b> can be accessed through the buttons in
-					 the footer or the button above the map search on the left side.]]></source>
+				<source><![CDATA[The <b>FAQ</b>, the <b>Contact</b> details,
+					or the <b>Impressum</b> of the page can be accessed through buttons in
+					 the footer or buttons above the map search on the left side.]]></source>
 			</trans-unit>
 			<trans-unit id="faq.general.content.2">
-				<source><![CDATA[If you click either on the German or the English flag you can change the 
-					language of the Virtual Map Forum 2.0. You can log in or register by 
-					clicking on the <b>login button</b>. With the button in the right upper 
-					corner you can toggle in the full-screen-mode.]]></source>
+				<source><![CDATA[The user menu could be founded in the top right corner of the application. By clicking the
+				    respective flag you can choose the language of the Virtual Map Forum 2.0. If logged in (could be done
+				    through clicking on the <b>login button</b>) you can also access your personal georeference history and
+				    an overview over unreferenced maps. Further you can change here to full-screen-mode by clicking the
+				    arrow-button.]]></source>
 			</trans-unit>
 			<trans-unit id="faq.map.detection.title">
 				<source>Map detection</source>
 			</trans-unit>
 			<trans-unit id="faq.map.detection.content.1">
-				<source>Right now you can find and displayed more than 4.700 georeferenced maps 
-					in the portal of the  Virtual Map Forum 2.0.</source>
-			</trans-unit>
-			<trans-unit id="faq.map.detection.content.2">
 				<source>Using the navigation directly on the map or through the input of a place 
-					name respectively a map sheet number in the search field of the 
+					name in the search field of the
 					spatiotemporal search module (left part / main page) you can choose the 
 					relevant spatial area. The spatiotemporal search module also displays the
 					 relevant search results for your spatiotemporally selected criteria. 
@@ -221,16 +217,14 @@
 				<source><![CDATA[If you type in the input box a <b>place name</b> the application offers 
 					you a select list of possible place names. By choosing a place name from 
 					this list with your mouse or the keyboard the map jumps right to this 
-					place. You can alternatively type in the <b>map sheet number</b> (like 
-					<code>49_48</code>) and this will guide you to the right place as well.]]></source>
+					place.]]></source>
 			</trans-unit>
 			<trans-unit id="faq.map.timebar.title">
 				<source>Adjust the time</source>
 			</trans-unit>
 			<trans-unit id="faq.map.timebar.content">
 				<source>With the help of the time bar you can adjust the period of your search 
-					time. Right now the portal offers you maps between the years 1868 and 
-					1945. Therefore these years represent the maximum range of time. The 
+					time. The max-/min-years represent therefor the maximum range of time. The
 					adjusting of the search period affects the listed results in the search 
 					list.</source>
 			</trans-unit>
@@ -238,19 +232,21 @@
 				<source>The search list</source>
 			</trans-unit>
 			<trans-unit id="faq.map.searchlist.content.1">
-				<source><![CDATA[The search list displays all available maps for the appropriate spatial 
-					segment and search time. The header of the search list shows the number 
+				<source><![CDATA[The search list displays all available maps for the appropriate search criteria (time,
+				    space, facets). The header of the search list shows the number
 					of search hits. Beneath, you can sort the results by pressing the buttons
 					 <b>Title</b> or <b>Time</b>. If you click on a search result, the 
 					appropriate historical map will be displayed on the main map and 
-					automatically be transferred to the "My Maps" map container.]]></source>
+					automatically be transferred to the "My Maps" map container.]]>
+				</source>
 			</trans-unit>
 			<trans-unit id="faq.map.searchlist.content.2">
-				<source>Every single search result will be displayed with its lemma, time stamp 
-					(dating) and its scale. Furthermore there will be given a Thumbnail image
+				<source>Every single search result will be displayed with its name, time
+					(dating) and its scale. Furthermore there will be given a thumbnail image
 					 of the relevant map. If you move your mouse over a search result, the 
 					spatial expansion of the map will be represented in a polygon on the main
-					 map.</source>
+					 map.
+		        </source>
 			</trans-unit>
 			<trans-unit id="faq.map.navigation.title">
 				<source>Map navigation</source>
@@ -276,8 +272,10 @@
 					"northed" again.]]></source>
 			</trans-unit>
 			<trans-unit id="faq.map.navigation.content.5">
-				<source>The last button allows you to create a link of the current map view and 
-					to share it with other users.</source>
+				<source>
+				    The last buttons allow you to create a sharing link of the current map view as well as to activate
+				    the illustration of the actual lat / lon position of the map.
+				</source>
 			</trans-unit>
 			<trans-unit id="faq.map.management.title">
 				<source>Manage chosen maps</source>
@@ -342,19 +340,13 @@
 					moved to the top of the list.</source>
 			</trans-unit>
 			<trans-unit id="faq.map.original.title">
-				<source>Original maps and meta data</source>
+				<source>Original maps</source>
 			</trans-unit>	
 			<trans-unit id="faq.map.original.content.1">
 				<source>If you selected one map from the plane survey sheet search list by 
 					clicking on it and then click on the corresponding square in the main map
 					 you will get further information about the map sheet. You will also be 
 					given a picture of the original map sheet.</source>
-			</trans-unit>
-			<trans-unit id="faq.map.original.content.2">
-				<source>And you can receive even more information by clicking on one of the two 
-					boxes shown left. "Gehe zu Fotothek" leads you to the 
-					photographic library which provides the map sheet and "Zeige 
-					Metadatensatz" gives you more meta data.</source>
 			</trans-unit>
 			<trans-unit id="faq.sidebar.map.general">
 				<source>General navigation</source>
@@ -392,7 +384,110 @@
 			<trans-unit id="faq.sidebar.map.original">
 				<source>Original maps and meta data</source>
 			</trans-unit>	
-			
+			<trans-unit id="faq.sidebar.georef">
+			    <source>Georeferencing of maps</source>
+			</trans-unit>
+			<trans-unit id="faq.sidebar.georef.selection">
+			    <source>Map selection</source>
+            </trans-unit>
+            <trans-unit id="faq.sidebar.georef.georeferencing">
+                <source>Georeferencing</source>
+            </trans-unit>
+		    <trans-unit id="faq.georef.title">
+			    <source>Georeferencing of Maps</source>
+			</trans-unit>
+            <trans-unit id="faq.georef.text.1">
+			    <source>
+			        The Virtual Map Forum 2.0 gives access to a wide range of historic maps, which are waiting for
+			        georeferencing. As a user you can thereby help us in this process.
+			    </source>
+			</trans-unit>
+            <trans-unit id="faq.georef.text.2">
+			    <source>
+			        Basically you have to set ground control points, which are a prerequisite for the usage of
+			        different transformation algorithms. Further you can draw a clip polygon, which is used to
+			        clip away the unnecessary edge of the georeferenced maps. The following video gives a short
+			        overview over the georeferencing process.
+			    </source>
+			</trans-unit>
+            <trans-unit id="faq.georef.callout">
+			    <source>
+			        To participate in the georeferencing process of the historic maps you have to sign up in the
+			        Virtual Map Forum 2.0.
+			    </source>
+			</trans-unit>
+		    <trans-unit id="faq.georef.selection.title">
+			    <source>Map selection</source>
+			</trans-unit>
+		    <trans-unit id="faq.georef.selection.text.1">
+			    <source>
+			        In the user menu you can open an list of unreferenced maps by clicking on point "Show unreferenced maps".
+			        The displayed lists give you than also an option for performing an subselection of the unreferenced maps by title
+			        in the input field. By clicking on the "Georeference" button of a given map record you will be forwarded to the
+			        georeference view. Further you can open your personal georeference history by clicking on the "Georeference History" point.
+			    </source>
+			</trans-unit>
+		    <trans-unit id="faq.georef.georeference.title">
+			    <source>Georeferencing</source>
+			</trans-unit>
+		    <trans-unit id="faq.georef.georeference.text.1">
+			    <source>
+			        For apply transformation algorithms to the historic map image, ground control points (gcp) are needed. A ground control
+			        is composed of a point on the unreferenced image (left side) and the corresponding point on the
+			        georeferenced map (right side). Depending on the used transformation algorithm more or less ground
+			        control points are used (e.g. affine > 4 gcp). Based on a validation result also a clip polygon can
+			        be drawn. The clip polygon can than be used for clipping away the unnecessary edge content.
+			    </source>
+			</trans-unit>
+		    <trans-unit id="faq.georef.georeference.text.2">
+			    <source>
+			        The toolbox on the unreferenced image viewer (left side) holds different tools for drawing, moving
+			        and deleting ground control points.
+			    </source>
+			</trans-unit>
+		    <trans-unit id="faq.georef.georeference.text.3">
+			    <source>
+			        <![CDATA[For setting a ground control point choose the tool <b>Set ground control point</b> and then click on
+			        the unreference image (left side) and the corresponding place on the georeferenced image (rigth side).
+			        If a point was set wrong, you can adjust the position by using the tool <b>Move ground control point</b>
+			        and move the corresponding point by drag&amp;drop. If you wanna remove a ground control point use the tool
+			        <b>Delete ground control point</b>.]]>
+			    </source>
+			</trans-unit>
+		    <trans-unit id="faq.georef.georeference.text.4">
+			    <source>
+			        <![CDATA[By using the tool <b>Move map</b> you can move the map to the wanted view.]]>
+			    </source>
+			</trans-unit>
+		    <trans-unit id="faq.georef.georeference.text.5">
+			    <source>
+			        <![CDATA[If enough ground control points have been set, a validation image can be produced by the clicking on
+			        the <b>Update Preview</b> button. It is also possible to switch the used transformation algorithm.
+			        Generally it is recommended to use an "Affine" transformation for geological maps or plane survey sheets
+			        and a minimum number of 4 ground control points. In case of older historic maps types a "TPS" transformation
+			        is recommended. There you can always increase the georeferencing quality by adding more ground control
+			        points.]]>
+			    </source>
+			</trans-unit>
+		    <trans-unit id="faq.georef.georeference.text.6">
+			    <source>
+			        <![CDATA[On the basis of a georeferenced validation results a clip polygon can be drawn. Therefor use the tool
+			        <b>Draw Clip Polygon</b> on the georeferenced map view.]]>
+			    </source>
+			</trans-unit>
+		    <trans-unit id="faq.georef.georeference.text.7">
+			    <source>
+			        The captured georeference paramater could be saved permanently by using the button "Confirm Georeferencing".
+			        This will navigate the user back to the main page and save the georeference result permantly. After a
+			        view minutes the new georeference results are also accessible through the web client by all users.
+			    </source>
+			</trans-unit>
+		    <trans-unit id="faq.georef.georeference.text.8">
+			    <source>
+			        For more information please refer to the Video link further above or contact us.
+			    </source>
+			</trans-unit>
+
 			<!-- evaluation page -->
 			<trans-unit id="evaluation.page.adminValidation">
 				<source>Welcome to the evaluation page</source>
@@ -443,116 +538,6 @@
 			</trans-unit>
 			<trans-unit id="georeferencehistory.page.beingGenerated">
 				<source>Being generated (duration approx. 15min)</source>
-			</trans-unit>
-			<trans-unit id="faq.sidebar.georef">
-			    <source>Georeferencing of maps</source>
-			</trans-unit>
-			<trans-unit id="faq.sidebar.georef.selection">
-			    <source>Map selection</source>
-            </trans-unit>
-            <trans-unit id="faq.sidebar.georef.georeferencing">
-                <source>Georeferencing</source>
-            </trans-unit>
-            <trans-unit id="faq.sidebar.georef.history">
-                <source>Georeference History</source>
-            </trans-unit>
-		    <trans-unit id="faq.georef.title">
-			    <source>Georeferencing of Maps</source>
-			</trans-unit>
-            <trans-unit id="faq.georef.text.1">
-			    <source>
-			        The Virtual Map Forum 2.0 gives access to more than 7.000 historic maps. For the complete
-			        georeferencing of them we need your help.
-			    </source>
-			</trans-unit>
-            <trans-unit id="faq.georef.text.2">
-			    <source>
-			        Basically you have to set ground control points, which are a prerequisite for the usage of
-			        different transformation algorithms. Further you can draw a clip polygon, which is used to
-			        clip away the unnecessary edge of the georeferenced maps. The following video gives a short
-			        overview over the georeferencing process.
-			    </source>
-			</trans-unit>
-            <trans-unit id="faq.georef.callout">
-			    <source>
-			        To participate in the georeferencing process of the historic maps you have to sign up in the
-			        Virtual Map Forum 2.0.
-			    </source>
-			</trans-unit>
-		    <trans-unit id="faq.georef.selection.title">
-			    <source>Map selection</source>
-			</trans-unit>
-		    <trans-unit id="faq.georef.selection.text.1">
-			    <source>
-			        If signed in, click on the dropdown in the upper right corner. There you can display unreferenced
-			        by clicking on the menu point "Show unreferenced maps". In the displayed window you can than choose
-			        a map for georeferencing by clicking on the "Georeference" button.
-			    </source>
-			</trans-unit>
-		    <trans-unit id="faq.georef.georeference.title">
-			    <source>Georeferencing</source>
-			</trans-unit>
-		    <trans-unit id="faq.georef.georeference.text.1">
-			    <source>
-			        For apply transformation algorithms on the image, ground control points (gcp) are need. A ground control
-			        is composed of a point on the unreferenced image (left side) and the corresponding point on the
-			        georeferenced map (right side). Depending on the used transformation algorithm more or less ground
-			        control points are used (e.g. affine > 4 gcp). Based on a validation result also a clip polygon can
-			        be drawn. The clip polygon can than be used for clipping away the unnecessary edge content.
-			    </source>
-			</trans-unit>
-		    <trans-unit id="faq.georef.georeference.text.2">
-			    <source>
-			        The toolbox on the unreferenced image viewer (left side) holds different tools for drawing, moving
-			        and deleting ground control points.
-			    </source>
-			</trans-unit>
-		    <trans-unit id="faq.georef.georeference.text.3">
-			    <source>
-			        <![CDATA[For setting a ground control point choose the tool <b>Set ground control point</b> and then click on
-			        the unreference image (left side) and the corresponding place on the georeferenced image (rigth side).
-			        If a point was set wrong, you can adjust the position by using the tool <b>Move ground control point</b>
-			        and move the corresponding point by drag&amp;drop. If you wanna remove a ground control point use the tool
-			        <b>Delete ground control point</b>.]]>
-			    </source>
-			</trans-unit>
-		    <trans-unit id="faq.georef.georeference.text.4">
-			    <source>
-			        <![CDATA[By using the tool <b>Move map</b> you can move the map to the wanted view.]]>
-			    </source>
-			</trans-unit>
-		    <trans-unit id="faq.georef.georeference.text.5">
-			    <source>
-			        <![CDATA[If enough ground control points have been set, a validation image can be produced by the clicking on
-			        the <b>Update Preview</b> button. It is also possible to switch the used transformation algorithm.
-			        Generally it is recommended to use an "Affine" transformation for geological maps or plane survey sheets
-			        and a minimum number of 4 ground control points. In case of older historic maps types a "TPS" transformation
-			        is recommended. There you can always increase the georeferencing quality by adding more ground control
-			        points.]]>
-			    </source>
-			</trans-unit>
-		    <trans-unit id="faq.georef.georeference.text.6">
-			    <source>
-			        <![CDATA[On the basis of a georeferenced validation results a clip polygon can be drawn. Therefor use the tool
-			        <b>Draw Clip Polygon</b> on the georeferenced map view.]]>
-			    </source>
-			</trans-unit>
-		    <trans-unit id="faq.georef.georeference.text.7">
-			    <source>
-			        The captured georeference paramater could be saved permanently by using the button "Confirm Georeferencing".
-			        This will navigate the user back to the main page and save the georeference result permantly. After a
-			        view minutes the new georeference results are also accessible through the web client by all users.
-			    </source>
-			</trans-unit>
-		    <trans-unit id="faq.georef.history.title">
-			    <source>Georeference History</source>
-			</trans-unit>
-		    <trans-unit id="faq.georef.history.text.1">
-			    <source>
-			        If signed in, click on the dropdown in the upper right corner. There you can display your personal
-			        georeference history by clicking on the menu point "Georeference History". This will open a window,
-			        which gives you an overview over your personal georeference achievements.
-                </source>
 			</trans-unit>
 
 			<!-- georeference choose -->

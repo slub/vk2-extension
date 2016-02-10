@@ -287,7 +287,321 @@
 			<trans-unit id="georeferencehistory.page.beingGenerated">
 				<source>Being generated (duration approx. 15min)</source>
 				<target state="translated">Georeferenzierung wird aktuell noch bearbeitet (Wartezeit ca. 15min)</target>
-			</trans-unit> 
+			</trans-unit>
+
+			<!-- faq page -->
+			<trans-unit id="faq.title">
+				<source>Frequently Asked Questions (FAQ)</source>
+			</trans-unit>
+			<trans-unit id="faq.general.title">
+				<source>General navigation</source>
+				<target state="translated">Allgemeine Navigation</target>
+			</trans-unit>
+			<trans-unit id="faq.general.content.1">
+				<source><![CDATA[The <b>FAQ</b>, the <b>Contact</b> details,
+					or the <b>Impressum</b> of the page can be accessed through buttons in
+					 the footer or buttons above the map search on the left side.]]></source>
+			    <target state="translated">
+			        <![CDATA[Die <b>FAQ</b>, die <b>Kontakt</b> oder die <b>Impressum</b>-Seite können über die Buttons
+			        am unterem rechten Rand der Seite oder den Button oberhalb der Kartensuche (links oben) erreicht werden.]]>
+			    </target>
+			</trans-unit>
+			<trans-unit id="faq.general.content.2">
+				<source><![CDATA[The user menu could be founded in the top right corner of the application. By clicking the
+				    respective flag you can choose the language of the Virtual Map Forum 2.0. If logged in (could be done
+				    through clicking on the <b>login button</b>) you can also access your personal georeference history and
+				    an overview over unreferenced maps. Further you can change here to full-screen-mode by clicking the
+				    arrow-button.]]></source>
+				<target state="translated">
+				    <![CDATA[Das Nutzer-Menu findet sich am oberen rechten Rand der Seite. Über die Nationalflaggen lässt
+				    sich die entsprechende Sprache der Seite ändern. Angemeldete Nutzer können sich außerdem über das
+				    <b>Login-Menu</b> ihre persönliche Georeferenzierungs-Historie oder eine Übersicht bisher
+				    unreferenzierter Karten anzeigen lassen. Des Weiteren kann man durch Klicken des Pfeil-Buttons in den Vollbild-Modus wechseln]]>
+				</target>
+			</trans-unit>
+			<trans-unit id="faq.map.detection.title">
+				<source>Map detection</source>
+				<target state="translated">Kartensuche</target>
+			</trans-unit>
+			<trans-unit id="faq.map.detection.content.1">
+				<source>Using the navigation directly on the map or through the input of a place
+					name in the search field of the
+					spatiotemporal search module (left part / main page) you can choose the
+					relevant spatial area. The spatiotemporal search module also displays the
+					 relevant search results for your spatiotemporally selected criteria.
+					Through using the time slider you can also adjust the relevant time
+					period for your search results.</source>
+				<target state="translated">
+				    Das Modul auf der linken Seite der Karte ermöglicht raumzeitliche Suchen. Durch Kartennavigation oder die
+				    Eingabe eines Ortsnamens kann der relevante Raumausschnitt ausgewählt werden. Dieser synchronisiert
+				    sich mit der Ergebnisliste des raumzeitlichen Suchmoduls, indem er nur Ergebnisse für den relevanten
+				    Raumausschnitt anzeigt. Mit Hilfe eines Zeitschiebers kann außerdem die relevante Zeitperiode für die
+				    Suche eingeschränkt werden.
+				</target>
+			</trans-unit>
+			<trans-unit id="faq.map.placename.title">
+				<source>Search for place</source>
+				<target state="translated">Ortsnamensuche</target>
+			</trans-unit>
+			<trans-unit id="faq.map.placename.content">
+				<source><![CDATA[If you type in the input box a <b>place name</b> the application offers
+					you a select list of possible place names. By choosing a place name from
+					this list with your mouse or the keyboard the map jumps right to this
+					place.]]></source>
+                <target state="translated">
+                    <![CDATA[Wird in das Eingabefeld ein <b>Ortsname</b> eingetippt, bietet die Anwendung eine Auswahlliste
+                    möglicher Ortsnamen an. Wird ein Ortsname aus der Liste durch die Maus oder die Tastur ausgewählt
+                    springt die Karte zu diesem Ort.]]>
+                </target>
+			</trans-unit>
+			<trans-unit id="faq.map.timebar.title">
+				<source>Adjust the time</source>
+				<target state="translated">Zeitschieber</target>
+			</trans-unit>
+			<trans-unit id="faq.map.timebar.content">
+				<source>With the help of the time bar you can adjust the period of your search
+					time. The max-/min-years represent therefor the maximum range of time. The
+					adjusting of the search period affects the listed results in the search
+					list.</source>
+				<target state="translated">Durch den Zeitschieber lässt sich der Suchzeitraum einschränken.
+				    Die Max-/Min-Jahre bilden daher den maximalen Zeitraum ab. Das Einschränken des Suchzeitraums wirkt
+				    sich entsprechend auch auf die angezeigten Ergebnisse in der Suchliste aus.</target>
+			</trans-unit>
+			<trans-unit id="faq.map.searchlist.title">
+				<source>The search list</source>
+				<target state="translated">Suchliste</target>
+			</trans-unit>
+			<trans-unit id="faq.map.searchlist.content.1">
+				<source><![CDATA[The search list displays all available maps for the appropriate search criteria (time,
+				    space, facets). The header of the search list shows the number
+					of search hits. Beneath, you can sort the results by pressing the buttons
+					 <b>Title</b> or <b>Time</b>. If you click on a search result, the
+					appropriate historical map will be displayed on the main map and
+					automatically be transferred to the "My Maps" map container.]]>
+				</source>
+				<target state="translated"><![CDATA[In der Suchliste werden die gefundenen Karten für den entsprechen
+				Raumausschnitt und Suchzeitraum dargestellt. Im Kopf der Suchliste werden die Suchtreffer angezeigt.
+				Darunter kann man die Ergebnisse mit Hilfe der Buttons nach <b>Titel</b> oder <b>Jahr</b> sortieren.
+				Durch das Klicken auf ein Suchergebnis wird die entsprechende historische Karte auf der Hauptkarte
+				dargestellt.]]></target>
+			</trans-unit>
+			<trans-unit id="faq.map.searchlist.content.2">
+				<source>Every single search result will be displayed with its name, time
+					(dating) and its scale. Furthermore there will be given a thumbnail image
+					 of the relevant map. If you move your mouse over a search result, the
+					spatial expansion of the map will be represented in a polygon on the main
+					 map.
+		        </source>
+				<target state="translated">Die einzelnen Suchergebnisse werden in der Liste mit ihrem Kurztitel,
+				 ihrem Zeitstempel (Datierung) und ihrem Maßstab abgebildet. Außerdem wird ein Vorschaubild der
+				 entsprechenden Karte angezeigt. Führt man den Mauszeiger über einen Sucheintrag, so wird die
+				 räumliche Ausdehnung der Karte auf der Hauptkarte dargestell</target>
+			</trans-unit>
+			<trans-unit id="faq.map.navigation.title">
+				<source>Map navigation</source>
+				<target state="translated">Kartennavigation</target>
+			</trans-unit>
+			<trans-unit id="faq.map.navigation.content.1">
+				<source>The picture left hand side shows the different navigation tools which can
+					 be used on the maps.</source>
+				<target state="translated">In der Abbildungs links werden die verschiedenen Navigationswerkzeuge für die Karte dargestellt.</target>
+			</trans-unit>
+			<trans-unit id="faq.map.navigation.content.2">
+				<source><![CDATA[By pressing the <b>+</b> or the <b>-</b> you can zoom into or out of the
+					map (you can also use the mouse wheel)]]></source>
+				<target state="translated"><![CDATA[Durch Drücken des <b>+</b> oder des <b>-</b> kann in die Karte
+				hinein oder heraus gezoomt werden (Alternativ kann auch das Mausrad zum Zoomen verwendet werden).]]></target>
+			</trans-unit>
+			<trans-unit id="faq.map.navigation.content.3">
+				<source><![CDATA[The <b>Magnifier button</b> activates a map magnifier. If you move it
+					over a historical map it will show the recent <a
+					href="http://www.openstreetmap.org/#map=5/51.500/-0.100">OpenStreetMap</a>
+					 for this part. Press <b>y</b> and the area for the magnifier gets
+					bigger. Press <b>x</b> and the area gets smaller.]]></source>
+				<target state="translated">
+				    <![CDATA[Die <b>Lupe</b> aktiviert eine Bildschirmlupe. Fährt man mit dieser über eine historische Karte,
+				    wird für den Lupenausschnitt die aktuelle <a href="http://www.openstreetmap.org/#map=5/51.500/-0.100">OpenStreetMap</a>
+				    Karte angezeigt. Drückt man währenddessen <b>y</b> wird der Lupenausschnitt größer. Drückt man <b>x</b> wird der Ausschnitt kleiner.]]>
+				</target>
+			</trans-unit>
+			<trans-unit id="faq.map.navigation.content.4">
+				<source><![CDATA[Press and hold the Shift key and press and move the mouse at the same
+					time you rotate the map. Press the <b>Needle button</b> the map will be
+					"northed" again.]]></source>
+				<target state="translated">
+				    <![CDATA[Durch das Halten der Shift-Taste sowie das parellele drücken und ziehen der Maus auf der Karte,
+				    kann diese rotiert werden. Durch das Klicken auf den Button mit der <b>Nadel</b> wird die Karte
+				    anschließend wieder genordet.]]>
+				</target>
+			</trans-unit>
+			<trans-unit id="faq.map.navigation.content.5">
+				<source>
+				    The last buttons allow you to create a sharing link of the current map view as well as to activate
+				    the illustration of the actual lat / lon position of the map.
+				</source>
+				<target state="translated">Der letzte Button ermöglicht die Erstellung eines Links, mit welchem man die
+				aktuelle Kartensicht mit anderen Nutzern teilen kann.</target>
+			</trans-unit>
+			<trans-unit id="faq.map.management.title">
+				<source>Manage chosen maps</source>
+				<target state="translated">Verwaltung der eigenen Kartenauswahl</target>
+			</trans-unit>
+			<trans-unit id="faq.map.management.content">
+				<source>If you choose a map in the spatiotemporal search module it will be added
+					automatically to the main map and to the map management container. In
+					this map management container you can change the transparency of maps,
+					activate and deactivate maps, you can add related maps, delete any map
+					from your own selection and it is possible to change the order of the
+					presentation of the maps on the main map.</source>
+				<target state="translated">
+				    Im Kartenverwaltungsmodul werden die ausgewählten bzw. hinzugefügten Karten verwaltet. Es kann die
+				    Transparenz der Karte geändert werden, die Karte kann aktiviert und deaktiviert werden, es können andere
+				    verwandte Karten hinzugefügt werden, die Karte kann von der eigenen Auswahl gelöscht werden und man kann
+				    die Reihenfolge der Darstellung der Karten auf der Hauptkarte überarbeiten.
+				</target>
+			</trans-unit>
+			<trans-unit id="faq.map.transparency.title">
+				<source>Change transparency</source>
+				<target state="translated">Transparenz verändern</target>
+			</trans-unit>
+			<trans-unit id="faq.map.transparency.content">
+				<source>If you click with your mouse on the bar and slide it up- or downwards you
+					 can change the transparency of the chosen map. This will help you to see
+					 the changing in the landscapes and to check the georeferencing of your
+					map.</source>
+				<target state="translated">
+				    Klickt man auf die Leiste am Kopf des Symbols und bewegt die Maus nach unten oder oben verändert sich
+				    die Transparenz der dargestellten Karte. Diese Funktion hilft dabei die Veränderungen in der Landschaft
+				    zu beobachten und die Georeferenzierungen zu überprüfen.
+				</target>
+			</trans-unit>
+			<trans-unit id="faq.map.activate.title">
+				<source>Activate / deactivate maps</source>
+				<target state="translated">Aktivieren und Deaktivieren von Karten</target>
+			</trans-unit>
+			<trans-unit id="faq.map.activate.content.1">
+				<source>activated</source>
+				<target state="translated">Aktivieren</target>
+			</trans-unit>
+			<trans-unit id="faq.map.activate.content.2">
+				<source>deactivated</source>
+				<target state="translated">Deaktivieren</target>
+			</trans-unit>
+			<trans-unit id="faq.map.activate.content.3">
+				<source>By clicking with your mouse on the green square you can either activate
+					or deactivate the corresponding map sheet.</source>
+				<target state="translated">Klickt man mit der Maus auf das grüne Quadrat aktiviert oder deaktiviert man die entsprechende Karte.</target>
+			</trans-unit>
+			<trans-unit id="faq.adddel.title">
+				<source>Add / delete maps</source>
+				<target state="translated">Hinzufügen und Löschen von Karten</target>
+			</trans-unit>
+			<trans-unit id="faq.adddel.content.1">
+				<source>To add a map sheet choose the one you would like to work on from the
+					listed map sheets beneath the spatiotemporal search module by just
+					clicking on it with your mouse or by using the keyboard. The map sheet
+					will automatically be transferred to the "My Maps" map
+					container.</source>
+				<target state="translated">
+				    Um eine Karte der Kartenverwaltung hinzuzufügen, klickt man auf die entsprechende Karte in der
+				    Suchliste mit der Maus oder navigieret mit der Tastatur zur gewünschten Karte. Diese wird dann
+				    automatisch in die Kartenverwaltung übertragen.
+				</target>
+			</trans-unit>
+			<trans-unit id="faq.adddel.content.2">
+				<source><![CDATA[To delete a map sheet just press the "<b>x</b>" <b>button</b>
+					beneath the activate / deactivate tool.]]></source>
+				<target state="translated"><![CDATA[Der Nutzer kann ausgewählte Karten wieder löschen. Hierfür
+				klickt man auf den <b>"x" Button</b> unterhalb des Aktivierungs- / Deaktivierungstools.]]></target>
+			</trans-unit>
+			<trans-unit id="faq.map.reorder.title">
+				<source>Reorder maps</source>
+				<target state="translated">Ändern der Reihenfolge</target>
+			</trans-unit>
+			<trans-unit id="faq.map.reorder.content.1">
+				<source>To reorder maps use your mouse cursor. Click on the thumbnail version of
+					one map sheets in your "My Maps" map container and press and
+					hold it. Then you can easily move it up- or downwards in the container to
+					 change the order of the map sheets.</source>
+                <target state="translated">
+                    Das Ändern der Reihenfolge der Karten erfolgt mit der Maus. Durch Klicken auf das Vorschaubild einer Karte in der
+                    Kartenverwaltung und halten der Maustaste kann die Karte an die gewünschte Position verschoben werden.
+                </target>
+			</trans-unit>
+			<trans-unit id="faq.map.reorder.content.2">
+				<source>If you want to have a map at the very top you can either use the drag-
+					and-drop method or you can just click on the symbol above the activate /
+					deactivate switch. So the map you just clicked on will automatically be
+					moved to the top of the list.</source>
+				<target state="translated">
+				    Falls eine Karte ad hoc an die erste Stelle verschoben werden soll, kann man entweder die
+				    Drag-and-Drop-Methode nutzen oder auf das Symbol oberhalb des Aktivierungs- / Deaktivierungstools
+				    klicken. Auf diese Weise wird die gerade angeklickte Karte automatisch als oberste Karte dargestellt.
+				</target>
+			</trans-unit>
+			<trans-unit id="faq.map.original.title">
+				<source>Original maps</source>
+				<target state="translated">Originalkarten und Metadaten</target>
+			</trans-unit>
+			<trans-unit id="faq.map.original.content.1">
+				<source>If you selected one map from the plane survey sheet search list by
+					clicking on it and then click on the corresponding square in the main map
+					 you will get further information about the map sheet. You will also be
+					given a picture of the original map sheet.</source>
+                <target state="translated">
+                    Wenn eine Karte aus der Suchliste ausgewählt wurde und man dann auf das dazugehörige Quadrat in der
+                    Hauptkarte klickt erhält man zusätzliche Informationen über dieses Kartenblatt.
+                    Außerdem wird eine Abbildung der Originalkarte angezeigt.
+                </target>
+			</trans-unit>
+			<trans-unit id="faq.sidebar.map.general">
+				<source>General navigation</source>
+				<target state="translated">Allgemeine Navigation</target>
+			</trans-unit>
+			<trans-unit id="faq.sidebar.map.detection">
+				<source>Map detection</source>
+				<target state="translated">Kartensuche</target>
+			</trans-unit>
+			<trans-unit id="faq.sidebar.map.placename">
+				<source>Search for a place</source>
+				<target state="translated">Ortsnamensuche</target>
+			</trans-unit>
+			<trans-unit id="faq.sidebar.map.timebar">
+				<source>Adjust the time</source>
+				<target state="translated">Zeitschieber</target>
+			</trans-unit>
+			<trans-unit id="faq.sidebar.map.searchlist">
+				<source>The search list</source>
+				<target state="translated">Suchliste</target>
+			</trans-unit>
+			<trans-unit id="faq.sidebar.map.navigation">
+				<source>Map navigation</source>
+				<target state="translated">Kartennavigation</target>
+			</trans-unit>
+			<trans-unit id="faq.sidebar.map.management">
+				<source>Manage chosen maps</source>
+				<target state="translated">Kartenverwaltung</target>
+			</trans-unit>
+			<trans-unit id="faq.sidebar.map.transparency">
+				<source>Change transparency</source>
+				<target state="translated">Transparenz verändern</target>
+			</trans-unit>
+			<trans-unit id="faq.sidebar.map.activate">
+				<source>Activate / deactivate maps</source>
+				<target state="translated">Aktivieren und Deaktivieren von Karten</target>
+			</trans-unit>
+			<trans-unit id="faq.sidebar.map.adddel">
+				<source>Add / delete maps</source>
+				<target state="translated">Hinzufügen und Löschen von Karten</target>
+			</trans-unit>
+			<trans-unit id="faq.sidebar.map.reorder">
+				<source>Reorder maps</source>
+				<target state="translated">Ändern der Reihenfolge</target>
+			</trans-unit>
+			<trans-unit id="faq.sidebar.map.original">
+				<source>Original maps and meta data</source>
+				<target state="translated">Originalkarten</target>
+			</trans-unit>
 			<trans-unit id="faq.sidebar.georef">
 			    <source>Georeferencing of maps</source>
 			    <target state="translated">Georeferenzierung</target>
@@ -300,18 +614,14 @@
                 <source>Georeferencing</source>
                 <target state="translated">Georeferenzierung</target>
             </trans-unit>
-            <trans-unit id="faq.sidebar.georef.history">
-                <source>Georeference History</source>
-                <target state="translated">Georeferenzierungshistorie</target>
-            </trans-unit>
-            <trans-unit id="faq.georef.title">
+		    <trans-unit id="faq.georef.title">
 			    <source>Georeferencing of Maps</source>
 			    <target state="translated">Georeferenzierung von Karten</target>
 			</trans-unit>
             <trans-unit id="faq.georef.text.1">
 			    <source>
-			        The Virtual Map Forum 2.0 gives access to more than 7.000 historic maps. For the complete
-			        georeferencing of them we need your help.
+			        The Virtual Map Forum 2.0 gives access to a wide range of historic maps, which are waiting for
+			        georeferencing. As a user you can thereby help us in this process.
 			    </source>
 			    <target state="translated">
 			        Das Virtuellen Kartenforum 2.0 erlaubt den Zugriff auf über 7.000 historische Karten. Um diesen Kartenbestand
@@ -344,13 +654,14 @@
 			</trans-unit>
 		    <trans-unit id="faq.georef.selection.title">
 			    <source>Map selection</source>
-			    <target state="translated">Auswahl der Karte</target>
+                <target state="translated">Auswahl der Karte</target>
 			</trans-unit>
 		    <trans-unit id="faq.georef.selection.text.1">
 			    <source>
-			        If signed in, click on the dropdown in the upper right corner. There you can display unreferenced
-			        by clicking on the menu point "Show unreferenced maps". In the displayed window you can than choose
-			        a map for georeferencing by clicking on the "Georeference" button.
+			        In the user menu you can open an list of unreferenced maps by clicking on point "Show unreferenced maps".
+			        The displayed lists give you than also an option for performing an subselection of the unreferenced maps by title
+			        in the input field. By clicking on the "Georeference" button of a given map record you will be forwarded to the
+			        georeference view. Further you can open your personal georeference history by clicking on the "Georeference History" point.
 			    </source>
 			    <target state="translated">
 			        Ist man als Nutzer angemeldet, kann man sich durch einen Klick auf das Dropdown-Menu in der oberen rechten
@@ -365,7 +676,7 @@
 			</trans-unit>
 		    <trans-unit id="faq.georef.georeference.text.1">
 			    <source>
-			        For apply transformation algorithms on the image, ground control points (gcp) are need. A ground control
+			        For apply transformation algorithms to the historic map image, ground control points (gcp) are needed. A ground control
 			        is composed of a point on the unreferenced image (left side) and the corresponding point on the
 			        georeferenced map (right side). Depending on the used transformation algorithm more or less ground
 			        control points are used (e.g. affine > 4 gcp). Based on a validation result also a clip polygon can
@@ -454,21 +765,11 @@
 			        stehen die neuen Georeferenzierungsergebnisse auch allen anderen Nutzern über die Plattform zur Verfügung.
 			    </target>
 			</trans-unit>
-		    <trans-unit id="faq.georef.history.title">
-			    <source>Georeference History</source>
-			    <target state="translated">Georeferenzierungshistorie</target>
-			</trans-unit>
-		    <trans-unit id="faq.georef.history.text.1">
+		    <trans-unit id="faq.georef.georeference.text.8">
 			    <source>
-			        If signed in, click on the dropdown in the upper right corner. There you can display your personal
-			        georeference history by clicking on the menu point "Georeference History". This will open a window,
-			        which gives you an overview over your personal georeference achievements.
-                </source>
-                <target state="translated">
-                    Ist man als Nutzer angemeldet, kann man sich durch einen Klick auf das Dropdown-Menu in der oberen rechten
-        	        Ecke und einen Klick auf den Menu-Punkt "Georeferenzierungshistorie", eine Übersicht seiner persönlichen
-        	        Georeferenzierungsgeschichte anzeigen lassen.
-                </target>
+			        For more information please refer to the Video link further above or contact us.
+			    </source>
+			    <target state="translated">Mehr Informationen zur Georeferenzierung finden sie in dem weiter oben verlinkten Video.</target>
 			</trans-unit>
 
 			<!-- georeference choose -->

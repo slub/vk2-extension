@@ -5,28 +5,29 @@
 
 	<vk:head>
 		<style>
-		body { overflow: initial; }
-		.container { margin: 30px auto 60px auto; }
-		.content { margin-top: -50px; }
-		h2 { border-bottom: 1px dotted #ccc; padding: 30px 0 10px 0; margin: 20px 0; clear: both; }
-		h3 { font-size: 22px; color: #666; padding: 20px 0 0 0; margin: 10px 0; clear: both; }
-		p { margin: 16px 0; }
-		.media-container { position: relative; padding: 5px; border: 1px solid #ccc;}
-		.media-container.pos-left { float: left; margin: 0 10px 10px 0; }
-		.media-container.pos-right { float: right; margin: 0 0 10px 10px; text-align: right; }
-		.media-container img { border: 1px solid #eee; }
-		.caption { font-size: 11px; color: #666; margin: 4px 0; }
-		#faq-affix-sidebar > .nav { border-top: 1px dotted #ccc; padding-top: 10px;  }
-		#faq-affix-sidebar .nav .nav { display: none; }
-		#faq-affix-sidebar .nav .active .nav { display: block; }    
-		#faq-affix-sidebar .nav > li a { color: #666; font-size: 16px; padding: 2px 6px 2px 10px; border-left: 1px solid transparent; }
-		#faq-affix-sidebar .nav > li a:hover { background: transparent; text-decoration: underline; }
-		#faq-affix-sidebar .nav > li > a { font-weight: bold; }    
-		#faq-affix-sidebar .nav > li li > a { font-weight: 300; font-size: 14px; padding-left: 20px; }      
-		#faq-affix-sidebar .nav .active > a { color: #f33; border-left: 1px solid #f33; }
-		#faq-affix-sidebar .nav .totop { font-weight: 300; border-top: 1px dotted #ccc; font-size: 12px; color: #999; margin-top: 10px; }
-		.bs-callout{ padding: 20px; margin: 20px 0; border: 1px solid #eee; border-left-width: 5px; border-radius: 3px; }
-		.bs-callout-warning { border-left-color: #f0ad4e;}
+			body { overflow: initial; }
+			.container { margin: 30px auto 60px auto; }
+			.content { margin-top: -50px; }
+			h2 { border-bottom: 1px dotted #ccc; padding: 30px 0 10px 0; margin: 20px 0; clear: both; }
+			h3 { font-size: 22px; color: #666; padding: 20px 0 0 0; margin: 10px 0; clear: both; }
+			p { margin: 16px 0; }
+			.media-container { position: relative; padding: 5px; border: 1px solid #ccc;}
+			.media-container.pos-left { float: left; margin: 0 10px 10px 0; }
+			.media-container.pos-right { float: right; margin: 0 0 10px 10px; text-align: right; }
+			.media-container img { border: 1px solid #eee; }
+			.caption { font-size: 11px; color: #666; margin: 4px 0; }
+			#faq-affix-sidebar > .nav { border-top: 1px dotted #ccc; padding-top: 10px;  }
+			#faq-affix-sidebar .nav .nav { display: none; }
+			#faq-affix-sidebar .nav .active .nav { display: block; }
+			#faq-affix-sidebar .nav > li a { color: #666; font-size: 16px; padding: 2px 6px 2px 10px; border-left: 1px solid transparent; }
+			#faq-affix-sidebar .nav > li a:hover { background: transparent; text-decoration: underline; }
+			#faq-affix-sidebar .nav > li > a { font-weight: bold; }
+			#faq-affix-sidebar .nav > li li > a { font-weight: 300; font-size: 14px; padding-left: 20px; }
+			#faq-affix-sidebar .nav .active > a { color: #f33; border-left: 1px solid #f33; }
+			#faq-affix-sidebar .nav .totop { font-weight: 300; border-top: 1px dotted #ccc; font-size: 12px; color: #999; margin-top: 10px; }
+			.bs-callout{ padding: 20px; margin: 20px 0; border: 1px solid #eee; border-left-width: 5px; border-radius: 3px; }
+			.bs-callout-warning { border-left-color: #f0ad4e;}
+			div.video { text-align: center; }
 		</style>
 	</vk:head>
 	
@@ -45,7 +46,7 @@
 						<p><f:translate id="faq.general.content.1" /></p>
 						<figure class="media-container pos-left">
 							<img
-								src="/typo3conf/ext/vk2/Resources/Public/images/faq/en/anmelden.png"
+								src="/typo3conf/ext/vk2/Resources/Public/images/faq/login.png"
 								alt="anmelden">
 							<figcaption class="caption"></figcaption>
 						</figure>
@@ -54,14 +55,13 @@
 
 					<article id="map-detection">
 						<h2><f:translate id="faq.map.detection.title" /></p></h2>
-						<p><f:translate id="faq.map.detection.content.1" /></p></p>
-						<p><f:translate id="faq.map.detection.content.2" /></p></p>
+						<p><f:translate id="faq.map.detection.content.1" /></p>
 
 						<section id="search-for-a-place">
 							<h3><f:translate id="faq.map.placename.title" /></h3>
 							<figure class="media-container pos-left">
 								<img
-									src="/typo3conf/ext/vk2/Resources/Public/images/faq/en/ortsname.png"
+									src="/typo3conf/ext/vk2/Resources/Public/images/faq/placename.png"
 									alt="ortsname_dt">
 								<figcaption class="caption"></figcaption>
 							</figure>
@@ -72,7 +72,7 @@
 							<h3><f:translate id="faq.map.timebar.title" /></h3>
 							<figure class="media-container pos-left">
 								<img
-									src="/typo3conf/ext/vk2/Resources/Public/images/faq/en/zeitleiste.png"
+									src="/typo3conf/ext/vk2/Resources/Public/images/faq/timebar.png"
 									alt="zeitleiste">
 								<figcaption class="caption"></figcaption>
 							</figure>
@@ -83,7 +83,7 @@
 							<h3><f:translate id="faq.map.searchlist.title" /></h3>
 							<figure class="media-container pos-left">
 								<img
-									src="/typo3conf/ext/vk2/Resources/Public/images/faq/en/suchliste.png"
+									src="/typo3conf/ext/vk2/Resources/Public/images/faq/searchlist.png"
 									alt="suchliste">
 								<figcaption class="caption"></figcaption>
 							</figure>
@@ -95,7 +95,7 @@
 							<h3><f:translate id="faq.map.navigation.title" /></h3>
 							<figure class="media-container pos-left">
 								<img
-									src="/typo3conf/ext/vk2/Resources/Public/images/faq/en/buttons.png"
+									src="/typo3conf/ext/vk2/Resources/Public/images/faq/map_navigation.png"
 									alt="buttons_dt">
 								<figcaption class="caption"></figcaption>
 							</figure>
@@ -112,7 +112,7 @@
 						<h2><f:translate id="faq.map.management.title" /></h2>
 						<figure class="media-container pos-left">
 							<img
-								src="/typo3conf/ext/vk2/Resources/Public/images/faq/en/kartenauswahl.png"
+								src="/typo3conf/ext/vk2/Resources/Public/images/faq/map_collection.png"
 								alt="kartenauswahl">
 							<figcaption class="caption"></figcaption>
 						</figure>
@@ -123,7 +123,7 @@
 							<h3><f:translate id="faq.map.transparency.title" /></h3>
 							<figure class="media-container pos-left">
 								<img
-									src="/typo3conf/ext/vk2/Resources/Public/images/faq/en/transparenz.png"
+									src="/typo3conf/ext/vk2/Resources/Public/images/faq/transparency.png"
 									alt="transparenz">
 								<figcaption class="caption"></figcaption>
 							</figure>
@@ -134,13 +134,13 @@
 							<h3><f:translate id="faq.map.activate.title" /></h3>
 							<figure class="media-container pos-left">
 								<img
-									src="/typo3conf/ext/vk2/Resources/Public/images/faq/en/aktiviert.png"
+									src="/typo3conf/ext/vk2/Resources/Public/images/faq/active_map.png"
 									alt="aktiviert">
 								<figcaption class="caption"><f:translate id="faq.map.activate.content.1" /></figcaption>
 							</figure>
 							<figure class="media-container pos-left">
 								<img
-									src="/typo3conf/ext/vk2/Resources/Public/images/faq/en/deaktiviert.png"
+									src="/typo3conf/ext/vk2/Resources/Public/images/faq/deactive_map.png"
 									alt="deaktiviert">
 								<figcaption class="caption"><f:translate id="faq.map.activate.content.2" /></figcaption>
 							</figure>
@@ -157,7 +157,7 @@
 							<h3><f:translate id="faq.map.reorder.title" /></h3>
 							<figure class="media-container pos-left">
 								<img
-									src="/typo3conf/ext/vk2/Resources/Public/images/faq/en/verschieben.png"
+									src="/typo3conf/ext/vk2/Resources/Public/images/faq/move_map.png"
 									alt="verschieben">
 								<figcaption class="caption"></figcaption>
 							</figure>
@@ -167,12 +167,6 @@
 
 						<section id="original-maps-meta-data">
 							<h3><f:translate id="faq.map.original.title" /></h3>
-							<figure class="media-container pos-left">
-								<img
-									src="/typo3conf/ext/vk2/Resources/Public/images/faq/en/meta.png"
-									alt="meta_dt">
-								<figcaption class="caption"></figcaption>
-							</figure>
 							<p><f:translate id="faq.map.original.content.1" /></p>
 							<p><f:translate id="faq.map.original.content.2" /></p>
 						</section>
@@ -195,7 +189,7 @@
 						<section id="map-selection">
 							<h3><f:translate id="faq.georef.selection.title" /></h3>
 							<figure class="media-container pos-left">
-								<img src="/typo3conf/ext/vk2/Resources/Public/images/faq/en/angemeldet.png" alt="angemeldet">
+								<img src="/typo3conf/ext/vk2/Resources/Public/images/faq/login.png" alt="angemeldet">
 								<figcaption class="caption"></figcaption>
 							</figure>
 							<p><f:translate id="faq.georef.selection.text.1" /></p>
@@ -204,25 +198,27 @@
 						<section id="geo-referencing">
 							<h3><f:translate id="faq.georef.georeference.title" /></h3>
 							<figure class="media-container pos-left">
-								<img src="/typo3conf/ext/vk2/Resources/Public/images/faq/en/georef.jpg" alt="Georeferenzierung">
+								<img src="/typo3conf/ext/vk2/Resources/Public/images/faq/georef_gcp.png" alt="gcp">
 								<figcaption class="caption"></figcaption>
 							</figure>
+
 							<p><f:translate id="faq.georef.georeference.text.1" /></p>
 							<p><f:translate id="faq.georef.georeference.text.2" /></p>
 							<p><f:translate id="faq.georef.georeference.text.3" /></p>
 							<p><f:translate id="faq.georef.georeference.text.4" /></p>
-							<p id="georeferencing-of-maps-algorithm"><f:translate id="faq.georef.georeference.text.5" /></p>
-							<p><f:translate id="faq.georef.georeference.text.6" /></p>
-							<p><f:translate id="faq.georef.georeference.text.7" /></p>
-						</section>
 
-						<section id="geo-referncing-history">
-							<h3><f:translate id="faq.georef.history.title" /></h3>
 							<figure class="media-container pos-left">
-								<img src="/typo3conf/ext/vk2/Resources/Public/images/faq/en/kopf_rechts.png" alt="kopf_rechts">
+								<img src="/typo3conf/ext/vk2/Resources/Public/images/faq/georef_transform.png" alt="transform">
 								<figcaption class="caption"></figcaption>
 							</figure>
-							<p><f:translate id="faq.georef.history.text.1" /></p>
+							<p id="georeferencing-of-maps-algorithm"><f:translate id="faq.georef.georeference.text.5" /></p>
+							<figure class="media-container pos-left">
+								<img src="/typo3conf/ext/vk2/Resources/Public/images/faq/georef_clip.png" alt="clip">
+								<figcaption class="caption"></figcaption>
+							</figure>
+							<p><f:translate id="faq.georef.georeference.text.6" /></p>
+							<p><f:translate id="faq.georef.georeference.text.7" /></p>
+							<p><f:translate id="faq.georef.georeference.text.8" /></p>
 						</section>
 
 					</article>
@@ -259,7 +255,6 @@
 								<ul class="nav">
 									<li><a href="#map-selection"><f:translate id="faq.sidebar.georef.selection" /></a></li>
 									<li><a href="#geo-referencing"><f:translate id="faq.sidebar.georef.georeferencing" /></a></li>
-									<li><a href="#geo-referncing-history"><f:translate id="faq.sidebar.georef.history" /></a></li>
 								</ul>
 							</li>
 						</ul>
