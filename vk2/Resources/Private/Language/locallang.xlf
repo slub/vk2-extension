@@ -409,10 +409,10 @@
 			<trans-unit id="evaluation.page.enterUserId">
 				<source>User-Id</source>
 			</trans-unit> 	
-			<trans-unit id="evaluation.page.getAllUnvalideProcess">
+			<trans-unit id="evaluation.page.getAllUnvalideProcesses">
 				<source>Get all pending processes</source>
 			</trans-unit>
-			<trans-unit id="evaluation.page.getAllInvalideProcess">
+			<trans-unit id="evaluation.page.getAllUnvalideProcesses">
 				<source>Get all "invalide" processes</source>
 			</trans-unit>
 			

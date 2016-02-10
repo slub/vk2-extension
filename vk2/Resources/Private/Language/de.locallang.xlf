@@ -246,7 +246,7 @@
 				<source>Get all pending processes</source>
 				<target state="translated">Zeige alle ausstehenden Prozesse</target>
 			</trans-unit>
-			<trans-unit id="evaluation.page.getAllInvalideProcess">
+			<trans-unit id="evaluation.page.getAllUnvalideProcesses">
 				<source>Get all "invalide" processes</source>
 				<target state="translated">Zeige alle "invaliden" Prozesse an</target>
 			</trans-unit>
