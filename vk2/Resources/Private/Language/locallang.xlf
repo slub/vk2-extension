@@ -794,7 +794,7 @@
 
 			<!-- vk2.tool.FacetedSearchTool -->
 			<trans-unit id="client.facetedsearch.titleAE">
-				<source>Topographical maps (1:25.000)</source>
+				<source>Topological maps (1:25.000)</source>
 			</trans-unit>
 			<trans-unit id="client.facetedsearch.titleAK">
 				<source>Historic map</source>
@@ -806,7 +806,7 @@
 				<source>Plane survey sheets (1:25.000)</source>
 			</trans-unit>
 			<trans-unit id="client.facetedsearch.titleTK">
-				<source>Topographical maps (1:100.000)</source>
+				<source>Topological maps (1:100.000)</source>
 			</trans-unit>
 
 			<!-- vk2.tool.GazetteerSearchTool -->

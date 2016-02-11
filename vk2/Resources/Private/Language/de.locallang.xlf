@@ -1118,7 +1118,7 @@
 
 			<!-- vk2.tool.FacetedSearchTool -->
 			<trans-unit id="client.facetedsearch.titleAE">
-				<source>Topographical maps (1:25.000)</source>
+				<source>Topological maps (1:25.000)</source>
 				<target state="translated">Äquidistantenkarten (1:25.000)</target>
 			</trans-unit>
 			<trans-unit id="client.facetedsearch.titleAK">
@@ -1134,7 +1134,7 @@
 				<target state="translated">Messtischblätter (1:25.000)</target>
 			</trans-unit>
 			<trans-unit id="client.facetedsearch.titleTK">
-				<source>Topographical maps (1:100.000)</source>
+				<source>Topological maps (1:100.000)</source>
 				<target state="translated">Topographische Karten des Deutschen Reiches (1:100.000)</target>
 			</trans-unit>
 

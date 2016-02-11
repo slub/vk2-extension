@@ -50,7 +50,7 @@ vk2.tool.FacetedSearch = function(parentEl, georeferenceMode){
 		var title = vk2.utils.getMsg('facet-' + key.toLowerCase());
 		innerHTML += '<label class="checkbox-inline" title="' + title + '"><input class="facet-search-el" type="checkbox" id="' + key +
 			'" value="' + vk2.tool.FacetedSearchTypes[key] + '" title="' + title +
-			'" >' + key + '</label>';
+			'" >' + title + '</label>';
 	};
 	
 	var facetEl_ = goog.dom.createDom('div', {

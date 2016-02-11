@@ -153,7 +153,7 @@ page {
 		vk2 = EXT:vk2/Resources/Public/dist/style.css
 	}
 	includeJSlibs {
-		jquery = http://code.jquery.com/jquery-1.9.1.min.js
+    	jquery = http://code.jquery.com/jquery-1.9.1.min.js
 		bootstrap = http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js
 		proj4 = http://cdnjs.cloudflare.com/ajax/libs/proj4js/2.2.1/proj4.js
 		jquery-ui = http://code.jquery.com/ui/1.10.3/jquery-ui.min.js
@@ -161,6 +161,6 @@ page {
 		filter = EXT:vk2/Resources/Public/dist/glif.min.js
 		params = EXT:vk2/Resources/Public/vk2-params.js
 		ol3 = EXT:vk2/Resources/Public/dist/ol-vk2.js
-		vk2 = EXT:vk2/Resources/Public/dist/vk2-min-debug.js
+		vk2 = EXT:vk2/Resources/Public/dist/vk2-min.js
 	}
 }
