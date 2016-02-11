@@ -108,6 +108,7 @@ lib.felogin  {
       ll_welcome_message = Bitte geben Sie ihren Nutzername und ihr Passwort ein
       ll_forgot_reset_message = Bitte geben Sie ihren Nutzernamen oder ihre Email-Adresse ein. Sie erhalten anschließend einen Link zum Zurücksetzen des Passwortes.
       ll_forgot_header = Passwort vergessen?
+      ll_error_message = Bei der Anmeldung ist ein Fehler aufgetreten. Bitte überprüfen Sie ihren Nutzernamen und ihr Passwort und versuchen Sie es erneut. Bleibt der Fehler bestehenden wenden Sie sich bitte an den Administrator der Seite.
    }
 }
 
