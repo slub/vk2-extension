@@ -785,6 +785,12 @@
 			<trans-unit id="client.mapsearchmodule.title">
 				<source>Title</source>
 			</trans-unit>
+			<trans-unit id="client.mapsearchmodule.facetsearch.open">
+			    <source>Open faceted search</source>
+			</trans-unit>
+			<trans-unit id="client.mapsearchmodule.facetsearch.close">
+                <source>Close faceted search</source>
+            </trans-unit>
 
 			<!-- vk2.tool.FacetedSearchTool -->
 			<trans-unit id="client.facetedsearch.titleAE">

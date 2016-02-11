@@ -25,6 +25,38 @@ vk2.utils.addLazyLoadingBehavior = function(elements) {
 			return c + d >= a && c <= a + b;
 		}
 };
+
+/**
+ * Functions adds an open close behavior to a given set of parameters.
+ *
+ * @param {Element} eventEl
+ * @param {Element} displayEl
+ * @param {Element} classEl
+ * @param {string=} opt_className
+ * @param {string=} opt_titleOpen
+ * @param {string=} opt_titleClose
+ */
+vk2.utils.addOpenCloseBehavior = function(eventEl, displayEl, classEl, opt_className, opt_titleOpen, opt_titleClose) {
+	var className = goog.isDef(opt_className) ? opt_className : 'active',
+		openTitle = goog.isDef(opt_titleOpen) ? opt_titleOpen : '',
+		closeTitle = goog.isDef(opt_titleClose) ? opt_titleClose : '';
+
+	goog.events.listen(eventEl,'click', function(event){
+		event.preventDefault();
+
+		if (goog.dom.classes.has(classEl, className)){
+			goog.dom.classes.remove(classEl, className);
+			eventEl['title'] = openTitle;
+			$(displayEl).slideToggle();
+		} else {
+			$(displayEl).slideToggle(function(){
+				goog.dom.classes.add(classEl, className);
+				eventEl['title'] = closeTitle;
+			});
+		};
+	});
+};
+
 /**
  * @static
  * @param {ol.Map} map

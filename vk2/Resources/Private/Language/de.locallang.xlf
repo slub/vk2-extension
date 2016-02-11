@@ -1107,6 +1107,14 @@
 				<source>Title</source>
 				<target state="translated">Titel</target>
 			</trans-unit>
+			<trans-unit id="client.mapsearchmodule.facetsearch.open">
+			    <source>Open faceted search</source>
+				<target state="translated">Öffne Facettensuche</target>
+			</trans-unit>
+			<trans-unit id="client.mapsearchmodule.facetsearch.close">
+                <source>Close faceted search</source>
+				<target state="translated">Schließe Facettensuche</target>
+            </trans-unit>
 
 			<!-- vk2.tool.FacetedSearchTool -->
 			<trans-unit id="client.facetedsearch.titleAE">

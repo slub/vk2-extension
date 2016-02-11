@@ -30,8 +30,7 @@ vk2.app.PresentationApp = function(settings){
 	vk2.utils.checkIfCookiesAreEnabble();
 	
 	// check if the app should be started in georeference mode
-	var isAuthenticate = goog.isDef(settings['authenticate']) && goog.isBoolean(settings['authenticate']) ? settings['authenticate'] : false,
-		georeferenceModuleActivate = false; //isAuthenticate && vk2.settings.GEOREFERENCE_ON ? true : false;
+	var isAuthenticate = goog.isDef(settings['authenticate']) && goog.isBoolean(settings['authenticate']) ? settings['authenticate'] : false;
 		
 	// append modal behavior to page anchors
 	var modalAnchorClassName = goog.isDef(settings['modalAnchorClassName']) ? settings['modalAnchorClassName'] : 'vk2-modal-anchor';
@@ -47,7 +46,7 @@ vk2.app.PresentationApp = function(settings){
 	var mapController = new vk2.controller.MapController(settings['mapContainerId'], vk2.settings.MAPVIEW_PARAMS);
 	
 	// load spatialsearch 
-	var spatialSearch = new vk2.module.SpatialTemporalSearchModule(settings['spatialsearchContainerId'], mapController.getMap(), georeferenceModuleActivate);
+	var spatialSearch = new vk2.module.SpatialTemporalSearchModule(settings['spatialsearchContainerId'], mapController.getMap());
 	mapController.registerSpatialTemporalSearch(spatialSearch);
 	
 	// load layermanagement

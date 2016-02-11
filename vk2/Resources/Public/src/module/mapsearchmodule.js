@@ -11,7 +11,8 @@ goog.require('goog.events.EventType');
 goog.require('vk2.factory.MapSearchFactory');
 goog.require('vk2.source.ServerPagination');
 goog.require('vk2.tool.FacetedSearchEventType');
-
+goog.require('vk2.tool.FacetedSearch');
+goog.require('vk2.utils');
 
 /**
  * @enum {string}
@@ -24,11 +25,10 @@ vk2.module.MapSearchModuleEventType = {
 /**
  * @param {Element|string} parentEl
  * @param {ol.Map} map
- * @param {vk2.tool.FacetedSearch} facetSearch
  * @constructor
  * @extends {goog.events.EventTarget}
  */
-vk2.module.MapSearchModule = function(parentEl, map, facetSearch){
+vk2.module.MapSearchModule = function(parentEl, map){
 	
 	/**
 	 * @type {Element}
@@ -82,7 +82,7 @@ vk2.module.MapSearchModule = function(parentEl, map, facetSearch){
 	this.appendSortBehavior_(this.parentEl_);
 	this.appendScrollBehavior_();
 	this.appendClickBehavior_();
-	this.appendFacetBehavior_(facetSearch);
+	this.appendFacetBehavior_();
 	
 	goog.base(this);
 };
@@ -114,19 +114,45 @@ vk2.module.MapSearchModule.prototype.loadHtmlContent_ = function(parentEl){
 	
 	var panelEl = goog.dom.createDom('div',{'class':'panel panel-default searchTablePanel'});
 	goog.dom.appendChild(containerEl, panelEl);
-	
+
+	//
 	// add mapsearch heading
-	var heading = goog.dom.createDom('div',{'class':'panel-heading'});
-	goog.dom.appendChild(panelEl, heading);
-	
+	//
+	var headingEl = goog.dom.createDom('div',{'class':'panel-heading'});
+	goog.dom.appendChild(panelEl, headingEl);
+
+	var contentContainerEl = goog.dom.createDom('div',{'class':'content'});
+	goog.dom.appendChild(headingEl, contentContainerEl);
+
+	// add content header
 	/**
 	 * @type {Element}
 	 * @private
 	 */
-	this.headingContentEl_ = goog.dom.createDom('div',{'class':'content'});
-	goog.dom.appendChild(heading, this.headingContentEl_);
-	
+	this.headingContentEl_ = goog.dom.createDom('div');
+	goog.dom.appendChild(contentContainerEl, this.headingContentEl_);
+
+	// add facetssearch to header
+	var openCloseFacet = goog.dom.createDom('a', {'innerHTML': 'o', 'title': vk2.utils.getMsg('facetedsearch-open')});
+	goog.dom.appendChild(contentContainerEl, openCloseFacet);
+
+	var facetContainerEl = goog.dom.createDom('div', {'class': 'facet-container'});
+	goog.dom.appendChild(headingEl, facetContainerEl)
+
+	vk2.utils.addOpenCloseBehavior(openCloseFacet, facetContainerEl, containerEl, 'facetedsearch-open',
+		vk2.utils.getMsg('facetedsearch-open'), vk2.utils.getMsg('facetedsearch-close'));
+
+	/**
+	 * @type {vk2.tool.FacetedSearch}
+	 * @private
+     */
+	this.facetSearch_ = new vk2.tool.FacetedSearch(facetContainerEl, false);
+	// close it on init
+	$(facetContainerEl).slideToggle();
+
+	//
 	// add mapsearch body
+	//
 	var body = goog.dom.createDom('div',{'class':'panel-body'});
 	goog.dom.appendChild(panelEl, body);
 	
@@ -140,7 +166,7 @@ vk2.module.MapSearchModule.prototype.loadHtmlContent_ = function(parentEl){
 	for (var i = 0; i < this._searchCols.length; i++){
 		goog.dom.appendChild(listHeader, createSearchCol(this._searchCols[i]))
 	};
-	
+
 	/**
 	 * @type {Element}
 	 * @private
@@ -219,15 +245,14 @@ vk2.module.MapSearchModule.prototype.appendScrollBehavior_ = function(){
 
 /**
  * Function appends the facet behavior
- * @param {vk2.tool.FacetedSearch} facetSearch
  * @private
  */
-vk2.module.MapSearchModule.prototype.appendFacetBehavior_ = function(facetSearch){
-	goog.events.listen(facetSearch, vk2.tool.FacetedSearchEventType.FACET_CHANGE, function(event){
+vk2.module.MapSearchModule.prototype.appendFacetBehavior_ = function(){
+	goog.events.listen(this.facetSearch_, vk2.tool.FacetedSearchEventType.FACET_CHANGE, function(event){
 		if (goog.DEBUG) {
 			console.log(event.target);
 		};
-		
+
 		this.featureSource_.setFacets(event.target);
 	}, undefined, this);
 };

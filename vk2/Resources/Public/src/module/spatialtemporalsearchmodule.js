@@ -5,7 +5,6 @@ goog.require('goog.dom.classes');
 goog.require('goog.events');
 
 goog.require('vk2.factory.MapSearchFactory');
-goog.require('vk2.tool.FacetedSearch');
 goog.require('vk2.tool.TimeSlider');
 goog.require('vk2.tool.GazetteerSearch');
 goog.require('vk2.module.MapSearchModule');
@@ -17,7 +16,7 @@ goog.require('vk2.settings');
  * @param {boolean} georeferenceMode
  * @constructor
  */
-vk2.module.SpatialTemporalSearchModule = function(parentEl, map, georeferenceMode){
+vk2.module.SpatialTemporalSearchModule = function(parentEl, map){
 	
 	/**
 	 * @type {Element}
@@ -31,7 +30,7 @@ vk2.module.SpatialTemporalSearchModule = function(parentEl, map, georeferenceMod
 	// load module and tools
 	this._loadGazetteerSearch(this._bodyContainerEl);
 	this._loadTimeSlider(this._bodyContainerEl);
-	this._loadMapSearchModule(this._bodyContainerEl, map, georeferenceMode);
+	this._loadMapSearchModule(this._bodyContainerEl, map);
 };
 
 /**
@@ -80,15 +79,13 @@ vk2.module.SpatialTemporalSearchModule.prototype._loadGazetteerSearch = function
  * @param {boolean} georeferenceMode
  * @private
  */
-vk2.module.SpatialTemporalSearchModule.prototype._loadMapSearchModule = function(parentEl, map, georeferenceMode){
-	
-	var faceteSearch_ = new vk2.tool.FacetedSearch(parentEl, georeferenceMode);
-	
+vk2.module.SpatialTemporalSearchModule.prototype._loadMapSearchModule = function(parentEl, map){
+
 	/**
 	 * @type {vk2.module.MapSearchModule}
 	 * @private
 	 */
-	this._mapsearch = new vk2.module.MapSearchModule(parentEl, map, faceteSearch_);
+	this._mapsearch = new vk2.module.MapSearchModule(parentEl, map);
 };
 
 vk2.module.SpatialTemporalSearchModule.prototype._loadTimeSlider = function(parentEl){
