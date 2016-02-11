@@ -73,10 +73,11 @@ config {
 # configurations for realurl
 config.simulateStaticDocuments = 0
 config.absRefPrefix = /
-# config.absRelPath = /
+config.absRelPath = /
 config.prefixLocalAnchors = all
-# config.tx_realurl_enable = 1
+config.tx_realurl_enable = 1
 config.uniqueLinkVars = 1
+
 # dont forget to set the allowed range - otherwise anything else could be inserted
 config.linkVars = L(0-3)
 
@@ -159,6 +160,6 @@ page {
 		filter = EXT:vk2/Resources/Public/dist/glif.min.js
 		params = EXT:vk2/Resources/Public/vk2-params.js
 		ol3 = EXT:vk2/Resources/Public/dist/ol-vk2.js
-		vk2 = EXT:vk2/Resources/Public/dist/vk2-min.js
+		vk2 = EXT:vk2/Resources/Public/dist/vk2-min-debug.js
 	}
 }

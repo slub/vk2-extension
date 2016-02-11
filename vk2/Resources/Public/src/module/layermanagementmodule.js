@@ -108,7 +108,7 @@ vk2.module.LayerManagementModule.prototype.getLayers_ = function(){
 	var allLayers = this.layers_.getArray();
 	var layers = [];
 	for (var i = 0, ii = allLayers.length; i < ii; i++){
-		if (goog.isDef(allLayers[i].getDisplayInLayerManagement)	&& allLayers[i].getDisplayInLayerManagement()){
+		if (goog.isDef(allLayers[i].allowUseInLayerManagement)	&& allLayers[i].allowUseInLayerManagement){
 			layers.push(allLayers[i])
 		};
 	};
@@ -134,8 +134,8 @@ vk2.module.LayerManagementModule.prototype.getIndexToLayer_ = function(layer){
  * @private
  */
 vk2.module.LayerManagementModule.prototype.refresh_ = function(event){
-	if (goog.isDef(event.element.getDisplayInLayerManagement) 
-			&& event.element.getDisplayInLayerManagement()){
+	if (goog.isDef(event.element.allowUseInLayerManagement)
+			&& event.element.allowUseInLayerManagement){
 		// clear list
 		this.bodyEl_.innerHTML = '';
 

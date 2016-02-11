@@ -64,6 +64,8 @@ $TYPO3_CONF_VARS['EXTCONF']['realurl']['_DEFAULT'] = array(
 							'static' => 'Static',
 							'auth' => 'Auth',
 							'georef' => 'Georeference',
+							'evaluation' => 'Evaluation',
+							'main' => 'Main',
 					)
 				),
 				array(
@@ -74,13 +76,19 @@ $TYPO3_CONF_VARS['EXTCONF']['realurl']['_DEFAULT'] = array(
 						'getprocess' => 'getProcess',
 						'validation' => 'validateGeorefProcess',
 						'confirm' => 'confirmGeorefProcess',
+						'information' => 'georeferenceUserInformation',
+						'history' => 'georeferenceUserHistory',
+						'isvalide' => 'setIsValide',
+						'isinvalide' => 'setIsInValide',
+						'welcome' => 'welcomePage',
+						'evaluationpage' => 'evaluationPage',
+						'georefhistorypage' => 'georeferenceHistoryPage',
+						'georefchoosepage' => 'georeferenceChoosePage',
 					)	
 				),
 			),
 		),
 		'noMatch' => 'bypass',
-	),		
+	),
+	'rootpage_id' => 19,
 );
-$TYPO3_CONF_VARS['EXTCONF']['realurl']['localhost'] = $TYPO3_CONF_VARS['EXTCONF']['realurl']['_DEFAULT'];
-$TYPO3_CONF_VARS['EXTCONF']['realurl']['_DEFAULT']['rootpage_id'] = 19;
-$TYPO3_CONF_VARS['EXTCONF']['realurl']['localhost']['rootpage_id'] = 19;

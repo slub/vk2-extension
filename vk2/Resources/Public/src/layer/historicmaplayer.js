@@ -48,10 +48,9 @@ vk2.layer.HistoricMap = function(settings, map){
 	
 	/**
 	 * @type {boolean}
-	 * @private
 	 * @expose
 	 */
-	this.allowManage_ = true;
+	this.allowUseInLayerManagement = true;
 	
 	var urls = [];
 	for (var i = 0; i < vk2.settings.TMS_URL_SUBDOMAINS.length; i++){
@@ -104,13 +103,6 @@ vk2.layer.HistoricMap.prototype.createClipFeature_ = function(clip) {
  */
 vk2.layer.HistoricMap.prototype.getTime = function(){
 	return this.time_;
-};
-
-/**
- * @return {boolean}
- */
-vk2.layer.HistoricMap.prototype.getDisplayInLayerManagement = function(){
-	return this.allowManage_;
 };
 
 /**
