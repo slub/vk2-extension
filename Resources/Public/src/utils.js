@@ -308,7 +308,7 @@ vk2.utils.sendReport = function(url_string, success_callback, error_callback){
  * @param {string} value
  */
 vk2.utils.setCookie = function(name, value){
-	goog.net.cookies.set(name, value);
+	goog.net.cookies.set(name, value, undefined, vk2.settings.MAIN_PAGE);
 }
 
 /**
