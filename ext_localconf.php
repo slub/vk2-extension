@@ -44,7 +44,7 @@ $TYPO3_CONF_VARS['EXTCONF']['realurl']['localhost'] = array(
 		array(
 			'GETvar' => 'L',
 			'valueMap' => array(
-				'en' => 1,
+				'en' => 1
 			),
 			'noMatch' => 'bypass',
 		),

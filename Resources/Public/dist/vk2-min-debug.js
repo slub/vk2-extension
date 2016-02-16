@@ -2572,7 +2572,7 @@ w.Rb = function(a, b, c) {
   d.send(a);
 };
 w.cb = function(a, b) {
-  hb.set(a, b, void 0, Ba);
+  hb.set(a, b, void 0, "/");
 };
 q("vk2.utils.setCookie", w.cb);
 w.Sb = function() {

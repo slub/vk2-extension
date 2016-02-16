@@ -56,17 +56,17 @@ config.linkVars = L
 config.uniqueLinkVars = 1
 config {
   sys_language_uid = 0
-  language = default
-  locale_all = en_GB
-  htmlTag_langKey = en
+  language = de
+  locale_all = de_DE.utf8
+  htmlTag_langKey = de
 }
 
 [globalVar = GP:L = 1]
 config {
   sys_language_uid = 1
-  language = de
-  locale_all = de_DE.utf8
-  htmlTag_langKey = de
+  language = default
+  locale_all = en_GB
+  htmlTag_langKey = en
 }
 [global]
 
