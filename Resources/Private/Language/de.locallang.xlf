@@ -242,7 +242,7 @@
 				<source>Enter User.Id</source>
 				<target state="translated">Nutzer-Id</target>
 			</trans-unit>
-			<trans-unit id="evaluation.page.getAllUnvalideProcesses">
+			<trans-unit id="evaluation.page.getAllPendingProcesses">
 				<source>Get all pending processes</source>
 				<target state="translated">Zeige alle ausstehenden Prozesse</target>
 			</trans-unit>
