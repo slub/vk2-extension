@@ -880,8 +880,8 @@ function pc(a, b, c) {
   return c;
 }
 function qc(a, b) {
-  Wa(b, function(c, b) {
-    "style" == b ? a.style.cssText = c : "class" == b ? a.className = c : "for" == b ? a.htmlFor = c : b in rc ? a.setAttribute(rc[b], c) : 0 == b.lastIndexOf("aria-", 0) || 0 == b.lastIndexOf("data-", 0) ? a.setAttribute(b, c) : a[b] = c;
+  Wa(b, function(b, d) {
+    "style" == d ? a.style.cssText = b : "class" == d ? a.className = b : "for" == d ? a.htmlFor = b : d in rc ? a.setAttribute(rc[d], b) : 0 == d.lastIndexOf("aria-", 0) || 0 == d.lastIndexOf("data-", 0) ? a.setAttribute(d, b) : a[d] = b;
   });
 }
 var rc = {cellpadding:"cellPadding", cellspacing:"cellSpacing", colspan:"colSpan", frameborder:"frameBorder", height:"height", maxlength:"maxLength", role:"role", rowspan:"rowSpan", type:"type", usemap:"useMap", valign:"vAlign", width:"width"};
@@ -2470,14 +2470,11 @@ g.extend = function(a) {
 w.Nb = function() {
   $(window);
 };
-w.mb = function(a, b, c) {
-  var d = w.c("facetedsearch-open"), e = w.c("facetedsearch-close"), f = l("facetedsearch-open") ? "facetedsearch-open" : "active", h = l(d) ? d : "", m = l(e) ? e : "";
-  T(a, "click", function(d) {
-    d.preventDefault();
-    F(c, f) ? (E(c, f), a.title = h, $(b).slideToggle()) : $(b).slideToggle(function() {
-      D(c, f);
-      a.title = m;
-    });
+w.mb = function(a, b) {
+  var c = w.c("facetedsearch-open"), d = w.c("facetedsearch-close"), e = l("facetedsearch-open") ? "facetedsearch-open" : "active", f = l(c) ? c : "", h = l(d) ? d : "";
+  T(a, "click", function(c) {
+    c.preventDefault();
+    F(b, e) ? (E(b, e), a.title = f) : (D(b, e), a.title = h);
   });
 };
 w.Z = function(a) {
@@ -2984,9 +2981,8 @@ function Ue(a, b) {
   f.appendChild(h);
   f = Q("div", {"class":"facet-container"});
   e.appendChild(f);
-  w.mb(h, f, c);
+  w.mb(h, c);
   a.m = new Yc(f, !1);
-  $(f).slideToggle();
   c = Q("div", {"class":"panel-body"});
   d.appendChild(c);
   d = Q("div", {"class":"mapsearch-list"});
