@@ -30,7 +30,7 @@
 	<div class="felogin-hidden">
 		<input type="hidden" name="logintype" value="login" />
 		<input type="hidden" name="pid" value="###STORAGE_PID###" />
-		<input type="hidden" name="redirect_url" value="###REDIRECT_URL###" />
+		<input type="hidden" name="redirect_url" value="/vkviewer" />
 		<input type="hidden" name="###PREFIXID###[noredirect]" value="###NOREDIRECT###" />
 		###EXTRA_HIDDEN###
 	</div>
@@ -97,7 +97,7 @@
 
 
 <!-- ###CHANGEPASSWORD_FORM### -->
-<form action="###ACTION_URI###" method="post" id="vk2-change-form" class="change-password-form">
+<form action="###ACTION_URI###&redirectReferrer=off" method="post" id="vk2-change-form" class="change-password-form">
 	<fieldset>
 		<legend>###LEGEND###</legend>
 		<div class="form-group">

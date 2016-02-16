@@ -30,20 +30,21 @@ if (!defined('TYPO3_MODE')) {
 );
 
 // Configuration of the real url
-$TYPO3_CONF_VARS['EXTCONF']['realurl']['_DEFAULT'] = array(
- 	'init' => array(
- 		'enableCHashCache' => true,
- 		'appendMissingSlash' => 'ifNotFile',
- 		'enableUrlDecodeCache' => true,
- 		'enableUrlDecodeCache' => true,
- 		'emptyUrlReturnValue' => '/',
- 	),
+$TYPO3_CONF_VARS['EXTCONF']['realurl']['localhost'] = array(
+	'init' => array(
+		'enableCHashCache' => TRUE,
+		'appendMissingSlash' => 'ifNotFile',
+		'enableUrlEncodeCache' => FALSE,
+		'enableUrlDecodeCache' => TRUE,
+		'emptyUrlReturnValue' => TRUE,
+	),
+	'redirects' => array(),
+	'redirects_regex' => array(),
 	'preVars' => array(
 		array(
 			'GETvar' => 'L',
 			'valueMap' => array(
-				'en' => '0',
-				'de' => '1',
+				'en' => 1
 			),
 			'noMatch' => 'bypass',
 		),
@@ -51,44 +52,49 @@ $TYPO3_CONF_VARS['EXTCONF']['realurl']['_DEFAULT'] = array(
 	'pagePath' => array(
 		'type' => 'user',
 		'userFunc' => 'EXT:realurl/class.tx_realurl_advanced.php:&tx_realurl_advanced->main',
+		'rootpage_id' => 19,
 		'spaceCharacter' => '-',
 		'languageGetVar' => 'L',
-		'expireDays' => 3
+		'expireDays' => 30,
+		'disablePathCache' => TRUE,
+		'dontResolveShortcuts' => FALSE,
 	),
-	'postVarSets' => array(
-		'_DEFAULT' => array(
-			'vkviewer' => array(
-				array(
-					'GETvar' => 'tx_vk2_search[controller]',
-					'valueMap' => array(
-							'static' => 'Static',
-							'auth' => 'Auth',
-							'georef' => 'Georeference',
-							'evaluation' => 'Evaluation',
-							'main' => 'Main',
-					)
-				),
-				array(
-					'GETvar' => 'tx_vk2_search[action]',
-					'valueMap' => array(
-						'profile-map' => 'profileMap',
-						'georefpage' => 'georefPage',
-						'getprocess' => 'getProcess',
-						'validation' => 'validateGeorefProcess',
-						'confirm' => 'confirmGeorefProcess',
-						'information' => 'georeferenceUserInformation',
-						'history' => 'georeferenceUserHistory',
-						'isvalide' => 'setIsValide',
-						'isinvalide' => 'setIsInValide',
-						'welcome' => 'welcomePage',
-						'evaluationpage' => 'evaluationPage',
-						'georefhistorypage' => 'georeferenceHistoryPage',
-						'georefchoosepage' => 'georeferenceChoosePage',
-					)	
-				),
-			),
-		),
-		'noMatch' => 'bypass',
-	),
-	'rootpage_id' => 19,
 );
+$TYPO3_CONF_VARS['EXTCONF']['realurl']['localhost']['postVarSets'] = array(
+	'_DEFAULT' => array(
+		'vkviewer' => array(
+			array(
+				'GETvar' => 'tx_vk2_search[controller]',
+				'valueMap' => array(
+					'static' => 'Static',
+					'auth' => 'Auth',
+					'georef' => 'Georeference',
+					'evaluation' => 'Evaluation',
+					'main' => 'Main',
+				)
+			),
+			array(
+				'GETvar' => 'tx_vk2_search[action]',
+				'valueMap' => array(
+					'profile-map' => 'profileMap',
+					'georefpage' => 'georefPage',
+					'getprocess' => 'getProcess',
+					'validation' => 'validateGeorefProcess',
+					'confirm' => 'confirmGeorefProcess',
+					'information' => 'georeferenceUserInformation',
+					'history' => 'georeferenceUserHistory',
+					'isvalide' => 'setIsValide',
+					'isinvalide' => 'setIsInValide',
+					'welcome' => 'welcomePage',
+					'evaluationpage' => 'evaluationPage',
+					'georefhistorypage' => 'georeferenceHistoryPage',
+					'georefchoosepage' => 'georeferenceChoosePage',
+				)
+			)
+		),
+	),
+	'noMatch' => 'bypass',
+);
+
+// Should be deactivated in production environment
+$TYPO3_CONF_VARS['EXTCONF']['realurl']['_DEFAULT'] = $TYPO3_CONF_VARS['EXTCONF']['realurl']['localhost'];

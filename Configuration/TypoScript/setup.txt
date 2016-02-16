@@ -56,17 +56,17 @@ config.linkVars = L
 config.uniqueLinkVars = 1
 config {
   sys_language_uid = 0
-  language = default
-  locale_all = en_GB
-  htmlTag_langKey = en
+  language = de
+  locale_all = de_DE.utf8
+  htmlTag_langKey = de
 }
 
 [globalVar = GP:L = 1]
 config {
   sys_language_uid = 1
-  language = de
-  locale_all = de_DE.utf8
-  htmlTag_langKey = de
+  language = default
+  locale_all = en_GB
+  htmlTag_langKey = en
 }
 [global]
 
@@ -81,17 +81,19 @@ config.uniqueLinkVars = 1
 # dont forget to set the allowed range - otherwise anything else could be inserted
 config.linkVars = L(0-3)
 
-# Configuration of felogin
+#
+# Configuration of felogin. For proper working of the redirect mode please modifiy the redirect_url path in the equivalent
+# input element in the login section in FELogin.html. Proper working of login redirects is only tested with realurl.
+#
 lib.felogin < plugin.tx_felogin_pi1
 lib.felogin  {
    storagePid = 10
    templateFile = EXT:vk2/Resources/Private/Templates/Login/FELogin.html
-   redirectMode = login, referer
-   redirectPageLogin = 19
+   redirectMode = getpost, logout
    redirectPageLoginError = 19
    redirectPageLogout = 19
    showForgotPasswordLink = 1
-   domains = http://localhost/
+   feloginBaseURL = http://localhost/vkviewer/auth/login
    forgotMessage_stdWrap.wrap = <p>|</p>
    preserveGETvars = all
 #   linkConfig {

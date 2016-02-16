@@ -47,12 +47,9 @@ vk2.utils.addOpenCloseBehavior = function(eventEl, displayEl, classEl, opt_class
 		if (goog.dom.classes.has(classEl, className)){
 			goog.dom.classes.remove(classEl, className);
 			eventEl['title'] = openTitle;
-			$(displayEl).slideToggle();
 		} else {
-			$(displayEl).slideToggle(function(){
-				goog.dom.classes.add(classEl, className);
-				eventEl['title'] = closeTitle;
-			});
+			goog.dom.classes.add(classEl, className);
+			eventEl['title'] = closeTitle;
 		};
 	});
 };
@@ -311,7 +308,7 @@ vk2.utils.sendReport = function(url_string, success_callback, error_callback){
  * @param {string} value
  */
 vk2.utils.setCookie = function(name, value){
-	goog.net.cookies.set(name, value);
+	goog.net.cookies.set(name, value, undefined, '/');
 }
 
 /**

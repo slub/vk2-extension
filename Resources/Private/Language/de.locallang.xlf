@@ -1135,7 +1135,7 @@
 			</trans-unit>
 			<trans-unit id="client.facetedsearch.titleTK">
 				<source>Topological maps (1:100.000)</source>
-				<target state="translated">Topographische Karten des Deutschen Reiches (1:100.000)</target>
+				<target state="translated">Karten des Deutschen Reiches (1:100.000)</target>
 			</trans-unit>
 
 			<!-- vk2.tool.GazetteerSearchTool -->

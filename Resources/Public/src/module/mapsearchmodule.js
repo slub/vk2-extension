@@ -148,7 +148,7 @@ vk2.module.MapSearchModule.prototype.loadHtmlContent_ = function(parentEl){
      */
 	this.facetSearch_ = new vk2.tool.FacetedSearch(facetContainerEl, false);
 	// close it on init
-	$(facetContainerEl).slideToggle();
+	//$(facetContainerEl).slideToggle();
 
 	//
 	// add mapsearch body
