@@ -100,6 +100,7 @@ lib.felogin  {
 #   		target = "_top"
 #   }
    _LOCAL_LANG.default {
+      ll_welcome_message = Enter your username and password here in order to log in on the website. In case you are already user of the Virtual Map Forum 2.0 and are visiting the new version of the application for the fist time, you are forced to reset your password. Please use therefor the "Forgot Password" dialog.
       ll_forgot_reset_message = Please enter your username or email address. Instructions for resetting the password will be immediately emailed to you.
       ll_forgot_header = Forget your password?
    }
@@ -107,7 +108,7 @@ lib.felogin  {
       login = Anmelden
       username = Nutzername
       password = Passwort
-      ll_welcome_message = Bitte geben Sie ihren Nutzername und ihr Passwort ein
+      ll_welcome_message = Bitte geben Sie ihren Nutzername und ihr Passwort ein. Sind sie bereits Nutzer des Virtuellen Kartenforums 2.0 und nutzen Sie die neue Version zum ersten Mal, müssen sie ihr Passwort einmalig resetten. Nutzen sie dafür den "Passwort vergessen" Dialog.
       ll_forgot_reset_message = Bitte geben Sie ihren Nutzernamen oder ihre Email-Adresse ein. Sie erhalten anschließend einen Link zum Zurücksetzen des Passwortes.
       ll_forgot_header = Passwort vergessen?
       ll_error_message = Bei der Anmeldung ist ein Fehler aufgetreten. Bitte überprüfen Sie ihren Nutzernamen und ihr Passwort und versuchen Sie es erneut. Bleibt der Fehler bestehenden wenden Sie sich bitte an den Administrator der Seite.
