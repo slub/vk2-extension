@@ -12,7 +12,7 @@
 
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'Virtual Map Forum Extension',
-	'description' => 'Das ist eine TYPO3 Erweiterung, welche die Recherche und Visualisierung historischer Karten ermöglicht.',
+	'description' => 'Das ist eine TYPO3 Erweiterung, welche die Recherche und Visualisierung historischer Karten ermöglicht. Diese Erweiterung ist angepasst für ein SLUB deployment.',
 	'category' => 'plugin',
 	'author' => 'Jacob Mendt',
 	'author_email' => 'Jacob.Mendt@slub-dresden.de',
