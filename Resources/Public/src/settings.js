@@ -118,6 +118,11 @@ vk2.settings.MAPPROFILE_PAGE;
 vk2.settings.MAPVIEW_PARAMS;
 
 /**
+ * @type {boolean}
+ */
+vk2.settings.MODE_3D = false;
+
+/**
  * @type {string}
  */
 vk2.settings.SEARCH_TIMEINTERVAL;

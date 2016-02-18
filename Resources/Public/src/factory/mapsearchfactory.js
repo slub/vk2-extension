@@ -96,9 +96,14 @@ vk2.factory.MapSearchFactory.addHoverToMapSearchRecord = function(element, featu
 			// handlerIn
 			function(event){
 				if (!goog.dom.classes.has(this, 'hover')){
+					if (goog.isDef(feature)) {
+						//debugger;
+						var test = olcs.core.applyHeightOffsetToGeometry(feature.getGeometry(), 100);
+					}
+
 					// clear old features and add hover feature
 					featureOverlay.getSource().clear();
-					featureOverlay.getSource().addFeature(feature);					
+					featureOverlay.getSource().addFeature(feature);
 					goog.dom.classes.add(this, 'hover');
 				};
 			}, 

@@ -6,6 +6,7 @@ goog.provide('vk2.module.MapModule');
 goog.require('vk2.layer.HistoricMap');
 goog.require('vk2.layer.HistoricMap3D');
 goog.require('vk2.module.MapSearchModuleEventType');
+goog.require('vk2.settings');
 
 /**
  * @param {string} mapElId
@@ -67,7 +68,8 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
 
     if (goog.isDef(opt_terrain) || opt_terrain === true) {
 
-        this.mode3d_ = true;
+        // set global 3d mode to true
+        vk2.settings.MODE_3D = true;
 
         // initialize the globe
         var ol3d = new olcs.OLCesium({
@@ -170,7 +172,7 @@ vk2.module.MapModule.containsLayerWithId = function(id, layers) {
  * @private
  */
 vk2.module.MapModule.prototype.createHistoricMapForFeature_ = function(feature){
-    return this.mode3d_ ?
+    return vk2.settings.MODE_3D ?
         new vk2.layer.HistoricMap3D({
             'time':feature.get('time'),
             'thumbnail': feature.get('thumb'),
