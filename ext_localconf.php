@@ -7,7 +7,7 @@ if (!defined('TYPO3_MODE')) {
 	'SLUB.' . $_EXTKEY,
 	'Search',
 	array(
-		'Main' => 'show',
+		'Main' => 'show, show3d',
 		'Evaluation' => 'getProcess, setIsValide, setIsInValide',
 		'Static' => 'contact, faq, impressum, project, profileMap, login, logout, 
 			georefPage, evaluationPage, georeferenceChoosePage, georeferenceHistoryPage,
@@ -18,7 +18,7 @@ if (!defined('TYPO3_MODE')) {
 	),
 	// non-cacheable actions
 	array(
-		'Main' => 'show',
+		'Main' => 'show, show3d',
 		'Evaluation' => 'getProcess, setIsValide, setIsInValide',
 		'Static' => 'contact, faq, impressum, project, profileMap, login, logout, 
 			georefPage, evaluationPage, georeferenceChoosePage, georeferenceHistoryPage,
@@ -30,7 +30,7 @@ if (!defined('TYPO3_MODE')) {
 );
 
 // Configuration of the real url
-$TYPO3_CONF_VARS['EXTCONF']['realurl']['kartenforum.slub-dresden.de'] = array(
+$TYPO3_CONF_VARS['EXTCONF']['realurl']['localhost'] = array(
 	'init' => array(
 		'enableCHashCache' => TRUE,
 		'appendMissingSlash' => 'ifNotFile',
@@ -52,49 +52,50 @@ $TYPO3_CONF_VARS['EXTCONF']['realurl']['kartenforum.slub-dresden.de'] = array(
 	'pagePath' => array(
 		'type' => 'user',
 		'userFunc' => 'EXT:realurl/class.tx_realurl_advanced.php:&tx_realurl_advanced->main',
-		'rootpage_id' => 9183,
+		'rootpage_id' => 19,
 		'spaceCharacter' => '-',
 		'languageGetVar' => 'L',
 		'expireDays' => 30,
 		'disablePathCache' => TRUE,
 		'dontResolveShortcuts' => FALSE,
 	),
-	'postVarSets' => array(
-		'_DEFAULT' => array(
-			'vkviewer' => array(
-				array(
-					'GETvar' => 'tx_vk2_search[controller]',
-					'valueMap' => array(
-						'static' => 'Static',
-						'auth' => 'Auth',
-						'georef' => 'Georeference',
-						'evaluation' => 'Evaluation',
-						'main' => 'Main',
-					)
-				),
-				array(
-					'GETvar' => 'tx_vk2_search[action]',
-					'valueMap' => array(
-						'profile-map' => 'profileMap',
-						'georefpage' => 'georefPage',
-						'getprocess' => 'getProcess',
-						'validation' => 'validateGeorefProcess',
-						'confirm' => 'confirmGeorefProcess',
-						'information' => 'georeferenceUserInformation',
-						'history' => 'georeferenceUserHistory',
-						'isvalide' => 'setIsValide',
-						'isinvalide' => 'setIsInValide',
-						'welcome' => 'welcomePage',
-						'evaluationpage' => 'evaluationPage',
-						'georefhistorypage' => 'georeferenceHistoryPage',
-						'georefchoosepage' => 'georeferenceChoosePage',
-					)
+);
+$TYPO3_CONF_VARS['EXTCONF']['realurl']['localhost']['postVarSets'] = array(
+	'_DEFAULT' => array(
+		'vkviewer' => array(
+			array(
+				'GETvar' => 'tx_vk2_search[controller]',
+				'valueMap' => array(
+					'static' => 'Static',
+					'auth' => 'Auth',
+					'georef' => 'Georeference',
+					'evaluation' => 'Evaluation',
+					'main' => 'Main',
 				)
 			),
+			array(
+				'GETvar' => 'tx_vk2_search[action]',
+				'valueMap' => array(
+					'3d' => 'show3d',
+					'profile-map' => 'profileMap',
+					'georefpage' => 'georefPage',
+					'getprocess' => 'getProcess',
+					'validation' => 'validateGeorefProcess',
+					'confirm' => 'confirmGeorefProcess',
+					'information' => 'georeferenceUserInformation',
+					'history' => 'georeferenceUserHistory',
+					'isvalide' => 'setIsValide',
+					'isinvalide' => 'setIsInValide',
+					'welcome' => 'welcomePage',
+					'evaluationpage' => 'evaluationPage',
+					'georefhistorypage' => 'georeferenceHistoryPage',
+					'georefchoosepage' => 'georeferenceChoosePage',
+				)
+			)
 		),
-		'noMatch' => 'bypass',
-	)
+	),
+	'noMatch' => 'bypass',
 );
 
 // Should be deactivated in production environment
-//$TYPO3_CONF_VARS['EXTCONF']['realurl']['_DEFAULT'] = $TYPO3_CONF_VARS['EXTCONF']['realurl']['localhost'];
+$TYPO3_CONF_VARS['EXTCONF']['realurl']['_DEFAULT'] = $TYPO3_CONF_VARS['EXTCONF']['realurl']['localhost'];
