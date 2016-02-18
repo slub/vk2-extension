@@ -31,6 +31,12 @@ vk2.module.SpatialTemporalSearchModule = function(parentEl, map){
 	this._loadGazetteerSearch(this._bodyContainerEl);
 	this._loadTimeSlider(this._bodyContainerEl);
 	this._loadMapSearchModule(this._bodyContainerEl, map);
+
+	// bind mapsearch to timeslider tool
+	goog.events.listen(this.getTimesliderTool(), 'timechange', function(event){
+		this.getMapSearchModule().getFeatureSource().setTimeFilter(event.target.time[0], event.target.time[1]);
+		this.getMapSearchModule().getFeatureSource().refresh();
+	}, undefined, this);
 };
 
 /**

@@ -13,10 +13,11 @@ goog.require('vk2.settings')
  * 
  * @param {vk2x.layer.HistoricMapOptions} settings
  * @param {ol.Map} map
+ * @param {boolean=} opt_3d
  * @constructor
  * @extends {ol.layer.Group}
  */
-vk2.layer.HistoricMap = function(settings, map){
+vk2.layer.HistoricMap = function(settings, map, opt_3d){
 		
 	/**
 	 * @type {string}
@@ -62,7 +63,8 @@ vk2.layer.HistoricMap = function(settings, map){
 			'extent': settings['clip'].getExtent(),
 			'source': new ol.source.XYZ({
 				'maxZoom': 15,
-				'urls': urls
+				'urls': urls,
+				'crossOrigin': '*'
 			})
 		}),
 		borderLayer = new ol.layer.Vector({
@@ -73,7 +75,8 @@ vk2.layer.HistoricMap = function(settings, map){
 				return [vk2.utils.Styles.MESSTISCHBLATT_BORDER_STYLE];
 			}
 		});
-	settings['layers'] = [rasterLayer, borderLayer];
+
+	settings['layers'] = goog.isDef(opt_3d) && opt_3d === true ? [rasterLayer] : [rasterLayer, borderLayer];
 	
 	ol.layer.Group.call(this, settings);
 };
