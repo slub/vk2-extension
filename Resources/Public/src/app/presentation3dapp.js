@@ -59,6 +59,8 @@ vk2.app.Presentation3DApp = function(settings){
 		
 	if(goog.DEBUG){
 		window['map'] = mapModule.getMap();
+		window['module'] = mapModule;
+
 		//window['spatialsearch'] = spatialSearch;
 		//window['mapsearch'] = spatialSearch.getMapSearchModule();
 	};

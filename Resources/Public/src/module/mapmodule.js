@@ -4,6 +4,7 @@
 goog.provide('vk2.module.MapModule');
 
 goog.require('vk2.layer.HistoricMap');
+goog.require('vk2.layer.HistoricMap3D');
 goog.require('vk2.module.MapSearchModuleEventType');
 
 /**
@@ -72,10 +73,12 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         var ol3d = new olcs.OLCesium({
             'map': this.map_,
             'createSynchronizers': function(map, scene) {
-                return [
+                var sync = [
                     new olcs.RasterSynchronizer(map, scene),
                     new olcs.VectorSynchronizer(map, scene)
                 ];
+                window['sync'] = sync
+                return sync;
             }
         });
         ol3d.enableAutoRenderLoop();
@@ -152,7 +155,7 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
 vk2.module.MapModule.containsLayerWithId = function(id, layers) {
     var array = layers.getArray();
     for (var i = 0; i < array.length; i++) {
-        if (array[i] instanceof vk2.layer.HistoricMap) {
+        if (array[i] instanceof vk2.layer.HistoricMap || array[i] instanceof vk2.layer.HistoricMap3D) {
             if (array[i].getId() == id) {
                 return true;
             }
@@ -167,16 +170,27 @@ vk2.module.MapModule.containsLayerWithId = function(id, layers) {
  * @private
  */
 vk2.module.MapModule.prototype.createHistoricMapForFeature_ = function(feature){
-    return new vk2.layer.HistoricMap({
-        'time':feature.get('time'),
-        'thumbnail': feature.get('thumb'),
-        'title': feature.get('title'),
-        'objectid': feature.get('id'),
-        'id': feature.getId(),
-        'dataid':feature.get('dataid'),
-        'tms': feature.get('tms'),
-        'clip': feature.getGeometry().clone()
-    }, this.map_, this.mode3d_);
+    return this.mode3d_ ?
+        new vk2.layer.HistoricMap3D({
+            'time':feature.get('time'),
+            'thumbnail': feature.get('thumb'),
+            'title': feature.get('title'),
+            'objectid': feature.get('id'),
+            'id': feature.getId(),
+            'dataid':feature.get('dataid'),
+            'tms': feature.get('tms'),
+            'clip': feature.getGeometry().clone()
+        }, this.map_) :
+        new vk2.layer.HistoricMap({
+            'time':feature.get('time'),
+            'thumbnail': feature.get('thumb'),
+            'title': feature.get('title'),
+            'objectid': feature.get('id'),
+            'id': feature.getId(),
+            'dataid':feature.get('dataid'),
+            'tms': feature.get('tms'),
+            'clip': feature.getGeometry().clone()
+    }, this.map_);
 };
 
 /**

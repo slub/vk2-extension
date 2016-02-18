@@ -1,4 +1,4 @@
-goog.provide('vk2.layer.HistoricMap');
+goog.provide('vk2.layer.HistoricMap3D');
 
 goog.require('goog.events');
 goog.require('goog.object');
@@ -11,12 +11,13 @@ goog.require('vk2.settings')
  * renamed variables of this object overwrite properties/function of the inherited object (ol.layer.Group). A
  * solution is to prevent renaming properties of this object through using the "expose" annotation.
  * 
- * @param {vk2x.layer.HistoricMapOptions} settings
+ * @param {vk2x.layer.HistoricMap3DOptions} settings
  * @param {ol.Map} map
+ * @param {boolean=} opt_3d
  * @constructor
  * @extends {ol.layer.Group}
  */
-vk2.layer.HistoricMap = function(settings, map){
+vk2.layer.HistoricMap3D = function(settings, map, opt_3d){
 		
 	/**
 	 * @type {string}
@@ -56,81 +57,42 @@ vk2.layer.HistoricMap = function(settings, map){
 	for (var i = 0; i < vk2.settings.TMS_URL_SUBDOMAINS.length; i++){
 		urls.push(settings.tms.replace('{s}', vk2.settings.TMS_URL_SUBDOMAINS[i]) + '/{z}/{x}/{-y}.png');
 	};
-	
-	var feature = this.createClipFeature_(settings['clip']),
-		rasterLayer = new ol.layer.Tile({
-			'extent': settings['clip'].getExtent(),
-			'source': new ol.source.XYZ({
-				'maxZoom': 15,
-				'urls': urls,
-				'crossOrigin': '*'
-			})
-		}),
-		borderLayer = new ol.layer.Vector({
-			source: new ol.source.Vector({
-				'features':[ feature ]
-			}),
-			'style': function(feature, resolution) {
-				return [vk2.utils.Styles.MESSTISCHBLATT_BORDER_STYLE];
-			}
-		});
 
-	settings['layers'] = [rasterLayer, borderLayer];
-	
-	ol.layer.Group.call(this, settings);
-};
-ol.inherits(vk2.layer.HistoricMap, ol.layer.Group);
-
-/**
- * @param {ol.geom.Polygon} clip
- * @return {ol.Feature}
- * @private
- */
-vk2.layer.HistoricMap.prototype.createClipFeature_ = function(clip) {
-
-	// create the clip feature
-	var feature = new ol.Feature(clip);
-	feature.setProperties({
-		'objectid':this.id_,
-		'time':this.time_,
-		'title':this.title_
+	settings['extent'] = settings['clip'].getExtent();
+	settings['source'] = new ol.source.XYZ({
+		'maxZoom': 15,
+		'urls': urls,
+		'crossOrigin': '*'
 	});
-	feature.setId(this.id_);
 
-	return feature;
+	ol.layer.Tile.call(this, settings);
 };
+ol.inherits(vk2.layer.HistoricMap3D, ol.layer.Tile);
 
 /**
  * @return {number}
  */
-vk2.layer.HistoricMap.prototype.getTime = function(){
+vk2.layer.HistoricMap3D.prototype.getTime = function(){
 	return this.time_;
 };
 
 /**
  * @return {string}
  */
-vk2.layer.HistoricMap.prototype.getTitle = function(){
+vk2.layer.HistoricMap3D.prototype.getTitle = function(){
 	return this.title_;
 };
 
 /**
  * @return {string}
  */
-vk2.layer.HistoricMap.prototype.getThumbnail = function(){
+vk2.layer.HistoricMap3D.prototype.getThumbnail = function(){
 	return this.thumb_;
 };
 
 /**
  * @return {string}
  */
-vk2.layer.HistoricMap.prototype.getId = function(){
+vk2.layer.HistoricMap3D.prototype.getId = function(){
 	return this.id_;
 };
-
-/**
- * @return {Object}
- */
-//vk2.layer.HistoricMap.prototype.getMetadata = function(){
-//	return this._metadata;
-//};
