@@ -128,7 +128,7 @@ class GeoreferenceController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 		if (!is_null($confirmRequest)) {
 			# generate request
 			$body = json_decode(stripslashes($confirmRequest), TRUE);
-			$body['userid'] = $user['username'];
+			$body['userid'] = $user->getUsernameURLEncoded();
 			$this->routeRequest($GLOBALS['TSFE']->tmpl->setup['config.']['georefBackend'] . $this->confirmationEndpoint, $body);
 		}
 		return;
@@ -145,7 +145,7 @@ class GeoreferenceController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 		$this->checkIfAllowed($user);
 	
 		# generate request url
-		$url = $GLOBALS['TSFE']->tmpl->setup['config.']['georefBackend'] . $this->userEndpoint . '/' . $user->getUsername() . '/history';
+		$url = $GLOBALS['TSFE']->tmpl->setup['config.']['georefBackend'] . $this->userEndpoint . '/' . $user->getUsernameURLEncoded() . '/history';
 	
 		// generate request
 		$request = GeneralUtility::makeInstance('t3lib_http_Request', $url);

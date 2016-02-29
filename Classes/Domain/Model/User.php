@@ -241,6 +241,15 @@ class User extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser {
 	public function getUsername() {
 		return $this->username;
 	}
+
+	/**
+	 * Returns the username
+	 *
+	 * @return string $username
+	 */
+	public function getUsernameURLEncoded() {
+		return str_replace(' ', '', $this->username);
+	}
 	
 	/**
 	 * Sets the firstname
