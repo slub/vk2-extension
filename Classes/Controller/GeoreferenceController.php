@@ -128,7 +128,7 @@ class GeoreferenceController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 		if (!is_null($confirmRequest)) {
 			# generate request
 			$body = json_decode(stripslashes($confirmRequest), TRUE);
-			$body['userid'] = $user->getUsernameURLEncoded();
+			$body['userid'] = Tools::getActualUser($this->feUserRepository)->getUsernameURLEncoded();
 			$this->routeRequest($GLOBALS['TSFE']->tmpl->setup['config.']['georefBackend'] . $this->confirmationEndpoint, $body);
 		}
 		return;
