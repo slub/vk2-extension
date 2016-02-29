@@ -63,7 +63,7 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
             //}),
             new vk2.control.RotateNorth(),
             new ol.control.ScaleLine(),
-            //new vk2.control.Permalink(), @does not work because the permalink has to consider the 3d page as well as 3d view parameters
+            new vk2.control.Permalink(),
             new vk2.control.MousePositionOnOff()
         ],
         'view': new ol.View(mapViewSettings)
@@ -119,14 +119,14 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         // load library and set camera
         //
         ol3d.setEnabled(true);
-        camera.setTilt(0);
-        camera.setAltitude(62000.04206483738);
-        camera.setPosition([1529336.123970922, 6593632.4348105695]);
-        camera.setDistance(64238.24055398101);
-        //camera.setTilt(1.185962657604752);
-        //camera.setAltitude(1363.9887671697156);
-        //camera.setPosition([1584547.2100905594, 6598444.370838029]);
-        //camera.setDistance(3150.7839488238337);
+        //camera.setTilt(0);
+        //camera.setAltitude(62000.04206483738);
+        //camera.setPosition([1529336.123970922, 6593632.4348105695]);
+        //camera.setDistance(64238.24055398101);
+        camera.setTilt(1.185962657604752);
+        camera.setAltitude(1363.9887671697156);
+        camera.setPosition([1584547.2100905594, 6598444.370838029]);
+        camera.setDistance(3150.7839488238337);
     };
 
     // append click behavior to map object
@@ -209,6 +209,28 @@ vk2.module.MapModule.prototype.getMap = function(){
 };
 
 /**
+ * @param {vk2.tool.Permalink} permalink
+ */
+vk2.module.MapModule.prototype.registerPermalinkTool = function(permalink){
+    goog.events.listen(permalink, vk2.tool.PermalinkEventType.ADDMAP, function(event){
+        var feature = event.target['feature'];
+
+        // request associated messtischblaetter for a blattnr
+        if (feature.get('georeference') === true) {
+            this.map_.addLayer(this._createHistoricMapForFeature(feature));
+
+            if (vk2.settings.MODE_3D) {
+                // add vector geometry for the given historic map to a special layer for simulate 3d mode experience
+                var feature = vk2.layer.HistoricMap.createClipFeature(feature.getGeometry().clone(), feature.getId(),
+                    feature.get('time'), feature.get('title'))
+                this.historicMapClickLayer_.getSource().addFeature(feature);
+            };
+        }
+    }, undefined, this);
+};
+
+
+/**
  * @param {vk2.module.SpatialTemporalSearchModule} spatialTemporalSearchModule
  */
 vk2.module.MapModule.prototype.registerSpatialTemporalSearch = function(spatialTemporalSearchModule){
@@ -275,7 +297,6 @@ vk2.module.MapModule.prototype.registerSpatialTemporalSearch = function(spatialT
             this.map_.addLayer(this.createHistoricMapForFeature_(feature));
 
             if (vk2.settings.MODE_3D) {
-                console.log('Add feature to map')
                 // add vector geometry for the given historic map to a special layer for simulate 3d mode experience
                 var feature = vk2.layer.HistoricMap.createClipFeature(feature.getGeometry().clone(), feature.getId(),
                     feature.get('time'), feature.get('title'))

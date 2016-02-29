@@ -53,16 +53,13 @@ vk2.app.Presentation3DApp = function(settings){
 	var layermanagement = new vk2.module.LayerManagementModule(settings['mapContainerId'], mapModule.getMap().getLayers(), mapModule.getMap());
 	
 	// permalink 
-	//var permalink = new vk2.tool.Permalink(mapController.getMap());
-	//permalink.parsePermalink(mapController.getMap());
-	//mapController.registerPermalinkTool(permalink);
+	var permalink = new vk2.tool.Permalink(mapController.getMap());
+	permalink.parsePermalink(mapModule.getMap());
+	mapModule.registerPermalinkTool(permalink);
 		
 	if(goog.DEBUG){
 		window['map'] = mapModule.getMap();
 		window['module'] = mapModule;
-
-		//window['spatialsearch'] = spatialSearch;
-		//window['mapsearch'] = spatialSearch.getMapSearchModule();
 	};
 	
 	// for correct displaying of tooltips
