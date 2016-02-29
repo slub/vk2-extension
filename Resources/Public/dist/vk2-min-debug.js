@@ -271,68 +271,11 @@ g.round = function() {
   this.height = Math.round(this.height);
   return this;
 };
-function Wa(a, b) {
-  for (var c in a) {
-    b.call(void 0, a[c], c, a);
-  }
-}
-function Xa(a, b) {
-  for (var c in a) {
-    if (b.call(void 0, a[c], c, a)) {
-      return !0;
-    }
-  }
-  return !1;
-}
-function Ya(a) {
-  var b = [], c = 0, d;
-  for (d in a) {
-    b[c++] = a[d];
-  }
-  return b;
-}
-function Za(a) {
-  var b = [], c = 0, d;
-  for (d in a) {
-    b[c++] = d;
-  }
-  return b;
-}
-function $a(a) {
-  var b = {}, c;
-  for (c in a) {
-    b[c] = a[c];
-  }
-  return b;
-}
-var ab = "constructor hasOwnProperty isPrototypeOf propertyIsEnumerable toLocaleString toString valueOf".split(" ");
-function bb(a, b) {
-  for (var c, d, e = 1;e < arguments.length;e++) {
-    d = arguments[e];
-    for (c in d) {
-      a[c] = d[c];
-    }
-    for (var f = 0;f < ab.length;f++) {
-      c = ab[f], Object.prototype.hasOwnProperty.call(d, c) && (a[c] = d[c]);
-    }
-  }
-}
-function cb(a) {
-  var b = arguments.length;
-  if (1 == b && ea(arguments[0])) {
-    return cb.apply(null, arguments[0]);
-  }
-  for (var c = {}, d = 0;d < b;d++) {
-    c[arguments[d]] = !0;
-  }
-  return c;
-}
-;cb("area base br col command embed hr img input keygen link meta param source track wbr".split(" "));
-function eb(a) {
+function Wa(a) {
   this.a = a;
 }
-var fb = /\s*;\s*/;
-g = eb.prototype;
+var Xa = /\s*;\s*/;
+g = Wa.prototype;
 g.set = function(a, b, c, d, e, f) {
   if (/[;=\s]/.test(a)) {
     throw Error('Invalid cookie name "' + a + '"');
@@ -348,7 +291,7 @@ g.set = function(a, b, c, d, e, f) {
   this.a.cookie = a + "=" + b + e + d + c + f;
 };
 g.get = function(a, b) {
-  for (var c = a + "=", d = (this.a.cookie || "").split(fb), e = 0, f;f = d[e];e++) {
+  for (var c = a + "=", d = (this.a.cookie || "").split(Xa), e = 0, f;f = d[e];e++) {
     if (0 == f.lastIndexOf(c, 0)) {
       return f.substr(c.length);
     }
@@ -364,40 +307,97 @@ g.remove = function(a, b, c) {
   return d;
 };
 g.getKeys = function() {
-  return gb(this).keys;
+  return Ya(this).keys;
 };
 g.J = function() {
-  return gb(this).values;
+  return Ya(this).values;
 };
 g.isEmpty = function() {
   return !this.a.cookie;
 };
 g.ua = function() {
-  return this.a.cookie ? (this.a.cookie || "").split(fb).length : 0;
+  return this.a.cookie ? (this.a.cookie || "").split(Xa).length : 0;
 };
 g.clear = function() {
-  for (var a = gb(this).keys, b = a.length - 1;0 <= b;b--) {
+  for (var a = Ya(this).keys, b = a.length - 1;0 <= b;b--) {
     this.remove(a[b]);
   }
 };
-function gb(a) {
-  a = (a.a.cookie || "").split(fb);
+function Ya(a) {
+  a = (a.a.cookie || "").split(Xa);
   for (var b = [], c = [], d, e, f = 0;e = a[f];f++) {
     d = e.indexOf("="), -1 == d ? (b.push(""), c.push(e)) : (b.push(e.substring(0, d)), c.push(e.substring(d + 1)));
   }
   return {keys:b, values:c};
 }
-var hb = new eb(document);
-hb.b = 3950;
-function ib() {
+var Za = new Wa(document);
+Za.b = 3950;
+function $a() {
 }
-ib.prototype.a = null;
-function jb(a) {
+$a.prototype.a = null;
+function ab(a) {
   var b;
-  (b = a.a) || (b = {}, kb(a) && (b[0] = !0, b[1] = !0), b = a.a = b);
+  (b = a.a) || (b = {}, bb(a) && (b[0] = !0, b[1] = !0), b = a.a = b);
   return b;
 }
-;function lb(a) {
+;function cb(a, b) {
+  for (var c in a) {
+    b.call(void 0, a[c], c, a);
+  }
+}
+function eb(a, b) {
+  for (var c in a) {
+    if (b.call(void 0, a[c], c, a)) {
+      return !0;
+    }
+  }
+  return !1;
+}
+function fb(a) {
+  var b = [], c = 0, d;
+  for (d in a) {
+    b[c++] = a[d];
+  }
+  return b;
+}
+function gb(a) {
+  var b = [], c = 0, d;
+  for (d in a) {
+    b[c++] = d;
+  }
+  return b;
+}
+function hb(a) {
+  var b = {}, c;
+  for (c in a) {
+    b[c] = a[c];
+  }
+  return b;
+}
+var ib = "constructor hasOwnProperty isPrototypeOf propertyIsEnumerable toLocaleString toString valueOf".split(" ");
+function jb(a, b) {
+  for (var c, d, e = 1;e < arguments.length;e++) {
+    d = arguments[e];
+    for (c in d) {
+      a[c] = d[c];
+    }
+    for (var f = 0;f < ib.length;f++) {
+      c = ib[f], Object.prototype.hasOwnProperty.call(d, c) && (a[c] = d[c]);
+    }
+  }
+}
+function kb(a) {
+  var b = arguments.length;
+  if (1 == b && ea(arguments[0])) {
+    return kb.apply(null, arguments[0]);
+  }
+  for (var c = {}, d = 0;d < b;d++) {
+    c[arguments[d]] = !0;
+  }
+  return c;
+}
+;kb("area base br col command embed hr img input keygen link meta param source track wbr".split(" "));
+function lb(a) {
   lb[" "](a);
   return a;
 }
@@ -586,7 +586,7 @@ Qb.prototype.xa = function(a, b, c, d) {
 };
 Qb.prototype.hasListener = function(a, b) {
   var c = l(a), d = c ? a.toString() : "", e = l(b);
-  return Xa(this.a, function(a) {
+  return eb(this.a, function(a) {
     for (var h = 0;h < a.length;++h) {
       if (!(c && a[h].type != d || e && a[h].aa != b)) {
         return !0;
@@ -607,11 +607,11 @@ function Rb(a, b, c, d) {
 ;var Tb;
 function Ub() {
 }
-t(Ub, ib);
+t(Ub, $a);
 function Vb(a) {
-  return (a = kb(a)) ? new ActiveXObject(a) : new XMLHttpRequest;
+  return (a = bb(a)) ? new ActiveXObject(a) : new XMLHttpRequest;
 }
-function kb(a) {
+function bb(a) {
   if (!a.b && "undefined" == typeof XMLHttpRequest && "undefined" != typeof ActiveXObject) {
     for (var b = ["MSXML2.XMLHTTP.6.0", "MSXML2.XMLHTTP.3.0", "MSXML2.XMLHTTP", "Microsoft.XMLHTTP"], c = 0;c < b.length;c++) {
       var d = b[c];
@@ -639,7 +639,7 @@ function Wb(a, b) {
     }
   } else {
     if (a) {
-      a instanceof Wb ? (c = a.getKeys(), d = a.J()) : (c = Za(a), d = Ya(a));
+      a instanceof Wb ? (c = a.getKeys(), d = a.J()) : (c = gb(a), d = fb(a));
       for (var e = 0;e < c.length;e++) {
         this.set(c[e], d[e]);
       }
@@ -738,7 +738,7 @@ function $b(a, b) {
     }
     return b;
   }
-  return Ya(a);
+  return fb(a);
 }
 function bc(a, b, c) {
   if ("function" == typeof a.forEach) {
@@ -758,7 +758,7 @@ function bc(a, b, c) {
               d.push(f);
             }
           } else {
-            d = Za(a);
+            d = gb(a);
           }
         } else {
           d = void 0;
@@ -880,7 +880,7 @@ function pc(a, b, c) {
   return c;
 }
 function qc(a, b) {
-  Wa(b, function(b, d) {
+  cb(b, function(b, d) {
     "style" == d ? a.style.cssText = b : "class" == d ? a.className = b : "for" == d ? a.htmlFor = b : d in rc ? a.setAttribute(rc[d], b) : 0 == d.lastIndexOf("aria-", 0) || 0 == d.lastIndexOf("data-", 0) ? a.setAttribute(d, b) : a[d] = b;
   });
 }
@@ -893,7 +893,7 @@ function Q(a, b, c) {
     if (h.type) {
       f.push(' type="', nb(h.type), '"');
       var m = {};
-      bb(m, h);
+      jb(m, h);
       delete m.type;
       h = m;
     }
@@ -1285,7 +1285,7 @@ g.dispatchEvent = function(a) {
     } else {
       var e = a;
       a = new A(d, c);
-      bb(a, e);
+      jb(a, e);
     }
   }
   var e = !0, f;
@@ -2057,7 +2057,7 @@ g.send = function(a, b, c, d) {
   this.W = !1;
   this.u = !0;
   this.a = this.T ? Vb(this.T) : Vb(Tb);
-  this.P = this.T ? jb(this.T) : jb(Tb);
+  this.P = this.T ? ab(this.T) : ab(Tb);
   this.a.onreadystatechange = p(this.Wa, this);
   try {
     this.ga = !0, this.a.open(b, String(a), !0), this.ga = !1;
@@ -2510,7 +2510,7 @@ w.getQueryParam = function(a, b) {
   return l(b) ? w.Ka(b).get(a) : w.Ka().get(a);
 };
 w.pb = function() {
-  return hb.get("vk2-welcomepage");
+  return Za.get("vk2-welcomepage");
 };
 w.Ma = function(a, b, c, d) {
   var e = new yd("vk2-overlay-modal", document.body, !0);
@@ -2527,7 +2527,7 @@ w.Ma = function(a, b, c, d) {
   });
 };
 w.Qb = function() {
-  return l(hb.get("auth_tkt")) ? !0 : !1;
+  return l(Za.get("auth_tkt")) ? !0 : !1;
 };
 w.Sa = function(a) {
   a = O(a, (l(void 0) ? void 0 : document.body).body);
@@ -2572,7 +2572,7 @@ w.Rb = function(a, b, c) {
   d.send(a);
 };
 w.cb = function(a, b) {
-  hb.set(a, b, void 0, "/");
+  Za.set(a, b, void 0, "/");
 };
 q("vk2.utils.setCookie", w.cb);
 w.Sb = function() {
@@ -2675,7 +2675,7 @@ function Ie(a) {
   d.appendChild(e);
   f.appendChild(d);
   f.appendChild(h);
-  var m = $a(He), r = !1, y = !1, x = p(function(a, b, d, e, f) {
+  var m = hb(He), r = !1, y = !1, x = p(function(a, b, d, e, f) {
     f = Q("div", {"class":"slider " + a, title:l("opt_title") ? f : "", "data-type":d});
     var h = l(e) ? e[1] : 0, C = l(e) ? e[2] : 100, x = l(e) ? e[3] : 1, L = l(e) ? e[0] : 100, Qd = p(function(a, e) {
       var f = e.value, x = this.getMap().getLayers().getArray()[0];
@@ -3481,7 +3481,7 @@ function uf(a, b) {
   d.appendChild(f);
   d = Q("span", {"class":"timestamps-label", innerHTML:w.c("timestamp") + " " + a.getTime()});
   f.appendChild(d);
-  hb.get("vk2-auth") && (d = Q("a", {"class":"georeference-update", title:w.c("factory-update-georef") + " ...", innerHTML:w.c("factory-update-georef") + " ...", target:"_blank", href:w.f.ea(a.getId())}), b.appendChild(d));
+  Za.get("vk2-auth") && (d = Q("a", {"class":"georeference-update", title:w.c("factory-update-georef") + " ...", innerHTML:w.c("factory-update-georef") + " ...", target:"_blank", href:w.f.ea(a.getId())}), b.appendChild(d));
   new Dc(e, a);
   a.on("change:visible", function() {
     !a.getVisible() && F(e, "visible") ? Lb(e, "visible", "notvisible") : a.getVisible() && F(e, "notvisible") && Lb(e, "notvisible", "visible");
@@ -3561,6 +3561,9 @@ function Cf(a, b) {
     var f = c.get("c").split(",");
     d = ol.proj.transform([parseFloat(f[0], 0), parseFloat(f[1], 0)], "EPSG:4326", u.projection);
     e = parseInt(c.get("z"), 0);
+    if (isNaN(d[0]) || isNaN(d[1])) {
+      d = ol.proj.transform([parseFloat(f[0], 0), parseFloat(f[1], 0)], "EPSG:3857", u.projection);
+    }
     Df(b, d, e);
   }
   var h = p(function(a, c) {
@@ -3813,7 +3816,7 @@ Sf.prototype.a = function(a, b) {
   }
 };
 function Uf(a) {
-  this.a = l(a.da) && ia(a.da) ? l(a.da["new"]) ? $a(a.da["new"]) : $a(a.da) : {source:"pixel", target:"EPSG:4314"};
+  this.a = l(a.da) && ia(a.da) ? l(a.da["new"]) ? hb(a.da["new"]) : hb(a.da) : {source:"pixel", target:"EPSG:4314"};
   this.Ya = l(a.Xa) ? a.Xa : void 0;
   this.h = l(a.Ub) ? a.ab : {source:"pixel", target:"EPSG:900913"};
   this.b = a.sources;
@@ -3896,7 +3899,7 @@ function Wf(a, b) {
       c.push({source:e, target:x});
     }
     return c;
-  }, a), d = $a(a.a), e = l(b) ? b : d.target;
+  }, a), d = hb(a.a), e = l(b) ? b : d.target;
   d.gcps = c(function(a) {
     for (var b = [], c = 0;c < a[0].getFeatures().length;c++) {
       var d = a[0].getFeatures()[c], e;
@@ -3909,7 +3912,7 @@ function Wf(a, b) {
   return d;
 }
 function Rf(a, b) {
-  var c = Bc(), c = l(c) ? c : "affine", d = $a(a.a), e = Tf(a, c, l(b) ? b : d.target);
+  var c = Bc(), c = l(c) ? c : "affine", d = hb(a.a), e = Tf(a, c, l(b) ? b : d.target);
   Tf(a, c, d.target);
   return e;
 }

@@ -55,7 +55,13 @@ vk2.tool.Permalink.prototype.parsePermalink = function(map){
 			vk2.settings.MAPVIEW_PARAMS['projection']);
 		zoom = parseInt(params.get('z'), 0);
 
-		// zoom to center
+
+		if (isNaN(center[0]) || isNaN(center[1])) {
+			// assume the coordinates are in EPSG:900913
+			center = ol.proj.transform([parseFloat(centerArray[0], 0),parseFloat(centerArray[1], 0)], 'EPSG:3857',
+				vk2.settings.MAPVIEW_PARAMS['projection']);
+		};
+
 		this.zoomToMapView_(map, center, zoom);
 	};
 
