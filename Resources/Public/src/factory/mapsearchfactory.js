@@ -105,6 +105,11 @@ vk2.factory.MapSearchFactory.addHoverToMapSearchRecord = function(element, featu
 					featureOverlay.getSource().clear();
 					featureOverlay.getSource().addFeature(feature);
 					goog.dom.classes.add(this, 'hover');
+
+					if (vk2.settings.MODE_3D && ol3d !== undefined) {
+						// for updating the vector layer
+						ol3d.getAutoRenderLoop().restartRenderLoop();
+					}
 				};
 			}, 
 			// handlerOut

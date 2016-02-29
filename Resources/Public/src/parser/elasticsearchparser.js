@@ -53,7 +53,7 @@ vk2.parser.ElasticSearch.readFeature = function(id, record, opt_source_projectio
 
 				if (vk2.settings.MODE_3D) {
 					// in case 3d mode is active add altitude value to coordinate
-					coordinate.push(5000);
+					coordinate.push(10000);
 				}
 
 				coords.push(coordinate);

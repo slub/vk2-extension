@@ -63,6 +63,12 @@ vk2.module.MapSearchModule = function(parentEl, map){
 		    return [vk2.utils.Styles.MAP_SEARCH_HOVER_FEATURE];
 		}	
 	});
+
+	if (vk2.settings.MODE_3D) {
+		// in case 3d mode is active add altitude value to coordinate
+		this.featureOverlay_.set('altitudeMode', 'clampToGround');
+	}
+
 	map.addLayer(this.featureOverlay_);
 
 	// hold the overlay layer on top of the historic map layers
