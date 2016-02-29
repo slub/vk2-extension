@@ -54,7 +54,7 @@ vk2.module.MapSearchModule = function(parentEl, map){
 	this._searchCols = ['time','title','georeference'];
 	
 	/**
-	 * @type {ol.FeatureOverlay}
+	 * @type {ol.layer.Vector}
 	 * @private
 	 */
 	this.featureOverlay_ = new ol.layer.Vector({
@@ -74,8 +74,7 @@ vk2.module.MapSearchModule = function(parentEl, map){
 	// hold the overlay layer on top of the historic map layers
 	map.getLayers().on('add', function(event) {
 		var topLayer = event.target.getArray()[event.target.getLength() - 1];
-		console.log(topLayer);
-		if (topLayer instanceof vk2.layer.HistoricMap) {
+		if (topLayer instanceof vk2.layer.HistoricMap || topLayer instanceof vk2.layer.HistoricMap3D || topLayer.get('type') == 'click') {
 			map.removeLayer(this.featureOverlay_);
 			map.addLayer(this.featureOverlay_);
 		}

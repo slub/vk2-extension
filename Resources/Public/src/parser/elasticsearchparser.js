@@ -51,11 +51,6 @@ vk2.parser.ElasticSearch.readFeature = function(id, record, opt_source_projectio
 				// transform coordinates in correct projection
 				var coordinate = ol.proj.transform(coordinates[i], sourceProjection, targetProjection);
 
-				if (vk2.settings.MODE_3D) {
-					// in case 3d mode is active add altitude value to coordinate
-					coordinate.push(10000);
-				}
-
 				coords.push(coordinate);
 			};
 			return new ol.geom.Polygon([coords]);

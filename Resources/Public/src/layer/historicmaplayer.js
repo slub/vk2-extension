@@ -57,7 +57,7 @@ vk2.layer.HistoricMap = function(settings, map){
 		urls.push(settings.tms.replace('{s}', vk2.settings.TMS_URL_SUBDOMAINS[i]) + '/{z}/{x}/{-y}.png');
 	};
 	
-	var feature = this.createClipFeature_(settings['clip']),
+	var feature = this.createClipFeature(settings['clip'], this.id_, this.time_, this.title_),
 		rasterLayer = new ol.layer.Tile({
 			'extent': settings['clip'].getExtent(),
 			'source': new ol.source.XYZ({
@@ -83,19 +83,22 @@ ol.inherits(vk2.layer.HistoricMap, ol.layer.Group);
 
 /**
  * @param {ol.geom.Polygon} clip
+ * @param {number} id
+ * @param {string} time
+ * @param {string} title
  * @return {ol.Feature}
  * @private
  */
-vk2.layer.HistoricMap.prototype.createClipFeature_ = function(clip) {
+vk2.layer.HistoricMap.createClipFeature = function(clip, id, time, title) {
 
 	// create the clip feature
 	var feature = new ol.Feature(clip);
 	feature.setProperties({
-		'objectid':this.id_,
-		'time':this.time_,
-		'title':this.title_
+		'objectid':id,
+		'time':time,
+		'title': title
 	});
-	feature.setId(this.id_);
+	feature.setId(id);
 
 	return feature;
 };
