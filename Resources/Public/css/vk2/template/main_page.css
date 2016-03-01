@@ -116,4 +116,8 @@
 
 .user-header .nav > li > a.georeference-chooser-control.open { background: #f33; }
 
-
+.switch-view-mode { position: absolute; top: 10px; right: 180px; background: rgba(255,255,255,0.4); padding: 3px;
+	z-index: 311; height:28px; display: block;}
+.switch-view-mode a { display: block; margin: 1px; padding: 0; color: white; font-weight: bold; text-decoration: none;
+	text-align: center; height: 22px; width: 40px; white-space: nowrap; overflow: hidden; border-radius: 0;
+	background: rgb(0,177,158); }

@@ -70,35 +70,27 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         zoom: 2
     };
 
-    var controls = goog.isDef(opt_terrain) && opt_terrain === true ? [
-            new ol.control.Attribution({
-                collapsible:false,
-                collapsed:false
-            }),
-            new ol.control.Zoom(),
-            new ol.control.FullScreen(),
-            new vk2.control.LayerSpy({
-                'spyLayer':new ol.layer.Tile({
-                    attribution: undefined,
-                    source: new ol.source.OSM()
-                })
-            }),
-            new vk2.control.RotateNorth(),
-            new ol.control.ScaleLine(),
-            new vk2.control.Permalink(),
-            new vk2.control.MousePositionOnOff()
-        ] : [
-            new ol.control.Attribution({
-                collapsible:false,
-                collapsed:false
-            }),
-            new ol.control.Zoom(),
-            new ol.control.FullScreen(),
-            new vk2.control.RotateNorth(),
-            new ol.control.ScaleLine(),
-            new vk2.control.Permalink(),
-            new vk2.control.MousePositionOnOff()
-        ];
+    var controls = [
+        new ol.control.Attribution({
+            collapsible:false,
+            collapsed:false
+        }),
+        new ol.control.Zoom(),
+        new ol.control.FullScreen(),
+        new vk2.control.RotateNorth(),
+        new ol.control.ScaleLine(),
+        new vk2.control.Permalink(),
+        new vk2.control.MousePositionOnOff(),
+    ]
+
+    if (!goog.isDef(opt_terrain) || opt_terrain === false) {
+        controls.push(new vk2.control.LayerSpy({
+            'spyLayer':new ol.layer.Tile({
+                attribution: undefined,
+                source: new ol.source.OSM()
+            })
+        }));
+    };
 
     /**
      * @type {ol.Map}
