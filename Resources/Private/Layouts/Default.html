@@ -6,6 +6,7 @@
         // in other cases the fluid template engine throwns unknown exceptions
         vk2x.settings.ELASTICSEARCH_NODE = '{settings.search.elasticsearch}';
         vk2x.settings.GEOREFERENCE_ON = {settings.georef.active} === 1 ? true : false;
+        vk2x.settings.MODE_3D = {settings.general.modetwoandhalfd} === 1 ? true : false;
         vk2x.settings.SEARCH_TIMEINTERVAL = [ {settings.search.time.min}, {settings.search.time.max}];
         vk2x.settings.WITH_SPEAKING_URLS = {settings.general.realurl} === 1 ? true: false;
         vk2x.settings.WMS_DYNAMIC_TEMPLATE = '{settings.georef.dynamicwmsurl}';

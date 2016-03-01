@@ -10,6 +10,46 @@ var vk2x;
 vk2x.layer;
 
 /**
+ * authenticate: (boolean)
+ * georefChooserContainerId: (string)
+ * mapContainerId: (string)
+ * modalAnchorClassName: (string)
+ * spatialsearchContainerId: (string)
+ * with25d: (boolean)
+ */
+vk2x.app.PresentationAppOptions;
+
+/**
+ * @type {boolean}
+ */
+vk2x.app.PresentationAppOptions.prototype.authenticate;
+
+/**
+ * @type {string}
+ */
+vk2x.app.PresentationAppOptions.prototype.georefChooserContainerId;
+
+/**
+ * @type {string}
+ */
+vk2x.app.PresentationAppOptions.prototype.mapContainerId;
+
+/**
+ * @type {string}
+ */
+vk2x.app.PresentationAppOptions.prototype.modalAnchorClassName;
+
+/**
+ * @type {string}
+ */
+vk2x.app.PresentationAppOptions.prototype.spatialsearchContainerId;
+
+/**
+ * @type {boolean}
+ */
+vk2x.app.PresentationAppOptions.prototype.with25d;
+
+/**
  * time: (string)
  * border: (Array.<Array.<number>>)
  * extent: (ol.Extent)
@@ -152,6 +192,11 @@ vk2x.settings.MAPPROFILE_PAGE;
  * @type {string}
  */
 vk2x.settings.MAPVIEW_PARAMS;
+
+/**
+ * @type {boolean}
+ */
+vk2x.settings.MODE_3D;
 
 /**
  * @type {string}

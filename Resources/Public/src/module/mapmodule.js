@@ -83,7 +83,7 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         new vk2.control.MousePositionOnOff(),
     ]
 
-    if (!goog.isDef(opt_terrain) || opt_terrain === false) {
+    if (vk2.settings.MODE_3D === true && !goog.isDef(opt_terrain) || opt_terrain === false) {
         controls.push(new vk2.control.LayerSpy({
             'spyLayer':new ol.layer.Tile({
                 attribution: undefined,
@@ -111,10 +111,7 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         'view': new ol.View(mapViewSettings)
     });
 
-    if (goog.isDef(opt_terrain) && opt_terrain === true) {
-
-        // set global 3d mode to true
-        vk2.settings.MODE_3D = true;
+    if (vk2.settings.MODE_3D === true && goog.isDef(opt_terrain) && opt_terrain === true) {
 
         // initialize the globe
         var ol3d = new olcs.OLCesium({
