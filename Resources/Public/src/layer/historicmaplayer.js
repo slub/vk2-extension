@@ -57,7 +57,7 @@ vk2.layer.HistoricMap = function(settings, map){
 		urls.push(settings.tms.replace('{s}', vk2.settings.TMS_URL_SUBDOMAINS[i]) + '/{z}/{x}/{-y}.png');
 	};
 	
-	var feature = this.createClipFeature(settings['clip'], this.id_, this.time_, this.title_),
+	var feature = vk2.layer.HistoricMap.createClipFeature(settings['clip'], this.id_, this.time_, this.title_),
 		rasterLayer = new ol.layer.Tile({
 			'extent': settings['clip'].getExtent(),
 			'source': new ol.source.XYZ({

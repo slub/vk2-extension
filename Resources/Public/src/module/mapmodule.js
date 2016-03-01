@@ -27,12 +27,6 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
     };
 
     /**
-     * @type {boolean}
-     * @private
-     */
-    this.mode3d_ = false;
-
-    /**
      * @type {ol.Map}
      * @private
      */

@@ -44,7 +44,7 @@ vk2.tool.Permalink.prototype.parsePermalink = function(map){
 
 	var uri = new goog.Uri(window.location.href),
 		params = uri.getQueryData(),
-		center, zoom, tilt, distance, altitude;
+		center, zoom, tilt, distance, altitude, rotation;
 
 	if (params.containsKey('c')){
 		// parse the center point and the zoom if exists
@@ -55,6 +55,7 @@ vk2.tool.Permalink.prototype.parsePermalink = function(map){
 		tilt = params.get('t') !== undefined ? parseFloat(params.get('t'), 5) : 0;
 		altitude = params.get('a') !== undefined ? parseFloat(params.get('a'), 1) : 10000;
 		distance = params.get('d') !== undefined ? parseFloat(params.get('d'), 1) : 10000;
+		rotation = params.get('r') !== undefined ? parseFloat(params.get('r'), 5) : 0;
 
 
 		if (isNaN(center[0]) || isNaN(center[1])) {
@@ -64,7 +65,7 @@ vk2.tool.Permalink.prototype.parsePermalink = function(map){
 		};
 	};
 
-	this.zoomToMapView_(map, center, zoom, tilt, distance, altitude);
+	this.zoomToMapView_(map, center, zoom, tilt, distance, altitude, rotation);
 
 	/**
 	 * Function for parsing and adding the response
@@ -179,6 +180,7 @@ vk2.tool.Permalink.createPermalink = function(map){
 		params.set('d',vk2.utils.round(camera.getDistance(), 1));
 		params.set('a',vk2.utils.round(camera.getAltitude(), 1));
 		params.set('c',vk2.utils.round(position[0], 4) + ',' + vk2.utils.round(position[1], 4));
+		params.set('r', vk2.utils.round(map.getView().getRotation(), 4));
 	};
 
 	permalink.setQueryData(params);
@@ -199,9 +201,10 @@ vk2.tool.Permalink.createPermalink = function(map){
  * @param {number=} opt_tilt
  * @param {number=} opt_altitude
  * @param {number=} opt_distance
+ * @param {number=} opt_rotation
  * @private
  */
-vk2.tool.Permalink.prototype.zoomToMapView_ = function(map, opt_center, opt_zoom, opt_tilt, opt_altitude, opt_distance) {
+vk2.tool.Permalink.prototype.zoomToMapView_ = function(map, opt_center, opt_zoom, opt_tilt, opt_altitude, opt_distance, opt_rotation) {
 
 	if (opt_center !== undefined)
 		map.getView().setCenter(opt_center);
@@ -224,6 +227,8 @@ vk2.tool.Permalink.prototype.zoomToMapView_ = function(map, opt_center, opt_zoom
 
 		if (opt_center !== undefined)
 			camera.setPosition(opt_center);
-	}
 
+		if (opt_rotation !== undefined)
+			map.getView().setRotation(opt_rotation);
+	}
 };
