@@ -68,8 +68,8 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 				<script type="text/javascript" src="'.$relPath.'Resources/Public/src/vk2-deps.js"></script>';
 			} else {
 				$GLOBALS['TSFE']->additionalHeaderData[] = '
-				<script type="text/javascript" src="'.$relPath.'Resources/Public/lib/ol3-cesium-v1.12/Cesium/Cesium.js"></script>
-				<script type="text/javascript" src="'.$relPath.'Resources/Public/lib/ol3-cesium-v1.12/ol3cesium.js"></script>
+				<script type="text/javascript" src="'.$relPath.'Resources/Public/dist/Cesium.js"></script>
+				<script type="text/javascript" src="'.$relPath.'Resources/Public/dist/ol3cesium.js"></script>
 				<script type="text/javascript" src="'.$relPath.'Resources/Public/dist/vk2-min.js"></script>';
 			}
 		} else {
