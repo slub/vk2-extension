@@ -58,7 +58,7 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		$relPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath('vk2');
 
 		// render different js library regarding if production or debug mode
-		if ($this->settings['general']['debug'] === 1) {
+		if ($this->settings['general']['debug'] == 1) {
 			$GLOBALS['TSFE']->additionalHeaderData[] = '
 				<script type="text/javascript" src="'.$relPath.'Resources/Public/lib/ol3-cesium-v1.12/Cesium/Cesium.js"></script>
 				<script type="text/javascript" src="'.$relPath.'Resources/Public/lib/ol3-cesium-v1.12/ol3cesium.js"></script>

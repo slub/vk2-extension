@@ -55,7 +55,7 @@ class Tools {
 		$relPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath('vk2');
 
 		// render different js library regarding if production or debug mode
-		if ($debug === 1) {
+		if ($debug == 1) {
 			$GLOBALS['TSFE']->additionalHeaderData[] = '
 				<script type="text/javascript" src="'.$relPath.'Resources/Public/lib/openlayers/ol-debug.js"></script>
 				<script type="text/javascript" src="'.$relPath.'Resources/Public/lib/closure-library/closure/goog/base.js"></script>
