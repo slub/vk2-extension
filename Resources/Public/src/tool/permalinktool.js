@@ -209,26 +209,26 @@ vk2.tool.Permalink.prototype.zoomToMapView_ = function(map, opt_center, opt_zoom
 	if (opt_center !== undefined)
 		map.getView().setCenter(opt_center);
 
-	if (opt_zoom !== undefined)
+	if (opt_zoom !== undefined && !isNaN(opt_zoom))
 		map.getView().setZoom(opt_zoom);
 
 	// only set if mode 3d is active
 	if (vk2.settings.MODE_3D && ol3d !== undefined) {
 		var camera = ol3d.getCamera();
 
-		if (opt_tilt !== undefined)
+		if (opt_tilt !== undefined && !isNaN(opt_tilt))
 			camera.setTilt(opt_tilt);
 
-		if (opt_altitude !== undefined)
+		if (opt_altitude !== undefined && !isNaN(opt_altitude))
 			camera.setAltitude(opt_altitude);
 
-		if (opt_distance !== undefined)
+		if (opt_distance !== undefined && !isNaN(opt_distance))
 			camera.setDistance(opt_distance);
 
 		if (opt_center !== undefined)
 			camera.setPosition(opt_center);
 
-		if (opt_rotation !== undefined)
+		if (opt_rotation !== undefined && !isNaN(opt_rotation))
 			map.getView().setRotation(opt_rotation);
 	}
 };

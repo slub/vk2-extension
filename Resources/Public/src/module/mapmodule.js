@@ -3,6 +3,10 @@
  */
 goog.provide('vk2.module.MapModule');
 
+goog.require('vk2.control.LayerSpy');
+goog.require('vk2.control.MousePositionOnOff');
+goog.require('vk2.control.Permalink');
+goog.require('vk2.control.RotateNorth');
 goog.require('vk2.layer.HistoricMap');
 goog.require('vk2.layer.HistoricMap3D');
 goog.require('vk2.module.MapSearchModuleEventType');
@@ -26,6 +30,36 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         zoom: 2
     };
 
+    var controls = goog.isDef(opt_terrain) && opt_terrain === true ? [
+            new ol.control.Attribution({
+                collapsible:false,
+                collapsed:false
+            }),
+            new ol.control.Zoom(),
+            new ol.control.FullScreen(),
+            new vk2.control.LayerSpy({
+                'spyLayer':new ol.layer.Tile({
+                    attribution: undefined,
+                    source: new ol.source.OSM()
+                })
+            }),
+            new vk2.control.RotateNorth(),
+            new ol.control.ScaleLine(),
+            new vk2.control.Permalink(),
+            new vk2.control.MousePositionOnOff()
+        ] : [
+            new ol.control.Attribution({
+                collapsible:false,
+                collapsed:false
+            }),
+            new ol.control.Zoom(),
+            new ol.control.FullScreen(),
+            new vk2.control.RotateNorth(),
+            new ol.control.ScaleLine(),
+            new vk2.control.Permalink(),
+            new vk2.control.MousePositionOnOff()
+        ];
+
     /**
      * @type {ol.Map}
      * @private
@@ -41,29 +75,11 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         'interactions': ol.interaction.defaults().extend([
             new ol.interaction.DragRotateAndZoom()
         ]),
-        'controls': [
-            new ol.control.Attribution({
-                collapsible:false,
-                collapsed:false
-            }),
-            new ol.control.Zoom(),
-            new ol.control.FullScreen(),
-            // does not work
-            //new vk2.control.LayerSpy({
-            //    'spyLayer':new ol.layer.Tile({
-            //        attribution: undefined,
-            //        source: new ol.source.OSM()
-            //    })
-            //}),
-            new vk2.control.RotateNorth(),
-            new ol.control.ScaleLine(),
-            new vk2.control.Permalink(),
-            new vk2.control.MousePositionOnOff()
-        ],
+        'controls': controls,
         'view': new ol.View(mapViewSettings)
     });
 
-    if (goog.isDef(opt_terrain) || opt_terrain === true) {
+    if (goog.isDef(opt_terrain) && opt_terrain === true) {
 
         // set global 3d mode to true
         vk2.settings.MODE_3D = true;
@@ -79,9 +95,8 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
             globe = scene.globe,
             camera = ol3d.getCamera();
 
-        if (goog.DEBUG) {
-            window['ol3d'] = ol3d;
-        }
+        // set this global because it is used by other application code
+        window['ol3d'] = ol3d;
 
         // some test code
         var tileCacheSize = '100',
@@ -100,7 +115,7 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         globe.maximumScreenSpaceError = maximumScreenSpaceError;
         scene.backgroundColor = Cesium.Color.WHITE;
         scene.globe.depthTestAgainstTerrain = true;
-        scene.screenSpaceCameraController.maximumZoomDistance = 500000;
+        scene.screenSpaceCameraController.maximumZoomDistance = 7500000;
         scene.terrainProvider = new Cesium.CesiumTerrainProvider({
             url : '//assets.agi.com/stk-terrain/world'
         });
@@ -122,10 +137,10 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         //camera.setPosition([1584547.2100905594, 6598444.370838029]);
         //camera.setDistance(3150.7839488238337);
 
-        camera.setTilt(1.18596);
-        camera.setAltitude(1363.9);
-        camera.setPosition([1584547.2100905594, 6598444.370838029]);
-        camera.setDistance(3150.7);
+        //camera.setTilt(1.18596);
+        //camera.setAltitude(1363.9);
+        camera.setPosition(mapViewSettings['center']);
+        //camera.setDistance(3150.7);
 
     };
 
@@ -217,7 +232,7 @@ vk2.module.MapModule.prototype.registerPermalinkTool = function(permalink){
 
         // request associated messtischblaetter for a blattnr
         if (feature.get('georeference') === true) {
-            this.map_.addLayer(this._createHistoricMapForFeature(feature));
+            this.map_.addLayer(this.createHistoricMapForFeature_(feature));
 
             if (vk2.settings.MODE_3D) {
                 // add vector geometry for the given historic map to a special layer for simulate 3d mode experience
