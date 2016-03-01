@@ -103,7 +103,7 @@ vk2.factory.MapSearchFactory.addHoverToMapSearchRecord = function(element, featu
 
 					if (vk2.settings.MODE_3D && window['ol3d']  !== undefined) {
 						// for updating the vector layer
-						ol3d.getAutoRenderLoop().restartRenderLoop();
+						window['ol3d'].getAutoRenderLoop().restartRenderLoop();
 					}
 				};
 			}, 

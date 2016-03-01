@@ -46,12 +46,31 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 */
 	public function showAction() {
 		//\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($this->settings['georef']['backend']);
+		\SLUB\Vk2\Utils\Tools::renderOpenlayersDependencies($this->settings['general']['debug']);
 	}
 
 	/**
 	 * action show
 	 * @return void
 	 */
-	public function show3dAction() {}
+	public function show3dAction() {
+		// get relative typo path
+		$relPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath('vk2');
+
+		// render different js library regarding if production or debug mode
+		if ($this->settings['general']['debug'] === 1) {
+			$GLOBALS['TSFE']->additionalHeaderData[] = '
+				<script type="text/javascript" src="'.$relPath.'Resources/Public/lib/ol3-cesium-v1.12/Cesium/Cesium.js"></script>
+				<script type="text/javascript" src="'.$relPath.'Resources/Public/lib/ol3-cesium-v1.12/ol3cesium.js"></script>
+				<script type="text/javascript" src="'.$relPath.'Resources/Public/lib/closure-library/closure/goog/base.js"></script>
+				<script type="text/javascript" src="'.$relPath.'Resources/Public/lib/closure-library/closure/goog/deps.js"></script>
+				<script type="text/javascript" src="'.$relPath.'Resources/Public/src/vk2-deps.js"></script>';
+		} else {
+			$GLOBALS['TSFE']->additionalHeaderData[] = '
+				<script type="text/javascript" src="'.$relPath.'Resources/Public/lib/ol3-cesium-v1.12/Cesium/Cesium.js"></script>
+				<script type="text/javascript" src="'.$relPath.'Resources/Public/lib/ol3-cesium-v1.12/ol3cesium.js"></script>
+				<script type="text/javascript" src="'.$relPath.'Resources/Public/dist/vk2-min.js"></script>';
+		}
+	}
 
 }

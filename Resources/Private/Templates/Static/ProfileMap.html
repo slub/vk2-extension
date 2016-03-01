@@ -32,6 +32,14 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- checks if the vk2.app.MapProfileApp module is already loaded -->
+	<script>
+		if (window['vk2'] === undefined || window['vk2']['app'] === undefined) {
+			goog.require('vk2.app.MapProfileApp');
+		};
+	</script>
+
 	<script>
 		var mapProfileApp = new vk2.app.MapProfileApp({
 			'metadataContainer' : 'metadata-container',

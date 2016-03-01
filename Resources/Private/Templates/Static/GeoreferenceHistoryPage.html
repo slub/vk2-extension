@@ -44,7 +44,14 @@
 	                             
 				
 			</div>
-	
+
+	<!-- checks if the vk2.app.UserHistoryApp module is already loaded -->
+	<script>
+		if (window['vk2'] === undefined || window['vk2']['app'] === undefined) {
+			goog.require('vk2.app.UserHistoryApp');
+		};
+	</script>
+
 	<script type="text/javascript">
 
 		var app = new vk2.app.UserHistoryApp({

@@ -6,9 +6,11 @@ var minifyCss = require('gulp-minify-css');
  * Externs used by the closure compiler
  */
 var closureExterns = [
+	'Build/externs/cesium-externs.js',
 	'Build/externs/glif.js',
 	'Build/externs/proj4.js',
 	'Build/externs/ol-externs.js',
+	'Build/externs/ol-cesium-externs.js',
 	'Build/externs/jquery.js',
 	'Build/externs/general.js',
 	'Build/externs/vk2x.js'

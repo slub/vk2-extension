@@ -162,7 +162,14 @@
 			</div>
 		</div>
 	</div>
-	
+
+	<!-- checks if the vk2.app.AdminEvaluationApp module is already loaded -->
+	<script>
+		if (window['vk2'] === undefined || window['vk2']['app'] === undefined) {
+			goog.require('vk2.app.AdminEvaluationApp');
+		};
+	</script>
+
 	<script>
 		var app = new vk2.app.AdminEvaluationApp({
 			'process_list':'list-container',

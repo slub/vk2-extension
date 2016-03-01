@@ -48,10 +48,14 @@ class StaticController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	public function faqAction(){}
 	public function impressumAction(){}
 	public function projectAction(){}
-	public function profileMapAction(){}
+	public function profileMapAction(){
+		\SLUB\Vk2\Utils\Tools::renderOpenlayersDependencies($this->settings['general']['debug']);
+	}
 	public function loginAction(){}
 	public function logoutAction(){}
-	public function welcomePageAction(){}
+	public function welcomePageAction(){
+		\SLUB\Vk2\Utils\Tools::renderOpenlayersDependencies($this->settings['general']['debug']);
+	}
 	
 	/* 
 	 * contact form
@@ -88,6 +92,8 @@ class StaticController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * allow only registered user to access this pages
 	 */
 	public function georefPageAction(){
+		\SLUB\Vk2\Utils\Tools::renderOpenlayersDependencies($this->settings['general']['debug']);
+
 		$user = Tools::getActualUser($this->feUserRepository);
 		if ($user){
 			// user is authenticated
@@ -101,6 +107,8 @@ class StaticController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	}
 	
 	public function georeferenceChoosePageAction(){
+		\SLUB\Vk2\Utils\Tools::renderOpenlayersDependencies($this->settings['general']['debug']);
+
 		$user = Tools::getActualUser($this->feUserRepository);
 		if ($user){
 			// user is authenticated
@@ -114,6 +122,8 @@ class StaticController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	}
 	
 	public function georeferenceHistoryPageAction(){
+		\SLUB\Vk2\Utils\Tools::renderOpenlayersDependencies($this->settings['general']['debug']);
+
 		$user = Tools::getActualUser($this->feUserRepository);
 		if ($user){
 			// user is authenticated
@@ -127,6 +137,8 @@ class StaticController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	}
 	
 	public function evaluationPageAction(){
+		\SLUB\Vk2\Utils\Tools::renderOpenlayersDependencies($this->settings['general']['debug']);
+
 		$user = Tools::getActualUser($this->feUserRepository);
 		$usergroup = Tools::getUsergroupsForUser($user);
 		if (in_array('vk2-admin', $usergroup)){

@@ -35,7 +35,7 @@ ol.Map.prototype.zoomTo = function(opt_center, opt_zoom, opt_tilt, opt_altitude,
 
     // only set if mode 3d is active
     if (vk2.settings.MODE_3D && window['ol3d']  !== undefined) {
-        var camera = ol3d.getCamera(),
+        var camera = window['ol3d'].getCamera(),
             tilt = opt_tilt !== undefined && !isNaN(opt_tilt) ? opt_tilt : 0,
             rotation = opt_rotation !== undefined && !isNaN(opt_rotation) ? opt_rotation : 0;
 
@@ -53,6 +53,20 @@ ol.Map.prototype.zoomTo = function(opt_center, opt_zoom, opt_tilt, opt_altitude,
 
         this.getView().setRotation(rotation);
     }
+};
+
+/**
+ * @returns {Array.<vk2.layer.HistoricMap>}
+ */
+ol.Map.prototype.getHistoricMapLayer = function(){
+    var layers = this.getLayers().getArray();
+    var historicMapLayers = [];
+    for (var i = 0; i < layers.length; i++){
+        if (layers[i] instanceof vk2.layer.HistoricMap){
+            historicMapLayers.push(layers[i]);
+        };
+    };
+    return historicMapLayers;
 };
 
 /**
@@ -80,7 +94,7 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         new vk2.control.RotateNorth(),
         new ol.control.ScaleLine(),
         new vk2.control.Permalink(),
-        new vk2.control.MousePositionOnOff(),
+        new vk2.control.MousePositionOnOff()
     ]
 
     if (vk2.settings.MODE_3D === true && !goog.isDef(opt_terrain) || opt_terrain === false) {
@@ -179,12 +193,12 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
             console.log('Pixel: '+event.pixel);
 
         var features = [];
-        if (vk2.settings.MODE_3D) {
+        if (vk2.settings.MODE_3D && window['ol3d'] !== undefined) {
             // special behavior for mode 3d
             var clickCoordinate = this.map_.getCoordinateFromPixel(event.pixel);
             features = this.historicMapClickLayer_.getSource().getFeaturesAtCoordinate(clickCoordinate);
         } else {
-            this.forEachFeatureAtPixel(event['pixel'], function(feature){
+            this.getMap().forEachFeatureAtPixel(event['pixel'], function(feature){
                 features.push(feature);
             });
         }
@@ -221,7 +235,7 @@ vk2.module.MapModule.containsLayerWithId = function(id, layers) {
  * @private
  */
 vk2.module.MapModule.prototype.createHistoricMapForFeature_ = function(feature){
-    return vk2.settings.MODE_3D ?
+    return vk2.settings.MODE_3D && window['ol3d'] !== undefined ?
         new vk2.layer.HistoricMap3D({
             'time':feature.get('time'),
             'thumbnail': feature.get('thumb'),
@@ -293,7 +307,7 @@ vk2.module.MapModule.prototype.registerSpatialTemporalSearch = function(spatialT
      * @type {ol.layer.Vector|undefined}
      * @private
      */
-    this.historicMapClickLayer_ = vk2.settings.MODE_3D ? new ol.layer.Vector({
+    this.historicMapClickLayer_ = vk2.settings.MODE_3D && window['ol3d'] !== undefined ? new ol.layer.Vector({
             'source': new ol.source.Vector(),
             'style': function(feature, resolution) {
                 return [];
@@ -340,7 +354,7 @@ vk2.module.MapModule.prototype.registerSpatialTemporalSearch = function(spatialT
             // display the map on top of the the base map
             this.map_.addLayer(this.createHistoricMapForFeature_(feature));
 
-            if (vk2.settings.MODE_3D) {
+            if (vk2.settings.MODE_3D && window['ol3d'] !== undefined) {
                 // add vector geometry for the given historic map to a special layer for simulate 3d mode experience
                 var feature = vk2.layer.HistoricMap.createClipFeature(feature.getGeometry().clone(), feature.getId(),
                     feature.get('time'), feature.get('title'))
@@ -355,7 +369,7 @@ vk2.module.MapModule.prototype.registerSpatialTemporalSearch = function(spatialT
         var lonlat = event.target['lonlat'],
             center = ol.proj.transform([parseFloat(lonlat[0]),parseFloat(lonlat[1])],
                 event.target['srs'], vk2.settings.MAPVIEW_PARAMS['projection']);
-        map.zoomTo(center, 6);
+        this.map_.zoomTo(center, 6);
     }, undefined, this);
 };
 

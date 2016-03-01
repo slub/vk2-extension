@@ -1,6 +1,14 @@
 {namespace vk=SLUB\Vk2\ViewHelpers}
 <!-- Parameter for the client application -->
 <vk:head>
+    <!-- checks if the vk2.settings module is already loaded -->
+    <script>
+        if (window['vk2'] === undefined) {
+            goog.require('vk2.settings');
+        };
+    </script>
+
+    <!-- configurates the frontend application via the typo3 bachend -->
     <script>
         // parameters which are replaced by typo3 flexform parameters should be set at first because
         // in other cases the fluid template engine throwns unknown exceptions

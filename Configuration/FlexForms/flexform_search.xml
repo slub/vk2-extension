@@ -43,6 +43,17 @@
                         </TCEforms>
                     </settings.general.modetwoandhalfd>
 
+                    <!-- defines if 2.5d mode is active or not -->
+                    <settings.general.debug>
+                        <TCEforms>
+                            <label>Run the application in debug mode</label>
+                            <config>
+                                <type>check</type>
+                                <default>1</default>
+                            </config>
+                        </TCEforms>
+                    </settings.general.debug>
+
                     <!-- Defines the elasticsearch url which is used by the client for querying search data -->
                     <settings.search.elasticsearch>
                         <TCEforms>
@@ -79,17 +90,6 @@
                             </config>
                         </TCEforms>
                     </settings.search.time.max>
-
-                    <!-- defines if 2.5d mode is active or not -->
-                    <settings.general.mode25d>
-                        <TCEforms>
-                            <label>Activate mode 2.5d</label>
-                            <config>
-                                <type>check</type>
-                                <default>0</default>
-                            </config>
-                        </TCEforms>
-                    </settings.general.mode25d>
 
                     <!-- Defines if the georeference plugin is on or not -->
                     <settings.georef.active>

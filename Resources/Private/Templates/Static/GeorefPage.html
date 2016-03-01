@@ -57,9 +57,16 @@
 		
 		
 	</div>
-	
-	<script>	
+
+	<!-- checks if the vk2.app.GeoreferenceApp module is already loaded -->
+	<script>
+		if (window['vk2'] === undefined || window['vk2']['app'] === undefined) {
+			goog.require('vk2.app.GeoreferenceApp');
+		};
+	</script>
+
+	<script>
     	var georeferenceApp = new vk2.app.GeoreferenceApp('unreferenced-map','georeferenced-map');
-    </script> 
+    </script>
 
 </f:section>

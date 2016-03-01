@@ -45,4 +45,26 @@ class Tools {
 		}
 		return $groups;
 	}
+
+	/**
+	 * Functions renders the openlayers dependencies to the given template.
+	 * @param number $debug
+	 */
+	public static function renderOpenlayersDependencies($debug) {
+		// get relative typo path
+		$relPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath('vk2');
+
+		// render different js library regarding if production or debug mode
+		if ($debug === 1) {
+			$GLOBALS['TSFE']->additionalHeaderData[] = '
+				<script type="text/javascript" src="'.$relPath.'Resources/Public/lib/openlayers/ol-debug.js"></script>
+				<script type="text/javascript" src="'.$relPath.'Resources/Public/lib/closure-library/closure/goog/base.js"></script>
+				<script type="text/javascript" src="'.$relPath.'Resources/Public/lib/closure-library/closure/goog/deps.js"></script>
+				<script type="text/javascript" src="'.$relPath.'Resources/Public/src/vk2-deps.js"></script>';
+		} else {
+			$GLOBALS['TSFE']->additionalHeaderData[] = '
+				<script type="text/javascript" src="'.$relPath.'Resources/Public/dist/ol-vk2.js"></script>
+				<script type="text/javascript" src="'.$relPath.'Resources/Public/dist/vk2-min.js"></script>';
+		}
+	}
 }

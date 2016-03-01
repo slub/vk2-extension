@@ -63,9 +63,10 @@ vk2.tool.Permalink.prototype.parsePermalink = function(map){
 			center = ol.proj.transform([parseFloat(centerArray[0], 0),parseFloat(centerArray[1], 0)], 'EPSG:3857',
 				vk2.settings.MAPVIEW_PARAMS['projection']);
 		};
+
+		map.zoomTo(center, zoom, tilt, distance, altitude, rotation);
 	};
 
-	map.zoomTo(center, zoom, tilt, distance, altitude, rotation);
 
 	/**
 	 * Function for parsing and adding the response
@@ -94,8 +95,9 @@ vk2.tool.Permalink.prototype.parsePermalink = function(map){
 
 		// if no center was set so far get center of the first map
 		if (!center && features.length > 0) {
-			center = features[0].getGeometry().getInteriorPoint().getCoordinates();};
-		this.zoomToMapView_(map, center, zoom);
+			center = features[0].getGeometry().getInteriorPoint().getCoordinates();
+			map.zoomTo(center, zoom);
+		};
 
 	}, this);
 
@@ -173,7 +175,7 @@ vk2.tool.Permalink.createPermalink = function(map){
 	params.set('oid', objectids);
 
 	if (vk2.settings.MODE_3D && window['ol3d']  !== undefined) {
-		var camera = ol3d.getCamera(),
+		var camera = window['ol3d'].getCamera(),
 			position = ol.proj.transform(camera.getPosition(), vk2.settings.MAPVIEW_PARAMS['projection'], 'EPSG:4326');;
 
 		params.set('t',vk2.utils.round(camera.getTilt(), 5));

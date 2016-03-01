@@ -192,6 +192,14 @@
 		</div>
 	</div>
 
+	<!-- checks if the vk2.app.PresentationApp / vk2.utils module is already loaded -->
+	<script>
+		if (window['vk2'] === undefined || window['vk2']['utils'] === undefined || window['vk2']['app'] === undefined) {
+			goog.require('vk2.app.PresentationApp');
+			goog.require('vk2.utils');
+		};
+	</script>
+
 	<vk:isUser>
 		<f:then>
 
