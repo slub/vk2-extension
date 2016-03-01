@@ -162,7 +162,7 @@ vk2.tool.Permalink.createPermalink = function(map){
 	var zoom = map.getView().getZoom();
 		
 	// create permalink
-	var baseUrl = !vk2.settings.MODE_3D ? window.location.origin + vk2.utils.routing.getBaseUrl() + '?welcomepage=off' :
+	var baseUrl = !vk2.settings.MODE_3D || window['ol3d'] === undefined ? window.location.origin + vk2.utils.routing.getBaseUrl() + '?welcomepage=off' :
 			window.location.origin + '/vkviewer/main/3d/?welcomepage=off',
 		permalink = new goog.Uri(baseUrl),
 		params = permalink.getQueryData();
@@ -172,7 +172,7 @@ vk2.tool.Permalink.createPermalink = function(map){
 	params.set('c',vk2.utils.round(center[0], 4) + ',' + vk2.utils.round(center[1], 4));
 	params.set('oid', objectids);
 
-	if (vk2.settings.MODE_3D && ol3d !== undefined) {
+	if (vk2.settings.MODE_3D && window['ol3d']  !== undefined) {
 		var camera = ol3d.getCamera(),
 			position = ol.proj.transform(camera.getPosition(), vk2.settings.MAPVIEW_PARAMS['projection'], 'EPSG:4326');;
 

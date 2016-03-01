@@ -34,7 +34,7 @@ ol.Map.prototype.zoomTo = function(opt_center, opt_zoom, opt_tilt, opt_altitude,
         this.getView().setZoom(opt_zoom);
 
     // only set if mode 3d is active
-    if (vk2.settings.MODE_3D && ol3d !== undefined) {
+    if (vk2.settings.MODE_3D && window['ol3d']  !== undefined) {
         var camera = ol3d.getCamera(),
             tilt = opt_tilt !== undefined && !isNaN(opt_tilt) ? opt_tilt : 0,
             rotation = opt_rotation !== undefined && !isNaN(opt_rotation) ? opt_rotation : 0;

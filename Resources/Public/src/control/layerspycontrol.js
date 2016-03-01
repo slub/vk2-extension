@@ -66,10 +66,6 @@ vk2.control.LayerSpy = function (opt_options) {
 		mousemove: function (event) {
 			mousePosition = this.getMap().getEventPixel(event.event_);
 			this.getMap().render();
-
-			if (vk2.settings.MODE_3D) {
-				ol3d.getAutoRenderLoop().restartRenderLoop();
-			}
 		},
 		mouseout: function () {
 			mousePosition = null;
