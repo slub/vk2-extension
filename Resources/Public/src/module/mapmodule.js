@@ -16,6 +16,46 @@ goog.require('vk2.utils.Modal');
 goog.require('vk2.utils.routing');
 
 /**
+ * Extend the ol.Map object. Zooms to a given point. This function is also used by the permalink tool
+ *
+ * @param {ol.Coordinate=} opt_center
+ * @param {number=} opt_zoom
+ * @param {number=} opt_tilt
+ * @param {number=} opt_altitude
+ * @param {number=} opt_distance
+ * @param {number=} opt_rotation
+ */
+ol.Map.prototype.zoomTo = function(opt_center, opt_zoom, opt_tilt, opt_altitude, opt_distance, opt_rotation) {
+
+    if (opt_center !== undefined)
+        this.getView().setCenter(opt_center);
+
+    if (opt_zoom !== undefined && !isNaN(opt_zoom))
+        this.getView().setZoom(opt_zoom);
+
+    // only set if mode 3d is active
+    if (vk2.settings.MODE_3D && ol3d !== undefined) {
+        var camera = ol3d.getCamera(),
+            tilt = opt_tilt !== undefined && !isNaN(opt_tilt) ? opt_tilt : 0,
+            rotation = opt_rotation !== undefined && !isNaN(opt_rotation) ? opt_rotation : 0;
+
+        // both have to be set to clear old perspectives in case of a new zoom and 3d mode active
+        camera.setTilt(tilt);
+
+        if (opt_altitude !== undefined && !isNaN(opt_altitude))
+            camera.setAltitude(opt_altitude);
+
+        if (opt_distance !== undefined && !isNaN(opt_distance))
+            camera.setDistance(opt_distance);
+
+        if (opt_center !== undefined)
+            camera.setPosition(opt_center);
+
+        this.getView().setRotation(rotation);
+    }
+};
+
+/**
  * @param {string} mapElId
  * @param {Object|undefined} opt_mapViewSettings
  * @param {boolean|undefined} opt_terrain Parameter defines if 3d should be active
@@ -319,6 +359,14 @@ vk2.module.MapModule.prototype.registerSpatialTemporalSearch = function(spatialT
             };
         };
 
+    }, undefined, this);
+
+    // register gazetteer tool
+    goog.events.listen(spatialTemporalSearchModule.getGazetteerSearchTool(), 'jumpto', function(event){
+        var lonlat = event.target['lonlat'],
+            center = ol.proj.transform([parseFloat(lonlat[0]),parseFloat(lonlat[1])],
+                event.target['srs'], vk2.settings.MAPVIEW_PARAMS['projection']);
+        map.zoomTo(center, 6);
     }, undefined, this);
 };
 
