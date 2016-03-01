@@ -21,6 +21,7 @@
 	"ol.events.condition.shiftKeyOnly",
 	"ol.events.condition.singleClick",
 	"ol.extent.equals",
+	"ol.extent.containsXY",
 	"ol.Feature",
 	"ol.Feature#get",
 	"ol.Feature#getProperties",

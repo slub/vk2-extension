@@ -41,7 +41,7 @@ goog.addDependency('../../../../src/layer/historicmaplayer.js', ['vk2.layer.Hist
 goog.addDependency('../../../../src/layer/historicmaplayer3d.js', ['vk2.layer.HistoricMap3D'], ['goog.events', 'goog.object', 'vk2.settings', 'vk2.utils', 'vk2.utils.Styles'], false);
 goog.addDependency('../../../../src/layer/messtischblattlayer.js', ['vk2.layer.Messtischblatt'], ['vk2.utils'], false);
 goog.addDependency('../../../../src/module/layermanagementmodule.js', ['vk2.module.LayerManagementModule'], ['goog.dom', 'goog.events', 'goog.events.EventTarget', 'goog.events.EventType', 'vk2.control.DeactivateMapCollection', 'vk2.control.DynamicMapVisualization', 'vk2.factory.LayerManagementFactory'], false);
-goog.addDependency('../../../../src/module/mapmodule.js', ['vk2.module.MapModule'], ['vk2.control.LayerSpy', 'vk2.control.MousePositionOnOff', 'vk2.control.Permalink', 'vk2.control.RotateNorth', 'vk2.layer.HistoricMap', 'vk2.layer.HistoricMap3D', 'vk2.module.MapSearchModuleEventType', 'vk2.settings', 'vk2.utils', 'vk2.utils.Modal', 'vk2.utils.routing'], false);
+goog.addDependency('../../../../src/module/mapmodule.js', ['vk2.module.MapModule'], ['vk2.control.LayerSpy', 'vk2.control.MousePositionOnOff', 'vk2.control.Permalink', 'vk2.control.RotateNorth', 'vk2.layer.HistoricMap', 'vk2.layer.HistoricMap3D', 'vk2.module.MapSearchModuleEventType', 'vk2.settings', 'vk2.utils', 'vk2.utils.Modal', 'vk2.utils.SSECorrector', 'vk2.utils.routing'], false);
 goog.addDependency('../../../../src/module/mapsearchmodule.js', ['vk2.module.MapSearchModule', 'vk2.module.MapSearchModuleEventType'], ['goog.dom', 'goog.dom.classes', 'goog.events', 'goog.events.Event', 'goog.events.EventTarget', 'goog.events.EventType', 'vk2.factory.MapSearchFactory', 'vk2.source.ServerPagination', 'vk2.tool.FacetedSearch', 'vk2.tool.FacetedSearchEventType', 'vk2.utils'], false);
 goog.addDependency('../../../../src/module/spatialtemporalsearchmodule.js', ['vk2.module.SpatialTemporalSearchModule'], ['goog.dom', 'goog.dom.classes', 'goog.events', 'vk2.factory.MapSearchFactory', 'vk2.module.MapSearchModule', 'vk2.settings', 'vk2.tool.GazetteerSearch', 'vk2.tool.TimeSlider'], false);
 goog.addDependency('../../../../src/parser/elasticsearchparser.js', ['vk2.parser.ElasticSearch'], ['vk2.settings'], false);
@@ -59,6 +59,7 @@ goog.addDependency('../../../../src/utils.js', ['vk2.utils'], ['goog.Uri', 'goog
 goog.addDependency('../../../../src/utils/modal.js', ['vk2.utils.Modal'], ['goog.dom', 'goog.dom.classes', 'goog.events', 'goog.style'], false);
 goog.addDependency('../../../../src/utils/routing.js', ['vk2.utils.routing'], ['goog.Uri', 'vk2.settings'], false);
 goog.addDependency('../../../../src/utils/slidecontainer.js', ['vk2.utils.SlideContainer'], ['goog.dom', 'goog.dom.classes', 'goog.events', 'goog.events.EventTarget', 'goog.style'], false);
+goog.addDependency('../../../../src/utils/ssecorrector.js', ['vk2.utils.SSECorrector'], [], false);
 goog.addDependency('../../../../src/utils/styles.js', ['vk2.utils.Styles'], [], false);
 goog.addDependency('../../../../src/viewer/zoomifyviewer.js', ['vk2.viewer.ZoomifyViewer', 'vk2.viewer.ZoomifyViewerEventType'], ['goog.dom', 'goog.events.Event', 'goog.events.EventTarget', 'goog.events.EventType', 'goog.net.XhrIo', 'vk2.settings'], false);
 goog.addDependency('../../../../src/vkviewer.js', ['vk2'], [], false);

@@ -54,22 +54,28 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @return void
 	 */
 	public function show3dAction() {
-		// get relative typo path
-		$relPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath('vk2');
+		if ($this->settings['general']['modetwoandhalfd'] == 1){
+			// get relative typo path
+			$relPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath('vk2');
 
-		// render different js library regarding if production or debug mode
-		if ($this->settings['general']['debug'] == 1) {
-			$GLOBALS['TSFE']->additionalHeaderData[] = '
+			// render different js library regarding if production or debug mode
+			if ($this->settings['general']['debug'] == 1) {
+				$GLOBALS['TSFE']->additionalHeaderData[] = '
 				<script type="text/javascript" src="'.$relPath.'Resources/Public/lib/ol3-cesium-v1.12/Cesium/Cesium.js"></script>
 				<script type="text/javascript" src="'.$relPath.'Resources/Public/lib/ol3-cesium-v1.12/ol3cesium.js"></script>
 				<script type="text/javascript" src="'.$relPath.'Resources/Public/lib/closure-library/closure/goog/base.js"></script>
 				<script type="text/javascript" src="'.$relPath.'Resources/Public/lib/closure-library/closure/goog/deps.js"></script>
 				<script type="text/javascript" src="'.$relPath.'Resources/Public/src/vk2-deps.js"></script>';
-		} else {
-			$GLOBALS['TSFE']->additionalHeaderData[] = '
+			} else {
+				$GLOBALS['TSFE']->additionalHeaderData[] = '
 				<script type="text/javascript" src="'.$relPath.'Resources/Public/lib/ol3-cesium-v1.12/Cesium/Cesium.js"></script>
 				<script type="text/javascript" src="'.$relPath.'Resources/Public/lib/ol3-cesium-v1.12/ol3cesium.js"></script>
 				<script type="text/javascript" src="'.$relPath.'Resources/Public/dist/vk2-min.js"></script>';
+			}
+		} else {
+			// 2.5d mode is deactivated
+			// redirect to main page
+			$this->redirect('show', 'Main', NULL);
 		}
 	}
 
