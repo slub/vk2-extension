@@ -44,16 +44,17 @@ vk2.tool.Permalink.prototype.parsePermalink = function(map){
 
 	var uri = new goog.Uri(window.location.href),
 		params = uri.getQueryData(),
-		center,
-		// default zoom
-		zoom = 4;
-		
-	// if there are information to center always zoom to it
+		center, zoom, tilt, distance, altitude;
+
 	if (params.containsKey('c')){
+		// parse the center point and the zoom if exists
 		var centerArray = params.get('c').split(',');
 		center = ol.proj.transform([parseFloat(centerArray[0], 0),parseFloat(centerArray[1], 0)], 'EPSG:4326',
 			vk2.settings.MAPVIEW_PARAMS['projection']);
-		zoom = parseInt(params.get('z'), 0);
+		zoom = params.get('z') !== undefined ? parseInt(params.get('z'), 0) : 4;
+		tilt = params.get('t') !== undefined ? parseFloat(params.get('t'), 5) : 0;
+		altitude = params.get('a') !== undefined ? parseFloat(params.get('a'), 1) : 10000;
+		distance = params.get('d') !== undefined ? parseFloat(params.get('d'), 1) : 10000;
 
 
 		if (isNaN(center[0]) || isNaN(center[1])) {
@@ -61,9 +62,9 @@ vk2.tool.Permalink.prototype.parsePermalink = function(map){
 			center = ol.proj.transform([parseFloat(centerArray[0], 0),parseFloat(centerArray[1], 0)], 'EPSG:3857',
 				vk2.settings.MAPVIEW_PARAMS['projection']);
 		};
-
-		this.zoomToMapView_(map, center, zoom);
 	};
+
+	this.zoomToMapView_(map, center, zoom, tilt, distance, altitude);
 
 	/**
 	 * Function for parsing and adding the response
@@ -160,13 +161,26 @@ vk2.tool.Permalink.createPermalink = function(map){
 	var zoom = map.getView().getZoom();
 		
 	// create permalink
-	var permalink = new goog.Uri(window.location.origin + vk2.utils.routing.getBaseUrl() + '?welcomepage=off');
-	var params = permalink.getQueryData();
+	var baseUrl = !vk2.settings.MODE_3D ? window.location.origin + vk2.utils.routing.getBaseUrl() + '?welcomepage=off' :
+			window.location.origin + '/vkviewer/main/3d/?welcomepage=off',
+		permalink = new goog.Uri(baseUrl),
+		params = permalink.getQueryData();
 		
 	// append zoom, center and objectids to queryData
 	params.set('z',zoom);
 	params.set('c',vk2.utils.round(center[0], 4) + ',' + vk2.utils.round(center[1], 4));
 	params.set('oid', objectids);
+
+	if (vk2.settings.MODE_3D && ol3d !== undefined) {
+		var camera = ol3d.getCamera(),
+			position = ol.proj.transform(camera.getPosition(), vk2.settings.MAPVIEW_PARAMS['projection'], 'EPSG:4326');;
+
+		params.set('t',vk2.utils.round(camera.getTilt(), 5));
+		params.set('d',vk2.utils.round(camera.getDistance(), 1));
+		params.set('a',vk2.utils.round(camera.getAltitude(), 1));
+		params.set('c',vk2.utils.round(position[0], 4) + ',' + vk2.utils.round(position[1], 4));
+	};
+
 	permalink.setQueryData(params);
 		
 	if (goog.DEBUG){
@@ -180,11 +194,36 @@ vk2.tool.Permalink.createPermalink = function(map){
 
 /**
  * @param {ol.Map} map
- * @param {ol.Coordinate} center
- * @param {number} zoom
+ * @param {ol.Coordinate=} opt_center
+ * @param {number=} opt_zoom
+ * @param {number=} opt_tilt
+ * @param {number=} opt_altitude
+ * @param {number=} opt_distance
  * @private
  */
-vk2.tool.Permalink.prototype.zoomToMapView_ = function(map, center, zoom) {
-	map.getView().setCenter(center);
-	map.getView().setZoom(zoom);
+vk2.tool.Permalink.prototype.zoomToMapView_ = function(map, opt_center, opt_zoom, opt_tilt, opt_altitude, opt_distance) {
+
+	if (opt_center !== undefined)
+		map.getView().setCenter(opt_center);
+
+	if (opt_zoom !== undefined)
+		map.getView().setZoom(opt_zoom);
+
+	// only set if mode 3d is active
+	if (vk2.settings.MODE_3D && ol3d !== undefined) {
+		var camera = ol3d.getCamera();
+
+		if (opt_tilt !== undefined)
+			camera.setTilt(opt_tilt);
+
+		if (opt_altitude !== undefined)
+			camera.setAltitude(opt_altitude);
+
+		if (opt_distance !== undefined)
+			camera.setDistance(opt_distance);
+
+		if (opt_center !== undefined)
+			camera.setPosition(opt_center);
+	}
+
 };

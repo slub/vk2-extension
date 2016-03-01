@@ -120,13 +120,19 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         //
         ol3d.setEnabled(true);
         //camera.setTilt(0);
-        //camera.setAltitude(62000.04206483738);
+        //camera.setAltitude(62000);
         //camera.setPosition([1529336.123970922, 6593632.4348105695]);
-        //camera.setDistance(64238.24055398101);
-        camera.setTilt(1.185962657604752);
-        camera.setAltitude(1363.9887671697156);
+        //camera.setDistance(62000);
+        //camera.setTilt(1.185962657604752);
+        //camera.setAltitude(1363.9887671697156);
+        //camera.setPosition([1584547.2100905594, 6598444.370838029]);
+        //camera.setDistance(3150.7839488238337);
+
+        camera.setTilt(1.18596);
+        camera.setAltitude(1363.9);
         camera.setPosition([1584547.2100905594, 6598444.370838029]);
-        camera.setDistance(3150.7839488238337);
+        camera.setDistance(3150.7);
+
     };
 
     // append click behavior to map object

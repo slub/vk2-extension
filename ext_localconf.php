@@ -59,42 +59,42 @@ $TYPO3_CONF_VARS['EXTCONF']['realurl']['localhost'] = array(
 		'disablePathCache' => TRUE,
 		'dontResolveShortcuts' => FALSE,
 	),
-);
-$TYPO3_CONF_VARS['EXTCONF']['realurl']['localhost']['postVarSets'] = array(
-	'_DEFAULT' => array(
-		'vkviewer' => array(
-			array(
-				'GETvar' => 'tx_vk2_search[controller]',
-				'valueMap' => array(
-					'static' => 'Static',
-					'auth' => 'Auth',
-					'georef' => 'Georeference',
-					'evaluation' => 'Evaluation',
-					'main' => 'Main',
-				)
-			),
-			array(
-				'GETvar' => 'tx_vk2_search[action]',
-				'valueMap' => array(
-					'3d' => 'show3d',
-					'profile-map' => 'profileMap',
-					'georefpage' => 'georefPage',
-					'getprocess' => 'getProcess',
-					'validation' => 'validateGeorefProcess',
-					'confirm' => 'confirmGeorefProcess',
-					'information' => 'georeferenceUserInformation',
-					'history' => 'georeferenceUserHistory',
-					'isvalide' => 'setIsValide',
-					'isinvalide' => 'setIsInValide',
-					'welcome' => 'welcomePage',
-					'evaluationpage' => 'evaluationPage',
-					'georefhistorypage' => 'georeferenceHistoryPage',
-					'georefchoosepage' => 'georeferenceChoosePage',
-				)
-			)
+	'postVarSets' => array(
+		'_DEFAULT' => array(
+				'vkviewer' => array(
+					array(
+						'GETvar' => 'tx_vk2_search[controller]',
+						'valueMap' => array(
+							'static' => 'Static',
+							'auth' => 'Auth',
+							'georef' => 'Georeference',
+							'evaluation' => 'Evaluation',
+							'main' => 'Main',
+						)
+					),
+					array(
+						'GETvar' => 'tx_vk2_search[action]',
+						'valueMap' => array(
+							'3d' => 'show3d',
+							'profile-map' => 'profileMap',
+							'georefpage' => 'georefPage',
+							'getprocess' => 'getProcess',
+							'validation' => 'validateGeorefProcess',
+							'confirm' => 'confirmGeorefProcess',
+							'information' => 'georeferenceUserInformation',
+							'history' => 'georeferenceUserHistory',
+							'isvalide' => 'setIsValide',
+							'isinvalide' => 'setIsInValide',
+							'welcome' => 'welcomePage',
+							'evaluationpage' => 'evaluationPage',
+							'georefhistorypage' => 'georeferenceHistoryPage',
+							'georefchoosepage' => 'georeferenceChoosePage',
+						),
+					),
+				),
 		),
+		'noMatch' => 'bypass',
 	),
-	'noMatch' => 'bypass',
 );
 
 // Should be deactivated in production environment

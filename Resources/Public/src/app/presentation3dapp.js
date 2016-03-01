@@ -53,7 +53,7 @@ vk2.app.Presentation3DApp = function(settings){
 	var layermanagement = new vk2.module.LayerManagementModule(settings['mapContainerId'], mapModule.getMap().getLayers(), mapModule.getMap());
 	
 	// permalink 
-	var permalink = new vk2.tool.Permalink(mapController.getMap());
+	var permalink = new vk2.tool.Permalink(mapModule.getMap());
 	permalink.parsePermalink(mapModule.getMap());
 	mapModule.registerPermalinkTool(permalink);
 		
