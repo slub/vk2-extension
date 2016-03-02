@@ -14,46 +14,34 @@ goog.require('vk2.settings');
 goog.require('vk2.utils');
 goog.require('vk2.utils.Modal');
 goog.require('vk2.utils.routing');
-goog.require('vk2.utils.SSECorrector');
 
 /**
  * Extend the ol.Map object. Zooms to a given point. This function is also used by the permalink tool
  *
- * @param {ol.Coordinate=} opt_center
- * @param {number=} opt_zoom
+ * @param {ol.Coordinate} center
+ * @param {number} zoom
  * @param {number=} opt_tilt
  * @param {number=} opt_altitude
  * @param {number=} opt_distance
  * @param {number=} opt_rotation
  */
-ol.Map.prototype.zoomTo = function(opt_center, opt_zoom, opt_tilt, opt_altitude, opt_distance, opt_rotation) {
+ol.Map.prototype.zoomTo = function(center, zoom) {
 
-    if (opt_center !== undefined)
-        this.getView().setCenter(opt_center);
+    if (!vk2.utils.is3DMode()) {
+        this.getView().setCenter(center);
+        this.getView().setZoom(zoom);
+        return;
+    } else {
+        var ol3d = vk2.utils.getOL3D(),
+            camera = ol3d.getCesiumScene().camera,
+            lonlat = ol.proj.transform(center, vk2.settings.MAPVIEW_PARAMS['projection'], 'EPSG:4326'),
+            defaultHeight = 100000.0,
+            position = Cesium.Cartesian3.fromDegrees(lonlat[0], lonlat[1], defaultHeight);
 
-    if (opt_zoom !== undefined && !isNaN(opt_zoom))
-        this.getView().setZoom(opt_zoom);
-
-    // only set if mode 3d is active
-    if (vk2.settings.MODE_3D && window['ol3d']  !== undefined) {
-        var camera = window['ol3d'].getCamera(),
-            tilt = opt_tilt !== undefined && !isNaN(opt_tilt) ? opt_tilt : 0,
-            rotation = opt_rotation !== undefined && !isNaN(opt_rotation) ? opt_rotation : 0;
-
-        // both have to be set to clear old perspectives in case of a new zoom and 3d mode active
-        camera.setTilt(tilt);
-
-        if (opt_altitude !== undefined && !isNaN(opt_altitude))
-            camera.setAltitude(opt_altitude);
-
-        if (opt_distance !== undefined && !isNaN(opt_distance))
-            camera.setDistance(opt_distance);
-
-        if (opt_center !== undefined)
-            camera.setPosition(opt_center);
-
-        this.getView().setRotation(rotation);
-    }
+        camera.flyTo({
+            'destination': position
+        });
+    };
 };
 
 /**
@@ -139,6 +127,8 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
             globe = scene.globe,
             camera = ol3d.getCamera();
 
+        //var bottom = olcs.core.pickBottomPoint(scene);
+
         // set this global because it is used by other application code
         window['ol3d'] = ol3d;
 
@@ -147,7 +137,7 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
             maximumScreenSpaceError = '2',
             fogEnabled = true,
             fogDensity = '0.0001',
-            fogSseFactor = '25',
+            fogSseFactor = '50',
             terrainLevels = [8, 11, 14, 16, 17];
 
         window.minimumRetrievingLevel = 8;
@@ -155,6 +145,7 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         window.imageryAvailableLevels = undefined;
 
         var limitCamera = function() {
+            console.log('Limit camera is called ...');
             var pos = this.camera.positionCartographic.clone();
             var inside = ol.extent.containsXY(extent4326, pos.longitude, pos.latitude);
             if (!inside) {
@@ -186,16 +177,18 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         scene.globe.depthTestAgainstTerrain = true;
         scene.screenSpaceCameraController.maximumZoomDistance = 7500000;
         scene.terrainProvider = new Cesium.CesiumTerrainProvider({
-            url : '//assets.agi.com/stk-terrain/world'
+            url : '//assets.agi.com/stk-terrain/world',
+            requestVertexNormals : true
         });
-        scene.postRender.addEventListener(limitCamera, scene);
+        //scene.postRender.addEventListener(limitCamera, scene);
         scene.fog.enabled = fogEnabled;
         scene.fog.density = fogDensity;
         scene.fog.screenSpaceErrorFactor = fogSseFactor;
 
 
-        var corrector = new vk2.utils.SSECorrector();
-        scene.globe._surface.sseCorrector = corrector;
+        // together with the "requestVertexNormals" flag (see terrainProvider) it enables the displaying
+        // of shadows on the map
+        scene.globe.enableLighting = true;
 
 
 

@@ -9,6 +9,7 @@ goog.require('goog.events.EventTarget');
 goog.require('goog.events.EventType');
 goog.require('vk2.parser.ElasticSearch');
 goog.require('vk2.request.ElasticSearch');
+goog.require('vk2.utils');
 goog.require('vk2.utils.routing');
 goog.require('vk2.settings');
 
@@ -44,29 +45,53 @@ vk2.tool.Permalink.prototype.parsePermalink = function(map){
 
 	var uri = new goog.Uri(window.location.href),
 		params = uri.getQueryData(),
-		center, zoom, tilt, distance, altitude, rotation;
+		center, zoom;
 
 	if (params.containsKey('c')){
-		// parse the center point and the zoom if exists
-		var centerArray = params.get('c').split(',');
-		center = ol.proj.transform([parseFloat(centerArray[0], 0),parseFloat(centerArray[1], 0)], 'EPSG:4326',
-			vk2.settings.MAPVIEW_PARAMS['projection']);
-		zoom = params.get('z') !== undefined ? parseInt(params.get('z'), 0) : 4;
-		tilt = params.get('t') !== undefined ? parseFloat(params.get('t'), 5) : 0;
-		altitude = params.get('a') !== undefined ? parseFloat(params.get('a'), 1) : 10000;
-		distance = params.get('d') !== undefined ? parseFloat(params.get('d'), 1) : 10000;
-		rotation = params.get('r') !== undefined ? parseFloat(params.get('r'), 5) : 0;
 
+		if (!vk2.utils.is3DMode())  {
 
-		if (isNaN(center[0]) || isNaN(center[1])) {
-			// assume the coordinates are in EPSG:900913
-			center = ol.proj.transform([parseFloat(centerArray[0], 0),parseFloat(centerArray[1], 0)], 'EPSG:3857',
-				vk2.settings.MAPVIEW_PARAMS['projection']);
-		};
+			var centerArray = params.get('c').split(','),
+				center = ol.proj.transform([parseFloat(centerArray[0], 0),parseFloat(centerArray[1], 0)], 'EPSG:4326',
+					vk2.settings.MAPVIEW_PARAMS['projection']),
+				zoom = params.get('z') !== undefined ? parseInt(params.get('z'), 0) : 4;
 
-		map.zoomTo(center, zoom, tilt, distance, altitude, rotation);
+			if (isNaN(center[0]) || isNaN(center[1])) {
+				// assume the coordinates are in EPSG:900913
+				center = ol.proj.transform([parseFloat(centerArray[0], 0),parseFloat(centerArray[1], 0)], 'EPSG:3857',
+					vk2.settings.MAPVIEW_PARAMS['projection']);
+			};
+
+			map.zoomTo(center, zoom);
+		}
+
+		// TODO: add behavior for zooming to place by center in 3d mode
+
 	};
 
+	if (params.containsKey('pos') && vk2.utils.is3DMode()) {
+
+		var ol3d = vk2.utils.getOL3D(),
+			camera = ol3d.getCesiumScene().camera,
+			posArr = params.get('pos').split(','),
+			position = {
+				'x': parseFloat(posArr[0], 0),
+				'y': parseFloat(posArr[1], 0),
+				'z': parseFloat(posArr[2], 0)
+			},
+			heading = params.get('h') !== undefined ? parseFloat(params.get('h'), 5) : 0,
+			pitch = params.get('p') !== undefined ? parseFloat(params.get('p'), 10) : 0,
+			roll = params.get('r') !== undefined ? parseFloat(params.get('r'),10) : 0;
+
+		camera.setView({
+			'destination': position,
+			'orientation': {
+				'heading': heading,
+				'pitch': pitch,
+				'roll': roll
+			}
+		});
+	};
 
 	/**
 	 * Function for parsing and adding the response
@@ -169,29 +194,33 @@ vk2.tool.Permalink.createPermalink = function(map){
 		permalink = new goog.Uri(baseUrl),
 		params = permalink.getQueryData();
 		
-	// append zoom, center and objectids to queryData
-	params.set('z',zoom);
-	params.set('c',vk2.utils.round(center[0], 4) + ',' + vk2.utils.round(center[1], 4));
+	if (vk2.utils.is3DMode()) {
+		// build 3d perspective permalink
+		var ol3d = vk2.utils.getOL3D(),
+			camera = ol3d.getCamera(),
+			scene = ol3d.getCesiumScene(),
+			position = Cesium.Ellipsoid.WGS84.cartographicToCartesian(scene.camera.positionCartographic);
+
+		params.set('h',camera.getHeading());
+		params.set('p',scene.camera.pitch);
+		params.set('pos',position.x + ',' + position.y + ',' + position.z);
+		params.set('r', scene.camera.roll);
+	} else {
+		// build 2d perspective permalink
+		params.set('z',zoom);
+		params.set('c',vk2.utils.round(center[0], 4) + ',' + vk2.utils.round(center[1], 4));
+	}
+
+	// add objectids
 	params.set('oid', objectids);
 
-	if (vk2.settings.MODE_3D && window['ol3d']  !== undefined) {
-		var camera = window['ol3d'].getCamera(),
-			position = ol.proj.transform(camera.getPosition(), vk2.settings.MAPVIEW_PARAMS['projection'], 'EPSG:4326');;
-
-		params.set('t',vk2.utils.round(camera.getTilt(), 5));
-		params.set('d',vk2.utils.round(camera.getDistance(), 1));
-		params.set('a',vk2.utils.round(camera.getAltitude(), 1));
-		params.set('c',vk2.utils.round(position[0], 4) + ',' + vk2.utils.round(position[1], 4));
-		params.set('r', vk2.utils.round(map.getView().getRotation(), 4));
-	};
-
 	permalink.setQueryData(params);
-		
+
 	if (goog.DEBUG){
 		console.log(objectids);
 		console.log(permalink.toString());
 	};
-		
+
 	return permalink.toString();
 
 };

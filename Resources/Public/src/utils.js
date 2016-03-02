@@ -195,12 +195,30 @@ vk2.utils.getConfirmationDialog = function(title, message, submitCallback, opt_c
 };
 
 /**
+ * Helper Function which access the ol3d object, which is hidden in the global namespace.
+ * @return {olcs.OLCesium|undefined}
+ */
+vk2.utils.getOL3D = function() {
+	if (vk2.utils.is3DMode())
+		return window['ol3d'];
+	return;
+};
+
+/**
  * Function checks if the client is logged in. This is checked via the
  * presence of the auth_tkt cookie.
  * @return {boolean}
  */
 vk2.utils.isLoggedIn = function(){
 	return goog.isDef(goog.net.cookies.get('auth_tkt')) ? true : false;
+};
+
+/**
+ * Helper function which checks if an 3d perspective is open yet
+ * @return {boolean}
+ */
+vk2.utils.is3DMode = function() {
+	return vk2.settings.MODE_3D && window['ol3d']  !== undefined;
 };
 
 /**
