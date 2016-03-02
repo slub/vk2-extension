@@ -144,31 +144,6 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         window.terrainAvailableLevels = terrainLevels;
         window.imageryAvailableLevels = undefined;
 
-        var limitCamera = function() {
-            console.log('Limit camera is called ...');
-            var pos = this.camera.positionCartographic.clone();
-            var inside = ol.extent.containsXY(extent4326, pos.longitude, pos.latitude);
-            if (!inside) {
-                // add a padding based on the camera height
-                var maxHeight = this.screenSpaceCameraController.maximumZoomDistance;
-                var padding = pos.height * 0.05 / maxHeight;
-                pos.longitude = Math.max(extent4326[0] - padding, pos.longitude);
-                pos.latitude = Math.max(extent4326[1] - padding, pos.latitude);
-                pos.longitude = Math.min(extent4326[2] + padding, pos.longitude);
-                pos.latitude = Math.min(extent4326[3] + padding, pos.latitude);
-                this.camera.setView({
-                    destination: Cesium.Ellipsoid.WGS84.cartographicToCartesian(pos),
-                    orientation: {
-                        heading: this.camera.heading,
-                        pitch: this.camera.pitch
-                    }
-                });
-            }
-            // Set the minimumZoomDistance according to the camera height
-            var minimumZoomDistance = pos.height > 1800 ? 400 : 200;
-            this.screenSpaceCameraController.minimumZoomDistance = minimumZoomDistance;
-        };
-
 
         globe.baseColor = Cesium.Color.WHITE;
         globe.tileCacheSize = tileCacheSize;
@@ -180,7 +155,6 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
             url : '//assets.agi.com/stk-terrain/world',
             requestVertexNormals : true
         });
-        //scene.postRender.addEventListener(limitCamera, scene);
         scene.fog.enabled = fogEnabled;
         scene.fog.density = fogDensity;
         scene.fog.screenSpaceErrorFactor = fogSseFactor;
@@ -188,7 +162,7 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
 
         // together with the "requestVertexNormals" flag (see terrainProvider) it enables the displaying
         // of shadows on the map
-        scene.globe.enableLighting = true;
+        //scene.globe.enableLighting = true;
 
 
 
@@ -196,19 +170,6 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         // load library and set camera
         //
         ol3d.setEnabled(true);
-        //camera.setTilt(0);
-        //camera.setAltitude(62000);
-        //camera.setPosition([1529336.123970922, 6593632.4348105695]);
-        //camera.setDistance(62000);
-        //camera.setTilt(1.185962657604752);
-        //camera.setAltitude(1363.9887671697156);
-        //camera.setPosition([1584547.2100905594, 6598444.370838029]);
-        //camera.setDistance(3150.7839488238337);
-
-        //camera.setTilt(1.18596);
-        //camera.setAltitude(1363.9);
-        camera.setPosition(mapViewSettings['center']);
-        //camera.setDistance(3150.7);
 
     };
 
