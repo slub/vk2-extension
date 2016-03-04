@@ -121,7 +121,10 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
 
         //// initialize the globe
         var ol3d = new olcs.OLCesium({
-            'map': this.map_
+            'map': this.map_,
+            'sceneProperties': {
+                'terrainExaggeration' : 2.0
+            }
         });
         ol3d.enableAutoRenderLoop();
 
@@ -129,8 +132,6 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         var scene = ol3d.getCesiumScene(),
             globe = scene.globe,
             camera = scene.camera;
-
-        //var bottom = olcs.core.pickBottomPoint(scene);
 
         // set this global because it is used by other application code
         window['ol3d'] = ol3d;
@@ -141,20 +142,17 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
             maximumScreenSpaceError = '2',
             fogEnabled = true,
             fogDensity = '0.00025',
-            fogSseFactor = '2',
-            terrainLevels = [8, 11, 14, 16, 17];
+            fogSseFactor = '2';
 
         window.minimumRetrievingLevel = 8;
-        window.terrainAvailableLevels = terrainLevels;
         window.imageryAvailableLevels = undefined;
-
 
         globe.baseColor = Cesium.Color.WHITE;
         globe.tileCacheSize = tileCacheSize;
         globe.maximumScreenSpaceError = maximumScreenSpaceError;
         scene.backgroundColor = Cesium.Color.WHITE;
         scene.globe.depthTestAgainstTerrain = true;
-        scene.screenSpaceCameraController.maximumZoomDistance = 7500000;
+        scene.screenSpaceCameraController.maximumZoomDistance = 4000000;
         scene.terrainProvider = new Cesium.CesiumTerrainProvider({
             url : '//assets.agi.com/stk-terrain/world',
             requestVertexNormals : true
@@ -166,6 +164,8 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         // together with the "requestVertexNormals" flag (see terrainProvider) it enables the displaying
         // of shadows on the map
         //scene.globe.enableLighting = true;
+        //scene.globe.lightingFadeInDistance = 1000000000;
+        //scene.globe.lightingFadeOutDistance = 10000000;
     };
 
     // append click behavior to map object
