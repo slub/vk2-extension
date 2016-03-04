@@ -1,6 +1,7 @@
 goog.provide('vk2.tool.OpacitySlider');
 
 goog.require('goog.dom');
+goog.require('vk2.utils');
 
 /**
  * @param {Element|string} parentEl
@@ -83,12 +84,20 @@ vk2.tool.OpacitySlider.prototype._appendSliderBehavior = function(sliderEl, laye
         'slide': function( event, ui ) {
         	var value = ui['value'];
         	updatePosition(value, valueEl);
-        	layer.setOpacity(value/100);        	
+        	layer.setOpacity(value/100);
+
+			if (vk2.utils.is3DMode() && vk2.utils.getOL3D().getEnabled() === true) {
+				vk2.utils.getOL3D().getAutoRenderLoop().restartRenderLoop();
+			};
         },
         'change': goog.bind(function( event, ui ){
         	var value = ui['value'];
         	updatePosition(value, valueEl);
         	layer.setOpacity(value/100);
+
+			if (vk2.utils.is3DMode() && vk2.utils.getOL3D().getEnabled() === true) {
+				vk2.utils.getOL3D().getAutoRenderLoop().restartRenderLoop();
+			};
         }, this)
     });
 	
