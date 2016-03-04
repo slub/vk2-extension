@@ -140,8 +140,8 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         var tileCacheSize = '100',
             maximumScreenSpaceError = '2',
             fogEnabled = true,
-            fogDensity = '0.0001',
-            fogSseFactor = '50',
+            fogDensity = '0.00025',
+            fogSseFactor = '2',
             terrainLevels = [8, 11, 14, 16, 17];
 
         window.minimumRetrievingLevel = 8;
@@ -166,34 +166,6 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         // together with the "requestVertexNormals" flag (see terrainProvider) it enables the displaying
         // of shadows on the map
         //scene.globe.enableLighting = true;
-
-
-
-        //var RESOLUTION_BREAK_POINT = 120000, // altitude unit
-        //    isActive = false,
-        //    invocation,
-        //    map = this.map_;
-        //this.map_.getView().on('change:resolution', function(event) {
-        //    clearTimeout(invocation);
-        //    invocation = setTimeout(function() {
-        //        var altitude = ol3d.getCamera().getAltitude();
-        //
-        //        console.log(altitude)
-        //        if (altitude < RESOLUTION_BREAK_POINT && isActive === false) {
-        //            activate3d();
-        //            isActive = true;
-        //        }
-        //
-        //        else if (altitude > (RESOLUTION_BREAK_POINT + 30000)  && isActive === true) {
-        //            deactivate3d();
-        //            isActive = false;
-        //         }
-        //    }, 100);
-        //});
-
-        // warm up the application
-        //ol3d.warmUp(RESOLUTION_BREAK_POINT, 1000)
-
     };
 
     // append click behavior to map object
