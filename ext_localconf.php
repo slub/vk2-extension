@@ -30,7 +30,7 @@ if (!defined('TYPO3_MODE')) {
 );
 
 // Configuration of the real url
-$TYPO3_CONF_VARS['EXTCONF']['realurl']['localhost'] = array(
+$TYPO3_CONF_VARS['EXTCONF']['realurl']['kartenforum'] = array(
 	'init' => array(
 		'enableCHashCache' => TRUE,
 		'appendMissingSlash' => 'ifNotFile',
@@ -98,4 +98,4 @@ $TYPO3_CONF_VARS['EXTCONF']['realurl']['localhost'] = array(
 );
 
 // Should be deactivated in production environment
-$TYPO3_CONF_VARS['EXTCONF']['realurl']['_DEFAULT'] = $TYPO3_CONF_VARS['EXTCONF']['realurl']['localhost'];
+//$TYPO3_CONF_VARS['EXTCONF']['realurl']['_DEFAULT'] = $TYPO3_CONF_VARS['EXTCONF']['realurl']['localhost'];

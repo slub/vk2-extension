@@ -16,9 +16,9 @@ goog.require('vk2.settings')
  */
 vk2.parser.ElasticSearch.readFeature = function(id, record, opt_source_projection, opt_target_projection){
 	
-	if (goog.DEBUG){
-		console.log(record);
-	};
+	//if (goog.DEBUG){
+	//	console.log(record);
+	//};
 	
 	/**
 	 * @type {string}
@@ -104,9 +104,9 @@ vk2.parser.ElasticSearch.readFeature = function(id, record, opt_source_projectio
  */
 vk2.parser.ElasticSearch.readFeatures = function(records, opt_source_projection, opt_target_projection){
 	
-	if (goog.DEBUG){
-		console.log(records);
-	};
+	//if (goog.DEBUG){
+	//	console.log(records);
+	//};
 	
 	/**
 	 * @type {string}

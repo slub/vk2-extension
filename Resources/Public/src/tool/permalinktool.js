@@ -83,6 +83,10 @@ vk2.tool.Permalink.prototype.parsePermalink = function(map){
 			pitch = params.get('p') !== undefined ? parseFloat(params.get('p'), 10) : 0,
 			roll = params.get('r') !== undefined ? parseFloat(params.get('r'),10) : 0;
 
+		if (!ol3d.getEnabled()) {
+			ol3d.setEnabled(true);
+		};
+
 		camera.setView({
 			'destination': position,
 			'orientation': {
@@ -197,11 +201,10 @@ vk2.tool.Permalink.createPermalink = function(map){
 	if (vk2.utils.is3DMode()) {
 		// build 3d perspective permalink
 		var ol3d = vk2.utils.getOL3D(),
-			camera = ol3d.getCamera(),
 			scene = ol3d.getCesiumScene(),
 			position = Cesium.Ellipsoid.WGS84.cartographicToCartesian(scene.camera.positionCartographic);
 
-		params.set('h',camera.getHeading());
+		params.set('h',scene.camera.heading);
 		params.set('p',scene.camera.pitch);
 		params.set('pos',position.x + ',' + position.y + ',' + position.z);
 		params.set('r', scene.camera.roll);

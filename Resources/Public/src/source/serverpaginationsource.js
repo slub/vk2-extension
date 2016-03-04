@@ -171,12 +171,12 @@ vk2.source.ServerPagination.prototype.dispatchRefreshEvent_ = function(features)
 		'totalFeatureCount': this.totalFeatures_
 	}));
 	
-	if (goog.DEBUG){
-		console.log('Refresh event.');
-		console.log('Size of FeatureCollection: '+this.featureCol_.getLength());
-		console.log('TotalFeatures: '+this.totalFeatures_);
-	};
-};
+	//if (goog.DEBUG){
+	//	console.log('Refresh event.');
+	//	console.log('Size of FeatureCollection: '+this.featureCol_.getLength());
+	//	console.log('TotalFeatures: '+this.totalFeatures_);
+	//};
+}
 
 /**
  * @param {Array.<ol.Feature>} features
@@ -188,11 +188,11 @@ vk2.source.ServerPagination.prototype.dispatchPaginateEvent_ = function(features
 		'totalFeatureCount': this.totalFeatures_
 	}));
 	
-	if (goog.DEBUG){
-		console.log('Paginate event.');
-		console.log('Size of FeatureCollection: '+this.featureCol_.getLength());
-		console.log('TotalFeatures: '+this.totalFeatures_);
-	};
+	//if (goog.DEBUG){
+	//	console.log('Paginate event.');
+	//	console.log('Size of FeatureCollection: '+this.featureCol_.getLength());
+	//	console.log('TotalFeatures: '+this.totalFeatures_);
+	//};
 };
 
 /**
@@ -257,9 +257,9 @@ vk2.source.ServerPagination.prototype.loadFeatures_ = function(extent, projectio
 
 	var xhr = new goog.net.XhrIo();
 	goog.events.listenOnce(xhr, 'success', function(e){
-		if (goog.DEBUG){
-			console.log('Receive features');
-		};
+		//if (goog.DEBUG){
+		//	console.log('Receive features');
+		//};
 				    
 		var xhr = /** @type {goog.net.XhrIo} */ (e.target);
 		if (xhr.getResponseJson()){
@@ -270,9 +270,9 @@ vk2.source.ServerPagination.prototype.loadFeatures_ = function(extent, projectio
 			var parsedFeatures = vk2.parser.ElasticSearch.readFeatures(
 					data['hits']['hits'],vk2.settings.ELASTICSEARCH_SRS, projection);
 			
-			if (goog.DEBUG){
-				console.log(parsedFeatures);
-			};
+			//if (goog.DEBUG){
+			//	console.log(parsedFeatures);
+			//};
 			
 			// fill featureCol and increment startIndex
 			this.featureCol_.extend(parsedFeatures);

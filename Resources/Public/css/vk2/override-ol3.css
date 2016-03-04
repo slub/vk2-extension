@@ -212,3 +212,12 @@ content: "\002194";
 .olMap:-webkit-full-screen .mouse-position-box { left: .5em; bottom: 5px; }
 .olMap:-moz-full-screen .mouse-position-box { left: .5em; bottom: 5px; }
 .olMap:fullscreen .mouse-position-box { left: .5em; bottom: 5px; }
+
+.flip-view-mode { position: absolute; top: 273px; left: 340px; background: rgba(255,255,255,0.4); padding: 2px; }
+.flip-view-mode a { display: block; margin: 1px; padding: 0; color: white; font-weight: bold; text-decoration: none;
+	text-align: center; height: 22px; width: 22px; white-space: nowrap; overflow: hidden;
+	border-radius: 0; background: rgb(0,177,158); background-size: 22px 22px; }
+.flip-view-mode a.three-d { background-color: #f33; }
+.olMap:-webkit-full-screen .flip-view-mode { left: .5em; top: 175px; }
+.olMap:-moz-full-screen .flip-view-mode { left: .5em; top: 175px; }
+.olMap:fullscreen .flip-view-mode { left: .5em; top: 175px; }

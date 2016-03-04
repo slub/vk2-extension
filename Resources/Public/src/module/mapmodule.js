@@ -3,6 +3,7 @@
  */
 goog.provide('vk2.module.MapModule');
 
+goog.require('vk2.control.FlipViewMode');
 goog.require('vk2.control.LayerSpy');
 goog.require('vk2.control.MousePositionOnOff');
 goog.require('vk2.control.Permalink');
@@ -86,13 +87,15 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         new vk2.control.MousePositionOnOff()
     ]
 
-    if (vk2.settings.MODE_3D === true && !goog.isDef(opt_terrain) || opt_terrain === false) {
+    if (!goog.isDef(opt_terrain) || opt_terrain === false) {
         controls.push(new vk2.control.LayerSpy({
             'spyLayer':new ol.layer.Tile({
                 attribution: undefined,
                 source: new ol.source.OSM()
             })
         }));
+    } else if (goog.isDef(opt_terrain) && opt_terrain === true) {
+        controls.push(new vk2.control.FlipViewMode());
     };
 
     /**
@@ -116,7 +119,7 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
 
     if (vk2.settings.MODE_3D === true && goog.isDef(opt_terrain) && opt_terrain === true) {
 
-        // initialize the globe
+        //// initialize the globe
         var ol3d = new olcs.OLCesium({
             'map': this.map_
         });
@@ -125,12 +128,13 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         // initialize a terrain map
         var scene = ol3d.getCesiumScene(),
             globe = scene.globe,
-            camera = ol3d.getCamera();
+            camera = scene.camera;
 
         //var bottom = olcs.core.pickBottomPoint(scene);
 
         // set this global because it is used by other application code
         window['ol3d'] = ol3d;
+
 
         // some test code
         var tileCacheSize = '100',
@@ -159,17 +163,36 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         scene.fog.density = fogDensity;
         scene.fog.screenSpaceErrorFactor = fogSseFactor;
 
-
         // together with the "requestVertexNormals" flag (see terrainProvider) it enables the displaying
         // of shadows on the map
         //scene.globe.enableLighting = true;
 
 
 
+        //var RESOLUTION_BREAK_POINT = 120000, // altitude unit
+        //    isActive = false,
+        //    invocation,
+        //    map = this.map_;
+        //this.map_.getView().on('change:resolution', function(event) {
+        //    clearTimeout(invocation);
+        //    invocation = setTimeout(function() {
+        //        var altitude = ol3d.getCamera().getAltitude();
         //
-        // load library and set camera
+        //        console.log(altitude)
+        //        if (altitude < RESOLUTION_BREAK_POINT && isActive === false) {
+        //            activate3d();
+        //            isActive = true;
+        //        }
         //
-        ol3d.setEnabled(true);
+        //        else if (altitude > (RESOLUTION_BREAK_POINT + 30000)  && isActive === true) {
+        //            deactivate3d();
+        //            isActive = false;
+        //         }
+        //    }, 100);
+        //});
+
+        // warm up the application
+        //ol3d.warmUp(RESOLUTION_BREAK_POINT, 1000)
 
     };
 
