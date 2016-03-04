@@ -123,7 +123,7 @@ vk2.tool.Permalink.prototype.parsePermalink = function(map){
 		}
 
 		// if no center was set so far get center of the first map
-		if (!center && features.length > 0) {
+		if (!center && features.length > 0 && !vk2.utils.is3DMode()) {
 			center = features[0].getGeometry().getInteriorPoint().getCoordinates();
 			map.zoomTo(center, zoom);
 		};
