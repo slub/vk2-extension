@@ -260,6 +260,15 @@ vk2.utils.loadModalOverlayBehavior = function(className, opt_element){
 };
 
 /**
+ * Functions refreshs the 3d view
+ */
+vk2.utils.refresh3DView = function() {
+	if (vk2.utils.is3DMode() && vk2.utils.getOL3D().getEnabled() === true) {
+		vk2.utils.getOL3D().getAutoRenderLoop().restartRenderLoop();
+	};
+};
+
+/**
  * Function rounds a float number to a given decimal position
  * @param {number} x
  * @param {number} opt_decimalPosition 

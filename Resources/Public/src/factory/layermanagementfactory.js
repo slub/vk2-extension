@@ -27,10 +27,12 @@ vk2.factory.LayerManagementFactory.getLayerManagementRecord = function(layer, in
 			// hide layer
 			goog.dom.classes.addRemove(containerListEl, 'visible', 'notvisible');
 			layer['setVisible'](false);
+			vk2.utils.refresh3DView()
 		} else {
 			// display layer
 			goog.dom.classes.addRemove(containerListEl, 'notvisible', 'visible');
 			layer['setVisible'](true);
+			vk2.utils.refresh3DView();
 		};
 	};
 	eventListener.updatevisibility = function(event){
@@ -46,10 +48,12 @@ vk2.factory.LayerManagementFactory.getLayerManagementRecord = function(layer, in
 		map.removeLayer(layer);
 		map.addLayer(layer);
 		event.stopPropagation();
+		vk2.utils.refresh3DView();
 	};
 	eventListener.removelayer = function(event){
 		map.removeLayer(layer);
 		event.stopPropagation();
+		vk2.utils.refresh3DView();
 	};
 	
 	//
