@@ -957,6 +957,12 @@
 				<target state="translated">Schließe dynamische Kartenvisualisierung</target>
 			</trans-unit>
 
+            <!-- vk2.control.FlipViewMode -->
+			<trans-unit id="client.flipviewmode.title">
+				<source>Switch between 2D and 3D view</source>
+				<target state="translated">Wechsel zwischen 2D. und 3D-Ansicht</target>
+			</trans-unit>
+
             <!-- vk2.control.ImageManipulationControl -->
 			<trans-unit id="client.imagemanipulation.open">
 				<source>Open image manipulation toolbox</source>

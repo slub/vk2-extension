@@ -85,7 +85,7 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         new ol.control.ScaleLine(),
         new vk2.control.Permalink(),
         new vk2.control.MousePositionOnOff()
-    ]
+    ];
 
     if (!goog.isDef(opt_terrain) || opt_terrain === false) {
         controls.push(new vk2.control.LayerSpy({
@@ -94,8 +94,6 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
                 source: new ol.source.OSM()
             })
         }));
-    } else if (goog.isDef(opt_terrain) && opt_terrain === true) {
-        controls.push(new vk2.control.FlipViewMode());
     };
 
     /**
@@ -104,9 +102,9 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
      */
     this.map_ =  new ol.Map({
         'layers': [
-            new ol.layer.Tile({
-                source: new ol.source.OSM()
-            })
+            //new ol.layer.Tile({
+            //    source: new ol.source.OSM()
+            //})
         ],
         'renderer': 'canvas',
         'target': mapElId,
@@ -122,7 +120,7 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         //// initialize the globe
         var ol3d = new olcs.OLCesium({
             'map': this.map_,
-            'sceneProperties': {
+            'sceneOptions': {
                 'terrainExaggeration' : 2.0
             }
         });
@@ -166,6 +164,16 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         //scene.globe.enableLighting = true;
         //scene.globe.lightingFadeInDistance = 1000000000;
         //scene.globe.lightingFadeOutDistance = 10000000;
+
+        // append / update controls if application is initialize in 3d mode
+        var uri = new goog.Uri(window.location.href),
+            params = uri.getQueryData(),
+            flipControl = new vk2.control.FlipViewMode();
+
+        if (params.containsKey('pos'))
+            flipControl.switchControlMode('3d');
+
+        this.map_.addControl(flipControl);
     };
 
     // append click behavior to map object
@@ -174,7 +182,7 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
             console.log('Pixel: '+event.pixel);
 
         var features = [];
-        if (vk2.settings.MODE_3D && window['ol3d'] !== undefined) {
+        if (vk2.utils.is3DMode()) {
             // special behavior for mode 3d
             var clickCoordinate = this.map_.getCoordinateFromPixel(event.pixel);
             features = this.historicMapClickLayer_.getSource().getFeaturesAtCoordinate(clickCoordinate);
@@ -189,6 +197,8 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
 
         vk2.module.MapModule.showMapProfile(features);
     }, this);
+
+
 };
 
 /**
@@ -258,7 +268,7 @@ vk2.module.MapModule.prototype.registerPermalinkTool = function(permalink){
         if (feature.get('georeference') === true) {
             this.map_.addLayer(this.createHistoricMapForFeature_(feature));
 
-            if (vk2.settings.MODE_3D) {
+            if (vk2.utils.is3DMode()) {
                 // add vector geometry for the given historic map to a special layer for simulate 3d mode experience
                 var feature = vk2.layer.HistoricMap.createClipFeature(feature.getGeometry().clone(), feature.getId(),
                     feature.get('time'), feature.get('title'))
@@ -288,7 +298,7 @@ vk2.module.MapModule.prototype.registerSpatialTemporalSearch = function(spatialT
      * @type {ol.layer.Vector|undefined}
      * @private
      */
-    this.historicMapClickLayer_ = vk2.settings.MODE_3D && window['ol3d'] !== undefined ? new ol.layer.Vector({
+    this.historicMapClickLayer_ = vk2.utils.is3DMode() ? new ol.layer.Vector({
             'source': new ol.source.Vector(),
             'style': function(feature, resolution) {
                 return [];

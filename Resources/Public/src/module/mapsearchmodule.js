@@ -64,7 +64,7 @@ vk2.module.MapSearchModule = function(parentEl, map){
 		}	
 	});
 
-	if (vk2.settings.MODE_3D && window['ol3d'] !== undefined) {
+	if (vk2.utils.is3DMode() !== undefined) {
 		// in case 3d mode is active add altitude value to coordinate
 		this.featureOverlay_.set('altitudeMode', 'clampToGround');
 	}

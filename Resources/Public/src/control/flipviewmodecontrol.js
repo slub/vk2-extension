@@ -22,8 +22,13 @@ vk2.control.FlipViewMode = function(opt_options) {
     anchor.className = vk2.utils.is3DMode() && vk2.utils.getOL3D().getEnabled() ? 'ol-has-tooltip three-d' :
         'ol-has-tooltip two-d';
 
-    var tooltip = goog.dom.createDom('span', {'role':'tooltip','innerHTML':'Switch between 2d and 3d'})
-    goog.dom.appendChild(anchor, tooltip);
+    /**
+     * @type {!Element}
+     * @private
+     */
+    this.anchor_ = anchor;
+
+
 
     var activate3d_ = function() {
             if (vk2.utils.is3DMode()) {
@@ -46,10 +51,9 @@ vk2.control.FlipViewMode = function(opt_options) {
         deactivate3d_ = function() {
             if (vk2.utils.is3DMode()) {
                 var ol3d = vk2.utils.getOL3D(),
-                     scene = ol3d.getCesiumScene(),
+                    scene = ol3d.getCesiumScene(),
                     camera = scene.camera,
                     bottom = olcs.core.pickBottomPoint(scene),
-                    angle = Cesium.Math.toRadians(50),
                     transform = Cesium.Matrix4.fromTranslation(bottom),
                     angle = olcs.core.computeAngleToZenith(scene, bottom);
 
@@ -75,11 +79,11 @@ vk2.control.FlipViewMode = function(opt_options) {
 
             if (goog.dom.classlist.contains(anchor, 'three-d')) {
                 goog.dom.classlist.addRemove(anchor, 'three-d', 'two-d');
-                anchor.innerHTML = '2D';
+                this.addAnchorInnerHTML_('2D');
                 deactivate3d_();
             } else {
                 goog.dom.classlist.addRemove(anchor, 'two-d', 'three-d');
-                anchor.innerHTML = '3D';
+                this.addAnchorInnerHTML_('3D');
                 activate3d_();
             };
         };
@@ -103,3 +107,27 @@ vk2.control.FlipViewMode = function(opt_options) {
 
 };
 ol.inherits(vk2.control.FlipViewMode, ol.control.Control);
+
+/**
+ * @param {string} text
+ * @private
+ */
+vk2.control.FlipViewMode.prototype.addAnchorInnerHTML_ = function(text) {
+    this.anchor_.innerHTML = text;
+    var tooltip = goog.dom.createDom('span', {'role':'tooltip','innerHTML':vk2.utils.getMsg('flipviewmode-title')})
+    goog.dom.appendChild(this.anchor_, tooltip);
+};
+
+/**
+ * Switches the mode of the control element between three- and two-d mode
+ * @param {string} mode
+ */
+vk2.control.FlipViewMode.prototype.switchControlMode = function(mode) {
+    if (mode.toLowerCase() === '3d') {
+        goog.dom.classlist.addRemove(this.anchor_, 'two-d', 'three-d');
+        this.addAnchorInnerHTML_('2D');
+    } else if (mode.toLowerCase() === '2d') {
+        goog.dom.classlist.addRemove(this.anchor_, 'three-d', 'two-d');
+        this.addAnchorInnerHTML_('3D');
+    };
+};
