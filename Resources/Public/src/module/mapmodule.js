@@ -104,7 +104,7 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         })
     ];
 
-    if (!goog.isDef(opt_terrain) || opt_terrain === true) {
+    if (goog.isDef(opt_terrain) && opt_terrain === true) {
         attribution.push(new ol.Attribution({
             html: '<a href="https://cesiumjs.org/data-and-assets/terrain/stk-world-terrain.html">© Analytical Graphics, Inc., © CGIAR-CSI, ' +
                 'Produced using Copernicus data and information funded by the European Union - EU-DEM layers, ' +

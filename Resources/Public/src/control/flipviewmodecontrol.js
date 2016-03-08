@@ -16,17 +16,18 @@ vk2.control.FlipViewMode = function(opt_options) {
 
     var options = opt_options || {};
 
-    var anchor = document.createElement('a');
-    anchor.href = '#flip-view-mode';
-    anchor.innerHTML = vk2.utils.is3DMode() && vk2.utils.getOL3D().getEnabled() ? '2D' : '3D';
-    anchor.className = vk2.utils.is3DMode() && vk2.utils.getOL3D().getEnabled() ? 'ol-has-tooltip three-d' :
-        'ol-has-tooltip two-d';
-
     /**
      * @type {!Element}
      * @private
      */
-    this.anchor_ = anchor;
+    this.anchor_ = document.createElement('a');
+
+    this.anchor_.href = '#flip-view-mode';
+    this.anchor_.className = vk2.utils.is3DMode() && vk2.utils.getOL3D().getEnabled() ? 'ol-has-tooltip three-d' :
+        'ol-has-tooltip two-d';
+    this.addAnchorInnerHTML_(vk2.utils.is3DMode() && vk2.utils.getOL3D().getEnabled() ? '2D' : '3D');
+
+
 
 
 
@@ -77,12 +78,12 @@ vk2.control.FlipViewMode = function(opt_options) {
         handler_ = function(event) {
             event.preventDefault();
 
-            if (goog.dom.classlist.contains(anchor, 'three-d')) {
-                goog.dom.classlist.addRemove(anchor, 'three-d', 'two-d');
+            if (goog.dom.classlist.contains(this.anchor_, 'three-d')) {
+                goog.dom.classlist.addRemove(this.anchor_, 'three-d', 'two-d');
                 this.addAnchorInnerHTML_('2D');
                 deactivate3d_();
             } else {
-                goog.dom.classlist.addRemove(anchor, 'two-d', 'three-d');
+                goog.dom.classlist.addRemove(this.anchor_, 'two-d', 'three-d');
                 this.addAnchorInnerHTML_('3D');
                 activate3d_();
             };
@@ -93,12 +94,12 @@ vk2.control.FlipViewMode = function(opt_options) {
         window['deactivate'] = deactivate3d_;
     }
 
-    goog.events.listen(anchor, 'click', handler_, undefined, this);
-    goog.events.listen(anchor, 'touchstart', handler_, undefined, this);
+    goog.events.listen(this.anchor_, 'click', handler_, undefined, this);
+    goog.events.listen(this.anchor_, 'touchstart', handler_, undefined, this);
 
     var element = document.createElement('div');
     element.className = 'flip-view-mode ol-unselectable';
-    element.appendChild(anchor);
+    element.appendChild(this.anchor_);
 
     ol.control.Control.call(this, {
         element: element,
