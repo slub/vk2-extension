@@ -1,5 +1,6 @@
 {
   "exports": [
+	"ol.Attribution",
 	"ol.Collection",
 	"ol.Collection#clear",
 	"ol.Collection#extend",

@@ -87,6 +87,7 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         new vk2.control.MousePositionOnOff()
     ];
 
+    // append layerspy only in case 3d mode is not active
     if (!goog.isDef(opt_terrain) || opt_terrain === false) {
         controls.push(new vk2.control.LayerSpy({
             'spyLayer':new ol.layer.Tile({
@@ -96,15 +97,32 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         }));
     };
 
+    // create attribution
+    var attribution = [
+        new ol.Attribution({
+            html: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        })
+    ];
+
+    if (!goog.isDef(opt_terrain) || opt_terrain === true) {
+        attribution.push(new ol.Attribution({
+            html: '<a href="https://cesiumjs.org/data-and-assets/terrain/stk-world-terrain.html">© Analytical Graphics, Inc., © CGIAR-CSI, ' +
+                'Produced using Copernicus data and information funded by the European Union - EU-DEM layers, ' +
+                ' © Commonwealth of Australia (Geoscience Australia) 2012</a>'
+        }));
+    };
+
     /**
      * @type {ol.Map}
      * @private
      */
     this.map_ =  new ol.Map({
         'layers': [
-            //new ol.layer.Tile({
-            //    source: new ol.source.OSM()
-            //})
+            new ol.layer.Tile({
+                source: new ol.source.OSM({
+                    'attributions': attribution
+                })
+            })
         ],
         'renderer': 'canvas',
         'target': mapElId,

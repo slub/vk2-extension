@@ -221,3 +221,6 @@ content: "\002194";
 .olMap:-webkit-full-screen .flip-view-mode { left: .5em; top: 175px; }
 .olMap:-moz-full-screen .flip-view-mode { left: .5em; top: 175px; }
 .olMap:fullscreen .flip-view-mode { left: .5em; top: 175px; }
+
+/* always display ol attribution */
+.ol-attribution > ul > li { display: inline !important; }
