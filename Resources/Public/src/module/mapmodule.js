@@ -52,9 +52,15 @@ ol.Map.prototype.getHistoricMapLayer = function(){
     var layers = this.getLayers().getArray();
     var historicMapLayers = [];
     for (var i = 0; i < layers.length; i++){
-        if (layers[i] instanceof vk2.layer.HistoricMap){
-            historicMapLayers.push(layers[i]);
-        };
+        if (vk2.utils.is3DMode()) {
+            if (layers[i] instanceof vk2.layer.HistoricMap3D){
+                historicMapLayers.push(layers[i]);
+            };
+        } else {
+            if (layers[i] instanceof vk2.layer.HistoricMap){
+                historicMapLayers.push(layers[i]);
+            };
+        }
     };
     return historicMapLayers;
 };
@@ -118,11 +124,11 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
      */
     this.map_ =  new ol.Map({
         'layers': [
-            new ol.layer.Tile({
-                source: new ol.source.OSM({
-                    'attributions': attribution
-                })
-            })
+            //new ol.layer.Tile({
+            //    source: new ol.source.OSM({
+            //        'attributions': attribution
+            //    })
+            //})
         ],
         'renderer': 'canvas',
         'target': mapElId,
