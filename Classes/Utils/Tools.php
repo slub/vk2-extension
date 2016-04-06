@@ -65,8 +65,9 @@ class Tools {
 
 		$GLOBALS['TSFE']->additionalHeaderData[] = '
 			<script>
-        		// parameters which are replaced by typo3 flexform parameters should be set at first because Boom"
+        		// parameters which are replaced by typo3 flexform parameters should be set at first because"
 				// in other cases the fluid template engine throwns unknown exceptions
+				vk2x.settings.WITH_SPEAKING_URLS = ' . $settings['general']['realurl'] . ' === 1 ? true: false;
 				vk2x.settings.ELASTICSEARCH_NODE = "' .$settings['search']['elasticsearch']. '"
 				vk2x.settings.ELASTICSEARCH_SRS = "EPSG:4326";
 				vk2x.settings.EVALUATION_GETPROCESS = !vk2x.settings.WITH_SPEAKING_URLS ?
@@ -116,7 +117,6 @@ class Tools {
 				vk2x.settings.SEARCH_TIMEINTERVAL = [ ' . $settings['search']['time']['min'] . ',' . $settings['search']['time']['max'] . '];
 				vk2x.settings.THUMB_PATH = "/typo3conf/ext/vk2/Resources/Public/images/layer_default.png";
 				vk2x.settings.TMS_URL_SUBDOMAINS = [ "1", "2", "3" ];
-				vk2x.settings.WITH_SPEAKING_URLS = ' . $settings['general']['realurl'] . ' === 1 ? true: false;
 				vk2x.settings.WMS_DYNAMIC_TEMPLATE = "' . $settings['georef']['dynamicwmsurl'] . '";
 
 				// trigger to update the default values
