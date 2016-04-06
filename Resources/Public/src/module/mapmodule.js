@@ -325,7 +325,11 @@ vk2.module.MapModule.prototype.registerSpatialTemporalSearch = function(spatialT
     this.historicMapClickLayer_ = vk2.utils.is3DMode() ? new ol.layer.Vector({
             'source': new ol.source.Vector(),
             'style': function(feature, resolution) {
-                return [];
+                return [new ol.style.Style({
+                    fill: new ol.style.Fill({
+                        color: 'rgba(255, 255, 255, 0.2)'
+                    })
+                })];
             }
         }) : undefined;
 

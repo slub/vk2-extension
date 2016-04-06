@@ -49,12 +49,14 @@ class StaticController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	public function impressumAction(){}
 	public function projectAction(){}
 	public function profileMapAction(){
-		\SLUB\Vk2\Utils\Tools::renderOpenlayersDependencies($this->settings['general']['debug']);
+		\SLUB\Vk2\Utils\Tools::renderOpenlayersDependencies($this->settings);
+		\SLUB\Vk2\Utils\Tools::renderClientSettings($this->settings);
 	}
 	public function loginAction(){}
 	public function logoutAction(){}
 	public function welcomePageAction(){
-		\SLUB\Vk2\Utils\Tools::renderOpenlayersDependencies($this->settings['general']['debug']);
+		\SLUB\Vk2\Utils\Tools::renderOpenlayersDependencies($this->settings);
+		\SLUB\Vk2\Utils\Tools::renderClientSettings($this->settings);
 	}
 	
 	/* 
@@ -92,7 +94,8 @@ class StaticController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * allow only registered user to access this pages
 	 */
 	public function georefPageAction(){
-		\SLUB\Vk2\Utils\Tools::renderOpenlayersDependencies($this->settings['general']['debug']);
+		\SLUB\Vk2\Utils\Tools::renderOpenlayersDependencies($this->settings);
+		\SLUB\Vk2\Utils\Tools::renderClientSettings($this->settings);
 
 		$user = Tools::getActualUser($this->feUserRepository);
 		if ($user){
@@ -107,7 +110,8 @@ class StaticController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	}
 	
 	public function georeferenceChoosePageAction(){
-		\SLUB\Vk2\Utils\Tools::renderOpenlayersDependencies($this->settings['general']['debug']);
+		\SLUB\Vk2\Utils\Tools::renderOpenlayersDependencies($this->settings);
+		\SLUB\Vk2\Utils\Tools::renderClientSettings($this->settings);
 
 		$user = Tools::getActualUser($this->feUserRepository);
 		if ($user){
@@ -122,7 +126,8 @@ class StaticController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	}
 	
 	public function georeferenceHistoryPageAction(){
-		\SLUB\Vk2\Utils\Tools::renderOpenlayersDependencies($this->settings['general']['debug']);
+		\SLUB\Vk2\Utils\Tools::renderOpenlayersDependencies($this->settings);
+		\SLUB\Vk2\Utils\Tools::renderClientSettings($this->settings);
 
 		$user = Tools::getActualUser($this->feUserRepository);
 		if ($user){
@@ -137,7 +142,8 @@ class StaticController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	}
 	
 	public function evaluationPageAction(){
-		\SLUB\Vk2\Utils\Tools::renderOpenlayersDependencies($this->settings['general']['debug']);
+		\SLUB\Vk2\Utils\Tools::renderOpenlayersDependencies($this->settings);
+		\SLUB\Vk2\Utils\Tools::renderClientSettings($this->settings);
 
 		$user = Tools::getActualUser($this->feUserRepository);
 		$usergroup = Tools::getUsergroupsForUser($user);

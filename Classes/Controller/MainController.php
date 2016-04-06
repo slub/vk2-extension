@@ -46,7 +46,8 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 */
 	public function showAction() {
 		//\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($this->settings['georef']['backend']);
-		\SLUB\Vk2\Utils\Tools::renderOpenlayersDependencies($this->settings['general']['debug']);
+		\SLUB\Vk2\Utils\Tools::renderOpenlayersDependencies($this->settings);
+		\SLUB\Vk2\Utils\Tools::renderClientSettings($this->settings);
 	}
 
 	/**
@@ -73,6 +74,8 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 				<script type="text/javascript" src="'.$relPath.'Resources/Public/dist/ol3cesium.js"></script>
 				<script type="text/javascript" src="'.$relPath.'Resources/Public/dist/vk2-min.js"></script>';
 			}
+
+			\SLUB\Vk2\Utils\Tools::renderClientSettings($this->settings);
 		} else {
 			// 2.5d mode is deactivated
 			// redirect to main page
