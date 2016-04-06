@@ -85,6 +85,20 @@ vk2.request.ElasticSearch.createRangeQuery_ = function(fieldName, fieldValues){
 	return time_;
 };
 
+/**
+ * Creates a query for fetching basic statics from the search index like min, max, count, etc.
+ * @param {string} stats_field
+ * @return {Object}
+ */
+vk2.request.ElasticSearch.createStatisticQuery = function(stats_field) {
+	return {
+		"aggs": {
+			"summary" : {
+				"stats": { "field" : stats_field }
+			}
+		}
+	};
+};
 
 /**
  * The function creates a elasticsearch query, which query an index with 

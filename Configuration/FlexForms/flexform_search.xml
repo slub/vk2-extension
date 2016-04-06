@@ -66,31 +66,7 @@
                             </config>
                         </TCEforms>
                     </settings.search.elasticsearch>
-
-                    <!-- min-/max-time for search interval -->
-                    <settings.search.time.min>
-                        <TCEforms>
-                            <label>Minimum search time</label>
-                            <config>
-                                <type>input</type>
-                                <size>80</size>
-                                <eval>num</eval>
-                                <default>1848</default>
-                            </config>
-                        </TCEforms>
-                    </settings.search.time.min>
-                    <settings.search.time.max>
-                        <TCEforms>
-                            <label>Maximum search time</label>
-                            <config>
-                                <type>input</type>
-                                <size>80</size>
-                                <eval>num</eval>
-                                <default>1968</default>
-                            </config>
-                        </TCEforms>
-                    </settings.search.time.max>
-
+                    
                     <!-- Defines if the georeference plugin is on or not -->
                     <settings.georef.active>
                         <TCEforms>

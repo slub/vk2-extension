@@ -97,11 +97,6 @@ vk2x.settings.MAPVIEW_PARAMS;
 /**
  * @type {string}
  */
-vk2x.settings.SEARCH_TIMEINTERVAL;
-
-/**
- * @type {string}
- */
 vk2x.settings.THUMB_PATH;
 
 /**

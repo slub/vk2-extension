@@ -31,7 +31,6 @@ vk2.settings.updateSettings = function() {
     vk2.settings.MAPPROFILE_PAGE = vk2x.settings.MAPPROFILE_PAGE;
     vk2.settings.MAPVIEW_PARAMS = vk2x.settings.MAPVIEW_PARAMS;
     vk2.settings.MODE_3D = vk2x.settings.MODE_3D;
-    vk2.settings.SEARCH_TIMEINTERVAL = vk2x.settings.SEARCH_TIMEINTERVAL;
     vk2.settings.THUMB_PATH = vk2x.settings.THUMB_PATH;
     vk2.settings.TMS_URL_SUBDOMAINS = vk2x.settings.TMS_URL_SUBDOMAINS;
     vk2.settings.WITH_SPEAKING_URLS = vk2x.settings.WITH_SPEAKING_URLS;
@@ -122,11 +121,6 @@ vk2.settings.MAPVIEW_PARAMS;
  * @type {boolean}
  */
 vk2.settings.MODE_3D = false;
-
-/**
- * @type {string}
- */
-vk2.settings.SEARCH_TIMEINTERVAL;
 
 /**
  * @type {string}

@@ -114,7 +114,6 @@ class Tools {
 					zoom: 2
 				};
 				vk2x.settings.MODE_3D = ' . $settings['general']['modetwoandhalfd'] . ' === 1 ? true : false;
-				vk2x.settings.SEARCH_TIMEINTERVAL = [ ' . $settings['search']['time']['min'] . ',' . $settings['search']['time']['max'] . '];
 				vk2x.settings.THUMB_PATH = "/typo3conf/ext/vk2/Resources/Public/images/layer_default.png";
 				vk2x.settings.TMS_URL_SUBDOMAINS = [ "1", "2", "3" ];
 				vk2x.settings.WMS_DYNAMIC_TEMPLATE = "' . $settings['georef']['dynamicwmsurl'] . '";

@@ -3,11 +3,13 @@ goog.provide('vk2.module.SpatialTemporalSearchModule');
 goog.require('goog.dom');
 goog.require('goog.dom.classes');
 goog.require('goog.events');
+goog.require('goog.net.XhrIo');
 
-goog.require('vk2.factory.MapSearchFactory');
 goog.require('vk2.tool.TimeSlider');
+goog.require('vk2.tool.TimeSliderEventType');
 goog.require('vk2.tool.GazetteerSearch');
 goog.require('vk2.module.MapSearchModule');
+goog.require('vk2.request.ElasticSearch');
 goog.require('vk2.settings');
 
 /**
@@ -18,107 +20,103 @@ goog.require('vk2.settings');
  */
 vk2.module.SpatialTemporalSearchModule = function(parentEl, map){
 	
-	/**
-	 * @type {Element}
-	 * @private
-	 */
-	this._parentEl = goog.isString(parentEl) ? goog.dom.getElement(parentEl) : parentEl;
+	var parentEl_ = goog.isString(parentEl) ? goog.dom.getElement(parentEl) : parentEl;
 
-	// load html content
-	this._loadHtmlContent(this._parentEl);
-	
-	// load module and tools
-	this._loadGazetteerSearch(this._bodyContainerEl);
-	this._loadTimeSlider(this._bodyContainerEl);
-	this._loadMapSearchModule(this._bodyContainerEl, map);
-
-	// bind mapsearch to timeslider tool
-	goog.events.listen(this.getTimesliderTool(), 'timechange', function(event){
-		this.getMapSearchModule().getFeatureSource().setTimeFilter(event.target.time[0], event.target.time[1]);
-		this.getMapSearchModule().getFeatureSource().refresh();
-	}, undefined, this);
-};
-
-/**
- * @param {Element} parentEl
- * @private
- */
-vk2.module.SpatialTemporalSearchModule.prototype._loadHtmlContent = function(parentEl){
-	
+	//
+	// Initialize html content
+	//
 	var containerEl = goog.dom.createDom('div',{'class':'spatialsearch-inner-container'});
-	goog.dom.appendChild(parentEl, containerEl);
-	
+	goog.dom.appendChild(parentEl_, containerEl);
+
 	var panelEl = goog.dom.createDom('div',{'class':'spatialsearch-content-panel'});
 	goog.dom.appendChild(containerEl, panelEl);
-	
-	// add mapsearch heading
-	var heading = goog.dom.createDom('div',{'class':'header-container'});
-	goog.dom.appendChild(panelEl, heading);
-	
-	/**
-	 * @type {Element}
-	 * @private
-	 */
-	this._headingContentEl = goog.dom.createDom('div',{'class':'content'});
-	goog.dom.appendChild(heading, this._headingContentEl);
-		
+
 	// add mapsearch body
-	this._bodyContainerEl = goog.dom.createDom('div',{'class':'body-container'});
-	goog.dom.appendChild(panelEl, this._bodyContainerEl);
+	var bodyContainerEl_ = goog.dom.createDom('div',{'class':'body-container'});
+	goog.dom.appendChild(panelEl, bodyContainerEl_);
+
+	//
+	// Load module and tools
+	//
+	this.loadGazetteerSearch_(bodyContainerEl_);
+	this.loadMapSearchModule_(bodyContainerEl_, map, this._loadTimeSlider(bodyContainerEl_));
 };
 
 /**
  * @param {Element} parentEl
  * @private
  */
-vk2.module.SpatialTemporalSearchModule.prototype._loadGazetteerSearch = function(parentEl){
+vk2.module.SpatialTemporalSearchModule.prototype.loadGazetteerSearch_ = function(parentEl){
 	/**
 	 * @type {vk2.tool.GazetteerSearch}
 	 * @private
 	 */
-	this._gazetteer = new vk2.tool.GazetteerSearch(parentEl);
+	this.gazetteer_ = new vk2.tool.GazetteerSearch(parentEl);
 };
 
 /**
  * @param {Element} parentEl
  * @param {ol.Map} map
- * @param {boolean} georeferenceMode
+ * @param {vk2.tool.TimeSlider} timeSlider
  * @private
  */
-vk2.module.SpatialTemporalSearchModule.prototype._loadMapSearchModule = function(parentEl, map){
+vk2.module.SpatialTemporalSearchModule.prototype.loadMapSearchModule_ = function(parentEl, map, timeSlider){
 
 	/**
 	 * @type {vk2.module.MapSearchModule}
 	 * @private
 	 */
-	this._mapsearch = new vk2.module.MapSearchModule(parentEl, map);
-};
+	this.mapsearch_ = new vk2.module.MapSearchModule(parentEl, map);
 
-vk2.module.SpatialTemporalSearchModule.prototype._loadTimeSlider = function(parentEl){
-	/**
-	 * @type {vk2.tool.TimeSlider}
-	 * @private
-	 */
-	this._timeslider = new vk2.tool.TimeSlider(parentEl, vk2.settings.SEARCH_TIMEINTERVAL);
+	// bind mapsearch to timeslider tool
+	goog.events.listen(timeSlider, vk2.tool.TimeSliderEventType.TIMECHANGE, function(event){
+		this.mapsearch_.getFeatureSource().setTimeFilter(event['target']['time'][0], event['target']['time'][1]);
+		this.mapsearch_.getFeatureSource().refresh();
+	}, undefined, this);
 };
 
 /**
+ * @param {Element} parentEl
  * @return {vk2.tool.TimeSlider}
+ * @private
  */
-vk2.module.SpatialTemporalSearchModule.prototype.getTimesliderTool = function(){
-	return this._timeslider;
+vk2.module.SpatialTemporalSearchModule.prototype._loadTimeSlider = function(parentEl){
+
+	// build elasticsearch request
+	var requestPayload = vk2.request.ElasticSearch.createStatisticQuery('time'),
+		requestUrl = vk2.settings.ELASTICSEARCH_NODE + '/_search',
+		timeSlider = new vk2.tool.TimeSlider(parentEl);
+
+	goog.net.XhrIo.send(requestUrl, function(e) {
+		var xhr = /** @type {goog.net.XhrIo} */ (e.target),
+			timeInterval;
+
+		if (xhr.getResponseJson()) {
+			var data = xhr.getResponseJson(),
+				max = new Date(data['aggregations']['summary']['max']),
+				min = new Date(data['aggregations']['summary']['min']);
+			timeInterval = [min.getUTCFullYear(), max.getUTCFullYear()];
+		} else {
+			timeInterval = [1850, 1970]
+		};
+
+		timeSlider.setTimeInterval(timeInterval);
+	}, 'POST', JSON.stringify(requestPayload));
+
+	return timeSlider;
 };
+
 
 /**
  * @return {vk2.tool.GazetteerSearch}
  */
 vk2.module.SpatialTemporalSearchModule.prototype.getGazetteerSearchTool = function(){
-	return this._gazetteer;
+	return this.gazetteer_;
 };
 
 /**
  * @return {vk2.module.MapSearchModule}
  */
 vk2.module.SpatialTemporalSearchModule.prototype.getMapSearchModule = function(){
-	return this._mapsearch;
+	return this.mapsearch_;
 };
