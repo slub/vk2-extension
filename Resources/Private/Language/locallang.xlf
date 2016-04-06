@@ -765,6 +765,12 @@
 			<trans-unit id="client.georeference.confirmWithoutClipMsg">
 				<source>Confirm georeference params without clip params?</source>
 			</trans-unit>
+			<trans-unit id="client.georeference.warnMissingGCPs">
+				<source>For producing a georeference preview you need at least 4 ground control points.</source>
+			</trans-unit>
+			<trans-unit id="client.georeference.warnWrongClipPolygon">
+				<source>Your clip polygon seems to be malformed. Please check it again or try to contact the administrator.</source>
+			</trans-unit>
 
 			<!-- vk2.module.LayerManagementModule -->
 			<trans-unit id="client.layermanagementmodule.startMessage">

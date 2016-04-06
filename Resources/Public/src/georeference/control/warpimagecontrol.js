@@ -80,8 +80,11 @@ vk2.georeference.control.WarpImageControl.prototype.warpImage_ = function(object
 	
 	// validate parametes
 	// behavior in case of wrong params could be added
-	if (!this.validateParams_(requestParams))
+	if (!this.validateParams_(requestParams)) {
+		vk2.utils.getConfirmationDialog('Info', vk2.utils.getMsg('georef-confirm-warn-gcp'),
+			function() { return; }, 'georef-validation-dialog', false);
 		return;
+	};
 	
 	// start warping process
 	this.dispatchEvent(new goog.events.Event(vk2.georeference.control.WarpImageControlEventType.START_WARPING, {}));

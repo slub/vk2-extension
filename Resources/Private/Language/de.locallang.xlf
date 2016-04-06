@@ -1081,6 +1081,14 @@
 				<source>Confirm georeference params without clip params?</source>
 				<target state="translated">Georeferenzierungsparameter ohne Clip-Polygon speichern?</target>
 			</trans-unit>
+			<trans-unit id="client.georeference.warnMissingGCPs">
+				<source>For producing a georeference preview you need at least 4 ground control points.</source>
+				<target state="translated">Für das Erzeugen eines Vorschaubildes werden mindestes 4 Passpunkte benötigt.</target>
+			</trans-unit>
+			<trans-unit id="client.georeference.warnWrongClipPolygon">
+				<source>Your clip polygon seems to be malformed. Please check it again or try to contact the administrator.</source>
+				<target state="translated">Das erzeugte Clip-Polygon scheint defomiert zu sein. Bitte prüfen Sie dieses noch einmal oder kontaktieren Sie den Seiten-Administrator.</target>
+			</trans-unit>
 
 			<!-- vk2.module.LayerManagementModule -->
 			<trans-unit id="client.layermanagementmodule.startMessage">

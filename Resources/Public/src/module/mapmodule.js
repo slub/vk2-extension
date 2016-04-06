@@ -124,11 +124,11 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
      */
     this.map_ =  new ol.Map({
         'layers': [
-            //new ol.layer.Tile({
-            //    source: new ol.source.OSM({
-            //        'attributions': attribution
-            //    })
-            //})
+            new ol.layer.Tile({
+                source: new ol.source.OSM({
+                    'attributions': attribution
+                })
+            })
         ],
         'renderer': 'canvas',
         'target': mapElId,

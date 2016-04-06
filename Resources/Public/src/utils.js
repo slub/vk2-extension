@@ -8,6 +8,8 @@ goog.require('goog.style');
 goog.require('goog.net.cookies');
 goog.require('goog.net.XhrIo');
 
+goog.require('vk2.utils.Modal');
+
 /**
  * Functions adds a lazy loading behavior to a given array of elements
  * 
@@ -175,23 +177,29 @@ vk2.utils.getCookie = function(name){
 /**
  * @param {string=} title
  * @param {string=} message
- * @param {Function=} submitCallback
+ * @param {Function=} opt_submitCallback
  * @param {string=} opt_classNames
+ * @param {boolean=} opt_withoutBtns
  */
-vk2.utils.getConfirmationDialog = function(title, message, submitCallback, opt_classNames){
-	var modal = new vk2.utils.Modal('vk2-overlay-modal',document.body, true);
-	var title = title;
-	var classes = goog.isDef(opt_classNames) ? opt_classNames : '';
-	var msg = message;
+vk2.utils.getConfirmationDialog = function(title, message, opt_submitCallback, opt_classNames, opt_withoutBtns){
+	var modal = new vk2.utils.Modal('vk2-overlay-modal',document.body, true),
+		title = title,
+		classes = goog.isDef(opt_classNames) ? opt_classNames : '',
+		msg = message,
+		withBtns = goog.isDef(opt_withoutBtns) ? opt_withoutBtns : true,
+		bodyContent = withBtns == true ? '<button type="button" class="btn btn-primary" id="confirm-dialog-btn-yes"' +
+			'>' + vk2.utils.getMsg('yes') + '</button><button type="button" class="btn btn-primary"' +
+			'id="confirm-dialog-btn-no">' + vk2.utils.getMsg('no') + '</button>' : '';
 	
 	modal.open(title, classes);
-	modal.appendStringToBody('<p>' + msg + '</p><br><button type="button" class="btn btn-primary" id="confirm-dialog-btn-yes"' +
-			'>' + vk2.utils.getMsg('yes') + '</button><button type="button" class="btn btn-primary"' +
-			'id="confirm-dialog-btn-no">' + vk2.utils.getMsg('no') + '</button>');
-	
-	var callback = goog.isDef(submitCallback) ? submitCallback : function(){};
-	goog.events.listen(goog.dom.getElement('confirm-dialog-btn-yes'), 'click', function(event){callback();modal.close();});	
-	goog.events.listen(goog.dom.getElement('confirm-dialog-btn-no'), 'click', function(event){modal.close();});
+	modal.appendStringToBody('<p>' + msg + '</p><br>' + bodyContent);
+
+	if (withBtns == true) {
+		var callback = goog.isDef(opt_submitCallback) ? opt_submitCallback : function(){};
+		goog.events.listen(goog.dom.getElement('confirm-dialog-btn-yes'), 'click', function(event){callback();modal.close();});
+		goog.events.listen(goog.dom.getElement('confirm-dialog-btn-no'), 'click', function(event){modal.close();});
+	}
+
 };
 
 /**
