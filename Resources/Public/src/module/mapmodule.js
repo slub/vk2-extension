@@ -145,7 +145,7 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         var ol3d = new olcs.OLCesium({
             'map': this.map_,
             'sceneOptions': {
-                'terrainExaggeration' : 2.0
+                'terrainExaggeration' : 1.0
             }
         });
         ol3d.enableAutoRenderLoop();
