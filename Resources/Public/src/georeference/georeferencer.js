@@ -66,8 +66,8 @@ vk2.georeference.Georeferencer = function(options){
 			'ak': 'tps'
 		},
 		transformationAlgorithm = gcp !== undefined ? gcp['algorithm'] :
-			suggestions.hasOwnProperty(mapType) ? suggestions[mapType] : suggestions['mtb'];
-	this.updateSelectOfTransformationChooser_(suggestions[mapType.toLowerCase()]);
+			suggestions.hasOwnProperty(mapType) ? suggestions[mapType.toLowerCase()] : suggestions['mtb'];
+	this.updateSelectOfTransformationChooser_(transformationAlgorithm);
 
 	// 
 	// generate and add gcp and clip toolbox
