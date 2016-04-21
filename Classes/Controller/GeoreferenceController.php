@@ -178,7 +178,9 @@ class GeoreferenceController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 					// append standard values to array
 					$newRecord = array(
 						'points' => $record['points'],
-						'userid' => $record['userid']
+						'userid' => $record['userid'],
+						'new' => $record['new'],
+						'update' => $record['update']
 					);
 					
 					// if a record for this user is found append further information 

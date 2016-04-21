@@ -114,12 +114,12 @@
                                     <numIndex index="0" type="array">
                                         <numIndex index="0">Search and Visualization</numIndex>
                                         <numIndex index="1">Main->show;Main->show3d;Static->contact;Static->faq;Static->impressum;
-                                            Static->project;Static->profileMap;Static->welcomePage</numIndex>
+                                            Static->project;Static->profileMap;Static->welcomePage;Static->rankingPage;</numIndex>
                                     </numIndex>
                                     <numIndex index="1" type="array">
                                         <numIndex index="0">Search, Visualization and Georeferencing</numIndex>
                                         <numIndex index="1">Main->show;Main->show3d;Static->contact;Static->faq;Static->impressum;
-                                            Static->project;Static->profileMap;Static->welcomePage;Static->login;
+                                            Static->project;Static->profileMap;Static->welcomePage;Static->login;Static->rankingPage;
                                             Static->logout;Static->georefPage;Static->evaluationPage;Static->georeferenceChoosePage;
                                             Static->georeferenceHistoryPage;Static->getContactMessage;Auth->login;
                                             Auth->signup;Auth->logout;Auth->loginError;Georeference->getProcess;

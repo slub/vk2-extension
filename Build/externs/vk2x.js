@@ -50,6 +50,17 @@ vk2x.app.PresentationAppOptions.prototype.spatialsearchContainerId;
 vk2x.app.PresentationAppOptions.prototype.with25d;
 
 /**
+ * @type {Object}
+ *  targetEl: (string|Element)
+ */
+vk2x.app.RankingPageAppOptions;
+
+/**
+ * @type {string|Element}
+ */
+vk2x.app.RankingPageAppOptions.prototype.tableEl;
+
+/**
  * time: (string)
  * border: (Array.<Array.<number>>)
  * extent: (ol.Extent)

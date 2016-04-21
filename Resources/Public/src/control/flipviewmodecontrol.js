@@ -45,7 +45,7 @@ vk2.control.FlipViewMode = function(opt_options) {
 
                 // take care that every time the view is reset when zoom out
                 olcs.core.rotateAroundAxis(camera, -angle, camera.right, transform, {
-                    'duration': 500,
+                    'duration': 500
                 });
             }
         },

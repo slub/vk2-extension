@@ -54,6 +54,18 @@ class StaticController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	}
 	public function loginAction(){}
 	public function logoutAction(){}
+
+	/**
+	 * Georeference ranking of the vk2.0
+	 */
+	public function rankingPageAction(){
+		\SLUB\Vk2\Utils\Tools::renderOpenlayersDependencies($this->settings);
+		\SLUB\Vk2\Utils\Tools::renderClientSettings($this->settings);
+	}
+
+	/**
+	 * Welcome page of the vk2.0
+	 */
 	public function welcomePageAction(){
 		\SLUB\Vk2\Utils\Tools::renderOpenlayersDependencies($this->settings);
 		\SLUB\Vk2\Utils\Tools::renderClientSettings($this->settings);
@@ -77,9 +89,6 @@ class StaticController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 */
 	public function getContactMessageAction(
 			\SLUB\Vk2\Domain\Model\Contact $contact) {
-		
-		\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($contact);
-		
 		$mail = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Mail\\MailMessage');
 		$mail->setFrom(array("Admin@kartenforum.slub-dresden.de" => "Admin"));
 		$mail->setTo(array("Jacob.Mendt@slub-dresden.de" => "Jacob Mendt"));

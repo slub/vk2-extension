@@ -116,6 +116,35 @@
 				<source>Submit.</source>
 			</trans-unit>
 
+			<!-- ranking page -->
+			<trans-unit id="ranking.title">
+				<source>Top Georeferencer</source>
+			</trans-unit>
+			<trans-unit id="ranking.information">
+				<source>
+				    The following ranking displays the most active users, participating in the georeferencing of our
+				    map collections. If differs between the capturing of new georeference parameters, meaning the
+				    georeferencing of maps which hadn't so far any spatial reference, and the capturing of update georeference
+				    parameters, meaning the improvement of already georeference maps. So far the policy of the Virtual
+                    Map Forum 2.0 is, that for every capturing process the user receives 20 georeferencing points.
+				</source>
+			</trans-unit>
+			<trans-unit id="ranking.table.rank">
+				<source>Rank</source>
+			</trans-unit>
+            <trans-unit id="ranking.table.name">
+				<source>Username</source>
+			</trans-unit>
+			<trans-unit id="ranking.table.new">
+                <source>New georeference processes</source>
+            </trans-unit>
+			<trans-unit id="ranking.table.update">
+                <source>Update georeference processes</source>
+            </trans-unit>
+			<trans-unit id="ranking.table.points">
+                <source>Points</source>
+            </trans-unit>
+
 			<!-- impressum page -->
 			<trans-unit id="impressum.title">
 				<source>Impressum</source>

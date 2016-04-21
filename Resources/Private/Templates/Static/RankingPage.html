@@ -1,0 +1,47 @@
+{namespace vk=SLUB\Vk2\ViewHelpers}
+<f:layout name="Default" />
+
+<f:section name="main">
+
+	<vk:head>
+		<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+	</vk:head>
+
+	<div class="ranking page-container">
+		<h2 class="slubcolor">
+			<f:translate id="ranking.title" />
+		</h2>
+		<section class="text">
+			<p><f:translate id="ranking.information" /></p>
+
+			<table class="table" id="ranking-table">
+				<thead>
+					<th><f:translate id="ranking.table.rank" /></th>
+					<th><f:translate id="ranking.table.name" /></th>
+					<th><f:translate id="ranking.table.new" /></th>
+					<th><f:translate id="ranking.table.update" /></th>
+					<th><f:translate id="ranking.table.points" /></th>
+				</thead>
+				<tbody>
+					<!-- This is where the ranking records should be placed -->
+				</tbody>
+			</table>
+
+		</section>
+	</div>
+
+	<!-- checks if the vk2.app.WelcomePageApp module is already loaded -->
+	<script>
+		if (window['vk2'] === undefined || window['vk2']['app'] === undefined) {
+			goog.require('vk2.app.RankingPageApp');
+		};
+	</script>
+
+	<!-- fetch ranking data from server -->
+	<script>
+		var app = new vk2.app.RankingPageApp({
+			tableEl: 'ranking-table'
+		});
+	</script>
+
+</f:section>
