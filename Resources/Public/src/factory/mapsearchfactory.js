@@ -70,7 +70,7 @@ vk2.factory.MapSearchFactory.getMapSearchRecord = function(feature){
 	
 	var description = goog.dom.createDom('div',{
 		'class':'scale',
-		'innerHTML': vk2.utils.getMsg('factory-scale') + ' 1:25.000'
+		'innerHTML': vk2.utils.getMsg('factory-scale') + ' 1:' + feature.get('denominator')
 	});
 	goog.dom.appendChild(details, description);
 	
