@@ -187,6 +187,68 @@
                 <target state="translated">Punkte</target>
             </trans-unit>
 
+		    <!-- service page -->
+			<trans-unit id="service.title">
+				<source>Service Overview</source>
+				<target state="translated">Diensteübersicht</target>
+			</trans-unit>
+			<trans-unit id="service.description">
+				<source>
+				    The following page contains an overview about the Web Mapping Services (WMS) and Web Coverage Services (WCS) provided through the
+				     Virtual Map Forum 2.0.
+				</source>
+				<target state="translated">
+				    Die folgende Seite beinhaltet eine Übersicht der durch das Virtuelle Kartenforum 2.0 veröffentlichten Web Mapping Services (WMS) und
+				    Web Coverage Serivces (WCS).
+				</target>
+			</trans-unit>
+			<trans-unit id="service.licence">
+				<source>Licence</source>
+				<target state="translated">Lizenz</target>
+			</trans-unit>
+			<trans-unit id="service.all.licence">
+				<source>
+				    <![CDATA[The metadata of the services is publised under <a href="">CC0</a> and the mapping data under
+				    <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.]]>
+				</source>
+				<target state="translated">
+				    <![CDATA[Die Metadata der Dienste stehen unter der Lizenz <a href="">CC0</a> und die Kartendaten unter der Lizenz
+				    <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.]]>
+				</target>
+			</trans-unit>
+			<trans-unit id="service.mtb.title">
+				<source>Mapping Service - Messtischblätter</source>
+				<target>Kartendienste - Messtischblätter</target>
+			</trans-unit>
+			<trans-unit id="service.mtb.description">
+				<source>This Mapping Services offers access to the historical map collection of the topographical maps with a scale of 1:25.000 (Messtischblätter) for middle europe.</source>
+				<target state="translated">Die Kartendienste ermöglichen den Zugriff auf die historische Kartensammlung der Messtischblätter im Maßstab 1:25.000 von Mitteleuropa.</target>
+			</trans-unit>
+			<trans-unit id="service.ae.title">
+				<source>Mapping Service - Äquidistantenkarten of Saxony</source>
+				<target>Kartendienste - Äquidistantenkarten von Sachsen</target>
+			</trans-unit>
+			<trans-unit id="service.ae.description">
+				<source>This Mapping Services offers access to the historical map collection of the topographical maps with a scale of 1:25.000 (Äquidistantenkarten) for saxony.</source>
+				<target state="translated">Die Kartendienste ermöglichen den Zugriff auf die historische Kartensammlung der Äquidistantenkarten im Maßstab 1:25.000 von Sachsen.</target>
+			</trans-unit>
+			<trans-unit id="service.tk.title">
+				<source>Mapping Service - Maps of the german reich</source>
+				<target>Kartendienste - Karte des Deutschen Reiches</target>
+			</trans-unit>
+			<trans-unit id="service.tk.description">
+				<source>This Mapping Services offers access to the historical map collection of the topographical maps with a scale of 1:100.000 (Karte des Deutschen Reiches) for middle europe.</source>
+				<target state="translated">Die Kartendienste ermöglichen den Zugriff auf die historische Kartensammlung der Karten des Deutschen Reiches im Maßstab 1:100.000 von Mitteleuropa.</target>
+			</trans-unit>
+			<trans-unit id="service.gl.title">
+				<source>Mapping Service - Geological Maps of Saxony</source>
+				<target>Kartendienste - Geologische Karten von Sachsen</target>
+			</trans-unit>
+			<trans-unit id="service.gl.description">
+				<source>This Mapping Services offers access to the historical map collection of the geological maps with a scale of 1:25.000 (Geologische Karten) for saxony.</source>
+				<target state="translated">Die Kartendienste ermöglichen den Zugriff auf die historische Kartensammlung der Geologischen Karten im Maßstab 1:25.000 von Sachsen.</target>
+			</trans-unit>
+
 			<!-- impressum page -->
 			<trans-unit id="impressum.title">
 				<source>Impressum</source>

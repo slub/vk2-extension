@@ -47,6 +47,7 @@ class StaticController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 */ 
 	public function faqAction(){}
 	public function impressumAction(){}
+	public function serviceAction(){}
 	public function projectAction(){}
 	public function profileMapAction(){
 		\SLUB\Vk2\Utils\Tools::renderOpenlayersDependencies($this->settings);

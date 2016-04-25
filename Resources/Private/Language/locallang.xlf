@@ -145,6 +145,50 @@
                 <source>Points</source>
             </trans-unit>
 
+		    <!-- service page -->
+			<trans-unit id="service.title">
+				<source>Service Overview</source>
+			</trans-unit>
+			<trans-unit id="service.description">
+				<source>
+				    The following page contains an overview about the Web Mapping Services (WMS) and Web Coverage Services (WCS) provided through the
+				     Virtual Map Forum 2.0.
+				</source>
+			</trans-unit>
+			<trans-unit id="service.licence">
+				<source>Licence</source>
+			</trans-unit>
+			<trans-unit id="service.all.licence">
+				<source>
+				    <![CDATA[The metadata of the services is publised under <a href="">CC0</a> and the mapping data under
+				    <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>.]]>
+				</source>
+			</trans-unit>
+			<trans-unit id="service.mtb.title">
+				<source>Mapping Service - Messtischblätter</source>
+			</trans-unit>
+			<trans-unit id="service.mtb.description">
+				<source>This Mapping Services offers access to the historical map collection of the topographical maps with a scale of 1:25.000 (Messtischblätter) for middle europe.</source>
+			</trans-unit>
+			<trans-unit id="service.ae.title">
+				<source>Mapping Service - Äquidistantenkarten of Saxony</source>
+			</trans-unit>
+			<trans-unit id="service.ae.description">
+				<source>This Mapping Services offers access to the historical map collection of the topographical maps with a scale of 1:25.000 (Äquidistantenkarten) for saxony.</source>
+			</trans-unit>
+			<trans-unit id="service.tk.title">
+				<source>Mapping Service - Maps of the german reich</source>
+			</trans-unit>
+			<trans-unit id="service.tk.description">
+				<source>This Mapping Services offers access to the historical map collection of the topographical maps with a scale of 1:100.000 (Karte des Deutschen Reiches) for middle europe.</source>
+			</trans-unit>
+			<trans-unit id="service.gl.title">
+				<source>Mapping Service - Geological Maps of Saxony</source>
+			</trans-unit>
+			<trans-unit id="service.gl.description">
+				<source>This Mapping Services offers access to the historical map collection of the geological maps with a scale of 1:25.000 (Geologische Karten) for saxony.</source>
+			</trans-unit>
+
 			<!-- impressum page -->
 			<trans-unit id="impressum.title">
 				<source>Impressum</source>
