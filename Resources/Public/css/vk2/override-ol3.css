@@ -224,3 +224,5 @@ content: "\002194";
 
 /* always display ol attribution */
 .ol-attribution > ul > li { display: inline !important; }
+.mode-3d .ol-attribution { bottom: 30px; height: 2.5em; max-width: 550px; text-align: justify; }
+.mode-3d .ol-scale-line { bottom: 70px; }

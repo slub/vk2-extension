@@ -21,7 +21,7 @@ vk2.utils.Styles.MAP_SEARCH_HOVER_FEATURE = new ol.style.Style({
         'width': 1
     }),
     'fill': new ol.style.Fill({
-        'color': 'rgba(255,0,0,0.1)'
+        'color': 'rgba(255,0,0,0.2)'
     })
 });
 
