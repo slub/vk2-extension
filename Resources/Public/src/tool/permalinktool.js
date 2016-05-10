@@ -142,7 +142,6 @@ vk2.tool.Permalink.prototype.parsePermalink = function(map){
 			if (objectids[i] == '')
 				objectids.splice(i, 1);
 		};
-		objectids.reverse();
 
 		// assumes that there exists multiple oid regaring a permalink
 		vk2.request.ElasticSearch.getFeatureForIds('map', objectids, function(e) {
