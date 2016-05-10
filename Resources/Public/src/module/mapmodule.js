@@ -145,7 +145,7 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         var ol3d = new olcs.OLCesium({
             'map': this.map_,
             'sceneOptions': {
-                'terrainExaggeration' : 1.0
+                'terrainExaggeration' : 2.0
             }
         });
         ol3d.enableAutoRenderLoop();
@@ -184,7 +184,7 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         scene.fog.screenSpaceErrorFactor = fogSseFactor;
 
         // together with the "requestVertexNormals" flag (see terrainProvider) it enables the displaying
-        // of shadows on the map
+        // of shadows on the map,
         //scene.globe.enableLighting = true;
         //scene.globe.lightingFadeInDistance = 1000000000;
         //scene.globe.lightingFadeOutDistance = 10000000;
