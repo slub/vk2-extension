@@ -75,19 +75,18 @@ vk2.control.FlipViewMode = function(opt_options) {
                 });
             }
         },
-        handler_ = function(event) {
+        handler_ = goog.bind(function(event) {
             event.preventDefault();
 
             if (goog.dom.classlist.contains(this.anchor_, 'three-d')) {
-                goog.dom.classlist.addRemove(this.anchor_, 'three-d', 'two-d');
-                this.addAnchorInnerHTML_('2D');
+                this.switchControlMode('2d');
                 deactivate3d_();
             } else {
                 goog.dom.classlist.addRemove(this.anchor_, 'two-d', 'three-d');
-                this.addAnchorInnerHTML_('3D');
+                this.switchControlMode('3d');
                 activate3d_();
             };
-        };
+        }, this);
 
     if (goog.DEBUG) {
         window['activate'] = activate3d_;
@@ -125,10 +124,10 @@ vk2.control.FlipViewMode.prototype.addAnchorInnerHTML_ = function(text) {
  */
 vk2.control.FlipViewMode.prototype.switchControlMode = function(mode) {
     if (mode.toLowerCase() === '3d') {
-        goog.dom.classlist.addRemove(this.anchor_, 'two-d', 'three-d');
+        goog.dom.classlist.addRemove(this.anchor_, 'three-d', 'two-d');
         this.addAnchorInnerHTML_('2D');
     } else if (mode.toLowerCase() === '2d') {
-        goog.dom.classlist.addRemove(this.anchor_, 'three-d', 'two-d');
+        goog.dom.classlist.addRemove(this.anchor_, 'two-d', 'three-d');
         this.addAnchorInnerHTML_('3D');
     };
 };
