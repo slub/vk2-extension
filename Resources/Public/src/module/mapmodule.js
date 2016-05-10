@@ -163,8 +163,8 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         var tileCacheSize = '100',
             maximumScreenSpaceError = '2',
             fogEnabled = true,
-            fogDensity = '0.00025',
-            fogSseFactor = '2';
+            fogDensity = '0.000125',
+            fogSseFactor = 1;
 
         window.minimumRetrievingLevel = 8;
         window.imageryAvailableLevels = undefined;

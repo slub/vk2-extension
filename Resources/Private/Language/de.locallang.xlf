@@ -539,11 +539,25 @@
 			</trans-unit>
 			<trans-unit id="faq.map.navigation.content.5">
 				<source>
-				    The last buttons allow you to create a sharing link of the current map view as well as to activate
+				    The button with the cross allows you to create a sharing link of the current map view as well as to activate
 				    the illustration of the actual lat / lon position of the map.
 				</source>
-				<target state="translated">Der letzte Button ermöglicht die Erstellung eines Links, mit welchem man die
+				<target state="translated">Der Button mit dem Kreuz ermöglicht die Erstellung eines Links, mit welchem man die
 				aktuelle Kartensicht mit anderen Nutzern teilen kann.</target>
+			</trans-unit>
+			<trans-unit id="faq.map.navigation.content.6">
+				<source>
+				    <![CDATA[The last button gives the opportunity to toggle between 2D and 3D view. The 3D views allows the
+				    projection of historic maps on top of a 3D terrain model (<a href="https://cesiumjs.org/data-and-assets/terrain/stk-world-terrain.html">
+				    STK World Terrain</a>. Through holding <b>CTRL</b> and the <b>left mouse button</b> the user can navigate throught the 3D view
+				    and adjust the camera perspective.]]>
+				</source>
+				<target state="translated">
+				    <![CDATA[Mit dem letzten Button kann zwischen 2D und 3D-Ansicht gewechselt werden. In der 3D-Ansicht
+				    lassen sich die historischen Karten auf einem 3D-Geländemodell (<a href="https://cesiumjs.org/data-and-assets/terrain/stk-world-terrain.html">
+				    STK World Terrain</a> darstellen. In der 3D-Ansicht kann die Ansicht bzw. die Kamera durch das gleichzeitige Drücken
+				    von <b>STRG-</b> und <b>linker Maustaste</b> sowie der Bewegung der Maus navigiert werden.]]>
+				</target>
 			</trans-unit>
 			<trans-unit id="faq.map.management.title">
 				<source>Manage chosen maps</source>

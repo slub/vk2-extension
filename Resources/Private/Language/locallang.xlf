@@ -346,8 +346,16 @@
 			</trans-unit>
 			<trans-unit id="faq.map.navigation.content.5">
 				<source>
-				    The last buttons allow you to create a sharing link of the current map view as well as to activate
+				    The button with the cross allows you to create a sharing link of the current map view as well as to activate
 				    the illustration of the actual lat / lon position of the map.
+				</source>
+			</trans-unit>
+			<trans-unit id="faq.map.navigation.content.6">
+				<source>
+				    <![CDATA[The last button gives the opportunity to toggle between 2D and 3D view. The 3D views allows the
+				    projection of historic maps on top of a 3D terrain model (<a href="https://cesiumjs.org/data-and-assets/terrain/stk-world-terrain.html">
+				    STK World Terrain</a>. Through holding <b>CTRL</b> and the <b>left mouse button</b> the user can navigate throught the 3D view
+				    and adjust the camera perspective.]]>
 				</source>
 			</trans-unit>
 			<trans-unit id="faq.map.management.title">
