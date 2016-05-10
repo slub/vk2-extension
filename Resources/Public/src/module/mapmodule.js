@@ -21,28 +21,10 @@ goog.require('vk2.utils.routing');
  *
  * @param {ol.Coordinate} center
  * @param {number} zoom
- * @param {number=} opt_tilt
- * @param {number=} opt_altitude
- * @param {number=} opt_distance
- * @param {number=} opt_rotation
  */
 ol.Map.prototype.zoomTo = function(center, zoom) {
-
-    if (!vk2.utils.is3DMode()) {
-        this.getView().setCenter(center);
-        this.getView().setZoom(zoom);
-        return;
-    } else {
-        var ol3d = vk2.utils.getOL3D(),
-            camera = ol3d.getCesiumScene().camera,
-            lonlat = ol.proj.transform(center, vk2.settings.MAPVIEW_PARAMS['projection'], 'EPSG:4326'),
-            defaultHeight = 100000.0,
-            position = Cesium.Cartesian3.fromDegrees(lonlat[0], lonlat[1], defaultHeight);
-
-        camera.flyTo({
-            'destination': position
-        });
-    };
+    this.getView().setCenter(center);
+    this.getView().setZoom(zoom);
 };
 
 /**
@@ -291,6 +273,7 @@ vk2.module.MapModule.prototype.getMap = function(){
  * @param {vk2.tool.Permalink} permalink
  */
 vk2.module.MapModule.prototype.registerPermalinkTool = function(permalink){
+    // couple permalink module with map
     goog.events.listen(permalink, vk2.tool.PermalinkEventType.ADDMAP, function(event){
         var feature = event.target['feature'];
 
@@ -306,6 +289,9 @@ vk2.module.MapModule.prototype.registerPermalinkTool = function(permalink){
             };
         }
     }, undefined, this);
+
+    // parse permalink if one exists
+    permalink.parsePermalink(this.map_);
 };
 
 

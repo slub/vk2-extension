@@ -49,24 +49,18 @@ vk2.tool.Permalink.prototype.parsePermalink = function(map){
 
 	if (params.containsKey('c')){
 
-		if (!vk2.utils.is3DMode())  {
+		var centerArray = params.get('c').split(','),
+			center = ol.proj.transform([parseFloat(centerArray[0], 0),parseFloat(centerArray[1], 0)], 'EPSG:4326',
+				vk2.settings.MAPVIEW_PARAMS['projection']),
+			zoom = params.get('z') !== undefined ? parseInt(params.get('z'), 0) : 4;
 
-			var centerArray = params.get('c').split(','),
-				center = ol.proj.transform([parseFloat(centerArray[0], 0),parseFloat(centerArray[1], 0)], 'EPSG:4326',
-					vk2.settings.MAPVIEW_PARAMS['projection']),
-				zoom = params.get('z') !== undefined ? parseInt(params.get('z'), 0) : 4;
+		if (isNaN(center[0]) || isNaN(center[1])) {
+			// assume the coordinates are in EPSG:900913
+			center = ol.proj.transform([parseFloat(centerArray[0], 0),parseFloat(centerArray[1], 0)], 'EPSG:3857',
+				vk2.settings.MAPVIEW_PARAMS['projection']);
+		};
 
-			if (isNaN(center[0]) || isNaN(center[1])) {
-				// assume the coordinates are in EPSG:900913
-				center = ol.proj.transform([parseFloat(centerArray[0], 0),parseFloat(centerArray[1], 0)], 'EPSG:3857',
-					vk2.settings.MAPVIEW_PARAMS['projection']);
-			};
-
-			map.zoomTo(center, zoom);
-		}
-
-		// TODO: add behavior for zooming to place by center in 3d mode
-
+		map.zoomTo(center, zoom);
 	};
 
 	if (params.containsKey('pos') && vk2.utils.is3DMode()) {
@@ -197,7 +191,7 @@ vk2.tool.Permalink.createPermalink = function(map){
 		permalink = new goog.Uri(baseUrl),
 		params = permalink.getQueryData();
 		
-	if (vk2.utils.is3DMode()) {
+	if (vk2.utils.is3DMode() && goog.isDefAndNotNull(goog.dom.getElementByClass('flip-mode-3d'))) {
 		// build 3d perspective permalink
 		var ol3d = vk2.utils.getOL3D(),
 			scene = ol3d.getCesiumScene(),

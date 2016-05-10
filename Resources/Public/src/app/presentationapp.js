@@ -51,7 +51,6 @@ vk2.app.PresentationApp = function(settings){
 
 	// permalink
 	var permalink = new vk2.tool.Permalink(mapModule.getMap());
-	permalink.parsePermalink(mapModule.getMap());
 	mapModule.registerPermalinkTool(permalink);
 
 	if(goog.DEBUG){

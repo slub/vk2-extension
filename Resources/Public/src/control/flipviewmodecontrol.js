@@ -78,11 +78,10 @@ vk2.control.FlipViewMode = function(opt_options) {
         handler_ = goog.bind(function(event) {
             event.preventDefault();
 
-            if (goog.dom.classlist.contains(this.anchor_, 'three-d')) {
+            if (goog.dom.classlist.contains(this.anchor_, 'flip-mode-3d')) {
                 this.switchControlMode('2d');
                 deactivate3d_();
             } else {
-                goog.dom.classlist.addRemove(this.anchor_, 'two-d', 'three-d');
                 this.switchControlMode('3d');
                 activate3d_();
             };
@@ -123,11 +122,11 @@ vk2.control.FlipViewMode.prototype.addAnchorInnerHTML_ = function(text) {
  * @param {string} mode
  */
 vk2.control.FlipViewMode.prototype.switchControlMode = function(mode) {
-    if (mode.toLowerCase() === '3d') {
-        goog.dom.classlist.addRemove(this.anchor_, 'three-d', 'two-d');
+    if (mode.toLowerCase() === '2d') {
+        goog.dom.classlist.remove(this.anchor_, 'flip-mode-3d');
         this.addAnchorInnerHTML_('2D');
-    } else if (mode.toLowerCase() === '2d') {
-        goog.dom.classlist.addRemove(this.anchor_, 'two-d', 'three-d');
+    } else if (mode.toLowerCase() === '3d') {
+        goog.dom.classlist.add(this.anchor_, 'flip-mode-3d');
         this.addAnchorInnerHTML_('3D');
     };
 };
