@@ -50,6 +50,9 @@ vk2.control.DeactivateMapCollection = function(parentEl, map){
 		for (var i = 0; i < layers.length; i++) {
 			layers[i]['setVisible'](visible);
 		}
+
+		// update the 3d view
+		vk2.utils.refresh3DView();
 	};
 
 	goog.events.listen(controlAnchor_, 'click', toggleDeactivateMapCollection_);
