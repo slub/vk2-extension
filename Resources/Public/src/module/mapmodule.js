@@ -125,7 +125,13 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
     this.map_ =  new ol.Map({
         'layers': [
             new ol.layer.Tile({
-                source: new ol.source.OSM({
+                source: new ol.source.XYZ({
+                    'urls': [
+                        'http://osm-cdn1.slub-dresden.de:8082/osm_tiles/{z}/{x}/{y}.png',
+                        'http://osm-cdn2.slub-dresden.de:8082/osm_tiles/{z}/{x}/{y}.png',
+                        'http://osm-cdn3.slub-dresden.de:8082/osm_tiles/{z}/{x}/{y}.png'
+                    ],
+                    'crossOrigin': '*',
                     'attributions': attribution
                 })
             })
@@ -327,7 +333,7 @@ vk2.module.MapModule.prototype.registerSpatialTemporalSearch = function(spatialT
             'style': function(feature, resolution) {
                 return [new ol.style.Style({
                     fill: new ol.style.Fill({
-                        color: 'rgba(255, 255, 255, 0.2)'
+                        color: 'rgba(255, 255, 255, 0.0)'
                     })
                 })];
             }
