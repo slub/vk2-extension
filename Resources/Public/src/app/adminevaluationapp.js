@@ -1,6 +1,7 @@
 goog.provide('vk2.app.AdminEvaluationApp');
 
 goog.require('goog.dom');
+goog.require('goog.dom.classlist');
 goog.require('goog.events');
 goog.require('goog.net.XhrIo');
 goog.require('goog.net.EventType');
@@ -153,118 +154,167 @@ vk2.app.AdminEvaluationApp.prototype.addFetchSingleProcessForUserId_ = function(
 };
 
 /**
+ * Creates a html element for a given georeference record.
  * @param {Object} record
  * @return {Element}
  * @private
  */
-vk2.app.AdminEvaluationApp.prototype.createProcessListElement_ = function(record){
-	var parentEl = goog.dom.createDom('article', {'id':record['georef_id']});
-	
-	var helperFactory = function(label, value, opt_className, opt_isCode){
-		var className = opt_className !== undefined ? opt_className : '',
-			isCode = opt_isCode !== undefined ? opt_isCode : false;
+vk2.app.AdminEvaluationApp.prototype.createProcessListElement_ = function(record) {
 
-		if (isCode) {
-			return goog.dom.createDom('p',{
-				'class': className,
-				'innerHTML':'<strong>' + label + ':</strong><br><span>' + value + '</span>'
-			});
-		} else {
-			return goog.dom.createDom('p',{
-				'class': className,
-				'innerHTML':'<strong>' + label + ':</strong> ' + value
-			});
-		}
-	};
-	
-	var helperFactoryAnchors = goog.bind(function(record){
-		var phrase = goog.dom.createDom('p');
-		
-		if (record['adminvalidation'] != 'isvalide'){
-			// set is valid
-			var setIsValideBtn = goog.dom.createDom('button', {
-				'data-href': vk2.utils.routing.getGeoreferenceAdminSetIsValideRoute('georeferenceid=' + record['georef_id']),
-				'class':'btn btn-primary action-btn',
-				'innerHTML': vk2.utils.getMsg('evaluation-isvalide')
-			});
-			this.registerSetAdminValidationRequest_(setIsValideBtn, parentEl,
-					'Georeference process is valide?', 'Are you sure you wanna set this georeference process to isvalide? Why?');
-			goog.dom.appendChild(phrase, setIsValideBtn);
-		};
-		
-		// show map
-		var showMapBtn = goog.dom.createDom('button', {
-			'data-params-georef': JSON.stringify(record['georef_params']),
-			'data-params-id': record['mapid'],
-			'class':'btn btn-primary btn-show-georef',
-			'innerHTML': vk2.utils.getMsg('evaluation-showmap')
+	if (goog.DEBUG)
+		console.log(record);
+
+	var articleType_ = record['adminvalidation'] === 'invalide'
+			? 'panel-danger'
+			: record['adminvalidation'] === 'isvalide'
+				? 'panel-success'
+				: 'panel-warning',
+		parentEl_ = goog.dom.createDom('article', {
+			'id': record['georef_id'],
+			'class': 'panel ' + articleType_ + ' record'
 		});
-		// if clippolygon exists add it
-		if (record['clippolygon'] !== undefined)
-			showMapBtn.setAttribute('data-params-clip',JSON.stringify(record['clippolygon']));
 
-		this.registerShowMapEventListener_(showMapBtn);
-		goog.dom.appendChild(phrase, showMapBtn);
-		
-		// go to process
-		goog.dom.appendChild(phrase, goog.dom.createDom('a', {
-			'href': vk2.utils.routing.getGeorefPageRoute(undefined, 'georeferenceid=' + record['georef_id']),
-			'class':'btn btn-primary action-btn',
-			'target':'_blank',
-			'innerHTML': vk2.utils.getMsg('evaluation-gotoprocess')
-		}));
-		
-		if (record['adminvalidation'] != 'invalide'){			
-			// deactivete
-			var deactiveBtn = goog.dom.createDom('button', {
-				'data-href': vk2.utils.routing.getGeoreferenceAdminSetIsInValideRoute('georeferenceid=' + record['georef_id']),
-				'class':'btn btn-warning action-btn',
-				'innerHTML': vk2.utils.getMsg('evaluation-isinvalide')
-			});
-			this.registerSetAdminValidationRequest_(deactiveBtn, parentEl,
-					'Georeference process is invalide?', 'Are you sure you wanna set this georeference process to invalide? Why?');
-			goog.dom.appendChild(phrase, deactiveBtn);
-		};		
-		return phrase;
-	}, this);
-	
-	// add georeference process id
-	goog.dom.appendChild(parentEl, helperFactory('Process-ID', record['georef_id']));
-	
-	// add admin validation
-	goog.dom.appendChild(parentEl, helperFactory('Admin validation', record['adminvalidation']));
-	
-	// add admin validation
-	goog.dom.appendChild(parentEl, helperFactory('Map id', record['mapid']));
-	
-	// add admin validation
-	goog.dom.appendChild(parentEl, helperFactory('User id', record['userid']));
-	
-	// add admin validation
-	goog.dom.appendChild(parentEl, helperFactory('Map sheet description', record['title']));
-	
-	// add admin validation
-	goog.dom.appendChild(parentEl, helperFactory('Georeference parameter (lon:lat)', JSON.stringify(record['georef_params']), 'json', true));
-	
-	// add admin validation
-	goog.dom.appendChild(parentEl, helperFactory('Type', record['type']));
-	
-	// add admin validation
-	goog.dom.appendChild(parentEl, helperFactory('Processed', record['processed'])); 
+	//
+	// create header
+	//
+	var headerEl_ = goog.dom.createDom('div', {
+		'class': 'panel-heading',
+		'innerHTML': '<h3>' + record['title'] + ' <span class="label label-default">' + record['type'] + '</span> ' +
+		'<span class="right">' + record['georef_id'] + '</span></h3>'
+	});
+	goog.dom.appendChild(parentEl_, headerEl_);
 
-	// add admin validation
-	goog.dom.appendChild(parentEl, helperFactory('Is active', record['georef_isactive'])); 
-	
-	// add timestamp 
-	goog.dom.appendChild(parentEl, goog.dom.createDom('p',{
-		'class':'meta',
-		'innerHTML':'Created: ' + record['georef_time']
+	// add show map button
+	var showMapBtn_ = goog.dom.createDom('button', {
+		'data-params-georef': JSON.stringify(record['georef_params']),
+		'data-params-id': parseInt("oai:de:slub-dresden:vk:id-10000911".split('-')[2]),
+		'class':'btn btn-default btn-show-georef',
+		'innerHTML': 'Vorschau anzeigen ...'
+	});
+
+	// if clippolygon exists add it
+	if (record['clippolygon'] !== undefined)
+		showMapBtn_.setAttribute('data-params-clip',JSON.stringify(record['clippolygon']));
+
+	this.registerShowMapEventListener_(showMapBtn_);
+	goog.dom.appendChild(headerEl_, showMapBtn_);
+
+	// go to process
+	goog.dom.appendChild(headerEl_, goog.dom.createDom('a', {
+		'href': vk2.utils.routing.getGeorefPageRoute(undefined, 'georeferenceid=' + record['georef_id']),
+		'class':'btn btn-default action-btn',
+		'target':'_blank',
+		'innerHTML': 'Georeferenzierung anzeigen ...'
 	}));
-	
-	// add behavior buttons/anchor
-	goog.dom.appendChild(parentEl, helperFactoryAnchors(record));
-	
-	return parentEl;
+
+	//
+	// create body
+	//
+	var bodyEl_ = goog.dom.createDom('div', {'class': 'panel-body'}),
+	helperFactory_ = function (label, value, opt_spanClassName) {
+		var spanClassName = opt_spanClassName !== undefined ? opt_spanClassName : '';
+
+		return goog.dom.createDom('p', {
+			'innerHTML': '<strong>' + label + '</strong> <span class="' + spanClassName + '">' + value + '</span>'
+		});
+	};
+
+	// create georef-params phrases
+	var georefHeaderPhraseEl_ = helperFactory_('Georeferenzierungsparameter vom ' + record['georef_time'] + ':', '', 'glyphicon glyphicon-triangle-left right'),
+		georefBodyPhraseEl_ = goog.dom.createDom('p', {
+			'class': 'georef-params',
+			'innerHTML': 'Passpunkte: <br>' + JSON.stringify(record['georef_params']) + '<br><br>Clip-Polygon: <br>'
+				+ JSON.stringify(record['clippolygon'])
+		});
+	goog.events.listen(georefHeaderPhraseEl_, 'click', function (event) {
+		var glyphiconSpanEl_ = goog.dom.getElementByClass('glyphicon', georefHeaderPhraseEl_);
+		if (goog.dom.classlist.contains(georefBodyPhraseEl_, 'show')) {
+			goog.dom.classlist.remove(georefBodyPhraseEl_, 'show');
+			goog.dom.classlist.addRemove(glyphiconSpanEl_, 'glyphicon-triangle-left', 'glyphicon-triangle-bottom');
+			return;
+		}
+		goog.dom.classlist.add(georefBodyPhraseEl_, 'show');
+		goog.dom.classlist.addRemove(glyphiconSpanEl_, 'glyphicon-triangle-bottom', 'glyphicon-triangle-left');
+	});
+
+	// append phrases
+	goog.dom.appendChild(bodyEl_, helperFactory_('Karten-OAI:', record['oai']));
+	goog.dom.appendChild(bodyEl_, helperFactory_('Validierung:', record['adminvalidation'], 'label label-danger'));
+	goog.dom.appendChild(bodyEl_, helperFactory_('Vearbeitet:', (record['processed'] == true ? 'Ja' : 'Nein'), 'label label-info'));
+	goog.dom.appendChild(bodyEl_, helperFactory_('Nutzer:', record['userid']));
+	goog.dom.appendChild(bodyEl_, georefHeaderPhraseEl_);
+	goog.dom.appendChild(bodyEl_, georefBodyPhraseEl_);
+	goog.dom.appendChild(bodyEl_, helperFactory_('Aktiv:', (record['georef_isactive'] == true ? 'Ja' : 'Nein'), 'label label-info'));
+	goog.dom.appendChild(parentEl_, bodyEl_);
+
+	//
+	// Create record controls
+	//
+	var footerEl_ = goog.dom.createDom('div', {'class': 'panel-footer'});
+	goog.dom.appendChild(parentEl_, footerEl_);
+
+	// add set isvalide button
+	if (record['adminvalidation'] != 'isvalide'){
+		// set is valid
+		var setIsValideBtn = goog.dom.createDom('button', {
+				'class':'btn btn-primary action-btn',
+				'innerHTML': 'Setze als \"isvalide\" ...'
+			}),
+			setIsValidUrl = vk2.utils.routing.getGeoreferenceAdminSetIsValideRoute('georeferenceid=' + record['georef_id']);
+
+		goog.events.listen(setIsValideBtn, 'click', function() {
+			goog.net.XhrIo.send(setIsValidUrl, function(event){
+				alert(event.target.getResponseJson()['message']);
+				goog.dom.removeNode(parentEl_);
+			}, 'GET');
+		});
+
+		goog.dom.appendChild(footerEl_, setIsValideBtn);
+	};
+
+	// add set invalide button
+	if (record['adminvalidation'] != 'invalide') {
+		var deactiveBtn = goog.dom.createDom('button', {
+			'data-href': vk2.utils.routing.getGeoreferenceAdminSetIsInValideRoute('georeferenceid=' + record['georef_id']),
+			'class': 'btn btn-warning action-btn',
+			'innerHTML': 'Setze als \"invalide\" ...'
+		});
+
+		var callback = goog.partial(vk2.utils.getConfirmationDialog, 'Ist der Georeferenzierungsprozess valide?',
+			'Soll der Georeferenzierungsprozess auf \"invalide\" gesetzt werden? Bitte geben Sie einen Grund an: ' +
+			'<br><div id="admin-validation-comment" class="input-group">' +
+				'<input type="radio" value="imprecision"> Ungenauigkeit <br>' +
+				'<input type="radio" value="wrong-parameter"> Falsche Parameter <br>' +
+				'<input type="radio" value="wrong-map-sheet-number">  False Kartennummer <br>' +
+				'<input type="radio" value="bad-original"> Schlechte Qualität des Orginals<br><br>' +
+				'<input type="text" class="form-control" placeholder="Weitere Gründe ..." id="confirm-comment"></div>',
+
+			function (event) {
+				var inputs = goog.dom.getElementsByTagNameAndClass('input', undefined, goog.dom.getElement('admin-validation-comment'));
+				var msg = undefined;
+				for (var i = 0; i < inputs.length; i++) {
+					if (inputs[i].type == 'radio' && inputs[i].checked)
+						msg = inputs[i].value;
+				}
+				var comment = goog.isDef(msg) ? msg : goog.dom.getElement('confirm-comment').value
+				var url = element.getAttribute('data-href') + '&comment=' + comment;
+
+				goog.net.XhrIo.send(url, function (event) {
+					alert(event.target.getResponseJson()['message']);
+					goog.dom.removeNode(parentEl_);
+				}, 'GET');
+			});
+		goog.events.listen(deactiveBtn, 'click', callback);
+
+		goog.dom.appendChild(footerEl_, deactiveBtn);
+	};
+
+
+
+
+
+
+	return parentEl_;
 };
 
 /**
@@ -296,42 +346,6 @@ vk2.app.AdminEvaluationApp.prototype.initializeEvaluationMap_ = function(idMapCo
 	 * @private
 	 */
 	this.targetView_ = new vk2.georeference.view.TargetView(idMapContainer);
-};
-
-/**
- * @param {Element} element
- * @param {Element} parentEl
- * @param {string} title
- * @param {string} msg
- * @private
- */
-vk2.app.AdminEvaluationApp.prototype.registerSetAdminValidationRequest_ = function(element, parentEl, title, msg){
-	var callback = goog.partial(
-		vk2.utils.getConfirmationDialog, 
-		title, 
-		msg +   
-		'<br><div id="admin-validation-comment" class="input-group"><input type="radio" value="imprecision"> Imprecision' +
-		'<br><input type="radio" value="wrong-parameter"> Wrong Parameter<br>' + 
-		'<input type="radio" value="wrong-map-sheet-number"> Wrong map sheet number<br>' +
-		'<input type="radio" value="bad-original"> Bad original<br><br>' +
-		'<input type="text" class="form-control" placeholder="comment" id="confirm-comment"></div>', 
-		function(event){
-			var inputs = goog.dom.getElementsByTagNameAndClass('input', undefined, goog.dom.getElement('admin-validation-comment'));
-			var msg = undefined;
-			for (var i = 0; i < inputs.length; i++) {
-				if (inputs[i].type == 'radio' && inputs[i].checked)
-					msg = inputs[i].value;
-			}
-			var comment = goog.isDef(msg) ? msg : goog.dom.getElement('confirm-comment').value
-			var url = element.getAttribute('data-href') + '&comment=' + comment;				
-			goog.net.XhrIo.send(url, function(event){
-				alert(event.target.getResponseJson()['message']);
-				goog.dom.removeNode(parentEl);
-			}, 'GET');	
-		}
-	);
-	
-	goog.events.listen(element, 'click', callback);
 };
 
 /**
