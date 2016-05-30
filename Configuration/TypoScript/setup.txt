@@ -126,7 +126,7 @@ page {
 		jquery-ui = //code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.min.css
 		jquery-ui.external = 1
 		ol3 = EXT:vk2/Resources/Public/dist/ol.css
-		vk2 = EXT:vk2/Resources/Public/dist/style.css
+		vk2 = EXT:vk2/Resources/Public/css/style.css
 	}
 	includeJSlibs {
     	jquery = //code.jquery.com/jquery-1.9.1.min.js

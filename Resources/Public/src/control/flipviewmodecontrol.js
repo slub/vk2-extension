@@ -63,7 +63,7 @@ vk2.control.FlipViewMode = function(opt_options) {
 
                 // 3d -> 2d transition
                 olcs.core.rotateAroundAxis(camera, -angle, camera.right, transform, {
-                    callback: function() {
+                    'callback': function() {
                         ol3d.setEnabled(false);
                         var view = ol3d.getOlMap().getView();
                         var resolution = view.getResolution();

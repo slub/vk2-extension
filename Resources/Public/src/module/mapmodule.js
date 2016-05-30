@@ -107,6 +107,7 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
     this.map_ =  new ol.Map({
         'layers': [
             new ol.layer.Tile({
+                //source: new ol.source.OSM()
                 source: new ol.source.XYZ({
                     'urls': [
                         'http://osm-cdn1.slub-dresden.de:8082/osm_tiles/{z}/{x}/{y}.png',
@@ -146,13 +147,12 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         // set this global because it is used by other application code
         window['ol3d'] = ol3d;
 
-
         // some test code
         var tileCacheSize = '100',
-            maximumScreenSpaceError = '2',
+            maximumScreenSpaceError = 2,
             fogEnabled = true,
-            fogDensity = '0.000125',
-            fogSseFactor = 1;
+            fogDensity = 0.000125,
+            fogSseFactor = 25;
 
         window.minimumRetrievingLevel = 8;
         window.imageryAvailableLevels = undefined;

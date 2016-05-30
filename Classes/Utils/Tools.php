@@ -113,7 +113,7 @@ class Tools {
 					center: [1528150, 6630500],
 					zoom: 2
 				};
-				vk2x.settings.MODE_3D = ' . $settings['general']['modetwoandhalfd'] . ' === 1 ? true : false;
+				vk2x.settings.MODE_3D = ' . $settings['general']['mode3d'] . ' === 1 ? true : false;
 				vk2x.settings.THUMB_PATH = "/typo3conf/ext/vk2/Resources/Public/images/layer_default.png";
 				vk2x.settings.TMS_URL_SUBDOMAINS = [ "1", "2", "3" ];
 				vk2x.settings.WMS_DYNAMIC_TEMPLATE = "' . $settings['georef']['dynamicwmsurl'] . '";

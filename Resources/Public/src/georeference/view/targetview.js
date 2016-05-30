@@ -160,7 +160,7 @@ vk2.georeference.view.TargetView.prototype.displayValidationMap = function(wms_u
 		layerid: layer_id,
 		clipPolygon: clipPolygon
 	}, this.map_);
-	this.map_.getLayers().insertAt(1, this.valLayer_); 
+	this.map_.getLayers().insertAt(1, this.valLayer_);
 
 	// Remove old opactiy slider and add new one
 	if (goog.dom.getElement('opacity-slider-container')){

@@ -55,7 +55,7 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @return void
 	 */
 	public function show3dAction() {
-		if ($this->settings['general']['modetwoandhalfd'] == 1){
+		if ($this->settings['general']['mode3d'] == 1){
 			// get relative typo path
 			$relPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath('vk2');
 

@@ -297,7 +297,7 @@ vk2.app.AdminEvaluationApp.prototype.createProcessListElement_ = function(record
 						msg = inputs[i].value;
 				}
 				var comment = goog.isDef(msg) ? msg : goog.dom.getElement('confirm-comment').value
-				var url = element.getAttribute('data-href') + '&comment=' + comment;
+				var url = deactiveBtn.getAttribute('data-href') + '&comment=' + comment;
 
 				goog.net.XhrIo.send(url, function (event) {
 					alert(event.target.getResponseJson()['message']);

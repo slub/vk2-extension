@@ -4,6 +4,7 @@
 	"ol.Collection",
 	"ol.Collection#clear",
 	"ol.Collection#extend",
+	"ol.Collection#forEach",
 	"ol.Collection#getArray",
 	"ol.Collection#getLength",
 	"ol.Collection#insertAt",

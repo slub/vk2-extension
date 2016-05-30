@@ -100,6 +100,41 @@ olcs.OLCesium.prototype.getCamera = function() {};
 olcs.OLCesium.prototype.getCesiumScene = function() {};
 
 /**
+ * @return {boolean}
+ */
+olcs.OLCesium.prototype.getEnabled = function() {};
+
+/**
+ * @return {ol.Map}
+ */
+olcs.OLCesium.prototype.getOlMap = function() {};
+
+/**
  * @param {boolean} enable
  */
 olcs.OLCesium.prototype.setEnabled = function(enable) {};
+
+/**
+ * @namespace
+ */
+olcs.OLCesium.core = {};
+
+/**
+ * @param {Cesium.Scene} scene
+ * @param {Cesium.Cartesian3} pivot
+ */
+olcs.OLCesium.core.computeAngleToZenith = function(scene, pivot){};
+
+/**
+ * @param {Cesium.Scene} scene
+ */
+olcs.OLCesium.core.pickBottomPoint = function(scene){};
+
+/**
+ * @param {Cesium.Camera} camera
+ * @param {number} angle
+ * @param {Cesium.Cartesian3} axis
+ * @param {Cesium.Matrix4} transform
+ * @param {Object} options
+ */
+olcs.OLCesium.core.rotateAroundAxis = function(camera, angle, axis, transform){};

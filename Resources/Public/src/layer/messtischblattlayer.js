@@ -13,7 +13,7 @@ goog.require('vk2.utils');
 vk2.layer.Messtischblatt = function(settings, map){
 		
 	var clipPolygon_ = goog.isDef(settings.clipPolygon) ? settings.clipPolygon : undefined,
-		projection = goog.isDef(settings['projection']) ? settings['projection'] : 'EPSG:900913',
+		projection = goog.isDef(settings['projection']) ? settings['projection'] : 'EPSG:3857',
 		wms_url = goog.isDef(settings.wms_url)? settings.wms_url : undefined,
 		layerid = goog.isDef(settings.layerid)? settings.layerid : undefined,
 		extent = clipPolygon_ === undefined ? undefined : clipPolygon_.getExtent();
@@ -39,20 +39,19 @@ vk2.layer.Messtischblatt = function(settings, map){
 	messtischblattLayer.set('layerid', layerid);
 
 	/**
-	 * @param {ol.Map} map
 	 * @private
 	 * @return {Array.<Array.<number>>}
 	 */
-	messtischblattLayer.getPixelForClipPolygon_ = goog.bind(function(map){	
+	var getPixelForClipPolygon_ = function(){
 		var clip_pixel = [];
 		var polygonCoordinates = clipPolygon_.getCoordinates()[0];
-		
+
 		for (var i = 0; i < polygonCoordinates.length; i++){
 			clip_pixel.push(map.getPixelFromCoordinate(polygonCoordinates[i]));
 		};
-		
+
 		return clip_pixel;
-	}, messtischblattLayer);
+	};
 
 	/**
 	 * @param {Array.<Array.<number>>} clip_pixel
@@ -60,7 +59,7 @@ vk2.layer.Messtischblatt = function(settings, map){
 	 * @param {Object} canvas
 	 * @private
 	 */
-	messtischblattLayer.drawClipPolygonOnCanvas_ = function(clip_pixel, pixelRatio, canvas){
+	var drawClipPolygonOnCanvas_ = function(clip_pixel, pixelRatio, canvas){
 		canvas.beginPath();
 		canvas.moveTo(clip_pixel[0][0] * pixelRatio,clip_pixel[0][1] * pixelRatio);
 		for (var i = 1; i < clip_pixel.length; i++){
@@ -68,18 +67,18 @@ vk2.layer.Messtischblatt = function(settings, map){
 		};
 		canvas.closePath();
 	};
-	
+
 	// borderPolygon definded than add clip behavior
 	if (goog.isDef(clipPolygon_)){
-		
+
 		messtischblattLayer.on('precompose', function(event){
 			if (goog.DEBUG)
 				console.log('Precompose event triggered. ');
-			
+
 				var canvas = event.context;
-				var clip_pixel = this.getPixelForClipPolygon_(map);
+				var clip_pixel = getPixelForClipPolygon_();
 				canvas.save();
-				
+
 				if (goog.DEBUG){
 					console.log('------------------------------------------');
 					for (var i = 0, ii = clip_pixel.length; i < ii; i++ ){
@@ -87,13 +86,13 @@ vk2.layer.Messtischblatt = function(settings, map){
 					};
 					console.log('------------------------------------------');
 				};
-				
+
 				var pixelRatio = event.frameState['pixelRatio'];
-				this.drawClipPolygonOnCanvas_(clip_pixel, pixelRatio, canvas);		
+				drawClipPolygonOnCanvas_(clip_pixel, pixelRatio, canvas);
 				canvas.clip();
 			//};
-		}, messtischblattLayer);
-		
+		});
+
 		messtischblattLayer.on('postcompose', function(event){
 			var canvas = event.context;
 			canvas.restore();
