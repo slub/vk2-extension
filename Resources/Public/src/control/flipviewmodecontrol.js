@@ -27,8 +27,15 @@ vk2.control.FlipViewMode = function(opt_options) {
         'ol-has-tooltip two-d';
     this.addAnchorInnerHTML_(vk2.utils.is3DMode() && vk2.utils.getOL3D().getEnabled() ? '2D' : '3D');
 
+    var infoMessage = goog.dom.createDom('div', {
+        'class': 'info-message',
+        'innerHTML': vk2.utils.getMsg('flipviewmode-zoomin')
+    });
 
-
+    var element = document.createElement('div');
+    element.className = 'flip-view-mode ol-unselectable';
+    element.appendChild(this.anchor_);
+    element.appendChild(infoMessage);
 
 
     var activate3d_ = function() {
@@ -43,11 +50,11 @@ vk2.control.FlipViewMode = function(opt_options) {
                 // 2d -> 3d transition
                 ol3d.setEnabled(true);
 
-                // take care that every time the view is reset when zoom out
+                    // take care that every time the view is reset when zoom out
                 olcs.core.rotateAroundAxis(camera, -angle, camera.right, transform, {
                     'duration': 500
                 });
-            }
+            };
         },
         deactivate3d_ = function() {
             if (vk2.utils.is3DMode()) {
@@ -82,8 +89,18 @@ vk2.control.FlipViewMode = function(opt_options) {
                 this.switchControlMode('2d');
                 deactivate3d_();
             } else {
-                this.switchControlMode('3d');
-                activate3d_();
+                var view = this.getMap().getView(),
+                    min3DZoom = 3;
+
+                if (view.getZoom() < min3DZoom) {
+                    goog.dom.classlist.add(infoMessage, 'open');
+                    setTimeout(function() { goog.dom.classlist.remove(infoMessage, 'open');}, 4000);
+                    //ol3d.getOlMap().once('moveend', switchTo3D);
+                    //view.setZoom(min3DZoom);
+                } else {
+                    this.switchControlMode('3d');
+                    activate3d_();
+                };
             };
         }, this);
 
@@ -94,10 +111,6 @@ vk2.control.FlipViewMode = function(opt_options) {
 
     goog.events.listen(this.anchor_, 'click', handler_, undefined, this);
     goog.events.listen(this.anchor_, 'touchstart', handler_, undefined, this);
-
-    var element = document.createElement('div');
-    element.className = 'flip-view-mode ol-unselectable';
-    element.appendChild(this.anchor_);
 
     ol.control.Control.call(this, {
         element: element,
@@ -113,7 +126,7 @@ ol.inherits(vk2.control.FlipViewMode, ol.control.Control);
  */
 vk2.control.FlipViewMode.prototype.addAnchorInnerHTML_ = function(text) {
     this.anchor_.innerHTML = text;
-    var tooltip = goog.dom.createDom('span', {'role':'tooltip','innerHTML':vk2.utils.getMsg('flipviewmode-title')})
+    var tooltip = goog.dom.createDom('span', {'role':'tooltip','innerHTML': vk2.utils.getMsg('flipviewmode-title')})
     goog.dom.appendChild(this.anchor_, tooltip);
 };
 

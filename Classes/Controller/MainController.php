@@ -62,7 +62,6 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 			// render different js library regarding if production or debug mode
 			if ($this->settings['general']['debug'] == 1) {
 				$GLOBALS['TSFE']->additionalHeaderData[] = '
-				<link rel="stylesheet" type="text/css" href="'.$relPath.'Resources/Public/css/style.css" media="all">
 				<script type="text/javascript" src="'.$relPath.'Resources/Public/dist/Cesium/Cesium.js"></script>
 				<script type="text/javascript" src="'.$relPath.'Resources/Public/dist/ol3cesium-debug.js"></script>
 				<script type="text/javascript" src="'.$relPath.'Resources/Public/lib/closure-library/closure/goog/base.js"></script>
@@ -72,7 +71,7 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 				$GLOBALS['TSFE']->additionalHeaderData[] = '
 				<script type="text/javascript" src="'.$relPath.'Resources/Public/dist/Cesium/Cesium.js"></script>
 				<script type="text/javascript" src="'.$relPath.'Resources/Public/dist/ol3cesium.js"></script>
-				<script type="text/javascript" src="'.$relPath.'Resources/Public/dist/vk2-min.js"></script>';
+				<script type="text/javascript" src="'.$relPath.'Resources/Public/dist/vk2-min-debug.js"></script>';
 			}
 
 			\SLUB\Vk2\Utils\Tools::renderClientSettings($this->settings);

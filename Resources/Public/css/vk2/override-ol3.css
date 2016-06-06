@@ -214,13 +214,18 @@ content: "\002194";
 .olMap:fullscreen .mouse-position-box { left: .5em; bottom: 5px; }
 
 .flip-view-mode { position: absolute; top: 273px; left: 340px; background: rgba(255,255,255,0.4); padding: 2px; }
-.flip-view-mode a { display: block; margin: 1px; padding: 0; color: white; font-weight: bold; text-decoration: none;
+.flip-view-mode a { display: block; margin: 1px; padding: 0px 3px 0px 2.5px; color: white; font-weight: bold; text-decoration: none;
 	text-align: center; height: 22px; width: 22px; white-space: nowrap; overflow: hidden;
 	border-radius: 0; background: rgb(0,177,158); background-size: 22px 22px; }
 .flip-view-mode a.flip-mode-3d { background-color: #f33; }
 .olMap:-webkit-full-screen .flip-view-mode { left: .5em; top: 175px; }
 .olMap:-moz-full-screen .flip-view-mode { left: .5em; top: 175px; }
 .olMap:fullscreen .flip-view-mode { left: .5em; top: 175px; }
+.flip-view-mode .info-message { position: absolute; left: 40px; top: 0; width: 320px; /* @alternate */ background: #355;
+	background: rgba(51,85,85,0.9); padding: 10px 15px; color: white; visibility: hidden; opacity: 0; transition: visibility 0s 1s, opacity 1s linear;}
+.flip-view-mode .info-message:before { position: absolute; left: -5px; top: 10px; width: 0; height: 0;
+	border: 5px solid transparent; border-right-color: rgba(51,85,85,0.9); border-left-width: 0; content: ""; }
+.flip-view-mode .info-message.open { visibility: visible; opacity: 1; transition: opacity 0s linear; }
 
 /* always display ol attribution */
 .ol-attribution > ul > li { display: inline !important; }

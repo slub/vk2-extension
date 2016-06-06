@@ -80,7 +80,7 @@
 
 .user-header .nav > li > a { background: rgb(0,177,158); padding: 3px 6px; color: #fff; border: 0 none; border-radius: 0; font-size: 11px; font-weight: 800; }
 .user-header .user-dropdown > a.vk2-modal-anchor { font-weight: 500; }
-.user-header .user-dropdown a:hover, .user-header .user-dropdown a:focus { background: #f33; }
+.user-header .user-dropdown a:hover, .user-header .user-dropdown a:focus { background: #f33; cursor: pointer; }
 
 .user-header .user-dropdown a.vk2-modal-anchor .caret, .dropdown-menu .glyphicon { display: none; }
 

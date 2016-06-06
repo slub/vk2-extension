@@ -110,9 +110,12 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
                 //source: new ol.source.OSM()
                 source: new ol.source.XYZ({
                     'urls': [
-                        'http://osm-cdn1.slub-dresden.de:8082/osm_tiles/{z}/{x}/{y}.png',
-                        'http://osm-cdn2.slub-dresden.de:8082/osm_tiles/{z}/{x}/{y}.png',
-                        'http://osm-cdn3.slub-dresden.de:8082/osm_tiles/{z}/{x}/{y}.png'
+                        '//a.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                        '//b.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                        '//c.tile.openstreetmap.org/{z}/{x}/{y}.png'
+                        //'http://osm-cdn1.slub-dresden.de/osm_tiles/{z}/{x}/{y}.png',
+                        //'http://osm-cdn2.slub-dresden.de/osm_tiles/{z}/{x}/{y}.png',
+                        //'http://osm-cdn3.slub-dresden.de/osm_tiles/{z}/{x}/{y}.png'
                     ],
                     'crossOrigin': '*',
                     'attributions': attribution
@@ -129,6 +132,10 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
     });
 
     if (vk2.settings.MODE_3D === true && goog.isDef(opt_terrain) && opt_terrain === true) {
+
+        //
+        // Some code regarding the 3d capabilities is based on the work of https://github.com/geoadmin/mf-geoadmin3
+        //
 
         //// initialize the globe
         var ol3d = new olcs.OLCesium({
@@ -149,20 +156,22 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
 
         // some test code
         var tileCacheSize = '100',
-            maximumScreenSpaceError = 2,
+            // The maximum screen-space error used to drive level-of-detail refinement. Higher values will provide better performance but lower visual quality.
+            // Default is 2
+            maximumScreenSpaceError = 1.5,
             fogEnabled = true,
-            fogDensity = 0.000125,
+            fogDensity = 0.000003880708760225126,
             fogSseFactor = 25;
 
-        window.minimumRetrievingLevel = 8;
-        window.imageryAvailableLevels = undefined;
+        window['minimumRetrievingLevel'] = 8;
+        window['imageryAvailableLevels'] = undefined;
 
-        globe.baseColor = Cesium.Color.WHITE;
-        globe.tileCacheSize = tileCacheSize;
-        globe.maximumScreenSpaceError = maximumScreenSpaceError;
+        globe['baseColor'] = Cesium.Color.WHITE;
+        globe['tileCacheSize'] = tileCacheSize;
+        globe['maximumScreenSpaceError'] = maximumScreenSpaceError;
         scene.backgroundColor = Cesium.Color.WHITE;
         scene.globe.depthTestAgainstTerrain = true;
-        scene.screenSpaceCameraController.maximumZoomDistance = 4000000;
+        scene.screenSpaceCameraController.maximumZoomDistance = 300000; //4000000;
         scene.terrainProvider = new Cesium.CesiumTerrainProvider({
             url : '//assets.agi.com/stk-terrain/world',
             requestVertexNormals : true
@@ -170,6 +179,36 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         scene.fog.enabled = fogEnabled;
         scene.fog.density = fogDensity;
         scene.fog.screenSpaceErrorFactor = fogSseFactor;
+        scene.scene3DOnly = true
+
+        var extent4326 = ol.proj.transformExtent(mapViewSettings.extent, mapViewSettings.projection, 'EPSG:4326')
+                .map(function(angle) {
+                    return angle * Math.PI / 180;
+                });
+        var limitCamera = function() {
+            var pos = camera.positionCartographic.clone();
+            var inside = ol.extent.containsXY(extent4326, pos.longitude, pos.latitude);
+            if (!inside) {
+                // add a padding based on the camera height
+                var maxHeight = this.screenSpaceCameraController.maximumZoomDistance;
+                var padding = pos.height * 0.05 / maxHeight;
+                pos.longitude = Math.max(extent4326[0] - padding, pos.longitude);
+                pos.latitude = Math.max(extent4326[1] - padding, pos.latitude);
+                pos.longitude = Math.min(extent4326[2] + padding, pos.longitude);
+                pos.latitude = Math.min(extent4326[3] + padding, pos.latitude);
+                this.camera.setView({
+                    destination: Cesium.Ellipsoid.WGS84.cartographicToCartesian(pos),
+                    orientation: {
+                        heading: this.camera.heading,
+                        pitch: this.camera.pitch
+                    }
+                });
+            }
+            // Set the minimumZoomDistance according to the camera height
+            var minimumZoomDistance = pos.height > 1800 ? 400 : 200;
+            this.screenSpaceCameraController.minimumZoomDistance = minimumZoomDistance;
+        };
+        scene.postRender.addEventListener(limitCamera, scene);
 
         // together with the "requestVertexNormals" flag (see terrainProvider) it enables the displaying
         // of shadows on the map,

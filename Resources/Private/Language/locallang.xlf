@@ -753,6 +753,9 @@
 			<trans-unit id="client.flipviewmode.title">
 				<source>Switch between 2D and 3D view</source>
 			</trans-unit>
+			<trans-unit id="client.flipviewmode.zoomin">
+				<source>Switch to 3D is not possible for this resolution. Please zoom in.</source>
+			</trans-unit>
 
             <!-- vk2.control.ImageManipulationControl -->
 			<trans-unit id="client.imagemanipulation.open">
@@ -889,16 +892,25 @@
 				<source>Topological maps (1:25.000)</source>
 			</trans-unit>
 			<trans-unit id="client.facetedsearch.titleAK">
-				<source>Historic map</source>
+				<source>Other historic maps</source>
 			</trans-unit>
 			<trans-unit id="client.facetedsearch.titleGL">
 				<source>Geological maps (1:25.000)</source>
+			</trans-unit>
+			<trans-unit id="client.facetedsearch.titleMB">
+				<source>Meilenblätter (1:12.000)</source>
 			</trans-unit>
 			<trans-unit id="client.facetedsearch.titleMTB">
 				<source>Plane survey sheets (1:25.000)</source>
 			</trans-unit>
 			<trans-unit id="client.facetedsearch.titleTK">
 				<source>Topological maps (1:100.000)</source>
+			</trans-unit>
+			<trans-unit id="client.facetedsearch.titleTKX">
+				<source>Topological maps (smaller 1:20.000)</source>
+			</trans-unit>
+			<trans-unit id="client.facetedsearch.titleTK50">
+				<source>Topological maps (1:50.000)</source>
 			</trans-unit>
 
 			<!-- vk2.tool.GazetteerSearchTool -->

@@ -12,9 +12,13 @@ goog.require('goog.events.EventTarget');
  */
 vk2.tool.FacetedSearchTypes = {
 	'AE': 'maptype-ae',
+	'AK': 'maptype-ak',
+	'GL': 'maptype-gl',
+	'MB': 'maptype-mb',
 	'MTB': 'maptype-mtb',
 	'TK': 'maptype-tk',
-	'GL': 'maptype-gl',
+	'TKX': 'maptype-tkx',
+	'TK50': 'maptype-tk50',
 	'ToGeoref': 'georeference-false'
 };
 

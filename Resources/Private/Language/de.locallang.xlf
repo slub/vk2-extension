@@ -1079,6 +1079,10 @@
 				<source>Switch between 2D and 3D view</source>
 				<target state="translated">Wechsel zwischen 2D. und 3D-Ansicht</target>
 			</trans-unit>
+			<trans-unit id="client.flipviewmode.zoomin">
+				<source>Switch to 3D is not possible for this resolution. Please zoom in.</source>
+				<target state="translated">Wechsel zur 3D-Ansicht für diese Zoomstufe nicht möglich. Bitte zoomen sie rein.</target>
+			</trans-unit>
 
             <!-- vk2.control.ImageManipulationControl -->
 			<trans-unit id="client.imagemanipulation.open">
@@ -1253,12 +1257,16 @@
 				<target state="translated">Äquidistantenkarten (1:25.000)</target>
 			</trans-unit>
 			<trans-unit id="client.facetedsearch.titleAK">
-				<source>Historic map</source>
-				<target state="translated">Altkarten</target>
+				<source>Other historic maps</source>
+				<target state="translated">Andere Altkartentypen</target>
 			</trans-unit>
 			<trans-unit id="client.facetedsearch.titleGL">
 				<source>Geological maps</source>
 				<target state="translated">Geologische Karten (1:25.000)</target>
+			</trans-unit>
+			<trans-unit id="client.facetedsearch.titleMB">
+				<source>Meilenblätter (1:12.000)</source>
+				<target state="translated">Meilenblätter (1:12.000)</target>
 			</trans-unit>
 			<trans-unit id="client.facetedsearch.titleMTB">
 				<source>Plane survey sheets (1:25.000)</source>
@@ -1267,6 +1275,14 @@
 			<trans-unit id="client.facetedsearch.titleTK">
 				<source>Topological maps (1:100.000)</source>
 				<target state="translated">Karten des Deutschen Reiches (1:100.000)</target>
+			</trans-unit>
+			<trans-unit id="client.facetedsearch.titleTKX">
+				<source>Topological maps (smaller 1:20.000)</source>
+				<target state="translated">Topographische Karten (smaller 1:20.000)</target>
+			</trans-unit>
+			<trans-unit id="client.facetedsearch.titleTK50">
+				<source>Topological maps (1:50.000)</source>
+				<target state="translated">Topographische Karten (1:50.000)</target>
 			</trans-unit>
 
 			<!-- vk2.tool.GazetteerSearchTool -->
