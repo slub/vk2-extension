@@ -30,7 +30,7 @@ if (!defined('TYPO3_MODE')) {
 );
 
 // Configuration of the real url
-$TYPO3_CONF_VARS['EXTCONF']['realurl']['kartenforum'] = array(
+$TYPO3_CONF_VARS['EXTCONF']['realurl']['kartenforum.slub-dresden.de'] = array(
 	'init' => array(
 		'enableCHashCache' => TRUE,
 		'appendMissingSlash' => 'ifNotFile',
@@ -52,7 +52,7 @@ $TYPO3_CONF_VARS['EXTCONF']['realurl']['kartenforum'] = array(
 	'pagePath' => array(
 		'type' => 'user',
 		'userFunc' => 'EXT:realurl/class.tx_realurl_advanced.php:&tx_realurl_advanced->main',
-		'rootpage_id' => 19,
+		'rootpage_id' => 9183,
 		'spaceCharacter' => '-',
 		'languageGetVar' => 'L',
 		'expireDays' => 30,
