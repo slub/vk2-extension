@@ -187,7 +187,7 @@ vk2.app.AdminEvaluationApp.prototype.createProcessListElement_ = function(record
 	// add show map button
 	var showMapBtn_ = goog.dom.createDom('button', {
 		'data-params-georef': JSON.stringify(record['georef_params']),
-		'data-params-id': parseInt("oai:de:slub-dresden:vk:id-10000911".split('-')[2]),
+		'data-params-id': parseInt(record['oai'].split('-')[2]),
 		'class':'btn btn-default btn-show-georef',
 		'innerHTML': 'Vorschau anzeigen ...'
 	});

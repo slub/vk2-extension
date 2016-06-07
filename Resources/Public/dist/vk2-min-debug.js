@@ -4519,7 +4519,7 @@ function zg(a, b) {
   }
   var d = O("article", {id:b.georef_id, "class":"panel " + ("invalide" === b.adminvalidation ? "panel-danger" : "isvalide" === b.adminvalidation ? "panel-success" : "panel-warning") + " record"}), e = O("div", {"class":"panel-heading", innerHTML:"<h3>" + b.title + ' <span class="label label-default">' + b.type + '</span> <span class="right">' + b.georef_id + "</span></h3>"});
   d.appendChild(e);
-  var f = O("button", {"data-params-georef":JSON.stringify(b.georef_params), "data-params-id":10000911, "class":"btn btn-default btn-show-georef", innerHTML:"Vorschau anzeigen ..."});
+  var f = O("button", {"data-params-georef":JSON.stringify(b.georef_params), "data-params-id":parseInt(b.oai.split("-")[2]), "class":"btn btn-default btn-show-georef", innerHTML:"Vorschau anzeigen ..."});
   void 0 !== b.clippolygon && f.setAttribute("data-params-clip", JSON.stringify(b.clippolygon));
   Ag(a, f);
   e.appendChild(f);
