@@ -1260,6 +1260,10 @@
 				<source>Other historic maps</source>
 				<target state="translated">Andere Altkartentypen</target>
 			</trans-unit>
+			<trans-unit id="client.facetedsearch.titleCM">
+				<source>City Map</source>
+				<target state="translated">Stadtpläne</target>
+			</trans-unit>
 			<trans-unit id="client.facetedsearch.titleGL">
 				<source>Geological maps</source>
 				<target state="translated">Geologische Karten (1:25.000)</target>
@@ -1277,12 +1281,8 @@
 				<target state="translated">Karten des Deutschen Reiches (1:100.000)</target>
 			</trans-unit>
 			<trans-unit id="client.facetedsearch.titleTKX">
-				<source>Topological maps (smaller 1:20.000)</source>
-				<target state="translated">Topographische Karten (smaller 1:20.000)</target>
-			</trans-unit>
-			<trans-unit id="client.facetedsearch.titleTK50">
-				<source>Topological maps (1:50.000)</source>
-				<target state="translated">Topographische Karten (1:50.000)</target>
+				<source>Topological maps (&lt; 1:50.000)</source>
+				<target state="translated">Topographische Karten (&lt; 1:50.000)</target>
 			</trans-unit>
 
 			<!-- vk2.tool.GazetteerSearchTool -->

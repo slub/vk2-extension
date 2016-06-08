@@ -894,8 +894,11 @@
 			<trans-unit id="client.facetedsearch.titleAK">
 				<source>Other historic maps</source>
 			</trans-unit>
-			<trans-unit id="client.facetedsearch.titleGL">
-				<source>Geological maps (1:25.000)</source>
+			<trans-unit id="client.facetedsearch.titleAK">
+				<source>Other historic maps</source>
+			</trans-unit>
+			<trans-unit id="client.facetedsearch.titleCM">
+				<source>City Map</source>
 			</trans-unit>
 			<trans-unit id="client.facetedsearch.titleMB">
 				<source>Meilenblätter (1:12.000)</source>
@@ -907,10 +910,7 @@
 				<source>Topological maps (1:100.000)</source>
 			</trans-unit>
 			<trans-unit id="client.facetedsearch.titleTKX">
-				<source>Topological maps (smaller 1:20.000)</source>
-			</trans-unit>
-			<trans-unit id="client.facetedsearch.titleTK50">
-				<source>Topological maps (1:50.000)</source>
+				<source>Topological maps (&lt; 1:50.000)</source>
 			</trans-unit>
 
 			<!-- vk2.tool.GazetteerSearchTool -->
