@@ -172,11 +172,14 @@ vk2.tool.MetadataBinding.prototype._setOnlineRessource = function(container, lab
 
 	// for preventing to long urls cut query
 	url.setQuery('');
-	
+
+	var urlAsString = url.toString().indexOf('//') === 0
+			? url.toString().replace('//', '')
+			: url.toString();
 	if (!isDownloadLink){
-		var content = goog.dom.createDom('a', {'target':'_blank','href':ahref,'innerHTML':url.toString()});
+		var content = goog.dom.createDom('a', {'target':'_blank','href':ahref,'innerHTML':urlAsString});
 	} else {
-		var content = goog.dom.createDom('a', {'target':'_blank','href':ahref,'innerHTML':url.toString(), 'class':'download'});
+		var content = goog.dom.createDom('a', {'target':'_blank','href':ahref,'innerHTML':urlAsString, 'class':'download'});
 	};
 	
 	goog.dom.appendChild(content_container, content);

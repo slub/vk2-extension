@@ -26,14 +26,17 @@ vk2.app.PresentationApp = function(settings){
 	vk2.utils.checkIfCookiesAreEnabble();
 
 	// check if the app should be started in georeference mode
-	var isAuthenticate = goog.isDef(settings['authenticate']) && goog.isBoolean(settings['authenticate']) ? settings['authenticate'] : false;
+	var isAuthenticate = goog.isDef(settings['authenticate']) && goog.isBoolean(settings['authenticate'])
+			? settings['authenticate']
+			: false,
+		isPermalink = vk2.tool.Permalink.isPermalink();
 
 	// append modal behavior to page anchors
 	var modalAnchorClassName = goog.isDef(settings['modalAnchorClassName']) ? settings['modalAnchorClassName'] : 'vk2-modal-anchor';
 	vk2.utils.loadModalOverlayBehavior(modalAnchorClassName);
 
 	// check if there is a main page and if yes load it
-	if (!isAuthenticate)
+	if (!isAuthenticate && !isPermalink)
 		this.loadWelcomePage_();
 
 	//

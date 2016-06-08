@@ -39,6 +39,19 @@ vk2.tool.Permalink = function(map){
 goog.inherits(vk2.tool.Permalink, goog.events.EventTarget);
 
 /**
+ * Function checks if it could identify a valid permalink in the url.
+ */
+vk2.tool.Permalink.isPermalink = function() {
+
+	var uri = new goog.Uri(window.location.href),
+		params = uri.getQueryData();
+
+	return params.containsKey('c') || params.containsKey('pos') || params.containsKey('dataid') || params.containsKey('oid')
+		? true
+		: false;
+}
+
+/**
  * @param {ol.Map} map
  */
 vk2.tool.Permalink.prototype.parsePermalink = function(map){
