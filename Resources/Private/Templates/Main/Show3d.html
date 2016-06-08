@@ -37,14 +37,7 @@
 						<div id="mapdiv" class="olMap" tabindex="0"></div>
 						<!-- /end map container -->
 
-						<!-- switcher to 2.5d mode -->
-						<div class="switch-view-mode">
-							<f:link.action action="show" controller="Main" absolute="True" title="2D" addQueryString="True">
-								2D
-							</f:link.action>
-						</div>
-
-						<!-- user header -->
+							<!-- user header -->
 						<div class="user-header">
 
 							<vk:isGeorefOn>
@@ -131,6 +124,15 @@
 									<f:link.action action="show" controller="Main" additionalParams="{L:1}">
 										<span class="language_switcher switch_en" title="{f:translate(id:'main.language.en')}"></span>
 										<f:translate id="main.language.en" />
+									</f:link.action>
+								</li>
+							</ul>
+
+							<!-- switcher to 2.5d mode -->
+							<ul class="switch-view-mode">
+								<li>
+									<f:link.action action="show" controller="Main" absolute="True" title="2D" addQueryString="True">
+										2D
 									</f:link.action>
 								</li>
 							</ul>
