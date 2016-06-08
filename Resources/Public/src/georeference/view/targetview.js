@@ -4,15 +4,6 @@ goog.require('goog.dom');
 goog.require('goog.style');
 goog.require('goog.Timer');
 
-//goog.require('ol.source.OSM');
-//goog.require('ol.layer.Tile');
-//goog.require('ol.Map');
-//goog.require('ol.control.Attribution');
-//goog.require('ol.control.FullScreen');
-//goog.require('ol.control.Zoom');
-//goog.require('ol.View2D');
-//goog.require('ol.interaction.DragZoom');
-
 goog.require('vk2.control.LayerSpy');
 goog.require('vk2.settings');
 goog.require('vk2.layer.Messtischblatt');
@@ -46,7 +37,11 @@ vk2.georeference.view.TargetView = function(mapElId, opt_extent){
 	this.parentEl_ = goog.dom.getElement(mapElId);
 	
 	var extent_ = goog.isDef(opt_extent) ? opt_extent : [640161.933,5958026.134,3585834.8011505,7847377.4901306],
-		baseLayer_ = new ol.layer.Tile({ 'source': new ol.source.OSM()});
+		baseLayer_ = new ol.layer.Tile({ 'source': new ol.source.XYZ({
+			'urls': vk2.settings.OSM_URLS,
+			'crossOrigin': '*',
+			'attributions': []
+		})});
 			
 	/**
 	 * @type {ol.Map}

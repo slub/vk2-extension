@@ -123,6 +123,18 @@ vk2.settings.MAPVIEW_PARAMS;
 vk2.settings.MODE_3D = false;
 
 /**
+ * @type {Array.<string>}
+ */
+vk2.settings.OSM_URLS = [
+    //'//a.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    //'//b.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    //'//c.tile.openstreetmap.org/{z}/{x}/{y}.png'
+    '//osm-cdn1.slub-dresden.de/osm_tiles/{z}/{x}/{y}.png',
+    '//osm-cdn2.slub-dresden.de/osm_tiles/{z}/{x}/{y}.png',
+    '//osm-cdn3.slub-dresden.de/osm_tiles/{z}/{x}/{y}.png'
+];
+
+/**
  * @type {string}
  */
 vk2.settings.THUMB_PATH;

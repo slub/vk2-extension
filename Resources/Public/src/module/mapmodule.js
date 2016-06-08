@@ -80,7 +80,11 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
         controls.push(new vk2.control.LayerSpy({
             'spyLayer':new ol.layer.Tile({
                 attribution: undefined,
-                source: new ol.source.OSM()
+                source: new ol.source.XYZ({
+                    'urls': vk2.settings.OSM_URLS,
+                    'crossOrigin': '*',
+                    'attributions': []
+                })
             })
         }));
     };
@@ -109,14 +113,7 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
             new ol.layer.Tile({
                 //source: new ol.source.OSM()
                 source: new ol.source.XYZ({
-                    'urls': [
-                        '//a.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                        '//b.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                        '//c.tile.openstreetmap.org/{z}/{x}/{y}.png'
-                        //'http://osm-cdn1.slub-dresden.de/osm_tiles/{z}/{x}/{y}.png',
-                        //'http://osm-cdn2.slub-dresden.de/osm_tiles/{z}/{x}/{y}.png',
-                        //'http://osm-cdn3.slub-dresden.de/osm_tiles/{z}/{x}/{y}.png'
-                    ],
+                    'urls': vk2.settings.OSM_URLS,
                     'crossOrigin': '*',
                     'attributions': attribution
                 })
