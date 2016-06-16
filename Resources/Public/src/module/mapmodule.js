@@ -115,7 +115,8 @@ vk2.module.MapModule = function(mapElId, opt_mapViewSettings, opt_terrain){
                 source: new ol.source.XYZ({
                     'urls': vk2.settings.OSM_URLS,
                     'crossOrigin': '*',
-                    'attributions': attribution
+                    'attributions': attribution,
+                    'maxZoom': 18
                 })
             })
         ],

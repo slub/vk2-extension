@@ -71,7 +71,7 @@ class MainController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 				$GLOBALS['TSFE']->additionalHeaderData[] = '
 				<script type="text/javascript" src="'.$relPath.'Resources/Public/dist/Cesium/Cesium.js"></script>
 				<script type="text/javascript" src="'.$relPath.'Resources/Public/dist/ol3cesium.js"></script>
-				<script type="text/javascript" src="'.$relPath.'Resources/Public/dist/vk2-min-debug.js"></script>';
+				<script type="text/javascript" src="'.$relPath.'Resources/Public/dist/vk2-min.js"></script>';
 			}
 
 			\SLUB\Vk2\Utils\Tools::renderClientSettings($this->settings);

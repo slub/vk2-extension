@@ -40,7 +40,8 @@ vk2.georeference.view.TargetView = function(mapElId, opt_extent){
 		baseLayer_ = new ol.layer.Tile({ 'source': new ol.source.XYZ({
 			'urls': vk2.settings.OSM_URLS,
 			'crossOrigin': '*',
-			'attributions': []
+			'attributions': [],
+			'maxZoom': 18
 		})});
 			
 	/**

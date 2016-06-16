@@ -3811,7 +3811,7 @@ function Sf(a, b, c) {
   l(c) && !1 !== c || d.push(new Qe({spyLayer:new ol.layer.Tile({attribution:void 0, source:new ol.source.XYZ({urls:Ia, crossOrigin:"*", attributions:[]})})}));
   var e = [new ol.Attribution({html:'\u00a9 <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'})];
   l(c) && !0 === c && e.push(new ol.Attribution({html:'<a href="https://cesiumjs.org/data-and-assets/terrain/stk-world-terrain.html">\u00a9 Analytical Graphics, Inc., \u00a9 CGIAR-CSI, Produced using Copernicus data and information funded by the European Union - EU-DEM layers,  \u00a9 Commonwealth of Australia (Geoscience Australia) 2012</a>'}));
-  this.g = new ol.Map({layers:[new ol.layer.Tile({source:new ol.source.XYZ({urls:Ia, crossOrigin:"*", attributions:e})})], renderer:"canvas", target:a, interactions:ol.interaction.defaults().extend([new ol.interaction.DragRotateAndZoom]), controls:d, view:new ol.View(b)});
+  this.g = new ol.Map({layers:[new ol.layer.Tile({source:new ol.source.XYZ({urls:Ia, crossOrigin:"*", attributions:e, maxZoom:18})})], renderer:"canvas", target:a, interactions:ol.interaction.defaults().extend([new ol.interaction.DragRotateAndZoom]), controls:d, view:new ol.View(b)});
   if (!0 === Ha && l(c) && !0 === c) {
     a = new olcs.OLCesium({map:this.g, sceneOptions:{terrainExaggeration:2}});
     a.enableAutoRenderLoop();
@@ -4419,7 +4419,7 @@ function rg(a, b, c, d, e) {
   this.b = v.projection;
   this.Y = void 0;
   this.m = K(a);
-  var c = l(b) ? b : [640161.933, 5958026.134, 3585834.8011505, 7847377.4901306], d = new ol.layer.Tile({source:new ol.source.XYZ({urls:Ia, crossOrigin:"*", attributions:[]})});
+  var c = l(b) ? b : [640161.933, 5958026.134, 3585834.8011505, 7847377.4901306], d = new ol.layer.Tile({source:new ol.source.XYZ({urls:Ia, crossOrigin:"*", attributions:[], maxZoom:18})});
   this.g = new ol.Map({layers:[d], interactions:ol.interaction.defaults().extend([new ol.interaction.DragZoom]), renderer:"canvas", target:this.m, view:new ol.View({projection:this.b, center:[0, 0], zoom:2}), controls:[new ol.control.FullScreen, new ol.control.Zoom, new ol.control.Attribution, new Qe({spyLayer:new ol.layer.Tile({attribution:void 0, source:new ol.source.OSM})})]});
   this.g.getView().fit(c, this.g.getSize());
   l(b) && (this.a = new ol.control.ZoomToExtent({extent:c}), this.g.addControl(this.a));
