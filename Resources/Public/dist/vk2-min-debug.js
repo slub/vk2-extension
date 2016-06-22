@@ -176,8 +176,9 @@ y.j.Ca = function(a) {
 y.j.La = new ol.style.Style({image:new ol.style.Circle({radius:7, fill:new ol.style.Fill({color:"rgba(255, 255, 255, 0.6)"}), stroke:new ol.style.Stroke({color:"#29A329", width:1.5})})});
 y.j.pa = new ol.style.Style({image:new ol.style.Circle({radius:7, fill:new ol.style.Fill({color:"rgba(255,0,0,0.1)"}), stroke:new ol.style.Stroke({color:"#f00", width:1})}), zIndex:1E5});
 y.j.ka = function(a) {
-  var b = 22 * Math.PI / 6, b = [0, b, b, b, b, b, b];
+  var b = 22 * Math.PI / 6;
   a = l(a) ? a : void 0;
+  b = [0, b, b, b, b, b, b];
   return new ol.style.Style({image:new ol.style.Circle({radius:11, fill:new ol.style.Fill({color:"rgba(255,128,0,0.6)"}), stroke:new ol.style.Stroke({color:"rgba(240,0,0,0.5)", width:15, lineDash:b})}), text:new ol.style.Text({textAlign:"start", textBaseline:"bottom", font:"12px Calibri,sans-serif", text:a, fill:new ol.style.Fill({color:"#aa3300"}), stroke:new ol.style.Stroke({color:"#ffffff", width:3}), offsetX:10, offsetY:-5})});
 };
 function La() {
@@ -274,68 +275,11 @@ g.round = function() {
   this.height = Math.round(this.height);
   return this;
 };
-function Ya(a, b) {
-  for (var c in a) {
-    b.call(void 0, a[c], c, a);
-  }
-}
-function Za(a, b) {
-  for (var c in a) {
-    if (b.call(void 0, a[c], c, a)) {
-      return !0;
-    }
-  }
-  return !1;
-}
-function $a(a) {
-  var b = [], c = 0, d;
-  for (d in a) {
-    b[c++] = a[d];
-  }
-  return b;
-}
-function ab(a) {
-  var b = [], c = 0, d;
-  for (d in a) {
-    b[c++] = d;
-  }
-  return b;
-}
-function bb(a) {
-  var b = {}, c;
-  for (c in a) {
-    b[c] = a[c];
-  }
-  return b;
-}
-var cb = "constructor hasOwnProperty isPrototypeOf propertyIsEnumerable toLocaleString toString valueOf".split(" ");
-function db(a, b) {
-  for (var c, d, e = 1;e < arguments.length;e++) {
-    d = arguments[e];
-    for (c in d) {
-      a[c] = d[c];
-    }
-    for (var f = 0;f < cb.length;f++) {
-      c = cb[f], Object.prototype.hasOwnProperty.call(d, c) && (a[c] = d[c]);
-    }
-  }
-}
-function eb(a) {
-  var b = arguments.length;
-  if (1 == b && ea(arguments[0])) {
-    return eb.apply(null, arguments[0]);
-  }
-  for (var c = {}, d = 0;d < b;d++) {
-    c[arguments[d]] = !0;
-  }
-  return c;
-}
-;eb("area base br col command embed hr img input keygen link meta param source track wbr".split(" "));
-function fb(a) {
+function Ya(a) {
   this.a = a;
 }
-var gb = /\s*;\s*/;
-g = fb.prototype;
+var Za = /\s*;\s*/;
+g = Ya.prototype;
 g.set = function(a, b, c, d, e, f) {
   if (/[;=\s]/.test(a)) {
     throw Error('Invalid cookie name "' + a + '"');
@@ -351,7 +295,7 @@ g.set = function(a, b, c, d, e, f) {
   this.a.cookie = a + "=" + b + e + d + c + f;
 };
 g.get = function(a, b) {
-  for (var c = a + "=", d = (this.a.cookie || "").split(gb), e = 0, f;f = d[e];e++) {
+  for (var c = a + "=", d = (this.a.cookie || "").split(Za), e = 0, f;f = d[e];e++) {
     if (0 == f.lastIndexOf(c, 0)) {
       return f.substr(c.length);
     }
@@ -367,40 +311,97 @@ g.remove = function(a, b, c) {
   return d;
 };
 g.getKeys = function() {
-  return hb(this).keys;
+  return $a(this).keys;
 };
 g.L = function() {
-  return hb(this).values;
+  return $a(this).values;
 };
 g.isEmpty = function() {
   return !this.a.cookie;
 };
 g.Aa = function() {
-  return this.a.cookie ? (this.a.cookie || "").split(gb).length : 0;
+  return this.a.cookie ? (this.a.cookie || "").split(Za).length : 0;
 };
 g.clear = function() {
-  for (var a = hb(this).keys, b = a.length - 1;0 <= b;b--) {
+  for (var a = $a(this).keys, b = a.length - 1;0 <= b;b--) {
     this.remove(a[b]);
   }
 };
-function hb(a) {
-  a = (a.a.cookie || "").split(gb);
+function $a(a) {
+  a = (a.a.cookie || "").split(Za);
   for (var b = [], c = [], d, e, f = 0;e = a[f];f++) {
     d = e.indexOf("="), -1 == d ? (b.push(""), c.push(e)) : (b.push(e.substring(0, d)), c.push(e.substring(d + 1)));
   }
   return {keys:b, values:c};
 }
-var ib = new fb(document);
-ib.b = 3950;
-function jb() {
+var ab = new Ya(document);
+ab.b = 3950;
+function bb() {
 }
-jb.prototype.a = null;
-function kb(a) {
+bb.prototype.a = null;
+function cb(a) {
   var b;
-  (b = a.a) || (b = {}, lb(a) && (b[0] = !0, b[1] = !0), b = a.a = b);
+  (b = a.a) || (b = {}, db(a) && (b[0] = !0, b[1] = !0), b = a.a = b);
   return b;
 }
-;function mb(a) {
+;function eb(a, b) {
+  for (var c in a) {
+    b.call(void 0, a[c], c, a);
+  }
+}
+function fb(a, b) {
+  for (var c in a) {
+    if (b.call(void 0, a[c], c, a)) {
+      return !0;
+    }
+  }
+  return !1;
+}
+function gb(a) {
+  var b = [], c = 0, d;
+  for (d in a) {
+    b[c++] = a[d];
+  }
+  return b;
+}
+function hb(a) {
+  var b = [], c = 0, d;
+  for (d in a) {
+    b[c++] = d;
+  }
+  return b;
+}
+function ib(a) {
+  var b = {}, c;
+  for (c in a) {
+    b[c] = a[c];
+  }
+  return b;
+}
+var jb = "constructor hasOwnProperty isPrototypeOf propertyIsEnumerable toLocaleString toString valueOf".split(" ");
+function kb(a, b) {
+  for (var c, d, e = 1;e < arguments.length;e++) {
+    d = arguments[e];
+    for (c in d) {
+      a[c] = d[c];
+    }
+    for (var f = 0;f < jb.length;f++) {
+      c = jb[f], Object.prototype.hasOwnProperty.call(d, c) && (a[c] = d[c]);
+    }
+  }
+}
+function lb(a) {
+  var b = arguments.length;
+  if (1 == b && ea(arguments[0])) {
+    return lb.apply(null, arguments[0]);
+  }
+  for (var c = {}, d = 0;d < b;d++) {
+    c[arguments[d]] = !0;
+  }
+  return c;
+}
+;lb("area base br col command embed hr img input keygen link meta param source track wbr".split(" "));
+function mb(a) {
   mb[" "](a);
   return a;
 }
@@ -592,7 +593,7 @@ Tb.prototype.Da = function(a, b, c, d) {
 };
 Tb.prototype.hasListener = function(a, b) {
   var c = l(a), d = c ? a.toString() : "", e = l(b);
-  return Za(this.a, function(a) {
+  return fb(this.a, function(a) {
     for (var h = 0;h < a.length;++h) {
       if (!(c && a[h].type != d || e && a[h].ga != b)) {
         return !0;
@@ -613,11 +614,11 @@ function Ub(a, b, c, d) {
 ;var Wb;
 function Xb() {
 }
-t(Xb, jb);
+t(Xb, bb);
 function Yb(a) {
-  return (a = lb(a)) ? new ActiveXObject(a) : new XMLHttpRequest;
+  return (a = db(a)) ? new ActiveXObject(a) : new XMLHttpRequest;
 }
-function lb(a) {
+function db(a) {
   if (!a.b && "undefined" == typeof XMLHttpRequest && "undefined" != typeof ActiveXObject) {
     for (var b = ["MSXML2.XMLHTTP.6.0", "MSXML2.XMLHTTP.3.0", "MSXML2.XMLHTTP", "Microsoft.XMLHTTP"], c = 0;c < b.length;c++) {
       var d = b[c];
@@ -645,7 +646,7 @@ function Zb(a, b) {
     }
   } else {
     if (a) {
-      a instanceof Zb ? (c = a.getKeys(), d = a.L()) : (c = ab(a), d = $a(a));
+      a instanceof Zb ? (c = a.getKeys(), d = a.L()) : (c = hb(a), d = gb(a));
       for (var e = 0;e < c.length;e++) {
         this.set(c[e], d[e]);
       }
@@ -744,7 +745,7 @@ function bc(a, b) {
     }
     return b;
   }
-  return $a(a);
+  return gb(a);
 }
 function dc(a, b, c) {
   if ("function" == typeof a.forEach) {
@@ -764,7 +765,7 @@ function dc(a, b, c) {
               d.push(f);
             }
           } else {
-            d = ab(a);
+            d = hb(a);
           }
         } else {
           d = void 0;
@@ -905,7 +906,7 @@ function xc(a, b, c) {
   return c;
 }
 function yc(a, b) {
-  Ya(b, function(c, b) {
+  eb(b, function(c, b) {
     "style" == b ? a.style.cssText = c : "class" == b ? a.className = c : "for" == b ? a.htmlFor = c : b in zc ? a.setAttribute(zc[b], c) : 0 == b.lastIndexOf("aria-", 0) || 0 == b.lastIndexOf("data-", 0) ? a.setAttribute(b, c) : a[b] = c;
   });
 }
@@ -918,7 +919,7 @@ function O(a, b, c) {
     if (h.type) {
       f.push(' type="', ob(h.type), '"');
       var m = {};
-      db(m, h);
+      kb(m, h);
       delete m.type;
       h = m;
     }
@@ -1329,7 +1330,7 @@ g.dispatchEvent = function(a) {
     } else {
       var e = a;
       a = new A(d, c);
-      db(a, e);
+      kb(a, e);
     }
   }
   var e = !0, f;
@@ -2067,7 +2068,7 @@ g.send = function(a, b, c, d) {
   this.aa = !1;
   this.u = !0;
   this.a = this.X ? Yb(this.X) : Yb(Wb);
-  this.U = this.X ? kb(this.X) : kb(Wb);
+  this.U = this.X ? cb(this.X) : cb(Wb);
   this.a.onreadystatechange = p(this.cb, this);
   try {
     this.la = !0, this.a.open(b, String(a), !0), this.la = !1;
@@ -2520,7 +2521,7 @@ y.getQueryParam = function(a, b) {
   return l(b) ? y.Qa(b).get(a) : y.Qa().get(a);
 };
 y.vb = function() {
-  return ib.get("vk2-welcomepage");
+  return ab.get("vk2-welcomepage");
 };
 y.sa = function(a, b, c, d, e) {
   var f = new Id("vk2-overlay-modal", document.body, !0);
@@ -2547,7 +2548,7 @@ y.S = function() {
   }
 };
 y.Vb = function() {
-  return l(ib.get("auth_tkt")) ? !0 : !1;
+  return l(ab.get("auth_tkt")) ? !0 : !1;
 };
 y.B = function() {
   return Ha && void 0 !== window.ol3d;
@@ -2598,7 +2599,7 @@ y.Xb = function(a, b, c) {
   d.send(a);
 };
 y.kb = function(a, b) {
-  ib.set(a, b, void 0, "/");
+  ab.set(a, b, void 0, "/");
 };
 q("vk2.utils.setCookie", y.kb);
 y.Yb = function() {
@@ -2702,7 +2703,7 @@ function Pe(a) {
   d.appendChild(e);
   f.appendChild(d);
   f.appendChild(h);
-  var m = bb(Oe), r = !1, u = !1, w = p(function(a, b, d, e, f) {
+  var m = ib(Oe), r = !1, u = !1, w = p(function(a, b, d, e, f) {
     f = O("div", {"class":"slider " + a, title:l("opt_title") ? f : "", "data-type":d});
     var h = l(e) ? e[1] : 0, w = l(e) ? e[2] : 100, B = l(e) ? e[3] : 1, M = l(e) ? e[0] : 100, $d = p(function(a, e) {
       var f = e.value, B = this.getMap().getLayers().getArray()[0];
@@ -3622,7 +3623,7 @@ function Ff(a, b) {
   d.appendChild(f);
   d = O("span", {"class":"timestamps-label", innerHTML:y.c("timestamp") + " " + a.getTime()});
   f.appendChild(d);
-  ib.get("vk2-auth") && (d = O("a", {"class":"georeference-update", title:y.c("factory-update-georef") + " ...", innerHTML:y.c("factory-update-georef") + " ...", target:"_blank", href:y.f.ta(a.getId())}), b.appendChild(d));
+  ab.get("vk2-auth") && (d = O("a", {"class":"georeference-update", title:y.c("factory-update-georef") + " ...", innerHTML:y.c("factory-update-georef") + " ...", target:"_blank", href:y.f.ta(a.getId())}), b.appendChild(d));
   new vf(e, a);
   a.on("change:visible", function() {
     !a.getVisible() && F(e, "visible") ? Nb(e, "visible", "notvisible") : a.getVisible() && F(e, "notvisible") && Nb(e, "notvisible", "visible");
@@ -3994,7 +3995,7 @@ $f.prototype.a = function(a, b) {
   }
 };
 function bg(a) {
-  this.a = l(a.ja) && ia(a.ja) ? l(a.ja["new"]) ? bb(a.ja["new"]) : bb(a.ja) : {source:"pixel", target:"EPSG:4314"};
+  this.a = l(a.ja) && ia(a.ja) ? l(a.ja["new"]) ? ib(a.ja["new"]) : ib(a.ja) : {source:"pixel", target:"EPSG:4314"};
   this.fb = l(a.eb) ? a.eb : void 0;
   this.h = l(a.$b) ? a.ib : {source:"pixel", target:"EPSG:900913"};
   this.b = a.sources;
@@ -4077,7 +4078,7 @@ function dg(a, b) {
       c.push({source:e, target:w});
     }
     return c;
-  }, a), d = bb(a.a), e = l(b) ? b : d.target;
+  }, a), d = ib(a.a), e = l(b) ? b : d.target;
   d.gcps = c(function(a) {
     for (var b = [], c = 0;c < a[0].getFeatures().length;c++) {
       var d = a[0].getFeatures()[c], e;
@@ -4090,7 +4091,7 @@ function dg(a, b) {
   return d;
 }
 function Zf(a, b) {
-  var c = Kc(), c = l(c) ? c : "affine", d = bb(a.a), e = ag(a, c, l(b) ? b : d.target);
+  var c = Kc(), c = l(c) ? c : "affine", d = ib(a.a), e = ag(a, c, l(b) ? b : d.target);
   ag(a, c, d.target);
   return e;
 }
