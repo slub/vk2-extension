@@ -31,7 +31,7 @@ vk2.settings.updateSettings = function() {
     vk2.settings.MAPPROFILE_PAGE = vk2x.settings.MAPPROFILE_PAGE;
     vk2.settings.MAPVIEW_PARAMS = vk2x.settings.MAPVIEW_PARAMS;
     vk2.settings.MODE_3D = vk2x.settings.MODE_3D;
-    vk2.settings.OSM_URLS = vk2x.settings.OSM_URLS.length > 0 ? vk2x.settings.OSM_URLS : [
+    vk2.settings.OSM_URLS = vk2x.settings.OSM_URLS.length > 0 && vk2x.settings.OSM_URLS[0] !== "" ? vk2x.settings.OSM_URLS : [
         '//a.tile.openstreetmap.org/{z}/{x}/{y}.png',
         '//b.tile.openstreetmap.org/{z}/{x}/{y}.png',
         '//c.tile.openstreetmap.org/{z}/{x}/{y}.png'];
