@@ -32,6 +32,19 @@
                         </TCEforms>
                     </settings.general.baseid>
 
+                    <!-- Base id -->
+                    <settings.general.openstreetmap>
+                        <TCEforms>
+                            <label>Openstreetmap Tileserver</label>
+                            <config>
+                                <type>input</type>
+                                <size>200</size>
+                                <eval>string</eval>
+                                <default>"//osm-cdn1.slub-dresden.de/osm_tiles/{z}/{x}/{y}.png";"//osm-cdn2.slub-dresden.de/osm_tiles/{z}/{x}/{y}.png";"//osm-cdn3.slub-dresden.de/osm_tiles/{z}/{x}/{y}.png"</default>
+                            </config>
+                        </TCEforms>
+                    </settings.general.openstreetmap>
+
                     <!-- defines if 2.5d mode is active or not -->
                     <settings.general.mode3d>
                         <TCEforms>

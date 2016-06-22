@@ -31,6 +31,10 @@ vk2.settings.updateSettings = function() {
     vk2.settings.MAPPROFILE_PAGE = vk2x.settings.MAPPROFILE_PAGE;
     vk2.settings.MAPVIEW_PARAMS = vk2x.settings.MAPVIEW_PARAMS;
     vk2.settings.MODE_3D = vk2x.settings.MODE_3D;
+    vk2.settings.OSM_URLS = vk2x.settings.OSM_URLS.length > 0 ? vk2x.settings.OSM_URLS : [
+        '//a.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        '//b.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        '//c.tile.openstreetmap.org/{z}/{x}/{y}.png'];
     vk2.settings.THUMB_PATH = vk2x.settings.THUMB_PATH;
     vk2.settings.TMS_URL_SUBDOMAINS = vk2x.settings.TMS_URL_SUBDOMAINS;
     vk2.settings.WITH_SPEAKING_URLS = vk2x.settings.WITH_SPEAKING_URLS;
@@ -125,14 +129,7 @@ vk2.settings.MODE_3D = false;
 /**
  * @type {Array.<string>}
  */
-vk2.settings.OSM_URLS = [
-    //'//a.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    //'//b.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    //'//c.tile.openstreetmap.org/{z}/{x}/{y}.png'
-    '//osm-cdn1.slub-dresden.de/osm_tiles/{z}/{x}/{y}.png',
-    '//osm-cdn2.slub-dresden.de/osm_tiles/{z}/{x}/{y}.png',
-    '//osm-cdn3.slub-dresden.de/osm_tiles/{z}/{x}/{y}.png'
-];
+vk2.settings.OSM_URLS;
 
 /**
  * @type {string}

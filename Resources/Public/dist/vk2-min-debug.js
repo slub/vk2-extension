@@ -113,7 +113,7 @@ function t(a, b) {
     return b.prototype[c].apply(a, h);
   };
 }
-;var qa, ra, sa, ta, ua, va, wa, xa, ya, za, Aa, Ba, Ca, Da, v, Ea, Fa, x, Ga;
+;var qa, ra, sa, ta, ua, va, wa, xa, ya, za, Aa, Ba, Ca, Da, v, Ea, Fa, Ga, x, Ha;
 q("vk2.settings.updateSettings", function() {
   qa = vk2x.settings.ELASTICSEARCH_NODE;
   ra = vk2x.settings.ELASTICSEARCH_SRS;
@@ -130,19 +130,20 @@ q("vk2.settings.updateSettings", function() {
   Ca = vk2x.settings.MAIN_PAGE;
   Da = vk2x.settings.MAPPROFILE_PAGE;
   v = vk2x.settings.MAPVIEW_PARAMS;
-  Ha = vk2x.settings.MODE_3D;
-  Ea = vk2x.settings.THUMB_PATH;
-  Fa = vk2x.settings.TMS_URL_SUBDOMAINS;
+  Ia = vk2x.settings.MODE_3D;
+  Ea = 0 < vk2x.settings.OSM_URLS.length ? vk2x.settings.OSM_URLS : ["//a.tile.openstreetmap.org/{z}/{x}/{y}.png", "//b.tile.openstreetmap.org/{z}/{x}/{y}.png", "//c.tile.openstreetmap.org/{z}/{x}/{y}.png"];
+  Fa = vk2x.settings.THUMB_PATH;
+  Ga = vk2x.settings.TMS_URL_SUBDOMAINS;
   x = vk2x.settings.WITH_SPEAKING_URLS;
-  Ga = vk2x.settings.WMS_DYNAMIC_TEMPLATE;
+  Ha = vk2x.settings.WMS_DYNAMIC_TEMPLATE;
 });
-var Ha = !1, Ia = ["//osm-cdn1.slub-dresden.de/osm_tiles/{z}/{x}/{y}.png", "//osm-cdn2.slub-dresden.de/osm_tiles/{z}/{x}/{y}.png", "//osm-cdn3.slub-dresden.de/osm_tiles/{z}/{x}/{y}.png"];
+var Ia = !1;
 function Ja(a, b) {
   function c(a, c) {
     if ("polygon" === c.toLowerCase()) {
       for (var b = [], d = 0, e = a.length;d < e;d++) {
         var w = ol.proj.transform(a[d], "EPSG:4326", "EPSG:900913");
-        Ha && w.push(1E4);
+        Ia && w.push(1E4);
         b.push(w);
       }
       return new ol.geom.Polygon([b]);
@@ -275,11 +276,68 @@ g.round = function() {
   this.height = Math.round(this.height);
   return this;
 };
-function Ya(a) {
+function Ya(a, b) {
+  for (var c in a) {
+    b.call(void 0, a[c], c, a);
+  }
+}
+function Za(a, b) {
+  for (var c in a) {
+    if (b.call(void 0, a[c], c, a)) {
+      return !0;
+    }
+  }
+  return !1;
+}
+function $a(a) {
+  var b = [], c = 0, d;
+  for (d in a) {
+    b[c++] = a[d];
+  }
+  return b;
+}
+function ab(a) {
+  var b = [], c = 0, d;
+  for (d in a) {
+    b[c++] = d;
+  }
+  return b;
+}
+function bb(a) {
+  var b = {}, c;
+  for (c in a) {
+    b[c] = a[c];
+  }
+  return b;
+}
+var cb = "constructor hasOwnProperty isPrototypeOf propertyIsEnumerable toLocaleString toString valueOf".split(" ");
+function db(a, b) {
+  for (var c, d, e = 1;e < arguments.length;e++) {
+    d = arguments[e];
+    for (c in d) {
+      a[c] = d[c];
+    }
+    for (var f = 0;f < cb.length;f++) {
+      c = cb[f], Object.prototype.hasOwnProperty.call(d, c) && (a[c] = d[c]);
+    }
+  }
+}
+function eb(a) {
+  var b = arguments.length;
+  if (1 == b && ea(arguments[0])) {
+    return eb.apply(null, arguments[0]);
+  }
+  for (var c = {}, d = 0;d < b;d++) {
+    c[arguments[d]] = !0;
+  }
+  return c;
+}
+;eb("area base br col command embed hr img input keygen link meta param source track wbr".split(" "));
+function fb(a) {
   this.a = a;
 }
-var Za = /\s*;\s*/;
-g = Ya.prototype;
+var gb = /\s*;\s*/;
+g = fb.prototype;
 g.set = function(a, b, c, d, e, f) {
   if (/[;=\s]/.test(a)) {
     throw Error('Invalid cookie name "' + a + '"');
@@ -295,7 +353,7 @@ g.set = function(a, b, c, d, e, f) {
   this.a.cookie = a + "=" + b + e + d + c + f;
 };
 g.get = function(a, b) {
-  for (var c = a + "=", d = (this.a.cookie || "").split(Za), e = 0, f;f = d[e];e++) {
+  for (var c = a + "=", d = (this.a.cookie || "").split(gb), e = 0, f;f = d[e];e++) {
     if (0 == f.lastIndexOf(c, 0)) {
       return f.substr(c.length);
     }
@@ -311,97 +369,40 @@ g.remove = function(a, b, c) {
   return d;
 };
 g.getKeys = function() {
-  return $a(this).keys;
+  return hb(this).keys;
 };
 g.L = function() {
-  return $a(this).values;
+  return hb(this).values;
 };
 g.isEmpty = function() {
   return !this.a.cookie;
 };
 g.Aa = function() {
-  return this.a.cookie ? (this.a.cookie || "").split(Za).length : 0;
+  return this.a.cookie ? (this.a.cookie || "").split(gb).length : 0;
 };
 g.clear = function() {
-  for (var a = $a(this).keys, b = a.length - 1;0 <= b;b--) {
+  for (var a = hb(this).keys, b = a.length - 1;0 <= b;b--) {
     this.remove(a[b]);
   }
 };
-function $a(a) {
-  a = (a.a.cookie || "").split(Za);
+function hb(a) {
+  a = (a.a.cookie || "").split(gb);
   for (var b = [], c = [], d, e, f = 0;e = a[f];f++) {
     d = e.indexOf("="), -1 == d ? (b.push(""), c.push(e)) : (b.push(e.substring(0, d)), c.push(e.substring(d + 1)));
   }
   return {keys:b, values:c};
 }
-var ab = new Ya(document);
-ab.b = 3950;
-function bb() {
+var ib = new fb(document);
+ib.b = 3950;
+function jb() {
 }
-bb.prototype.a = null;
-function cb(a) {
+jb.prototype.a = null;
+function kb(a) {
   var b;
-  (b = a.a) || (b = {}, db(a) && (b[0] = !0, b[1] = !0), b = a.a = b);
+  (b = a.a) || (b = {}, lb(a) && (b[0] = !0, b[1] = !0), b = a.a = b);
   return b;
 }
-;function eb(a, b) {
-  for (var c in a) {
-    b.call(void 0, a[c], c, a);
-  }
-}
-function fb(a, b) {
-  for (var c in a) {
-    if (b.call(void 0, a[c], c, a)) {
-      return !0;
-    }
-  }
-  return !1;
-}
-function gb(a) {
-  var b = [], c = 0, d;
-  for (d in a) {
-    b[c++] = a[d];
-  }
-  return b;
-}
-function hb(a) {
-  var b = [], c = 0, d;
-  for (d in a) {
-    b[c++] = d;
-  }
-  return b;
-}
-function ib(a) {
-  var b = {}, c;
-  for (c in a) {
-    b[c] = a[c];
-  }
-  return b;
-}
-var jb = "constructor hasOwnProperty isPrototypeOf propertyIsEnumerable toLocaleString toString valueOf".split(" ");
-function kb(a, b) {
-  for (var c, d, e = 1;e < arguments.length;e++) {
-    d = arguments[e];
-    for (c in d) {
-      a[c] = d[c];
-    }
-    for (var f = 0;f < jb.length;f++) {
-      c = jb[f], Object.prototype.hasOwnProperty.call(d, c) && (a[c] = d[c]);
-    }
-  }
-}
-function lb(a) {
-  var b = arguments.length;
-  if (1 == b && ea(arguments[0])) {
-    return lb.apply(null, arguments[0]);
-  }
-  for (var c = {}, d = 0;d < b;d++) {
-    c[arguments[d]] = !0;
-  }
-  return c;
-}
-;lb("area base br col command embed hr img input keygen link meta param source track wbr".split(" "));
-function mb(a) {
+;function mb(a) {
   mb[" "](a);
   return a;
 }
@@ -412,7 +413,7 @@ var nb = String.prototype.trim ? function(a) {
   return a.replace(/^[\s\xa0]+|[\s\xa0]+$/g, "");
 };
 function ob(a) {
-  if (!qb.test(a)) {
+  if (!pb.test(a)) {
     return a;
   }
   -1 != a.indexOf("&") && (a = a.replace(rb, "&amp;"));
@@ -423,7 +424,7 @@ function ob(a) {
   -1 != a.indexOf("\x00") && (a = a.replace(wb, "&#0;"));
   return a;
 }
-var rb = /&/g, sb = /</g, tb = />/g, ub = /"/g, vb = /'/g, wb = /\x00/g, qb = /[\x00&<>"']/;
+var rb = /&/g, sb = /</g, tb = />/g, ub = /"/g, vb = /'/g, wb = /\x00/g, pb = /[\x00&<>"']/;
 function xb(a, b) {
   return a < b ? -1 : a > b ? 1 : 0;
 }
@@ -593,7 +594,7 @@ Tb.prototype.Da = function(a, b, c, d) {
 };
 Tb.prototype.hasListener = function(a, b) {
   var c = l(a), d = c ? a.toString() : "", e = l(b);
-  return fb(this.a, function(a) {
+  return Za(this.a, function(a) {
     for (var h = 0;h < a.length;++h) {
       if (!(c && a[h].type != d || e && a[h].ga != b)) {
         return !0;
@@ -614,11 +615,11 @@ function Ub(a, b, c, d) {
 ;var Wb;
 function Xb() {
 }
-t(Xb, bb);
+t(Xb, jb);
 function Yb(a) {
-  return (a = db(a)) ? new ActiveXObject(a) : new XMLHttpRequest;
+  return (a = lb(a)) ? new ActiveXObject(a) : new XMLHttpRequest;
 }
-function db(a) {
+function lb(a) {
   if (!a.b && "undefined" == typeof XMLHttpRequest && "undefined" != typeof ActiveXObject) {
     for (var b = ["MSXML2.XMLHTTP.6.0", "MSXML2.XMLHTTP.3.0", "MSXML2.XMLHTTP", "Microsoft.XMLHTTP"], c = 0;c < b.length;c++) {
       var d = b[c];
@@ -646,7 +647,7 @@ function Zb(a, b) {
     }
   } else {
     if (a) {
-      a instanceof Zb ? (c = a.getKeys(), d = a.L()) : (c = hb(a), d = gb(a));
+      a instanceof Zb ? (c = a.getKeys(), d = a.L()) : (c = ab(a), d = $a(a));
       for (var e = 0;e < c.length;e++) {
         this.set(c[e], d[e]);
       }
@@ -745,7 +746,7 @@ function bc(a, b) {
     }
     return b;
   }
-  return gb(a);
+  return $a(a);
 }
 function dc(a, b, c) {
   if ("function" == typeof a.forEach) {
@@ -765,7 +766,7 @@ function dc(a, b, c) {
               d.push(f);
             }
           } else {
-            d = hb(a);
+            d = ab(a);
           }
         } else {
           d = void 0;
@@ -906,7 +907,7 @@ function xc(a, b, c) {
   return c;
 }
 function yc(a, b) {
-  eb(b, function(c, b) {
+  Ya(b, function(c, b) {
     "style" == b ? a.style.cssText = c : "class" == b ? a.className = c : "for" == b ? a.htmlFor = c : b in zc ? a.setAttribute(zc[b], c) : 0 == b.lastIndexOf("aria-", 0) || 0 == b.lastIndexOf("data-", 0) ? a.setAttribute(b, c) : a[b] = c;
   });
 }
@@ -919,7 +920,7 @@ function O(a, b, c) {
     if (h.type) {
       f.push(' type="', ob(h.type), '"');
       var m = {};
-      kb(m, h);
+      db(m, h);
       delete m.type;
       h = m;
     }
@@ -1330,7 +1331,7 @@ g.dispatchEvent = function(a) {
     } else {
       var e = a;
       a = new A(d, c);
-      kb(a, e);
+      db(a, e);
     }
   }
   var e = !0, f;
@@ -2068,7 +2069,7 @@ g.send = function(a, b, c, d) {
   this.aa = !1;
   this.u = !0;
   this.a = this.X ? Yb(this.X) : Yb(Wb);
-  this.U = this.X ? cb(this.X) : cb(Wb);
+  this.U = this.X ? kb(this.X) : kb(Wb);
   this.a.onreadystatechange = p(this.cb, this);
   try {
     this.la = !0, this.a.open(b, String(a), !0), this.la = !1;
@@ -2521,7 +2522,7 @@ y.getQueryParam = function(a, b) {
   return l(b) ? y.Qa(b).get(a) : y.Qa().get(a);
 };
 y.vb = function() {
-  return ab.get("vk2-welcomepage");
+  return ib.get("vk2-welcomepage");
 };
 y.sa = function(a, b, c, d, e) {
   var f = new Id("vk2-overlay-modal", document.body, !0);
@@ -2548,10 +2549,10 @@ y.S = function() {
   }
 };
 y.Vb = function() {
-  return l(ab.get("auth_tkt")) ? !0 : !1;
+  return l(ib.get("auth_tkt")) ? !0 : !1;
 };
 y.B = function() {
-  return Ha && void 0 !== window.ol3d;
+  return Ia && void 0 !== window.ol3d;
 };
 y.Za = function(a) {
   a = L(a, (l(void 0) ? void 0 : document.body).body);
@@ -2599,7 +2600,7 @@ y.Xb = function(a, b, c) {
   d.send(a);
 };
 y.kb = function(a, b) {
-  ab.set(a, b, void 0, "/");
+  ib.set(a, b, void 0, "/");
 };
 q("vk2.utils.setCookie", y.kb);
 y.Yb = function() {
@@ -2703,7 +2704,7 @@ function Pe(a) {
   d.appendChild(e);
   f.appendChild(d);
   f.appendChild(h);
-  var m = ib(Oe), r = !1, u = !1, w = p(function(a, b, d, e, f) {
+  var m = bb(Oe), r = !1, u = !1, w = p(function(a, b, d, e, f) {
     f = O("div", {"class":"slider " + a, title:l("opt_title") ? f : "", "data-type":d});
     var h = l(e) ? e[1] : 0, w = l(e) ? e[2] : 100, B = l(e) ? e[3] : 1, M = l(e) ? e[0] : 100, $d = p(function(a, e) {
       var f = e.value, B = this.getMap().getLayers().getArray()[0];
@@ -2824,7 +2825,7 @@ function Re(a) {
 ol.inherits(Re, ol.control.Control);
 function Se(a, b, c) {
   $(a).hover(function() {
-    F(this, "hover") || (c.getSource().clear(), c.getSource().addFeature(b), D(this, "hover"), Ha && void 0 !== window.ol3d && window.ol3d.getAutoRenderLoop().restartRenderLoop());
+    F(this, "hover") || (c.getSource().clear(), c.getSource().addFeature(b), D(this, "hover"), Ia && void 0 !== window.ol3d && window.ol3d.getAutoRenderLoop().restartRenderLoop());
   }, function() {
     F(this, "hover") && (c.getSource().clear(), E(this, "hover"));
   });
@@ -2833,10 +2834,10 @@ function Se(a, b, c) {
   this.id_ = l(a.id) ? a.id : void 0;
   this.time_ = a.time;
   this.title_ = l(a.title) ? a.title : void 0;
-  this.thumb_ = l(a.thumbnail) ? a.thumbnail : Ea;
+  this.thumb_ = l(a.thumbnail) ? a.thumbnail : Fa;
   this.allowUseInLayerManagement = !0;
-  for (var b = [], c = 0;c < Fa.length;c++) {
-    b.push(a.tms.replace("{s}", Fa[c]) + "/{z}/{x}/{-y}.png");
+  for (var b = [], c = 0;c < Ga.length;c++) {
+    b.push(a.tms.replace("{s}", Ga[c]) + "/{z}/{x}/{-y}.png");
   }
   c = Te(a.clip, this.id_, this.time_, this.title_);
   b = new ol.layer.Tile({extent:a.clip.getExtent(), source:new ol.source.XYZ({maxZoom:15, urls:b, crossOrigin:"*"})});
@@ -2869,10 +2870,10 @@ function Ue(a) {
   this.id_ = l(a.id) ? a.id : void 0;
   this.time_ = a.time;
   this.title_ = l(a.title) ? a.title : void 0;
-  this.thumb_ = l(a.thumbnail) ? a.thumbnail : Ea;
+  this.thumb_ = l(a.thumbnail) ? a.thumbnail : Fa;
   this.allowUseInLayerManagement = !0;
-  for (var b = [], c = 0;c < Fa.length;c++) {
-    b.push(a.tms.replace("{s}", Fa[c]) + "/{z}/{x}/{-y}.png");
+  for (var b = [], c = 0;c < Ga.length;c++) {
+    b.push(a.tms.replace("{s}", Ga[c]) + "/{z}/{x}/{-y}.png");
   }
   a.extent = a.clip.getExtent();
   a.source = new ol.source.XYZ({maxZoom:15, urls:b, crossOrigin:"*"});
@@ -3542,7 +3543,7 @@ function Bf(a, b, c) {
   d.send(a, "GET");
 }
 function Df(a) {
-  var b = void 0 !== a.transformed && !0 === a.transformed ? Ga + "?SERVICE=WMS&VERSION=1.0.0&REQUEST=GetCapabilities&map=" + a.mapid : "#", c = void 0 !== a.thumbnail ? a.thumbnail : "#", d = y.f.A() + "&oid=" + a.mapid, d = void 0 !== a.transformed && !0 === a.transformed ? '<a href="' + d + '" target="_blank" class="btn btn-default">' + y.c("evaluation-showmap") + "</a>" : "", e = void 0 !== a.transformed && !0 === a.transformed ? '<a href="' + y.f.ta(void 0, "georeferenceid=" + a.georefid) + 
+  var b = void 0 !== a.transformed && !0 === a.transformed ? Ha + "?SERVICE=WMS&VERSION=1.0.0&REQUEST=GetCapabilities&map=" + a.mapid : "#", c = void 0 !== a.thumbnail ? a.thumbnail : "#", d = y.f.A() + "&oid=" + a.mapid, d = void 0 !== a.transformed && !0 === a.transformed ? '<a href="' + d + '" target="_blank" class="btn btn-default">' + y.c("evaluation-showmap") + "</a>" : "", e = void 0 !== a.transformed && !0 === a.transformed ? '<a href="' + y.f.ta(void 0, "georeferenceid=" + a.georefid) + 
   '" target="_blank" class="btn btn-default">' + y.c("evaluation-gotoprocess") + "</a>" : "", f = "" !== a.isvalide ? a.isvalide : "waiting", f = '<span class="label ' + ("waiting" === f ? "label-warning" : "isvalide" === f ? "label-success" : "label-danger") + '">' + f + "</span>";
   return O("article", {id:a.georefid, innerHTML:'<div class="media"><a class="pull-right" href="' + b + '"><img alt="" class="lazy-image" alt="" data-original="' + c + '"></a><div class="media-body"><h3>' + a.title + "</h3><p><strong>" + y.c("georef-history-mapId") + ":</strong> " + a.mapid + "</p><p><strong>Validation:</strong> " + f + '</p><p class="links">' + d + " " + e + '</p><p class="meta">Created: ' + a.georeftime + "</p></div></div>"});
 }
@@ -3623,7 +3624,7 @@ function Ff(a, b) {
   d.appendChild(f);
   d = O("span", {"class":"timestamps-label", innerHTML:y.c("timestamp") + " " + a.getTime()});
   f.appendChild(d);
-  ab.get("vk2-auth") && (d = O("a", {"class":"georeference-update", title:y.c("factory-update-georef") + " ...", innerHTML:y.c("factory-update-georef") + " ...", target:"_blank", href:y.f.ta(a.getId())}), b.appendChild(d));
+  ib.get("vk2-auth") && (d = O("a", {"class":"georeference-update", title:y.c("factory-update-georef") + " ...", innerHTML:y.c("factory-update-georef") + " ...", target:"_blank", href:y.f.ta(a.getId())}), b.appendChild(d));
   new vf(e, a);
   a.on("change:visible", function() {
     !a.getVisible() && F(e, "visible") ? Nb(e, "visible", "notvisible") : a.getVisible() && F(e, "notvisible") && Nb(e, "notvisible", "visible");
@@ -3760,7 +3761,7 @@ function Qf(a) {
     l(a.getId) && (b += a.getId() + ",");
   });
   var c = ol.proj.transform(a.getView().getCenter(), v.projection, "EPSG:4326"), d = a.getView().getZoom();
-  a = Ha && void 0 !== window.ol3d ? window.location.origin + "/vkviewer/main/3d/?welcomepage=off" : window.location.origin + y.f.A() + "?welcomepage=off";
+  a = Ia && void 0 !== window.ol3d ? window.location.origin + "/vkviewer/main/3d/?welcomepage=off" : window.location.origin + y.f.A() + "?welcomepage=off";
   a = new X(a);
   var e = a.a;
   y.B() && da(N("flip-mode-3d")) ? (c = y.S().getCesiumScene(), d = Cesium.Ellipsoid.WGS84.cartographicToCartesian(c.camera.positionCartographic), e.set("h", c.camera.heading), e.set("p", c.camera.pitch), e.set("pos", d.x + "," + d.y + "," + d.z), e.set("r", c.camera.roll)) : (e.set("z", d), e.set("c", y.round(c[0], 4) + "," + y.round(c[1], 4)));
@@ -3809,11 +3810,11 @@ function Ke(a) {
 function Sf(a, b, c) {
   b = void 0 !== b ? b : {projection:"EPSG:3857", center:[1528150, 6630500], zoom:2};
   var d = [new ol.control.Attribution({collapsible:!1, collapsed:!1}), new ol.control.Zoom, new ol.control.FullScreen, new fd, new ol.control.ScaleLine, new Rf, new Re];
-  l(c) && !1 !== c || d.push(new Qe({spyLayer:new ol.layer.Tile({attribution:void 0, source:new ol.source.XYZ({urls:Ia, crossOrigin:"*", attributions:[]})})}));
+  l(c) && !1 !== c || d.push(new Qe({spyLayer:new ol.layer.Tile({attribution:void 0, source:new ol.source.XYZ({urls:Ea, crossOrigin:"*", attributions:[]})})}));
   var e = [new ol.Attribution({html:'\u00a9 <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'})];
   l(c) && !0 === c && e.push(new ol.Attribution({html:'<a href="https://cesiumjs.org/data-and-assets/terrain/stk-world-terrain.html">\u00a9 Analytical Graphics, Inc., \u00a9 CGIAR-CSI, Produced using Copernicus data and information funded by the European Union - EU-DEM layers,  \u00a9 Commonwealth of Australia (Geoscience Australia) 2012</a>'}));
-  this.g = new ol.Map({layers:[new ol.layer.Tile({source:new ol.source.XYZ({urls:Ia, crossOrigin:"*", attributions:e, maxZoom:18})})], renderer:"canvas", target:a, interactions:ol.interaction.defaults().extend([new ol.interaction.DragRotateAndZoom]), controls:d, view:new ol.View(b)});
-  if (!0 === Ha && l(c) && !0 === c) {
+  this.g = new ol.Map({layers:[new ol.layer.Tile({source:new ol.source.XYZ({urls:Ea, crossOrigin:"*", attributions:e, maxZoom:18})})], renderer:"canvas", target:a, interactions:ol.interaction.defaults().extend([new ol.interaction.DragRotateAndZoom]), controls:d, view:new ol.View(b)});
+  if (!0 === Ia && l(c) && !0 === c) {
     a = new olcs.OLCesium({map:this.g, sceneOptions:{terrainExaggeration:2}});
     a.enableAutoRenderLoop();
     c = a.getCesiumScene();
@@ -3862,7 +3863,7 @@ function Sf(a, b, c) {
 }
 q("vk2.module.MapModule", Sf);
 function Uf(a) {
-  return Ha && void 0 !== window.ol3d ? new Ue({time:a.get("time"), thumbnail:a.get("thumb"), title:a.get("title"), objectid:a.get("id"), id:a.getId(), dataid:a.get("dataid"), tms:a.get("tms"), clip:a.getGeometry().clone()}) : new Z({time:a.get("time"), thumbnail:a.get("thumb"), title:a.get("title"), objectid:a.get("id"), id:a.getId(), dataid:a.get("dataid"), tms:a.get("tms"), clip:a.getGeometry().clone()});
+  return Ia && void 0 !== window.ol3d ? new Ue({time:a.get("time"), thumbnail:a.get("thumb"), title:a.get("title"), objectid:a.get("id"), id:a.getId(), dataid:a.get("dataid"), tms:a.get("tms"), clip:a.getGeometry().clone()}) : new Z({time:a.get("time"), thumbnail:a.get("thumb"), title:a.get("title"), objectid:a.get("id"), id:a.getId(), dataid:a.get("dataid"), tms:a.get("tms"), clip:a.getGeometry().clone()});
 }
 Sf.prototype.getMap = function() {
   return this.g;
@@ -3899,7 +3900,7 @@ function Wf(a, b) {
       }
       b = !1;
     }
-    !b && a.get("georeference") && (this.g.addLayer(Uf(a)), Ha && void 0 !== window.ol3d && (a = Te(a.getGeometry().clone(), a.getId(), a.get("time"), a.get("title")), this.N.getSource().addFeature(a)));
+    !b && a.get("georeference") && (this.g.addLayer(Uf(a)), Ia && void 0 !== window.ol3d && (a = Te(a.getGeometry().clone(), a.getId(), a.get("time"), a.get("title")), this.N.getSource().addFeature(a)));
   }, void 0, a);
   Q(b.b, "jumpto", function(a) {
     var b = a.target.lonlat;
@@ -3995,7 +3996,7 @@ $f.prototype.a = function(a, b) {
   }
 };
 function bg(a) {
-  this.a = l(a.ja) && ia(a.ja) ? l(a.ja["new"]) ? ib(a.ja["new"]) : ib(a.ja) : {source:"pixel", target:"EPSG:4314"};
+  this.a = l(a.ja) && ia(a.ja) ? l(a.ja["new"]) ? bb(a.ja["new"]) : bb(a.ja) : {source:"pixel", target:"EPSG:4314"};
   this.fb = l(a.eb) ? a.eb : void 0;
   this.h = l(a.$b) ? a.ib : {source:"pixel", target:"EPSG:900913"};
   this.b = a.sources;
@@ -4078,7 +4079,7 @@ function dg(a, b) {
       c.push({source:e, target:w});
     }
     return c;
-  }, a), d = ib(a.a), e = l(b) ? b : d.target;
+  }, a), d = bb(a.a), e = l(b) ? b : d.target;
   d.gcps = c(function(a) {
     for (var b = [], c = 0;c < a[0].getFeatures().length;c++) {
       var d = a[0].getFeatures()[c], e;
@@ -4091,7 +4092,7 @@ function dg(a, b) {
   return d;
 }
 function Zf(a, b) {
-  var c = Kc(), c = l(c) ? c : "affine", d = ib(a.a), e = ag(a, c, l(b) ? b : d.target);
+  var c = Kc(), c = l(c) ? c : "affine", d = bb(a.a), e = ag(a, c, l(b) ? b : d.target);
   ag(a, c, d.target);
   return e;
 }
@@ -4371,8 +4372,8 @@ function pg(a, b, c, d) {
   a = a.Fb.toLowerCase();
   var na = {mtb:"affine", gl:"affine", ae:"affine", tk:"affine", ak:"tps"};
   a = void 0 !== m ? m.algorithm : na.hasOwnProperty(a) ? na[a.toLowerCase()] : na.mtb;
-  for (var na = $("#transformation-chooser option"), pb = 0;pb < na.length;pb++) {
-    a.toLowerCase() === na[pb].innerHTML.toLowerCase() && $("#transformation-chooser").val(na[pb].innerHTML);
+  for (var na = $("#transformation-chooser option"), qb = 0;qb < na.length;qb++) {
+    a.toLowerCase() === na[qb].innerHTML.toLowerCase() && $("#transformation-chooser").val(na[qb].innerHTML);
   }
   m = new bg({sources:B, ja:m, type:r, eb:w, ib:M});
   b = new kg(b);
@@ -4420,7 +4421,7 @@ function rg(a, b, c, d, e) {
   this.b = v.projection;
   this.Y = void 0;
   this.m = K(a);
-  var c = l(b) ? b : [640161.933, 5958026.134, 3585834.8011505, 7847377.4901306], d = new ol.layer.Tile({source:new ol.source.XYZ({urls:Ia, crossOrigin:"*", attributions:[], maxZoom:18})});
+  var c = l(b) ? b : [640161.933, 5958026.134, 3585834.8011505, 7847377.4901306], d = new ol.layer.Tile({source:new ol.source.XYZ({urls:Ea, crossOrigin:"*", attributions:[], maxZoom:18})});
   this.g = new ol.Map({layers:[d], interactions:ol.interaction.defaults().extend([new ol.interaction.DragZoom]), renderer:"canvas", target:this.m, view:new ol.View({projection:this.b, center:[0, 0], zoom:2}), controls:[new ol.control.FullScreen, new ol.control.Zoom, new ol.control.Attribution, new Qe({spyLayer:new ol.layer.Tile({attribution:void 0, source:new ol.source.OSM})})]});
   this.g.getView().fit(c, this.g.getSize());
   l(b) && (this.a = new ol.control.ZoomToExtent({extent:c}), this.g.addControl(this.a));

@@ -210,6 +210,11 @@ vk2x.settings.MAPVIEW_PARAMS;
 vk2x.settings.MODE_3D;
 
 /**
+ * @type {Array.<string>}
+ */
+vk2x.settings.OSM_URLS;
+
+/**
  * @type {string}
  */
 vk2x.settings.SEARCH_TIMEINTERVAL;
