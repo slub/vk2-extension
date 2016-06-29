@@ -68,9 +68,10 @@ vk2.factory.MapSearchFactory.getMapSearchRecord = function(feature){
 	});
 	goog.dom.appendChild(details, time);
 	
-	var description = goog.dom.createDom('div',{
+	var scale = feature.get('denominator') === '0' || feature.get('denominator') === 0 ? ' unknown' : ' 1:' + feature.get('denominator'),
+		description = goog.dom.createDom('div',{
 		'class':'scale',
-		'innerHTML': vk2.utils.getMsg('factory-scale') + ' 1:' + feature.get('denominator')
+		'innerHTML': vk2.utils.getMsg('factory-scale') + scale
 	});
 	goog.dom.appendChild(details, description);
 	

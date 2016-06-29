@@ -60,8 +60,9 @@ vk2.tool.MetadataBinding.prototype._displayMetadata = function(id, metadata){
 	for (var i = 0; i < metadata['online-resources'].length; i++){
 		this._setOnlineRessource(metadata_container, vk2.utils.getMsg('metadata-online-res'),metadata['online-resources'][i]['url']);
 	};
-	
-	this._setResolution(metadata_container, vk2.utils.getMsg('metadata-spatial-res'), metadata['denominator']);
+
+	var scale = metadata['denominator'] === '0' || metadata['denominator'] === 0 ? ' unknown' : ' 1:' + metadata['denominator'];
+	this._setResolution(metadata_container, vk2.utils.getMsg('metadata-spatial-res'), scale);
 	this._setUniqueId(metadata_container, id);
 };
 
