@@ -1447,11 +1447,7 @@ function kd(a, b) {
   f = O("div", {"class":"tooltip max-value", innerHTML:b[1]});
   d.appendChild(f);
 }
-;function md() {
-  S.call(this);
-}
-t(md, S);
-function T() {
+;function T() {
   this.status_ = !1;
   S.call(this);
 }
@@ -1460,7 +1456,7 @@ T.prototype.C = function() {
 };
 T.prototype.D = function() {
 };
-function nd(a, b, c, d) {
+function md(a, b, c, d) {
   this.a = [c, d];
   this.s = [new ol.interaction.Draw({source:a, type:"Point", style:function() {
     return [y.j.pa];
@@ -1469,26 +1465,26 @@ function nd(a, b, c, d) {
   }})];
   T.call(this);
 }
-t(nd, T);
-nd.prototype.C = function() {
+t(md, T);
+md.prototype.C = function() {
   this.I();
   this.status_ = !0;
 };
-nd.prototype.I = function() {
+md.prototype.I = function() {
   for (var a = 0;a < this.a.length;a++) {
     this.a[a].addInteraction(this.s[a]);
   }
 };
-nd.prototype.D = function() {
+md.prototype.D = function() {
   this.O();
   this.status_ = !1;
 };
-nd.prototype.O = function() {
+md.prototype.O = function() {
   for (var a = 0;a < this.a.length;a++) {
     this.a[a].removeInteraction(this.s[a]);
   }
 };
-function od(a, b, c, d) {
+function nd(a, b, c, d) {
   function e(a, c, b) {
     if ("point" === a.getGeometry().getType().toLowerCase()) {
       var d = c.getSource().getFeatureById(a.getId());
@@ -1515,6 +1511,43 @@ function od(a, b, c, d) {
   }, this)})];
   T.call(this);
 }
+t(nd, T);
+nd.prototype.C = function() {
+  this.I();
+  this.status_ = !0;
+};
+nd.prototype.I = function() {
+  for (var a = 0;a < this.a.length;a++) {
+    this.a[a].addInteraction(this.s[a]);
+  }
+};
+nd.prototype.D = function() {
+  this.O();
+  this.status_ = !1;
+};
+nd.prototype.O = function() {
+  for (var a = 0;a < this.a.length;a++) {
+    this.a[a].removeInteraction(this.s[a]);
+  }
+};
+function od(a, b, c, d) {
+  this.a = [c, d];
+  a.getStyle();
+  y.j.ka();
+  this.s = [new ol.interaction.Modify({features:a.getSource().getFeaturesCollection(), pixelTolerance:10, style:function() {
+    return [y.j.ka()];
+  }}), new ol.interaction.Modify({features:b.getSource().getFeaturesCollection(), pixelTolerance:10, style:function() {
+    return [y.j.ka()];
+  }})];
+  this.s[0].getMap = function() {
+    return c;
+  };
+  this.s[1].getMap = function() {
+    return d;
+  };
+  pd(this, this.s, [a, b]);
+  T.call(this);
+}
 t(od, T);
 od.prototype.C = function() {
   this.I();
@@ -1534,44 +1567,7 @@ od.prototype.O = function() {
     this.a[a].removeInteraction(this.s[a]);
   }
 };
-function pd(a, b, c, d) {
-  this.a = [c, d];
-  a.getStyle();
-  y.j.ka();
-  this.s = [new ol.interaction.Modify({features:a.getSource().getFeaturesCollection(), pixelTolerance:10, style:function() {
-    return [y.j.ka()];
-  }}), new ol.interaction.Modify({features:b.getSource().getFeaturesCollection(), pixelTolerance:10, style:function() {
-    return [y.j.ka()];
-  }})];
-  this.s[0].getMap = function() {
-    return c;
-  };
-  this.s[1].getMap = function() {
-    return d;
-  };
-  qd(this, this.s, [a, b]);
-  T.call(this);
-}
-t(pd, T);
-pd.prototype.C = function() {
-  this.I();
-  this.status_ = !0;
-};
-pd.prototype.I = function() {
-  for (var a = 0;a < this.a.length;a++) {
-    this.a[a].addInteraction(this.s[a]);
-  }
-};
-pd.prototype.D = function() {
-  this.O();
-  this.status_ = !1;
-};
-pd.prototype.O = function() {
-  for (var a = 0;a < this.a.length;a++) {
-    this.a[a].removeInteraction(this.s[a]);
-  }
-};
-function qd(a, b, c) {
+function pd(a, b, c) {
   function d(a, c) {
     var b = f(c.target.getMap(), c.mapBrowserPointerEvent.pixel, a);
     da(b.getId()) && this.dispatchEvent(new A("deselected", {feature:b, srcStyle:y.j.ka(b.getId()), targetStyle:y.j.Ca(b.getId())}));
@@ -1608,6 +1604,10 @@ ol.Collection.prototype.removeFeature = function(a) {
   });
   b && this.remove(a);
 };
+function qd() {
+  S.call(this);
+}
+t(qd, S);
 function rd(a, b, c, d, e) {
   if (!(H || I && J("525"))) {
     return !0;
@@ -2926,7 +2926,7 @@ function Ve(a, b) {
   this.aa = "ascending";
   this.b = 0;
   this.h = void 0;
-  this.a = {ea:l(a.time) ? a.time[0] : 1868, ya:l(a.time) ? a.time[1] : 1945};
+  this.a = {ea:l(a.time) ? a.time[0] : 1625, ya:l(a.time) ? a.time[1] : 1965};
   this.g = a.map;
   this.v = [];
   this.X = !0;
@@ -4101,6 +4101,324 @@ bg.prototype.getType = function() {
   return this.o ? "update" : "new";
 };
 function eg(a, b) {
+  var c = b.getSource(), d;
+  this.g = a;
+  this.s = [new ol.interaction.Draw({features:c.getFeaturesCollection(), type:"Polygon", style:y.j.Ka, minPoints:5, condition:function(a) {
+    a = a.coordinate;
+    return void 0 !== d && y.round(d[0], 4) === y.round(a[0], 4) && y.round(d[1], 4) === y.round(a[1], 4) ? !1 : !0;
+  }, geometryFunction:function(a, b) {
+    b || (b = new ol.geom.Polygon(null));
+    void 0 !== b.getCoordinates()[0] && 2 < b.getCoordinates()[0].length && 3 >= b.getCoordinates()[0].length ? d = b.getCoordinates()[0][b.getCoordinates()[0].length - 1] : d = void 0;
+    b.setCoordinates(a);
+    return b;
+  }}), new ol.interaction.Modify({features:c.getFeaturesCollection(), deleteCondition:function(a) {
+    var b = 1 <= c.getFeatures().length ? c.getFeatures()[0].getGeometry().getCoordinates()[0] : void 0;
+    return void 0 !== b && 5 < b.length && ol.events.condition.shiftKeyOnly(a) && ol.events.condition.singleClick(a);
+  }})];
+  this.s[0].on("drawstart", function() {
+    1 <= c.getFeatures().length && this.finishDrawing();
+  }, this.s[0]);
+  this.s[0].on("drawend", function(a) {
+    a = 1 <= c.getFeatures().length ? c.getFeatures()[0].getGeometry() : a.feature.getGeometry();
+    if (5 > a.getCoordinates()[0].length) {
+      y.sa("Info", y.c("georef-confirm-warn-clippolygon"), function() {
+      }, "georef-validation-dialog", !1), this.finishDrawing();
+    } else {
+      var b = a.getCoordinates(), d = b[0].length;
+      y.round(b[0][d - 2][0], 4) === y.round(b[0][d - 3][0], 4) && y.round(b[0][d - 2][1], 4) === y.round(b[0][d - 3][1], 4) && (b[0].splice(d - 2, 1), a.setCoordinates(b));
+    }
+  }, this.s[0]);
+  c.getFeaturesCollection().on("add", function() {
+    1 < c.getFeatures().length ? c.getFeatures().splice(1, 1) : this.dispatchEvent(new A("drawend", {feature:c.getFeatures()[0]}));
+  }, this);
+  T.call(this);
+}
+t(eg, T);
+eg.prototype.C = function() {
+  this.I();
+  this.status_ = !0;
+};
+eg.prototype.I = function() {
+  for (var a = 0;a < this.s.length;a++) {
+    this.g.addInteraction(this.s[a]);
+  }
+};
+eg.prototype.D = function() {
+  this.O();
+  this.status_ = !1;
+};
+eg.prototype.O = function() {
+  for (var a = 0;a < this.s.length;a++) {
+    this.g.removeInteraction(this.s[a]);
+  }
+};
+function fg(a) {
+  this.b = n(a) ? K(a) : a;
+  var b = O("div", {"class":"georef-tools-clip-container", id:"georef-tools-clip-container"});
+  this.b.appendChild(b);
+  gg(this, b);
+  a = O("div", {"class":"georef-tools-clip-inner-container", id:"georef-tools-clip-inner-container"});
+  b.appendChild(a);
+  var b = [], c = hg("noneToggle", "none", y.c("georef-movemap"));
+  a.appendChild(c);
+  b.push(c);
+  var d = hg("drawClip", "drawclip", y.c("georef-drawclip"));
+  a.appendChild(d);
+  b.push(d);
+  Q(c, "click", p(this.a, this, "none", b));
+  Q(d, "click", p(this.a, this, "drawclip", b));
+  S.call(this);
+}
+t(fg, qd);
+fg.prototype.C = function() {
+  var a = K("georef-tools-clip-handler");
+  null != a && F(a, "open") || $(a).trigger("click");
+};
+function hg(a, b, c) {
+  var d = O("div", {"class":"tool"});
+  a = O("div", {id:a, "class":"tool-move toggle-elements " + a, value:b, innerHTML:'<span class="tool-title">' + c + "</span>"});
+  d.appendChild(a);
+  return d;
+}
+fg.prototype.D = function() {
+  var a = K("georef-tools-clip-handler");
+  if (null == a || F(a, "open")) {
+    $(a).trigger("click");
+    for (var a = L("toggle-elements"), b = 0;b < a.length;b++) {
+      F(a[b], "active") && E(a[b], "active");
+    }
+  }
+};
+fg.prototype.a = function(a, b) {
+  for (var c = p(function(a, b) {
+    F(a, "active") || D(a, "active");
+    this.dispatchEvent(new A("activate-" + b, a));
+  }, this), d = p(function(a, b) {
+    F(a, "active") && E(a, "active");
+    this.dispatchEvent(new A("deactivate-" + b, a));
+  }, this), e = 0;e < b.length;e++) {
+    var f = b[e].children[0];
+    f.value === a ? c(f, f.value) : d(f, f.value);
+  }
+};
+function gg(a, b) {
+  var c = O("div", {"class":"georef-tools-clip-handler", id:"georef-tools-clip-handler"});
+  b.appendChild(c);
+  P(c, O("span", {"class":"icon"}));
+  $(c).click(p(function() {
+    var a = F(c, "open") ? new A("deactivate", c) : new A("activate", c);
+    this.dispatchEvent(a);
+    $("#georef-tools-clip-inner-container").slideToggle(300, function() {
+      $(c).toggleClass("open");
+    });
+  }, a));
+}
+;function ig(a, b, c) {
+  this.a = new ol.source.Vector({features:new ol.Collection});
+  l(c) && (c = Jc(c), this.a.addFeature(c));
+  this.J = new ol.layer.Vector({source:this.a, style:y.j.Ka});
+  this.J.setMap(b);
+  this.b = new eg(b, this.J);
+  jg(a, {"activate-drawclip":this.b, "deactivate-drawclip":this.b});
+  this.wa = a;
+}
+t(ig, Na);
+ig.prototype.i = function(a) {
+  a = Jc(a.target.clip);
+  0 === this.a.getFeatures().length && (this.a.addFeature(a), this.J.addFeature(a));
+};
+function jg(a, b) {
+  function c(a) {
+    if (l(a)) {
+      var c = a.type;
+      l(c) && b.hasOwnProperty(c) && b[c].D();
+    } else {
+      for (c in b) {
+        b.hasOwnProperty(c) && b[c].D();
+      }
+    }
+  }
+  Q(a, "activate-drawclip", function(a) {
+    c();
+    b[a.type].C();
+  });
+  Q(a, "deactivate-drawclip", c);
+  Q(a, "activate", function() {
+  });
+  Q(a, "deactivate", function() {
+    c();
+  });
+}
+;function kg(a) {
+  this.m = n(a) ? K(a) : a;
+  var b = O("div", {"class":"georef-tools-gcp-container", id:"georef-tools-gcp-container"});
+  this.m.appendChild(b);
+  lg(this, b);
+  a = O("div", {"class":"georef-tools-gcp-inner-container", id:"georef-tools-gcp-inner-container"});
+  b.appendChild(a);
+  var b = [], c = mg("noneToggle", "none", y.c("georef-movemap"));
+  a.appendChild(c);
+  b.push(c);
+  var d = mg("pointToggle", "addgcp", y.c("georef-setgcp"));
+  a.appendChild(d);
+  b.push(d);
+  var e = mg("dragToggle", "draggcp", y.c("georef-movegcp"));
+  a.appendChild(e);
+  b.push(e);
+  var f = mg("deleteToggle", "delgcp", y.c("georef-delgcp"));
+  a.appendChild(f);
+  b.push(f);
+  Q(c, "click", p(this.a, this, "none", b));
+  Q(d, "click", p(this.a, this, "addgcp", b));
+  Q(e, "click", p(this.a, this, "draggcp", b));
+  Q(f, "click", p(this.a, this, "delgcp", b));
+  S.call(this);
+}
+t(kg, qd);
+kg.prototype.C = function() {
+  var a = K("georef-tools-gcp-handler");
+  null != a && F(a, "open") || $(a).trigger("click");
+};
+function mg(a, b, c) {
+  var d = O("div", {"class":"tool"});
+  a = O("div", {id:a, "class":"tool-move toggle-elements " + a, value:b, innerHTML:'<span class="tool-title">' + c + "</span>"});
+  d.appendChild(a);
+  return d;
+}
+kg.prototype.D = function() {
+  var a = K("georef-tools-gcp-handler");
+  if (null == a || F(a, "open")) {
+    $(a).trigger("click");
+    for (var a = L("toggle-elements"), b = 0;b < a.length;b++) {
+      F(a[b], "active") && E(a[b], "active");
+    }
+  }
+};
+kg.prototype.a = function(a, b) {
+  for (var c = p(function(a, b) {
+    F(a, "active") || D(a, "active");
+    this.dispatchEvent(new A("activate-" + b, a));
+  }, this), d = p(function(a, b) {
+    F(a, "active") && E(a, "active");
+    this.dispatchEvent(new A("deactivate-" + b, a));
+  }, this), e = 0;e < b.length;e++) {
+    var f = b[e].children[0];
+    f.value === a ? c(f, f.value) : d(f, f.value);
+  }
+};
+function lg(a, b) {
+  var c = O("div", {"class":"georef-tools-gcp-handler", id:"georef-tools-gcp-handler"});
+  b.appendChild(c);
+  P(c, O("span", {"class":"icon"}));
+  $(c).click(p(function() {
+    var a = F(c, "open") ? new A("deactivate", c) : new A("activate", c);
+    this.dispatchEvent(a);
+    $("#georef-tools-gcp-inner-container").slideToggle(300, function() {
+      $(c).toggleClass("open");
+    });
+  }, a));
+}
+;function ng(a) {
+  this.a = a.Z;
+  var b = a.Nb, c = a.sources[0], d = a.sources[1];
+  a = {V:a.$a[0], R:a.$a[1]};
+  var e = {V:new ol.layer.Vector({source:c, style:function() {
+    return [y.j.qb];
+  }}), R:new ol.layer.Vector({source:d, style:function() {
+    return [y.j.qb];
+  }})}, d = new md(c, d, a.V, a.R), c = new od(e.V, e.R, a.V, a.R), f = new nd(e.V, e.R, a.V, a.R), d = {"activate-addgcp":d, "deactivate-addgcp":d, "activate-draggcp":c, "deactivate-draggcp":c, "activate-delgcp":f, "deactivate-delgcp":f};
+  og(c);
+  pg(b, a, e, d);
+  this.wa = b;
+}
+t(ng, Na);
+function og(a) {
+  function b(a) {
+    a.target.feature.setStyle(a.target.targetStyle);
+  }
+  Q(a, "selected", b);
+  Q(a, "deselected", b);
+}
+function pg(a, b, c, d) {
+  function e(a) {
+    f();
+    d[a.type].C();
+  }
+  function f(a) {
+    if (l(a)) {
+      var b = a.type;
+      l(b) && d.hasOwnProperty(b) && d[b].D();
+    } else {
+      for (b in d) {
+        d.hasOwnProperty(b) && d[b].D();
+      }
+    }
+  }
+  Q(a, "activate-addgcp", e);
+  Q(a, "deactivate-addgcp", f);
+  Q(a, "activate-draggcp", e);
+  Q(a, "deactivate-draggcp", f);
+  Q(a, "activate-delgcp", e);
+  Q(a, "deactivate-delgcp", f);
+  Q(a, "activate", function() {
+  });
+  Q(a, "deactivate", function() {
+    f();
+  });
+  b.V.addLayer(c.V);
+  b.R.addLayer(c.R);
+}
+;function qg(a) {
+  var b = n(a.Ha) ? K(a.Ha) : a.Ha, c = n(a.Ga) ? K(a.Ga) : a.Ga, d = a.Hb, e = a.Eb, f = a.Lb, h = a.Qb, m = l(a.Oa) ? a.Oa : void 0, r = l(a.type) ? a.type : void 0, u = l(a.ha) ? a.ha : void 0, w = l(a.Pa) ? a.Pa : void 0, B = [new ol.source.Vector({features:new ol.Collection}), new ol.source.Vector({features:new ol.Collection})], M = l(a.ib) ? M : void 0;
+  a = a.Fb.toLowerCase();
+  var na = {mtb:"affine", gl:"affine", ae:"affine", tk:"affine", ak:"tps"};
+  a = void 0 !== m ? m.algorithm : na.hasOwnProperty(a) ? na[a.toLowerCase()] : na.mtb;
+  for (var na = $("#transformation-chooser option"), qb = 0;qb < na.length;qb++) {
+    a.toLowerCase() === na[qb].innerHTML.toLowerCase() && $("#transformation-chooser").val(na[qb].innerHTML);
+  }
+  m = new bg({sources:B, ja:m, type:r, eb:w, ib:M});
+  b = new kg(b);
+  f = new ng({Nb:b, Z:m, $a:[f.getMap(), h.getMap()], sources:B});
+  c = new fg(c);
+  u = new ig(c, h.getMap(), u);
+  B = f.wa;
+  m = u.wa;
+  Q(B, "activate", m.D);
+  Q(m, "activate", B.D);
+  R(f.a, "add-gcp-clippolygon", u.i, void 0, u);
+  B = new $f(d, e, f.a);
+  d = new Yf(d, e, f.a, u.a);
+  rg(B, d, h, u, c);
+  b.C();
+}
+function rg(a, b, c, d, e) {
+  Q(a, "start-warping", function() {
+    sg(c);
+  });
+  Q(a, "end-warping", function(a) {
+    a = a.target.data;
+    var b = 0 < d.a.getFeatures().length ? d.a.getFeatures()[0] : void 0, m = ol.proj.transformExtent(a.extent, Lc(), v.projection);
+    tg(c, a.wmsUrl, a.layerId, b);
+    c.setZoom(m);
+    ug(c);
+    e.C();
+  });
+  Q(a, "error", function() {
+    alert("Something went wrong, while trying to request a validation result.");
+    ug(c);
+  });
+  Q(b, "end-confirm", function() {
+    window.location.href = y.f.Ta();
+  });
+  Q(d.b, "drawend", function(a) {
+    a = a.target.feature;
+    if (void 0 !== c.Y) {
+      var b = c.Y.getProperties();
+      tg(c, b.wms_url, b.layerid, a);
+    }
+  });
+}
+;function vg(a, b) {
   this.b = v.projection;
   this.Y = void 0;
   this.m = K(a);
@@ -4116,34 +4434,34 @@ function eg(a, b) {
   }, void 0, this);
   N("ol-attribution").children[0].children[0].remove();
 }
-function fg(a) {
-  if (!l(gg(a))) {
+function sg(a) {
+  if (!l(wg(a))) {
     var b = O("div", {"class":"result-viewer-loading-panel", id:"result-viewer-loading-panel", innerHTML:'<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100"aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">100% Complete</span></div></div>'});
     a.m.appendChild(b);
   }
 }
-function hg(a) {
-  a = gg(a);
+function ug(a) {
+  a = wg(a);
   l(a) && Cc(a);
 }
-function ig(a, b, c, d) {
+function tg(a, b, c, d) {
   l(a.Y) && a.g.removeLayer(a.Y);
   d = void 0 !== d ? d.getGeometry() : void 0;
   a.Y = Ve({mb:b, Ya:c, ha:d}, a.g);
   a.g.getLayers().insertAt(1, a.Y);
   K("opacity-slider-container") && (K("opacity-slider-container").innerHTML = "", new vf(K("opacity-slider-container"), a.Y));
 }
-eg.prototype.getMap = function() {
+vg.prototype.getMap = function() {
   return this.g;
 };
-function gg(a) {
+function wg(a) {
   for (var b = 0;b < a.m.children.length;b++) {
     if ("result-viewer-loading-panel" === a.m.children[b].id) {
       return a.m.children[b];
     }
   }
 }
-eg.prototype.setZoom = function(a) {
+vg.prototype.setZoom = function(a) {
   void 0 !== a && (a = void 0 === a ? this.g.getView().calculateExtent(this.g.getSize()) : a, this.g.removeControl(this.a), this.a = new ol.control.ZoomToExtent({extent:a}), this.g.addControl(this.a), this.g.getView().fit(a, this.g.getSize()));
 };
 q("vk2.app.AdminEvaluationApp", function(a) {
@@ -4152,18 +4470,18 @@ q("vk2.app.AdminEvaluationApp", function(a) {
   }
   var b = a.map_container;
   Ic();
-  this.na = new eg(b);
-  a.hasOwnProperty("btn_getallprocess") && jg(this, a.btn_getallprocess, a.process_list);
-  a.hasOwnProperty("btn_getallinvalideprocess") && jg(this, a.btn_getallinvalideprocess, a.process_list, "validation=invalide");
-  a.hasOwnProperty("btn_getsingleprocess_mapid") && kg(this, a.btn_getsingleprocess_mapid, a.process_list);
-  a.hasOwnProperty("btn_getsingleprocess_userid") && lg(this, a.btn_getsingleprocess_userid, a.process_list);
+  this.na = new vg(b);
+  a.hasOwnProperty("btn_getallprocess") && xg(this, a.btn_getallprocess, a.process_list);
+  a.hasOwnProperty("btn_getallinvalideprocess") && xg(this, a.btn_getallinvalideprocess, a.process_list, "validation=invalide");
+  a.hasOwnProperty("btn_getsingleprocess_mapid") && yg(this, a.btn_getsingleprocess_mapid, a.process_list);
+  a.hasOwnProperty("btn_getsingleprocess_userid") && zg(this, a.btn_getsingleprocess_userid, a.process_list);
 });
-function jg(a, b, c, d) {
+function xg(a, b, c, d) {
   Q(K(b), "click", function() {
     var a = new U;
     R(a, "success", function(a) {
       a = a.target;
-      mg(this, c, W(a));
+      Ag(this, c, W(a));
       z(a);
     }, !1, this);
     R(a, "error", function() {
@@ -4173,28 +4491,28 @@ function jg(a, b, c, d) {
     a.send(b, "GET");
   }, void 0, a);
 }
-function kg(a, b, c) {
+function yg(a, b, c) {
   Q(K(b), "click", function(a) {
     a = a.currentTarget.getAttribute("data-src");
     var b = K(a).value;
     a = new U;
     R(a, "success", function(a) {
       a = a.target;
-      mg(this, c, W(a));
+      Ag(this, c, W(a));
       z(a);
     }, !1, this);
     b = y.f.Ba("mapid=" + b);
     a.send(b, "GET");
   }, void 0, a);
 }
-function lg(a, b, c) {
+function zg(a, b, c) {
   Q(K(b), "click", function(a) {
     a = a.currentTarget.getAttribute("data-src");
     var b = K(a).value;
     a = new U;
     R(a, "success", function(a) {
       a = a.target;
-      mg(this, c, W(a));
+      Ag(this, c, W(a));
       z(a);
     }, !1, this);
     R(a, "error", function() {
@@ -4204,7 +4522,7 @@ function lg(a, b, c) {
     a.send(b, "GET");
   }, void 0, a);
 }
-function ng(a, b) {
+function Bg(a, b) {
   function c(a, b, c) {
     return O("p", {innerHTML:"<strong>" + a + '</strong> <span class="' + (void 0 !== c ? c : "") + '">' + b + "</span>"});
   }
@@ -4212,7 +4530,7 @@ function ng(a, b) {
   d.appendChild(e);
   var f = O("button", {"data-params-georef":JSON.stringify(b.georef_params), "data-params-id":parseInt(b.oai.split("-")[2]), "class":"btn btn-default btn-show-georef", innerHTML:"Vorschau anzeigen ..."});
   void 0 !== b.clippolygon && f.setAttribute("data-params-clip", JSON.stringify(b.clippolygon));
-  og(a, f);
+  Cg(a, f);
   e.appendChild(f);
   P(e, O("a", {href:y.f.ta(void 0, "georeferenceid=" + b.georef_id), "class":"btn btn-default action-btn", target:"_blank", innerHTML:"Georeferenzierung anzeigen ..."}));
   var e = O("div", {"class":"panel-body"}), h = c("Georeferenzierungsparameter vom " + b.georef_time + ":", "", "glyphicon glyphicon-triangle-left right"), m = O("p", {"class":"georef-params", innerHTML:"Passpunkte: <br>" + JSON.stringify(b.georef_params) + "<br><br>Clip-Polygon: <br>" + JSON.stringify(b.clippolygon)});
@@ -4258,350 +4576,32 @@ function ng(a, b) {
   }
   return d;
 }
-function mg(a, b, c) {
+function Ag(a, b, c) {
   b = K(b);
   b.innerHTML = "";
   for (var d = 0, e = c.length;d < e;d++) {
-    var f = ng(a, c[d]);
+    var f = Bg(a, c[d]);
     b.appendChild(f);
   }
 }
-function og(a, b) {
+function Cg(a, b) {
   Q(b, "click", function(a) {
     var b = JSON.parse(a.currentTarget.getAttribute("data-params-georef")), e = b.hasOwnProperty("new") ? b["new"] : b, f = null == a.currentTarget.getAttribute("data-params-clip") || void 0 == a.currentTarget.getAttribute("data-params-clip") ? void 0 : JSON.parse(a.currentTarget.getAttribute("data-params-clip"));
     a = parseInt(a.currentTarget.getAttribute("data-params-id"), 0);
     a = {georeference:e, id:a};
     void 0 !== f && (a.clip = f);
-    fg(this.na);
+    sg(this.na);
     Hf(a, p(function(a) {
       a = W(a.target);
       var b = ol.proj.transformExtent(a.extent, e.target, v.projection), c = void 0 !== f ? Jc(f) : void 0;
-      ig(this.na, a.wmsUrl, a.layerId, c);
+      tg(this.na, a.wmsUrl, a.layerId, c);
       this.na.setZoom(b);
-      hg(this.na);
+      ug(this.na);
     }, this), function() {
-      hg(this.na);
+      ug(this.na);
       alert("Something went wrong while trying to fetch a georeference validation result from server ....");
     });
   }, !1, a);
-}
-;function pg(a) {
-  this.b = n(a) ? K(a) : a;
-  var b = O("div", {"class":"georef-tools-clip-container", id:"georef-tools-clip-container"});
-  this.b.appendChild(b);
-  qg(this, b);
-  a = O("div", {"class":"georef-tools-clip-inner-container", id:"georef-tools-clip-inner-container"});
-  b.appendChild(a);
-  var b = [], c = rg("noneToggle", "none", y.c("georef-movemap"));
-  a.appendChild(c);
-  b.push(c);
-  var d = rg("drawClip", "drawclip", y.c("georef-drawclip"));
-  a.appendChild(d);
-  b.push(d);
-  Q(c, "click", p(this.a, this, "none", b));
-  Q(d, "click", p(this.a, this, "drawclip", b));
-  S.call(this);
-}
-t(pg, md);
-pg.prototype.C = function() {
-  var a = K("georef-tools-clip-handler");
-  null != a && F(a, "open") || $(a).trigger("click");
-};
-function rg(a, b, c) {
-  var d = O("div", {"class":"tool"});
-  a = O("div", {id:a, "class":"tool-move toggle-elements " + a, value:b, innerHTML:'<span class="tool-title">' + c + "</span>"});
-  d.appendChild(a);
-  return d;
-}
-pg.prototype.D = function() {
-  var a = K("georef-tools-clip-handler");
-  if (null == a || F(a, "open")) {
-    $(a).trigger("click");
-    for (var a = L("toggle-elements"), b = 0;b < a.length;b++) {
-      F(a[b], "active") && E(a[b], "active");
-    }
-  }
-};
-pg.prototype.a = function(a, b) {
-  for (var c = p(function(a, b) {
-    F(a, "active") || D(a, "active");
-    this.dispatchEvent(new A("activate-" + b, a));
-  }, this), d = p(function(a, b) {
-    F(a, "active") && E(a, "active");
-    this.dispatchEvent(new A("deactivate-" + b, a));
-  }, this), e = 0;e < b.length;e++) {
-    var f = b[e].children[0];
-    f.value === a ? c(f, f.value) : d(f, f.value);
-  }
-};
-function qg(a, b) {
-  var c = O("div", {"class":"georef-tools-clip-handler", id:"georef-tools-clip-handler"});
-  b.appendChild(c);
-  P(c, O("span", {"class":"icon"}));
-  $(c).click(p(function() {
-    var a = F(c, "open") ? new A("deactivate", c) : new A("activate", c);
-    this.dispatchEvent(a);
-    $("#georef-tools-clip-inner-container").slideToggle(300, function() {
-      $(c).toggleClass("open");
-    });
-  }, a));
-}
-;function sg(a) {
-  this.m = n(a) ? K(a) : a;
-  var b = O("div", {"class":"georef-tools-gcp-container", id:"georef-tools-gcp-container"});
-  this.m.appendChild(b);
-  tg(this, b);
-  a = O("div", {"class":"georef-tools-gcp-inner-container", id:"georef-tools-gcp-inner-container"});
-  b.appendChild(a);
-  var b = [], c = ug("noneToggle", "none", y.c("georef-movemap"));
-  a.appendChild(c);
-  b.push(c);
-  var d = ug("pointToggle", "addgcp", y.c("georef-setgcp"));
-  a.appendChild(d);
-  b.push(d);
-  var e = ug("dragToggle", "draggcp", y.c("georef-movegcp"));
-  a.appendChild(e);
-  b.push(e);
-  var f = ug("deleteToggle", "delgcp", y.c("georef-delgcp"));
-  a.appendChild(f);
-  b.push(f);
-  Q(c, "click", p(this.a, this, "none", b));
-  Q(d, "click", p(this.a, this, "addgcp", b));
-  Q(e, "click", p(this.a, this, "draggcp", b));
-  Q(f, "click", p(this.a, this, "delgcp", b));
-  S.call(this);
-}
-t(sg, md);
-sg.prototype.C = function() {
-  var a = K("georef-tools-gcp-handler");
-  null != a && F(a, "open") || $(a).trigger("click");
-};
-function ug(a, b, c) {
-  var d = O("div", {"class":"tool"});
-  a = O("div", {id:a, "class":"tool-move toggle-elements " + a, value:b, innerHTML:'<span class="tool-title">' + c + "</span>"});
-  d.appendChild(a);
-  return d;
-}
-sg.prototype.D = function() {
-  var a = K("georef-tools-gcp-handler");
-  if (null == a || F(a, "open")) {
-    $(a).trigger("click");
-    for (var a = L("toggle-elements"), b = 0;b < a.length;b++) {
-      F(a[b], "active") && E(a[b], "active");
-    }
-  }
-};
-sg.prototype.a = function(a, b) {
-  for (var c = p(function(a, b) {
-    F(a, "active") || D(a, "active");
-    this.dispatchEvent(new A("activate-" + b, a));
-  }, this), d = p(function(a, b) {
-    F(a, "active") && E(a, "active");
-    this.dispatchEvent(new A("deactivate-" + b, a));
-  }, this), e = 0;e < b.length;e++) {
-    var f = b[e].children[0];
-    f.value === a ? c(f, f.value) : d(f, f.value);
-  }
-};
-function tg(a, b) {
-  var c = O("div", {"class":"georef-tools-gcp-handler", id:"georef-tools-gcp-handler"});
-  b.appendChild(c);
-  P(c, O("span", {"class":"icon"}));
-  $(c).click(p(function() {
-    var a = F(c, "open") ? new A("deactivate", c) : new A("activate", c);
-    this.dispatchEvent(a);
-    $("#georef-tools-gcp-inner-container").slideToggle(300, function() {
-      $(c).toggleClass("open");
-    });
-  }, a));
-}
-;function vg(a) {
-  this.a = a.Z;
-  var b = a.Nb, c = a.sources[0], d = a.sources[1];
-  a = {V:a.$a[0], R:a.$a[1]};
-  var e = {V:new ol.layer.Vector({source:c, style:function() {
-    return [y.j.qb];
-  }}), R:new ol.layer.Vector({source:d, style:function() {
-    return [y.j.qb];
-  }})}, d = new nd(c, d, a.V, a.R), c = new pd(e.V, e.R, a.V, a.R), f = new od(e.V, e.R, a.V, a.R), d = {"activate-addgcp":d, "deactivate-addgcp":d, "activate-draggcp":c, "deactivate-draggcp":c, "activate-delgcp":f, "deactivate-delgcp":f};
-  wg(c);
-  xg(b, a, e, d);
-  this.wa = b;
-}
-t(vg, Na);
-function wg(a) {
-  function b(a) {
-    a.target.feature.setStyle(a.target.targetStyle);
-  }
-  Q(a, "selected", b);
-  Q(a, "deselected", b);
-}
-function xg(a, b, c, d) {
-  function e(a) {
-    f();
-    d[a.type].C();
-  }
-  function f(a) {
-    if (l(a)) {
-      var b = a.type;
-      l(b) && d.hasOwnProperty(b) && d[b].D();
-    } else {
-      for (b in d) {
-        d.hasOwnProperty(b) && d[b].D();
-      }
-    }
-  }
-  Q(a, "activate-addgcp", e);
-  Q(a, "deactivate-addgcp", f);
-  Q(a, "activate-draggcp", e);
-  Q(a, "deactivate-draggcp", f);
-  Q(a, "activate-delgcp", e);
-  Q(a, "deactivate-delgcp", f);
-  Q(a, "activate", function() {
-  });
-  Q(a, "deactivate", function() {
-    f();
-  });
-  b.V.addLayer(c.V);
-  b.R.addLayer(c.R);
-}
-;function yg(a, b) {
-  var c = b.getSource(), d;
-  this.g = a;
-  this.s = [new ol.interaction.Draw({features:c.getFeaturesCollection(), type:"Polygon", style:y.j.Ka, minPoints:5, condition:function(a) {
-    a = a.coordinate;
-    return void 0 !== d && y.round(d[0], 4) === y.round(a[0], 4) && y.round(d[1], 4) === y.round(a[1], 4) ? !1 : !0;
-  }, geometryFunction:function(a, b) {
-    b || (b = new ol.geom.Polygon(null));
-    void 0 !== b.getCoordinates()[0] && 2 < b.getCoordinates()[0].length && 3 >= b.getCoordinates()[0].length ? d = b.getCoordinates()[0][b.getCoordinates()[0].length - 1] : d = void 0;
-    b.setCoordinates(a);
-    return b;
-  }}), new ol.interaction.Modify({features:c.getFeaturesCollection(), deleteCondition:function(a) {
-    var b = 1 <= c.getFeatures().length ? c.getFeatures()[0].getGeometry().getCoordinates()[0] : void 0;
-    return void 0 !== b && 5 < b.length && ol.events.condition.shiftKeyOnly(a) && ol.events.condition.singleClick(a);
-  }})];
-  this.s[0].on("drawstart", function() {
-    1 <= c.getFeatures().length && this.finishDrawing();
-  }, this.s[0]);
-  this.s[0].on("drawend", function(a) {
-    a = 1 <= c.getFeatures().length ? c.getFeatures()[0].getGeometry() : a.feature.getGeometry();
-    if (5 > a.getCoordinates()[0].length) {
-      y.sa("Info", y.c("georef-confirm-warn-clippolygon"), function() {
-      }, "georef-validation-dialog", !1), this.finishDrawing();
-    } else {
-      var b = a.getCoordinates(), d = b[0].length;
-      y.round(b[0][d - 2][0], 4) === y.round(b[0][d - 3][0], 4) && y.round(b[0][d - 2][1], 4) === y.round(b[0][d - 3][1], 4) && (b[0].splice(d - 2, 1), a.setCoordinates(b));
-    }
-  }, this.s[0]);
-  c.getFeaturesCollection().on("add", function() {
-    1 < c.getFeatures().length ? c.getFeatures().splice(1, 1) : this.dispatchEvent(new A("drawend", {feature:c.getFeatures()[0]}));
-  }, this);
-  T.call(this);
-}
-t(yg, T);
-yg.prototype.C = function() {
-  this.I();
-  this.status_ = !0;
-};
-yg.prototype.I = function() {
-  for (var a = 0;a < this.s.length;a++) {
-    this.g.addInteraction(this.s[a]);
-  }
-};
-yg.prototype.D = function() {
-  this.O();
-  this.status_ = !1;
-};
-yg.prototype.O = function() {
-  for (var a = 0;a < this.s.length;a++) {
-    this.g.removeInteraction(this.s[a]);
-  }
-};
-function zg(a, b, c) {
-  this.a = new ol.source.Vector({features:new ol.Collection});
-  l(c) && (c = Jc(c), this.a.addFeature(c));
-  this.J = new ol.layer.Vector({source:this.a, style:y.j.Ka});
-  this.J.setMap(b);
-  this.b = new yg(b, this.J);
-  Ag(a, {"activate-drawclip":this.b, "deactivate-drawclip":this.b});
-  this.wa = a;
-}
-t(zg, Na);
-zg.prototype.i = function(a) {
-  a = Jc(a.target.clip);
-  0 === this.a.getFeatures().length && (this.a.addFeature(a), this.J.addFeature(a));
-};
-function Ag(a, b) {
-  function c(a) {
-    if (l(a)) {
-      var c = a.type;
-      l(c) && b.hasOwnProperty(c) && b[c].D();
-    } else {
-      for (c in b) {
-        b.hasOwnProperty(c) && b[c].D();
-      }
-    }
-  }
-  Q(a, "activate-drawclip", function(a) {
-    c();
-    b[a.type].C();
-  });
-  Q(a, "deactivate-drawclip", c);
-  Q(a, "activate", function() {
-  });
-  Q(a, "deactivate", function() {
-    c();
-  });
-}
-;function Bg(a) {
-  var b = n(a.Ha) ? K(a.Ha) : a.Ha, c = n(a.Ga) ? K(a.Ga) : a.Ga, d = a.Hb, e = a.Eb, f = a.Lb, h = a.Qb, m = l(a.Oa) ? a.Oa : void 0, r = l(a.type) ? a.type : void 0, u = l(a.ha) ? a.ha : void 0, w = l(a.Pa) ? a.Pa : void 0, B = [new ol.source.Vector({features:new ol.Collection}), new ol.source.Vector({features:new ol.Collection})], M = l(a.ib) ? M : void 0;
-  a = a.Fb.toLowerCase();
-  var na = {mtb:"affine", gl:"affine", ae:"affine", tk:"affine", ak:"tps"};
-  a = void 0 !== m ? m.algorithm : na.hasOwnProperty(a) ? na[a.toLowerCase()] : na.mtb;
-  for (var na = $("#transformation-chooser option"), qb = 0;qb < na.length;qb++) {
-    a.toLowerCase() === na[qb].innerHTML.toLowerCase() && $("#transformation-chooser").val(na[qb].innerHTML);
-  }
-  m = new bg({sources:B, ja:m, type:r, eb:w, ib:M});
-  b = new sg(b);
-  f = new vg({Nb:b, Z:m, $a:[f.getMap(), h.getMap()], sources:B});
-  c = new pg(c);
-  u = new zg(c, h.getMap(), u);
-  B = f.wa;
-  m = u.wa;
-  Q(B, "activate", m.D);
-  Q(m, "activate", B.D);
-  R(f.a, "add-gcp-clippolygon", u.i, void 0, u);
-  B = new $f(d, e, f.a);
-  d = new Yf(d, e, f.a, u.a);
-  Cg(B, d, h, u, c);
-  b.C();
-}
-function Cg(a, b, c, d, e) {
-  Q(a, "start-warping", function() {
-    fg(c);
-  });
-  Q(a, "end-warping", function(a) {
-    a = a.target.data;
-    var b = 0 < d.a.getFeatures().length ? d.a.getFeatures()[0] : void 0, m = ol.proj.transformExtent(a.extent, Lc(), v.projection);
-    ig(c, a.wmsUrl, a.layerId, b);
-    c.setZoom(m);
-    hg(c);
-    e.C();
-  });
-  Q(a, "error", function() {
-    alert("Something went wrong, while trying to request a validation result.");
-    hg(c);
-  });
-  Q(b, "end-confirm", function() {
-    window.location.href = y.f.Ta();
-  });
-  Q(d.b, "drawend", function(a) {
-    a = a.target.feature;
-    if (void 0 !== c.Y) {
-      var b = c.Y.getProperties();
-      ig(c, b.wms_url, b.layerid, a);
-    }
-  });
 }
 ;function Dg(a, b) {
   y.Na();
@@ -4619,11 +4619,11 @@ function Eg(a, b) {
   });
 }
 Dg.prototype.a = function(a, b, c) {
-  var d = c.hasOwnProperty("extent") ? ol.proj.transformExtent(c.extent, wa, "EPSG:3857") : void 0, e = new se(a, c.zoomify), f = new eg(b, d);
+  var d = c.hasOwnProperty("extent") ? ol.proj.transformExtent(c.extent, wa, "EPSG:3857") : void 0, e = new se(a, c.zoomify), f = new vg(b, d);
   Q(e, "loadend", function() {
     var d = c.hasOwnProperty("recommendedsrid") ? "EPSG:" + c.recommendedsrid : "EPSG:4326";
     $("#projection-chooser").val(d);
-    new Bg({Ha:a, Ga:b, Hb:"georef-validate-menu", Eb:c.objectid, Lb:e, Qb:f, Oa:c.georeference, type:c.type, ha:c.clippolygon, Pa:c.georeferenceid, Fb:c.maptype});
+    new qg({Ha:a, Ga:b, Hb:"georef-validate-menu", Eb:c.objectid, Lb:e, Qb:f, Oa:c.georeference, type:c.type, ha:c.clippolygon, Pa:c.georeferenceid, Fb:c.maptype});
   }, void 0, this);
   c.hasOwnProperty("warn") && (d = O("div", {innerHTML:c.warn + ' <a href="' + y.f.Ta() + '">' + y.c("back-to-main") + "</a>", "class":"alert alert-danger warn-msg"}), K(a).appendChild(d));
 };

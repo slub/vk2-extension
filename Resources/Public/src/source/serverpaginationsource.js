@@ -85,8 +85,8 @@ vk2.source.ServerPagination = function(options) {
 	this.totalFeatures_ = undefined;
 	  
 	
-	var start = goog.isDef(options.time) ? options.time[0] : 1868,
-		end = goog.isDef(options.time) ? options.time[1] : 1945;
+	var start = goog.isDef(options.time) ? options.time[0] : 1625,
+		end = goog.isDef(options.time) ? options.time[1] : 1965;
 	/**
 	 * @type {Object}
 	 * @private
