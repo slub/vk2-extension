@@ -92,7 +92,7 @@ class StaticController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 			\SLUB\Vk2\Domain\Model\Contact $contact) {
 		$mail = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Mail\\MailMessage');
 		$mail->setFrom(array("Admin@kartenforum.slub-dresden.de" => "Admin"));
-		$mail->setTo(array("Jacob.Mendt@slub-dresden.de" => "Jacob Mendt"));
+		$mail->setTo(array("Erik.Sommer@slub-dresden.de" => "Erik Sommer"));
 		$mail->setSubject("contact message virtuelles map forum");
 		$mail->setBody("Contact Message:\n\nEmail: " . $contact->getEmail() . "\nMessage: " . $contact->getMessage() . "\n------");
 		$mail->send();
